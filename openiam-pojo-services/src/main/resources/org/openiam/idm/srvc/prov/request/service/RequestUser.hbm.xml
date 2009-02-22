@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 9, 2009 5:33:58 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.prov.request.dto.RequestUser" table="REQUEST_USER" >
+        <id name="reqUserListId" type="string">
+            <column name="REQ_USER_ID" length="32" />
+             <generator class="uuid" />
+        </id>
+        <property name="provRequestId" type="string">
+             <column name="REQUEST_ID" length="32" not-null="true" />
+        </property>
+        
+        <property name="userId" type="string">
+            <column name="USER_ID" length="20" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="20" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="20" />
+        </property>
+        <property name="middleInit" type="string">
+            <column name="MIDDLE_INIT" length="20" />
+        </property>
+        <property name="deptCd" type="string">
+            <column name="DEPT_CD" length="20" />
+        </property>
+        <property name="division" type="string">
+            <column name="DIVISION" length="20" />
+        </property>
+        <property name="locationCd" type="string">
+            <column name="LOCATION_CD" length="20" />
+        </property>
+        <property name="affiliation" type="string">
+            <column name="AFFILIATION" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

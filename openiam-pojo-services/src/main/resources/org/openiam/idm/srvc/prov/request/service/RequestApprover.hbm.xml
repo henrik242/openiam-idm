@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 9, 2009 5:33:58 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping auto-import="false">
+    <class name="org.openiam.idm.srvc.prov.request.dto.RequestApprover" table="REQ_APPROVER">
+        <id name="reqApproverId" type="string">
+            <column name="REQ_APPROVER_ID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="userId" type="string">
+            <column name="USER_ID" length="20" />
+        </property>
+        <property name="approverLevel" type="string">
+            <column name="APPROVER_LEVEL" length="20" />
+        </property>
+        <property name="mngSysGroupId" type="string">
+            <column name="MNG_SYS_GROUP_ID" length="32" not-null="true" />
+        </property>
+        <property name="managedSysId" type="string">
+            <column name="MANAGED_SYS_ID" length="32" not-null="true" />
+        </property>
+        <!-- 
+        <set name="approvalHistories" inverse="true">
+            <key>
+                <column name="REQ_APPROVER_ID" length="32" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.prov.request.dto.ApprovalHistory" />
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

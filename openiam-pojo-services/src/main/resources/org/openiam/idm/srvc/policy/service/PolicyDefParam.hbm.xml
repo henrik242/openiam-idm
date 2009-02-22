@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2007 6:04:08 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.policy.dto.PolicyDefParam" table="POLICY_DEF_PARAM" >
+        <comment></comment>
+        <id name="defParamId" type="string">
+            <column name="DEF_PARAM_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="policyDef" class="org.openiam.idm.srvc.policy.dto.PolicyDef" fetch="select">
+            <column name="POLICY_DEF_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="operation" type="string">
+            <column name="OPERATION" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value1" type="string">
+            <column name="VALUE1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value2" type="string">
+            <column name="VALUE2">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="repeats" type="java.lang.Integer">
+            <column name="REPEATS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="policyParamHandler" type="string">
+            <column name="POLICY_PARAM_HANDLER">
+                <comment></comment>
+            </column>
+        </property>
+        <set name="policyAttributes" inverse="true">
+            <key>
+                <column name="DEF_PARAM_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyAttribute" />
+        </set>
+    </class>
+</hibernate-mapping>

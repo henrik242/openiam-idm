@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2007 6:04:08 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.policy.dto.Policy" table="POLICY">
+        <comment></comment>
+        <id name="policyId" type="string">
+            <column name="POLICY_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="policyDef" class="org.openiam.idm.srvc.policy.dto.PolicyDef" fetch="select">
+            <column name="POLICY_DEF_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="enablement" type="java.lang.Integer">
+            <column name="ENABLEMENT">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <set name="policyAttributes" inverse="true">
+            <key>
+                <column name="POLICY_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyAttribute" />
+        </set>
+        <set name="policyMemberships" inverse="true">
+            <key>
+                <column name="POLICY_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyMembership" />
+        </set>
+    </class>
+</hibernate-mapping>
