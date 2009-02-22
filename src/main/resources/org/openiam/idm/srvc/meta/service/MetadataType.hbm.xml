@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 4, 2008 12:11:29 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.meta.dto.MetadataType" table="METADATA_TYPE" >
+        <id name="metadataTypeId" type="string">
+            <column name="TYPE_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="40" />
+        </property>
+
+        <property name="active" type="int">
+            <column name="ACTIVE" />
+        </property>
+        <property name="syncManagedSys" type="int">
+            <column name="SYNC_MANAGED_SYS" />
+        </property>
+                
+         <map name="elementAttributes" cascade="all-delete-orphan" lazy="false" >
+  			<key>
+  				<column name="TYPE_ID" length="20" /> 
+  			</key>
+  			<map-key column="ATTRIBUTE_NAME" type="string" />
+  			<one-to-many class="org.openiam.idm.srvc.meta.dto.MetadataElement" />
+ 		</map> 
+ 	
+
+ 		
+ 		<set name="categories" table="CATEGORY_TYPE" lazy="true" >
+            <key>
+               <column name="TYPE_ID" length="20" not-null="true" />
+            </key>
+            <many-to-many entity-name="org.openiam.idm.srvc.cat.dto.Category">
+                <column name="CATEGORY_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </many-to-many>
+        </set> 
+ 		
+   
+ <!--   
+   <list name="elementAttributes" cascade="all-delete-orphan" lazy="false"  >
+   			<key>
+  				<column name="TYPE_ID" length="20" /> 
+  			</key>
+  			<list-index column="METADATA_ID"  />
+  			<one-to-many class="org.openiam.idm.srvc.meta.dto.MetadataElement" />
+	</list> 
+  -->    
+    </class>
+</hibernate-mapping>

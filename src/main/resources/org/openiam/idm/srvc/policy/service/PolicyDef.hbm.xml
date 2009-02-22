@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2007 6:04:08 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.policy.dto.PolicyDef" table="POLICY_DEF" >
+        <comment></comment>
+        <id name="policyDefId" type="string">
+            <column name="POLICY_DEF_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="policyType" type="string">
+            <column name="POLICY_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationType" type="string">
+            <column name="LOCATION_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="policyRule" type="string">
+            <column name="POLICY_RULE" length="500">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="policyHandler" type="string">
+            <column name="POLICY_HANDLER">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="policyAdviseHandler" type="string">
+            <column name="POLICY_ADVISE_HANDLER">
+                <comment></comment>
+            </column>
+        </property>
+        <set name="policyDefParams" inverse="true">
+            <key>
+                <column name="POLICY_DEF_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyDefParam" />
+        </set>
+        <set name="policies" inverse="true">
+            <key>
+                <column name="POLICY_DEF_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.Policy" />
+        </set>
+    </class>
+</hibernate-mapping>

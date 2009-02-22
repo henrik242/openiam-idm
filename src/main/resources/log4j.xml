@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!--  
+*************************************************************************************
+*  This xml document is used to define Log4J Configuration
+*************************************************************************************
+*********************************************************************************
+* This appender simply outputs log messages to the console
+*
+*  %d - DateTime
+*
+*  %t - Thread
+*
+*  %C - Class
+*
+*  %m - Message
+*
+*  %n - New Line
+*
+*********************************************************************************
+-->
+       	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+	       <layout class="org.apache.log4j.PatternLayout">
+		       <param name="ConversionPattern" value="%d [%t] %-5p %C{1} : %m%n" />
+	       </layout>
+
+	       <filter class="org.apache.log4j.varia.LevelRangeFilter">
+		       <param name="LevelMin" value="DEBUG" />
+		       <param name="LevelMax" value="FATAL" />
+		       <param name="AcceptOnMatch" value="true" />
+	       </filter>
+       	</appender>
+
+       	<appender name="A2" class="org.apache.log4j.RollingFileAppender">
+	       <param name="File" value="openiam-services_log.xml" />
+	       <param name="MaxFileSize" value="5MB" />
+	       <param name="MaxBackupIndex" value="20" />
+	       <layout class="org.apache.log4j.xml.XMLLayout"/>
+       	</appender>
+   <!-- 
+      	<root>
+	       <priority value="DEBUG" />  
+	       <appender-ref ref="STDOUT" />  
+	       <appender-ref ref="A2" />
+       	</root>
+ 	-->
+ </log4j:configuration> 

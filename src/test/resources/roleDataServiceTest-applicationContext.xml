@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+
+
+	<!-- User Test Beans -->
+
+	<bean id="roleBean" class="org.openiam.idm.srvc.role.dto.Role" >
+		<property name="id" ref="roleid" />
+		<property name="roleName" value="TEST ROLE"/>
+		<property name="description" value="Testing role features"/>	
+	</bean>
+
+	<bean id="roleid" class="org.openiam.idm.srvc.role.dto.RoleId" >
+		<property name="roleId" value="TROLE2"/>
+		<property name="serviceId" value="IDM"/>
+	</bean>
+
+	<bean id="roleBean3" class="org.openiam.idm.srvc.role.dto.Role" >
+		<property name="id" ref="roleid3" />
+		<property name="roleName" value="TEST ROLE 3"/>
+		<property name="description" value="Testing Multiple role features"/>	
+	</bean>
+
+	<bean id="roleid3" class="org.openiam.idm.srvc.role.dto.RoleId" >
+		<property name="roleId" value="TROLE3"/>
+		<property name="serviceId" value="IDM"/>
+	</bean>
+
+	<bean id="roleAttr1" class="org.openiam.idm.srvc.role.dto.RoleAttribute" >
+		<property name="roleId" value="TROLE2"/>
+		<property name="serviceId" value="IDM"/>
+		<property name="name" value="TestName"/>
+		<property name="value" value="TestValue"/>
+		<property name="roleAttrId" value="900"/>
+	</bean>
+
+	<bean id="roleAttr2" class="org.openiam.idm.srvc.role.dto.RoleAttribute" >
+		<property name="roleId" value="TROLE2"/>
+		<property name="serviceId" value="IDM"/>
+		<property name="name" value="TestName2"/>
+		<property name="value" value="TestValue2"/>
+		<property name="roleAttrId" value="901"/>
+	</bean>
+
+	<bean id="roleAttr3" class="org.openiam.idm.srvc.role.dto.RoleAttribute" >
+		<property name="roleId" value="TROLE2"/>
+		<property name="serviceId" value="IDM"/>
+		<property name="name" value="TestName3"/>
+		<property name="value" value="TestValue3"/>
+		<property name="roleAttrId" value="902"/>
+	</bean>
+
+	
+	<bean id="grpBean" class="org.openiam.idm.srvc.grp.dto.Group" >
+		<property name="createdBy" value="100"/>
+		<property name="grpId" value="BASE_GRP"/>
+		<property name="grpName" value="Base Group"/>
+		<property name="inheritFromParent" value="false"/>
+	</bean>
+
+
+	
+</beans>
+
+

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2008 12:14:43 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ManagedSys" table="MANAGED_SYS" >
+        <id name="managedSysId" type="string">
+            <column name="MANAGED_SYS_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="80" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="connectorId" type="string">
+            <column name="CONNECTOR_ID" length="20" not-null="true" />
+        </property>
+        <property name="domainId" type="string">
+            <column name="DOMAIN_ID" length="20" not-null="true" />
+        </property>
+        <property name="hostUrl" type="string">
+            <column name="HOST_URL" length="80" />
+        </property>
+        <property name="port" type="java.lang.Integer">
+            <column name="PORT" />
+        </property>
+        <property name="commProtocol" type="string">
+            <column name="COMM_PROTOCOL" length="20" />
+        </property>
+        <property name="userId" type="string">
+            <column name="USER_ID" length="40" />
+        </property>
+        <property name="pswd" type="string">
+            <column name="PSWD" length="40" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="START_DATE" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="END_DATE" length="10" />
+        </property>
+        <set name="mngSysObjectMatchs" inverse="true" lazy="false" cascade="all">
+            <key>
+                <column name="MANAGED_SYS_ID" length="32" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.mngsys.dto.ManagedSystemObjectMatch" />
+        </set>
+   <!--      
+        <set name="sysAttributeMaps" inverse="true">
+            <key>
+                <column name="MANAGED_SYS_ID" length="32" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.mngsys.dto.SysAttributeMap" />
+        </set>
+        <set name="sysApprovers" inverse="true">
+            <key>
+                <column name="MANAGED_SYS_ID" length="32" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.mngsys.dto.SysApprover" />
+        </set>
+     -->   
+       
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,2 @@
+copy .\target\openiam-services-*.jar C:\"Documents and Settings"\aurelije_zovko\.m2\repository\org\openiam\openiam-services\1.0-rc2\.
+copy .\pom.xml C:\"Documents and Settings"\aurelije_zovko\.m2\repository\org\openiam\openiam-services\1.0-rc2\openiam-services-1.0-rc2.pom
