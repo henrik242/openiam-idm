@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.4//EN"  "http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd">
+<jboss-web>
+
+    <resource-ref>
+        <res-ref-name>diamellePool</res-ref-name>
+        <jndi-name>java:diamellePool</jndi-name>
+    </resource-ref>   
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/Navigator</ejb-ref-name>
+		<jndi-name>diamelle.ebc.Navigator</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/Authenticator</ejb-ref-name>
+		<jndi-name>diamelle.security.Authenticator</jndi-name>
+	</ejb-ref>	
+
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/CategoryService</ejb-ref-name>
+		<jndi-name>diamelle.common.CategoryService</jndi-name>
+	</ejb-ref>
+
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/SecurityManager</ejb-ref-name>
+		<jndi-name>diamelle.security.SecurityManager</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/UserService</ejb-ref-name>
+		<jndi-name>diamelle.ebc.UserService</jndi-name>
+	</ejb-ref>
+	
+	<ejb-ref>
+     <ejb-ref-name>ejb/UserManager</ejb-ref-name>
+		 <jndi-name>diamelle.security.UserManager</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/CompanyService</ejb-ref-name>
+		<jndi-name>diamelle.ebc.CompanyService</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/AccessController</ejb-ref-name>
+		<jndi-name>diamelle.security.AccessController</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+        <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
+ 		<jndi-name>diamelle.security.AccessLogManager</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+        <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
+ 		<jndi-name>diamelle.security.TokenManager</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+        <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
+ 		<jndi-name>diamelle.common.MetadataManager</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+        <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
+ 		<jndi-name>diamelle.security.IdQuestionManager</jndi-name>
+	</ejb-ref>	
+	<ejb-ref>
+     <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
+	   <jndi-name>diamelle.common.OrganizationManager</jndi-name>
+	</ejb-ref>
+	
+	<ejb-ref>
+        <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
+		<jndi-name>diamelle.security.PolicyManager</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+        <ejb-ref-name>ejb/CodeManager</ejb-ref-name>
+		<jndi-name>diamelle.common.CodeManager</jndi-name>
+	</ejb-ref>		
+    <ejb-ref>
+    	<ejb-ref-name>ejb/Group</ejb-ref-name>
+ 		<jndi-name>diamelle.security.Group</jndi-name>
+	</ejb-ref>
+	
+			
+</jboss-web>   
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+  	 <!-- connector list controller  -->
+ 
+     <bean id="connectorList" class="org.openiam.webadmin.conn.def.ConnectorDefinitionListController">
+		<property name="successView" value="/connector/definitionlist" />
+		<property name="connectorService" ref="connectorService" />
+		
+     </bean>
+     <bean id="connectorDetail" class="org.openiam.webadmin.conn.def.ConnectorDefinitionDetailController">
+		<property name="commandName" value="connectorDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.def.ConnectorDefinitionDetailCommand" />
+		<property name="formView" value="/connector/definitiondetail" />
+		<property name="successView" value="/confirm" />
+
+		<property name="connectorService" ref="connectorService" />
+		
+     </bean>
+     
+     <!-- managed systems list controller  -->
+
+
+     <bean id="managedSysList" class="org.openiam.webadmin.conn.mngsys.ManagedSysListController">
+		<property name="commandName" value="managedSysListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
+		<property name="formView" value="/managedsys/syslist" />
+		<property name="successView" value="/managedsys/syslist" />
+		<property name="validator" ref="managedSysListValidator" />		
+
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />
+		
+     </bean>
+     <bean id="managedSysListValidator" class="org.openiam.webadmin.conn.mngsys.ManagedSysListValidator" />
+            
+  
+  	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+  		<property name="paramName" value="method"/>
+  		<property name="methodParamNames">
+  			<list>
+  				<value>list</value>
+  				<value>save</value>
+  				<value>delete</value>
+  			</list>
+  		</property>
+  		<property name="logicalMappings">
+  			<props>
+  				<prop key="list">domainList</prop>
+  				<prop key="save">saveDomain</prop>
+  				<prop key="delete">deleteDomain</prop>
+  			</props>
+  		</property>
+	</bean>
+
+	<bean id="domainController" class="org.openiam.webadmin.admin.domain.DomainController">
+		<property name="methodNameResolver" ref="methodNameResolver" />
+		<property name="domainBean" ref="domain" />
+		<property name="domainService" ref="secDomainService" />
+	</bean>
+	<bean id="domain" class="org.openiam.webadmin.admin.domain.DomainFormBean" />
+ 
+      <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     	<property name="prefix" value="home.jsp?bodyjsp=" />
+     	<property name="suffix" value=".jsp" />
+     </bean>
+     
+  
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/domain.cnt">domainController</prop>
+                <prop key="/connectorList.cnt">connectorList</prop>
+                <prop key="/connectorDetail.cnt">connectorDetail</prop>
+                <prop key="/managedSysList.cnt">managedSysList</prop>
+            </props>
+        </property>
+    </bean>
+  
+  
+     
+	
+</beans>
+
+
+
