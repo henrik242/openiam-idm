@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+     					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+  
+	<bean id="passwordConfiguration" class="org.openiam.selfsrvc.pswd.PasswordConfiguration">
+		<!--Indicates whether the user interface should show the individual services for 
+			synchronization or automatically sync internally   -->
+		<property name="displaySyncServices" value="false" />
+		<property name="displayDomainList" value="false" />
+		<property name="defaultSecurityDoamin" value="USR_SEC_DOMAIN" />
+	</bean>
+
+	<!-- Configurable parameters for the self service application -->
+	<bean id="appConfiguration" class="org.openiam.selfsrvc.AppConfiguration" >
+<!-- 
+		<property name="logoUrl" value="images/orangecountyflNEW.gif" />
+		<property name="title" value="Orange County - Self Service Application"/>
+-->
+  
+		<property name="logoUrl" value="images/openiamlog.jpg" />
+		<property name="title" value="OpenIAM - Self Service Application"/>
+
+		<property name="maxResultSetSize" value="200"/>
+
+	</bean>		
+
+	<bean id="authenticationConfiguration" class="org.openiam.selfsrvc.login.AuthenticationConfiguration">
+		<!--Indicates the security domain that should be used by the self service application
+		as default.   -->
+		<property name="defaultSecurityDomain" value="USR_SEC_DOMAIN" />
+	</bean>
+	
+	
+	<!-- Temp hack for integration with ldap and AD -->
+	<bean id="adConnectionMgr" class="org.openiam.selfsrvc.util.ActiveDirConnectionMgr">
+	</bean>
+	<bean id="adPassword" class="org.openiam.selfsrvc.util.ActiveDirPassword">
+		<property name="connection" ref="ldapConnectionMgr" />
+	</bean>
+	
+	<bean id="ldapConnectionMgr" class="org.openiam.selfsrvc.util.LdapConnectionMgr">
+	</bean>
+
+	<bean id="ldapPassword" class="org.openiam.selfsrvc.util.LdapPassword">
+		<property name="connection" ref="ldapConnectionMgr" />
+	</bean>
+
+	<bean id="ldapConParam" class="org.openiam.selfsrvc.util.ConnectionParam">
+		<property name="hostName" value="ldap://ocesam1.ocfl.net:636" />
+		<property name="accountid" value="uid=openiam,ou=people,dc=iss-esu_accounts,dc=net" />
+		<property name="accountpassword" value="ss0126" />
+		<property name="userIdAttribute" value="uid" />
+		<property name="baseDN" value="ou=people,dc=iss-esu_accounts,dc=net\" />
+		<property name="protocol" value="ssl" />
+		<property name="searchAttributes" value="" />
+	</bean>		
+
+	<bean id="adConOCGOVParam" class="org.openiam.selfsrvc.util.ConnectionParam">
+		<property name="hostName" value="ldap://ocgovdc05.ocfl.net:636" />
+		<property name="accountid" value="ocgov\psservice" />
+		<property name="accountpassword" value="PushInf0!" />
+		<property name="userIdAttribute" value="cn" />
+		<property name="baseDN" value="OU=Users and Groups,DC=OCFL,DC=NET" />
+		<property name="protocol" value="ssl" />
+		<property name="searchAttributes" value="sAMAccountName" />
+	</bean>		
+
+	<bean id="adConUTParam" class="org.openiam.selfsrvc.util.ConnectionParam">
+		<property name="hostName" value="ldap://ocgovdc05.ocfl.net:636" />
+		<property name="accountid" value="ocgov\\openiam" />
+		<property name="accountpassword" value="ss0126" />
+		<property name="userIdAttribute" value="cn" />
+		<property name="baseDN" value="OU=Users and Groups,DC=OCFL,DC=NET" />
+		<property name="protocol" value="ss" />
+		<property name="searchAttributes" value="sAMAccountName" />
+	</bean>	
+	
+	<bean id="adConCCParam" class="org.openiam.selfsrvc.util.ConnectionParam">
+		<property name="hostName" value="ldap://ocgovdc05.ocfl.net:636" />
+		<property name="accountid" value="ocgov\\openiam" />
+		<property name="accountpassword" value="ss0126" />
+		<property name="userIdAttribute" value="cn" />
+		<property name="baseDN" value="OU=Users and Groups,DC=OCFL,DC=NET" />
+		<property name="protocol" value="ss" />
+		<property name="searchAttributes" value="sAMAccountName" />
+	</bean>	
+	
+	<bean id="adConICJISParam" class="org.openiam.selfsrvc.util.ConnectionParam">
+		<property name="hostName" value="ldap://ICJIS.OCFL.NET:636" />
+		<property name="accountid" value="ocgov\openiam" />
+		<property name="accountpassword" value="ss0126" />
+		<property name="userIdAttribute" value="cn" />
+		<property name="baseDN" value="OU=Users and Groups,DC=ICJIS,DC=OCFL,DC=NET" />
+		<property name="protocol" value="ssl" />
+		<property name="searchAttributes" value="sAMAccountName" />
+	</bean>		
+	
+
+
+
+	
+</beans>
+

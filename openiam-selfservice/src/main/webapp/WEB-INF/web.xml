@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <session-config>
+      <session-timeout>30</session-timeout>  
+    </session-config>
+
+
+  <filter>
+    <filter-name>SelfServeAuthFilter</filter-name>
+    <filter-class>org.openiam.selfsrvc.SelfServeAuthFilter</filter-class>
+    <init-param>
+      <param-name>appId</param-name>
+      <param-value>SELFSERVICE</param-value>
+    </init-param>
+    <init-param>
+      <param-name>rootPermissionMenu</param-name>
+      <param-value>SELFSERVICE</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>SelfServeAuthFilter</filter-name>
+    <url-pattern>/priv/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+
+   <servlet>
+   		<servlet-name>ptms</servlet-name>
+   		<servlet-class>org.openiam.selfsrvc.sso.PtsmSSO</servlet-class>
+   		<load-on-startup>2</load-on-startup>
+   </servlet> 
+   <servlet>
+   		<servlet-name>ptms2</servlet-name>
+   		<servlet-class>org.openiam.selfsrvc.sso.PtsmSSO2</servlet-class>
+   		<load-on-startup>2</load-on-startup>
+   </servlet> 
+  
+   <servlet>
+   		<servlet-name>selfserve</servlet-name>
+   		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   		<load-on-startup>2</load-on-startup>
+   </servlet> 
+  
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>selfserve</servlet-name>
+    <url-pattern>*.selfserve</url-pattern>
+  </servlet-mapping> 
+
+    <servlet-mapping>
+    <servlet-name>ptms</servlet-name>
+    <url-pattern>/ptms</url-pattern>
+  </servlet-mapping> 
+
+    <servlet-mapping>
+    <servlet-name>ptms2</servlet-name>
+    <url-pattern>/ptms2</url-pattern>
+  </servlet-mapping> 
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+ 
+   <env-entry>
+    <env-entry-name>rootPermissionMenu</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>SELFSERVICE</env-entry-value>
+  </env-entry>
+  <env-entry>
+    <env-entry-name>serviceId</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>USR_SEC_DOMAIN</env-entry-value>
+  </env-entry>
+ 
+
+   <ejb-ref id="EjbRef_1115827810828">
+    <ejb-ref-name>ejb/Navigator</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.ebc.navigator.NavigatorHome</home>
+    <remote>diamelle.ebc.navigator.Navigator</remote>
+   </ejb-ref>
+
+ <ejb-ref id="EjbRef_1115827810843">
+    <ejb-ref-name>ejb/CategoryService</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.common.cat.CategoryServiceHome</home>
+    <remote>diamelle.common.cat.CategoryService</remote>
+ </ejb-ref>
+
+
+ <ejb-ref id="EjbRef_1115827810859">
+    <ejb-ref-name>ejb/Authenticator</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.auth.AuthenticatorHome</home>
+    <remote>diamelle.security.auth.Authenticator</remote>
+ </ejb-ref>
+
+ <ejb-ref id="EjbRef_1115827810860">
+    <ejb-ref-name>ejb/SecurityManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.auth.SecurityManagerHome</home>
+    <remote>diamelle.security.auth.SecurityManager</remote>
+ </ejb-ref>
+
+ <ejb-ref id="EjbRef_1115827810875">
+    <ejb-ref-name>ejb/UserService</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.ebc.user.UserServiceHome</home>
+    <remote>diamelle.ebc.user.UserService</remote>
+ </ejb-ref>
+ 
+ <ejb-ref id="EjbRef_1115827810876">
+    <ejb-ref-name>ejb/UserManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.ebc.user.UserManagereHome</home>
+    <remote>diamelle.ebc.user.UserManager</remote>
+ </ejb-ref>
+ 
+
+ <ejb-ref id="EjbRef_1115827810890">
+    <ejb-ref-name>ejb/CompanyService</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.ebc.user.CompanyServiceHome</home>
+    <remote>diamelle.ebc.user.CompanyService</remote>
+ </ejb-ref>
+
+ <ejb-ref id="EjbRef_1115827810891">
+    <ejb-ref-name>ejb/AccessController</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.resource.AccessControllerHome</home>
+    <remote>diamelle.security.resource.AccessController</remote>
+ </ejb-ref>
+
+ <ejb-ref id="EjbRef_1115835388125">
+    <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.log.AccessLogManagerHome</home>
+    <remote>diamelle.security.log.AccessLogManager</remote>
+ </ejb-ref> 
+  <ejb-ref id="EjbRef_1115835388234">
+    <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.token.TokenManagerHome</home>
+    <remote>diamelle.security.token.TokenManager</remote>
+  </ejb-ref> 
+
+  <ejb-ref id="EjbRef_1127849156234">
+    <description />
+    <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.common.meta.MetadataManagerHome</home>
+    <remote>diamelle.common.meta.MetadataManager</remote>
+  </ejb-ref>
+  <ejb-ref id="EjbRef_1130864835718">
+    <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.idquest.IdQuestionManagerHome</home>
+    <remote>diamelle.security.idquest.IdQuestionManager</remote>
+  </ejb-ref>
+ 
+  <ejb-ref id="EjbRef_1168487534593">
+    <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.common.org.OrganizationManagerHome</home>
+    <remote>diamelle.common.org.OrganizationManager</remote>
+  </ejb-ref>
+  <ejb-ref id="EjbRef_1116251258906">
+    <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.security.auth.PolicyManagerHome</home>
+    <remote>diamelle.security.auth.PolicyManager</remote>
+  </ejb-ref>
+
+  <ejb-ref id="EjbRef_1116251258908">
+    <ejb-ref-name>ejb/CodeManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>diamelle.common.status.CodeManagerHome</home>
+    <remote>diamelle.common.status.CodeManager</remote>
+  </ejb-ref>
+ 
+	<listener>
+	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>/WEB-INF/applicationContext*.xml /WEB-INF/selfServeBeans.xml classpath:applicationContext.xml
+	    <!-- classpath:activeDirBeansContext.xml classpath:LdapBeansContext.xml -->
+	    </param-value>
+	</context-param>  
+  
+</web-app>
+
