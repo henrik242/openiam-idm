@@ -26,7 +26,7 @@
 		
      </bean>
      
-     <!-- managed systems list controller  -->
+     <!-- managed system controller  -->
 
 
      <bean id="managedSysList" class="org.openiam.webadmin.conn.mngsys.ManagedSysListController">
@@ -41,7 +41,26 @@
 		
      </bean>
      <bean id="managedSysListValidator" class="org.openiam.webadmin.conn.mngsys.ManagedSysListValidator" />
+
+     <bean id="managedSysConnection" class="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionController">
+		<property name="commandName" value="managedSysListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
+		<property name="formView" value="/managedsys/syslist" />
+		<property name="successView" value="/managedsys/syslist" />
+		
+     </bean>
+     <bean id="managedSysAttrMap" class="org.openiam.webadmin.conn.mngsys.ManagedSysAttrMapController">
+		<property name="commandName" value="managedSysListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
+		<property name="formView" value="/managedsys/syslist" />
+		<property name="successView" value="/managedsys/syslist" />
+		
+     </bean>            
             
+            
+
+<!-- domainList controller  -->
+
   
   	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
   		<property name="paramName" value="method"/>

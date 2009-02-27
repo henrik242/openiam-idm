@@ -18,6 +18,7 @@ package org.openiam.webadmin.conn.mngsys;
  *  along with OpenIAM.  If not, see <http://www.gnu.org/licenses/>. *
  */
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -46,10 +47,16 @@ import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 
-public class ManagedSysListController extends SimpleFormController {
+/**
+ * Controller to manage the attribute mappings that are necessary for a managed system.
+ *  
+ * @author suneet
+ *
+ */
+public class ManagedSysAttrMapController extends SimpleFormController {
 
 
-	private static final Log log = LogFactory.getLog(ManagedSysListController.class);
+	private static final Log log = LogFactory.getLog(ManagedSysAttrMapController.class);
 
 
 
@@ -59,7 +66,7 @@ public class ManagedSysListController extends SimpleFormController {
 	
 
 
-	public ManagedSysListController() {
+	public ManagedSysAttrMapController() {
 		super();
 	}
 

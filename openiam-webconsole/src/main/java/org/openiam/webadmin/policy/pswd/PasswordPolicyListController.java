@@ -1,4 +1,4 @@
-package org.openiam.webadmin.conn.mngsys;
+package org.openiam.webadmin.policy.pswd;
 
 /*
  * Copyright 2009, OpenIAM LLC 
@@ -46,10 +46,10 @@ import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 
-public class ManagedSysListController extends SimpleFormController {
+public class PasswordPolicyListController extends SimpleFormController {
 
 
-	private static final Log log = LogFactory.getLog(ManagedSysListController.class);
+	private static final Log log = LogFactory.getLog(PasswordPolicyListController.class);
 
 
 
@@ -59,7 +59,7 @@ public class ManagedSysListController extends SimpleFormController {
 	
 
 
-	public ManagedSysListController() {
+	public PasswordPolicyListController() {
 		super();
 	}
 
