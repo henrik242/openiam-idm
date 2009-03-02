@@ -43,11 +43,13 @@
      <bean id="managedSysListValidator" class="org.openiam.webadmin.conn.mngsys.ManagedSysListValidator" />
 
      <bean id="managedSysConnection" class="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionController">
-		<property name="commandName" value="managedSysListCmd" />
-		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
-		<property name="formView" value="/managedsys/syslist" />
-		<property name="successView" value="/managedsys/syslist" />
+		<property name="commandName" value="managedSysConnectionCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionCommand" />
+		<property name="formView" value="/managedsys/sysconnection" />
+		<property name="successView" value="/managedsys/confirm" />
 		
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />		
      </bean>
      <bean id="managedSysAttrMap" class="org.openiam.webadmin.conn.mngsys.ManagedSysAttrMapController">
 		<property name="commandName" value="managedSysListCmd" />
@@ -100,6 +102,7 @@
                 <prop key="/connectorList.cnt">connectorList</prop>
                 <prop key="/connectorDetail.cnt">connectorDetail</prop>
                 <prop key="/managedSysList.cnt">managedSysList</prop>
+                <prop key="/managedSysConnection.cnt">managedSysConnection</prop>
             </props>
         </property>
     </bean>

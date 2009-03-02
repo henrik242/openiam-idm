@@ -84,7 +84,7 @@
 			<td> ${managedSys.description}</td>
 			<td> ${managedSys.status}</td>
 			<td> ${managedSys.hostUrl} </td> 
-			<td><a href="managedSysDetail.cnt?connectorId=${managedSys.managedSysId}">View Detail</a></td>
+			<td><a href="managedSysConnection.cnt?connectorId=${managedSys.managedSysId}">View Detail</a></td>
 		</tr>
 	</c:forEach>
 
