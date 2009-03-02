@@ -69,6 +69,29 @@ public class ManagedSysConnectionController extends SimpleFormController {
 		super();
 	}
 
+	
+	
+
+	@Override
+	protected Object formBackingObject(HttpServletRequest request)
+			throws Exception {
+		String connectorId = request.getParameter("connectorId");
+		ManagedSys sys = managedSysService.getManagedSys(connectorId);
+		
+		if (sys == null) {
+			return new ManagedSysConnectionCommand();
+		}else {
+			return new ManagedSysConnectionCommand(
+					sys.getCommProtocol(), sys.getConnectorId(),
+					sys.getDescription(), sys.getDomainId(), sys.getEndDate(), sys.getHostUrl(),
+					sys.getManagedSysId(), sys.getName(), sys.getPort(), sys.getPswd(),
+					sys.getStartDate(), sys.getStatus(), sys.getUserId()); 
+		}
+	}
+
+
+
+
 
 	@Override
 	protected Map referenceData(HttpServletRequest request) throws Exception {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.openiam.idm.srvc.menu.dto.Menu;
 
 /**
- * Command object for the NewHireController
+ * Command object for the ConnectorDefinitionController
  * @author suneet
  *
  */
