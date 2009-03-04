@@ -4,71 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
-                <style type="text/css">
-<!--
-body {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        margin: 0;
-        font-size: 80%;
-        font-weight: bold;
-        background: #FFF;
-        }
 
-h2 {
-        font: bold 14px Verdana, Arial, Helvetica, sans-serif;
-        color: #000;
-        margin: 0px;
-        padding: 0px 0px 0px 15px;
-}
 
-ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        }
-
-img {
-    border: none;
-}
-
-/*- Menu 12--------------------------- */
-
-#menu12 {
-        width: 200px;
-        margin: 10px;
-        }
-
-#menu12 li a {
-        height: 32px;
-          voice-family: "\"}\"";
-          voice-family: inherit;
-          height: 22px;
-        text-decoration: none;
-        }
-
-#menu12 li a:link, #menu12 li a:visited {
-        color: #666;
-        display: block;
-        background:  url(images/menu12.gif);
-        padding: 10px 0 0 35px;
-        }
-
-#menu12 li a:hover, #menu12 li #current {
-        color: #000;
-        background:  url(images/menu12.gif) 0 -32px;
-        padding: 10px 0 0 35px;
-        }
--->
-</style>
-
-<div id="menu12">
- <ul>
-    <!-- CSS Tabs -->
-	<li><a href="managedSysConnection.cnt?connectorId=100">Connection</a></li>
-	<li><a href="xxxx">Mapping</a></li>
-	<li><a href="ccc">Approvers</a></li>
- </ul>
-</div>
         
 <div>        
 <form:form commandName="managedSysConnectionCmd">

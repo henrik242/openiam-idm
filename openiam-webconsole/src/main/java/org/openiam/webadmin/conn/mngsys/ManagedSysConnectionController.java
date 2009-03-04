@@ -76,6 +76,12 @@ public class ManagedSysConnectionController extends SimpleFormController {
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
 		String connectorId = request.getParameter("connectorId");
+		String menuGroup = request.getParameter("menuGroup");
+		
+		// used by the UI for to show the side menu
+		request.setAttribute("menuGroup", menuGroup);
+		request.setAttribute("connectorId", connectorId);
+		
 		ManagedSys sys = managedSysService.getManagedSys(connectorId);
 		
 		if (sys == null) {

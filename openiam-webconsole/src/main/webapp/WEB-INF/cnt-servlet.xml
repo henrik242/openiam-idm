@@ -52,11 +52,12 @@
 		<property name="secDomainService" ref="secDomainService" />		
      </bean>
      <bean id="managedSysAttrMap" class="org.openiam.webadmin.conn.mngsys.ManagedSysAttrMapController">
-		<property name="commandName" value="managedSysListCmd" />
-		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
-		<property name="formView" value="/managedsys/syslist" />
-		<property name="successView" value="/managedsys/syslist" />
-		
+		<property name="commandName" value="attrMapCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.SysAttributeMapCommand" />
+		<property name="formView" value="/managedsys/sysattrmap" />
+		<property name="successView" value="/managedsys/sysattrmap" />
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />				
      </bean>            
             
             
@@ -103,6 +104,7 @@
                 <prop key="/connectorDetail.cnt">connectorDetail</prop>
                 <prop key="/managedSysList.cnt">managedSysList</prop>
                 <prop key="/managedSysConnection.cnt">managedSysConnection</prop>
+                <prop key="/managedSysAttrMap.cnt">managedSysAttrMap</prop>
             </props>
         </property>
     </bean>

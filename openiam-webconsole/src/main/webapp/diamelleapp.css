@@ -139,3 +139,57 @@ textarea {  font-size: 11px; font-family:verdana, arial,
 sans-serif; }
 option {  font-size: 11px; font-family:verdana, arial,
 sans-serif; }
+
+body {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        margin: 0;
+        font-size: 11px;
+        font-weight: bold;
+        background: #FFF;
+        }
+
+h2 {
+        font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0px;
+        padding: 0px 0px 0px 15px;
+}
+
+ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        }
+
+img {
+    border: none;
+}
+
+/*- Menu 12--------------------------- */
+
+#menu12 {
+        width: 200px;
+        margin: 10px;
+        }
+
+#menu12 li a {
+        height: 32px;
+          voice-family: "\"}\"";
+          voice-family: inherit;
+          height: 22px;
+        text-decoration: none;
+        }
+
+#menu12 li a:link, #menu12 li a:visited {
+        color: #666;
+        display: block;
+        background:  url(images/menu12.gif);
+        padding: 10px 0 0 35px;
+        }
+
+#menu12 li a:hover, #menu12 li #current {
+        color: #000;
+        background:  url(images/menu12.gif) 0 -32px;
+        padding: 10px 0 0 35px;
+        }
+

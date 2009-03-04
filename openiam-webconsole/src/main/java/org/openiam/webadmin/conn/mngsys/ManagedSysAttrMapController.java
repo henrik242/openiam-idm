@@ -41,11 +41,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
+import org.openiam.idm.srvc.mngsys.dto.SysAttributeMapping;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+
 
 /**
  * Controller to manage the attribute mappings that are necessary for a managed system.
@@ -82,6 +84,24 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 		return model;
 	}
 	
+	protected Object formBackingObject(HttpServletRequest request)
+	throws Exception {
+
+		SysAttributeMapCommand attrMapCommand  = new SysAttributeMapCommand();
+
+		SysAttributeMapping attr = new SysAttributeMapping();
+		attr.setAttributeMapId("123");
+		attr.setTargetAttributeName("cn");
+		
+		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
+		attrAry[0] = attr;
+		attrMapCommand.setMapAry(attrAry);
+		
+		return attrMapCommand;
+
+
+}
+
 
 	
 	@Override
@@ -90,17 +110,27 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 			throws Exception {
 
 	
-		ManagedSysListCommand sysListCommand = (ManagedSysListCommand)command;
-		ManagedSys[] managedSysAry = managedSysService.getManagedSysByDomain( sysListCommand.getDomainId() );
+		SysAttributeMapCommand attrMapCommand = (SysAttributeMapCommand)command;
+		
+		SysAttributeMapping attr = new SysAttributeMapping();
+		attr.setAttributeMapId("123");
+		attr.setTargetAttributeName("cn");
+		
+		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
+		attrAry[0] = attr;
+		attrMapCommand.setMapAry(attrAry);
+		
 	
 		ModelAndView mav = new ModelAndView(getSuccessView());
-		mav.addObject("managedSysListCmd", sysListCommand);
-		mav.addObject("managedSysAry", managedSysAry);
+		mav.addObject("attrMapCmd", attrMapCommand);
+	
+		/*mav.addObject("managedSysAry", managedSysAry);
 		if (managedSysAry != null) {
 			mav.addObject("searchResults", managedSysAry.length);
 		}else {
 			mav.addObject("searchResults", 0);
 		}
+		*/
 		
 		return mav;
 

@@ -11,6 +11,8 @@
 
 <%
 
+  String sideMenuGroup = (String)request.getAttribute("menuGroup");
+
   String userId = (String)session.getAttribute("userId");
   String token = (String)session.getAttribute("token");
   String login = (String)session.getAttribute("login");
@@ -88,6 +90,19 @@
 
   }
 %>
+
+<% if ( sideMenuGroup!= null && sideMenuGroup.equalsIgnoreCase("MANAGESYS")) { 
+	 String connectorId = (String)request.getAttribute("connectorId");
+%>
+<div id="menu12">
+ <ul>
+    <!-- CSS Tabs -->
+	<li><a href="managedSysConnection.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS">Connection</a></li>
+	<li><a href="managedSysAttrMap.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS"">Mapping</a></li>
+	<li><a href="managedSysConnection.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS">Approvers</a></li>
+ </ul>
+</div>
+<% } %>
 
  
 

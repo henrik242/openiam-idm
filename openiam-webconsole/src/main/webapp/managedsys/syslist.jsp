@@ -64,7 +64,7 @@
   </tr> 
   
          <tr>
-			  <td colspan="5" >${searchResults} Managed Systems found.</td>
+			  <td colspan="5" >${searchResults} Managed System(s) found.</td>
               
           </tr>  
       
@@ -84,7 +84,7 @@
 			<td> ${managedSys.description}</td>
 			<td> ${managedSys.status}</td>
 			<td> ${managedSys.hostUrl} </td> 
-			<td><a href="managedSysConnection.cnt?connectorId=${managedSys.managedSysId}">View Detail</a></td>
+			<td><a href="managedSysConnection.cnt?connectorId=${managedSys.managedSysId}&menuGroup=MANAGESYS">View Detail</a></td>
 		</tr>
 	</c:forEach>
 
