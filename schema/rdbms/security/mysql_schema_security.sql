@@ -266,7 +266,7 @@ CREATE TABLE USER_IDENTITY_ANS (
 );
 
 CREATE TABLE POLICY_DEF (
-       POLICY_DEF_ID        varchar(20) NOT NULL,
+       POLICY_DEF_ID        varchar(32) NOT NULL,
        NAME                 varchar(60) NULL,
        DESCRIPTION          varchar(255) NULL,
        POLICY_TYPE          varchar(20) NULL,
@@ -278,8 +278,8 @@ CREATE TABLE POLICY_DEF (
 );
 
 CREATE TABLE POLICY (
-       POLICY_ID            varchar(20) NOT NULL,
-       POLICY_DEF_ID        varchar(20) NULL,
+       POLICY_ID            varchar(32) NOT NULL,
+       POLICY_DEF_ID        varchar(32) NULL,
        NAME                 varchar(60) NULL,
        DESCRIPTION          varchar(255) NULL,
        ENABLEMENT           int NULL,
@@ -293,8 +293,8 @@ CREATE TABLE POLICY (
 );
 
 CREATE TABLE POLICY_MEMBERSHIP (
-       POLICY_MEM_ID        varchar(20) NOT NULL,
-       POLICY_ID            varchar(20) NULL,
+       POLICY_MEM_ID        varchar(32) NOT NULL,
+       POLICY_ID            varchar(32) NULL,
        SERVICE_ID           varchar(20) NULL,
        RESOURCE_TYPE        varchar(20) NULL,
        RESOURCE_OBJ_ID      varchar(20) NULL,
@@ -304,8 +304,8 @@ CREATE TABLE POLICY_MEMBERSHIP (
 );
 
 CREATE TABLE POLICY_DEF_PARAM (
-       DEF_PARAM_ID         varchar(20) NOT NULL,
-       POLICY_DEF_ID        varchar(20) NULL,
+       DEF_PARAM_ID         varchar(32) NOT NULL,
+       POLICY_DEF_ID        varchar(32) NULL,
        NAME                 varchar(60) NULL,
        DESCRIPTION          varchar(255) NULL,
        OPERATION            varchar(20) NULL,
@@ -319,9 +319,9 @@ CREATE TABLE POLICY_DEF_PARAM (
 );
 
 CREATE TABLE POLICY_ATTRIBUTE (
-       POLICY_ATTR_ID       varchar(20) NOT NULL,
-       DEF_PARAM_ID         varchar(20) NULL,
-       POLICY_ID            varchar(20) NULL,
+       POLICY_ATTR_ID       varchar(32) NOT NULL,
+       DEF_PARAM_ID         varchar(32) NULL,
+       POLICY_ID            varchar(32) NULL,
        NAME                 varchar(60) NULL,
        OPERATION            varchar(20) NULL,
        VALUE1               varchar(255) NULL,
@@ -824,4 +824,9 @@ CREATE TABLE PHONE_USER (
                              REFERENCES USERS(USER_ID)
 );
 
+ALTER TABLE LOGIN
+ADD INDEX login_user_indx (USER_ID);
+
+ALTER TABLE USERS
+  ADD INDEX USER_EMPLOYEE_INDX (EMPLOYEE_ID);
 commit;

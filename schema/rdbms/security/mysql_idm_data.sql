@@ -653,6 +653,9 @@ VALUES('102','103','FAILED_AUTH_COUNT','Failed Authentication Attempts');
 INSERT INTO POLICY_DEF_PARAM (DEF_PARAM_ID, POLICY_DEF_ID, NAME, DESCRIPTION)
 VALUES('103','103','LOCK_DURATION','Lock Duration');
 
+insert into POLICY_DEF(POLICY_DEF_ID, NAME, DESCRIPTION, POLICY_TYPE, LOCATION_TYPE) VALUES ('104','ATTRIBUTE POLICY','Attribute value policies.', '5','DB' );
+
+
 update POLICY_DEF_PARAM
 	set repeats = 0
 where repeats is null;
