@@ -53,10 +53,7 @@
         <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
  		<jndi-name>diamelle.security.AccessLogManager</jndi-name>
 	</ejb-ref>
-	<ejb-ref>
-        <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
- 		<jndi-name>diamelle.security.TokenManager</jndi-name>
-	</ejb-ref>
+
 	<ejb-ref>
         <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
  		<jndi-name>diamelle.common.MetadataManager</jndi-name>

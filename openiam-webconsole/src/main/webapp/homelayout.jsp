@@ -18,23 +18,8 @@
 
 	String uri = request.getRequestURI();
 	String queryParam = request.getQueryString();
-	int indx = uri.indexOf("/ui/");
-	int indx2 = -1;
-	if (queryParam != null ) {
-		indx2 = queryParam.indexOf("/ui/")  ;
-	}
-	if (indx != -1 || indx2 != -1) {
 %>
-<!-- EXT Styleshteets -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/ext-all.css"/>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/shared/common.css"/>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/shared/forms.css"/>
 
-<!-- EXT LIBS -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/adapter/ext/ext-base.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/ext-all.js"></script>
-
-<%	}  %>
 
 <!-- OpenIAM Legacy style sheets -->
 <link href="<%=request.getContextPath()%>/diamelleapp.css" rel="stylesheet" type="text/css">
@@ -49,12 +34,6 @@
 
 
 <body bgcolor="white" leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
-<% 
-if (indx != -1 || indx2 != -1) {
-%>
-<script type="text/javascript" src="<%=request.getContextPath()%>/shared/common.js"></script>
-
-<%	}  %>
 
 
 <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">

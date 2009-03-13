@@ -182,12 +182,7 @@
     <home>diamelle.security.log.AccessLogManagerHome</home>
     <remote>diamelle.security.log.AccessLogManager</remote>
  </ejb-ref> 
-  <ejb-ref id="EjbRef_1115835388234">
-    <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.security.token.TokenManagerHome</home>
-    <remote>diamelle.security.token.TokenManager</remote>
-  </ejb-ref> 
+
 
   <ejb-ref id="EjbRef_1127849156234">
     <description />

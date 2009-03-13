@@ -83,19 +83,7 @@ public class PasswordPolicyListController extends SimpleFormController {
 			throws Exception {
 
 	
-		ManagedSysListCommand sysListCommand = (ManagedSysListCommand)command;
-		ManagedSys[] managedSysAry = managedSysService.getManagedSysByDomain( sysListCommand.getDomainId() );
-	
-		ModelAndView mav = new ModelAndView(getSuccessView());
-		mav.addObject("managedSysListCmd", sysListCommand);
-		mav.addObject("managedSysAry", managedSysAry);
-		if (managedSysAry != null) {
-			mav.addObject("searchResults", managedSysAry.length);
-		}else {
-			mav.addObject("searchResults", 0);
-		}
-		
-		return mav;
+		return null;
 
 		
 	}

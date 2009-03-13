@@ -10,7 +10,7 @@
   <packaging>war</packaging>
   <name>webconsole</name>
   <version>1.0-rc2</version>
-  <description>IAM Admin Console based on Struts</description>
+  <description>IAM Admin Console based on Struts but Migrating to Spring MVC</description>
   <ciManagement>
     <system>idm</system>
     <url>http://build.openiam.org:8085/idm/</url>
@@ -144,11 +144,7 @@
       <version>1</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>jenkov</groupId>
-      <artifactId>prizetags</artifactId>
-      <version>3.4</version>
-    </dependency>
+
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts-core</artifactId>

@@ -1124,12 +1124,12 @@ public class UserAction extends NavigationDispatchAction  {
       option = new TabOption("History", false, "idman/user.do?method=history", "viewusernotes.jsp");
       l.add(option);
       
-/*      option = new TabOption("Smart Card", false, "idman/user.do?method=smartcard", "view_smartcard.jsp");
+      option = new TabOption("Smart Card", false, "idman/user.do?method=smartcard", "view_smartcard.jsp");
       l.add(option);      
   
       option = new TabOption("Phys Access", false, "idman/user.do?method=physaccess", "view_physicalaccess.jsp");
       l.add(option);     
- */
+
       
       return l;
     }
