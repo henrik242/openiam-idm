@@ -282,7 +282,7 @@ CREATE TABLE POLICY (
        POLICY_DEF_ID        varchar(32) NULL,
        NAME                 varchar(60) NULL,
        DESCRIPTION          varchar(255) NULL,
-       ENABLEMENT           int NULL,
+       STATUS           	int NULL,
        CREATE_DATE          datetime NULL,
        CREATED_BY           varchar(20) NULL,
        LAST_UPDATE          datetime NULL,
