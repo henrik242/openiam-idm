@@ -51,14 +51,17 @@ import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.openiam.webadmin.busdel.identity.*;
 
+import org.openiam.idm.srvc.org.dto.Organization;
+import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
-import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+import org.springframework.web.context.WebApplicationContext;
+//import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 
 
 import diamelle.common.status.StatusCodeValue;
-import diamelle.ebc.user.CompanyData;
-import diamelle.ebc.user.CompanySearch;
+//import diamelle.ebc.user.CompanyData;
+//import diamelle.ebc.user.CompanySearch;
 import diamelle.security.auth.GroupValue;
 
 
@@ -70,8 +73,9 @@ public class IndexAction extends NavigationAction {
 	LoginAccess loginAccess = new LoginAccess();
 	SecurityAccess secAccess = new SecurityAccess();
 	MetadataAccess metaAccess = new MetadataAccess();
-	CompanyAccess compAccess =  new CompanyAccess();
+
 	ServiceAccess serviceAccess = null;
+	OrganizationDataService orgDataService;
 
 
 	public ActionForward execute(
@@ -82,7 +86,10 @@ public class IndexAction extends NavigationAction {
 		throws IOException, ServletException {
 
 		ActionErrors err = new ActionErrors();
-		serviceAccess = new ServiceAccess(getWebApplicationContext());
+		WebApplicationContext webCtx =  getWebApplicationContext();
+		orgDataService =  (OrganizationDataService)webCtx.getBean("orgManager");
+		serviceAccess = new ServiceAccess(webCtx);
+		
 		Locale locale = getLocale(request);
 		String langCd = locale.getLanguage();
 
@@ -186,21 +193,16 @@ public class IndexAction extends NavigationAction {
     }
 	private List getCompanyList() {
 	   	ArrayList newCodeList = new ArrayList();
-		try {
-			CompanySearch search = new CompanySearch();
-			List companyList = compAccess.searchCompany(search);
-	        if (companyList != null && companyList.size() > 0) {
+	   	
+	   	List<Organization> companyList = orgDataService.getAllOrganizations();   	
+        if (companyList != null && companyList.size() > 0) {
         	newCodeList.add(new LabelValueBean("",""));
         	for (int i=0; i< companyList.size(); i++) {       		
-        		CompanyData val = (CompanyData)companyList.get(i);
-        	 	LabelValueBean label = new LabelValueBean(val.getCompanyName(),val.getCompanyId());
+        		Organization val = (Organization)companyList.get(i);
+        	 	LabelValueBean label = new LabelValueBean(val.getOrganizationName(),val.getOrgId());
         	 	newCodeList.add(label);
         	}
         }
-
-		}catch(RemoteException re) {
-			re.printStackTrace();
-		}
 	    return newCodeList;	
 	}
 	private List getAllDomains() {

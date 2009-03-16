@@ -52,6 +52,10 @@ import org.springframework.web.context.WebApplicationContext;
 import diamelle.common.meta.*;
 
 import org.openiam.idm.srvc.grp.dto.Group;
+import org.openiam.idm.srvc.meta.service.MetadataService;
+import org.openiam.idm.srvc.policy.dto.PolicyConstants;
+import org.openiam.idm.srvc.policy.dto.PolicyDef;
+import org.openiam.idm.srvc.policy.service.PolicyDataService;
 
 import org.apache.struts.action.*;
 import org.apache.struts.util.*;
@@ -67,6 +71,7 @@ public class PolicyAction extends NavigationDispatchAction {
 
 	private SecurityAccess securityAccess = new SecurityAccess();
 	SecurityDomainAccess secDomainAccess = null;
+	PolicyDataService policyService = null;
 
 	//private GroupAccess groupAccess = new GroupAccess();
 
@@ -83,6 +88,9 @@ public class PolicyAction extends NavigationDispatchAction {
 System.out.println("In Policy init...");
 		ActionErrors errors = new ActionErrors();
 		HttpSession session = request.getSession();
+		
+		WebApplicationContext webCtx = getWebApplicationContext();
+		policyService = (PolicyDataService)webCtx.getBean("policyDataService");
 
 		try {
 
@@ -129,6 +137,9 @@ System.out.println("In Policy init...");
 
 		DynaActionForm dynForm = (DynaActionForm) form;
 		String policyDefId = (String) dynForm.get("policyDefId");
+		
+		System.out.println("Policy DefId = " + policyDefId);
+		session.setAttribute("policyDefId", policyDefId);
 
 		try {
 			policyList = policyAccess.getPolicyByType(policyDefId);
@@ -171,6 +182,12 @@ System.out.println("In Policy init...");
 		ActionErrors err = new ActionErrors();
 
 		try {
+			
+			HttpSession session = request.getSession(true);
+			String policyDefId = (String)session.getAttribute("policyDefId");
+			if (policyDefId.equals( PolicyConstants.ATTRIBUTE_POLICY )) {
+				return mapping.findForward("attrPolicy");
+			}
 
 			request.setAttribute("tabOptions", initTabOptions("Policy", null));
 			init(mapping, form, request, response);
@@ -611,19 +628,15 @@ System.out.println("In Policy init...");
 		LabelValueBean emptybean = new LabelValueBean("<Select a value>", "-1");
 		labels.add(emptybean);
 
-		/*
-		 * modify this when we have methods to get policyDefs if (resourceTypes !=
-		 * null) { for (int i = 0; i < resourceTypes.size(); i++) {
-		 * ResourceTypeValue val = (ResourceTypeValue) resourceTypes .get(i);
-		 * LabelValueBean bean = new LabelValueBean(val.getDescription(),
-		 * val.getResourceTypeId()); labels.add(bean); } } for now, use the
-		 * following
-		 */
+		PolicyDef[] defAry = policyService.getAllPolicyDef();
+		if (defAry == null) {
+			return labels;
+		}
+		int size = defAry.length;
+		for (int i=0; i<size; i++) {
+			labels.add(new LabelValueBean(defAry[i].getName(), defAry[i].getPolicyDefId()));
+		}
 
-		labels.add(new LabelValueBean("PASSWORD POLICY", "100"));
-		//labels.add(new LabelValueBean("ACCESS POLICY", "101"));
-		labels.add(new LabelValueBean("AUDIT POLICY", "102"));
-		labels.add(new LabelValueBean("ACCOUNT POLICY", "103"));
 
 		return labels;
 	}

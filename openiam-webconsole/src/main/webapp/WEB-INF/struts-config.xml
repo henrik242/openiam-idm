@@ -837,6 +837,7 @@
 
  			<forward name="policies"        path="/home.jsp?bodyjsp=security/policies.jsp"/>
 	        <forward name="policy"    		path="security/policy.jsp"/>
+	         <forward name="attrPolicy"    	path="/attrPolicy.cnt"/>
         	<forward name="failure"         path="/home.jsp"/>
 		</action>
 
@@ -849,6 +850,7 @@
 
  			<forward name="policies"        path="/home.jsp?bodyjsp=security/policies.jsp"/>
 	        <forward name="policy"    		path="/home.jsp?bodyjsp=security/policy.jsp"/>
+	         <forward name="attrPolicy"    	path="/attrPolicy.cnt"/>
         	<forward name="failure"         path="/home.jsp"/>
  		</action>
 		
@@ -862,6 +864,7 @@
 
     		<forward name="policies"        path="/home.jsp?bodyjsp=security/policies.jsp"/>
 	        <forward name="policy"    		path="/home.jsp?bodyjsp=security/policy.jsp"/>
+	         <forward name="attrPolicy"    	path="/attrPolicy.cnt"/>
 	        <forward name="newPolicy"  		path="security/policy.do?method=newPolicy"/>
         	<forward name="failure"         path="/home.jsp"/>
 		</action>

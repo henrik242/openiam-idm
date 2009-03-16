@@ -60,7 +60,15 @@
 		<property name="secDomainService" ref="secDomainService" />				
      </bean>            
             
-            
+ <!-- Policy controllers  -->
+     <bean id="attrPolicy" class="org.openiam.webadmin.policy.attr.AttributePolicyController">
+		<property name="commandName" value="attrPolicyCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.policy.attr.AttributePolicyCommand" />
+		<property name="formView" value="/policy/attrPolicy" />
+		<property name="successView" value="/policy/attrPolicyList" />
+		
+		<property name="policyDataService" ref="policyDataService" />
+     </bean>            
 
 <!-- domainList controller  -->
 
@@ -105,11 +113,12 @@
                 <prop key="/managedSysList.cnt">managedSysList</prop>
                 <prop key="/managedSysConnection.cnt">managedSysConnection</prop>
                 <prop key="/managedSysAttrMap.cnt">managedSysAttrMap</prop>
+                <prop key="/attrPolicy.cnt">attrPolicy</prop>
             </props>
         </property>
     </bean>
   
-  
+
      
 	
 </beans>

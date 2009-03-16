@@ -147,41 +147,16 @@
     <remote>diamelle.security.auth.SecurityManager</remote>
  </ejb-ref>
 
- <ejb-ref id="EjbRef_1115827810875">
-    <ejb-ref-name>ejb/UserService</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.ebc.user.UserServiceHome</home>
-    <remote>diamelle.ebc.user.UserService</remote>
- </ejb-ref>
- 
- <ejb-ref id="EjbRef_1115827810876">
-    <ejb-ref-name>ejb/UserManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.ebc.user.UserManagereHome</home>
-    <remote>diamelle.ebc.user.UserManager</remote>
- </ejb-ref>
- 
 
- <ejb-ref id="EjbRef_1115827810890">
-    <ejb-ref-name>ejb/CompanyService</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.ebc.user.CompanyServiceHome</home>
-    <remote>diamelle.ebc.user.CompanyService</remote>
- </ejb-ref>
-
- <ejb-ref id="EjbRef_1115827810891">
+ 
+	<ejb-ref id="EjbRef_1115827810891">
     <ejb-ref-name>ejb/AccessController</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
     <home>diamelle.security.resource.AccessControllerHome</home>
     <remote>diamelle.security.resource.AccessController</remote>
  </ejb-ref>
 
- <ejb-ref id="EjbRef_1115835388125">
-    <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.security.log.AccessLogManagerHome</home>
-    <remote>diamelle.security.log.AccessLogManager</remote>
- </ejb-ref> 
+
 
 
   <ejb-ref id="EjbRef_1127849156234">
@@ -198,12 +173,7 @@
     <remote>diamelle.security.idquest.IdQuestionManager</remote>
   </ejb-ref>
  
-  <ejb-ref id="EjbRef_1168487534593">
-    <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.common.org.OrganizationManagerHome</home>
-    <remote>diamelle.common.org.OrganizationManager</remote>
-  </ejb-ref>
+
   <ejb-ref id="EjbRef_1116251258906">
     <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
@@ -211,19 +181,9 @@
     <remote>diamelle.security.auth.PolicyManager</remote>
   </ejb-ref>
 
-  <ejb-ref id="EjbRef_1116251258908">
-    <ejb-ref-name>ejb/CodeManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.common.status.CodeManagerHome</home>
-    <remote>diamelle.common.status.CodeManager</remote>
-  </ejb-ref>
+
  
-  <ejb-ref id="EjbRef_1113429921593">
-    <ejb-ref-name>ejb/Group</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.security.auth.GroupHome</home>
-    <remote>diamelle.security.auth.Group</remote>
- </ejb-ref>
+
    
 	<listener>
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

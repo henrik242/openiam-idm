@@ -30,28 +30,10 @@
 		<jndi-name>diamelle.security.SecurityManager</jndi-name>
 	</ejb-ref>
 
-	<ejb-ref>
-        <ejb-ref-name>ejb/UserService</ejb-ref-name>
-		<jndi-name>diamelle.ebc.UserService</jndi-name>
-	</ejb-ref>
-	
-	<ejb-ref>
-     <ejb-ref-name>ejb/UserManager</ejb-ref-name>
-		 <jndi-name>diamelle.security.UserManager</jndi-name>
-	</ejb-ref>
-
-	<ejb-ref>
-        <ejb-ref-name>ejb/CompanyService</ejb-ref-name>
-		<jndi-name>diamelle.ebc.CompanyService</jndi-name>
-	</ejb-ref>
 
 	<ejb-ref>
         <ejb-ref-name>ejb/AccessController</ejb-ref-name>
 		<jndi-name>diamelle.security.AccessController</jndi-name>
-	</ejb-ref>
-	<ejb-ref>
-        <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
- 		<jndi-name>diamelle.security.AccessLogManager</jndi-name>
 	</ejb-ref>
 
 	<ejb-ref>
@@ -62,24 +44,13 @@
         <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
  		<jndi-name>diamelle.security.IdQuestionManager</jndi-name>
 	</ejb-ref>	
-	<ejb-ref>
-     <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
-	   <jndi-name>diamelle.common.OrganizationManager</jndi-name>
-	</ejb-ref>
+
 	
 	<ejb-ref>
         <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
 		<jndi-name>diamelle.security.PolicyManager</jndi-name>
 	</ejb-ref>
-	<ejb-ref>
-        <ejb-ref-name>ejb/CodeManager</ejb-ref-name>
-		<jndi-name>diamelle.common.CodeManager</jndi-name>
-	</ejb-ref>		
-    <ejb-ref>
-    	<ejb-ref-name>ejb/Group</ejb-ref-name>
- 		<jndi-name>diamelle.security.Group</jndi-name>
-	</ejb-ref>
-	
+
 			
 </jboss-web>   
 
