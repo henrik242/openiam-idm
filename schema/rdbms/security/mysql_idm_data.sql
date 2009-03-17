@@ -274,6 +274,7 @@ insert into SEQUENCE_GEN (attribute, next_id)	values('ATTACHMENT_ID','2000');
 insert into SEQUENCE_GEN (attribute, next_id)	values('IMAGE_ID','2000');
 insert into SEQUENCE_GEN (attribute, next_id)	values('ROLE_ID','1003');
 insert into SEQUENCE_GEN (attribute, next_id)	values('GRP_ID','4105');
+insert into SEQUENCE_GEN (attribute, next_id)	values('GRP_ATTR_ID','1000');
 insert into SEQUENCE_GEN (attribute, next_id)	values('MENU_ID','5000');
 insert into SEQUENCE_GEN (attribute, next_id)	values('POLICY_ID','5000');
 insert into SEQUENCE_GEN (attribute, next_id)	values('POLICY_ATTR_ID','6004');
