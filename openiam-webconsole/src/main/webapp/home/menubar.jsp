@@ -12,7 +12,7 @@ was available, the menuList could be extracted there ======================= -->
 <%@page language="java"%>
 <%@page session="true"%>
 
-<%@page import="java.util.*, diamelle.ebc.navigator.*, diamelle.ebc.user.*"%>
+<%@page import="java.util.*, diamelle.ebc.navigator.*, org.openiam.idm.srvc.user.dto.User"%>
 
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
@@ -39,14 +39,14 @@ was available, the menuList could be extracted there ======================= -->
   
   List menuList = (List) session.getAttribute("topLevelMenus");
   String personId = (String)request.getAttribute("personId");
-  UserData personData = (UserData)request.getAttribute("personData");
+  User personData = (User)request.getAttribute("personData");
   String currentMenu = (String)session.getAttribute("currentMenu");
   if (currentMenu == null) {
   	currentMenu = "";
   }
   String status = null;
   if (personData != null) {
-  	status = personData.getStatusId();
+  	status = personData.getStatus();
   }
   
   if (menuList != null && !menuList.isEmpty() ) {

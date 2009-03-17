@@ -1151,6 +1151,7 @@
       </action>    
    
   
+<!-- 
      <action path="/maint/service" 
     	type="org.springframework.web.struts.DelegatingActionProxy"
     	name="serviceForm" parameter="method" scope="request"    validate="false" >   	
@@ -1164,7 +1165,7 @@
     	type="org.springframework.web.struts.DelegatingActionProxy">
           <forward name="services" path="/home.jsp?bodyjsp=/service/services.jsp" />
      </action>
-     
+-->     
       <action path="/prov/appList" type="diamelle.admin.security.app.AppListAction" 
       	parameter="method" name="appListForm">
          <forward name="applist" path="/home.jsp?bodyjsp=/app/applist.jsp" />

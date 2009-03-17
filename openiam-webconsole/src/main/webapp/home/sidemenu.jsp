@@ -1,6 +1,6 @@
 
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,diamelle.ebc.navigator.*,diamelle.ebc.user.*" %>
+<%@ page import="java.util.*,diamelle.ebc.navigator.*,org.openiam.idm.srvc.user.dto.User" %>
 
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
@@ -23,13 +23,13 @@
 
   }
   
-  UserData personData = (UserData)request.getAttribute("personData");
+  User personData = (User)request.getAttribute("personData");
   List menuList = (List) session.getAttribute("sideMenus");
   String personId = (String)request.getAttribute("personId");
 
   String status = null;
   if (personData != null) {
-  	status = personData.getStatusId();
+  	status = personData.getStatus();
   }
   
   if (menuList != null && !menuList.isEmpty() ) {

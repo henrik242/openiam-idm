@@ -34,20 +34,10 @@ package org.openiam.webadmin.user;
 
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.identity.UserAccess;
-import org.openiam.webadmin.busdel.security.GroupDataServiceAccess;
 
 import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.org.dto.Organization;
 
-
-
-
-
-import diamelle.ebc.user.Address;
-import diamelle.ebc.user.Email;
-import diamelle.ebc.user.Phone;
-import diamelle.ebc.user.UserData;
-import diamelle.util.Log;
 import java.io.*;
 
 

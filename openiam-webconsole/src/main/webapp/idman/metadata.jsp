@@ -7,18 +7,18 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
-<%@ page import="java.util.*,javax.servlet.http.*, diamelle.base.composite.*" %>
+<%@ page import="java.util.*,javax.servlet.http.*, org.openiam.idm.srvc.user.dto.UserAttribute" %>
 <%@ page import="org.openiam.idm.srvc.meta.dto.MetadataElement" %>
 
 <%! 
-      public Component getAttribute(String name, Map attrMap) {
+      public UserAttribute getAttribute(String name, Map attrMap) {
       	if (attrMap == null || attrMap.isEmpty())
       	return null;
       	
 		Collection col = attrMap.values();
 		Iterator it = col.iterator();
 		while (it.hasNext()) {
-			Component cmp = (Component)it.next();
+			UserAttribute cmp = (UserAttribute)it.next();
 			if (cmp.getName().equals(name)) {
 				return cmp;
 			}
@@ -40,19 +40,20 @@
 		int size = elementAry.length;
 		int ctr = 0;
 		while (ctr < size) {
-			MetadataElement val = elementAry[ctr];			
+			MetadataElement val = elementAry[ctr];		
+			System.out.println("metadata jsp = " + val + " typeId =" + val.getMetadataTypeId());
 			ctr++;
 %>
  	<tr>
        <td class="tddark" align="right"><%= val.getAttributeName() %></td>
        <td class="tdlight"">
        <% 
-       	Component comp = getAttribute(val.getAttributeName(), attrMap);
+       UserAttribute comp = getAttribute(val.getAttributeName(), attrMap);
        	if (comp == null) { %>
-       		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataTypeId()%>" size="30"> 
+       		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataElementId()%>" size="30"> 
       <% }else { 
       %>
-      		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataTypeId()%>"  value="<%=comp.getValue() %>" size="30"> 
+      		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataElementId()%>"  value="<%=comp.getValue() %>" size="30"> 
       <% } %>
       </td>
  
@@ -70,13 +71,13 @@
        	    if (comp == null) { 
        	    %>
        	    <td class="tdlight" colspan="3">
-        	 <input type="text" name="*<%=val.getAttributeName()%>-<%= val.getMetadataTypeId() %>" size="30"> </td>
+        	 <input type="text" name="*<%=val.getAttributeName()%>-<%= val.getMetadataElementId() %>" size="30"> </td>
 
 	<%
 			}else {
  	%>
  		<td class="tdlight" colspan="3">
-      		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataTypeId()%>"  value="<%=comp.getValue() %>" size="30"> 
+      		<input type="text" name="*<%=val.getAttributeName()%>-<%=val.getMetadataElementId()%>"  value="<%=comp.getValue() %>" size="30"> 
       		</TD>
       		<% } %>
 

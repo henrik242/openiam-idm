@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<%@ page import="java.util.*,javax.servlet.http.*, diamelle.base.composite.*, org.openiam.webadmin.busdel.base.*" %>
+<%@ page import="java.util.*,javax.servlet.http.*, org.openiam.idm.srvc.user.dto.UserAttribute, org.openiam.webadmin.busdel.base.*" %>
 <%@ page import="org.openiam.idm.srvc.meta.dto.MetadataElement" %>
 
 
@@ -11,11 +11,11 @@
 
 
 <%! 
-      public Component getAttribute(String name, Map attrMap) {
+      public UserAttribute getAttribute(String name, Map attrMap) {
 		Collection col = attrMap.values();
 		Iterator it = col.iterator();
 		while (it.hasNext()) {
-			Component cmp = (Component)it.next();
+			UserAttribute cmp = (UserAttribute)it.next();
 			if (cmp.getName().equals(name)) {
 				return cmp;
 			}
@@ -49,7 +49,7 @@
        <td class="tddark" align="right"><%= val.getAttributeName() %></td>
        <td class="tdlight" colspan="2">
       <%  
-      		Component comp = getAttribute(val.getAttributeName(), attrMap);
+     		 UserAttribute comp = getAttribute(val.getAttributeName(), attrMap);
       		if (comp != null) {
       %>
  		<%= JSPUtil.display( comp.getValue() ) %>

@@ -30,6 +30,7 @@ import diamelle.util.Log;
 import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
 import org.openiam.idm.srvc.audit.service.IdmAuditLogDataService;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserNote;
 import org.openiam.idm.srvc.user.service.UserMgr;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.springframework.web.context.WebApplicationContext;
@@ -46,8 +47,9 @@ import org.springframework.web.context.WebApplicationContext;
 public class ApproveUserAction extends NavigationDispatchAction {
 
 	// --------------------------------------------------------- Instance Variables
-	AuditLogAccess logAccess = null;
-	UserAccess userAccess = null;
+
+	//AuditLogAccess logAccess = null;
+	//UserAccess userAccess = null;
 	//protected JMSSender sender;
 	
 	//private EmailManager emailManager;
@@ -56,11 +58,14 @@ public class ApproveUserAction extends NavigationDispatchAction {
 
 	public ApproveUserAction() {
 		try {
-			logAccess = new AuditLogAccess();
-			userAccess = new UserAccess();
+			//userAccess = new UserAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public void init() {
+		
 	}
 	
 	public ActionForward viewUserList( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse res ) 
@@ -190,12 +195,13 @@ public class ApproveUserAction extends NavigationDispatchAction {
 			HttpServletRequest request, HttpServletResponse res ) 
 	throws IOException, ServletException {
 
-		UserNoteValue noteValue = null;
+		UserNote noteValue = null;
 		String logMsg = null;
 
 		WebApplicationContext webContext =  getWebApplicationContext();
         IdmAuditLogDataService auditService = 
  	    		 (IdmAuditLogDataService)webContext.getBean("auditDataService");
+		UserDataService userMgr = (UserDataService)webContext.getBean("userManager");        
 
 		
 		HttpSession session = request.getSession();
@@ -211,17 +217,17 @@ public class ApproveUserAction extends NavigationDispatchAction {
 		try {
 	       	for (int i=0; i<len; i++) {
         		String selectedPersonId = personId[i];
-        		UserData ud = userAccess.getUser(selectedPersonId);
-        		ud.setStatusId("REJECTED");
-        		userAccess.saveUser(ud);
+        		User ud = userMgr.getUserWithDependent(selectedPersonId,false);
+        		ud.setStatus("REJECTED");
+        		userMgr.updateUser(ud);
         		// save the reason for the rejection with the user
-        		noteValue = new UserNoteValue();
+        		noteValue = new UserNote();
         		noteValue.setCreatedBy(userId);
-        		noteValue.setDateCreated(new Timestamp(System.currentTimeMillis()));
+        		noteValue.setCreateDate(new Timestamp(System.currentTimeMillis()));
         		noteValue.setDescription((String)userNotesForm.get("description"));
-        		noteValue.setNoteTypeId(noteType);
+        		noteValue.setNoteType(noteType);
         		noteValue.setUserId(selectedPersonId);
-        		userAccess.addUserNote(noteValue);
+        		userMgr.addNote(noteValue);
                 
         		//AuditLogAccess.logEvent("User id=" + selectedPersonId + " has been REJECTED.", 
                 //		request.getRemoteHost(),userId, login,"IDM"); 
@@ -255,9 +261,6 @@ public class ApproveUserAction extends NavigationDispatchAction {
 		}catch(ClassNotFoundException ce) {
 			Log.error(ce.getMessage(),ce);
 			ce.printStackTrace();	
-		}catch(RemoteException e) {
-			Log.error(e.getMessage(),e);
-			e.printStackTrace();
 		}
         request.setAttribute("OPERATION", "REJECTED");
         request.setAttribute("COUNT",new Integer(len));
@@ -267,21 +270,6 @@ public class ApproveUserAction extends NavigationDispatchAction {
 		
 	}
 	
-	public void logEvent(String msg, String ip, String userId, String serviceId) {
-		AccessLogValue logVal = new AccessLogValue();
-		logVal.setAccessLogId(String.valueOf(System.currentTimeMillis()));
-		logVal.setDescription(msg);
-		logVal.setHostIp(ip);
-		logVal.setLogTime(new java.util.Date(System.currentTimeMillis()));
-		logVal.setUserId(userId);
-		logVal.setServiceId(serviceId);		
-		try {
-			logAccess.addLog(logVal);
-		}catch(RemoteException re) {
-			Log.error(re.getMessage(),re);
-			re.printStackTrace();
-		}
-	}
 
 
 

@@ -47,8 +47,12 @@ import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
 import org.openiam.idm.srvc.audit.service.IdmAuditLogDataService;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.idm.srvc.user.service.UserDataService;
-
+import org.openiam.idm.srvc.continfo.dto.Address;
+import org.openiam.idm.srvc.continfo.dto.ContactConstants;
+import org.openiam.idm.srvc.continfo.dto.EmailAddress;
+import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.meta.dto.MetadataElement;
 import org.openiam.idm.srvc.meta.service.MetadataService;
 
@@ -84,9 +88,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 public class UserAction extends NavigationDispatchAction  {
-	UserAccess userAccess = null;
 	AuthenticatorAccess authAccess = null; 
-	AuditLogAccess logAccess = null;
 
 	
 	UserDataServiceAccess userDataAccess = null;
@@ -94,12 +96,11 @@ public class UserAction extends NavigationDispatchAction  {
 	RoleDataServiceAccess roleDataAcc = null;
 	ServiceAccess servDataAccess = null;
 
-	//MetadataAccess metaAccess = null;
-	IdQuestionAccess questAccess = new IdQuestionAccess();
 	PolicyAccess policyAccess = new PolicyAccess();
 	
 	MetadataService metadataSrvc = null;
 	UserDataService userDataSrvc = null;
+	IdmAuditLogDataService auditService = null;
 
 	private static final Log log = LogFactory.getLog(UserAction.class);
 
@@ -108,15 +109,21 @@ public class UserAction extends NavigationDispatchAction  {
 	
 	public UserAction() {
 		try {
-		userAccess = new UserAccess();
-		authAccess = new AuthenticatorAccess();
-		logAccess = new AuditLogAccess();
+			authAccess = new AuthenticatorAccess();
 		
-		
+			
 		}catch(Exception e) {
 			log.error("UserAction - Constructor failed.", e);
 			e.printStackTrace();
 		}
+	}
+	
+	public void init() {
+		WebApplicationContext webCtx = getWebApplicationContext();
+		auditService =  (IdmAuditLogDataService)webCtx.getBean("auditDataService");
+		userDataSrvc = (UserDataService)webCtx.getBean("userManager");
+		metadataSrvc = (MetadataService)webCtx.getBean("metadataService");
+		
 	}
 
 	
@@ -125,6 +132,7 @@ public class UserAction extends NavigationDispatchAction  {
 			HttpServletResponse res ) throws IOException, ServletException {
 
         try {
+           init();
            
            HttpSession session = request.getSession();
             DynaValidatorForm userForm = (DynaValidatorForm)form;
@@ -143,12 +151,10 @@ public class UserAction extends NavigationDispatchAction  {
 			ActionForm form, HttpServletRequest request, 
 			HttpServletResponse res) throws  IOException, ServletException {
 		
-		WebApplicationContext webCtx = getWebApplicationContext();
-		metadataSrvc = (MetadataService)webCtx.getBean("metadataService");
-		
-		//Map metadataMap = null;
-		
-		System.out.println("***In showNewUserForm");
+
+		init();
+
+
        try {          
            HttpSession session = request.getSession();
            loadStaticData(session, this.getServletContext());
@@ -183,21 +189,19 @@ public class UserAction extends NavigationDispatchAction  {
      */
      public ActionForward saveUser ( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse res ) throws IOException, ServletException {
         
+    	 init();
+    	 
     	 WebApplicationContext webContext =  getWebApplicationContext();
-    	 this.userDataAccess = new UserDataServiceAccess(webContext);
     	 groupDataAcc = new GroupDataServiceAccess(webContext);
     	 
-    	 IdmAuditLogDataService auditService = 
-    		 (IdmAuditLogDataService)webContext.getBean("auditDataService");
     	 
     	 
-    	 
-    	UserData userData = new UserData();
-        Address adr = AddressFactory.create();
-        Email email = EmailFactory.create();
-        Phone cellPhone = PhoneFactory.create();
-        Phone workPhone = PhoneFactory.create();
-        Phone faxPhone = PhoneFactory.create();
+    	User userData = new User();
+        Address adr = new Address(); 
+        EmailAddress email = new EmailAddress(); 
+        Phone cellPhone = new Phone(); 
+        Phone workPhone = new Phone();
+        Phone faxPhone = new Phone();
         String personId = null;
       //  String submit = null;
         String logMsg = null;
@@ -225,24 +229,24 @@ public class UserAction extends NavigationDispatchAction  {
           formToPhone(faxPhone,userForm,"FAX");
 
            if (personId != null && personId.length() > 0){
-     		   userData.setId(personId);
+     		   userData.setUserId(personId);
      		   
      		   if (userForm.get("submit").equals("Unlock User")) {
      		   		//userData.setStatusId("");
      		   }
      		   if (userForm.get("submit").equals("Blacklist User")){
-     		   		userData.setStatusId("BLACK LISTED");
+     		   		userData.setStatus("BLACK LISTED");
      		   		userForm.set("userStatus","BLACK LISTED");
      		   		logMsg = "User id=" + personId + " BLACK LISTED";
      		   }
      		   if (userForm.get("submit").equals("Delete User")){
- 		   		userData.setStatusId("DELETED");
+ 		   		userData.setStatus("DELETED");
  		   		userForm.set("userStatus","DELETED");
  		   		logMsg = "User id=" + personId + " DELETED";
      		   }
      		   
      		  // update an existing user record
-               userAccess.saveUser(userData);
+     		  userDataSrvc.updateUser(userData);
                // LOG the event
                if (logMsg == null) {
                	logMsg = "User id=" + personId + " UPDATED";
@@ -272,20 +276,25 @@ public class UserAction extends NavigationDispatchAction  {
          //      		(String)session.getAttribute("login"),"IDM");
                
                adr.setParentId(personId);
-               userAccess.saveAddress(personId,adr);
+               adr.setParentType(ContactConstants.PARENT_TYPE_USER);
+               userDataSrvc.updateAddress(adr); 
                
                email.setParentId(personId);
-               userAccess.saveEmail(personId,email);
+               email.setParentType(ContactConstants.PARENT_TYPE_USER);
+               userDataSrvc.updateEmailAddress(email);
                
                workPhone.setParentId(personId);
+               workPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
                cellPhone.setParentId(personId);
+               cellPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
                faxPhone.setParentId(personId);
-               userAccess.savePhone(personId,workPhone);
-               userAccess.savePhone(personId,cellPhone);
-               userAccess.savePhone(personId,faxPhone);
+               faxPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
+               userDataSrvc.updatePhone(workPhone);
+               userDataSrvc.updatePhone(cellPhone);
+               userDataSrvc.updatePhone(faxPhone);
 
 	              // get the attributes
-               updateAttributes(request,personId, userAccess, userData.getTypeId());
+               updateAttributes(request,personId, userDataSrvc, userData.getMetadataTypeId());
 
      			//WebApplicationContext webCtx = getWebApplicationContext();
  /*     			ldapService = (Spml2Service)webCtx.getBean("adService");
@@ -320,36 +329,38 @@ public class UserAction extends NavigationDispatchAction  {
                	  userData.setCreatedBy(createdId);
               	  userData.setCreateDate(new Timestamp(System.currentTimeMillis()));
 	              
-              	  userAccess.createUser(userData);
+              	  userDataSrvc.addUser(userData);
               	  
-              	  // temp hack
-              	  
-    	          	  
-              	  
-	                                             
-				  request.setAttribute("personId", userData.getId());
+          	  
+ 	                                             
+				  request.setAttribute("personId", userData.getUserId());
 
 	              // new - sas- 12-13-2003
-	              personId = userData.getId();
+	              personId = userData.getUserId();
 	              adr.setParentId(personId);
-	              userAccess.saveAddress(personId,adr);
+	              adr.setParentType(ContactConstants.PARENT_TYPE_USER);
+	              userDataSrvc.updateAddress(adr);
 	               
 	              email.setParentId(personId);
-	              userAccess.saveEmail(personId,email);
+	              email.setParentType(ContactConstants.PARENT_TYPE_USER);
+	              userDataSrvc.updateEmailAddress(email);
 	               
 	              workPhone.setParentId(personId);
+	              workPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
 	              cellPhone.setParentId(personId);
+	              cellPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
 	              faxPhone.setParentId(personId);
-	              userAccess.savePhone(personId,workPhone);
-	              userAccess.savePhone(personId,cellPhone);
-	              userAccess.savePhone(personId,faxPhone);
+	              faxPhone.setParentType(ContactConstants.PARENT_TYPE_USER);
+	              userDataSrvc.updatePhone(workPhone);
+	              userDataSrvc.updatePhone(cellPhone);
+	              userDataSrvc.updatePhone(faxPhone);
 
              	  LoginValue lv = new LoginValue();
 	              lv.setLogin( login);
 	              if (password != null )
 	              	lv.setPassword( password);
 	              lv.setService( (String) userForm.get("service"));
-	              lv.setUserId(userData.getId());
+	              lv.setUserId(userData.getUserId());
 	              lv.setResetPassword(true);
 	              //lv.setNewUser(true);
 	              lv.setChangePassword(new Timestamp(System.currentTimeMillis()));
@@ -367,7 +378,7 @@ public class UserAction extends NavigationDispatchAction  {
 	              this.groupDataAcc.addUserToGroup(group,lv.getUserId());
 	              
 	              // get the attributes
-	              addAttributes(request,personId, userAccess);
+	              addAttributes(request,personId, userDataSrvc);
 	              
 	      			WebApplicationContext webCtx = getWebApplicationContext();
 	      		/*	ldapService = (Spml2Service)webCtx.getBean("adService");
@@ -379,7 +390,7 @@ public class UserAction extends NavigationDispatchAction  {
 	      						adr.getState(), adr.getAddress1(), adr.getPostalCode());
 	          	*/		
 	      			
-	      			logMsg = "User id=" + userData.getId() + " created";
+	      			logMsg = "User id=" + userData.getUserId() + " created";
            
 	                IdmAuditLog log = new IdmAuditLog(new Date(System.currentTimeMillis()), "CREATE",
 	             		   "SUCCESS", null, personId, 
@@ -415,8 +426,8 @@ public class UserAction extends NavigationDispatchAction  {
     }
      
 
-	private void  addAttributes(HttpServletRequest request, String personId, UserAccess userAccess ) throws RemoteException {
-     	Component comp = null;
+	private void  addAttributes(HttpServletRequest request, String personId, UserDataService userAccess ) throws RemoteException {
+     	UserAttribute comp = null;
         java.util.Enumeration<String> en =  request.getParameterNames();
         if (en != null) {
      	   while (en.hasMoreElements()) {
@@ -424,29 +435,31 @@ public class UserAction extends NavigationDispatchAction  {
      		   // look for our special marker '*'
      		   if (fieldName.startsWith("*")) {
      			   String value = request.getParameter(fieldName);
-     			   comp = ComponentFactory.create();
+
+     			   comp = new UserAttribute();
      			   int size = fieldName.length();
      			   String elementName = fieldName.substring(1,size);
      			   int indx = elementName.indexOf("-");
      			   String name = elementName.substring(0,indx);
      			   String metadataId = elementName.substring(indx+1,--size);
+     			   
+     			   
      			   comp.setName(name);
-     			   comp.setParentId(personId);
+     			   comp.setUserId(personId);
      			   comp.setValue(value);
-     			   comp.setMetadataId(metadataId);
-     			   userAccess.saveAttribute(comp, personId);
+     			   comp.setMetadataElementId(metadataId);
+     			   userDataSrvc.updateAttribute(comp);
      		   }
      	   }
         }     	
      }
      
      private void updateAttributes (HttpServletRequest request, String personId, 
-     		UserAccess userAccess,String typeId ) throws RemoteException {
+     		UserDataService userAccess,String typeId ) throws RemoteException {
      	// for each item in metadata, check if we have a value.
      	// if we do, then update it. if we don't add it.
 
- 		WebApplicationContext webCtx = getWebApplicationContext();
-		metadataSrvc = (MetadataService)webCtx.getBean("metadataService");
+ 		init();
 		
     	MetadataElement[] elementAry = metadataSrvc.getMetadataElementByType(typeId);
      	
@@ -458,15 +471,12 @@ public class UserAction extends NavigationDispatchAction  {
     		 int size = elementAry.length;
     		 for (int i=0; i<size; i++) {
     	 
-     	
-   //  	Collection col = metadataMap.values();
-   //  	Iterator it = col.iterator();    	
-   ///  	while (it.hasNext()) {
-     		//MetadataElementValue elementVal = (MetadataElementValue)it.next();
+     
     		MetadataElement elementVal = elementAry[i];
-     	 	String webParamName =  "*" + elementVal.getAttributeName() + "-" + elementVal.getMetadataTypeId();
+     	 	String webParamName =  "*" + elementVal.getAttributeName() + "-" + elementVal.getMetadataElementId();
      	 	String webParamValue = request.getParameter(webParamName);
-     	 	Component comp = getComponent(userAttr, elementVal.getAttributeName());
+     	 	UserAttribute comp = getAttribute(userAttr, elementVal.getAttributeName());
+
      	 	if (comp != null ) {
      	 		// update
      	 		if (webParamValue == null) {
@@ -477,25 +487,25 @@ public class UserAction extends NavigationDispatchAction  {
      	 	}else {
      	 		// new
       	 	   if (comp == null) {
-     	 	   		comp = ComponentFactory.create();
+     	 	   		comp = new UserAttribute();
      	 	   }
      	 	   if (elementVal != null) {
 	  			   comp.setName(elementVal.getAttributeName());
-	 			   comp.setParentId(personId);
+	 			   comp.setUserId(personId);
 	 			   if (webParamValue == null) {
 	 			   	comp.setValue("");
 	 			   }else {
 	 			   	comp.setValue(webParamValue);
 	 			   }
-	 			   comp.setMetadataId(elementVal.getMetadataTypeId());
+	 			   comp.setMetadataElementId(elementVal.getMetadataElementId());
      	 	   }
       	 	}
-		   userAccess.saveAttribute(comp, personId);   	 	
+     	 	userDataSrvc.updateAttribute(comp);   	 	
      	}
     }
      	
      }
-     private Component getComponent(Map userAttr, String attrName) {
+     private UserAttribute getAttribute(Map userAttr, String attrName) {
      	if (userAttr == null || userAttr.isEmpty()) {
           	return null;
      	}
@@ -503,9 +513,9 @@ public class UserAction extends NavigationDispatchAction  {
 		Collection col = userAttr.values();
 		Iterator it = col.iterator();
 		while (it.hasNext()) {
-			Component cmp = (Component)it.next();
-			if (cmp.getName().equals(attrName)) {
-				return cmp;
+			UserAttribute attr = (UserAttribute)it.next();
+			if (attr.getName().equals(attrName)) {
+				return attr;
 			}
 		}
 		return null;
@@ -858,11 +868,9 @@ public class UserAction extends NavigationDispatchAction  {
     private void editUser (HttpServletRequest request, DynaValidatorForm userForm, String activeTab){
         HttpSession session = request.getSession();
 
-		WebApplicationContext webCtx = getWebApplicationContext();
-		metadataSrvc = (MetadataService)webCtx.getBean("metadataService");
+		init();
 
         try {
-           UserAccess userAccess = new UserAccess();
            
            String personId = request.getParameter("personId");
            if (personId == null) {
@@ -873,30 +881,31 @@ public class UserAction extends NavigationDispatchAction  {
            // for use in popups where we can not easily pass a parameter
            session.setAttribute("personId",personId);
 
-           UserData userData = userAccess.getUser(personId);
+           User userData =  userDataSrvc.getUserWithDependent(personId, false);
            if (userData != null) {
-              this.populateFormBean(userData, userForm);
+              populateFormBean(userData, userForm);
               request.setAttribute("personData", userData);
               // get the phone, address and email
-              Address adr = userAccess.getAddressByName(personId,"DEFAULT");
-              Email email = userAccess.getEmailByName(personId,"DEFAULT");
-              Phone workPhone = userAccess.getPhoneByName(personId,"WORK");
-              Phone cellPhone = userAccess.getPhoneByName(personId,"CELL");
-              Phone faxPhone = userAccess.getPhoneByName(personId,"FAX");
+              Address adr = userDataSrvc.getAddressByName(personId,"DEFAULT ADR");
+              EmailAddress email = userDataSrvc.getEmailAddressByName(personId,"EMAIL1");
+              Phone workPhone = userDataSrvc.getPhoneByName(personId,"Desk Phone");
+              Phone cellPhone = userDataSrvc.getPhoneByName(personId,"Cell Phone");
+              Phone faxPhone = userDataSrvc.getPhoneByName(personId,"Fax Phone");
               addressToForm(userForm,adr);
               phoneToForm(userForm,workPhone, "WORK");
               phoneToForm(userForm,cellPhone, "CELL");
               phoneToForm(userForm,faxPhone, "FAX");
               emailToForm(userForm,email);
               // get the metadata for this user
-              if (userData.getTypeId() != null) {
-           	   MetadataElement[] elementAry = metadataSrvc.getMetadataElementByType(userData.getTypeId());
+              if (userData.getMetadataTypeId() != null) {
+            	   MetadataElement[] elementAry = metadataSrvc.getMetadataElementByType(userData.getMetadataTypeId());
+           	             	   
         	   request.setAttribute("metadata", elementAry);
         	   
                //	Map metadataMap = metaAccess.getMetadataByType(userData.getTypeId());
                //	request.setAttribute("metadata", metadataMap);
               	// get the attributes for the metadata
-              	Map attrMap =  userAccess.getAllAttributes(personId);
+              	Map attrMap =  userDataSrvc.getAllAttributes(personId);
               	request.setAttribute("userAttr", attrMap);
               }
               // get the attributes for the metadata
@@ -923,25 +932,24 @@ public class UserAction extends NavigationDispatchAction  {
     /**
      * Retrieves the data from Form and sets in the UserData object
      */
-    private UserData getUserDetails(UserData userData, DynaValidatorForm form) {
+    private User getUserDetails(User userData, DynaValidatorForm form) {
          CalendarUtil calUtil = new CalendarUtil();
          userData.setFirstName((String) form.get("firstName"));
          userData.setMiddleInit((String) form.get("middleName"));
          userData.setLastName((String) form.get("lastName"));
 
          //userData.setEMail((String) form.get("email"));
-         userData.setUserInd((String) form.get("userInd"));
-         userData.setDept((String) form.get("dept"));
+         userData.setUserTypeInd((String) form.get("userInd"));
+         userData.setDeptName((String) form.get("dept"));
          userData.setSex((String) form.get("sex"));
          userData.setTitle((String) form.get("title"));
-         userData.setTaxCode((String) form.get("tax"));
-         //userData.setCreateDate(new Timestamp(System.currentTimeMillis()));
-         userData.setLstUpdated(new Timestamp(System.currentTimeMillis()));
+
+         userData.setLastUpdate(new Timestamp(System.currentTimeMillis()));
          //userData.setCreatedBy(");
          
          String typeId = (String) form.get("typeId");         
          if (typeId != null && typeId.length() > 0)
-            userData.setTypeId(typeId);
+            userData.setMetadataTypeId(typeId);
          
          String birthdate = (String)form.get("birthday");
          if (birthdate != null && birthdate.length() > 0)
@@ -951,14 +959,9 @@ public class UserAction extends NavigationDispatchAction  {
          if (companyId != null && companyId.length() > 0) {
             userData.setCompanyId((String) form.get("companyId"));           
          }
+
          
-         String active = (String) form.get("active");        
-         if (active.equalsIgnoreCase("on"))
-            userData.setActive(true);
-         else
-            userData.setActive(false);
-         
-         userData.setStatusId((String) form.get("status"));  
+         userData.setStatus((String) form.get("status"));  
          return userData;
     }
 
@@ -966,42 +969,47 @@ public class UserAction extends NavigationDispatchAction  {
     	adr.setAddress1((String) form.get("address1"));
     	adr.setAddress2((String)form.get("address2"));
     	adr.setCity((String)form.get("city"));
-    	adr.setDefault(true);
+    	adr.setIsDefault(new Integer(1));
     	adr.setDescription("DEFAULT");
-    	adr.setPostalCode((String)form.get("zip"));
+    	adr.setPostalCd((String)form.get("zip"));
     	adr.setState((String)form.get("state"));
-    	adr.setId((String)form.get("addressId"));
+    	adr.setAddressId((String)form.get("addressId"));
     	adr.setCountry((String)form.get("country"));
+    	adr.setName("DEFAULT ADR");
     	return adr;
     	
     }
-    private Email formToEmail(Email email, DynaValidatorForm form) {
-    	email.setId((String)form.get("emailId"));
+    private EmailAddress formToEmail(EmailAddress email, DynaValidatorForm form) {
+    	email.setEmailId((String)form.get("emailId"));
     	email.setEmailAddress((String)form.get("email"));
     	email.setDescription("DEFAULT");
-    	email.setDefault(true);
+    	email.setName("EMAIL1");
+    	email.setIsDefault(new Integer(1));
     	return email;
     	
     }
     private Phone formToPhone(Phone ph, DynaValidatorForm form, String phoneType) {
     	if (phoneType.equals("WORK")) {
-    		ph.setAreaCode((String)form.get("phone_areacd"));
+    		ph.setAreaCd((String)form.get("phone_areacd"));
     		ph.setDescription("WORK");
-    		ph.setPhoneNumber((String)form.get("phone_nbr"));
-    		ph.setId((String)form.get("workPhoneId"));
+    		ph.setName("Desk Phone");
+    		ph.setPhoneNbr((String)form.get("phone_nbr"));
+    		ph.setPhoneId((String)form.get("workPhoneId"));
     	}
     	if (phoneType.equals("CELL")) {
-    		ph.setAreaCode((String)form.get("cell_areacd"));
+    		ph.setAreaCd((String)form.get("cell_areacd"));
     		ph.setDescription("CELL");
-    		ph.setPhoneNumber((String)form.get("cell_nbr"));
-    		ph.setId((String)form.get("cellPhoneId"));
+    		ph.setName("Cell Phone");
+    		ph.setPhoneNbr((String)form.get("cell_nbr"));
+    		ph.setPhoneId((String)form.get("cellPhoneId"));
     		
     	}
     	if (phoneType.equals("FAX")) {
-    		ph.setAreaCode((String)form.get("fax_areacd"));
+    		ph.setAreaCd((String)form.get("fax_areacd"));
     		ph.setDescription("FAX");
-    		ph.setPhoneNumber((String)form.get("fax_nbr"));
-    		ph.setId((String)form.get("faxPhoneId"));
+    		ph.setPhoneNbr((String)form.get("fax_nbr"));
+    		ph.setName("Fax Phone");
+    		ph.setPhoneId((String)form.get("faxPhoneId"));
    		
     	}
     	return ph;
@@ -1013,9 +1021,9 @@ public class UserAction extends NavigationDispatchAction  {
        	form.set("address1",adr.getAddress1());
     	form.set("address2",adr.getAddress2());
     	form.set("city", adr.getCity());
-    	form.set("zip",adr.getPostalCode());
+    	form.set("zip",adr.getPostalCd());
     	form.set("state",adr.getState());
-    	form.set("addressId",adr.getId());
+    	form.set("addressId",adr.getAddressId());
     	form.set("country", adr.getCountry());
     	}
    	
@@ -1024,27 +1032,27 @@ public class UserAction extends NavigationDispatchAction  {
        	if (ph == null)
        		return;
     	if (phoneType.equals("WORK")) {
-    		form.set("phone_areacd",ph.getAreaCode());
-    		form.set("phone_nbr",ph.getPhoneNumber());
-    		form.set("workPhoneId",ph.getId());
+    		form.set("phone_areacd",ph.getAreaCd());
+    		form.set("phone_nbr",ph.getPhoneNbr());
+    		form.set("workPhoneId",ph.getPhoneId());
     	}
     	if (phoneType.equals("CELL")) {
-    		form.set("cell_areacd",ph.getAreaCode());
-    		form.set("cell_nbr",ph.getPhoneNumber());
-    		form.set("cellPhoneId",ph.getId());
+    		form.set("cell_areacd",ph.getAreaCd());
+    		form.set("cell_nbr",ph.getPhoneNbr());
+    		form.set("cellPhoneId",ph.getPhoneId());
     		
     	}
     	if (phoneType.equals("FAX")) {
-    		form.set("fax_areacd",ph.getAreaCode());
-    		form.set("fax_nbr",ph.getPhoneNumber());
-    		form.set("faxPhoneId",ph.getId());
+    		form.set("fax_areacd",ph.getAreaCd());
+    		form.set("fax_nbr",ph.getPhoneNbr());
+    		form.set("faxPhoneId",ph.getPhoneId());
    		
     	}
     	
     }
-    private void emailToForm(DynaValidatorForm form,Email email) {
+    private void emailToForm(DynaValidatorForm form,EmailAddress email) {
     if (email != null) {
-       	form.set("emailId",email.getId());
+       	form.set("emailId",email.getEmailId());
     	form.set("email",email.getEmailAddress());
     } 	
     }
@@ -1052,35 +1060,28 @@ public class UserAction extends NavigationDispatchAction  {
     /**
      * Retrieves information from UserData and sets it in Form
      */
-    private void populateFormBean(UserData ud, DynaValidatorForm uform) {
+    private void populateFormBean(User ud, DynaValidatorForm uform) {
         CalendarUtil calUtil = new CalendarUtil();
 
-      uform.set("personId", ud.getId());
+      uform.set("personId", ud.getUserId());
 
       uform.set("firstName", ud.getFirstName());
       uform.set("middleName", ud.getMiddleInit());
       uform.set("lastName", ud.getLastName());
 
-      uform.set("email", ud.getEmail());
-      uform.set("userInd", ud.getUserInd());
+    //  uform.set("email", ud.getEmailAddress());
+      uform.set("userInd", ud.getUserTypeInd());
 
-      uform.set("typeId", ud.getTypeId());
-      uform.set("dept", ud.getDept());
+      uform.set("typeId", ud.getMetadataTypeId());
+      uform.set("dept", ud.getDeptName());
       uform.set("companyId", ud.getCompanyId());
       if (ud.getCompanyId() != null) { 
-     // 	try {
-	       // OrganizationValue val = orgAccess.getOrganization(ud.getCompanyId());
-	       // if (val != null) {
-	       // 	uform.set("companyName", val.getOrganizationName());
-	        //}
-      	//}catch(RemoteException e) {
-      	//	Log.error(e.getMessage(),e);
-      //	}
 
       }
       
+      
       uform.set("sex", ud.getSex());
-      Timestamp createTime = ud.getCreateDate();
+      Date createTime = ud.getCreateDate();
       if (createTime != null)
       	uform.set("createDate", createTime.toString());
       uform.set("createdBy", ud.getCreatedBy());
@@ -1094,11 +1095,9 @@ public class UserAction extends NavigationDispatchAction  {
       	}
       }
 
-      if (ud.isActive())
-         uform.set("active", "on");
+
       
-       uform.set("status",ud.getStatusId());   
-      uform.set("tax", ud.getTaxCode());
+       uform.set("status",ud.getStatus());   
       uform.set("title", ud.getTitle());
       
     }
@@ -1124,12 +1123,12 @@ public class UserAction extends NavigationDispatchAction  {
       option = new TabOption("History", false, "idman/user.do?method=history", "viewusernotes.jsp");
       l.add(option);
       
-      option = new TabOption("Smart Card", false, "idman/user.do?method=smartcard", "view_smartcard.jsp");
+  /*    option = new TabOption("Smart Card", false, "idman/user.do?method=smartcard", "view_smartcard.jsp");
       l.add(option);      
   
       option = new TabOption("Phys Access", false, "idman/user.do?method=physaccess", "view_physicalaccess.jsp");
       l.add(option);     
-
+*/
       
       return l;
     }
@@ -1157,20 +1156,20 @@ public class UserAction extends NavigationDispatchAction  {
         try {
 
         if (detailView.equalsIgnoreCase("PHONE")) {
-          return userAccess.getAllPhoneNbrs(personId);
+          return userDataSrvc.getPhoneList(personId);
         }
         if (detailView.equalsIgnoreCase("ADDRESS")) {
-          return userAccess.getAllAddresses(personId);
+          return userDataSrvc.getAddressList(personId);
         }
         if (detailView.equalsIgnoreCase("EMAIL")) {
-          return userAccess.getAllEmails(personId);
+          return userDataSrvc.getEmailAddressList(personId);
         }
         if (detailView.equalsIgnoreCase("IDENTITIES")) {
         	return authAccess.getAllLogins(personId);
         	//return authAccess.getPrincipals(personId);
         }
         if (detailView.equalsIgnoreCase("HISTORY")) {
-        	return userAccess.getUserNotes(personId);
+        	return userDataSrvc.getAllNotes(personId);
         }
 
         } catch (Exception e) {
@@ -1232,8 +1231,7 @@ public class UserAction extends NavigationDispatchAction  {
         	}
         }
         
-        System.out.println("DomainList = " + newDomainList.size());
-        
+         
         return newDomainList;
 
 		
