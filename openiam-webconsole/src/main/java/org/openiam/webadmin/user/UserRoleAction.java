@@ -60,6 +60,8 @@ public class UserRoleAction extends NavigationDispatchAction {
       RoleDataServiceAccess roleDataAcc = null;
       
  	  WebApplicationContext webContext =  getWebApplicationContext();
+ 	  RoleDataService roleDS = (RoleDataService)webContext.getBean("roleDataService");
+ 	  
  	  roleDataAcc = new RoleDataServiceAccess(webContext);
       
  
@@ -74,14 +76,13 @@ public class UserRoleAction extends NavigationDispatchAction {
 
          if ( submit != null && submit.equals(">")) {
              //adding a user to a Group/s
-        	 System.out.println(" in user role action..submit > ");
-        	 
+         	 
              if (req.getParameterValues("roleId") != null) {
                  String[] roleParamAry = req.getParameterValues("roleId");
-                 
+                    
                  for(int i = 0; i < roleParamAry.length ; i++) {
                 	 String roleParamValue = roleParamAry[i];
-                	               	 
+                	       	               	
                 	 int indx = roleParamValue.indexOf("*");
                 	 String serviceId = roleParamValue.substring(0, indx);
                 	 String rId = roleParamValue.substring(++indx);
@@ -90,7 +91,10 @@ public class UserRoleAction extends NavigationDispatchAction {
                  }
              }
              roleAry = roleDataAcc.getAllRoles();
-             userRoleAry = roleDataAcc.getUserRoles(personId);       
+             userRoleAry = roleDS.getUserRolesDirect(personId);       
+             
+
+             
          } else if (submit != null &&  submit.equals("<")) {
                // removing a user from the Group/s
                
@@ -105,11 +109,9 @@ public class UserRoleAction extends NavigationDispatchAction {
                   }
                }
                roleAry = roleDataAcc.getAllRoles();
-               userRoleAry = roleDataAcc.getUserRoles(personId);      
+               userRoleAry = roleDS.getUserRolesDirect(personId);      
 
          }
-
-         
          req.setAttribute("personId",personId);
          req.setAttribute("roleList",roleAry);
          req.setAttribute("userRoleAry",userRoleAry);

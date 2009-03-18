@@ -42,6 +42,7 @@ import org.openiam.webadmin.busdel.identity.*;
 
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.service.RoleDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
@@ -203,7 +204,7 @@ public class UserAction extends NavigationDispatchAction  {
         Phone workPhone = new Phone();
         Phone faxPhone = new Phone();
         String personId = null;
-      //  String submit = null;
+
         String logMsg = null;
         Component comp = ComponentFactory.create();
         
@@ -252,13 +253,7 @@ public class UserAction extends NavigationDispatchAction  {
                	logMsg = "User id=" + personId + " UPDATED";
                }
                
-              
-   	//		String actionStatus, String attributesChanges, String clientId,
-   	//		String host, int linkSequence, String linkedLogId, String logHash,
-   	//		, String loginId, String objectName,
-   	//		, String reason, String reasonDetail,
-   	//		String reqUrl, String resourceName, String serviceId, 
-               
+
             IdmAuditLog log = new IdmAuditLog(new Date(System.currentTimeMillis()), "UPDATE",
             		   "SUCCESS", null, personId, 
             		   request.getRemoteHost(), 0, null, "00",
@@ -268,12 +263,6 @@ public class UserAction extends NavigationDispatchAction  {
                auditService.addLog(log);
                        
 
-
-               
-               
-         //      AuditLogAccess.logEvent(logMsg, request.getRemoteHost(), 
-         //      		(String)session.getAttribute("userId"),
-         //      		(String)session.getAttribute("login"),"IDM");
                
                adr.setParentId(personId);
                adr.setParentType(ContactConstants.PARENT_TYPE_USER);
@@ -400,18 +389,13 @@ public class UserAction extends NavigationDispatchAction  {
 	             		   request.getRequestURI(),"USER_SERVICE", "IDM", (String)session.getAttribute("userId"));                
 	                auditService.addLog(log);
 	                        
-	
 
-	                
-	      			
-	              // log the event
-	          //    AuditLogAccess.logEvent("User id=" + userData.getId() + " created",
-              //    		request.getRemoteHost(),createdId,  
-              //     		(String)session.getAttribute("login"),"IDM");
 
 	     
               }
            }
+           String msg = "User information has been successfully saved.";
+           request.setAttribute("confirmmsg", msg);
            this.editUser(request, userForm, "IDENTITIES");
 	              
         } catch(Exception e) {
@@ -798,7 +782,7 @@ public class UserAction extends NavigationDispatchAction  {
         try {
         	
        	 WebApplicationContext webContext =  getWebApplicationContext();
-    	 roleDataAcc = new RoleDataServiceAccess(webContext);
+    	 RoleDataService roleDS = (RoleDataService)webContext.getBean("roleDataService");
     	 servDataAccess = new ServiceAccess(webContext);
         	
            String personId = request.getParameter("personId");
@@ -806,8 +790,8 @@ public class UserAction extends NavigationDispatchAction  {
            if (mode == null)
            	mode = "VIEW";
            
-           Role[] roleAry = roleDataAcc.getAllRoles();
-           Role[] userRoleAry = roleDataAcc.getUserRoles(personId);
+           Role[] roleAry = roleDS.getAllRoles();
+           Role[] userRoleAry = roleDS.getUserRolesDirect(personId);
            
            request.setAttribute("roleAry",roleAry);
            request.setAttribute("detailView", roleAry);

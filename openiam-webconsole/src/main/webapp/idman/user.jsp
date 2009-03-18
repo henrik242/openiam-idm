@@ -12,7 +12,6 @@
 
 <% 
 
-System.out.println("user.jsp is called....");
 
   DynaValidatorForm userForm = (DynaValidatorForm) request.getAttribute("userForm");
   String personId = (String) request.getAttribute("personId");
@@ -30,10 +29,7 @@ System.out.println("user.jsp is called....");
 		companyList = new ArrayList();
 	pageContext.setAttribute("companyList", companyList);	
 
-	//List serviceList = (List)session.getAttribute("services");
-	//if (serviceList == null)
-	//	serviceList = new ArrayList();
-	//pageContext.setAttribute("serviceList", serviceList);	
+
 
 	List domainList = (List)session.getAttribute("domains");
 	if (domainList == null) {
@@ -53,6 +49,8 @@ System.out.println("user.jsp is called....");
 	pageContext.setAttribute("userTypes", userTypeList);	
 
 	String typeId = (String)request.getAttribute("typeId");
+	
+	String confirmmsg = (String)request.getAttribute("confirmmsg");
 
 %>
 
@@ -112,7 +110,13 @@ function confirmMsg(msg) {
 		
 	<tr>
 	  <td>&nbsp;</td>
- </tr>
+ 	</tr>
+ <% if (confirmmsg != null && confirmmsg.length() > 0 ) { %>
+  <tr>
+       <td colspan="5" class="body"><font color="red"><%=confirmmsg %></font></td>
+       
+    </tr>
+   <% } %>
   <tr>
        <td class="tddark" align="right">User Type<font color=red>*</font></td>
        <td class="tdlight" colspan="3">

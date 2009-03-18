@@ -41,7 +41,6 @@
 		int ctr = 0;
 		while (ctr < size) {
 			MetadataElement val = elementAry[ctr];		
-			System.out.println("metadata jsp = " + val + " typeId =" + val.getMetadataTypeId());
 			ctr++;
 %>
  	<tr>
