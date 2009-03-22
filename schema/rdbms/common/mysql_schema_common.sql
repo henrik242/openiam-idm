@@ -29,8 +29,8 @@ CREATE TABLE CATEGORY(
 	   	 CATEGORY_DESC        	varchar(80) NULL,
        CREATE_DATE			DATETIME NULL,
        CREATED_BY			VARCHAR(20) NULL,
-       SHOW_LIST            int NULL,
-       DISPLAY_ORDER        int NULL,
+       SHOW_LIST            int NULL DEFAULT 0,
+       DISPLAY_ORDER        int NULL DEFAULT 0,
        PRIMARY KEY (CATEGORY_ID)
 );
 
