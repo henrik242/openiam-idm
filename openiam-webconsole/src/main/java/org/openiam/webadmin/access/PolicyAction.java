@@ -185,6 +185,13 @@ System.out.println("In Policy init...");
 			
 			HttpSession session = request.getSession(true);
 			String policyDefId = (String)session.getAttribute("policyDefId");
+			if (policyDefId == null) {
+				// policy def was not selected. notify the user
+				String msg = "Please select a policy type";
+				request.setAttribute("msg", msg);
+				init(mapping, form, request, response);
+				return mapping.findForward("policies");
+			}
 			if (policyDefId.equals( PolicyConstants.ATTRIBUTE_POLICY )) {
 				return mapping.findForward("attrPolicy");
 			}

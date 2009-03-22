@@ -39,13 +39,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
-import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
+
 import org.openiam.idm.srvc.policy.service.PolicyDataService;
-import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
-import org.openiam.idm.srvc.prov.request.dto.RequestUser;
-import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
-import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+import org.openiam.idm.srvc.policy.dto.Policy;
+
+
 
 /**
  * Controller for the attribute policy form
@@ -74,14 +72,44 @@ public class AttributePolicyController extends SimpleFormController {
 
 	
 		AttributePolicyCommand attrPolicyCommand = (AttributePolicyCommand)command;
-	
+		Policy plcy = commandToPolicy(attrPolicyCommand);
+		if (plcy.getPolicyId() == null) {
+			// new
+			policyDataService.addPolicy(plcy);
+		}else {
+			// update
+			policyDataService.updatePolicy(plcy);
+		}
+		
+		// get the new policy list to show on the confirmation page
+		Policy[] policyAry = policyDataService.getAllPolicies(attrPolicyCommand.getPolicyDefId());
+		
 		ModelAndView mav = new ModelAndView(getSuccessView());
 		mav.addObject("attrPolicyCmd", attrPolicyCommand);
+		mav.addObject("confmsg", "Information was successfully saved");
+		mav.addObject("policyAry", policyAry );
 
 		
 		return mav;
 
 		
+	}
+	
+	private Policy commandToPolicy(AttributePolicyCommand cmd) {
+		Policy plcy = new Policy();
+		plcy.setPolicyId(cmd.getPolicyId());
+		if (cmd.getPolicyId() == null || cmd.getPolicyId().length() == 0 ) {
+			plcy.setCreateDate(new Date(System.currentTimeMillis()));
+		}
+		plcy.setLastUpdate(new Date(System.currentTimeMillis()));
+		plcy.setName(cmd.getName());
+		plcy.setDescription(cmd.getDescription());
+		plcy.setPolicyDefId(cmd.getPolicyDefId());
+		plcy.setRule(cmd.getRule());
+		plcy.setStatus(cmd.getStatus());
+
+		
+		return plcy;
 	}
 
 
@@ -92,11 +120,6 @@ public class AttributePolicyController extends SimpleFormController {
 	public PolicyDataService getPolicyDataService() {
 		return policyDataService;
 	}
-
-
-
-
-
 
 	public void setPolicyDataService(PolicyDataService policyDataService) {
 		this.policyDataService = policyDataService;

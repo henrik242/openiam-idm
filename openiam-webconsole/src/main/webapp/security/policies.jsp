@@ -52,6 +52,7 @@ function openWin(url, title) {
 	List policyList = (List) request.getAttribute("policies");
     List policyTypes = (List)request.getAttribute("policyTypes");
 	pageContext.setAttribute("policyTypes", policyTypes);
+	String msg = (String)request.getAttribute("msg");
 
 	//DynaValidatorForm policyForm =
 	//	(DynaValidatorForm) request.getAttribute("policyForm");
@@ -63,22 +64,19 @@ function openWin(url, title) {
 <html:form action="/security/policySearch.do?method=searchDelete">
 <table>
 
-	<tr class="tdlight">
-		<td align="right">Please select a Policy Type:</td>
+	<% if (msg != null) { %>
+	<tr class="error" colspan="3">
+		<td align="right" align="center"><%=msg %></td>
+	</tr>
+	<% } %>
+	<tr class="tdlightnormal">
+		<td align="right"></td>
 		<td> 
 
       			<html:select property="policyDefId">
            		<html:options collection="policyTypes" property="value" labelProperty="label"/>
      				</html:select> 
-<!--
-			<select name="policyDefId">
-				<option value="0"></option>
-				<option value="101">ACCESS POLICY</option>
-				<option value="100">PASSWORD POLICY</option>
-				<option value="102">AUDIT POLICY</option>
-				<option value="103">ACCOUNT POLICY</option>
-			</select>
--->
+
         </td>
         <td><html:submit property="submit" value="Search" /></td>
 	</tr>
@@ -137,7 +135,7 @@ function openWin(url, title) {
 
 		<%} else {%>
 		<tr>
-			<td colspan="6">No Policies Found</td>
+			<td colspan="6" class="plaintext">No Policies Found</td>
 		</tr>
 		<%}%>
 
