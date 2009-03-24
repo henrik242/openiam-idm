@@ -35,6 +35,7 @@ public class AttributePolicyCommand implements Serializable {
 
 	
 	private String policyId;
+	private String policyPKId;
 	private String policyDefId = PolicyConstants.ATTRIBUTE_POLICY;
 	private String name;
 	private String description;
@@ -104,6 +105,12 @@ public class AttributePolicyCommand implements Serializable {
 	}
 	public void setRule(String rule) {
 		this.rule = rule;
+	}
+	public String getPolicyPKId() {
+		return policyPKId;
+	}
+	public void setPolicyPKId(String policyPKId) {
+		this.policyPKId = policyPKId;
 	}
 
 

@@ -53,6 +53,8 @@ import org.openiam.idm.srvc.policy.dto.Policy;
 public class AttributePolicyController extends SimpleFormController {
 
 
+
+
 	private static final Log log = LogFactory.getLog(AttributePolicyController.class);
 
 	PolicyDataService policyDataService;
@@ -64,6 +66,18 @@ public class AttributePolicyController extends SimpleFormController {
 	}
 
 
+	@Override
+	protected Object formBackingObject(HttpServletRequest request)
+			throws Exception {
+		
+		// load the policy in the event of a view operation
+		String policyId = request.getParameter("policyId");
+		Policy policy = policyDataService.getPolicy(policyId);
+		AttributePolicyCommand attrPolicyCommand = policyToCommand(policy);
+		
+		return attrPolicyCommand;
+	}
+	
 	
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request,
@@ -73,11 +87,14 @@ public class AttributePolicyController extends SimpleFormController {
 	
 		AttributePolicyCommand attrPolicyCommand = (AttributePolicyCommand)command;
 		Policy plcy = commandToPolicy(attrPolicyCommand);
-		if (plcy.getPolicyId() == null) {
+		System.out.println("on submit: " + plcy.getPolicyId());
+		if (plcy.getPolicyId() == null || plcy.getPolicyId().length() ==0) {
 			// new
+			System.out.println("on submit: new " );
 			policyDataService.addPolicy(plcy);
 		}else {
 			// update
+			System.out.println("on submit: update " );
 			policyDataService.updatePolicy(plcy);
 		}
 		
@@ -97,7 +114,10 @@ public class AttributePolicyController extends SimpleFormController {
 	
 	private Policy commandToPolicy(AttributePolicyCommand cmd) {
 		Policy plcy = new Policy();
-		plcy.setPolicyId(cmd.getPolicyId());
+		
+		System.out.println("Command policy Id=" + cmd.getPolicyId());
+		
+		plcy.setPolicyId(cmd.getPolicyPKId());
 		if (cmd.getPolicyId() == null || cmd.getPolicyId().length() == 0 ) {
 			plcy.setCreateDate(new Date(System.currentTimeMillis()));
 		}
@@ -112,6 +132,20 @@ public class AttributePolicyController extends SimpleFormController {
 		return plcy;
 	}
 
+	private AttributePolicyCommand policyToCommand(Policy policy) {
+		AttributePolicyCommand attrPolicyCommand = new AttributePolicyCommand();
+		
+
+		attrPolicyCommand.setPolicyPKId(policy.getPolicyId());
+		attrPolicyCommand.setCreateDate(policy.getCreateDate());
+		attrPolicyCommand.setDescription(policy.getDescription());
+		attrPolicyCommand.setName(policy.getName());
+		attrPolicyCommand.setPolicyDefId(policy.getPolicyDefId());
+		attrPolicyCommand.setRule(policy.getRule());
+		attrPolicyCommand.setStatus(policy.getStatus());
+			
+		return attrPolicyCommand;
+	}
 
 
 

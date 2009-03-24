@@ -53,6 +53,8 @@ function openWin(url, title) {
     List policyTypes = (List)request.getAttribute("policyTypes");
 	pageContext.setAttribute("policyTypes", policyTypes);
 	String msg = (String)request.getAttribute("msg");
+	
+	String policyDefId = (String)session.getAttribute("policyDefId");
 
 	//DynaValidatorForm policyForm =
 	//	(DynaValidatorForm) request.getAttribute("policyForm");
@@ -114,22 +116,24 @@ function openWin(url, title) {
 
 	%>
 
-		<% if ((i % 2) != 0) {	%>
-		<tr class="tddarknormal">
-		<%} else {				%>
-		<tr class="tdlightnormal">
-		<%}						%>
-			<TD><input type="checkbox" name="policyId" value="<%=policyValue.getPolicyId()%>" /> 
+		<tr>
+
+			<TD class="plaintext"><input type="checkbox" name="policyId" value="<%=policyValue.getPolicyId()%>" /> 
 				<%=JSPUtil.display(policyValue.getName())%></TD>
-			<TD><%=JSPUtil.display(policyValue.getDescription())%></TD>
-			<TD><%=JSPUtil.display( new Boolean(policyValue.isEnabled()))%></TD>
-			<TD><%=JSPUtil.display(policyValue.getCreateDate())%></TD>
-			<TD><%=JSPUtil.display(policyValue.getCreatedBy())%></TD>
-			<TD><a href="security/policy.do?method=policy&policyId=<%=policyValue.getPolicyId()%>">view</TD>
+			<TD class="plaintext"><%=JSPUtil.display(policyValue.getDescription())%></TD>
+			<TD class="plaintext" ><%=JSPUtil.display( new Boolean(policyValue.isEnabled()))%></TD>
+			<TD class="plaintext"><%=JSPUtil.display(policyValue.getCreateDate())%></TD>
+			<TD class="plaintext"><%=JSPUtil.display(policyValue.getCreatedBy())%></TD>
+			
+			<% if (policyDefId !=null && policyDefId.equalsIgnoreCase("104")) { %>
+				<TD class="plaintext"><a href="attrPolicy.cnt?policyId=<%=policyValue.getPolicyId()%>">View</TD>
+			<% } else {%>
+				<TD class="plaintext"><a href="security/policy.do?method=policy&policyId=<%=policyValue.getPolicyId()%>">View</TD>
+			<% }  %>
 			
 		</tr>
 		<%
-		}	
+			}
 		%>
 
 

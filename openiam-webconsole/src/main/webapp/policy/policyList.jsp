@@ -42,7 +42,7 @@
 			<td> ${policy.policyDefId}</td>
 			<td> ${policy.name}</td>
 			<td> ${policy.status} </td> 
-			<td>View Detail</td>
+			<td><a href="attrPolicy.cnt?policyId=${policy.policyId}">View Detail</td>
 		</tr>
 	</c:forEach>
 

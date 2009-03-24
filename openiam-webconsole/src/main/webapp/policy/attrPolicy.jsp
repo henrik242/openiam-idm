@@ -22,7 +22,7 @@
 
           <tr>
 			  <td class="tddark">Policy Id</td>
-              <td class="tdlightnormal"><form:input path="policyId" size="32" maxlength="32" readonly="true" /></td>
+              <td class="tdlightnormal"><form:input path="policyPKId" size="32" maxlength="32" readonly="true" /></td>
           </tr>
           <tr>
               <td class="tddark">Name (Must be unique)<font color="red">*</font></td>
