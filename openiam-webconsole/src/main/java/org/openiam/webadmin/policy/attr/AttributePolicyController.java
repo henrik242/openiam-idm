@@ -70,11 +70,17 @@ public class AttributePolicyController extends SimpleFormController {
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
 		
+		AttributePolicyCommand attrPolicyCommand = null;
+		
+		
 		// load the policy in the event of a view operation
 		String policyId = request.getParameter("policyId");
-		Policy policy = policyDataService.getPolicy(policyId);
-		AttributePolicyCommand attrPolicyCommand = policyToCommand(policy);
-		
+		if (policyId != null) {
+			Policy policy = policyDataService.getPolicy(policyId);
+			attrPolicyCommand = policyToCommand(policy);
+		}else {
+			attrPolicyCommand = new AttributePolicyCommand();
+		}
 		return attrPolicyCommand;
 	}
 	
@@ -87,15 +93,20 @@ public class AttributePolicyController extends SimpleFormController {
 	
 		AttributePolicyCommand attrPolicyCommand = (AttributePolicyCommand)command;
 		Policy plcy = commandToPolicy(attrPolicyCommand);
-		System.out.println("on submit: " + plcy.getPolicyId());
-		if (plcy.getPolicyId() == null || plcy.getPolicyId().length() ==0) {
-			// new
-			System.out.println("on submit: new " );
-			policyDataService.addPolicy(plcy);
-		}else {
-			// update
-			System.out.println("on submit: update " );
-			policyDataService.updatePolicy(plcy);
+		
+		// check which button was clicked
+		String btn = request.getParameter("btn");
+		if (btn != null && btn.equalsIgnoreCase("Delete")) {
+			System.out.println("on submit: delete called " );
+			policyDataService.removePolicy(plcy.getPolicyId());
+		}else {		
+			if (plcy.getPolicyId() == null || plcy.getPolicyId().length() ==0) {
+				// new
+				policyDataService.addPolicy(plcy);
+			}else {
+				// update
+				policyDataService.updatePolicy(plcy);
+			}
 		}
 		
 		// get the new policy list to show on the confirmation page

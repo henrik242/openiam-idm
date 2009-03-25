@@ -22,7 +22,7 @@
 
           <tr>
 			  <td class="tddark">Policy Id</td>
-              <td class="tdlightnormal"><form:input path="policyPKId" size="32" maxlength="32" readonly="true" /></td>
+              <td class="tdlightnormal"><form:input path="policyPKId" size="40" maxlength="32" readonly="true" /></td>
           </tr>
           <tr>
               <td class="tddark">Name (Must be unique)<font color="red">*</font></td>
@@ -61,7 +61,10 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="2" align="right"><input type="submit" name="btn" value="Delete">  <input type="submit" name="btn" value="Submit"> </td>
+              <td colspan="2" align="right">
+             
+              	<input type="submit" name="btn" value="Delete">
+              <input type="submit" name="btn" value="Submit"> </td>
           </tr>
 </table>
 
