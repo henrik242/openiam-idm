@@ -66,9 +66,14 @@
 		<property name="commandClass" value="org.openiam.webadmin.policy.attr.AttributePolicyCommand" />
 		<property name="formView" value="/policy/attrPolicy" />
 		<property name="successView" value="/policy/policyList" />
+		<property name="validator" ref="attrPolicyValidator" />	
 		
 		<property name="policyDataService" ref="policyDataService" />
      </bean>            
+     
+      <bean id="attrPolicyValidator" class="org.openiam.webadmin.policy.attr.AttributePolicyValidator" >
+      <property name="policyDataService" ref="policyDataService" />
+      </bean>
 
 <!-- domainList controller  -->
 

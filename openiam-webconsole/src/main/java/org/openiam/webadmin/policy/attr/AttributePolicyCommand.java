@@ -107,6 +107,8 @@ public class AttributePolicyCommand implements Serializable {
 		this.rule = rule;
 	}
 	public String getPolicyPKId() {
+		if (policyPKId == null || policyPKId.length() ==0)
+			return null;
 		return policyPKId;
 	}
 	public void setPolicyPKId(String policyPKId) {

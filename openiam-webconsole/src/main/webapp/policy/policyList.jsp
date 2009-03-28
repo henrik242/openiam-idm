@@ -55,9 +55,8 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="5" align="left"> <a href="">New Policy</a></td>
+              <td colspan="5" align="left"> <a href="attrPolicy.cnt">New Policy</a></td>
           </tr>
-          
           
 </table>
    

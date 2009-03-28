@@ -21,14 +21,12 @@ package org.openiam.webadmin.policy.attr;
 import java.util.List;
 
 import org.openiam.idm.srvc.auth.login.LoginDataService;
-import org.openiam.idm.srvc.user.dto.UserSearchField;
-import org.openiam.idm.srvc.user.service.UserDataService;
+import org.openiam.idm.srvc.policy.service.PolicyDataService;
+import org.openiam.idm.srvc.policy.dto.PolicyConstants;
+
+
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
-import org.openiam.idm.srvc.auth.dto.Login;
-import org.openiam.util.db.QueryCriteria;
-import org.openiam.util.db.Search;
-import org.openiam.util.db.SearchImpl;
 
 /**
  * Validation class for the Managed System list.
@@ -37,7 +35,7 @@ import org.openiam.util.db.SearchImpl;
  */
 public class AttributePolicyValidator implements Validator {
 
-	
+	PolicyDataService policyDataService;
 
 	public boolean supports(Class cls) {
 		 return AttributePolicyCommand.class.equals(cls);
@@ -46,12 +44,34 @@ public class AttributePolicyValidator implements Validator {
 	public void validate(Object cmd, Errors err) {
 		// TODO Auto-generated method stub
 		AttributePolicyCommand attrPolicyCommand =  (AttributePolicyCommand) cmd;
-
+		
+		// check for required fields
+		if (attrPolicyCommand.getName() == null || attrPolicyCommand.getName().length()==0 ) {
+			err.rejectValue("name","required");
+		}
+		if (attrPolicyCommand.getRule() == null || attrPolicyCommand.getRule().length()==0 ) {
+			err.rejectValue("rule","required");
+		}		
+		if (err.getErrorCount() > 0) {
+			// dont check for duplicates until the basic UI has been validated
+			return;
+		}
+		// check for duplicate policy names on a new policy
+		if (attrPolicyCommand.getPolicyId() == null) {
+			if (policyDataService.isPolicyExist(PolicyConstants.ATTRIBUTE_POLICY, attrPolicyCommand.getName())) {
+				err.rejectValue("name","duplicate");
+			}
+		}
 
 		
+	}
 
-		
-		
+	public PolicyDataService getPolicyDataService() {
+		return policyDataService;
+	}
+
+	public void setPolicyDataService(PolicyDataService policyDataService) {
+		this.policyDataService = policyDataService;
 	}
 
 
