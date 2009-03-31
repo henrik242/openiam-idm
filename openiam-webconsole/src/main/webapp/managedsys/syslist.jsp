@@ -21,7 +21,7 @@
  		</td>
   </tr> 
      <tr>
-		<td>Filter Security Domain:</td>
+		<td class="plaintext">Filter Security Domain:</td>
          <td>
      	
            <form:select path="domainId" multiple="false">
@@ -64,7 +64,7 @@
   </tr> 
   
          <tr>
-			  <td colspan="5" >${searchResults} Managed System(s) found.</td>
+			  <td colspan="5" class="plaintext" >${searchResults} Managed System(s) found.</td>
               
           </tr>  
       

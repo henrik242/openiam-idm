@@ -4,9 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
-
-
-        
+    
 <div>        
 <form:form commandName="attrMapCmd">
 <table width="100%">
@@ -75,7 +73,7 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="2" align="right"><input type="submit" name="btn" value="Delete">  <input type="submit" name="btn" value="Submit"> </td>
+              <td colspan="2" align="right"><input type="submit" name="btn" value="Delete"> <input type="submit" name="btn" value="Add Attribute">  <input type="submit" name="btn" value="Submit"> </td>
           </tr>
 </table>
 

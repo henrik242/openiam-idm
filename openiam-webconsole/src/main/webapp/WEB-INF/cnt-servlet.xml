@@ -53,7 +53,7 @@
      </bean>
      <bean id="managedSysAttrMap" class="org.openiam.webadmin.conn.mngsys.ManagedSysAttrMapController">
 		<property name="commandName" value="attrMapCmd" />
-		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.SysAttributeMapCommand" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.SysAttrMapCommand" />
 		<property name="formView" value="/managedsys/sysattrmap" />
 		<property name="successView" value="/managedsys/sysattrmap" />
 		<property name="managedSysService" ref="managedSysService" />
