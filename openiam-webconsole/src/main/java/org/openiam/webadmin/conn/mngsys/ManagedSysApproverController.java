@@ -41,7 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
-import org.openiam.idm.srvc.mngsys.dto.SysAttributeMap;
+import org.openiam.idm.srvc.mngsys.dto.SysAttributeMapping;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
@@ -55,10 +55,10 @@ import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
  * @author suneet
  *
  */
-public class ManagedSysAttrMapController extends SimpleFormController {
+public class ManagedSysApproverController extends SimpleFormController {
 
 
-	private static final Log log = LogFactory.getLog(ManagedSysAttrMapController.class);
+	private static final Log log = LogFactory.getLog(ManagedSysApproverController.class);
 
 
 
@@ -68,7 +68,7 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 	
 
 
-	public ManagedSysAttrMapController() {
+	public ManagedSysApproverController() {
 		super();
 	}
 
@@ -96,15 +96,15 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 
 		
 		
-		SysAttrMapCommand attrMapCommand  = new SysAttrMapCommand();
+		SysAttributeMapCommand attrMapCommand  = new SysAttributeMapCommand();
 
-		// always padd an extra row so that user can add a row without having to hit the 
-		// add row button
-		SysAttributeMap attr = new SysAttributeMap();
-		SysAttributeMap[] attrMapAry = new SysAttributeMap[1];
-		attrMapAry[0] = attr;
-		attrMapCommand.setAttrMapAry(attrMapAry);
+		SysAttributeMapping attr = new SysAttributeMapping();
+		attr.setAttributeMapId("123");
+		attr.setTargetAttributeName("cn");
 		
+		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
+		attrAry[0] = attr;
+		attrMapCommand.setMapAry(attrAry);
 		
 		return attrMapCommand;
 
@@ -119,15 +119,15 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 			throws Exception {
 
 	
-		SysAttrMapCommand attrMapCommand = (SysAttrMapCommand)command;
+		SysAttributeMapCommand attrMapCommand = (SysAttributeMapCommand)command;
 		
-		SysAttributeMap attr = new SysAttributeMap();
+		SysAttributeMapping attr = new SysAttributeMapping();
 		attr.setAttributeMapId("123");
 		attr.setTargetAttributeName("cn");
 		
-		SysAttributeMap[] attrAry = new SysAttributeMap[1];
+		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
 		attrAry[0] = attr;
-		//attrMapCommand.setMapAry(attrAry);
+		attrMapCommand.setMapAry(attrAry);
 		
 	
 		ModelAndView mav = new ModelAndView(getSuccessView());

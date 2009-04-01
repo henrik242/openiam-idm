@@ -91,6 +91,7 @@
   }
 %>
 
+<!-- Side Menus - Need to make them dynamic  -->
 <% if ( sideMenuGroup!= null && sideMenuGroup.equalsIgnoreCase("MANAGESYS")) { 
 	 String connectorId = (String)request.getAttribute("connectorId");
 %>

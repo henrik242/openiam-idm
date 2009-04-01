@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 import org.openiam.idm.srvc.menu.dto.Menu;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
-
+import org.openiam.idm.srvc.mngsys.dto.SysAttributeMap;
 /**
  * Command object for the ManagedSystemList 
  * @author suneet
@@ -35,33 +35,47 @@ public class SysAttrMapCommand implements Serializable {
 	 */
 	private static final long serialVersionUID = 513253291470702152L;
 	
-	private SecurityDomain[] domainAry;
-	private String domainId;
-   
-    
-    
-    public String getDomainId() {
-		return domainId;
-	}
+	private String managedSysId;
+	private String objectGroupType;
+	private SysAttributeMap[] attrMapAry;
+	
+	
 
-	public void setDomainId(String domainId) {
-		this.domainId = domainId;
-	}
 
 	public SysAttrMapCommand() {
     	
     }
 
-	public SecurityDomain[] getDomainAry() {
-		return domainAry;
+
+
+
+	public String getManagedSysId() {
+		return managedSysId;
 	}
 
 
 
-	public void setDomainAry(SecurityDomain[] domainAry) {
-		this.domainAry = domainAry;
+
+	public void setManagedSysId(String managedSysId) {
+		this.managedSysId = managedSysId;
 	}
-	
+
+	public String getObjectGroupType() {
+		return objectGroupType;
+	}
+	public void setObjectGroupType(String objectGroupType) {
+		this.objectGroupType = objectGroupType;
+	}
+
+	public SysAttributeMap[] getAttrMapAry() {
+		return attrMapAry;
+	}
+
+	public void setAttrMapAry(SysAttributeMap[] attrMapAry) {
+		this.attrMapAry = attrMapAry;
+	}
+
+
 	
 
 }
