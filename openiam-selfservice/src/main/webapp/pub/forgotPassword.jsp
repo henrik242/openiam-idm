@@ -19,7 +19,7 @@
 <table width="50%" border="0" cellspacing="2" cellpadding="1" align="center">
    <tr>
       <td class="title">         
-          <strong>Forgot Password</strong>         
+          <strong>Forgot PIN</strong>         
       </td>
       <td class="text" align="right">         
           <font size="1" color="red">*</font> Required         

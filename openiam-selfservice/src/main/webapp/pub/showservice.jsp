@@ -44,12 +44,12 @@ String secDomain = (String)request.getAttribute("secDomain");
 	  <td colspan="2">&nbsp;</td>
  	</tr>
 	  <tr>
-			<td class="tddarknormal" align="right">New Password:</td>
+			<td class="tddarknormal" align="right">New PIN:</td>
 	  		<td class="tdlightnormal"><html:password property="password" size="30"/>	</td>
 	   </tr>
 
 	  <tr>
-			<td class="tddarknormal" align="right">Confirm New Password:</td>
+			<td class="tddarknormal" align="right">Confirm New PIN:</td>
 	  		<td class="tdlightnormal"><html:password property="confpassword" size="30" />	</td>
 	   </tr>
  

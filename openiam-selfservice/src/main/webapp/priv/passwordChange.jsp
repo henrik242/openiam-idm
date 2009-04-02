@@ -58,7 +58,7 @@
 	  </td>
 	</tr>
   <tr>
-    <td class="title">Change Password</td>
+    <td class="title">Change PIN</td>
     <td class="text" align="right">         
         <font size="1" color="red">*</font> Required       
     </td>
@@ -111,7 +111,7 @@
 
   <tr>
     <td class="tddarknormal" align="right">    
-       New Password<font color=red>*</font>
+       New PIN<font color=red>*</font>
     </td>
     <td class="tdlight">
        <html:password property="newPassword" size="30" maxlength="30"/>
@@ -119,7 +119,7 @@
   </tr>
   <tr>
     <td class="tddarknormal" align="right">    
-       Confirm New Password<font color=red>*</font>
+       Confirm New PIN<font color=red>*</font>
     </td>
     <td class="tdlight">
        <html:password property="confNewPassword" size="30" maxlength="30"/>
