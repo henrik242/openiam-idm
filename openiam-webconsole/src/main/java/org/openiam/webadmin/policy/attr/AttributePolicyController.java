@@ -97,7 +97,7 @@ public class AttributePolicyController extends SimpleFormController {
 		// check which button was clicked
 		String btn = request.getParameter("btn");
 		if (btn != null && btn.equalsIgnoreCase("Delete")) {
-			System.out.println("on submit: delete called " );
+
 			policyDataService.removePolicy(plcy.getPolicyId());
 		}else {		
 			if (plcy.getPolicyId() == null || plcy.getPolicyId().length() ==0) {
@@ -126,7 +126,6 @@ public class AttributePolicyController extends SimpleFormController {
 	private Policy commandToPolicy(AttributePolicyCommand cmd) {
 		Policy plcy = new Policy();
 		
-		System.out.println("Command policy Id=" + cmd.getPolicyId());
 		
 		plcy.setPolicyId(cmd.getPolicyPKId());
 		if (cmd.getPolicyId() == null || cmd.getPolicyId().length() == 0 ) {

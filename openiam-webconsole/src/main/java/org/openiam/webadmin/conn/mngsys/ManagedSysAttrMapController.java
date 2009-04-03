@@ -43,6 +43,9 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
 import org.openiam.idm.srvc.mngsys.dto.SysAttributeMap;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
+import org.openiam.idm.srvc.policy.dto.Policy;
+import org.openiam.idm.srvc.policy.dto.PolicyConstants;
+import org.openiam.idm.srvc.policy.service.PolicyDataService;
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
@@ -64,6 +67,7 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 
 	private ManagedSystemDataService managedSysService; 
 	private SecurityDomainDataService secDomainService;
+	private PolicyDataService policyDataService;
 
 	
 
@@ -97,6 +101,10 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 		
 		
 		SysAttrMapCommand attrMapCommand  = new SysAttrMapCommand();
+		
+		// set the list of policies
+		Policy[] attrPolicyAry = policyDataService.getAllPolicies(PolicyConstants.ATTRIBUTE_POLICY);
+		attrMapCommand.setAttrPolicyAry(attrPolicyAry);
 
 		// always padd an extra row so that user can add a row without having to hit the 
 		// add row button
@@ -163,6 +171,16 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 
 	public void setSecDomainService(SecurityDomainDataService secDomainService) {
 		this.secDomainService = secDomainService;
+	}
+
+
+	public PolicyDataService getPolicyDataService() {
+		return policyDataService;
+	}
+
+
+	public void setPolicyDataService(PolicyDataService policyDataService) {
+		this.policyDataService = policyDataService;
 	}
 
 

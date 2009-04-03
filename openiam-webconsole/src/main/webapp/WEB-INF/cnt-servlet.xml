@@ -57,9 +57,20 @@
 		<property name="formView" value="/managedsys/sysattrmap" />
 		<property name="successView" value="/managedsys/sysattrmap" />
 		<property name="managedSysService" ref="managedSysService" />
-		<property name="secDomainService" ref="secDomainService" />				
+		<property name="secDomainService" ref="secDomainService" />		
+		<property name="policyDataService" ref="policyDataService" />		
      </bean>            
             
+     <bean id="managedSysApprover" class="org.openiam.webadmin.conn.mngsys.ManagedSysApproverController">
+		<property name="commandName" value="sysApproverCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.SysApproverCommand" />
+		<property name="formView" value="/managedsys/sysapprover" />
+		<property name="successView" value="/managedsys/sysapprover" />
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="userMgr" ref="userManager" />
+	
+     </bean>   
+
  <!-- Policy controllers  -->
      <bean id="attrPolicy" class="org.openiam.webadmin.policy.attr.AttributePolicyController">
 		<property name="commandName" value="attrPolicyCmd" />
@@ -119,6 +130,7 @@
                 <prop key="/managedSysConnection.cnt">managedSysConnection</prop>
                 <prop key="/managedSysAttrMap.cnt">managedSysAttrMap</prop>
                 <prop key="/attrPolicy.cnt">attrPolicy</prop>
+                <prop key="/managedSysApprover.cnt">managedSysApprover</prop>
             </props>
         </property>
     </bean>

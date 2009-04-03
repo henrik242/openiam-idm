@@ -100,7 +100,7 @@
     <!-- CSS Tabs -->
 	<li><a href="managedSysConnection.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS">Connection</a></li>
 	<li><a href="managedSysAttrMap.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS"">Mapping</a></li>
-	<li><a href="managedSysConnection.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS">Approvers</a></li>
+	<li><a href="managedSysApprover.cnt?connectorId=<%=connectorId%>&menuGroup=MANAGESYS">Approvers</a></li>
  </ul>
 </div>
 <% } %>

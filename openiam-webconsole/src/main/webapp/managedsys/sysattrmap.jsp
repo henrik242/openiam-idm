@@ -53,7 +53,11 @@
 						<td> ${sysAttr.attributeMapId}</td>
 						<td> ${sysAttr.targetAttributeName} </td>
 						<td> <form:checkbox path="attrMapAry[${sysAttrMap.index}].authoritativeSrc"  /></td>
-						<td> <select></select> </td> 
+						<td> <form:select path="attrMapAry[${sysAttrMap.index}].rule" >
+              					<form:option value="-" label="-Please Select-"/>
+              					<form:options items="${attrMapCmd.attrPolicyAry}" itemValue="policyId" itemLabel="name"/>
+         					 </form:select>   
+						 </td> 
 						<td> <form:select path="${sysAttr.status}">
        				              <form:option value="-" label="-Please Select-"/>
        				              <form:option value="ACTIVE" label="ACTIVE"/>

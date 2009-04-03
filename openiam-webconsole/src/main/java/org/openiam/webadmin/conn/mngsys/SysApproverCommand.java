@@ -19,9 +19,8 @@ package org.openiam.webadmin.conn.mngsys;
 
 
 import java.io.Serializable;
+import org.openiam.idm.srvc.mngsys.dto.SysApprover;
 
-import org.openiam.idm.srvc.menu.dto.Menu;
-import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 
 /**
  * Command object for the ManagedSystemList 
@@ -34,33 +33,33 @@ public class SysApproverCommand implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 513253291470702152L;
+	private String managedSysId;
 	
-	private SecurityDomain[] domainAry;
-	private String domainId;
-   
-    
-    
-    public String getDomainId() {
-		return domainId;
-	}
-
-	public void setDomainId(String domainId) {
-		this.domainId = domainId;
-	}
-
+	private SysApprover[] approverAry;
+	
+ 
 	public SysApproverCommand() {
     	
     }
-
-	public SecurityDomain[] getDomainAry() {
-		return domainAry;
+	public String getManagedSysId() {
+		return managedSysId;
 	}
 
 
-
-	public void setDomainAry(SecurityDomain[] domainAry) {
-		this.domainAry = domainAry;
+	public void setManagedSysId(String managedSysId) {
+		this.managedSysId = managedSysId;
 	}
+
+
+	public SysApprover[] getApproverAry() {
+		return approverAry;
+	}
+
+
+	public void setApproverAry(SysApprover[] approverAry) {
+		this.approverAry = approverAry;
+	}
+
 	
 	
 

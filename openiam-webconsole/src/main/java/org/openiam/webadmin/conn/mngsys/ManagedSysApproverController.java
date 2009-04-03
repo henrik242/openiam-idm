@@ -47,6 +47,7 @@ import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+import org.openiam.idm.srvc.user.service.UserDataService;
 
 
 /**
@@ -63,7 +64,7 @@ public class ManagedSysApproverController extends SimpleFormController {
 
 
 	private ManagedSystemDataService managedSysService; 
-	private SecurityDomainDataService secDomainService;
+	private UserDataService userMgr;
 
 	
 
@@ -73,16 +74,7 @@ public class ManagedSysApproverController extends SimpleFormController {
 	}
 
 
-	@Override
-	protected Map referenceData(HttpServletRequest request) throws Exception {
-		
-		SecurityDomain[] domainAry = secDomainService.getAllSecurityDomains();
-		
-		Map model = new HashMap();
-		model.put("secDomainAry", domainAry);
-		
-		return model;
-	}
+
 	
 	protected Object formBackingObject(HttpServletRequest request)
 	throws Exception {
@@ -96,17 +88,10 @@ public class ManagedSysApproverController extends SimpleFormController {
 
 		
 		
-		SysAttributeMapCommand attrMapCommand  = new SysAttributeMapCommand();
+		SysApproverCommand approverCommand  = new SysApproverCommand();
 
-		SysAttributeMapping attr = new SysAttributeMapping();
-		attr.setAttributeMapId("123");
-		attr.setTargetAttributeName("cn");
 		
-		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
-		attrAry[0] = attr;
-		attrMapCommand.setMapAry(attrAry);
-		
-		return attrMapCommand;
+		return approverCommand;
 
 
 }
@@ -119,19 +104,12 @@ public class ManagedSysApproverController extends SimpleFormController {
 			throws Exception {
 
 	
-		SysAttributeMapCommand attrMapCommand = (SysAttributeMapCommand)command;
+		SysApproverCommand approverCommand = (SysApproverCommand)command;
 		
-		SysAttributeMapping attr = new SysAttributeMapping();
-		attr.setAttributeMapId("123");
-		attr.setTargetAttributeName("cn");
-		
-		SysAttributeMapping[] attrAry = new SysAttributeMapping[1];
-		attrAry[0] = attr;
-		attrMapCommand.setMapAry(attrAry);
 		
 	
 		ModelAndView mav = new ModelAndView(getSuccessView());
-		mav.addObject("attrMapCmd", attrMapCommand);
+		mav.addObject("sysApproverCmd", approverCommand);
 	
 		/*mav.addObject("managedSysAry", managedSysAry);
 		if (managedSysAry != null) {
@@ -157,12 +135,13 @@ public class ManagedSysApproverController extends SimpleFormController {
 	}
 
 	
-	public SecurityDomainDataService getSecDomainService() {
-		return secDomainService;
+	public UserDataService getUserMgr() {
+		return userMgr;
 	}
 
-	public void setSecDomainService(SecurityDomainDataService secDomainService) {
-		this.secDomainService = secDomainService;
+
+	public void setUserMgr(UserDataService userMgr) {
+		this.userMgr = userMgr;
 	}
 
 

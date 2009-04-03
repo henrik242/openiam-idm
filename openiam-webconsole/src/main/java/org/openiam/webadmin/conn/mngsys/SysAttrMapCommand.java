@@ -23,6 +23,7 @@ import java.io.Serializable;
 import org.openiam.idm.srvc.menu.dto.Menu;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 import org.openiam.idm.srvc.mngsys.dto.SysAttributeMap;
+import org.openiam.idm.srvc.policy.dto.Policy;
 /**
  * Command object for the ManagedSystemList 
  * @author suneet
@@ -38,6 +39,7 @@ public class SysAttrMapCommand implements Serializable {
 	private String managedSysId;
 	private String objectGroupType;
 	private SysAttributeMap[] attrMapAry;
+	private Policy[] attrPolicyAry;
 	
 	
 
@@ -73,6 +75,20 @@ public class SysAttrMapCommand implements Serializable {
 
 	public void setAttrMapAry(SysAttributeMap[] attrMapAry) {
 		this.attrMapAry = attrMapAry;
+	}
+
+
+
+
+	public Policy[] getAttrPolicyAry() {
+		return attrPolicyAry;
+	}
+
+
+
+
+	public void setAttrPolicyAry(Policy[] attrPolicyAry) {
+		this.attrPolicyAry = attrPolicyAry;
 	}
 
 
