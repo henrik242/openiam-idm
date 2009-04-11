@@ -41,6 +41,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.*;
 import org.apache.struts.util.*;
+import org.openiam.idm.srvc.menu.service.NavigatorDataService;
 import org.openiam.webadmin.busdel.base.*;
 import diamelle.common.status.*;
 
@@ -52,7 +53,13 @@ public class IndexAction extends NavigationAction {
 	LoginAccess loginAccess = new LoginAccess();
 	SecurityDomainAccess secDomainAccess = null;
 	AppConfiguration appConfiguration;
-
+	
+	NavigatorDataService navigationDataService;
+	private String publicLeftMenuGroup;
+	private String publicRightMenuGroup1;
+	private String publicRightMenuGroup2;
+	
+	
 
 	public ActionForward execute(
 		ActionMapping mapping,
@@ -63,22 +70,21 @@ public class IndexAction extends NavigationAction {
 
 		ActionErrors err = new ActionErrors();
 
-		Locale locale = getLocale(request);
-		String langCd = locale.getLanguage();
 
 		HttpSession session = request.getSession();
 		ServletContext servletContext =  getServlet().getServletConfig().getServletContext();
 			
 		secDomainAccess = new SecurityDomainAccess(getWebApplicationContext());		
 		appConfiguration = (AppConfiguration)getWebApplicationContext().getBean("appConfiguration");
-		
+
 	
 		// put the configuration object in session
 		session.setAttribute("logoUrl", appConfiguration.getLogoUrl());
 		session.setAttribute("title", appConfiguration.getTitle());
+		session.setAttribute("defaultLang", appConfiguration.getDefaultLang());
+		session.setAttribute("welcomePageUrl", appConfiguration.getWelcomePageUrl());
 		
-		
-		//String userId = (String) session.getAttribute("userId");
+
 		String userId = request.getParameter("userId");
 		String login = request.getParameter("lg");
 		session.setAttribute("userId", userId);
@@ -88,7 +94,7 @@ public class IndexAction extends NavigationAction {
 		try {
 			String appId = (String) session.getAttribute("appId");
 			if (appId != null) {
-				List menus = loginAccess.getPermissions(userId, appId, langCd);
+				List menus = loginAccess.getPermissions(userId, appId, appConfiguration.getDefaultLang());
 				session.setAttribute("topLevelMenus", menus);
 			}
 			loadStaticData(session, servletContext);
@@ -105,13 +111,20 @@ public class IndexAction extends NavigationAction {
 		
 		// show the login page first
 		return mapping.findForward("login");
-		//return (mapping.findForward("welcome"));
+
 
 	}
 	
 	private void loadStaticData(HttpSession session, ServletContext servletContext) throws RemoteException {
 		session.setAttribute("operationList", getOperationStatusList());
 		session.setAttribute("domainList", secDomainAccess.getAllDomainsWithExclude("IDM"));
+		// load public menus
+		session.setAttribute("publicLeftMenuGroup",
+				navigationDataService.menuGroup(publicLeftMenuGroup, appConfiguration.getDefaultLang()));
+		session.setAttribute("publicRightMenuGroup1",
+				navigationDataService.menuGroup(publicRightMenuGroup1, appConfiguration.getDefaultLang()));
+		session.setAttribute("publicRightMenuGroup2",
+				navigationDataService.menuGroup(publicRightMenuGroup2, appConfiguration.getDefaultLang()));
 	}
 	
 
@@ -132,5 +145,38 @@ public class IndexAction extends NavigationAction {
         }
         return newCodeList;
     }
+
+	public String getPublicLeftMenuGroup() {
+		return publicLeftMenuGroup;
+	}
+
+	public void setPublicLeftMenuGroup(String publicLeftMenuGroup) {
+		this.publicLeftMenuGroup = publicLeftMenuGroup;
+	}
+
+
+	public String getPublicRightMenuGroup1() {
+		return publicRightMenuGroup1;
+	}
+
+	public void setPublicRightMenuGroup1(String publicRightMenuGroup1) {
+		this.publicRightMenuGroup1 = publicRightMenuGroup1;
+	}
+
+	public String getPublicRightMenuGroup2() {
+		return publicRightMenuGroup2;
+	}
+
+	public void setPublicRightMenuGroup2(String publicRightMenuGroup2) {
+		this.publicRightMenuGroup2 = publicRightMenuGroup2;
+	}
+
+	public NavigatorDataService getNavigationDataService() {
+		return navigationDataService;
+	}
+
+	public void setNavigationDataService(NavigatorDataService navigationDataService) {
+		this.navigationDataService = navigationDataService;
+	}
 
 }

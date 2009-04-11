@@ -18,13 +18,11 @@
 
 	<!-- Configurable parameters for the self service application -->
 	<bean id="appConfiguration" class="org.openiam.selfsrvc.AppConfiguration" >
-<!-- 
-		<property name="logoUrl" value="images/orangecountyflNEW.gif" />
-		<property name="title" value="Orange County - Self Service Application"/>
--->
-  
+ 
 		<property name="logoUrl" value="images/openiamlog.jpg" />
 		<property name="title" value="OpenIAM - Self Service Application"/>
+		<property name="welcomePageUrl" value="/home.jsp?bodyjsp=welcome.jsp"/>
+		<property name="defaultLang" value="en"/>
 
 		<property name="maxResultSetSize" value="200"/>
 

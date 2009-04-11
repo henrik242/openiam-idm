@@ -43,18 +43,19 @@ import diamelle.ebc.user.*;
 public class LoginAction extends NavigationDispatchAction {  //NavigationAction {
 
 	protected LoginAccess loginAccess = new LoginAccess();
-	//protected UserAccess userAccess = null;
 	protected AuthenticatorAccess authAccess = null;
-	protected TokenAccess tknAccess = null;
 	protected AppConfiguration appConfiguration;
 	SecurityDomainAccess secDomainAccess = null;
+
+	private String leftMenuGroup;
+	private String rightMenuGroup1;
+	private String rightMenuGroup2;
 
 	
 	public LoginAction() {
 		try {
 		//	userAccess = new UserAccess();
 			authAccess = new AuthenticatorAccess();
-			tknAccess = new TokenAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -111,6 +112,7 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 	// put the configuration object in session
 	session.setAttribute("logoUrl", appConfiguration.getLogoUrl());
 	session.setAttribute("title", appConfiguration.getTitle());
+	session.setAttribute("welcomePageUrl", request.getContextPath() + appConfiguration.getWelcomePageUrl() );
 
 	
 	String userId = request.getParameter("userId");
@@ -165,45 +167,16 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 			org.openiam.idm.srvc.user.dto.User usr = userDataSrvc.getUserWithDependent(sub.getUserId(), true);
 			
 			session.setAttribute("userattr", attrMap);
-			session.setAttribute("firstname", usr.getFirstName());
-			session.setAttribute("lastname", usr.getLastName());
+			if (usr != null) {
+				session.setAttribute("firstname", usr.getFirstName());
+				session.setAttribute("lastname", usr.getLastName());
+			}
 			session.setAttribute("user", usr);
 			session.setAttribute("lv", lv);
 			
 			
-			//UserAttribute appUid = userDataSrvc.getAttribute("APPS_UID");
-			//UserAttribute appPassword = userDataSrvc.getAttribute("APPS_PASSWORD");
 			
-			if (attrMap != null) {
-				Set keySet = attrMap.keySet();
-				if (keySet != null) {
-					Iterator<String> it = keySet.iterator();
-					while (it.hasNext()) {
-						String key = (String)it.next();
-						System.out.println("Key=" + key);
-						if (key.equalsIgnoreCase("APPS_UID")) {
-							UserAttribute attr = (UserAttribute)attrMap.get(key);
-							session.setAttribute("apps_uid", attr.getValue());
-						}
-						if (key.equalsIgnoreCase("APPS_PASSWORD")) {
-							UserAttribute attr = (UserAttribute)attrMap.get(key);
-							session.setAttribute("apps_password", attr.getValue());
-						}					
-					}
-				}
-			}
-			
-			
-	/*		System.out.println("uid=" + appUid);
-			
-			if (appUid != null) {
-				System.out.println("apps_uid" + appUid.getValue());
-				session.setAttribute("apps_uid", appUid.getValue());
-			}
-			if (appPassword != null) {
-				session.setAttribute("apps_password", appPassword.getValue());
-			}
-		*/	
+		
 			
 			
 			// save user and token in cookie
@@ -267,6 +240,42 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 	//	return (mapping.findForward("changepswd"));
 	//}
 	return (mapping.findForward("permissionfwd"));
+	}
+
+
+
+	public String getLeftMenuGroup() {
+		return leftMenuGroup;
+	}
+
+
+
+	public void setLeftMenuGroup(String leftMenuGroup) {
+		this.leftMenuGroup = leftMenuGroup;
+	}
+
+
+
+	public String getRightMenuGroup1() {
+		return rightMenuGroup1;
+	}
+
+
+
+	public void setRightMenuGroup1(String rightMenuGroup1) {
+		this.rightMenuGroup1 = rightMenuGroup1;
+	}
+
+
+
+	public String getRightMenuGroup2() {
+		return rightMenuGroup2;
+	}
+
+
+
+	public void setRightMenuGroup2(String rightMenuGroup2) {
+		this.rightMenuGroup2 = rightMenuGroup2;
 	}
 
 }

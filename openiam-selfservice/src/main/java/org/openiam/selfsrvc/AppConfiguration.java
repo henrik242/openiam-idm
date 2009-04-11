@@ -11,6 +11,8 @@ public class AppConfiguration {
 	private String logoUrl;
 	private String title;
 	private Integer maxResultSetSize;	
+	private String welcomePageUrl;
+	private String defaultLang;
 
 	
 	public Integer getMaxResultSetSize() {
@@ -32,6 +34,18 @@ public class AppConfiguration {
 	}
 	public void setTitle(String t) {
 		title = t;
+	}
+	public String getWelcomePageUrl() {
+		return welcomePageUrl;
+	}
+	public void setWelcomePageUrl(String welcomePageUrl) {
+		this.welcomePageUrl = welcomePageUrl;
+	}
+	public String getDefaultLang() {
+		return defaultLang;
+	}
+	public void setDefaultLang(String defaultLang) {
+		this.defaultLang = defaultLang;
 	}
 
 

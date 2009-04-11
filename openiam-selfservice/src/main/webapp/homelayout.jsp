@@ -25,6 +25,7 @@
 // put the configuration object in session
 String url = (String)session.getAttribute("logoUrl");
 String title = (String)session.getAttribute("title");
+String welcomePageUrl = (String)session.getAttribute("welcomePageUrl");
 
 if (url == null) {
 	url = (String)request.getAttribute("logoUrl");
@@ -47,7 +48,7 @@ if (url == null) {
 
 <html:base/>
 
-<body bgcolor="white" leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<body bgcolor="white" leftMargin="0" topMargin="0" marginheight="0" marginwidth="0">
 
 
 <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
@@ -60,7 +61,11 @@ if (url == null) {
 <table width="980" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-    <a href="<%= request.getContextPath() %>/index.jsp"><img src="<%=url%>" /> </a>
+    <% if (userId != null) { %>
+    <a href="<%= welcomePageUrl %>"><img src="<%=url%>" /> </a>
+    <% }else { %>
+    <a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=url%>" /> </a>
+    <% } %>
     </td>
   </tr>
 

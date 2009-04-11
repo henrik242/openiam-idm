@@ -41,16 +41,6 @@
     <load-on-startup>0</load-on-startup>
   </servlet>
 
-   <servlet>
-   		<servlet-name>ptms</servlet-name>
-   		<servlet-class>org.openiam.selfsrvc.sso.PtsmSSO</servlet-class>
-   		<load-on-startup>2</load-on-startup>
-   </servlet> 
-   <servlet>
-   		<servlet-name>ptms2</servlet-name>
-   		<servlet-class>org.openiam.selfsrvc.sso.PtsmSSO2</servlet-class>
-   		<load-on-startup>2</load-on-startup>
-   </servlet> 
   
    <servlet>
    		<servlet-name>selfserve</servlet-name>
@@ -68,15 +58,6 @@
     <url-pattern>*.selfserve</url-pattern>
   </servlet-mapping> 
 
-    <servlet-mapping>
-    <servlet-name>ptms</servlet-name>
-    <url-pattern>/ptms</url-pattern>
-  </servlet-mapping> 
-
-    <servlet-mapping>
-    <servlet-name>ptms2</servlet-name>
-    <url-pattern>/ptms2</url-pattern>
-  </servlet-mapping> 
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

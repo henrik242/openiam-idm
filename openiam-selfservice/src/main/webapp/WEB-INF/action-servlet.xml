@@ -14,6 +14,11 @@
     </bean>
 
 	<bean name="/index"  class="org.openiam.selfsrvc.IndexAction" >
+		<property name="publicLeftMenuGroup" value="BUSINESCENTER" />
+		<property name="publicRightMenuGroup1" value="ACCESSCENTER" />
+		<property name="publicRightMenuGroup2" value="SELFCENTER" />
+		<property name="navigationDataService" ref="navigatorDataService" />
+		
 	</bean>
 	
 	<bean name="/priv/profile"  class="org.openiam.selfsrvc.profile.CustomerProfileAction" >
@@ -27,7 +32,12 @@
 	<bean name="/registration"  class="org.openiam.selfsrvc.RegistrationAction" >
 	</bean>
 	
-	<bean name="/login"  class="org.openiam.selfsrvc.login.LoginAction" />
+	<bean name="/login"  class="org.openiam.selfsrvc.login.LoginAction" >
+		<property name="leftMenuGroup" value="BUSINESCENTER" />
+		<property name="rightMenuGroup1" value="ACCESSCENTER" />
+		<property name="rightMenuGroup2" value="SELFCENTER" />
+	</bean>
+	
 	<bean name="/logout"  class="org.openiam.selfsrvc.login.LogoutAction" />
 	<bean name="/permission"  class="org.openiam.selfsrvc.login.PermissionAction" />
 
