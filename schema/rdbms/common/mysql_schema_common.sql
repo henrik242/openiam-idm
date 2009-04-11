@@ -303,8 +303,9 @@ CREATE TABLE MENU (
        MENU_NAME            varchar(40) NULL,
        MENU_DESC            varchar(40) NULL,
        URL                  varchar(100) NULL,
-       ACTIVE               numeric(1) NULL,
-       DISPLAY_ORDER        numeric(2) NULL,
+       ACTIVE               INT NULL,
+       DISPLAY_ORDER        INT NULL,
+	   PUBLIC_URL				INT NULL,
        PRIMARY KEY (MENU_ID, LANGUAGE_CD)
 );
 

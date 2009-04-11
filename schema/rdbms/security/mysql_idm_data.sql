@@ -5,6 +5,12 @@ insert into SERVICE (SERVICE_ID, SERVICE_NAME, STATUS) values('USR_SEC_DOMAIN','
 
 insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('en','English');
 insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('fr','French');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('es','Spanish');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('de','German');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('fr','French');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('it','Italian');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('nl','Dutch');
+insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('pt','Portugese');
 
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('OrgOpenIAM','OpenIAM');
 
@@ -162,20 +168,23 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, disp
 
 /* Self Service MENU options */
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('SELFSERVICE', 'ROOT' ,'SELF SERVICE','SELF SERVICE','', 'en',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('ACCESSCENTER','SELFSERVICE', 'Access Management Center', 'Access Management Center', null, 'en', '1');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('NEWHIRE','SELFSERVICE','New Hire', 'New Hire', 'newHire.selfserve','en', '2');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('CHNGACCESS','SELFSERVICE','Change Access', 'Change Access', 'chng', 'en', '3');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('MANAGEREQ', 'SELFSERVICE' , 'Manage Requests','Manage Requests','requestList.selfserve', 'en',4);
 
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('SELFCENTER','SELFSERVICE','Self Service Center', 'Self Service Center', null, 'en', '5');
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('ACCESSCENTER','SELFSERVICE', 'Access Management Center', 'Access Management Center', null, 'en', '1',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('NEWHIRE','ACCESSCENTER','New Hire', 'New Hire', 'newHire.selfserve','en', '1' ,0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('MANAGEREQ', 'ACCESSCENTER' , 'Manage Requests','Manage Requests','requestList.selfserve', 'en','2',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CREATEREQ','ACCESSCENTER','Create Request', 'Create Request', 'createRequest.selfserve', 'en', '3',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGACCESS','ACCESSCENTER','Change Access', 'Change Access', 'changeAccess.selfserve', 'en', '4',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('TERMINATEACCESS','ACCESSCENTER','Terminate', 'Terminate', 'terminateAccess.selfserv', 'en', '5',0);
 
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('DIRECTORY','SELFSERVICE','Directory Lookup', 'Directory Lookup', 'pub/directory.do?method=view', 'en', '6');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('CHNGPSWD','SELFSERVICE', 'Change Password', 'Change Password', 'priv/password.do?method=view', 'en', '7');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('IDQUEST','SELFSERVICE', 'Challenge Response', 'Challenge Response', 'priv/idquest.do?method=view', 'en', '8');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('FORGOTPSWD','SELFSERVICE', 'Forgot Password', 'Forgot Password', 'unLockUser.do?method=view', 'en', '9');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('PROFILE','SELFSERVICE', 'Edit Your Profile', 'Edit Your Profile', 'priv/customProfile.do?method=view', 'en', '11');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('REPORTINC','SELFSERVICE', 'Report Security Incident', 'Report Security Incident', 'reportIncident.selfserve', 'en', '12');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('CONTADMIN','SELFSERVICE', 'Contact Admin', 'Contact Admin', 'contactAdmin.selfserve', 'en', '13');
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, , PUBLIC_URL) values('SELFCENTER','SELFSERVICE','Self Service Center', 'Self Service Center', null, 'en', '2',0);
+
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('DIRECTORY','SELFCENTER','Directory Lookup', 'Directory Lookup', 'pub/directory.do?method=view', 'en', '1',1);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGPSWD','SELFCENTER', 'Change Password', 'Change Password', 'priv/password.do?method=view', 'en', '2',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('IDQUEST','SELFCENTER', 'Challenge Response', 'Challenge Response', 'priv/idquest.do?method=view', 'en', '3',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('FORGOTPSWD','SELFCENTER', 'Forgot Password', 'Forgot Password', 'unLockUser.do?method=view', 'en', '4',1);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('PROFILE','SELFCENTER', 'Edit Your Profile', 'Edit Your Profile', 'priv/customProfile.do?method=view', 'en', '5',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('REPORTINC','SELFCENTER', 'Report Security Incident', 'Report Security Incident', 'reportIncident.selfserve', 'en', '6',1);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CONTADMIN','SELFCENTER', 'Contact Admin', 'Contact Admin', 'contactAdmin.selfserve', 'en', '7',1);
 
 
 
@@ -228,6 +237,8 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('FORGOTPSWD','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROFILE','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('REPORTINC','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CONTADMIN','END_USER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','END_USER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('TERMINATEACCESS','END_USER');
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ADMIN','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SECDOMAIN','SUPER_SEC_ADMIN');
