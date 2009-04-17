@@ -5,10 +5,18 @@
       <session-timeout>30</session-timeout>  
     </session-config>
 
+  <filter>
+    <filter-name>SessionFilter</filter-name>
+    <filter-class>org.openiam.webadmin.filter.SessionFilter</filter-class>
+    <init-param>
+      <param-name>expirePage</param-name>
+      <param-value>/index.do?expire=1</param-value>
+    </init-param>
+  </filter>
 
   <filter>
     <filter-name>SelfServeAuthFilter</filter-name>
-    <filter-class>org.openiam.selfsrvc.SelfServeAuthFilter</filter-class>
+    <filter-class>org.openiam.webadmin.filter.SelfServeAuthFilter</filter-class>
     <init-param>
       <param-name>appId</param-name>
       <param-value>SELFSERVICE</param-value>

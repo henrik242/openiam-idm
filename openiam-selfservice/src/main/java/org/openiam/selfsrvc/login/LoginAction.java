@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import org.apache.struts.action.*;
 
+import org.openiam.idm.srvc.menu.service.NavigatorDataService;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.openiam.idm.srvc.user.service.UserMgr;
 import org.openiam.idm.srvc.user.dto.UserAttribute;
@@ -50,6 +51,7 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 	private String leftMenuGroup;
 	private String rightMenuGroup1;
 	private String rightMenuGroup2;
+	private NavigatorDataService navigationDataService;
 
 	
 	public LoginAction() {
@@ -189,11 +191,15 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 			}
 		}
 
-		List menuList = loginAccess.getPermissions(sub.getUserId(), rootMenu, langCd);
-		
+		//List menuList = loginAccess.getPermissions(sub.getUserId(), rootMenu, langCd);
+		//session.setAttribute("permissions", menuList);
 
-		
-		session.setAttribute("permissions", menuList);
+		session.setAttribute("privateLeftMenuGroup",
+				navigationDataService.menuGroupSelectedByUser(leftMenuGroup,sub.getUserId(), appConfiguration.getDefaultLang()));
+		session.setAttribute("privateRightMenuGroup1",
+				navigationDataService.menuGroupSelectedByUser(rightMenuGroup1,sub.getUserId(), appConfiguration.getDefaultLang()));
+		session.setAttribute("privateRightMenuGroup2",
+				navigationDataService.menuGroupSelectedByUser(rightMenuGroup2,sub.getUserId(), appConfiguration.getDefaultLang()));
 		
 
 
@@ -276,6 +282,18 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 
 	public void setRightMenuGroup2(String rightMenuGroup2) {
 		this.rightMenuGroup2 = rightMenuGroup2;
+	}
+
+
+
+	public NavigatorDataService getNavigationDataService() {
+		return navigationDataService;
+	}
+
+
+
+	public void setNavigationDataService(NavigatorDataService navigationDataService) {
+		this.navigationDataService = navigationDataService;
 	}
 
 }

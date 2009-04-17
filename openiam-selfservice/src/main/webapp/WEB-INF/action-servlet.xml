@@ -36,6 +36,7 @@
 		<property name="leftMenuGroup" value="BUSINESCENTER" />
 		<property name="rightMenuGroup1" value="ACCESSCENTER" />
 		<property name="rightMenuGroup2" value="SELFCENTER" />
+		<property name="navigationDataService" ref="navigatorDataService" />
 	</bean>
 	
 	<bean name="/logout"  class="org.openiam.selfsrvc.login.LogoutAction" />

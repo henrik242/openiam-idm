@@ -54,14 +54,13 @@ public class PermissionAction extends DiamelleBaseAction {
       String serviceId = (String)session.getAttribute("serviceId");
       String userId = (String)session.getAttribute("userId");
       String appId = (String) session.getAttribute("appId");
-      List menuList = (List) session.getAttribute("permissions");
+    //  List menuList = (List) session.getAttribute("permissions");
       
 
-      log.debug("** PermissionAction - Language cd = " + langCd);
       log.debug("PermissionAction - serviceId = " + serviceId);
       log.debug("PermissionAction - appId = " + appId);
       log.debug("PermissionAction - userid = " + userId);
-      log.debug("PermissionAction - permissions = " + menuList);
+
       
  
       if (langCd != null && langCd.length() > 2) {
@@ -76,12 +75,13 @@ public class PermissionAction extends DiamelleBaseAction {
             log.debug("Checking all permissions for " + userId + " for " + serviceId + " in " + langCd);
 
           System.out.println("**Checking all permissions for " + userId + " for " + serviceId + " in " + langCd);
-          if (menuList.isEmpty()) {
+         /* if (menuList.isEmpty()) {
               	log.debug("No permissions are present for this user.");
 	            errors.add(ActionMessages.GLOBAL_MESSAGE,new ActionMessage("error.permission.noaccess"));
 	            saveErrors(request,errors);
 	            return (mapping.findForward("login"));
           }
+         */
           return (mapping.findForward("permissionlist"));
 
         } else {
