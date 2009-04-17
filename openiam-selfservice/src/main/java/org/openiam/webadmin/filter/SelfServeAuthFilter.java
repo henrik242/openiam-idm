@@ -1,4 +1,4 @@
-package org.openiam.selfsrvc;
+package org.openiam.webadmin.filter;
 
 import java.io.*;
 import java.util.*;
