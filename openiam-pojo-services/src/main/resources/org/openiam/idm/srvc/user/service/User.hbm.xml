@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.user.dto.User" table="USERS" >
+        <comment></comment>
+        <id name="userId" type="string">
+            <column name="USER_ID" length="20" />
+               <generator class="assigned" />
+        </id>
+
+        <property name="metadataTypeId" type="string">
+            <column name="TYPE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+       
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="middleInit" type="string">
+            <column name="MIDDLE_INIT" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="30">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deptCd" type="string">
+            <column name="DEPT_CD" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deptName" type="string">
+            <column name="DEPT_NAME" length="100">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="birthdate" type="timestamp">
+            <column name="BIRTHDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sex" type="string">
+            <column name="SEX" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="prefix" type="string">
+            <column name="PREFIX" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="suffix" type="string">
+            <column name="SUFFIX" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userTypeInd" type="string">
+            <column name="USER_TYPE_IND" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeId" type="string">
+            <column name="EMPLOYEE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeType" type="string">
+            <column name="EMPLOYEE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationCd" type="string">
+            <column name="LOCATION_CD" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationName" type="string">
+            <column name="LOCATION_NAME" length="100">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="companyId" type="string">
+            <column name="COMPANY_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="companyOwnerId" type="string">
+            <column name="COMPANY_OWNER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="managerId" type="string">
+            <column name="MANAGER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="jobCode" type="string">
+            <column name="JOB_CODE" length="50">
+                <comment></comment>
+            </column>
+        </property>
+    
+       <property name="division" type="string">
+            <column name="DIVISION" length="50" />
+        </property>
+        <property name="costCenter" type="string">
+            <column name="COST_CENTER" length="20" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="START_DATE" length="10" />
+        </property>
+        <property name="lastDate" type="date">
+            <column name="LAST_DATE" length="10" />
+        </property>
+        <property name="mailCode" type="string">
+            <column name="MAIL_CODE" length="50" />
+        </property>
+
+        <property name="maidenName" type="string">
+            <column name="MAIDEN_NAME" length="40" />
+        </property>
+        <property name="nickname" type="string">
+            <column name="NICKNAME" length="40" />
+        </property>
+        <property name="passwordTheme" type="string">
+            <column name="PASSWORD_THEME" length="20" />
+        </property>
+                
+   
+    
+       <map name="userAttributes" cascade="all-delete-orphan" lazy="false" >
+  			<key>
+  				<column name="USER_ID" length="20" /> 
+  			</key>
+  			<map-key column="NAME" type="string" />
+  			<one-to-many class="org.openiam.idm.srvc.user.dto.UserAttribute" />
+ 		</map> 
+     
+        <set name="userNotes" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="USER_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.dto.UserNote" />
+        </set>
+        
+       <set name="emailAddress" cascade="all-delete-orphan" lazy="false" inverse="true" >
+  			<key>
+  				<column name="PARENT_ID" length="20" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.EmailAddress" />
+  			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set> 
+
+       <set name="addresses" cascade="all-delete-orphan" lazy="false" inverse="true" >
+  			<key>
+  				<column name="PARENT_ID" length="20" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.Address" />
+  			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set> 
+ 		
+       <set name="phone" cascade="all-delete-orphan" lazy="false" inverse="true" >
+  			<key>
+  				<column name="PARENT_ID" length="20" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.Phone" />
+  			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set> 
+ 		
+ 		
+ 		
+    <!--     
+         <set name="groups" table="USER_GRP" inverse="true">
+            <key>
+                <column name="USER_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <many-to-many entity-name="org.openiam.idm.srvc.grp.dto.Group">
+                <column name="GRP_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </many-to-many>
+        </set>
+	-->
+	
+      
+     </class>
+
+<filter-def name="parentTypeFilter">
+    <filter-param name="parentFilter" type="string"/>
+</filter-def>
+
+</hibernate-mapping>

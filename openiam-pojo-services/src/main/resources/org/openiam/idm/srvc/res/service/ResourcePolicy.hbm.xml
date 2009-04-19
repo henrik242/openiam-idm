@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.res.dto.ResourcePolicy" table="RESOURCE_POLICY">
+        <id name="resourcePolicyId" type="string">
+            <column name="RESOURCE_POLICY_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resources" fetch="select">
+            <column name="RESOURCE_ID" length="20" />
+        </many-to-one>
+        <property name="roleId" type="string">
+            <column name="ROLE_ID" length="20" />
+        </property>
+        <property name="policyStart" type="timestamp">
+            <column name="POLICY_START" length="19" />
+        </property>
+        <property name="policyEnd" type="timestamp">
+            <column name="POLICY_END" length="19" />
+        </property>
+        <property name="applyToChildren" type="java.lang.Integer">
+            <column name="APPLY_TO_CHILDREN" />
+        </property>
+    </class>
+</hibernate-mapping>

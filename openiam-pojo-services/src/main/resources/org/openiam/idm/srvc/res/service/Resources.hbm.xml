@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.res.dto.Resources" table="RESOURCES" >
+        <id name="resourceId" type="string">
+            <column name="RESOURCE_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="resourceType" class="org.openiam.idm.srvc.res.dto.ResourceType" fetch="select">
+            <column name="RESOURCE_TYPE_ID" length="20" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100" />
+        </property>
+        <property name="resourceParent" type="string">
+            <column name="RESOURCE_PARENT" length="20" />
+        </property>
+        <property name="branchId" type="string">
+            <column name="BRANCH_ID" length="20" />
+        </property>
+        <property name="categoryId" type="string">
+            <column name="CATEGORY_ID" length="20" />
+        </property>
+        <property name="displayOrder" type="java.lang.Integer">
+            <column name="DISPLAY_ORDER" />
+        </property>
+        <property name="nodeLevel" type="java.lang.Integer">
+            <column name="NODE_LEVEL" />
+        </property>
+        <property name="sensitiveApp" type="java.lang.Integer">
+            <column name="SENSITIVE_APP" />
+        </property>
+        <set name="resourceRoles" inverse="true">
+            <key>
+                <column name="RESOURCE_ID" length="20" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceRole" />
+        </set>
+        <set name="resourceUsers" inverse="true">
+            <key>
+                <column name="RESOURCE_ID" length="20" not-null="true" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceUser" />
+        </set>
+        <set name="resourcePolicies" inverse="true">
+            <key>
+                <column name="RESOURCE_ID" length="20" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.res.dto.ResourcePolicy" />
+        </set>
+        <set name="resourceProps" inverse="true">
+            <key>
+                <column name="RESOURCE_ID" length="20" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceProp" />
+        </set>
+    </class>
+</hibernate-mapping>

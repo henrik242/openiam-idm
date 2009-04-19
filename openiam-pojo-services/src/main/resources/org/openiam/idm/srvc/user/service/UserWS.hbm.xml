@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 12, 2007 10:46:14 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.user.dto.UserWS" table="USERS" >
+        <comment></comment>
+        <id name="userId" type="string">
+            <column name="USER_ID" length="20" />
+               <generator class="assigned" />
+        </id>
+       <!-- 
+        <many-to-one name="metadataType" class="org.openiam.idm.srvc.meta.dto.MetadataType" fetch="select">
+            <column name="TYPE_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+       -->
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="middleInit" type="string">
+            <column name="MIDDLE_INIT" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="30">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dept" type="string">
+            <column name="DEPT" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="birthdate" type="timestamp">
+            <column name="BIRTHDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sex" type="string">
+            <column name="SEX" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="prefix" type="string">
+            <column name="PREFIX" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="suffix" type="string">
+            <column name="SUFFIX" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userTypeInd" type="string">
+            <column name="USER_TYPE_IND" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeId" type="string">
+            <column name="EMPLOYEE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeType" type="string">
+            <column name="EMPLOYEE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationId" type="string">
+            <column name="LOCATION_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="companyId" type="string">
+            <column name="COMPANY_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="companyOwnerId" type="string">
+            <column name="COMPANY_OWNER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="expirationDate" type="timestamp">
+            <column name="EXPIRATION_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="managerId" type="string">
+            <column name="MANAGER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="jobCode" type="string">
+            <column name="JOB_CODE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+   <!-- 
+        <set name="userGrps" inverse="true">
+            <key>
+                <column name="USER_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.UserGrp" />
+        </set>
+    
+  
+        <set name="credentialses" inverse="true">
+            <key>
+                <column name="USER_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.Credentials" />
+        </set>
+        <set name="authStates" inverse="true">
+            <key>
+                <column name="USER_ID" length="20" not-null="true" unique="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.AuthState" />
+        </set>
+        <set name="userIdentityAnses" inverse="true">
+            <key>
+                <column name="USER_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.UserIdentityAns" />
+        </set>
+        <set name="resourceUsers" inverse="true">
+            <key>
+                <column name="USER_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.ResourceUser" />
+        </set>
+        <set name="logins" inverse="true">
+            <key>
+                <column name="USER_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.Login" />
+        </set>
+        <set name="roles" inverse="true" table="user_role">
+            <key>
+                <column name="USER_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <many-to-many entity-name="org.openiam.idm.srvc.user.Role">
+                <column name="ROLE_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </many-to-many>
+        </set>
+       -->
+<!--       
+      <array name="userAttributes" cascade="all-delete-orphan" >
+   			<key>
+  				<column name="USER_ID" length="20" /> 
+  			</key>
+  			<list-index column="id"/>
+    	<one-to-many class="org.openiam.idm.srvc.user.dto.UserAttribute" />
+	  </array>  
+
+      <array name="userNotes" cascade="all-delete-orphan" >
+   			<key>
+  				<column name="USER_ID" length="20" /> 
+  			</key>
+  			<list-index column="userNoteId" />
+
+ 			<one-to-many class="org.openiam.idm.srvc.user.dto.UserNote" />
+ 	  </array> 
+ 	  
+-->
+	          
+   
+       <map name="userAttributes" cascade="all-delete-orphan" lazy="false" >
+  			<key>
+  				<column name="USER_ID" length="20" /> 
+  			</key>
+  			<map-key column="NAME" type="string" />
+  			<one-to-many class="org.openiam.idm.srvc.user.dto.UserAttribute" />
+ 		</map> 
+   
+        <set name="userNotes" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="USER_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.dto.UserNote" />
+        </set>
+       
+        
+       
+     </class>
+</hibernate-mapping>

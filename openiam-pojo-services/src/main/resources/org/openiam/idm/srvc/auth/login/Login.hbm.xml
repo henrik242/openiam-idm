@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 18, 2008 3:56:07 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.auth.dto.Login" table="LOGIN" >
+        <comment></comment>
+        <composite-id name="id" class="org.openiam.idm.srvc.auth.dto.LoginId">
+            <key-property name="serviceId" type="string">
+                <column name="SERVICE_ID" length="20" />
+            </key-property>
+            <key-property name="managedSysId" type="string">
+                <column name="MANAGED_SYS_ID" length="50" />
+            </key-property>
+            <key-property name="login" type="string">
+                <column name="LOGIN" length="50" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="org.openiam.idm.srvc.user.dto.User" fetch="select">
+            <column name="USER_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="service" class="org.openiam.idm.srvc.service.dto.Service" update="false" insert="false" fetch="select">
+            <column name="SERVICE_ID" length="20" not-null="true">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pwdEquivalentToken" type="string">
+            <column name="PWD_EQUIVALENT_TOKEN" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pwdChanged" type="timestamp">
+            <column name="PWD_CHANGED" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pwdExp" type="timestamp">
+            <column name="PWD_EXP" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="resetPwd" type="int">
+            <column name="RESET_PWD" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="isLocked" type="int">
+            <column name="IS_LOCKED" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="gracePeriod" type="timestamp">
+            <column name="GRACE_PERIOD" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="currentLoginHost" type="string">
+            <column name="CURRENT_LOGIN_HOST" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="authFailCount" type="java.lang.Integer">
+            <column name="AUTH_FAIL_COUNT">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastAuthAttempt" type="timestamp">
+            <column name="LAST_AUTH_ATTEMPT" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="canonicalName" type="string">
+            <column name="CANONICAL_NAME" length="300">
+                <comment></comment>
+            </column>
+        </property>
+        
+       
+        
+        <property name="lastLogin" type="timestamp">
+            <column name="LAST_LOGIN" length="19" />
+        </property>
+        <property name="isDefault" type="java.lang.Integer">
+            <column name="IS_DEFAULT" />
+        </property>
+   <!--      
+        <set name="loginAttributes" inverse="true" cascade="all-delete-orphan" lazy="false">
+            <key>
+                <column name="SERVICE_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+                <column name="MANAGED_SYS_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+                <column name="LOGIN" length="50" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.auth.dto.LoginAttribute" />
+        </set>
+ -->
+    </class>
+</hibernate-mapping>

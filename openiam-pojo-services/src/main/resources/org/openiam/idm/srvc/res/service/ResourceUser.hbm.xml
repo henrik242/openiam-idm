@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.res.dto.ResourceUser" table="RESOURCE_USER">
+        <composite-id name="id" class="org.openiam.idm.srvc.res.dto.ResourceUserId">
+            <key-property name="resourceId" type="string">
+                <column name="RESOURCE_ID" length="20" />
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="USER_ID" length="20" />
+            </key-property>
+            <key-property name="privilegeId" type="string">
+                <column name="PRIVILEGE_ID" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resources" update="false" insert="false" fetch="select">
+            <column name="RESOURCE_ID" length="20" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
