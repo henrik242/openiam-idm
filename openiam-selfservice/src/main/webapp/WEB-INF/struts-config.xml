@@ -549,7 +549,7 @@
     
     <action
          attribute="unLockUserForm" input="/pub/unlocklogin1.jsp"
-         name="unLockUserForm"  path="/unLockUser" parameter="method"
+         name="unLockUserForm"  path="/pub/unLockUser" parameter="method"
          scope="session" validate="false"
          type="org.openiam.selfsrvc.pswd.UnLockUserAction">
          <forward name="step1" path="/home.jsp?bodyjsp=/pub/unlocklogin1.jsp" />

@@ -25,6 +25,10 @@
 		<property name="defaultLang" value="en"/>
 
 		<property name="maxResultSetSize" value="200"/>
+		<!--  name of public menu groups  -->
+		<property name="publicLeftMenuGroup" value="BUSINESCENTER" />
+		<property name="publicRightMenuGroup1" value="ACCESSCENTER" />
+		<property name="publicRightMenuGroup2" value="SELFCENTER" />
 
 	</bean>		
 

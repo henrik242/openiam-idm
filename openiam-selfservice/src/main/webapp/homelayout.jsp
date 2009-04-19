@@ -64,7 +64,7 @@ if (url == null) {
     <% if (userId != null) { %>
     <a href="<%= welcomePageUrl %>"><img src="<%=url%>" /> </a>
     <% }else { %>
-    <a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=url%>" /> </a>
+    <a href="<%=request.getContextPath()%>/index.do"><img src="<%=url%>" /> </a>
     <% } %>
     </td>
   </tr>

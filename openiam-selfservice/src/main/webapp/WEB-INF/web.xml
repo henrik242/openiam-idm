@@ -2,7 +2,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <session-config>
-      <session-timeout>30</session-timeout>  
+      <session-timeout>2</session-timeout>  
     </session-config>
 
   <filter>
@@ -11,6 +11,10 @@
     <init-param>
       <param-name>expirePage</param-name>
       <param-value>/index.do?expire=1</param-value>
+    </init-param>
+    <init-param>
+      <param-name>excludePath</param-name>
+      <param-value>/pub</param-value>
     </init-param>
   </filter>
 
@@ -26,6 +30,12 @@
       <param-value>SELFSERVICE</param-value>
     </init-param>
   </filter>
+  
+    <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <filter-mapping>
     <filter-name>SelfServeAuthFilter</filter-name>
     <url-pattern>/priv/*</url-pattern>

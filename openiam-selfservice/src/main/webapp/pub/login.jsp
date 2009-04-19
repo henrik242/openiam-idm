@@ -9,6 +9,10 @@
 <% 
 List domainList = (List)session.getAttribute("domainList");
 pageContext.setAttribute("domainList", domainList);
+
+String expirationMessage = (String)request.getAttribute("expmsg");
+
+
 %>
 
 <html:form action="/login">
@@ -22,6 +26,15 @@ pageContext.setAttribute("domainList", domainList);
         <font size="1" color="red">*</font> Required       
     </td>
   </tr>
+  
+  <% if (expirationMessage !=null && expirationMessage.length() > 0) { %>
+	<tr>
+		<td bgcolor="#FFFFCC" align="center" colspan="2">
+				<font color="red"><b><%=expirationMessage %></b></font>		
+		</td>
+
+	</tr>
+<% } %>
   
   <tr>
  		<td colspan="2" align="center" bgcolor="8397B4" >

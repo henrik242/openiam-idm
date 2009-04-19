@@ -177,16 +177,11 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 			session.setAttribute("lv", lv);
 			
 			
-			
-		
-			
-			
 			// save user and token in cookie
 			Cookie uidCookie = new javax.servlet.http.Cookie("userId", sub.getUserId());
 			Cookie tokenCookie = new javax.servlet.http.Cookie("token", sub.getToken());
 		}else {
 			if (token != null) {
-				System.out.println("Found token. SSO...");
 				sub = loginAccess.authenticate(userId, token);
 			}
 		}
@@ -201,7 +196,7 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 		session.setAttribute("privateRightMenuGroup2",
 				navigationDataService.menuGroupSelectedByUser(rightMenuGroup2,sub.getUserId(), appConfiguration.getDefaultLang()));
 		
-
+System.out.println("private right menu group=" + session.getAttribute(rightMenuGroup1));
 
 		
 	}catch(diamelle.security.auth.AuthenticationException ae) {

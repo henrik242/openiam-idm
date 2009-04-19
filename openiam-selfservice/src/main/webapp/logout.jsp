@@ -11,7 +11,7 @@
    </tr>
    
     <tr>
-    	<td><a href="<%= request.getContextPath() %>/index.jsp">Click here to login again.</a></td>
+    	<td><a href="<%= request.getContextPath() %>/index.do">Click here to login again.</a></td>
     </tr> 
 </table>
 </body>

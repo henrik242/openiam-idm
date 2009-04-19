@@ -22,6 +22,7 @@ import javax.naming.directory.ModificationItem;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
@@ -92,15 +93,13 @@ public class NewHireController extends SimpleFormController {
 		
 		NewHireCommand newHireCommand = new NewHireCommand();
 		
-		List<Menu> menuList=  navigatorDataService.getMenuGroup(menuGroup);
+		HttpSession session = request.getSession();		
+		
+		Menu[] menuAry=  navigatorDataService.menuGroup(menuGroup, (String)session.getAttribute("defaultLang"));
 		
 
-		if (menuList == null)
+		if (menuAry == null)
 			return newHireCommand;
-		
-		int size = menuList.size();
-		Menu[] menuAry = new Menu[size];
-		menuList.toArray(menuAry);
 		
 		newHireCommand.setManagedSystems(menuAry);
 		

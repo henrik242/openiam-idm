@@ -19,7 +19,7 @@ String secDomain = (String)request.getAttribute("secDomain");
 
 %>
 
-<html:form action="/unLockUser.do?method=syncPassword">
+<html:form action="/pub/unLockUser.do?method=syncPassword">
 <table border="0" width="80%" align="center">
 	<tr>
 		<td colspan="2">

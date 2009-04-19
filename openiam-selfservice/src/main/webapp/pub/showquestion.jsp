@@ -16,7 +16,7 @@
 
 %>
 
-<html:form action="/unLockUser.do?method=processAnswers">
+<html:form action="/pub/unLockUser.do?method=processAnswers">
 <table border="0" width="80%" align="center">
 
 	<tr>

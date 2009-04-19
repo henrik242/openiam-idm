@@ -14,6 +14,11 @@ public class AppConfiguration {
 	private String welcomePageUrl;
 	private String defaultLang;
 
+	private String publicLeftMenuGroup;
+	private String publicRightMenuGroup1;
+	private String publicRightMenuGroup2;
+	
+
 	
 	public Integer getMaxResultSetSize() {
 		return maxResultSetSize;
@@ -47,6 +52,25 @@ public class AppConfiguration {
 	public void setDefaultLang(String defaultLang) {
 		this.defaultLang = defaultLang;
 	}
+	public String getPublicLeftMenuGroup() {
+		return publicLeftMenuGroup;
+	}
+	public void setPublicLeftMenuGroup(String publicLeftMenuGroup) {
+		this.publicLeftMenuGroup = publicLeftMenuGroup;
+	}
+	public String getPublicRightMenuGroup1() {
+		return publicRightMenuGroup1;
+	}
+	public void setPublicRightMenuGroup1(String publicRightMenuGroup1) {
+		this.publicRightMenuGroup1 = publicRightMenuGroup1;
+	}
+	public String getPublicRightMenuGroup2() {
+		return publicRightMenuGroup2;
+	}
+	public void setPublicRightMenuGroup2(String publicRightMenuGroup2) {
+		this.publicRightMenuGroup2 = publicRightMenuGroup2;
+	}
+
 
 
 	

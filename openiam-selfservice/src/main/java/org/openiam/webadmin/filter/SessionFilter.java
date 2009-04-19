@@ -1,15 +1,23 @@
 package org.openiam.webadmin.filter;
 
 import java.io.*;
+import java.rmi.RemoteException;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openiam.idm.srvc.menu.service.NavigatorDataService;
+import org.openiam.selfsrvc.AppConfiguration;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import diamelle.security.auth.*;
 
 /**
  * <p>
- * <code>SessionFilter</code> <font face="arial"> is a Filter that session for a users session expiring. 
+ * <code>SessionFilter</code> <font face="arial"> is a Filter that aids with session management.  
  * If it has expired, then it gracefully displays a session expiration message.
  *
  * </font>
@@ -20,6 +28,11 @@ public class SessionFilter implements javax.servlet.Filter {
 
 	private FilterConfig filterConfig = null;
 	private String expirePage = null;
+	private String excludePath = null;
+	private static final Log log = LogFactory.getLog(SessionFilter.class);
+	private NavigatorDataService navigationDataService;
+	private AppConfiguration appConfiguration;
+	
 
 
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -28,6 +41,8 @@ public class SessionFilter implements javax.servlet.Filter {
 
 		// the expire page is the url of the page to display if the session has expired.
 		this.expirePage = filterConfig.getInitParameter("expirePage");
+		excludePath = filterConfig.getInitParameter("excludePath");
+	
 
 	}
 
@@ -40,22 +55,41 @@ public class SessionFilter implements javax.servlet.Filter {
 		ServletResponse servletResponse,
 		FilterChain chain)
 		throws IOException, ServletException {
+		
+		String userId = null;
 
-System.out.println("SessionFilter: doFilter() called");
 
 		ServletContext context = getFilterConfig().getServletContext();
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		HttpSession session = request.getSession();
+		boolean loginPage = false;
 		
-		if (session == null) {
-			System.out.println("SessionFilter: doFilter(): session is null. Redirect to login");
-			response.sendRedirect(expirePage);
-			return;
+		
+
+		log.info("requestURI:" + request.getRequestURI());
+		
+		String url = request.getRequestURI();
+		
+		
+		if ( url == null || url.equals("/") || url.endsWith("index.do") || url.endsWith("login.do")   ) {
+			log.info("login page=true");
+			loginPage = true; 
+		}
+		
+		if (!loginPage && isCode(url) && !isExcludePath(url, context, session) ) 		{
+		/* There is no User attribute so redirect to login page */
+			if(session.getAttribute("userId") == null)	{
+				log.info("Session expired, redirecting to login page");
+				response.sendRedirect(request.getContextPath() + expirePage);
+				return;
+			}
 		}
 		chain.doFilter(servletRequest, servletResponse);
-		return;
+
+		
+
 		
 
 
@@ -74,4 +108,44 @@ System.out.println("SessionFilter: doFilter() called");
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean isCode(String url) {
+
+		if (url.contains(".jsp") || url.contains(".do") || url.contains(".report") || url.contains(".selfserve")) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isExcludePath(String url, ServletContext context, HttpSession session) {
+		
+		if (url == null) {
+			return false;
+		}
+
+		if (url.contains(excludePath) ) {
+			// may be calling a public url - make sure that static data is loaded.
+			loadStaticData(session,context);
+			return true;
+		}
+		return false;
+	}
+	private void loadStaticData(HttpSession session, ServletContext servletContext)  {
+
+		// check to see if this is still in session
+		if (session.getAttribute("publicRightMenuGroup1") == null) {
+			log.info("Reloading menus into session.");
+			WebApplicationContext webContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		// load public menus
+			navigationDataService = (NavigatorDataService)webContext.getBean("navigatorDataService");
+			appConfiguration  =(AppConfiguration)webContext.getBean("appConfiguration");
+			session.setAttribute("publicLeftMenuGroup",
+					navigationDataService.menuGroup(appConfiguration.getPublicLeftMenuGroup(), appConfiguration.getDefaultLang()));
+			session.setAttribute("publicRightMenuGroup1",
+					navigationDataService.menuGroup(appConfiguration.getPublicRightMenuGroup1(), appConfiguration.getDefaultLang()));
+			session.setAttribute("publicRightMenuGroup2",
+					navigationDataService.menuGroup(appConfiguration.getPublicRightMenuGroup2(), appConfiguration.getDefaultLang()));
+		}
+	}
+	
 }

@@ -48,7 +48,7 @@
 	<bean name="/priv/password"  class="org.openiam.selfsrvc.pswd.PasswordChangeAction" >
 		<property name="passwordConfig" ref="passwordConfiguration" />
 	</bean>
-	<bean name="/unLockUser"  class="org.openiam.selfsrvc.pswd.UnLockUserAction" >
+	<bean name="/pub/unLockUser"  class="org.openiam.selfsrvc.pswd.UnLockUserAction" >
 		<property name="passwordConfig" ref="passwordConfiguration" />
 	</bean>	
 

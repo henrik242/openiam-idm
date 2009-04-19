@@ -84,7 +84,7 @@
   
      
      <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-     	<property name="prefix" value="home.jsp?bodyjsp=" />
+     	<property name="prefix" value="/home.jsp?bodyjsp=" />
      	<property name="suffix" value=".jsp" />
      </bean>
      
@@ -95,8 +95,8 @@
                 <prop key="/requestList.selfserve">requestList</prop>
                 <prop key="/newHire.selfserve">newHire</prop>
                 <prop key="/requestDetail.selfserve">requestDetail</prop>
-                <prop key="/reportIncident.selfserve">reportIncident</prop>
-                <prop key="/contactAdmin.selfserve">contactAdmin</prop>
+                <prop key="pub/reportIncident.selfserve">reportIncident</prop>
+                <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
             </props>
         </property>
     </bean>

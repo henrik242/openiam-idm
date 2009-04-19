@@ -19,15 +19,9 @@ String secDomain = (String)request.getAttribute("secDomain");
 
 %>
 
-<%
-//	List serviceList = (List)session.getAttribute("serviceList");
-//	if (serviceList == null)
-//		serviceList = new ArrayList();
-//	pageContext.setAttribute("serviceList", serviceList);	
 
-%>
 
-<html:form action="/unLockUser.do?method=showQuestions">
+<html:form action="/pub/unLockUser.do?method=showQuestions">
 <table border="0" width="70%" align="center">
 
 	<tr>

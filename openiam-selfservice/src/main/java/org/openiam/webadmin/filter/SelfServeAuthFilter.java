@@ -7,6 +7,8 @@ import javax.servlet.http.*;
 
 import diamelle.security.auth.*;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.openiam.webadmin.busdel.identity.*;
@@ -21,28 +23,6 @@ import org.openiam.webadmin.busdel.identity.*;
  * If userId is not provided in the request object, control is passed to the
  * the login application and the Filter chain is terminated.
  *
- * Filter definition sample in web.xml
- * <code>
- *
- *   <filter>
- *   <filter-name>AuthFilter</filter-name>
- *   <filter-class>diamelle.app.login.AuthFilter</filter-class>
- *    <init-param>
- *      <param-name>appId</param-name>
- *      <param-value>CMS</param-value>
- *    </init-param>
- *    <init-param>
- *      <param-name>rootPermissions</param-name>
- *      <param-value>ROOT</param-value>
- *    </init-param>
- *  </filter>
- *  <filter-mapping>
- *    <filter-name>AuthFilter</filter-name>
- *    <url-pattern>/editor/*</url-pattern>
- *  </filter-mapping>
- * 
- *
- * </code>
  *
  * </font>
  * </p>
@@ -58,6 +38,8 @@ public class SelfServeAuthFilter implements javax.servlet.Filter {
 	protected LoginAccess loginAccess = new LoginAccess();
 	protected NavigationAccess navAccess = new NavigationAccess();
 
+	private static final Log log = LogFactory.getLog(SelfServeAuthFilter.class);
+	
 	public void init(FilterConfig filterConfig) throws ServletException {
 
 		this.filterConfig = filterConfig;
@@ -78,6 +60,8 @@ public class SelfServeAuthFilter implements javax.servlet.Filter {
 		ServletResponse servletResponse,
 		FilterChain chain)
 		throws IOException, ServletException {
+		
+		log.info("SelfServeAuthFilter:doFilter");
 
 		boolean hasPermission = false;
 		boolean isPasswordExp = false;
@@ -195,9 +179,11 @@ public class SelfServeAuthFilter implements javax.servlet.Filter {
 				return;						
 			}
 			
-			System.out.println("** in do filter...after auth userId= -" + userId);
+			log.info("after auth userId= -" + userId);
+			chain.doFilter(servletRequest, servletResponse);
+		}
 
-			if (userId == null) {
+	/*		if (userId == null) {
 
 				// Build the queryString
 				StringBuffer qb = new StringBuffer();
@@ -226,7 +212,7 @@ public class SelfServeAuthFilter implements javax.servlet.Filter {
 			}
 			}
 		//}
-
+ */
 	}
 
 	// Not in Filter interface, but weblogic is asking for these two methods
