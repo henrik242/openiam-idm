@@ -10,6 +10,9 @@ insert into category_type (category_id, type_id) values('ORG_TYPE','OrgBillServ'
 insert into menu (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('CLAIMS','ROOT','Claims','Claims','', 'en',5);
 insert into menu (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('CLM_CREATE','CLAIMS','New Claim','New Claim','menunav.do', 'en',1);
 insert into menu (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('CLM_SEARCH','CLAIMS','Find Claim','Find Claim','menunav.do', 'en',2);
+insert into menu (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('CLM_UPDATE','CLAIMS','Upate Claim','Find Claim','menunav.do', 'en',2);
+
+
 
 insert into users (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3100','John','Smith','APPROVED','100');
 insert into users (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3101','Mary','Blyth','APPROVED','100');
@@ -47,6 +50,12 @@ insert into user_grp (grp_id, user_id) 		 values('REPRICING','3102');
 
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SERVICE_MGR','CUSTOMER_SERV', 'USR_SEC_DOMAIN');
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('CLAIMS_REPRICE_MGR','REPRICING', 'USR_SEC_DOMAIN');
+
+insert into user_role (service_id, role_id,  user_id) values('USR_SEC_DOMAIN','CLAIMS_REPRICE_MGR','3101');
+insert into PERMISSIONS (MENU_ID, role_id) values('CLM_CREATE','CLAIMS_REPRICE_MGR');
+
+insert into PERMISSIONS (MENU_ID, role_id) values('CLM_SEARCH','SERVICE_MGR');
+insert into PERMISSIONS (MENU_ID, role_id) values('CLM_UPDATE','SERVICE_MGR');
 
 
 insert into CATEGORY(CATEGORY_ID, PARENT_ID, CATEGORY_NAME, SHOW_LIST) VALUES('ACL_SAVILITY','ACL', 'SEC DOMAIN',0);
