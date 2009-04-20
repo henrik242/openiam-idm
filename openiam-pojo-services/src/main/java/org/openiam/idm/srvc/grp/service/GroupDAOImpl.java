@@ -10,13 +10,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.HibernateException;
+import org.openiam.exception.data.DataException;
 import org.openiam.exception.data.ObjectNotFoundException;
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.grp.service.GroupDAO;
+import org.openiam.idm.srvc.menu.dto.Menu;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.user.dto.UserNote;
 import org.openiam.idm.srvc.user.dto.User;
@@ -265,7 +268,33 @@ public class GroupDAOImpl implements org.openiam.idm.srvc.grp.service.GroupDAO {
 		return result;			
 	}
 
+	public List<Group> findGroupNotLinkedToUser(String userId, String parentGroupId) {
+		
+	   	Session session = sessionFactory.getCurrentSession();
+	    
+    	try{
+    		SQLQuery qry = session.createSQLQuery("SELECT  GRP_ID, GRP_NAME, CREATE_DATE, CREATED_BY, COMPANY_ID,  " +
+    				" PARENT_GRP_ID, INHERIT_FROM_PARENT, PROVISION_METHOD, PROVISION_OBJ_NAME, " +
+    				" TYPE_ID, GROUP_CLASS, GROUP_CLASS, STATUS, LAST_UPDATE, LAST_UPDATED_BY  " +
+				 "  FROM 	GRP g  " +
+				 "  WHERE g.GRP_ID NOT IN (SELECT GRP_ID FROM USER_GRP ug WHERE ug.USER_ID = :userId ) ");
+	    	
+	    	
+	    	qry.addEntity(Group.class);
+			qry.setString("userId", userId);
+			
 	
+			List<Group> result = (List<Group>) qry.list();
+			if (result == null || result.size() == 0)
+				return null;
+			return result;		
+	    }catch(HibernateException re) {
+			log.error("findGroupNotLinkedToUser", re);
+			throw new DataException( re.getMessage(), re.getCause() );      		
+		}
+
+		
+	}
 
 
 

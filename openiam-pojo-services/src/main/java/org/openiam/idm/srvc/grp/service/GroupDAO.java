@@ -74,6 +74,8 @@ public interface GroupDAO  {
 	public List<Group> findGroupsInRole(String serviceId, String roleId);
 	
 	public User findUserInGroup(String groupId,String userId);
+	
+	public List<Group> findGroupNotLinkedToUser(String userId, String parentGroupId);
 
 	
 

@@ -192,15 +192,6 @@ public class NavigatorDAOImpl implements NavigatorDAO {
     	Session session = sessionFactory.getCurrentSession();
     
     	try{
-/*	    	SQLQuery qry = session.createSQLQuery("SELECT DISTINCT m.MENU_ID, m.LANGUAGE_CD, m.MENU_GROUP, m.MENU_NAME, " +
-	    				" M.MENU_DESC, M.URL, M.ACTIVE, M.DISPLAY_ORDER, M.PUBLIC_URL  " 
-					+ "  FROM 	Menu m, USER_GRP ug, USER_ROLE ur, GRP_ROLE gr, PERMISSIONS P  "
-					+ "  WHERE	m.MENU_GROUP = :menuGroupId AND m.LANGUAGE_CD = :languageCd AND " 
-					+ " ((ug.USER_ID = :userId and ug.GRP_ID = gr.GRP_ID  AND gr.ROLE_ID = P.ROLE_ID ) or " 
-					+ "	 (ur.USER_ID = :userId and ur.ROLE_ID = P.ROLE_ID )) and "
-					+ "		P.MENU_ID = m.MENU_ID "  
-					+ " order by m.DISPLAY_ORDER " );
-*/	
     		SQLQuery qry = session.createSQLQuery("SELECT DISTINCT m.MENU_ID, m.LANGUAGE_CD, m.MENU_GROUP, m.MENU_NAME, " +
     				" M.MENU_DESC, M.URL, M.ACTIVE, M.DISPLAY_ORDER, M.PUBLIC_URL  " 
 				+ "  FROM 	Menu m JOIN PERMISSIONS p ON (m.MENU_ID = p.MENU_ID)  "

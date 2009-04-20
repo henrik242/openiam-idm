@@ -311,6 +311,25 @@ public class GroupDataServiceImpl implements GroupDataService {
 			return null;
 		return groupList;
 	}
+	
+	/**
+	 * Return an array of Groups that a user does not belong to
+	 * @param userId
+	 * @param nested - True, traverse the group hierarchy.  False, search the current hierarchy
+	 * @param parentGroupId - Group where the traversing will start
+	 * @return
+	 */
+	public List<Group> getGroupsNotLinkedToUser(String userId, String parentGroupId, boolean nested) {
+
+		if (userId == null)
+			throw new NullPointerException("userId id is null");
+
+		List<Group> groupList = groupDao.findGroupNotLinkedToUser(userId, parentGroupId);
+		if (groupList == null || groupList.size() == 0)
+			return null;
+		return groupList;
+	}		
+	
 
 	/**
 	 * This method adds the user to a group .<br>

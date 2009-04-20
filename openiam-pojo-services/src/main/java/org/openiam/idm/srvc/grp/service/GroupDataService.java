@@ -178,9 +178,17 @@ public interface GroupDataService {
 	 * 
 	 * @param userId
 	 * @return
-	 * @throws RemoteException
 	 */
 	public List<Group> getUserInGroups(String userId);
+	
+	/**
+	 * Return an array of Groups that a user does not belong to
+	 * @param userId
+	 * @param nested - True, traverse the group hierarchy.  False, search the current hierarchy
+	 * @param parentGroupId - Group where the traversing will start
+	 * @return
+	 */
+	public List<Group> getGroupsNotLinkedToUser(String userId, String parentGroupId, boolean nested);
 
 	/**
 	 * This method gets all users assigned to a particular group .<br>
