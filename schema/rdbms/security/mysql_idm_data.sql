@@ -107,8 +107,8 @@ INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SUPER_SEC_ADMIN','SUPE
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('END_USER','END_USER_GRP', 'USR_SEC_DOMAIN');
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ROOT', NULL ,'Root','Root', null, 'en',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECURITY','ROOT','Access Mngr','Access Manager','security/index.jsp', 'en',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDMAN','ROOT','Identity Mngr','User Management','idman/index.jsp', 'en',2);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECURITY','ROOT','Access Control','Access Control','security/index.jsp', 'en',1);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDMAN','ROOT','User Admin','User Admin','idman/index.jsp', 'en',2);
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_POLICY','ROOT','Policy','Policy','security/policy.do?method=init&nav=reset', 'en',1,12);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ADMIN','ROOT','Administration','Administration','admin/index.jsp', 'en',20);
@@ -129,7 +129,7 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISP
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('EDITORG','ORG','Edit','Edit Org','idman/org.do?method=editOrg&mode=EDIT', 'en',4);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('DELORG','ORG','Del','Del Org','idman/org.do?method=delOrg&mode=DEL', 'en',5);
 
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_ACL','SECURITY','Resource Manager','Resource Manager','security/resourceTree.do?method=init&categoryId=ACL&menuId=SECURITY_ACL', 'en',1,6);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_ACL','SECURITY','Resources','Resources','security/resourceTree.do?method=init&categoryId=ACL&menuId=SECURITY_ACL', 'en',1,6);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_GROUP','SECURITY','Group','Group','security/group.do?method=init&nav=reset', 'en',1,4);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_MENU','SECURITY','Menu','Menu','security/menu.do?method=init&nav=reset', 'en',1,8);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_ROLE','SECURITY','Role','Role','security/role.do?method=viewRoles&nav=reset', 'en',1,2);
