@@ -1,6 +1,7 @@
 package org.openiam.idm.srvc.user.service;
 
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.util.db.Search;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface UserDAO {
 	public List<User> findByLastUpdateRange(Date startDate, Date endDate);
 	public List findByExample(User instance);
 	
-	public List<User> search(Search search);
+	public List<User> search(UserSearch search);
 	public List findByStatus(String status);
 	
 	/* Methods to get staff and supervisors lists */

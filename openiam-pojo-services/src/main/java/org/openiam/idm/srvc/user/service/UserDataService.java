@@ -19,6 +19,7 @@ import org.openiam.idm.srvc.user.dto.Supervisor;
 import org.openiam.idm.srvc.user.dto.User;
 import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.idm.srvc.user.dto.UserNote;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.util.db.Search;
 
 /**
@@ -67,7 +68,7 @@ public interface UserDataService {
 
 	public List<User> findUsersByStatus(String status);
 
-	public List<User> search(Search search);
+	public List<User> search(UserSearch search);
 
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.user.service.UserDataService#addAttribute(org.openiam.idm.srvc.user.dto.UserAttribute)

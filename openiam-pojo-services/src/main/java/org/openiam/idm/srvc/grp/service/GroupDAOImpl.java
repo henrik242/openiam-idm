@@ -275,7 +275,7 @@ public class GroupDAOImpl implements org.openiam.idm.srvc.grp.service.GroupDAO {
     	try{
     		SQLQuery qry = session.createSQLQuery("SELECT  GRP_ID, GRP_NAME, CREATE_DATE, CREATED_BY, COMPANY_ID,  " +
     				" PARENT_GRP_ID, INHERIT_FROM_PARENT, PROVISION_METHOD, PROVISION_OBJ_NAME, " +
-    				" TYPE_ID, GROUP_CLASS, GROUP_CLASS, STATUS, LAST_UPDATE, LAST_UPDATED_BY  " +
+    				" TYPE_ID, GROUP_CLASS, GROUP_DESC, STATUS, LAST_UPDATE, LAST_UPDATED_BY  " +
 				 "  FROM 	GRP g  " +
 				 "  WHERE g.GRP_ID NOT IN (SELECT GRP_ID FROM USER_GRP ug WHERE ug.USER_ID = :userId ) ");
 	    	

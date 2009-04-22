@@ -46,14 +46,11 @@ public class UserMgrSearchTest extends AbstractDependencyInjectionSpringContextT
 
 	public void testUserSearch_lastName() {
 		
-		QueryCriteria qc = new QueryCriteria();
-		
-		Search search = new SearchImpl();
-		qc.like(UserSearchField.LastName, "s%");
-		search.addSearchCriteria(qc);
+
+		UserSearch search = new UserSearch();
+		search.setLastName("S%");
 		List results = userMgr.search(search);
 		assertNotNull(results);
-		//this.assertEquals(4, results.size());
 		
 		// iterate through list to ensure fetching.
 		
@@ -75,50 +72,73 @@ public class UserMgrSearchTest extends AbstractDependencyInjectionSpringContextT
 		
 		QueryCriteria qc = new QueryCriteria();
 		
-		Search search = new SearchImpl();
-		qc.like(UserSearchField.FirstName, "s%");
-		search.addSearchCriteria(qc);
+		//Search search = new SearchImpl();
+		UserSearch search = new UserSearch();
+		search.setFirstName("s%");
+		//search.addSearchCriteria(qc);
 		List results = userMgr.search(search);
 		assertNotNull(results);
-		this.assertEquals(4, results.size());
+		this.assertEquals(3, results.size());
+
+		int size = results.size();
+		for (int i = 0; i < size; i++) {
+			User usr = (User) results.get(i);
+			System.out.println ( usr.getFirstName() + " " + usr.getLastName() );
+		 	Set emailSet = usr.getEmailAddress();
+		 	Iterator<EmailAddress> it = emailSet.iterator();
+		 	while (it.hasNext()) {
+		 		EmailAddress em = it.next();
+		 		System.out.println( "- " + em.getEmailAddress());
+		 	}
+		}
 		
 	}
 
 	public void testUserSearch_firstAndLastName() {
 		
-		QueryCriteria qc = new QueryCriteria();
-		
-		Search search = new SearchImpl();
-		qc.like(UserSearchField.FirstName, "A%");
-		search.addSearchCriteria(qc);
-		
-		QueryCriteria qc2 = new QueryCriteria();
-		qc2.like(UserSearchField.LastName, "S%");
-		search.addSearchCriteria(qc2);
+		UserSearch search = new UserSearch();
+
+		search.setFirstName("A%");
+		search.setLastName("S%");
 		
 		List results = userMgr.search(search);
 		assertNotNull(results);
-		this.assertEquals(2, results.size());
+		this.assertEquals(5, results.size());
 		
 	}
 
 
 	public void testUserSearch_Status() {
 		
-		QueryCriteria qc = new QueryCriteria();
-		
-		Search search = new SearchImpl();
-		qc.eq(UserSearchField.Status, "PENDING");
-		search.addSearchCriteria(qc);
-		
+		UserSearch search = new UserSearch();
+		search.setStatus("APPROVED");
+
 		
 		List results = userMgr.search(search);
 		assertNotNull(results);
-		this.assertEquals(17, results.size());
+		this.assertEquals(8, results.size());
 		
 	}
 
-	public void testUserSearch_Dept() {
+public void testUserInGroup() {
+	UserSearch search = new UserSearch();
+	search.setGroupId("END_USER_GRP");
+	List results = userMgr.search(search);
+	assertNotNull(results);
+	this.assertEquals(1, results.size());
+		
+	}
+	public void testUserInRole() {
+	UserSearch search = new UserSearch();
+	search.setRoleId("END_USER");
+	List results = userMgr.search(search);
+	assertNotNull(results);
+	this.assertEquals(1, results.size());
+		
+	}
+
+
+/*	public void testUserSearch_Dept() {
 		
 		QueryCriteria qc = new QueryCriteria();
 		
@@ -133,20 +153,7 @@ public class UserMgrSearchTest extends AbstractDependencyInjectionSpringContextT
 		
 	}
 
-	public void testUserSearch_MiddleInit() {
-		
-		QueryCriteria qc = new QueryCriteria();
-		
-		Search search = new SearchImpl();
-		qc.eq(UserSearchField.MiddleInitial, "M");
-		search.addSearchCriteria(qc);
-		
-		
-		List results = userMgr.search(search);
-		assertNotNull(results);
-		this.assertEquals(4, results.size());
-		
-	}
+
 
 	public void testUserSearch_Phone() {
 		
@@ -178,6 +185,7 @@ public class UserMgrSearchTest extends AbstractDependencyInjectionSpringContextT
 		
 	}
 	
+*/
 }
 
 

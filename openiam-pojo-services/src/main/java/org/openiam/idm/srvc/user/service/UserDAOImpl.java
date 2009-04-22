@@ -22,10 +22,13 @@ import org.hibernate.criterion.Order;
 import org.hibernate.HibernateException;
 
 import org.openiam.base.id.SequenceGenDAO;
+import org.openiam.idm.srvc.continfo.dto.EmailAddress;
+import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.org.dto.Organization;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.idm.srvc.user.dto.UserSearchField;
 import org.openiam.util.db.Search;
 import org.openiam.util.db.QueryCriteria;
@@ -47,7 +50,7 @@ public class UserDAOImpl implements UserDAO{
 	private SequenceGenDAO seqGenDao;
 	private String emailSearchVal;
 	private String phoneSearchVal;
-	private Integer maxResultSetSize = 100;
+	private Integer maxResultSetSize;
 
 
 	
@@ -177,29 +180,185 @@ public class UserDAOImpl implements UserDAO{
 	
 
 	
-/*	public List<Role>findIndirectUserRoles(String userId) {
-		Session session = sessionFactory.getCurrentSession();
-
-		SQLQuery qry = session.createSQLQuery("SELECT role.ROLE_ID, role.SERVICE_ID, role.ROLE_NAME, "
-							+ " 	role.CREATE_DATE, role.CREATED_BY, role.DESCRIPTION," 
-							+ " 	role.PROVISION_OBJ_NAME, role.PARENT_ROLE_ID, role.TYPE_ID " 
-							+ "  FROM ROLE role  "
-							+ "  	JOIN GRP_ROLE grp_role  "
-							+ "		JOIN USER_GRP user_grp  "
-							+ "     ON (role.ROLE_ID = grp_role.ROLE_ID and " 
-							+ " 		grp_role.GRP_ID =  user_grp.GRP_ID) " 
-							+ "	WHERE user_grp.USER_ID = :userId");
+	
+	public List<User> search(UserSearch search) {
 		
-		qry.addEntity(Role.class);
-		qry.setString("userId", userId);
-		List<Role> result = (List<Role>) qry.list();
+		boolean firstName = false;
+		boolean lastName = false;
+		boolean status = false;
+		boolean deptCd = false;
+		boolean phoneAreaCd = false;
+		boolean phoneNbr = false;
+		boolean employeeId = false;
+		boolean groupId = false;
+		boolean roleId = false;
+		boolean emailAddress = false;
+		boolean orgId = false;
+		   
+		String select = " select DISTINCT u.USER_ID, u.TYPE_ID, " +
+			" u.TITLE, u.MIDDLE_INIT, u.LAST_NAME, u.FIRST_NAME," + 
+			" u.BIRTHDATE, u.STATUS, u.DEPT_NAME, u.DEPT_CD, " + 
+			" u.LAST_UPDATE, u.CREATED_BY, u.CREATE_DATE, u.SEX, " + 
+			" u.USER_TYPE_IND, u.SUFFIX, u.PREFIX, u.LAST_UPDATED_BY," + 
+			" u.LOCATION_NAME, u.LOCATION_CD, u.EMPLOYEE_TYPE, u.EMPLOYEE_ID, " +
+			" u.JOB_CODE, u.MANAGER_ID, u.COMPANY_OWNER_ID, u.COMPANY_ID, " +
+			" u.LAST_DATE, u.START_DATE, u.COST_CENTER, u.DIVISION," +
+			" u.PASSWORD_THEME, u.NICKNAME, u.MAIDEN_NAME, u.MAIL_CODE, " + 
+			" em.EMAIL_ID, em.NAME, em.EMAIL_ID, em.NAME, em.DESCRIPTION, " +
+			" em.EMAIL_ADDRESS, em.IS_DEFAULT, em.ACTIVE, em.PARENT_ID, em.PARENT_TYPE, " + 
+			" p.ACTIVE, p.AREA_CD, p.COUNTRY_CD, p.DESCRIPTION, p.IS_DEFAULT, " +
+			" p.NAME, p.PARENT_ID, p.PARENT_TYPE, p.PHONE_EXT, p.PHONE_ID, p.PHONE_NBR" +
+			" from 	USERS u LEFT JOIN USER_EMAIL_VW em on (u.USER_ID = em.PARENT_ID) " +
+			" 		LEFT JOIN USER_PHONE_VW p ON (u.USER_ID = p.PARENT_ID) " + 
+			"  		LEFT JOIN USER_GRP g ON ( g.USER_ID = u.USER_ID) " + 
+			"	 	LEFT JOIN USER_ROLE_VW urv on (u.USER_ID = urv.USER_ID) " ;
+
+		StringBuffer where = new StringBuffer();
+
+		
+		if (search.getFirstName() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.FIRST_NAME like :firstName ");
+			firstName = true;
+		}
+		if (search.getLastName() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.LAST_NAME like :lastName ");
+			lastName = true;
+		}
+		if (search.getStatus() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.STATUS = :status ");
+			status = true;
+		}
+		if (search.getDeptCd() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.DEPT_CD = :deptCd ");
+			deptCd = true;
+		}
+		if (search.getEmployeeId() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.EMPLOYEE_ID = :employeeId ");
+			employeeId =true;
+		}
+		if (search.getOrgId() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" u.COMPANY_ID = :orgId ");
+			orgId = true;
+		}
+		if (search.getPhoneAreaCd() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" p.AREA_CD = :phoneAreaCd ");
+			phoneAreaCd =true;
+		}
+		if (search.getPhoneNbr() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" p.PHONE_NBR = :phoneNbr ");
+			phoneNbr = true;
+		}
+
+		if (search.getEmailAddress() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" em.EMAIL_ADDRESS = :emailAddress ");
+			emailAddress = true;
+		}		
+		if (search.getGroupId() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" g.GRP_ID = :groupId ");
+			groupId =true;
+		}
+		if (search.getRoleId() != null) {
+			if (where.length() > 0 ) {
+				where.append(" and ");
+			}
+			where.append(" urv.ROLE_ID = :roleId ");
+			roleId = true;
+		}
+		
+		if ( where.length() > 0) {
+			select = select + " WHERE " + where.toString() ;
+		}
+		
+		log.info("search select: " + select);
+		
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		SQLQuery qry = session.createSQLQuery(select);
+		qry.addEntity(User.class);
+		if (firstName) {
+			qry.setString("firstName", search.getFirstName() ); 
+		}
+		if (lastName) {
+			qry.setString("lastName", search.getLastName()); 
+		}		
+		if (status) {
+			qry.setString("status", search.getStatus()); 
+		}	
+		if (deptCd) {
+			qry.setString("deptCd", search.getDeptCd()); 
+		}	
+		if (employeeId) {
+			qry.setString("employeeId", search.getEmployeeId()); 
+		}	
+		if (orgId) {
+			qry.setString("orgId", search.getOrgId()); 
+		}	
+		if (phoneAreaCd) {
+			qry.setString("phoneAreaCd", search.getPhoneAreaCd()); 
+		}	
+		if (phoneNbr) {
+			qry.setString("phoneNbr", search.getPhoneNbr()); 
+		}			
+		if (emailAddress) {
+			qry.setString("emailAddress", search.getEmailAddress()); 
+		}	
+		if (groupId) {
+			qry.setString("groupId", search.getGroupId()); 
+		}
+		if (roleId) {
+			qry.setString("roleId", search.getRoleId()); 
+		}		
+		
+
+		
+		List<User> result = (List<User>) qry.list();
 		if (result == null || result.size() == 0)
 			return null;
-		return result;		
-	}
-*/
+		return result;			
 
-	public List<User> search(Search search) {
+		
+	}
+
+
+
+
+
+
+
+	
+	
+	public List<User> searchOld(Search search) {
 		log.debug("Search for user based on search parameters.");
 		boolean phoneLinked = false;
 		boolean roleLinked = false;

@@ -5,6 +5,7 @@ import org.openiam.idm.srvc.user.dto.User;
 import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.idm.srvc.user.dto.UserNote;
 import org.openiam.idm.srvc.user.dto.Supervisor;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.util.db.Search;
 import org.openiam.idm.srvc.continfo.dto.Address;
 import org.openiam.idm.srvc.continfo.dto.ContactConstants;
@@ -312,7 +313,7 @@ public class UserMgr implements UserDataService {
 	 * @see org.openiam.idm.srvc.user.service.UserDataService#search(org.openiam.util.db.Search)
 	 */
 	
-	public List<User> search(Search search) {
+	public List<User> search(UserSearch search) {
 		return userDao.search(search);
 	}
 

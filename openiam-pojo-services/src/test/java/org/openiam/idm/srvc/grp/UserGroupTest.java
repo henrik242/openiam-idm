@@ -125,6 +125,15 @@ public class UserGroupTest extends AbstractDependencyInjectionSpringContextTests
 		
 	}
 	
+	public void test(){
+		
+		List<Group> grpList = grpMgr.getGroupsNotLinkedToUser("3006", null, false);
+		assertNotNull(grpList);
+		
+		
+	}
+	
+	
 	public void testUserInGroups() {
 		List<Group> grpList = grpMgr.getUserInGroups(userId);
 		assertNotNull(grpList);
