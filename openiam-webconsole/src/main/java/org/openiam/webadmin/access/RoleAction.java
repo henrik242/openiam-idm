@@ -49,6 +49,7 @@ import org.openiam.webadmin.busdel.security.SecurityAccess;
 import org.openiam.webadmin.busdel.security.RoleDataServiceAccess;
 import org.openiam.webadmin.busdel.identity.UserDataServiceAccess;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.idm.srvc.user.dto.UserSearchField;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.openiam.idm.srvc.secdomain.service.*;
@@ -416,7 +417,7 @@ public class RoleAction extends NavigationDispatchAction {
 		
 		  
 		try {
-        	Search search = createSearch((DynaValidatorForm)form);     
+        	UserSearch search = createSearch((DynaValidatorForm)form);     
     		List userList = userMgr.search(search);
     		
     		System.out.println("serviceId = " + serviceId);
@@ -806,7 +807,7 @@ public class RoleAction extends NavigationDispatchAction {
 		option = new TabOption("Access Controls", false, "security/role.do?method=acl",
 				"roleresources.jsp");
 		l.add(option);
-
+	
 		option = new TabOption("Permissions", false,
 				"security/role.do?method=permissions", "permissionlist.jsp");
 		l.add(option);
@@ -861,19 +862,13 @@ public class RoleAction extends NavigationDispatchAction {
 		}
 	}
 	
-    private Search createSearch(DynaValidatorForm form) {
-        Search search = new SearchImpl();
-        QueryCriteria qc = new QueryCriteria();
-      
-
-		qc.like(UserSearchField.FirstName, "%");
-		search.addSearchCriteria(qc);
-		
+    private UserSearch createSearch(DynaValidatorForm form) {
+        UserSearch search = new UserSearch();
+        
 
         // lastname
         if (form.get("lastName")!= null && ((String) form.get("lastName")).length()>0) {
-    		qc.like(UserSearchField.LastName, form.get("lastName"));
-    		search.addSearchCriteria(qc);
+    		search.setLastName((String) form.get("lastName"));
     	}
 
 

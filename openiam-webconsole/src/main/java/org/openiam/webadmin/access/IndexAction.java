@@ -64,6 +64,11 @@ public class IndexAction extends NavigationAction {
 
 		ActionErrors err = new ActionErrors();
 
+		String expire = request.getParameter("expire");
+		if (expire != null && expire.equals("1")) {
+			request.setAttribute("expmsg", "Session has expired. Please login again");
+		}
+		
 		Locale locale = getLocale(request);
 		String langCd = locale.getLanguage();
 

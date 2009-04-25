@@ -5,6 +5,9 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import diamelle.security.auth.*;
 
 /**
@@ -20,6 +23,8 @@ public class SessionFilter implements javax.servlet.Filter {
 
 	private FilterConfig filterConfig = null;
 	private String expirePage = null;
+	private String excludePath = null;
+	private static final Log log = LogFactory.getLog(SessionFilter.class);
 
 
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -28,6 +33,8 @@ public class SessionFilter implements javax.servlet.Filter {
 
 		// the expire page is the url of the page to display if the session has expired.
 		this.expirePage = filterConfig.getInitParameter("expirePage");
+		excludePath = filterConfig.getInitParameter("excludePath");
+	
 
 	}
 
@@ -40,7 +47,8 @@ public class SessionFilter implements javax.servlet.Filter {
 		ServletResponse servletResponse,
 		FilterChain chain)
 		throws IOException, ServletException {
-
+		
+		String userId = null;
 
 
 		ServletContext context = getFilterConfig().getServletContext();
@@ -48,13 +56,34 @@ public class SessionFilter implements javax.servlet.Filter {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		HttpSession session = request.getSession();
+		boolean loginPage = false;
 		
-		if (session == null) {
-			response.sendRedirect(expirePage);
-			return;
+		
+
+		log.info("requestURI:" + request.getRequestURI());
+		
+		String url = request.getRequestURI();
+		
+		System.out.println("filter url=" + url);
+		
+		if ( url == null || url.equals("/") || url.endsWith("index.do") || url.endsWith("login.do")   ) {
+			System.out.println("login page=true");
+			loginPage = true; 
+		//boolean isJsp = url.endsWith(".jsp");
+		}
+		
+		if (!loginPage && isCode(url) && !isExcludePath(url) ) 		{
+		/* There is no User attribute so redirect to login page */
+			if(session.getAttribute("userId") == null)	{
+				log.info("Session expired, redirecting to login page");
+				response.sendRedirect(expirePage);
+				return;
+			}
 		}
 		chain.doFilter(servletRequest, servletResponse);
-		return;
+
+		
+
 		
 
 
@@ -72,5 +101,26 @@ public class SessionFilter implements javax.servlet.Filter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean isCode(String url) {
+
+		if (url.contains(".jsp") || url.contains(".do") || url.contains(".report") || url.contains(".selfserve")) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isExcludePath(String url) {
+		
+		if (url == null) {
+			return false;
+		}
+
+		if (url.contains(excludePath) ) {
+			System.out.println("exclude found..");
+			return true;
+		}
+		return false;
 	}
 }

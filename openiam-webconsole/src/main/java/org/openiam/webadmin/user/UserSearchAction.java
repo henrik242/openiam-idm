@@ -39,12 +39,18 @@ import org.openiam.webadmin.busdel.identity.*;
 import org.openiam.webadmin.busdel.security.GroupDataServiceAccess;
 import org.springframework.web.context.WebApplicationContext;
 
-//import diamelle.ebc.user.*;
 import diamelle.common.status.*;
 import diamelle.common.view.DataView;
+
+import org.openiam.idm.srvc.grp.dto.Group;
+import org.openiam.idm.srvc.grp.service.GroupDataService;
+import org.openiam.idm.srvc.org.service.OrganizationDataService;
+import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.service.RoleDataService;
 import org.openiam.idm.srvc.user.service.UserMgr;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.idm.srvc.user.dto.UserSearchField;
 import org.openiam.util.db.Search;
 
@@ -61,15 +67,25 @@ import org.apache.struts.validator.DynaValidatorForm;
 
 public class UserSearchAction extends NavigationDispatchAction  {
 
+	
+	private RoleDataService roleDataService;
+	private GroupDataService groupManager;
+	private OrganizationDataService orgManager;
+	private String defaultSecurityDoamin;
+	
+	
     public ActionForward view ( ActionMapping mapping, ActionForm form, 
 			HttpServletRequest request, HttpServletResponse res ) 
 			throws IOException, ServletException {
     	
     	// get groups and set it into the request object
-      	 WebApplicationContext webContext =  getWebApplicationContext();
-    	 GroupDataServiceAccess groupDataAcc = new GroupDataServiceAccess(webContext);
+      	// WebApplicationContext webContext =  getWebApplicationContext();
+    	// GroupDataServiceAccess groupDataAcc = new GroupDataServiceAccess(webContext);
     	 
-    	 request.setAttribute("groupList", groupDataAcc.getAllGroupListAsLabels()); 
+    	 request.setAttribute("groupList", allGroupListAsLabels()); 
+    	 request.setAttribute("roleList", allRoleListAsLabels()); 
+    	// request.setAttribute("orgList", groupDataAcc.getAllGroupListAsLabels()); 
+    	// request.setAttribute("deptList", groupDataAcc.getAllGroupListAsLabels()); 
     	
     	HttpSession session = request.getSession();
     	List statusList = (List)session.getAttribute("statusList");
@@ -93,16 +109,18 @@ public class UserSearchAction extends NavigationDispatchAction  {
          	
         	WebApplicationContext webContext =  getWebApplicationContext();
         	UserDataService userMgr = (UserDataService)webContext.getBean("userManager");
-        	
-        	GroupDataServiceAccess groupDataAcc = new GroupDataServiceAccess(webContext);
-        	List groupList = groupDataAcc.getAllGroupListAsLabels();
 
-        	System.out.println("Grouplist = " + groupList);
+	       	 request.setAttribute("groupList", allGroupListAsLabels()); 
+	    	 request.setAttribute("roleList", allRoleListAsLabels()); 
         	
-            //UserSearch search = createSearch((DynaValidatorForm)form);     
+        //	GroupDataServiceAccess groupDataAcc = new GroupDataServiceAccess(webContext);
+        //	List groupList = groupDataAcc.getAllGroupListAsLabels();
+
+        //	System.out.println("Grouplist = " + groupList);
+        	  
             
     		//Search search = new SearchImpl();
-        	Search search = createSearch((DynaValidatorForm)form);     
+        	UserSearch search = createSearch((DynaValidatorForm)form);     
     		List userList = userMgr.search(search);
         	
 
@@ -116,7 +134,7 @@ public class UserSearchAction extends NavigationDispatchAction  {
 			  	 request.setAttribute("currentPage",new Integer(0));
 			}
  	 
-    	 request.setAttribute("groupList", groupList); 
+	        //request.setAttribute("groupList", groupList); 
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -158,90 +176,98 @@ public class UserSearchAction extends NavigationDispatchAction  {
     	 return (mapping.findForward("success"));
       	
       }
-    private Search createSearch(DynaValidatorForm form) {
-        Search search = new SearchImpl();
-        QueryCriteria qc = new QueryCriteria();
-
-        
-		//qc.like(UserSearchField.LastName, "s%");
-		//search.addSearchCriteria(qc);
-
-		qc.like(UserSearchField.FirstName, "%");
-		search.addSearchCriteria(qc);
-		
-        // firstname
-       // if (form.get("firstName")!= null && ((String) form.get("firstName")).length()>0) {
-    ///		qc.like(UserSearchField.FirstName, form.get("firstName"));
-    //		search.addSearchCriteria(qc);
-    //	}
-        // lastname
+ 
+    private UserSearch createSearch(DynaValidatorForm form) {
+        UserSearch search = new UserSearch();
+     
+         // lastname
         if (form.get("lastName")!= null && ((String) form.get("lastName")).length()>0) {
-    		qc.like(UserSearchField.LastName, form.get("lastName"));
-    		search.addSearchCriteria(qc);
+        	search.setLastName(form.get("lastName")+"%");
     	}
 
-
+        if (form.get("firstName")!= null && ((String) form.get("firstName")).length()>0) {
+    		search.setFirstName(form.get("firstName")+"%");
+    	}
+        if (form.get("companyName")!= null && ((String) form.get("companyName")).length()>0) {
+    		search.setOrgId((String)form.get("companyName"));
+    	}
+        
+        if (form.get("dept")!= null && ((String) form.get("dept")).length()>0) {
+    		search.setDeptCd((String)form.get("dept"));
+    	}
+        if (form.get("areaCode")!= null && ((String) form.get("areaCode")).length()>0) {
+        	search.setPhoneAreaCd((String)form.get("areaCode"));
+    	}
+        if (form.get("phoneNumber")!= null && ((String) form.get("phoneNumber")).length()>0) {
+        	search.setPhoneNbr((String)form.get("phoneNumber"));
+    	}
+        if (form.get("role")!= null && ((String) form.get("role")).length()>0) {
+        	search.setRoleId((String)form.get("role"));
+    	} 
+        if (form.get("group")!= null && ((String) form.get("group")).length()>0) {
+        	search.setGroupId((String)form.get("group"));
+    	} 
+        if (form.get("email")!= null && ((String) form.get("email")).length()>0) {
+        	search.setEmailAddress((String)form.get("email"));
+        }
         return search;
      }
-
+    
+	public List allGroupListAsLabels() {
+		List<LabelValueBean> newCodeList = new LinkedList();
+		List<Group> grpList = groupManager.getAllGroups();
+		if (grpList != null && grpList.size() > 0) {
+			newCodeList.add(new LabelValueBean("",""));
+	    	for (int i = 0; i < grpList.size(); i++) {       		
+	    		Group val = grpList.get(i);
+	    	 	LabelValueBean label = new LabelValueBean(val.getGrpName(),val.getGrpId());
+	    	 	newCodeList.add(label);
+	    	}
+		}
+		return newCodeList;
+    }
+	public List allRoleListAsLabels() {
+		List<LabelValueBean> newCodeList = new LinkedList();
+		Role[] roleAry = roleDataService.getRolesInService(defaultSecurityDoamin);
+		if (roleAry != null && roleAry.length > 0) {
+			newCodeList.add(new LabelValueBean("",""));
+	    	for (int i = 0; i < roleAry.length; i++) {       		
+	    		Role val = roleAry[i];
+	    	 	LabelValueBean label = new LabelValueBean(val.getRoleName(),val.getId().getRoleId());
+	    	 	newCodeList.add(label);
+	    	}
+		}
+		return newCodeList;
+    }
+	
+    
+	public RoleDataService getRoleDataService() {
+		return roleDataService;
+	}
+	public void setRoleDataService(RoleDataService roleDataService) {
+		this.roleDataService = roleDataService;
+	}
+	public GroupDataService getGroupManager() {
+		return groupManager;
+	}
+	public void setGroupManager(GroupDataService groupManager) {
+		this.groupManager = groupManager;
+	}
+	public OrganizationDataService getOrgManager() {
+		return orgManager;
+	}
+	public void setOrgManager(OrganizationDataService orgManager) {
+		this.orgManager = orgManager;
+	}
+	public String getDefaultSecurityDoamin() {
+		return defaultSecurityDoamin;
+	}
+	public void setDefaultSecurityDoamin(String defaultSecurityDoamin) {
+		this.defaultSecurityDoamin = defaultSecurityDoamin;
+	}
     
 
-    /**
-     * Retrieves search criteria from Form and sets in the UserSearch object
-     */
- /*   private UserSearch createSearch(DynaValidatorForm form) {
-      UserSearch search = new UserSearch();
-      // area code
-      if (form.get("areaCode") != null && ((String) form.get("areaCode")).length()>0) {
-        search.setAreaCode((String) form.get("areaCode"));
-      }
-      // phone number
-      if (form.get("phoneNumber") != null && ((String) form.get("phoneNumber")).length()>0) {
-        search.setPhoneNumber((String) form.get("phoneNumber"));
-      }
-      // userId
-      if (form.get("login") != null && ((String) form.get("login")).length()>0) {
-        search.setLogin((String) form.get("login"));
-      }
-      // status
-       if (form.get("status") != null && ((String) form.get("status")).length()>0) {
-       	search.setStatus((String) form.get("status"));
-      }
 
-      // companyId
-      if (form.get("companyName")!= null && ((String) form.get("companyName")).length()>0) {
-        search.setCompanyName((String) form.get("companyName"));
-      }
-      if (form.get("group")!= null && ((String) form.get("group")).length()>0) {
-        search.setGroup((String) form.get("group"));
-      }
-      // firstname
-      if (form.get("firstName")!= null && ((String) form.get("firstName")).length()>0) {
-        search.setFirstName((String) form.get("firstName"));
-        search.addSearchOperator("firstName", (String) form.get("operationFN"));
-      }
-      // lastname
-      if (form.get("lastName")!= null && ((String) form.get("lastName")).length()>0) {
-        search.setLastName((String) form.get("lastName"));
-        search.addSearchOperator("lastName", (String) form.get("operationLN"));
-      }
-      // email
-      if (form.get("email")!= null && ((String) form.get("email")).length()>0) {
-        search.setEmail((String) form.get("email"));
-        search.addSearchOperator("email", (String) form.get("operationEmail"));
-      }
-      // state
-      if (form.get("state")!= null && ((String) form.get("state")).length()>0) {
-        search.setState((String) form.get("state"));
-      }
-      // zip
-      if (form.get("postalCode")!= null && ((String) form.get("postalCode")).length()>0) {
-        search.setPostalCode((String) form.get("postalCode"));
-      }
-
-      return search;
-   }
-  */
 
 }
 

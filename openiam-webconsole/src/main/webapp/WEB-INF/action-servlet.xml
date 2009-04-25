@@ -46,6 +46,13 @@
 	<bean name="/admin/index"  class="org.openiam.webadmin.admin.AdminIndexAction">
     </bean>       
   
+  
+    <bean name="/idman/userSearch" class="org.openiam.webadmin.user.UserSearchAction">
+    	<property name="roleDataService" ref="roleDataService" />
+    	<property name="groupManager" ref="groupManager" />
+    	<property name="orgManager" ref="orgManager" />
+    	<property name="defaultSecurityDoamin" value="USR_SEC_DOMAIN" />
+    </bean>
  
      
 	

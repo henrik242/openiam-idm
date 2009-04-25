@@ -19,16 +19,6 @@ package org.openiam.webadmin.conn.mngsys;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
-import java.util.ResourceBundle;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,12 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
-import org.openiam.idm.srvc.mngsys.dto.SysAttributeMapping;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
-import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
-import org.openiam.idm.srvc.prov.request.dto.RequestUser;
-import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
-import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 import org.openiam.idm.srvc.user.service.UserDataService;
 
 

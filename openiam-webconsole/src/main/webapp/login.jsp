@@ -7,6 +7,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
+<% 
+
+String expirationMessage = (String)request.getAttribute("expmsg");
+
+
+%>
 
 <body bgcolor="white">
 
@@ -31,7 +37,15 @@
  		  <font></font>
  		</td>
   </tr>
-		
+	
+<% if (expirationMessage !=null && expirationMessage.length() > 0) { %>
+	<tr>
+		<td bgcolor="#FFFFCC" align="center" colspan="2">
+				<font color="red"><b><%=expirationMessage %></b></font>		
+		</td>
+
+	</tr>
+<% } %>	
 		
 	<tr>
 	  <td>&nbsp;</td>

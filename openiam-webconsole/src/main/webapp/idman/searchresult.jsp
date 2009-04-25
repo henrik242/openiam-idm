@@ -36,7 +36,7 @@
 
 <table width="100%" border="0" cellspacing="1" cellpadding="1" align="center">
   <tr>
-     <td colspan="6">
+     <td colspan="6" class="normaltext">
         <b>Search Results - <%=recordCount%> Records Found.</b>
      </td>
   </tr>
@@ -58,14 +58,9 @@
   
   %>
   
-  <%
-     if ((x%2) != 0) {
-       
-   %>
-   <tr class="tddarknormal">
-   <% } else {%>
-   <tr class="tdlightnormal">
-   <%}%>
+
+   <tr class="normaltext">
+
   
      <td><%=ud.getUserId()%></td>
      <td>

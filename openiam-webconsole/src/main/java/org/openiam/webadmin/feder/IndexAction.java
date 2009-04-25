@@ -51,7 +51,10 @@ import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.openiam.webadmin.busdel.identity.*;
 
+import org.openiam.idm.srvc.org.dto.Organization;
+import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.service.dto.*;
+import org.springframework.web.context.WebApplicationContext;
 
 
 import diamelle.common.status.StatusCodeValue;
@@ -197,22 +200,25 @@ public class IndexAction extends NavigationAction {
         return newCodeList;
     }
 	private List getCompanyList() {
+        WebApplicationContext webContext =  getWebApplicationContext();
+        OrganizationDataService orgMgr = (OrganizationDataService)webContext.getBean("orgManager");
+        List<Organization> orgList = orgMgr.getAllOrganizations();
+        
+		
 	   	ArrayList newCodeList = new ArrayList();
-		try {
-			CompanySearch search = new CompanySearch();
-			List companyList = compAccess.searchCompany(search);
-	        if (companyList != null && companyList.size() > 0) {
+
+			//CompanySearch search = new CompanySearch();
+			//List companyList = compAccess.searchCompany(search);
+	        if (orgList != null && orgList.size() > 0) {
         	newCodeList.add(new LabelValueBean("",""));
-        	for (int i=0; i< companyList.size(); i++) {       		
-        		CompanyData val = (CompanyData)companyList.get(i);
-        	 	LabelValueBean label = new LabelValueBean(val.getCompanyName(),val.getCompanyId());
+        	for (int i=0; i< orgList.size(); i++) {       		
+        		Organization val = (Organization)orgList.get(i);
+        	 	LabelValueBean label = new LabelValueBean(val.getOrganizationName(),val.getOrgId());
         	 	newCodeList.add(label);
         	}
         }
 
-		}catch(RemoteException re) {
-			re.printStackTrace();
-		}
+
 	    return newCodeList;	
 	}
 	private List getAllServices() {

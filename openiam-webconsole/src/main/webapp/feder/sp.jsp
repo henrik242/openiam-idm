@@ -51,20 +51,6 @@
         </tr>
 
 		<tr>
-        	<td class="tddark" align="right">SP Handler</td>
-          	<td class="tdlight">
-          		<select>
-          			<option></option>
-          			<option>Java J2EE - JBoss</option>
-          			<option>Java J2EE - Weblogic</option>
-          			<option>Java J2EE - Websphere</option>
-          			<option>IIS</option>
-          			<option>Apache</option>
-          		</select>
-          		<a href="home.jsp?bodyjsp=/feder/spadapter.jsp">Edit</a>
-          	</td>
-        </tr>
-		<tr>
         	<td class="tddark" align="right">Protocol</td>
           	<td class="tdlight">
           		<select>
@@ -91,7 +77,18 @@
        	<td class="tddark" align="right">Import Certificate (URL)</td>
          	<td class="tdlight"><input type="text" size="30"></td>
      </tr>  
-  
+ 
+ 		<tr>
+        	<td class="tddark" align="right">Enable Federated Provisioning</td>
+          	<td class="tdlight"><input type="checkbox">
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Provisioning Receiver URL</td>
+          	<td class="tdlight"><input type="text" value="" size="40"></td>
+        </tr> 
+         
     <tr>
    		<td colspan="2" class="tddark" align="center">SAML Profile</td>
     </tr>
@@ -114,6 +111,28 @@
          		</table>
          	</td>
      </tr>  
+
+  	<tr>
+   	<td colspan="2" class="tddark" align="center">Assertion Attribute Mapping</td>
+    </tr> 
+	<tr>
+       	<td class="tddark" align="right">Attribute Name:</td>
+         	<td class="tdlight">
+         						<select>
+         							<option> </option>
+         							<option>userId</option>
+         							<option>loginId</option>
+         							<option>email</option>
+         							<option>phone</option>
+         							<option>address</option>
+         							<option>Custom Attribute</option>
+         					    </select>
+         					     <textarea cols="60" rows="3"></textarea><br>
+         					    <a href="">Add</a> | <a href="">Delete</a>
+         						
+         	</td>
+     </tr>                
+
               
     <tr>
    	<td colspan="2" class="tddark" align="center">Organization Information</td>

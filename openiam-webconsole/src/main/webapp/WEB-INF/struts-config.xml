@@ -15,24 +15,21 @@
 	<!--  User and Identity related forms -->
         <form-bean name="searchForm" type="org.apache.struts.validator.DynaValidatorForm">
            <form-property name="personId" type="java.lang.String"/>
-           <form-property name="login" type="java.lang.String"/>
            <form-property name="group" type="java.lang.String"/>
+           <form-property name="role" type="java.lang.String"/>
            <form-property name="companyName" type="java.lang.String"/>
+            <form-property name="dept" type="java.lang.String"/>
            <form-property name="areaCode" type="java.lang.String"/>
            <form-property name="phoneNumber" type="java.lang.String"/>
            <form-property name="companyId" type="java.lang.String"/>
            <form-property name="state" type="java.lang.String"/>
-           <form-property name="operationFN" type="java.lang.String"/>
            <form-property name="firstName" type="java.lang.String"/>
-           <form-property name="postalCode" type="java.lang.String"/>
-           <form-property name="operationLN" type="java.lang.String"/>
            <form-property name="lastName" type="java.lang.String"/>
            <form-property name="operationEmail" type="java.lang.String"/>
            <form-property name="email" type="java.lang.String"/>
            <form-property name="submit" type="java.lang.String"/>
            <form-property name="status" type="java.lang.String"/>
-           <form-property name="hpNumber" type="java.lang.String" />
-			<form-property name="hpSerialNbr" type="java.lang.String" />
+
       </form-bean>
        
        <form-bean name="orgSearchForm" type="org.apache.struts.validator.DynaValidatorForm">
@@ -541,9 +538,9 @@
        	</action>
 
 		   
-  
+               
     <action    path="/idman/userSearch"
-               type="org.openiam.webadmin.user.UserSearchAction"
+               type="org.springframework.web.struts.DelegatingActionProxy"
                name="searchForm"
                scope="request"
                parameter="action"

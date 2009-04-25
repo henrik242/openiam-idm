@@ -85,7 +85,7 @@ function openEditWin(url, title, resourceId) {
 <!-- Heading -->
  
   
-  	<tr bgcolor="#cccccc" class="th" align="center">
+  	<tr class="th" align="center">
      	<td align="center" class="th" colspan="2">
 			  <% 
         if (parentResource != null) {
@@ -122,7 +122,7 @@ function openEditWin(url, title, resourceId) {
   	
 <!-- Resources and Privileges -->
   	
-    <tr bgcolor="#cccccc">  
+    <tr>  
 
   <!-- Resources -->
 
@@ -134,8 +134,8 @@ function openEditWin(url, title, resourceId) {
 
            <html:hidden property="resourceParent" value="<%=parentResourceId%>" />
           
-           <tr bgcolor="#eeeeee">
-             <td class="normalTxtBlack" bgcolor="#eeeeee" align="center" colspan="2">
+           <tr >
+             <td class="tdlight"  align="center" colspan="2">
              <b>Resource Tree</b></td>
            </tr>
 					<% if ((resources != null)&&(!resources.isEmpty())) {
@@ -151,32 +151,58 @@ function openEditWin(url, title, resourceId) {
                 indents.append("->");
            %>
             
-  	         <tr bgcolor="#eeeeee"  valign="top" >
-	            <td width="80%" bgcolor="#cccccc" class="normalTxtBlack">          
+  	         <tr  valign="top" >
+	            <td width="80%"  class="tdlight">          
                    <input type="checkbox" name="resourceId" value="<%=resourceId%>"/>              
                    <%=indents.toString()%>
                    <a href="security/resourceTree.do?method=init&resourceId=<%=resourceId%>"><%=resourceId%></a>
                    <%=description%>
+                   <table border="1">
+                   	<tr class="tdlight">
+                   		<td>SSO Mapping</td>
+                   		<td colspan="2"></td>
+                   	</tr>
+                   	<tr class="tdlight">
+                   		<td>Protocol</td>
+                   		<td></td>
+                   	</tr>
+                   	<tr class="tdlight">
+                   		<td>Federation Required:</td>
+                   		<td></td>
+                   	</tr>
+                   	<tr class="tdlight">
+                   		<td>Service Provider:</td>
+                   		<td></td>
+                   	</tr>
+                   	<tr class="tdlight">
+                   		<td>App URL:</td>
+                   		<td></td>
+                   	</tr>
+                   	<tr class="tdlight">
+                   		<td>Target Attribute:</td>
+                   		<td>Attribute Policy:</td>
+                   	</tr>
+                   </table>
               </td>
               
               <td align="center">
               <a href="" 
               onclick="openEditWin('security/resource.do?method=init', 'Resource', <%=resourceId%>);return false;">
-              edit</a>              
+              Edit</a>              
               </td>
             </tr>
 						<% } %>
             
-            <tr bgcolor="#eeeeee">
-             <td class="normalTxtBlack" align="center" bgcolor="#eeeeee" colspan="2"> 
+            <tr class="tdlight">
+             <td class="normalTxtBlack" align="center" colspan="2"> 
              Click on a Resource to view its hierarchy</td>
            </tr>
             
             
 				<%	}  else { %>
 					
-           	<tr bgcolor="#eeeeee">
-             <td class="normalTxtBlack" bgcolor="#eeeeee" colspan="2" align="center"> 
+           	<tr>
+             <td class="tdlight" colspan="2" align="center"> 
              <br>
              No child resources.<br>
              Select a category, if available, on the left.
@@ -187,7 +213,7 @@ function openEditWin(url, title, resourceId) {
 			<% } %>		
             
          
-          <tr bgcolor="#eeeeee">
+          <tr>
             <td align="center" colspan="2">
               <html:submit property="submit" value="Add" onclick="openWin('/webconsole/security/resource.do?method=newResource', 'Resource', this.form);return false;"/>
  
@@ -214,7 +240,7 @@ function openEditWin(url, title, resourceId) {
 		 	<html:form method="POST" action="/security/resourceTree.do?method=removePrivilege" >
            <html:hidden property="resourceParent" value="<%=parentResourceId%>" />
     	    <TABLE width="100%">
-           <tr bgcolor="#eeeeee">
+           <tr class="tdlight">
                <td bgcolor="eeeeee" align = "center" valign="top">
                  <b>Role - Privilege</b>
               </td>
@@ -234,8 +260,8 @@ function openEditWin(url, title, resourceId) {
         	      
 
 	             %>
-                <tr bgcolor="#eeeeee"   >
-                  <td class="normalTxtBlack" valign="top">          
+                <tr   >
+                  <td class="tdlight" valign="top">          
                       <input type="checkbox" name="roleResourcePrivileges" checked="checked" value="<%=rr.getRoleId()+"-"+rr.getPrivilegeId()%>"/>
                        <%=rr.getRoleId() + ": " + rr.getPrivilegeId()%><br>
                    </td>
@@ -243,8 +269,8 @@ function openEditWin(url, title, resourceId) {
                  
                <% } else { %>   
 
-                <tr bgcolor="#eeeeee"   >
-                  <td class="normalTxtBlack" valign="top">          
+                <tr   >
+                  <td class="tdlight" valign="top">          
                       <input type="checkbox" name="roleResourcePrivileges" value="<%=rr.getRoleId()+"-"+rr.getPrivilegeId()%>"/>
                        <%=rr.getRoleId() + ": " + rr.getPrivilegeId()%><br>
                    </td>
@@ -252,8 +278,8 @@ function openEditWin(url, title, resourceId) {
                  
 				<%}}} else {%>
 				
-	           <tr bgcolor="#eeeeee">
-            	   <td bgcolor="eeeeee" align = "center" valign="top">
+	           <tr >
+            	   <td class="tdlight" align = "center" valign="top">
                 		No privileges defined for this resource. Go to
                 		Role/Access Control to define privileges.
         	      </td>
@@ -262,14 +288,14 @@ function openEditWin(url, title, resourceId) {
 				<% } %>
            		
            		
-		          <tr bgcolor="#eeeeee">
+		          <tr>
         		    <td align="center" colspan="2">
               			<html:submit property="submit" value="DeletePrivilege"/>
               			<html:submit property="submit" value="SelectAll"/>
              		</td>
            		</tr>
-	           <tr bgcolor="#eeeeee">
-            	   <td bgcolor="eeeeee" align = "center" valign="top">
+	           <tr >
+            	   <td class="tdlight" align = "center" valign="top">
                 		Mark privileges to be deleted 
         	      </td>
     	       </tr>

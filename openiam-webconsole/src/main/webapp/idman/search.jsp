@@ -13,6 +13,9 @@
 	//List groupList = (List)session.getAttribute("groupList");
 	List groupList = (List)request.getAttribute("groupList");
 	pageContext.setAttribute("groupList",groupList);
+	List roleList = (List)request.getAttribute("roleList");
+	pageContext.setAttribute("roleList",roleList);
+	
 %>
 <html:html>
 
@@ -35,32 +38,37 @@
          <td class="tdlight">
              <input name="lastName" type="text" size="30" maxlength="30" />
          </td>         
+         <td class="tddark" align="right">Organization</td>
+         <td class="tdlight">
+            <html:text property="companyName" size="30" maxlength="30" />
+         </td>
+   </tr>
+  <tr>
          <td class="tddark" align="right">E-Mail</td>
          <td class="tdlight">
              <input name="email" type="text" id="email" size="20" maxlength="50" />
         </td>
-   </tr>
-  <tr>
-        <td class="tddark" align="right">Login:</td>
-        <td class="tdlight">
-            <html:text property="login" size="30" maxlength="30" value="" />
+           
         </td>
        
+          <td class="tddark" align="right">Department</td>
+         <td class="tdlight">
+   </tr>
+   <tr>
         <td class="tddark" align="right">Phone<br>(AreaCode- Phone):
         <td class="tdlight">
           <html:text property="areaCode" size="3" maxlength="3" />
           <html:text property="phoneNumber" size="10" maxlength="10" />
         </td>
-   </tr>
-   <tr>
-         <td class="tddark" align="right">Company Name:</td>
-         <td class="tdlight">
-            <html:text property="companyName" size="30" maxlength="30" />
-         </td>
-         
-         <td class="tddark" align="right">State:</td>
-         <td class="tdlight">
-              <html:text property="state" size="15" maxlength="15" />
+
+         <td class="tddark" align="right">Group</td>
+          <td class="tdlight">
+              <html:select property="group">
+        		<html:options collection="groupList" property="value" labelProperty="label"/>
+        	  </html:select>
+           </td>      
+
+              
          </td>
    </tr>
    <tr>
@@ -71,23 +79,15 @@
         	  </html:select>
          </td>
          
-         <td class="tddark" align="right">Postal Code:</td>
-         <td class="tdlight">
-              <input name="postalCode" type="text" size="10" maxlength="10" />
+          <td class="tddark" align="right">Role</td>
+          <td class="tdlight">
+          	  <html:select property="role">
+        		<html:options collection="roleList" property="value" labelProperty="label"/>
+        	  </html:select>
+          </td>
+             
          </td>
    </tr>
-
-     <tr>
-          <td class="tddark" align="right">Group</td>
-          <td class="tdlight">
-              <html:select property="group">
-        		<html:options collection="groupList" property="value" labelProperty="label"/>
-        	  </html:select>
-           </td>
-          <td class="tddark" align="right"></td>
-          <td class="tdlight"></td>
-        </tr>
-
 
  
   <tr>

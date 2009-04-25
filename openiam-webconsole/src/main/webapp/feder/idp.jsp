@@ -43,7 +43,7 @@
         </tr>
 		<tr>
         	<td class="tddark" align="right">IdP Name:</td>
-          	<td class="tdlight"><input type="text" size="30"></td>
+          	<td class="tdlight"><input type="text" size="40"></td>
         </tr>
 		<tr>
         	<td class="tddark" align="right">IdP Protocol</td>
@@ -52,29 +52,86 @@
           							<option>SAML 2</option>
           							<option>SAML 1.1</option>
           							<option>WS-Federation</option>
-          							<option>Kerberos</option>
-          							<option>SUN AM</option>
-          							<option>Oracle AM</option>
           					    </select>
          						
           	</td>
         </tr>
 		<tr>
-        	<td class="tddark" align="right">IdP Handler</td>
+        	<td class="tddark" align="right">Authentication Provider</td>
           	<td class="tdlight">
           						<select>
-          							<option>Java J2EE</option>
+          							<option>OpenIAM Default Service</option>
           					    </select>
-          					    <a href="home.jsp?bodyjsp=/feder/spadapter.jsp">Edit</a>
+         						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Profile</td>
+          	<td class="tdlight">
+          		          		<select>
+          							<option>Post</option>
+          							<option>Artifact</option>
+          					    </select>
           						
           	</td>
         </tr>
+		<tr>
+        	<td class="tddark" align="right">Gateway Host</td>
+          	<td class="tdlight"><input type="text" value="http://demo.openiam.com/" size="40" >
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Subject Qualifier</td>
+          	<td class="tdlight"><input type="text" value="">
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Subject Format</td>
+          	<td class="tdlight"><select>
+          							<option>E-mail address</option>
+          							<option>X-509</option>
+          							<option>Custome</option>
+          					    </select>
+          					    <textarea cols="60" rows="3"></textarea>
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Gateway Transfer URL</td>
+          	<td class="tdlight"><input type="text" value="fed/transfer.do" size="40">
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Error URL</td>
+          	<td class="tdlight"><input type="text" value="fed/transferErr.do" size="40">
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Sign Assertion</td>
+          	<td class="tdlight"><input type="checkbox"></td>
+        </tr>  
+
+		<tr>
+        	<td class="tddark" align="right">Enable Federated Provisioning</td>
+          	<td class="tdlight"><input type="checkbox">
+          						
+          	</td>
+        </tr>
+		<tr>
+        	<td class="tddark" align="right">Provisioning Receiver URL</td>
+          	<td class="tdlight"><input type="text" value="" size="40"></td>
+        </tr> 
+        
 		<tr>
         	<td class="tddark" align="right">Status</td>
           	<td class="tdlight"></td>
         </tr>       
   	<tr>
-   	<td colspan="2" class="tddark" align="center">Adapter Contract</td>
+   	<td colspan="2" class="tddark" align="center">Assertion Attribute Mapping</td>
     </tr> 
 	<tr>
        	<td class="tddark" align="right">Attribute Name:</td>
@@ -88,28 +145,12 @@
          							<option>address</option>
          							<option>Custom Attribute</option>
          					    </select>
-         					    <input type="text" size="30">
-         					    <a href="">Add</a> | <a href="">Edit</a> | <a href="">Delete</a>
+         					     <textarea cols="60" rows="3"></textarea><br>
+         					    <a href="">Add</a> | <a href="">Delete</a>
          						
          	</td>
      </tr>                
-	<tr>
-       	<td class="tddark" align="right">Attribute Name:</td>
-         	<td class="tdlight">
-         						<select>
-         							<option> </option>
-         							<option>userId</option>
-         							<option>loginId</option>
-         							<option>email</option>
-         							<option>phone</option>
-         							<option>address</option>
-         							<option>Custom Attribute</option>
-         					    </select>
-         					    <input type="text" size="30">
-         					    <a href="">Add</a> | <a href="">Edit</a> | <a href="">Delete</a>
-         						
-         	</td>
-     </tr>  
+ 
 
         	<tr>
 		    	  <td>&nbsp;</td>
