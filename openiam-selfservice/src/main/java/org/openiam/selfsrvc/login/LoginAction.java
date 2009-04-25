@@ -188,6 +188,10 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 
 		//List menuList = loginAccess.getPermissions(sub.getUserId(), rootMenu, langCd);
 		//session.setAttribute("permissions", menuList);
+		
+		log.info("userId =" + sub.getUserId());
+		log.info("groupName =" + rightMenuGroup1);
+		log.info("lang cd: =" +  appConfiguration.getDefaultLang());
 
 		session.setAttribute("privateLeftMenuGroup",
 				navigationDataService.menuGroupSelectedByUser(leftMenuGroup,sub.getUserId(), appConfiguration.getDefaultLang()));

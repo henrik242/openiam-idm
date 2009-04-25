@@ -37,6 +37,7 @@ import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.meta.service.MetadataService;
 import org.openiam.idm.srvc.user.dto.Supervisor;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.idm.srvc.user.dto.UserSearchField;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.openiam.idm.srvc.org.dto.Organization;
@@ -136,7 +137,7 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
         	
         	HttpSession session = request.getSession();
 
-        	Search search = createSearch((DynaValidatorForm)form);     
+        	UserSearch search = createSearch((DynaValidatorForm)form);     
     		List userList = userMgr.search(search);
         	
         
@@ -151,46 +152,35 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return (mapping.findForward("success"));
+
+    	return (mapping.findForward("success"));
     }
     
 	
 
 
-    private Search createSearch(DynaValidatorForm form) {
-        Search search = new SearchImpl();
+    private UserSearch createSearch(DynaValidatorForm form) {
+        UserSearch search = new UserSearch();
      
-       
-
-        // lastname
+         // lastname
         if (form.get("lastName")!= null && ((String) form.get("lastName")).length()>0) {
-        	QueryCriteria qc = new QueryCriteria();
-    		qc.like(UserSearchField.LastName, form.get("lastName")+"%");
-    		search.addSearchCriteria(qc);
+        	search.setLastName(form.get("lastName")+"%");
     	}
 
         if (form.get("firstName")!= null && ((String) form.get("firstName")).length()>0) {
-        	QueryCriteria qc = new QueryCriteria();
-    		qc.like(UserSearchField.FirstName, form.get("firstName")+"%");
-    		search.addSearchCriteria(qc);
+    		search.setFirstName(form.get("firstName")+"%");
     	}
-        if (form.get("middleName")!= null && ((String) form.get("middleName")).length()>0) {
-        	QueryCriteria qc = new QueryCriteria();
-    		qc.eq(UserSearchField.MiddleInitial, form.get("middleName"));
-    		search.addSearchCriteria(qc);
-    	}
+
         
         if (form.get("dept")!= null && ((String) form.get("dept")).length()>0) {
-        	QueryCriteria qc = new QueryCriteria();
-    		qc.eq(UserSearchField.Department, form.get("dept"));
-    		search.addSearchCriteria(qc);
+    		search.setDeptCd((String)form.get("dept"));
     	}
         if (form.get("phone_nbr")!= null && ((String) form.get("phone_nbr")).length()>0) {
-        	QueryCriteria qc = new QueryCriteria();
-    		qc.like(UserSearchField.PhoneNumber, form.get("phone_nbr")+"%");
-    		search.addSearchCriteria(qc);
+        	search.setPhoneNbr((String)form.get("phone_nbr"));
     	}
- 
+        if (form.get("role")!= null && ((String) form.get("role")).length()>0) {
+        	search.setRoleId((String)form.get("role"));
+    	} 
         return search;
      }
     

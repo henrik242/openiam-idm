@@ -3,6 +3,7 @@ package org.openiam.selfsrvc.hire;
 import java.util.List;
 
 import org.openiam.idm.srvc.auth.login.LoginDataService;
+import org.openiam.idm.srvc.user.dto.UserSearch;
 import org.openiam.idm.srvc.user.dto.UserSearchField;
 import org.openiam.idm.srvc.user.service.UserDataService;
 import org.springframework.validation.Validator;
@@ -42,22 +43,20 @@ public class NewHireValidator implements Validator {
 		String userPrincipalName = newHireCmd.getUserPrincipalName();
 		String firstName = newHireCmd.getFirstName();
 		String lastName = newHireCmd.getLastName();
-		
-		// validate the UI
-		//valiDatePhoneNumbers(newHireCmd, err);
+
 		
 		try {
-		//Login login = loginManager.getLogin("USR_SEC_DOMAIN", userPrincipalName);
-		//loginManager.getLoginByUser(newHireCmd.get)
-			Search search = new SearchImpl();
-		       
-			QueryCriteria qc = new QueryCriteria();
-    		qc.like(UserSearchField.LastName, lastName);
-    		search.addSearchCriteria(qc);
-		       
-        	QueryCriteria qc2 = new QueryCriteria();
-    		qc2.like(UserSearchField.FirstName, firstName);
-    		search.addSearchCriteria(qc2);
+
+	        UserSearch search = new UserSearch();
+	        
+	         // lastname
+	        if (lastName != null &&  lastName.length() > 0) {
+	        	search.setLastName(lastName+"%");
+	    	}
+	        if (firstName != null &&  firstName.length() > 0) {
+	        	search.setFirstName(firstName+"%");
+	    	}
+			
     		
     		List userList = userMgr.search(search);
 

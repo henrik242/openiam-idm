@@ -319,13 +319,13 @@ function validateInt(fld) {
   <tr>
        <td class="tddarknormal" align="right">Country</td>
        <td class="tdlight"><form:input path="country" size="30"  /></td>
-       <td class="tddarknormal" align="right">Email OC-1 <font color="red">*</font></td>
+       <td class="tddarknormal" align="right">Email - 1 <font color="red">*</font></td>
        <td class="tdlight" colspan="3"><form:input path="email1" size="30" maxlength="30" readonly="true"  /></td>   </tr>
    </tr>
   <tr>
        <td class="tddarknormal" align="right">Latitude</td>
        <td class="tdlight"></td>
-       <td class="tddarknormal" align="right">Email OC-2 <font color="red">*</font></td>
+       <td class="tddarknormal" align="right">Email - 2 <font color="red">*</font></td>
        <td class="tdlight" colspan="3"><form:input path="email2" size="30" maxlength="30"  readonly="true"  /></td>
   <tr>
        <td class="tddarknormal" align="right">Longitude</td>
@@ -334,25 +334,7 @@ function validateInt(fld) {
        <td class="tdlight" colspan="3"><form:input path="email3" size="30" maxlength="30"  /></td>
    </tr>
 
-   <tr>
-   	<td colspan="6" class="tddark" align="center">Initial Application Access</td>
-   </tr>
-     <tr>
-       <td class="tddark" align="left" colspan="2">App Name</td>
-       <td class="tddark" align="center">App Enabled</td>
-       <td class="tddark">App UID</td>
-	   <td class="tddark" colspan="2">App Password</td>
-   </tr>
 
-<c:forEach items="${newHireCmd.managedSystems}" var="menu" varStatus="menuName">
-  <tr>
-       <td class="tddark" align="left" colspan="2"> ${menu.menuName}</td>
-       <td class="tddarknormal" align="center"><input type="checkbox"></td>
-       <td class="tddarknormal"><input type="text" size="30"></td>
-       <td class="tddarknormal" colspan="2"><input type="text" size="30"></td>
-
-   </tr> 
- </c:forEach>
    
    
 

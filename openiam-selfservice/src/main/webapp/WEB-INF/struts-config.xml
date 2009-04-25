@@ -146,6 +146,7 @@
             <form-property name="middleName" type="java.lang.String"/>
             <form-property name="dept" type="java.lang.String"/>
             <form-property name="phone_nbr" type="java.lang.String"/>
+            <form-property name="role" type="java.lang.String"/>
      
             <form-property name="deptName" type="java.lang.String"/>            
             <form-property name="operationLN" type="java.lang.String"/>
@@ -212,6 +213,7 @@
            <form-property name="personId" type="java.lang.String"/>
            <form-property name="login" type="java.lang.String"/>
            <form-property name="group" type="java.lang.String"/>
+           <form-property name="role" type="java.lang.String"/>
            <form-property name="companyName" type="java.lang.String"/>
            <form-property name="areaCode" type="java.lang.String"/>
            <form-property name="phoneNumber" type="java.lang.String"/>
