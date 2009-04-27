@@ -1,6 +1,6 @@
 <projectDescription>
   <name>openiam_webConsole</name>
-  <comment>IAM Admin Console based on Struts</comment>
+  <comment>IAM Admin Console based on Struts but Migrating to Spring MVC</comment>
   <projects/>
   <buildSpec>
     <buildCommand>
