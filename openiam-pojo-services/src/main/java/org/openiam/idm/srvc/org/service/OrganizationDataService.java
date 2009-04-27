@@ -222,7 +222,29 @@ public interface OrganizationDataService {
         java.lang.String orgId
     );
     
-    List<Organization> getOrganizationByType(String typeId);
+	/**
+	 * Returns a list of all organizations based on a metadataType. The parentId parameter can be used to get 
+	 * values that are nested further in the hierarchy. If parentId is null, the method will search only on the typeId and parentId 
+	 * will be ignored.
+	 * @param typeId
+	 * @param parentId
+	 * @return
+	 */
+    Organization[]  getOrganizationByType(String typeId, String parentId);
+    
+    /**
+     * Returns all entries in the organization table that are classified as Department.
+     * @param parentId
+     * @return
+     */
+    public Organization[] allDepartments(String parentId);
+    /**
+     * Returns all entries in the organization table that are classified as Divisions.
+     * @param parentId
+     * @return
+     */    
+    public Organization[] allDivisions(String parentId) ;
+    
     
     List<Organization> getAllOrganizations();
 }

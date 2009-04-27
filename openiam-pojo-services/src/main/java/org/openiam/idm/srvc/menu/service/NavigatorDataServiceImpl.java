@@ -6,6 +6,8 @@ package org.openiam.idm.srvc.menu.service;
 import java.util.*;
 import java.rmi.*;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.menu.dto.Menu;
 import org.openiam.idm.srvc.menu.dto.MenuId;
 
@@ -23,6 +25,7 @@ import org.openiam.idm.srvc.menu.dto.MenuId;
 public class NavigatorDataServiceImpl implements NavigatorDataService{
 
 	NavigatorDAO navigatorDao;
+	private static final Log log = LogFactory.getLog(NavigatorDataServiceImpl.class);
 	
 	public void addMenu(Menu data) {
 		  if (data == null)
@@ -136,6 +139,9 @@ public class NavigatorDataServiceImpl implements NavigatorDataService{
 		
 		Menu[] menuForUser = menuGroupByUser(menuGroupId, userId, languageCd);
 		Menu[] menusForGroup = this.menuGroup(menuGroupId, languageCd);
+	
+		log.info("menuForUser=" + menuForUser);
+		log.info("menusForGroup=" + menusForGroup);
 		
 		if (menusForGroup == null) {
 			return null;

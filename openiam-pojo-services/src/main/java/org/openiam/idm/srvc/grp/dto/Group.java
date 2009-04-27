@@ -67,6 +67,7 @@ public class Group implements java.io.Serializable {
 	protected Date lastUpdate;
 	protected String lastUpdatedBy;
 	protected String metadataTypeId;
+	protected String selected = null;
 
 
 	@XmlJavaTypeAdapter(org.openiam.idm.srvc.role.dto.RoleSetAdapter.class)
@@ -307,6 +308,16 @@ public class Group implements java.io.Serializable {
 	public void setMetadataTypeId(String metadataTypeId) {
 		this.metadataTypeId = metadataTypeId;
 	}
+
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+
 
 
 }

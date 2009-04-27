@@ -91,7 +91,7 @@
         		class="org.openiam.idm.srvc.grp.dto.GroupAttribute" />
         </map>
         
-        <set name="users" table="USER_GRP" lazy="false" >
+        <set name="users" table="USER_GRP" lazy="true" >
             <key>
                 <column name="GRP_ID" length="20" not-null="true">
                     <comment></comment>

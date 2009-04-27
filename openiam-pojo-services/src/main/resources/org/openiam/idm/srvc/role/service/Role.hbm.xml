@@ -60,7 +60,7 @@
             <one-to-many class="org.openiam.idm.srvc.role.dto.RoleAttribute" />
         </set>
 
-        <set name="users" table="USER_ROLE" lazy="false" fetch="select">
+        <set name="users" table="USER_ROLE" lazy="true" fetch="select">
             <key>
                <column name="SERVICE_ID" length="20" not-null="true" />
                <column name="ROLE_ID" length="20" not-null="true" />

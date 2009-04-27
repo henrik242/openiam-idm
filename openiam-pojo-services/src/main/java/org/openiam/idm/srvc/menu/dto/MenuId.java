@@ -54,6 +54,11 @@ public class MenuId  implements java.io.Serializable {
          return result;
    }   
 
+	public String toString() {
+		String str="menuId=" + menuId
+			+ " langCd=" + languageCd;
+		return str;
+	}
 
 }
 

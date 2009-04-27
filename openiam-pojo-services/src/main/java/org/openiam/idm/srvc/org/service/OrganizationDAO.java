@@ -49,7 +49,7 @@ public interface OrganizationDAO  {
 	
 	List<Organization> findAllOrganization() ;
 	
-	List<Organization> findOrganizationByType(String type ) ;
+	List<Organization> findOrganizationByType(String type, String parentId) ;
 	
 	List<Organization> search(String name, String type);
 

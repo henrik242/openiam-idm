@@ -125,6 +125,11 @@ public class Menu  implements java.io.Serializable {
 	}
 
 
+	public String toString() {
+		String str="menuId=" + id 
+			+ " name=" + menuName;
+		return str;
+	}
 
 
 }

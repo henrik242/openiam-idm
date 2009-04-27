@@ -97,7 +97,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
-						" where a.parentId = :orgId order by a.orgId asc  " );
+						" where a.parentId = :orgId order by a.organizationName asc  " );
 		qry.setString("orgId", orgId);
 		qry.setCacheable(true);
 		qry.setCacheRegion("query.organization.findChildOrganization");
@@ -148,7 +148,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
-						" where a.parentId = null order by a.orgId  asc" );
+						" where a.parentId = null order by a.organizationName asc" );
 		List<Organization> result = (List<Organization>)qry.list();
 		qry.setCacheable(true);
 		if (result == null || result.size() == 0)
@@ -157,12 +157,20 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 		
 	}
 	
-	public List<Organization> findOrganizationByType(String type ) {
+	public List<Organization> findOrganizationByType(String type, String parentId ) {
 		log.debug("getting Organization for a type  "  );
-
+		Query qry = null;
+		
 		Session session = sessionFactory.getCurrentSession();
-		Query qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
-						" where a.metadataTypeId = :type order by a.orgId asc " );
+		if (parentId == null) {
+			qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
+							" where a.metadataTypeId = :type order by a.organizationName asc " );
+
+		}else {
+			qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
+			" where a.metadataTypeId = :type and a.parentId = :parentId order by a.organizationName asc " );
+			qry.setString("parentId", parentId);
+		}	
 		qry.setString("type", type);
 		List<Organization> result = (List<Organization>)qry.list();	
 		if (result == null || result.size() == 0)
@@ -173,7 +181,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public List<Organization> findAllOrganization() {
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
-						" order by a.orgId asc " );
+						" order by a.organizationName asc " );
 		qry.setCacheable(true);
 		qry.setCacheRegion("query.organization.findAllOrganization");
 		List<Organization> result = (List<Organization>)qry.list();	

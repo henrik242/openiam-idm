@@ -14,8 +14,9 @@ import org.openiam.idm.srvc.org.dto.*;
  * Organization components and its dependant objects as well as search
  * capability.<br>
  * 
+ * Note: The spring configuration file defines MetadataTypes are used to identify Departments and Divisions in the org list.
  * 
- * @author diamelle
+ * @author OpenIAm
  * @version 2
  */
 
@@ -28,47 +29,12 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 
 	protected OrganizationAttributeDAO orgAttrDao;
 	
-/* test objects --
-	private List<Organization> testOrgList(String orgId) {
-		List<Organization> orgList = new ArrayList<Organization>();
+	// define which in the config file which MetadataType are used to identify Departments and Divisions in the org list.
+	String divisionType;
+	String departmentType;
+	
+	
 
-		for (int i = 0; i < 3; i++) {
-			Organization org = new Organization();
-			org.setOrgId(orgId + i);
-			org.setOrganizationName("OPENIAM LLC " + i);
-			org.setCreateDate(new Date());
-			orgList.add(org);
-		}
-		return orgList;
-	}
-	
-	private Organization org(String orgId) {
-		Organization org = new Organization();
-		org.setOrgId(orgId);
-		org.setOrganizationName("OPENIAM LLC ");
-		org.setCreatedBy("arun");
-		org.setCreateDate(new Date());
-		return org;
-	}
-	
-	private OrganizationAttribute orgAttrib(String attrId) {
-		OrganizationAttribute attrib = new OrganizationAttribute();
-		attrib.setAttrId(attrId);
-		attrib.setName("Attribute name " + attrId);
-		attrib.setValue("attrib value " + attrId);
-		return attrib;
-	}
-	
-	
-	private Map<String, OrganizationAttribute> attribMap(String orgId) {
-
-		Map<String, OrganizationAttribute> attrMap = new HashMap<String, OrganizationAttribute>();
-		for (int i = 0; i < 3; i++) {
-			attrMap.put(orgId+i, orgAttrib(orgId+i));
-		}
-		return attrMap;
-	}	
-*/	
 
 	/**
 	 * Returns a list of companies that match the search criteria.
@@ -99,13 +65,35 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 		//return testOrgList("myTopLevelOrg");
 	}
 	
-   public List<org.openiam.idm.srvc.org.dto.Organization> getOrganizationByType(String typeId) {
+	/**
+	 * Returns a list of all organizations based on a metadataType. The parentId parameter can be used to get 
+	 * values that are nested further in the hierarchy. If parentId is null, the method will search only on the typeId and parentId 
+	 * will be ignored.
+	 * @param typeId
+	 * @param parentId
+	 * @return
+	 */
+   public Organization[] getOrganizationByType(String typeId, String parentId) {
 		if (typeId == null)
 			throw new NullPointerException("typeId is null");
 		
-	   return orgDao.findOrganizationByType(typeId);
+	   List<Organization> orgList = orgDao.findOrganizationByType(typeId, parentId);
+	   if (orgList == null) {
+		   return null;
+	   }
+	   Organization[] orgAry = new Organization[ orgList.size() ];
+	   orgList.toArray(orgAry);
+	   return orgAry;
+	   
    }
-
+   
+   public Organization[] allDepartments(String parentId) {
+	   return getOrganizationByType(departmentType, parentId);
+   }
+   public Organization[] allDivisions(String parentId) {
+	   return getOrganizationByType(divisionType, parentId);	   
+   }
+   
 
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.org.service.OrganizationDataService#addOrganization(org.openiam.idm.srvc.org.dto.Organization)
@@ -320,6 +308,22 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 	
 	public List<Organization> getAllOrganizations() {
 		return orgDao.findAllOrganization();
+	}
+
+	public String getDivisionType() {
+		return divisionType;
+	}
+
+	public void setDivisionType(String divisionType) {
+		this.divisionType = divisionType;
+	}
+
+	public String getDepartmentType() {
+		return departmentType;
+	}
+
+	public void setDepartmentType(String departmentType) {
+		this.departmentType = departmentType;
 	}
 
 }

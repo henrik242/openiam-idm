@@ -87,6 +87,8 @@
 	<bean id="orgManager" class="org.openiam.idm.srvc.org.service.OrganizationDataServiceImpl" >
 		<property name="orgDao" ref="orgDAO" />
 		<property name="orgAttrDao" ref="orgAttrDAO" />
+		<property name="divisionType" value="divisionType" />
+		<property name="departmentType" value="departmentType" />
 	</bean>
 
 	<bean id="orgDAO" class="org.openiam.idm.srvc.org.service.OrganizationDAOImpl" >

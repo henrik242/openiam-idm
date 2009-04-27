@@ -518,12 +518,34 @@ import org.openiam.idm.srvc.grp.dto.Group;
 		this.addresses = addresses;
 	}
 
+	public Address getAddressByName(String name) {
+		Iterator<Address> addressIt = addresses.iterator();
+	 	while (addressIt.hasNext()) {
+	 		Address adr = addressIt.next();
+	 		if (adr.getName() != null && adr.getName().equalsIgnoreCase(name)) {
+	 			return adr;
+	 		}
+	 	}	
+	 	return null;
+	}
+	
 	public Set<EmailAddress> getEmailAddress() {
 		return emailAddresses;
 	}
 
 	public void setEmailAddress(Set<EmailAddress> emailAddresses) {
 		this.emailAddresses = emailAddresses;
+	}
+	
+	public EmailAddress getEmailByName(String name) {
+		Iterator<EmailAddress> emailIt = emailAddresses.iterator();
+	 	while (emailIt.hasNext()) {
+	 		EmailAddress em = emailIt.next();
+	 		if (em.getName() != null && em.getName().equalsIgnoreCase(name)) {
+	 			return em;
+	 		}
+	 	}	
+	 	return null;
 	}
 
 	public Set<Phone> getPhone() {
@@ -532,6 +554,17 @@ import org.openiam.idm.srvc.grp.dto.Group;
 
 	public void setPhone(Set<Phone> phones) {
 		this.phones = phones;
+	}
+	
+	public Phone getPhoneByName(String name) {
+		Iterator<Phone> phoneIt = phones.iterator();
+	 	while (phoneIt.hasNext()) {
+	 		Phone ph = phoneIt.next();
+	 		if (ph.getName() != null && ph.getName().equalsIgnoreCase(name)) {
+	 			return ph;
+	 		}
+	 	}	
+	 	return null;
 	}
 
 	public String getDivision() {

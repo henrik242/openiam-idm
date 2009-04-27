@@ -97,7 +97,13 @@ public class RoleDataServiceImpl implements RoleDataService {
 	}
 
 	public Role[] getRolesInService(String serviceId) {
+		long start = System.currentTimeMillis();
+		
 		List<Role> rlList = roleDao.findRolesInService(serviceId);
+		
+		long end = System.currentTimeMillis();
+		System.out.println("findRolesInService: " + (end-start));
+		
 		if (rlList == null || rlList.size() == 0)
 			return null;
 		int size = rlList.size();
