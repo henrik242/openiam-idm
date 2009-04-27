@@ -12,6 +12,12 @@ insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('nl','Dutch');
 insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('pt','Portugese');
 
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('OrgOpenIAM','OpenIAM');
+insert into METADATA_TYPE(TYPE_ID, DESCRIPTION, SYNC_MANAGED_SYS) values('divisionType','Division', 0);
+insert into METADATA_TYPE(TYPE_ID, DESCRIPTION, SYNC_MANAGED_SYS) values('departmentType','Department', 0);
+
+insert into category (category_id, parent_id, category_name, show_list) values ('ORG_TYPE', 'ROOT', 'Org Types',0);
+insert into category_type (category_id, type_id) values('ORG_TYPE','divisionType');
+insert into category_type (category_id, type_id) values('ORG_TYPE','departmentType');
 
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION,SYNC_MANAGED_SYS) values('InetOrgPerson','InetOrgPerson user type',1);
 insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,SELF_EDITABLE, SELF_VIEWABLE, UI_TYPE,UI_OBJECT_SIZE) values ('101','InetOrgPerson', 'Display Name',1,1,'TEXT','size=20');
@@ -56,6 +62,10 @@ UPDATE METADATA_TYPE
 SET ACTIVE = 1, SYNC_MANAGED_SYS = 1;
 
 insert into COMPANY(company_id, company_name, status, type_ID) values('100','OpenIAM', 'ACTIVE', 'OrgOpenIAM');
+insert into COMPANY(company_id, company_name, status, type_ID) values('101','Sales', 'ACTIVE', 'departmentType');
+insert into COMPANY(company_id, company_name, status, type_ID) values('102','Finance', 'ACTIVE', 'departmentType');
+insert into COMPANY(company_id, company_name, status, type_ID) values('103','Customer Service', 'ACTIVE', 'departmentType');
+
 
 
 insert into CATEGORY(CATEGORY_ID, PARENT_ID, CATEGORY_NAME, SHOW_LIST) VALUES('ROOT','', 'ROOT',0);
