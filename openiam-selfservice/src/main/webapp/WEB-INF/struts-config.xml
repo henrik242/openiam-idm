@@ -145,8 +145,9 @@
             <form-property name="firstName" type="java.lang.String"/>
             <form-property name="middleName" type="java.lang.String"/>
             <form-property name="dept" type="java.lang.String"/>
+             <form-property name="phone_areaCd" type="java.lang.String"/>
             <form-property name="phone_nbr" type="java.lang.String"/>
-            <form-property name="role" type="java.lang.String"/>
+             <form-property name="role" type="java.lang.String"/>
      
             <form-property name="deptName" type="java.lang.String"/>            
             <form-property name="operationLN" type="java.lang.String"/>
@@ -191,6 +192,7 @@
             <form-property name="fax_nbr" type="java.lang.String"/>          
             <form-property name="costCenter" type="java.lang.String"/>
             <form-property name="mailCode" type="java.lang.String"/>
+            <form-property name="jobCode" type="java.lang.String"/>
             <form-property name="employeeType" type="java.lang.String"/>
             <form-property name="division" type="java.lang.String"/>
              <form-property name="location" type="java.lang.String"/>
@@ -425,15 +427,15 @@
  
 
  
+  
    <action    path="/pub/directory"
                type="org.springframework.web.struts.DelegatingActionProxy"
                name="searchForm" scope="request" parameter="method" validate="false" >
       <forward name="view"         path="/home.jsp?bodyjsp=/pub/search.jsp"/>          
-      <forward name="success"      path="/home.jsp?bodyjsp=/pub/searchresult.jsp"/>      
+      <forward name="success"      path="/home.jsp?bodyjsp=/pub/searchresult.jsp"/>    
+       <forward name="success_search"      path="/pub/directory.do?method=view"/>      
  	  <forward name="detail"      	path="/home.jsp?bodyjsp=/pub/roDirectoryUser.jsp"/> 
     </action>
-    
-
     
     
     <action    path="/user"

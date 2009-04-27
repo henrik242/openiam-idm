@@ -14,6 +14,11 @@
   DynaValidatorForm userForm = (DynaValidatorForm) request.getAttribute("searchForm");
   String personId = (String) request.getAttribute("personId");
   String saved = (String)request.getAttribute("saved");
+  User usr = (User)request.getAttribute("personData");
+  
+  Set<Address> adrSet = usr.getAddresses();
+  Set<Phone> phoneSet = usr.getPhone();
+  Set<EmailAddress> emailSet =  usr.getEmailAddress();
  
 
 
@@ -137,16 +142,16 @@ function confirmMsg(msg) {
 		</tr>
     <tr>
          <td class="tddark"  align="right" width="25%">Job Function</td>
-         <td class="tdlightnormal" width="25%"> </td>
+         <td class="tdlightnormal" width="25%"><%= JSPUtil.display( userForm.get("jobCode") ) %></td>
 		 <td class="tddark"  align="right" width="25%">Cost Center</td>
-         <td class="tdlight" width="25%"><%= JSPUtil.display( userForm.get("costCenter") ) %></td>      
+         <td class="tdlightnormal" width="25%"><%= JSPUtil.display( userForm.get("costCenter") ) %></td>      
     </tr>    
       
     <tr>
          <td class="tddark"  align="right" width="25%">Support Staff Contact</td>
          <td class="tdlightnormal" width="25%"> </td>
 		 <td class="tddark"  align="right" width="25%">Mail Code</td>
-         <td class="tdlight" width="25%"><%= JSPUtil.display( userForm.get("mailCode") ) %></td>      
+         <td class="tdlightnormal" width="25%"><%= JSPUtil.display( userForm.get("mailCode") ) %></td>      
     </tr>     
        
    <tr>
@@ -165,9 +170,22 @@ function confirmMsg(msg) {
        <%= JSPUtil.display( userForm.get("address1") ) %>
        
        </td>
-       <td class="tddark" align="right">Work Phone</td>
-       <td class="tdlightnormal">
-       (<%= JSPUtil.display( userForm.get("phone_areacd") ) %> ) <%= JSPUtil.display( userForm.get("phone_nbr") ) %>
+       <td class="tddark" align="right" rowspan="3">Phones</td>
+       <td class="tdlightnormal" rowspan="3">
+       	<table>
+       		<% if (phoneSet != null) {
+       			Iterator<Phone> phoneIt = phoneSet.iterator();
+       			while (phoneIt.hasNext()) {
+       				Phone ph = phoneIt.next();
+       		%> 
+       		<tr>
+       			<td><%= ph.getName() %></td>
+       			<td><%= ph.getAreaCd() %> - <%= ph.getPhoneNbr() %></td>
+       		</tr>
+       		<% 	}
+       		}  
+       		%>
+       	</table>
        
        </td>
    </tr>
@@ -175,10 +193,6 @@ function confirmMsg(msg) {
        <td class="tddark" align="right"></td>
        <td class="tdlightnormal">
        		<%= JSPUtil.display( userForm.get("address2") ) %>
-       <td class="tddark" align="right">Mobile Phone</td>
-       <td class="tdlightnormal">
-       (<%= JSPUtil.display( userForm.get("cell_areacd") ) %>) <%= JSPUtil.display( userForm.get("cell_nbr") ) %>
-       	</td>
    </tr>
 
   <tr>
@@ -186,10 +200,6 @@ function confirmMsg(msg) {
        <td class="tdlightnormal">
        	<%= JSPUtil.display( userForm.get("city") ) %>
 	   </td>
-       <td class="tddark" align="right">Fax</td>
-       <td class="tdlightnormal">
-       	(<%= JSPUtil.display( userForm.get("fax_areacd") ) %>) <%= JSPUtil.display( userForm.get("fax_nbr") ) %>
-       </td>
    </tr>
   <tr>
        <td class="tddark" align="right">State</td>
@@ -198,6 +208,22 @@ function confirmMsg(msg) {
        </td>
        <td class="tddark" align="right">E-mail</td>
        <td class="tdlightnormal">
+              	<table>
+       		<% if (emailSet != null) {
+       			Iterator<EmailAddress> emailIt = emailSet.iterator();
+       			while (emailIt.hasNext()) {
+       				EmailAddress em = emailIt.next();
+       		%> 
+       		<tr>
+       			<td><%= em.getName() %></td>
+       			<td><%= em.getEmailAddress() %> </td>
+       		</tr>
+       		<% 	}
+       		}  
+       		%>
+       	</table>
+       
+       
        <%= JSPUtil.display( userForm.get("email") ) %>
        </td>
    </tr>
@@ -228,8 +254,8 @@ function confirmMsg(msg) {
 		<td>
 			<%
 				EmailAddress em = null;
-			 	Set emailSet = emp.getEmployee().getEmailAddress();
-			 	Iterator<EmailAddress> it = emailSet.iterator();
+			 	Set emSet = emp.getEmployee().getEmailAddress();
+			 	Iterator<EmailAddress> it = emSet.iterator();
 			 	if (it.hasNext()) {
 			 		em = it.next();
 			 	}
@@ -240,8 +266,8 @@ function confirmMsg(msg) {
 		<td>
 			<%
 				Phone ph = null;
-			 	Set<Phone> phoneSet = emp.getEmployee().getPhone();
-			 	Iterator<Phone> phoneIt = phoneSet.iterator();
+			 	Set<Phone> phSet = emp.getEmployee().getPhone();
+			 	Iterator<Phone> phoneIt = phSet.iterator();
 			 	if (phoneIt.hasNext()) {
 			 		ph = phoneIt.next();
 			 	}

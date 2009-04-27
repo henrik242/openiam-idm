@@ -89,7 +89,7 @@ public class NewApplicationSearchAction extends NavigationDispatchAction  {
         	HttpSession session = request.getSession();
 
         	Search search = createSearch((DynaValidatorForm)form);     
-    		List userList = userMgr.search(search);
+    		//List userList = userMgr.search(search);
         	
             //UserSearch search = createSearch((DynaValidatorForm)form);       	
         	//UserAccess userAccess = new UserAccess();
@@ -100,17 +100,7 @@ public class NewApplicationSearchAction extends NavigationDispatchAction  {
         	
           //List userList = userAccess.findUser(search);
           
-          System.out.println("User list size in search=" + userList.size());
-          
-          if (userList != null) {
-             request.setAttribute("userList", userList );
-             DataView vw = new DataView(userList,25);
- 		  	 session.setAttribute("searchResult", vw);
-		  	 request.setAttribute("pageCount", new Integer(vw.getPageCount()));
-		  	 request.setAttribute("resultSize", new Integer(vw.size()));
-		  	 request.setAttribute("searchResult", vw.next());
-		  	 request.setAttribute("currentPage",new Integer(0));
-		  }
+
 
         } catch(Exception e) {
             e.printStackTrace();

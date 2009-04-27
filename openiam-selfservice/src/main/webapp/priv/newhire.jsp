@@ -333,8 +333,33 @@ function validateInt(fld) {
        <td class="tddarknormal" align="right">Alt. Email<font color="red">*</font></td>
        <td class="tdlight" colspan="3"><form:input path="email3" size="30" maxlength="30"  /></td>
    </tr>
+   <tr>
+   	<td colspan="5" class="tddark" align="center">Request Application Access</td>
+   	<td></td>
+   </tr>
+  <tr>
+       <td class="tddark" align="right">App Name</td>
+       <td class="tddark">App URL</td>
+       <td class="tddark" align="right">App Enabled</td>
+       <td class="tddark"></td>
+	   <td class="tddark"></td>
+   </tr>
+   <tr>
+       <td class="tdlightNormal" align="right">Active Directory</td>
+       <td class="tdlightNormal"><input type="text" name="app_url" value="staging.ocgov.com"></td>
+       <td class="tdlightNormal" align="right"><input type="checkbox" name="app_enabled" ></td>
+       <td class="tdlightNormal"></td>
+	   <td class="tdlightNormal"></td>
+   </tr>
 
-
+   <tr>
+       <td class="tddarkNormal" align="right">AI Card</td>
+       <td class="tddarkNormal"><input type="text" name="app_url2" value=""></td>
+       <td class="tddarkNormal" align="right"><input type="checkbox" name="app_enabled2" ></td>
+       <td class="tddarkNormal"></td>
+	   <td class="tddarkNormal"></td>
+   </tr>
+ 
    
    
 

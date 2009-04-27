@@ -9,7 +9,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<jsp:include page="search.jsp" flush="true" />
 
 <%
  	int recordCount = 0;
@@ -28,11 +27,15 @@
 	if (resultSize != null) {
 		recordCount = resultSize.intValue();
 	}
+	// only show the max. number of records.
+	if (recordCount > maxResultSize) {
+		recordCount = maxResultSize;
+	}
 %>
 
 
 
-
+<% if (recordCount > 0 ) { %>
 <table width="100%" border="0" cellspacing="1" cellpadding="1" align="center">
   <tr>
      <td colspan="5">
@@ -42,10 +45,10 @@
   <tr>
     <td class="tdheader">Last Name</td>
     <td class="tdheader">First Name</td>
-		<td class="tdheader">M.I.</td>
-    <td class="tdheader">Department</td>
+	<td class="tdheader">M.I.</td>
+    <td class="tdheader">Agency</td>
     <td class="tdheader">Phone #</td>
-	  <td class="tdheader">E-mail Address</td>
+	<td class="tdheader">E-mail Address</td>
     <td class="tdheader"></td>
   </tr>
   
@@ -58,23 +61,15 @@
     	if (size > maxResultSize) {
     		size = maxResultSize;
     	}
-    	for (int i=0; i < userList.size(); i++ ) {
+    	for (int i=0; i < recordCount; i++ ) {
     		User ud = (User)userList.get(i);
     		EmailAddress em = null;
-				Phone ph = null;
+			Phone ph = null;
     		
-	 		 	Set emailSet = ud.getEmailAddress();
-			 	Iterator<EmailAddress> it = emailSet.iterator();
-			 	if (it.hasNext()) {
-			 		em = it.next();
-			 	}
+			em = ud.getEmailByName("EMAIL1");
+			ph = ud.getPhoneByName("DESK PHONE");
+			
 
-	 		 	Set phoneSet = ud.getPhone();
-			 	Iterator<Phone> itPhone = phoneSet.iterator();
-			 	if (itPhone.hasNext()) {
-			 		ph = itPhone.next();
-			 	}
- 
   %>
   
   <%
@@ -102,14 +97,14 @@
         <% } %>&nbsp;
     </td>
     <td >
-      <% if (ud.getDeptName() != null) { %>
-         <%=ud.getDeptName()%>
+      <% if (ud.getDeptCd() != null) { %>
+         <%=ud.getDeptCd()%>
       <% } %>&nbsp;
     </td>
  
     <td> 
       <% if (ph != null && ph.getPhoneNbr() != null) { %> 
-    	<%= ph.getPhoneNbr() %>
+    	(<%= ph.getAreaCd() %>) <%= ph.getPhoneNbr() %>
     	<% } %>		
     </td>
     
@@ -131,3 +126,4 @@
   %>
 
 </table>
+<% } %>

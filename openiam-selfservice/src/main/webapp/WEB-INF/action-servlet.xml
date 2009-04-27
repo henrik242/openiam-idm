@@ -55,7 +55,11 @@
 	<bean name="/pub/directory"  class="org.openiam.selfsrvc.profile.DirectorySearchAction" >
 		<!--Enter either the typeID or ALL to get a list of all organization  -->
 		<property name="searchOrganizationList" value="AGENCY" />
+		<property name="appConfiguration" ref="appConfiguration" />
+		<property name="userManager" ref="userManager" />
+		<property name="orgManager" ref="orgManager" />
 	</bean>	
+
 
 
 	<!-- Client code  -->

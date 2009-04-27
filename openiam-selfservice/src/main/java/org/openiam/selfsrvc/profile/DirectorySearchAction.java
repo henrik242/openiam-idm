@@ -35,6 +35,8 @@ import org.openiam.idm.srvc.continfo.dto.Address;
 import org.openiam.idm.srvc.continfo.dto.EmailAddress;
 import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.meta.service.MetadataService;
+import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.service.RoleDataService;
 import org.openiam.idm.srvc.user.dto.Supervisor;
 import org.openiam.idm.srvc.user.dto.User;
 import org.openiam.idm.srvc.user.dto.UserSearch;
@@ -80,21 +82,15 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
 	
 	AppConfiguration appConfiguration;
 	MetadataService metadataSrvc = null;
-	UserDataService userDataSrvc = null;
-	OrganizationDataService orgDataSrvc = null;
-	OrganizationAccess compAccess = null;
-	
+	UserDataService userManager = null;
+	OrganizationDataService orgManager = null;
 	String searchOrganizationList = null;
 	
+	
+
 
 	
 	public DirectorySearchAction() {
-		try {
-
-		compAccess = new OrganizationAccess();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
     public ActionForward view ( ActionMapping mapping, ActionForm form, 
@@ -103,20 +99,10 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
     	
     	HttpSession session = request.getSession();
     	List statusList = (List)session.getAttribute("statusList");
-       	WebApplicationContext webContext =  getWebApplicationContext();
-    	
-       	orgDataSrvc = (OrganizationDataService)webContext.getBean("orgManager");   
        	
-       	List<Organization> orgList = null;
-       	
-       	
-       	if (searchOrganizationList.equalsIgnoreCase("ALL")) {
-       		orgList = orgDataSrvc.getAllOrganizations();
-       	}else {
-       		orgList = orgDataSrvc.getOrganizationByType(searchOrganizationList);
-       	}
-    	
-    	List labelList = getOrgLabels(orgList);
+       
+       	Organization[] orgAry = orgManager.allDepartments(null);     	
+    	List labelList = getOrgLabels(orgAry);  	
     	session.setAttribute("orgList", labelList);
     	
     	return (mapping.findForward("view"));
@@ -130,15 +116,11 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
         try {
         	List statusList = null; 
         	
-           	WebApplicationContext webContext =  getWebApplicationContext();
-        	UserDataService userMgr = (UserDataService)webContext.getBean("userManager");
-        	appConfiguration = (AppConfiguration)webContext.getBean("appConfiguration");
-
         	
         	HttpSession session = request.getSession();
 
         	UserSearch search = createSearch((DynaValidatorForm)form);     
-    		List userList = userMgr.search(search);
+    		List<User> userList = userManager.search(search);
         	
         
           if (userList != null) {
@@ -153,7 +135,7 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
             e.printStackTrace();
         }
 
-    	return (mapping.findForward("success"));
+        return (mapping.findForward("success_search"));
     }
     
 	
@@ -162,25 +144,26 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
     private UserSearch createSearch(DynaValidatorForm form) {
         UserSearch search = new UserSearch();
      
-         // lastname
+       
+
+        // lastname
         if (form.get("lastName")!= null && ((String) form.get("lastName")).length()>0) {
         	search.setLastName(form.get("lastName")+"%");
     	}
-
         if (form.get("firstName")!= null && ((String) form.get("firstName")).length()>0) {
     		search.setFirstName(form.get("firstName")+"%");
     	}
-
-        
+      
         if (form.get("dept")!= null && ((String) form.get("dept")).length()>0) {
     		search.setDeptCd((String)form.get("dept"));
     	}
         if (form.get("phone_nbr")!= null && ((String) form.get("phone_nbr")).length()>0) {
         	search.setPhoneNbr((String)form.get("phone_nbr"));
     	}
-        if (form.get("role")!= null && ((String) form.get("role")).length()>0) {
-        	search.setRoleId((String)form.get("role"));
-    	} 
+        if (form.get("phone_areaCd")!= null && ((String) form.get("phone_areaCd")).length()>0) {
+        	search.setPhoneAreaCd((String)form.get("phone_areaCd"));
+    	}
+
         return search;
      }
     
@@ -199,23 +182,21 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
     	
 		WebApplicationContext webCtx = getWebApplicationContext();
 		metadataSrvc = (MetadataService)webCtx.getBean("metadataService");
-		userDataSrvc = (UserDataService)webCtx.getBean("userManager");
 		
-       UserAccess userAccess = new UserAccess();
-       personId = request.getParameter("personId");
+        personId = request.getParameter("personId");
 
-       User userData = userDataSrvc.getUserWithDependent(personId,false);
+       User userData = userManager.getUserWithDependent(personId,true);
        
                 
        if (userData != null) {
           this.populateFormBean(userData, userForm);
           request.setAttribute("personData", userData);
           // get the phone, address and email
-          Address adr = userDataSrvc.getAddressByName(personId, "PRIMARY");
-          Phone workPhone = userDataSrvc.getPhoneByName(personId, "WORK");
-          Phone cellPhone = userDataSrvc.getPhoneByName(personId, "CELL");
-          Phone faxPhone = userDataSrvc.getPhoneByName(personId, "FAX");
-          EmailAddress email = userDataSrvc.getEmailAddressByName(personId, "PRIMARY");
+          Address adr = userManager.getAddressByName(personId, "PRIMARY");
+          Phone workPhone = userManager.getPhoneByName(personId, "WORK");
+          Phone cellPhone = userManager.getPhoneByName(personId, "CELL");
+          Phone faxPhone = userManager.getPhoneByName(personId, "FAX");
+          EmailAddress email = userManager.getEmailAddressByName(personId, "PRIMARY");
 
           addressToForm(userForm,adr);
           phoneToForm(userForm,workPhone, "WORK");
@@ -225,11 +206,11 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
        
           // GET DIRECT REPORTS
               
-          request.setAttribute("directReports",  userDataSrvc.getEmployees(personId) );
+          request.setAttribute("directReports",  userManager.getEmployees(personId) );
                
           // GET SUPERVISOR
          
-          request.setAttribute("supervisor",userDataSrvc.getPrimarySupervisor(personId) );
+          request.setAttribute("supervisor",userManager.getPrimarySupervisor(personId) );
        
        }
        
@@ -270,16 +251,18 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
       uform.set("mailCode", ud.getDivision() );
       uform.set("employeeType", ud.getEmployeeType() );
       uform.set("division", ud.getMailCode() );
+      uform.set("jobCode", ud.getJobCode() );
       
       
       uform.set("companyId", ud.getCompanyId());
       if ( ud.getCompanyId() != null) { 
-      	try {
-	      OrganizationValue compData =  compAccess.getOrganization( ud.getCompanyId());
-	      uform.set("companyName", compData.getOrganizationName());
-      	}catch(RemoteException re) {
-      		Log.error(re.getMessage(),re);
-      	}
+
+       		WebApplicationContext webContext =  getWebApplicationContext();
+      		Organization org = orgManager.getOrganization(ud.getCompanyId());
+      		if (org != null) {
+      			 uform.set("companyName", org.getOrganizationName());
+      		}
+
       }
       
       uform.set("sex", ud.getSex());
@@ -342,14 +325,14 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
 	    } 	
     }
 
-	private List getOrgLabels(List<Organization> orgList)  {
+	private List getOrgLabels(Organization[] orgAry)  {
 		
 		List<LabelValueBean> labelList = new ArrayList();
 		
-        if (orgList != null && orgList.size() > 0) {
-        	labelList.add(new LabelValueBean("",""));
-        	for (int i=0; i < orgList.size(); i++ ) {
-        		Organization org = (Organization)orgList.get(i);
+        if (orgAry != null && orgAry.length > 0) {
+        	labelList.add(new LabelValueBean("-Please Select-",""));
+        	for (int i=0; i < orgAry.length; i++ ) {
+        		Organization org = (Organization)orgAry[i];
           	 	LabelValueBean label = new LabelValueBean(org.getOrganizationName(), org.getOrgId());
           	 	labelList.add(label);
         	}        		
@@ -357,6 +340,9 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
         return labelList;
     }
 
+
+
+	
 	public String getSearchOrganizationList() {
 		return searchOrganizationList;
 	}
@@ -364,6 +350,32 @@ public class DirectorySearchAction extends NavigationDispatchAction  {
 	public void setSearchOrganizationList(String searchOrganizationList) {
 		this.searchOrganizationList = searchOrganizationList;
 	}
+
+	public AppConfiguration getAppConfiguration() {
+		return appConfiguration;
+	}
+
+	public void setAppConfiguration(AppConfiguration appConfiguration) {
+		this.appConfiguration = appConfiguration;
+	}
+
+	public UserDataService getUserManager() {
+		return userManager;
+	}
+
+	public void setUserManager(UserDataService userManager) {
+		this.userManager = userManager;
+	}
+
+	public OrganizationDataService getOrgManager() {
+		return orgManager;
+	}
+
+	public void setOrgManager(OrganizationDataService orgManager) {
+		this.orgManager = orgManager;
+	}
+
+
 
     
     
