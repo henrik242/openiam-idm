@@ -61,7 +61,7 @@ CREATE TABLE METADATA_TYPE (
 CREATE TABLE METADATA_ELEMENT (
        METADATA_ID          varchar(20) NOT NULL,
        TYPE_ID              varchar(20) NULL,
-       ATTRIBUTE_NAME       varchar(20) NULL,
+       ATTRIBUTE_NAME       varchar(50) NULL,
        DESCRIPTION          varchar(40) NULL,
 	   MIN_LEN				INT DEFAULT 0,
 	   MAX_LEN				INT NULL,	   

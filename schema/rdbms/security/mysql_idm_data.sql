@@ -1,4 +1,4 @@
-﻿insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('IDM','IDM','ON-LINE');
+insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('IDM','IDM','ON-LINE');
 insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('USR_SEC_DOMAIN','USER SECURITY DOMAIN','ON-LINE');
 
 insert into SERVICE (SERVICE_ID, SERVICE_NAME, STATUS) values('USR_SEC_DOMAIN','USER SECURITY DOMAIN','ON-LINE');
@@ -51,6 +51,66 @@ insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name) values ('150'
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('URL','URL');
 insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name) values ('160','URL', 'Display Name');
 
+insert into METADATA_TYPE(TYPE_ID, DESCRIPTION,SYNC_MANAGED_SYS) values('LdapOrgPerson','LdapOrgPerson User type',1);
+insert into METADATA_TYPE(TYPE_ID, DESCRIPTION,SYNC_MANAGED_SYS) values('ADUser','AD User type',1);
+insert into METADATA_TYPE(TYPE_ID, DESCRIPTION,SYNC_MANAGED_SYS) values('ADGroup','AD User type',1);
+
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('300','LdapOrgPerson', 'name','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('301','LdapOrgPerson', 'distinguishedName','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('302','LdapOrgPerson', 'objectClass','',1,1);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('303','LdapOrgPerson', 'aliasedObjectName','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('304','LdapOrgPerson', 'cn','',0,1);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('305','LdapOrgPerson', 'sn','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('306','LdapOrgPerson', 'serialNumber','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('307','LdapOrgPerson', 'c','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('308','LdapOrgPerson', 'l','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('309','LdapOrgPerson', 'st','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('310','LdapOrgPerson', 'street','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('311','LdapOrgPerson', 'o','',0,1);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('312','LdapOrgPerson', 'ou','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('313','LdapOrgPerson', 'title','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('314','LdapOrgPerson', 'description','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('341','LdapOrgPerson', 'givenName','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('342','LdapOrgPerson', 'initials','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('348','LdapOrgPerson', 'uid','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('349','LdapOrgPerson', 'mail','',0,0);
+
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('315','LdapOrgPerson', 'businessCategory','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('316','LdapOrgPerson', 'postalAddress','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('317','LdapOrgPerson', 'postalCode','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('318','LdapOrgPerson', 'postOfficeBox','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('319','LdapOrgPerson', 'physicalDeliveryOfficeName','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('320','LdapOrgPerson', 'telephoneNumber','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('321','LdapOrgPerson', 'telexNumber','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('322','LdapOrgPerson', 'teletexTerminalIdentifier','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('323','LdapOrgPerson', 'facsimileTelephoneNumber','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('324','LdapOrgPerson', 'x121Address','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('325','LdapOrgPerson', 'internationaliSDNNumber','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('326','LdapOrgPerson', 'registeredAddress','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('327','LdapOrgPerson', 'destinationIndicator','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('328','LdapOrgPerson', 'preferredDeliveryMethod','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('329','LdapOrgPerson', 'presentationAddress','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('330','LdapOrgPerson', 'supportedApplicationContext','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('331','LdapOrgPerson', 'member','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('332','LdapOrgPerson', 'owner','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('333','LdapOrgPerson', 'roleOccupant','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('334','LdapOrgPerson', 'seeAlso','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('335','LdapOrgPerson', 'userPassword','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('336','LdapOrgPerson', 'userCertificate','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('337','LdapOrgPerson', 'cACertificate','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('338','LdapOrgPerson', 'authorityRevocationList','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('339','LdapOrgPerson', 'certificateRevocationList','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('340','LdapOrgPerson', 'crossCertificatePair','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('343','LdapOrgPerson', 'generationQualifier','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('344','LdapOrgPerson', 'x500UniqueIdentifier','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('346','LdapOrgPerson', 'uniqueMember','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('347','LdapOrgPerson', 'houseIdentifier','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('350','LdapOrgPerson', 'ref','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('351','LdapOrgPerson', 'referral','',0,0);
+insert into METADATA_ELEMENT(metadata_id, type_id, attribute_name,DESCRIPTION,MULTI_VALUE,REQUIRED) values ('352','LdapOrgPerson', 'krbName','',0,0);
+
+
+
 
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('AD_Connector','Active Directory Connector');
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('LDAP_Connector','LDAP Connector');
@@ -73,8 +133,9 @@ insert into CATEGORY(CATEGORY_ID, PARENT_ID, CATEGORY_NAME, SHOW_LIST) VALUES('A
 insert into CATEGORY(CATEGORY_ID, PARENT_ID, CATEGORY_NAME, SHOW_LIST) VALUES('WebSite','', 'ACL',0);
 insert into CATEGORY(CATEGORY_ID, PARENT_ID, CATEGORY_NAME, SHOW_LIST) VALUES('Application','', 'ACL',0);
 insert into CATEGORY (category_id, parent_id, category_name, show_list) values ('USER_TYPE', 'ROOT', 'User Types',0);
+insert into CATEGORY (category_id, parent_id, category_name, show_list,  DISPLAY_ORDER) values ('MANAGED_SYS_TYPE', 'ROOT', 'Managed System Types',0,0);
 
-insert into CATEGORY (category_id, parent_id, category_name, show_list) values ('CONNECTOR_TYPE', 'ROOT', 'Provisioning Connectors',0);
+insert into CATEGORY (category_id, parent_id, category_name, show_list, DISPLAY_ORDER) values ('CONNECTOR_TYPE', 'ROOT', 'Provisioning Connectors',0,0);
 
 
 insert into CATEGORY_TYPE (category_id, type_ID) values('USER_TYPE','InetOrgPerson');
@@ -89,6 +150,11 @@ insert into CATEGORY_TYPE (category_id, type_ID) values('ACL','DIRECTORY');
 insert into CATEGORY_TYPE (category_id, type_id) values('ACL','FILE');
 insert into CATEGORY_TYPE (category_id, type_id) values('ACL','URL');
 
+insert into CATEGORY_TYPE (category_id, type_ID) values('MANAGED_SYS_TYPE','LdapOrgPerson');
+insert into CATEGORY_TYPE (category_id, type_ID) values('MANAGED_SYS_TYPE','ADUser');
+insert into CATEGORY_TYPE (category_id, type_ID) values('MANAGED_SYS_TYPE','ADGroup');
+
+
 update CATEGORY
 SET DISPLAY_ORDER = 0, SHOW_LIST = 0
 WHERE DISPLAY_ORDER IS NULL OR SHOW_LIST IS NULL;
@@ -98,23 +164,44 @@ INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('SUPER_SEC_ADMIN','IDM',
 INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('SEC_ADMIN','IDM','Security Admin');
 INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('END_USER','USR_SEC_DOMAIN','End User');
 
+INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('HR','USR_SEC_DOMAIN','Human Resource');
+INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('MANAGER','USR_SEC_DOMAIN','Manager');
+INSERT INTO ROLE (ROLE_ID,SERVICE_ID,ROLE_NAME) VALUES ('SECURITY_MANAGER','USR_SEC_DOMAIN','Security Manager');
+
 
 insert into GRP (GRP_id, grp_name)   values('SUPER_SEC_ADMIN_GRP','Super Admin Group');
 insert into GRP (grp_id, grp_name)   values('SEC_ADMIN_GRP','Sec Admin Group');
 insert into GRP (grp_id, grp_name)   values('END_USER_GRP','End User Group');
 
+insert into GRP (grp_id, grp_name)   values('HR_GRP','HR Group');
+insert into GRP (grp_id, grp_name)   values('MNGR_GRP','Manager Group');
+insert into GRP (grp_id, grp_name)   values('SECURITY_GRP','Security Group');
+
 insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3000','sys','','APPROVED','100');
 insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3001','sys2','','APPROVED','100');
 insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3006','Scott','Nelson','APPROVED','100');
+
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3007','HR','User','APPROVED','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3008','Hiring','Manager','APPROVED','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3009','Security','Manager','APPROVED','100');
+
 
 
 insert into USER_GRP (grp_id, user_id) 	values('SUPER_SEC_ADMIN_GRP','3000');
 insert into USER_GRP (grp_id, user_id) 	values('SUPER_SEC_ADMIN_GRP','3001');
 insert into USER_GRP (grp_id, user_id) 	values('END_USER_GRP','3006');
 
+insert into USER_GRP (grp_id, user_id) 	values('HR_GRP','3007');
+insert into USER_GRP (grp_id, user_id) 	values('MNGR_GRP','3008');
+insert into USER_GRP (grp_id, user_id) 	values('SECURITY_GRP','3009');
 
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SUPER_SEC_ADMIN','SUPER_SEC_ADMIN_GRP', 'IDM');
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('END_USER','END_USER_GRP', 'USR_SEC_DOMAIN');
+
+INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('HR','HR_GRP', 'USR_SEC_DOMAIN');
+INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('MANAGER','MNGR_GRP', 'USR_SEC_DOMAIN');
+INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SECURITY_MANAGER','SECURITY_GRP', 'USR_SEC_DOMAIN');
+
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ROOT', NULL ,'Root','Root', null, 'en',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECURITY','ROOT','Access Control','Access Control','security/index.jsp', 'en',1);
@@ -304,6 +391,52 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CONTADMIN','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('TERMINATEACCESS','END_USER');
 
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('NEWHIRE','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGPSWD','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('IDQUEST','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('FORGOTPSWD','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROFILE','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('REPORTINC','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CONTADMIN','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','HR');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('TERMINATEACCESS','HR');
+
+
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGPSWD','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('IDQUEST','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('FORGOTPSWD','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROFILE','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('REPORTINC','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CONTADMIN','MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','MANAGER');
+
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGPSWD','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('IDQUEST','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('FORGOTPSWD','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROFILE','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('REPORTINC','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CONTADMIN','SECURITY_MANAGER');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','SECURITY_MANAGER');
+
+
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ADMIN','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SECDOMAIN','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('METADATA','SUPER_SEC_ADMIN');
@@ -311,12 +444,13 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROVCONNECT','SUPER_SEC_ADMIN')
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MNGSYS','SUPER_SEC_ADMIN');
 
-
-
-
 insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('IDM','sysadmin','IDM','3000','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
 insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('IDM','sysadmin2','IDM','3001','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
 insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('USR_SEC_DOMAIN','snelson','USR_SEC_DOMAIN','3006','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
+
+insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('USR_SEC_DOMAIN','hrmanager','USR_SEC_DOMAIN','3007','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
+insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('USR_SEC_DOMAIN','manager','USR_SEC_DOMAIN','3008','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
+insert into LOGIN(SERVICE_ID, LOGIN, MANAGED_SYS_ID, USER_ID, PASSWORD,RESET_PWD, IS_LOCKED, AUTH_FAIL_COUNT) VALUES('USR_SEC_DOMAIN','secmanager','USR_SEC_DOMAIN','3009','b83a81d1b3f5f209a70ec02c3d7f7fc5',0,0,0);
 
 update LOGIN set reset_pwd = 0, is_locked = 0;
 
@@ -325,6 +459,9 @@ INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3000'
 INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3001', NULL,0,'OPENIAM',0);
 INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3006', NULL,0,'OPENIAM',0);
 
+INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3007', NULL,0,'OPENIAM',0);
+INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3008', NULL,0,'OPENIAM',0);
+INSERT INTO AUTH_STATE(USER_ID, TOKEN, AUTH_STATE, AA, EXPIRATION) values('3009', NULL,0,'OPENIAM',0);
 
 /* Sequence Gen*/
 insert into SEQUENCE_GEN (ATTRIBUTE, NEXT_ID) VALUES('USER_ID', '4000');
@@ -745,7 +882,7 @@ VALUES ('4001','103', 'Default Account Policy', 'Default Account Policy', 1,curd
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY)
 VALUES ('4002','103', 'Audit Policy', 'Audit Policy', 1,curdate(), '3000');
 
-insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION,VALUE1)VALUES ('4000','116', '4000', 'NON_ALPHA_CHARS', 'RANGE',1);
+insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION,VALUE1)VALUES ('4000','116', '4000', 'NON_ALPHA_CHARS', 'RANGE',null);
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION,VALUE1)VALUES ('4001','131', '4000', 'QUEST_SRC', '','USER');
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION,VALUE1)VALUES ('4002','100', '4000', 'SERVICE_ID', 'IN','');
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION,VALUE1)VALUES ('4003','123', '4000', 'VOWELS_IN_PWD', '','boolean');
@@ -769,6 +906,36 @@ insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPE
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION, VALUE1) VALUES ('4021', '124', '4000', 'REJECT_NUM_START', 'boolean', null);
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION, VALUE1) VALUES ('4022', '119', '4000', 'CONSECUTIVE_CHARS', null, null);
 insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPERATION, VALUE1) VALUES ('4023', '111', '4000', 'PWD_EXPIRATION', null, 90);
+
+
+
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4500','104', 'c', 'countryName - 2 character country code', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4501','104', 'cn', 'commonName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4502','104', 'mail', 'email address', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4503','104', 'mobile', 'mobileTelephoneNumber'', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4504','104', 'o', 'organization name', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4505','104', 'ou', 'organizationalUnitName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4506','104', 'pager', 'pagerTelephoneNumber', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4507','104', 'postalCode', 'commonName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4508','104', 'sn', 'surname', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4509','104', 'st', 'stateOrProvinceName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4510','104', 'street', 'streetAddress', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4511','104', 'userPassword', 'password', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4512','104', 'postOfficeBox', 'postOfficeBox', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4513','104', 'postalAddress', 'postalAddress', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4514','104', 'physicalDeliveryOfficeName', 'physicalDeliveryOfficeName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4515','104', 'l', 'Locality', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4516','104', 'telephoneNumber', 'Primary Telephone', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4517','104', 'facsimileTelephoneNumber', 'Fax', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4518','104', 'destinationIndicator', 'destinationIndicator', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4519','104', 'registeredAddress', 'Registered Address', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4520','104', 'gn', 'givenName', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4521','104', 'homePhone', 'home phone', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4522','104', 'jpegPhoto', 'Jpeg Photo', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4523','104', 'uid', 'User Id', 1,curdate(), '3000', '');
+
+
+
 
 
 
