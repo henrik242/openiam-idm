@@ -65,9 +65,12 @@ public class RequestDetailController extends SimpleFormController {
 
 		if (btn.equalsIgnoreCase("Approve")) {
 			req.setStatus("APPROVED");
+		}else if (btn.equalsIgnoreCase("Claim")) {
+			req.setStatus("CLAIMED");
 		}else {
 			req.setStatus("REJECTED");
 		}
+		
 		req.setRequestDate(new Date(System.currentTimeMillis()));
 		
 		provRequestService.updateRequest(req);

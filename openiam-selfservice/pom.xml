@@ -127,11 +127,7 @@
       <version>1</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>jenkov</groupId>
-      <artifactId>prizetags</artifactId>
-      <version>3.4</version>
-    </dependency>
+
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts-core</artifactId>
@@ -189,5 +185,11 @@
       <artifactId>jstl</artifactId>
       <version>1.1.2</version>
     </dependency>
+    <dependency>
+      <groupId>velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.5</version>
+    </dependency>
+
   </dependencies>
 </project>

@@ -14,6 +14,8 @@
 	String lastName = (String)session.getAttribute("lastname");
 	Map<String,UserAttribute> usrAttrMap = (Map)session.getAttribute("userattr");
 	
+	String challengeSet = (String)request.getAttribute("challengeSet");
+	
 
 %>
 
@@ -25,20 +27,14 @@
       <tr align="center" valign="top">
         <td></td>
       </tr>
-	  <% 
-	  	if (usrAttrMap != null && !usrAttrMap.isEmpty()) {
-	  		Set<String> keySet = usrAttrMap.keySet();
-	  		Iterator it = keySet.iterator();
-	  		while (it.hasNext()) {
-	  			String key = (String)it.next();
-	  			UserAttribute userAtr = usrAttrMap.get(key);
-	  %>
-      <tr align="center" valign="top">
-        <td><%= userAtr.getValue() %></td>
-      </tr>
-	  <% 
-	  		}
-	  	}
-	  %>
+     <% if (challengeSet != null && challengeSet.equalsIgnoreCase("false")) { %>
+      <tr  valign="top" align="center">
+        <td colspan="2"><font color="red"><b>Warning: Before you continue, please complete the "Challenge Response" from the Self-Service section
+        on the right. This will enable your password self-service options.</b></font></td>
+         <td> </td>
+      </tr>      
+      <% } %>
+      
+
     </table>
 

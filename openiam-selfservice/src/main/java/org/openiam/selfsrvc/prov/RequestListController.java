@@ -15,6 +15,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 
 // temp
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
+import org.openiam.idm.srvc.prov.request.dto.SearchRequest;
 import org.openiam.idm.srvc.prov.request.service.RequestDataService;
 import org.openiam.idm.srvc.user.dto.User;
 
@@ -37,9 +38,12 @@ public class RequestListController extends SimpleFormController {
 		System.out.println("onSubmit called.");
 		
 		RequestSearchCriteria reqSearch =(RequestSearchCriteria)command;
-		reqSearch.setStatus("new");
+		System.out.println("Request search:" + reqSearch.getStatus());
 		
-		ProvisionRequest[] reqAry = provRequestService.search(null);
+		SearchRequest search = new SearchRequest();
+		search.setStatus(reqSearch.getStatus());
+		
+		ProvisionRequest[] reqAry = provRequestService.search(search);
 		
 		// temp objects
 	/*	User usr = new User();

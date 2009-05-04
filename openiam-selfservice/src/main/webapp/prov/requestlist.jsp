@@ -22,15 +22,25 @@
               <td align="right"><b>Status:</b></td>
               <td>
               	<form:select path="status">
-	              <form:option value="Open" />
+	              <form:option value="NEW" />
+	              <form:option value="APPROVED" />
+	              <form:option value="REJECTED" />
+	              <form:option value="CLAIMED" />
+	              <form:option value="MY REQUESTS" />
           		</form:select>
           	  </td>
-			  <td>
 			  	<!-- 
 			  		<b>Date(MM/DD/YYYY):<b> <form:input path="startDate" /> - <form:input path="endDate" /></td>
 			  	-->
           </tr>
+          <tr>
+			  <td></td>
+              <td align="right"><b>Date (MM/DD/YYYY):</b></td>
+              <td>
+              	<input type="text"/> - <input type="text"/>
+          	  </td>
 
+          </tr>
          <tr>
     	  <td colspan="4">&nbsp;</td>
     	</tr>

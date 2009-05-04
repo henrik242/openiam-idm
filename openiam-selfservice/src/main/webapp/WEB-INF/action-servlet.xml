@@ -29,9 +29,7 @@
 
 
 
-	<bean name="/registration"  class="org.openiam.selfsrvc.RegistrationAction" >
-	</bean>
-	
+
 	<bean name="/login"  class="org.openiam.selfsrvc.login.LoginAction" >
 		<property name="leftMenuGroup" value="BUSINESCENTER" />
 		<property name="rightMenuGroup1" value="ACCESSCENTER" />

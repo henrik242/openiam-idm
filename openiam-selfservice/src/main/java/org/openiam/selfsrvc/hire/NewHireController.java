@@ -22,8 +22,10 @@ import javax.naming.directory.ModificationItem;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -45,6 +47,7 @@ import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.grp.service.GroupDataService;
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
+import org.openiam.idm.srvc.prov.request.dto.ProvisioningConstants;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
 import org.openiam.idm.srvc.prov.request.service.RequestDataService;
 import org.openiam.idm.srvc.role.dto.Role;
@@ -110,16 +113,21 @@ public class NewHireController extends SimpleFormController {
 	
 	
 	@Override
-	protected ModelAndView onSubmit(Object command) throws Exception {
+	protected ModelAndView onSubmit(HttpServletRequest request,
+			HttpServletResponse response, Object command, BindException errors) throws Exception {
 		// TODO Auto-generated method stub
 		
 		
 		NewHireCommand newHireCmd =(NewHireCommand)command;
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
 		
 		// get objects from the command object
 		
 		// - User
 		User usr = getUser(newHireCmd);
+		usr.setCreatedBy(userId);
+		usr.setCreateDate(new Date(System.currentTimeMillis()));
 				
 		Supervisor sup = this.getSupervisor(newHireCmd, usr);
 		LoginId loginId = new LoginId( defaultDomainId,  newHireCmd.getUserPrincipalName(), "0");
@@ -128,77 +136,49 @@ public class NewHireController extends SimpleFormController {
 		
 		// persist objects to DB
 		try {
-		userMgr.addUserWithDependent(usr, false);
-		userMgr.addSupervisor(sup);
-		loginManager.addLogin(login);
-        groupManager.addUserToGroup("END_USER_GRP",usr.getUserId());
-        
-        // add to group
-        if (newHireCmd.getGroup() != null && !newHireCmd.getGroup().isEmpty()) {
-        	groupManager.addUserToGroup(newHireCmd.getGroup(), usr.getUserId());
-        }
-
-        // add to role
-        if (newHireCmd.getRole() != null && !newHireCmd.getRole().isEmpty()) {
-        	roleDataService.addUserToRole(defaultDomainId, newHireCmd.getRole(), usr.getUserId());
-        }
-    
-        
-		// set the attributes	
-		userAttributes(newHireCmd, usr);	
-		// add the phone numbers
-		getPhone(newHireCmd, usr);
-		// add the email 
-		getEmail(newHireCmd, usr);
-		// add the addresses
-		this.getAddress(newHireCmd, usr);
-		
-        userMgr.updateUserWithDependent(usr, true);
-                 
-        // add the applications
+			userMgr.addUserWithDependent(usr, false);
+			userMgr.addSupervisor(sup);
+			loginManager.addLogin(login);
+	        groupManager.addUserToGroup("END_USER_GRP",usr.getUserId());
+	        
+	        // add to group
+	        if (newHireCmd.getGroup() != null && !newHireCmd.getGroup().isEmpty()) {
+	        	groupManager.addUserToGroup(newHireCmd.getGroup(), usr.getUserId());
+	        }
+	
+	        // add to role
+	        if (newHireCmd.getRole() != null && !newHireCmd.getRole().isEmpty()) {
+	        	log.info("Add role: domain=" + defaultDomainId + " role=" + newHireCmd.getRole() + " " + usr.getUserId());
+	        	roleDataService.addUserToRole(defaultDomainId, newHireCmd.getRole(), usr.getUserId());
+	        }
+	    
+	        
+			// set the attributes	
+			userAttributes(newHireCmd, usr);	
+			// add the phone numbers
+			getPhone(newHireCmd, usr);
+			// add the email 
+			getEmail(newHireCmd, usr);
+			// add the addresses
+			this.getAddress(newHireCmd, usr);
+			
+	        userMgr.updateUserWithDependent(usr, true);
+	                 
+	        // add the applications
         
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
         
-        System.out.println("User id = " + usr.getUserId());
+        createRequest(userId, usr);
+        
+        notifyManager(usr);
 		
- 		// create a request
-        ProvisionRequest req = new ProvisionRequest();
-		req.setRequestorId("3007");
-		req.setStatus("OPEN");
-		req.setStatusDate(new Date(System.currentTimeMillis()));
-		req.setRequestReason("New Hire");
-		req.setRequestDate(new Date(System.currentTimeMillis()));
+ 		
 
 		
-		System.out.println("Request = " + req);
-		System.out.println("Request Service = " + provRequestService);
-		
-		provRequestService.addRequest(req); 
-		
-		Set<RequestUser> reqUserSet =  req.getRequestUsers();
-		
-		RequestUser reqUser = new RequestUser();
-		reqUser.setUserId(usr.getUserId());
-		reqUser.setFirstName(usr.getFirstName());
-		reqUser.setLastName(usr.getLastName());
-		reqUser.setProvRequestId(req.getRequestId());
-		reqUserSet.add(reqUser);
-		
-		provRequestService.updateRequest(req);
-		
-		
-		// send an email to the manager
-	
-  
-        System.out.println("Sending email from new hire form....");
-		mailService.send(null, "tony.lucich@ceoit.ocgov.com", "User Successfully Created", 
-				"A request for User: " + usr.getFirstName() + " " + usr.getLastName() + 
-				" has been created through the new hire facility. Please log into OCid to review the request.");
-		
 		// ADD TO LDAP - SEND TO CONNECTOR
-		String uid = usr.getLastName() + "." + usr.getFirstName()+ "01";
+/*		String uid = usr.getLastName() + "." + usr.getFirstName()+ "01";
 		
 		String[] oc = { "top", "person", "organizationalPerson", "inetOrgPerson" };
 		String[] organizationalUnits = { "Auditor Controller" };
@@ -219,7 +199,7 @@ public class NewHireController extends SimpleFormController {
 		attributes.put("telephoneNumber","999.999.9999");
 		addLdap(uid, oc, organizationalUnits, attributes, "passwd00");
 	 
-		
+*/		
 		
 		ModelAndView mav = new ModelAndView(getSuccessView());
 		mav.addObject("newHireCmd",newHireCmd);
@@ -228,7 +208,46 @@ public class NewHireController extends SimpleFormController {
 		return mav;
 	}
 
+	private void createRequest(String userId, User usr) {
+	       ProvisionRequest req = new ProvisionRequest();
+			req.setRequestorId(userId);
+			req.setStatus("NEW");
+			req.setStatusDate(new Date(System.currentTimeMillis()));
+			req.setRequestDate(new Date(System.currentTimeMillis()));
+			req.setRequestType(ProvisioningConstants.NEW_HIRE);
+
+			
+			
+			provRequestService.addRequest(req); 
+			
+			// add a user to the request - this is the person in the New Hire
+			Set<RequestUser> reqUserSet =  req.getRequestUsers();
+			
+			RequestUser reqUser = new RequestUser();
+			reqUser.setUserId(usr.getUserId());
+			reqUser.setFirstName(usr.getFirstName());
+			reqUser.setLastName(usr.getLastName());
+			reqUser.setProvRequestId(req.getRequestId());
+			reqUserSet.add(reqUser);
+			
+			provRequestService.updateRequest(req);
+		
+	}
 	
+	private void notifyManager(User usr) {
+		
+		String managerId = usr.getManagerId();
+		User manager = userMgr.getUserWithDependent(managerId, true);
+		EmailAddress email = manager.getEmailByName("EMAIL1");
+		
+		mailService.send(null, "suneet_shah@openiam.com", "User Successfully Created", 
+				"A request for User: " + usr.getFirstName() + " " + usr.getLastName() + 
+				" has been created through the new hire facility. Please log into the OpenIAM Selfservice application to review the request." +
+				" http://localhost:8080/selfservice");
+	}
+
+
+
 	private User getUser(NewHireCommand newHireCmd) {
 		User usr = new User();
 		usr.setFirstName(newHireCmd.getFirstName());

@@ -19,6 +19,7 @@ import org.openiam.webadmin.busdel.security.AuthenticatorAccess;
 import org.openiam.webadmin.busdel.security.TokenAccess;
 import org.springframework.web.context.WebApplicationContext;
 import org.openiam.idm.srvc.continfo.dto.Phone;
+import org.openiam.webadmin.busdel.security.IdQuestionAccess;
 
 import diamelle.security.auth.*;
 import diamelle.security.token.*;
@@ -47,7 +48,8 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 	protected AuthenticatorAccess authAccess = null;
 	protected AppConfiguration appConfiguration;
 	SecurityDomainAccess secDomainAccess = null;
-
+	IdQuestionAccess questAccess = new IdQuestionAccess();
+	
 	private String leftMenuGroup;
 	private String rightMenuGroup1;
 	private String rightMenuGroup2;
@@ -160,6 +162,14 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 			session.setAttribute("password",password);
 			request.setAttribute("subject", sub);
 			
+			List answerList = questAccess.getUserAnswers(sub.getUserId());
+
+			if (answerList == null || answerList.isEmpty()) {					
+				request.setAttribute("challengeSet","false"); 
+			}else {
+				request.setAttribute("challengeSet","true");
+			}
+
 			
 			
 			WebApplicationContext webCtx = getWebApplicationContext();
@@ -200,7 +210,6 @@ public class LoginAction extends NavigationDispatchAction {  //NavigationAction 
 		session.setAttribute("privateRightMenuGroup2",
 				navigationDataService.menuGroupSelectedByUser(rightMenuGroup2,sub.getUserId(), appConfiguration.getDefaultLang()));
 		
-System.out.println("private right menu group=" + session.getAttribute(rightMenuGroup1));
 
 		
 	}catch(diamelle.security.auth.AuthenticationException ae) {

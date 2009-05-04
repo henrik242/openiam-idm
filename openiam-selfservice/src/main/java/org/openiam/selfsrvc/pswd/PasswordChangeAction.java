@@ -51,16 +51,9 @@ import org.springframework.web.struts.*;
 import javax.servlet.ServletContext;
 
 import org.openiam.selfsrvc.pswd.*;
-//import org.openiam.idm.connector.*;
-//import org.openiam.idm.connector.ldap.*;
 
-/** 
- * MyEclipse Struts
- * Creation date: 03-26-2005
- * 
- * XDoclet definition:
- * @struts:action path="/passwordChange" name="passwordChangeForm" input="/passwordChange.jsp" scope="request" validate="true"
- */
+
+
 public class PasswordChangeAction extends DispatchActionSupport {
 
 	// --------------------------------------------------------- Instance Variables
@@ -83,8 +76,7 @@ public class PasswordChangeAction extends DispatchActionSupport {
 	  // SAS - 8/31/08 - Integration with spring objects
 	  protected PasswordConfiguration passwordConfig= null;
 	  
-	 // protected Password adPassword;
-	  //protected Password ldapPassword;	  
+ 
 
 	  
 	  public PasswordConfiguration getPasswordConfig() {
@@ -104,14 +96,12 @@ public class PasswordChangeAction extends DispatchActionSupport {
   	
 	  	HttpSession session = request.getSession();
 		DynaActionForm passwordChangeForm = (DynaActionForm) form;
-	//	serviceAccess = new ServiceAccess();
 		
 		serviceAccess = new ServiceAccess(getWebApplicationContext());
 		secDomainAccess = new SecurityDomainAccess(getWebApplicationContext());
 		
 		WebApplicationContext webCtx = getWebApplicationContext();
-	//	ldapPassword = (Password)webCtx.getBean("adPassword");
-		//ldapPassword = (Password)webCtx.getBean("adPassword");
+
 	    IdmAuditLogDataService auditService = 
     		 (IdmAuditLogDataService)webCtx.getBean("auditDataService");
 	
@@ -154,10 +144,10 @@ public class PasswordChangeAction extends DispatchActionSupport {
 		
 		
 		try {
-			if (session.getAttribute("serviceList") == null) {
-				session.setAttribute("serviceList", getAllServices());
+			if (session.getAttribute("domainList") == null) {
+				//session.setAttribute("serviceList", getAllServices());
 				//session.setAttribute("serviceList", securityAccess.getUserServices(userId));
-				session.setAttribute("operationList", getOperationStatusList());
+				//session.setAttribute("operationList", getOperationStatusList());
 				session.setAttribute("domainList", secDomainAccess.getAllDomainsWithExclude("IDM"));
 			}
 		} catch (Exception e) {
@@ -418,7 +408,7 @@ public class PasswordChangeAction extends DispatchActionSupport {
 		
 		attrVal = getPolicyAttr(policyAttrList,"NON_ALPHA_CHARS");
 		
-		System.out.println("attrval = " + attrVal.getValue1());
+		log.info("attrval = " + attrVal.getValue1());
 		
 		if (attrVal.getValue1() != null) {
 			// if a non-alpha exists
@@ -431,7 +421,7 @@ public class PasswordChangeAction extends DispatchActionSupport {
 					if (( ch >= 33 && ch <= 47) || (ch >= 58 && ch <= 64) || (ch >= 123 && ch <= 126) || ch == 95) {
 						match = true;
 						
-						System.out.println("attrval = match found " + ch );
+						log.info("attrval = match found " + ch );
 						break;
 					}	
 				}
@@ -476,11 +466,7 @@ public class PasswordChangeAction extends DispatchActionSupport {
 		UserData ud = userAccess.getUser(userId);
 		// sync with connected directories
 		
-		//this.adPassword.setPassword(login, newPassword);
-//		this.ldapPassword.setPassword(login, newPassword);
-		//ldapPassword.setPassword(ud.getFirstName() + " " + ud.getLastName(), newPassword);
-	//	ldapPassword.setPassword(login, newPassword);
-		// sync the service
+
 
 		WebApplicationContext webCtx = getWebApplicationContext();
 	    IdmAuditLogDataService auditService = 
@@ -579,14 +565,14 @@ public class PasswordChangeAction extends DispatchActionSupport {
 			int arySize = serviceAry.length;
 			
 			for (int i=0; i<=arySize; i++) {
-				System.out.println("Serv = " + serviceAry[i]);
+				log.info("Serv = " + serviceAry[i]);
 				if (serviceAry[i].equals( serviceName))
 					return true;
 			}
 			return false;
 	}
 	  
-	private List getOperationStatusList() throws RemoteException {
+/*	private List getOperationStatusList() throws RemoteException {
 		ArrayList newCodeList = new ArrayList();
 	    CodeAccess cdAccess = new CodeAccess();
 	    List codeList = cdAccess.getCodesByService("100","IDM","OPERATION","en");
@@ -600,7 +586,7 @@ public class PasswordChangeAction extends DispatchActionSupport {
 	        }
 	        return newCodeList;
 	 }
-
+*/
 
 
 }

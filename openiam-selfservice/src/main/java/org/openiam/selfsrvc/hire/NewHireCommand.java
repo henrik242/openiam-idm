@@ -15,7 +15,7 @@ public class NewHireCommand implements Serializable {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -3001967685870249543L;
-	String status = new String("APPROVED");
+	String status = new String("PENDING");
 	String firstName;
 	String lastName;
 	String middleName;

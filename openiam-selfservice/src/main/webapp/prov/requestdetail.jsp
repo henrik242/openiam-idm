@@ -49,7 +49,7 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="4" align="right"><input type="submit" name="btn" value="Approve"> <input type="submit" name="btn" value="Reject"> </td>
+              <td colspan="4" align="right"><input type="submit" name="btn" value="Claim"> <input type="submit" name="btn" value="Approve"> <input type="submit" name="btn" value="Reject"> </td>
           </tr>
 </table>
 

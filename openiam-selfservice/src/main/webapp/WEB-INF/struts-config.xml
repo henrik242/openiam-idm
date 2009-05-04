@@ -200,15 +200,7 @@
                        
        </form-bean>
  
-        <form-bean name="registrationForm" type="org.apache.struts.action.DynaActionForm">
-            <form-property name="firstName" type="java.lang.String"/>
-            <form-property name="lastName" type="java.lang.String"/>
-            <form-property name="email" type="java.lang.String"/>
-            <form-property name="submit" type="java.lang.String"/>
-            <form-property name="areaCode" type="java.lang.String"/>
-            <form-property name="phone" type="java.lang.String"/>
-            <form-property name="phoneExt" type="java.lang.String"/>
-        </form-bean>
+
 
       
         <form-bean name="userSearchForm" type="org.apache.struts.validator.DynaValidatorForm">
@@ -387,16 +379,6 @@
     </action>
 
 
-     <action path="/registration" 
-         input="/pub/registration.jsp" 
-         name="registrationForm"
-         scope="request" parameter="method" validate="false"
-         type="org.springframework.web.struts.DelegatingActionProxy" >
-      	<forward name="success" path="/home.jsp?bodyjsp=/pub/confirmReg.jsp" />
-      	<forward name="failure" path="/home.jsp?bodyjsp=/pub/registration.jsp" />
-		<forward name="view" path="/home.jsp?bodyjsp=/pub/registration.jsp" />
-
-    </action>
  
      <action path="/priv/password"
          input="/priv/passwordChange.jsp" 
