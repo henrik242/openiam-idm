@@ -40,6 +40,8 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
+import org.openiam.idm.srvc.meta.dto.MetadataElement;
+import org.openiam.idm.srvc.meta.service.MetadataService;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
 import org.openiam.idm.srvc.mngsys.dto.SysAttributeMap;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
@@ -68,6 +70,7 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 	private ManagedSystemDataService managedSysService; 
 	private SecurityDomainDataService secDomainService;
 	private PolicyDataService policyDataService;
+	private MetadataService metadataService;
 
 	
 
@@ -81,9 +84,13 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 	protected Map referenceData(HttpServletRequest request) throws Exception {
 		
 		SecurityDomain[] domainAry = secDomainService.getAllSecurityDomains();
+		Policy[] attrPolicyAry = policyDataService.getAllPolicies(PolicyConstants.ATTRIBUTE_POLICY);
+
 		
 		Map model = new HashMap();
 		model.put("secDomainAry", domainAry);
+		model.put("attrPolicyAry", attrPolicyAry);
+
 		
 		return model;
 	}
@@ -103,15 +110,29 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 		SysAttrMapCommand attrMapCommand  = new SysAttrMapCommand();
 		
 		// set the list of policies
-		Policy[] attrPolicyAry = policyDataService.getAllPolicies(PolicyConstants.ATTRIBUTE_POLICY);
-		attrMapCommand.setAttrPolicyAry(attrPolicyAry);
+		//Policy[] attrPolicyAry = policyDataService.getAllPolicies(PolicyConstants.ATTRIBUTE_POLICY);
+		//attrMapCommand.setAttrPolicyAry(attrPolicyAry);
 
-		// always padd an extra row so that user can add a row without having to hit the 
-		// add row button
-		SysAttributeMap attr = new SysAttributeMap();
-		SysAttributeMap[] attrMapAry = new SysAttributeMap[1];
-		attrMapAry[0] = attr;
-		attrMapCommand.setAttrMapAry(attrMapAry);
+		// load the attributes
+		
+		MetadataElement[]elementAry = metadataService.getMetadataElementByType("LdapOrgPerson");
+
+		for (MetadataElement element: elementAry) {
+			System.out.println("element=" + element.getAttributeName());
+		}
+		
+		if (elementAry  != null) {
+			SysAttributeMap[] attrMapAry = new SysAttributeMap[elementAry.length];
+			int ctr = 0;
+			for (MetadataElement element : elementAry) {
+				attrMapAry[ctr] = new SysAttributeMap();
+				attrMapAry[ctr].setTargetAttributeName(element.getAttributeName());
+				attrMapAry[ctr].setTargetAttrElementId(element.getMetadataElementId());
+				ctr++;
+			}
+			attrMapCommand.setAttrMapAry(attrMapAry);
+		}
+		
 		
 		
 		return attrMapCommand;
@@ -181,6 +202,16 @@ public class ManagedSysAttrMapController extends SimpleFormController {
 
 	public void setPolicyDataService(PolicyDataService policyDataService) {
 		this.policyDataService = policyDataService;
+	}
+
+
+	public MetadataService getMetadataService() {
+		return metadataService;
+	}
+
+
+	public void setMetadataService(MetadataService metadataService) {
+		this.metadataService = metadataService;
 	}
 
 

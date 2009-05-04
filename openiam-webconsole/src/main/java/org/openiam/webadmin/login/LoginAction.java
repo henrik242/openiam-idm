@@ -11,11 +11,9 @@ import org.apache.struts.action.*;
 
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.AuthenticatorAccess;
-import org.openiam.webadmin.busdel.security.TokenAccess;
 
 
 import diamelle.security.auth.*;
-import diamelle.security.token.*;
 import diamelle.util.Log;
 import diamelle.ebc.user.*;
 
@@ -40,13 +38,12 @@ public class LoginAction extends DiamelleBaseAction {
 	protected LoginAccess loginAccess = new LoginAccess();
 	//protected UserAccess userAccess = null;
 	protected AuthenticatorAccess authAccess = null;
-	protected TokenAccess tknAccess = null;
+	//protected TokenAccess tknAccess = null;
 	
 	public LoginAction() {
 		try {
 		//	userAccess = new UserAccess();
 			authAccess = new AuthenticatorAccess();
-			tknAccess = new TokenAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

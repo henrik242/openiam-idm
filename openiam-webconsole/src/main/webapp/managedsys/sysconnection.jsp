@@ -42,11 +42,11 @@
 		  </tr>
           <tr>
               <td class="tddark" >Connector</td>
-			  <td class="tdlightnormal"><form:select path="connectorId">
-		              <form:option value="-Select a value" />
-		              <form:option value="SSL" />
-		              <form:option value="CLEAR" />
-	              </form:select>
+			  <td class="tdlightnormal">
+			  		<form:select path="connectorId">
+			  			<form:option value="-Select a value" />
+			  			<form:options items="${connectors}" itemValue="connectorId" itemLabel="name"  />
+		            </form:select>
 			  </td>
 		  </tr>
           <tr>

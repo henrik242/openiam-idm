@@ -35,44 +35,46 @@
 			  </td>
           </tr>
           <tr>
+			  <td class="tddark">Attribute Group</td>
+              <td class="tdlightnormal">
+		              	  <form:select path="objectGroupType">
+				              <form:option value="-Select a value" />
+				              <form:option value="USER" />
+				              <form:option value="GROUP" />
+				              <form:option value="ROLE" />
+			              </form:select>
+			  </td>
+          </tr>
+
+          <tr>
           	<td colspan="2">
           		<table width="100%">
           			<tr>
-	          			<td class="tddark">ID</td>
 	          			<td class="tddark">Attribute Name</td>
 	          			<td class="tddark">Is Auth. Src</td>
 	          			<td class="tddark">Rule</td>
 	          			<td class="tddark">Status</td>
-	          			<td class="tddark">Start Date</td>
-	          			<td class="tddark">End Date</td>
-	          			<td class="tddark"></td>
           			</tr>
           			         	
-	          		<c:forEach items="${attrMapCmd.attrMapAry}" var="sysAttr" varStatus="sysAttrMap">
-					<tr class="tdlight">
-						<td> ${sysAttr.attributeMapId}</td>
-						<td> ${sysAttr.targetAttributeName} </td>
-						<td> <form:checkbox path="attrMapAry[${sysAttrMap.index}].authoritativeSrc"  /></td>
-						<td> <form:select path="attrMapAry[${sysAttrMap.index}].rule" >
-              					<form:option value="-" label="-Please Select-"/>
-              					<form:options items="${attrMapCmd.attrPolicyAry}" itemValue="policyId" itemLabel="name"/>
-         					 </form:select>   
-						 </td> 
-						<td> <form:select path="${sysAttr.status}">
+          			<c:forEach items="${attrMapCmd.attrMapAry}" var="sysAttr" varStatus="attr">
+	     
+						<tr class="tdlight">
+							<td> ${sysAttr.targetAttributeName} </td>
+							<td> <form:checkbox path="attrMapAry[${attr.index}].authoritativeSrc" /> </td>
+							<td> 
+								<form:select path="attrMapAry[${attr.index}].rule" >
+	              					<form:option value="-" label="-Please Select-"/>
+	              					<form:options items="${attrPolicyAry}" itemValue="policyId" itemLabel="name"/>
+	         					</form:select>   
+							 </td>
+							 <td> <form:select path="attrMapAry[${attr.index}].rule">
        				              <form:option value="-" label="-Please Select-"/>
        				              <form:option value="ACTIVE" label="ACTIVE"/>
        				              <form:option value="IN-ACTIVE" label="IN-ACTIVE"/>
           					  </form:select>
-          				</td>
-						<td> <form:input path="attrMapAry[${sysAttrMap.index}].startDate" /></td>
-						<td> <form:input path="attrMapAry[${sysAttrMap.index}].endDate" /></td>
-						<td>
-							<c:if test="${sysAttr.attributeMapId != null}" >
-								<input type="submit" name="btn-${sysAttr.attributeMapId}" value="Del Row"> 
-							</c:if>
-						</td> 
-					</tr>
-					
+          					</td>
+
+						</tr>
 					</c:forEach>
 				</table>
 				
@@ -89,7 +91,7 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="2" align="right"><input type="submit" name="btn" value="Delete"> <input type="submit" name="btn" value="Add Row">  <input type="submit" name="btn" value="Submit"> </td>
+              <td colspan="2" align="right"> <input type="submit" name="btn" value="Save"> <input type="reset" name="btn" value="Reset"> </td>
           </tr>
 </table>
 

@@ -49,7 +49,8 @@
 		<property name="successView" value="/managedsys/confirm" />
 		
 		<property name="managedSysService" ref="managedSysService" />
-		<property name="secDomainService" ref="secDomainService" />		
+		<property name="secDomainService" ref="secDomainService" />	
+		<property name="connectorService" ref="connectorService" />	
      </bean>
      <bean id="managedSysAttrMap" class="org.openiam.webadmin.conn.mngsys.ManagedSysAttrMapController">
 		<property name="commandName" value="attrMapCmd" />
@@ -58,7 +59,8 @@
 		<property name="successView" value="/managedsys/sysattrmap" />
 		<property name="managedSysService" ref="managedSysService" />
 		<property name="secDomainService" ref="secDomainService" />		
-		<property name="policyDataService" ref="policyDataService" />		
+		<property name="policyDataService" ref="policyDataService" />	
+		<property name="metadataService" ref="metadataService" />		
      </bean>            
             
      <bean id="managedSysApprover" class="org.openiam.webadmin.conn.mngsys.ManagedSysApproverController">

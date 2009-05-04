@@ -41,6 +41,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
+import org.openiam.idm.srvc.mngsys.dto.ProvisionConnector;
+import org.openiam.idm.srvc.mngsys.service.ConnectorDataService;
 import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
 import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.RequestUser;
@@ -61,7 +63,8 @@ public class ManagedSysConnectionController extends SimpleFormController {
 
 	private ManagedSystemDataService managedSysService; 
 	private SecurityDomainDataService secDomainService;
-
+	private ConnectorDataService connectorService;
+	
 	
 
 
@@ -103,9 +106,12 @@ public class ManagedSysConnectionController extends SimpleFormController {
 	protected Map referenceData(HttpServletRequest request) throws Exception {
 		
 		SecurityDomain[] domainAry = secDomainService.getAllSecurityDomains();
+		ProvisionConnector[] connectorAry = (ProvisionConnector[])connectorService.getAllConnectors();
+		
 		
 		Map model = new HashMap();
 		model.put("secDomainAry", domainAry);
+		model.put("connectors", connectorAry);
 		
 		return model;
 	}
@@ -152,6 +158,21 @@ public class ManagedSysConnectionController extends SimpleFormController {
 
 	public void setSecDomainService(SecurityDomainDataService secDomainService) {
 		this.secDomainService = secDomainService;
+	}
+
+
+
+
+
+	public ConnectorDataService getConnectorService() {
+		return connectorService;
+	}
+
+
+
+
+	public void setConnectorService(ConnectorDataService connectorService) {
+		this.connectorService = connectorService;
 	}
 
 

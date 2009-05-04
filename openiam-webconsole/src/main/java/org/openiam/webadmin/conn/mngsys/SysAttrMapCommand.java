@@ -37,6 +37,7 @@ public class SysAttrMapCommand implements Serializable {
 	private static final long serialVersionUID = 513253291470702152L;
 	
 	private String managedSysId;
+	private String name;
 	private String objectGroupType;
 	private SysAttributeMap[] attrMapAry;
 	private Policy[] attrPolicyAry;
@@ -89,6 +90,20 @@ public class SysAttrMapCommand implements Serializable {
 
 	public void setAttrPolicyAry(Policy[] attrPolicyAry) {
 		this.attrPolicyAry = attrPolicyAry;
+	}
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
