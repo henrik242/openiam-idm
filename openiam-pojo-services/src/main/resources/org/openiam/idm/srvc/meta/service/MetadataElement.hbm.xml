@@ -16,7 +16,7 @@
             <column name="TYPE_ID" length="20" />
         </property>
         <property name="attributeName" type="string">
-            <column name="ATTRIBUTE_NAME" length="20" />
+            <column name="ATTRIBUTE_NAME" length="50" />
         </property>
         <property name="description" type="string">
             <column name="DESCRIPTION" length="40" />

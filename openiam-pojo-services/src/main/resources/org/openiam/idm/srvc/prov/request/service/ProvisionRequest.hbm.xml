@@ -23,6 +23,11 @@
         <property name="requestReason" type="string">
             <column name="REQUEST_REASON" length="500" />
         </property>
+        <property name="requestType" type="string">
+            <column name="REQUEST_TYPE" length="20" />
+        </property>        
+
+        
         <set name="requestUsers" inverse="true" cascade="all-delete-orphan" lazy="false" >
             <key>
                 <column name="REQUEST_ID" length="32" not-null="true" />

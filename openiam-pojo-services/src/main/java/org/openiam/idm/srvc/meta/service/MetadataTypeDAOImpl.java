@@ -143,7 +143,7 @@ public class MetadataTypeDAOImpl implements MetadataTypeDAO {
 	
 	public List<MetadataType> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-		Query qry = session.createQuery("from org.openiam.idm.srvc.meta.dto.MetadataType" ); 
+		Query qry = session.createQuery("from org.openiam.idm.srvc.meta.dto.MetadataType  order by type.metadataTypeId asc " ); 
 		List<MetadataType> results = (List<MetadataType>)qry.list();
 		return results;		
 	}

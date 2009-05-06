@@ -17,6 +17,7 @@ public class ProvisionRequest implements java.io.Serializable {
 	private String status;
 	private Date statusDate;
 	private String requestReason;
+	private String requestType;
 	
 	private Set<ManagedSys> managedSyses = new HashSet<ManagedSys>(0);
 	private Set<RequestAttribute> requestAttributes = new HashSet<RequestAttribute>(0);
@@ -137,6 +138,14 @@ public class ProvisionRequest implements java.io.Serializable {
 
 	public void setRequestUsers(Set<RequestUser> requestUserLists) {
 		this.requestUsers = requestUserLists;
+	}
+
+	public String getRequestType() {
+		return requestType;
+	}
+
+	public void setRequestType(String requestType) {
+		this.requestType = requestType;
 	}
 
 }

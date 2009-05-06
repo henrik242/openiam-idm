@@ -48,7 +48,7 @@ public class RequestDataServiceImpl implements RequestDataService {
 	public ProvisionRequest[] search(SearchRequest search) {
 		// TODO Auto-generated method stub
 		
-		List<ProvisionRequest> reqList = requestDao.findByStatus("OPEN");
+		List<ProvisionRequest> reqList = requestDao.findByStatus(search.getStatus());
 		if (reqList == null || reqList.size() == 0)
 			return null;
 		ProvisionRequest[] reqAry = new ProvisionRequest[reqList.size()];
