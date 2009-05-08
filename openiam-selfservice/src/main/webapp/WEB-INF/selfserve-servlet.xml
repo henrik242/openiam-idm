@@ -82,6 +82,15 @@
 		<property name="mailService" ref="mailService" />
      </bean>		  
   
+     <bean id="newRequest" class="org.openiam.selfsrvc.prov.NewRequestController">
+     	<property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="newRequestCmd" />
+		<property name="commandClass" value="org.openiam.selfsrvc.prov.NewRequestCommand" />
+		<property name="formView" value="/priv/newrequest" />
+		<property name="successView" value="/priv/confirm" />
+
+     </bean>
+
      
      <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
      	<property name="prefix" value="/home.jsp?bodyjsp=" />
@@ -97,10 +106,12 @@
                 <prop key="/requestDetail.selfserve">requestDetail</prop>
                 <prop key="pub/reportIncident.selfserve">reportIncident</prop>
                 <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
+                 <prop key="/createRequest.selfserve">newRequest</prop>
             </props>
         </property>
     </bean>
      
+
      <!-- Method name resolver for Audit Reports  -->
 <!-- 
 	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">

@@ -108,7 +108,6 @@
     <remote>diamelle.common.cat.CategoryService</remote>
  </ejb-ref>
 
-
  <ejb-ref id="EjbRef_1115827810859">
     <ejb-ref-name>ejb/Authenticator</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
@@ -122,7 +121,7 @@
     <home>diamelle.security.auth.SecurityManagerHome</home>
     <remote>diamelle.security.auth.SecurityManager</remote>
  </ejb-ref>
-
+ 
  <ejb-ref id="EjbRef_1115827810875">
     <ejb-ref-name>ejb/UserService</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
@@ -151,13 +150,14 @@
     <home>diamelle.security.resource.AccessControllerHome</home>
     <remote>diamelle.security.resource.AccessController</remote>
  </ejb-ref>
-
  <ejb-ref id="EjbRef_1115835388125">
     <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
     <home>diamelle.security.log.AccessLogManagerHome</home>
     <remote>diamelle.security.log.AccessLogManager</remote>
  </ejb-ref> 
+  
+ 
   <ejb-ref id="EjbRef_1115835388234">
     <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
@@ -172,19 +172,22 @@
     <home>diamelle.common.meta.MetadataManagerHome</home>
     <remote>diamelle.common.meta.MetadataManager</remote>
   </ejb-ref>
+ 
+ 
   <ejb-ref id="EjbRef_1130864835718">
     <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
     <home>diamelle.security.idquest.IdQuestionManagerHome</home>
     <remote>diamelle.security.idquest.IdQuestionManager</remote>
   </ejb-ref>
- 
+  
   <ejb-ref id="EjbRef_1168487534593">
     <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
     <home>diamelle.common.org.OrganizationManagerHome</home>
     <remote>diamelle.common.org.OrganizationManager</remote>
   </ejb-ref>
+
   <ejb-ref id="EjbRef_1116251258906">
     <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>

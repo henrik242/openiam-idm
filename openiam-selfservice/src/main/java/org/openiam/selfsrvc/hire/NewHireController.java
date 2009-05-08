@@ -178,7 +178,7 @@ public class NewHireController extends SimpleFormController {
 
 		
 		// ADD TO LDAP - SEND TO CONNECTOR
-/*		String uid = usr.getLastName() + "." + usr.getFirstName()+ "01";
+		String uid = usr.getLastName() + "." + usr.getFirstName()+ "01";
 		
 		String[] oc = { "top", "person", "organizationalPerson", "inetOrgPerson" };
 		String[] organizationalUnits = { "Auditor Controller" };
@@ -199,7 +199,7 @@ public class NewHireController extends SimpleFormController {
 		attributes.put("telephoneNumber","999.999.9999");
 		addLdap(uid, oc, organizationalUnits, attributes, "passwd00");
 	 
-*/		
+	
 		
 		ModelAndView mav = new ModelAndView(getSuccessView());
 		mav.addObject("newHireCmd",newHireCmd);

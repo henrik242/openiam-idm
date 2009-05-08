@@ -43,6 +43,9 @@ if (url == null) {
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%= request.getContextPath() %>/diamelleapp.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/jquery.js"></script>       
+<script type="text/javascript" src="<%=request.getContextPath()%>/selfserve.js"></script>       
+
 
 </head>
 

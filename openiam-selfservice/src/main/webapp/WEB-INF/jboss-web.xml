@@ -3,6 +3,7 @@
 <!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.4//EN"  "http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd">
 <jboss-web>
 
+
 	<ejb-ref>
         <ejb-ref-name>ejb/Navigator</ejb-ref-name>
 		<jndi-name>diamelle.ebc.Navigator</jndi-name>
@@ -13,7 +14,7 @@
 		<jndi-name>diamelle.security.Authenticator</jndi-name>
 	</ejb-ref>	
 
-
+ 
 	<ejb-ref>
         <ejb-ref-name>ejb/CategoryService</ejb-ref-name>
 		<jndi-name>diamelle.common.CategoryService</jndi-name>
@@ -48,6 +49,7 @@
         <ejb-ref-name>ejb/AccessLogManager</ejb-ref-name>
  		<jndi-name>diamelle.security.AccessLogManager</jndi-name>
 	</ejb-ref>
+
 	<ejb-ref>
         <ejb-ref-name>ejb/TokenManager</ejb-ref-name>
  		<jndi-name>diamelle.security.TokenManager</jndi-name>
@@ -56,15 +58,17 @@
         <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
  		<jndi-name>diamelle.common.MetadataManager</jndi-name>
 	</ejb-ref>
+
 	<ejb-ref>
         <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
  		<jndi-name>diamelle.security.IdQuestionManager</jndi-name>
 	</ejb-ref>	
+ 
 	<ejb-ref>
      <ejb-ref-name>ejb/OrganizationManager</ejb-ref-name>
 	   <jndi-name>diamelle.common.OrganizationManager</jndi-name>
 	</ejb-ref>
-	
+
 	<ejb-ref>
         <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
 		<jndi-name>diamelle.security.PolicyManager</jndi-name>

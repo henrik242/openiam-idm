@@ -137,6 +137,8 @@
             <form-property name="manager" type="java.lang.String"/>
             <form-property name="location" type="java.lang.String"/>
             <form-property name="locationName" type="java.lang.String"/>
+            <form-property name="suffix" type="java.lang.String"/>
+            <form-property name="nickname" type="java.lang.String"/>
        </form-bean>
 
  
