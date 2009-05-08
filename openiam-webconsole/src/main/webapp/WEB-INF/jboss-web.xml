@@ -18,12 +18,12 @@
 		<jndi-name>diamelle.security.Authenticator</jndi-name>
 	</ejb-ref>	
 
-
+<!-- 
 	<ejb-ref>
         <ejb-ref-name>ejb/CategoryService</ejb-ref-name>
 		<jndi-name>diamelle.common.CategoryService</jndi-name>
 	</ejb-ref>
-
+-->
 
 	<ejb-ref>
         <ejb-ref-name>ejb/SecurityManager</ejb-ref-name>
@@ -35,11 +35,12 @@
         <ejb-ref-name>ejb/AccessController</ejb-ref-name>
 		<jndi-name>diamelle.security.AccessController</jndi-name>
 	</ejb-ref>
-
+<!-- 
 	<ejb-ref>
         <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
  		<jndi-name>diamelle.common.MetadataManager</jndi-name>
 	</ejb-ref>
+-->
 	<ejb-ref>
         <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
  		<jndi-name>diamelle.security.IdQuestionManager</jndi-name>

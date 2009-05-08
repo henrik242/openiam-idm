@@ -41,15 +41,11 @@ import javax.servlet.http.*;
 import javax.naming.*;
 
 import org.openiam.webadmin.busdel.base.*;
-//import diamelle.security.auth.GroupValue;
-//import diamelle.security.auth.RoleValue;
+
 import diamelle.security.policy.*;
-//import diamelle.security.auth.*;
 import diamelle.security.resource.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.springframework.web.context.WebApplicationContext;
-
-import diamelle.common.meta.*;
 
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.meta.service.MetadataService;
@@ -65,15 +61,9 @@ public class PolicyAction extends NavigationDispatchAction {
 
 	private PolicyAccess policyAccess = new PolicyAccess();
 
-	private MetadataAccess meta = new MetadataAccess();
-
-	//private ServiceAccess serviceAccess = new ServiceAccess();
-
 	private SecurityAccess securityAccess = new SecurityAccess();
 	SecurityDomainAccess secDomainAccess = null;
 	PolicyDataService policyService = null;
-
-	//private GroupAccess groupAccess = new GroupAccess();
 
 	private static final String GROUP = "Group";
 
@@ -152,9 +142,6 @@ System.out.println("In Policy init...");
 			errors.add(ActionMessages.GLOBAL_MESSAGE,new ActionMessage("error.ejb"));
 		}
 
-		//if (!errors.isEmpty()) {
-		//	saveErrors(request, errors);
-		//}
 
 		return mapping.findForward("policies");
 	}

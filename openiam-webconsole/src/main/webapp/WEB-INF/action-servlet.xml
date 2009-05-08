@@ -15,7 +15,13 @@
 
    
 	<bean name="/idman/index"  class="org.openiam.webadmin.user.IndexAction">
+		<property name="metadataService" ref="metadataService" />	
     </bean>    
+
+	<bean name="/idman/orgSearch"  class="org.openiam.webadmin.user.OrgSearchAction">
+		<property name="metadataService" ref="metadataService" />	
+    </bean>  
+
 
 	<bean name="/idman/approveUser" class="org.openiam.webadmin.user.ApproveUserAction" >
 	</bean> 		

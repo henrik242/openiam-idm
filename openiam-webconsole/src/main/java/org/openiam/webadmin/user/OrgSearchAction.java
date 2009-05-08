@@ -43,6 +43,9 @@ import org.springframework.web.context.WebApplicationContext;
 //import diamelle.ebc.user.*;
 import diamelle.common.status.*;
 import diamelle.common.view.DataView;
+
+import org.openiam.idm.srvc.meta.dto.MetadataType;
+import org.openiam.idm.srvc.meta.service.MetadataService;
 import org.openiam.idm.srvc.org.service.*;
 import org.openiam.idm.srvc.org.dto.*;
 
@@ -60,7 +63,8 @@ import org.apache.struts.validator.DynaValidatorForm;
 
 public class OrgSearchAction extends NavigationDispatchAction  {
 
-	MetadataAccess metaAccess = null;
+	
+	MetadataService metadataService;
 	
     public ActionForward view ( ActionMapping mapping, ActionForm form, 
 			HttpServletRequest request, HttpServletResponse res ) 
@@ -121,26 +125,19 @@ public class OrgSearchAction extends NavigationDispatchAction  {
         return (mapping.findForward("success"));
     }
     
-    private List getTypeList() throws RemoteException {
+	private List getTypeList()  {
     	ArrayList newCodeList = new ArrayList();
-    	metaAccess = new MetadataAccess();
-    	Map typeMap = metaAccess.getMetadataTypes("ORG_TYPE");
-      
-        if (typeMap != null && typeMap.size() > 0) {
+    	MetadataType[] typeAry = metadataService.getTypesInCategory("ORG_TYPE");
+    	if (typeAry != null && typeAry.length > 0) {
         	newCodeList.add(new LabelValueBean("",""));
-        	Set set = typeMap.keySet();
-        	Iterator it = set.iterator();
-        	while (it.hasNext()) {
-        		String key = (String)it.next();
-        		String value = (String)typeMap.get(key);
-        		LabelValueBean label = new LabelValueBean(value,key);
-        	 	newCodeList.add(label);
+        	for ( MetadataType type: typeAry) {
+        		LabelValueBean label = new LabelValueBean(type.getDescription(),type.getMetadataTypeId());
+        		newCodeList.add(label);
         	}
-
-        }
+         }
         return newCodeList;
-   	
     }
+    
 	
     public ActionForward page( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(true);
@@ -161,7 +158,13 @@ public class OrgSearchAction extends NavigationDispatchAction  {
       	
       }
 
+	public MetadataService getMetadataService() {
+		return metadataService;
+	}
 
+	public void setMetadataService(MetadataService metadataService) {
+		this.metadataService = metadataService;
+	}
     
 
  

@@ -51,6 +51,8 @@ import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.openiam.webadmin.busdel.identity.*;
 
+import org.openiam.idm.srvc.meta.dto.MetadataType;
+import org.openiam.idm.srvc.meta.service.MetadataService;
 import org.openiam.idm.srvc.org.dto.Organization;
 import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
@@ -72,12 +74,14 @@ import diamelle.security.auth.GroupValue;
 public class IndexAction extends NavigationAction {
 	LoginAccess loginAccess = new LoginAccess();
 	SecurityAccess secAccess = new SecurityAccess();
-	MetadataAccess metaAccess = new MetadataAccess();
+	//MetadataAccess metaAccess = new MetadataAccess();
 
 	ServiceAccess serviceAccess = null;
 	OrganizationDataService orgDataService;
 
-
+	MetadataService metadataService;
+	
+	
 	public ActionForward execute(
 		ActionMapping mapping,
 		ActionForm form,
@@ -173,24 +177,21 @@ public class IndexAction extends NavigationAction {
 	/**
 	 * Get a list of metadata types for users.
 	 * @return
-	 * @throws RemoteException
 	 */
-	private List getUserMetadataTypes() throws RemoteException {
+	private List getUserMetadataTypes()  {
     	ArrayList newCodeList = new ArrayList();
-    	Map typeMap =  metaAccess.getMetadataTypes("USER_TYPE");
-    	if (typeMap != null && typeMap.size() > 0) {
+    	MetadataType[] typeAry = metadataService.getTypesInCategory("USER_TYPE");
+    	if (typeAry != null && typeAry.length > 0) {
         	newCodeList.add(new LabelValueBean("",""));
-        	Collection col = typeMap.keySet();
-        	Iterator it = col.iterator();
-        	while (it.hasNext()) {
-        		String key = (String)it.next();
-        		String value = (String)typeMap.get(key);
-        		LabelValueBean label = new LabelValueBean(value,key);
+        	for ( MetadataType type: typeAry) {
+        		LabelValueBean label = new LabelValueBean(type.getDescription(),type.getMetadataTypeId());
         		newCodeList.add(label);
         	}
          }
         return newCodeList;
     }
+	
+	
 	private List getCompanyList() {
 	   	ArrayList newCodeList = new ArrayList();
 	   	
@@ -224,4 +225,12 @@ public class IndexAction extends NavigationAction {
         }
         return newServiceList;
     }
+
+	public MetadataService getMetadataService() {
+		return metadataService;
+	}
+
+	public void setMetadataService(MetadataService metadataService) {
+		this.metadataService = metadataService;
+	}
 }

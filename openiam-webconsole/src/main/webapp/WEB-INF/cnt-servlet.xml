@@ -73,6 +73,38 @@
 	
      </bean>   
 
+ <!-- Metadata controllers  -->
+
+     <bean id="metadataTypeList" class="org.openiam.webadmin.metadata.MetadataTypeListController">
+		<property name="commandName" value="metadataTypeListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataTypeListCommand" />
+		<property name="formView" value="/meta/typelist" />
+		<property name="successView" value="/meta/typelist" />
+		<property name="validator" ref="metadataTypeListValidator" />	
+		<property name="metadataService" ref="metadataService"	/>
+		<property name="categorydataService" ref="categorydataService" />
+		<property name="baseCategory" value="ROOT" />		
+     </bean>
+     
+     <bean id="metadataTypeListValidator" class="org.openiam.webadmin.metadata.MetadataTypeListValidator" />
+
+     <bean id="metadataType" class="org.openiam.webadmin.metadata.MetadataTypeController">
+		<property name="commandName" value="metadataTypeCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataTypeCommand" />
+		<property name="formView" value="/meta/type" />
+		<property name="successView" value="/meta/type" />
+		<property name="metadataService" ref="metadataService"	/>
+     </bean>
+     <bean id="metadataAttribute" class="org.openiam.webadmin.metadata.MetadataAttributeController">
+		<property name="commandName" value="metadataAttrCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataAttributeCommand" />
+		<property name="formView" value="/meta/attr" />
+		<property name="successView" value="/meta/attr" />
+		<property name="metadataService" ref="metadataService"	/>
+
+     </bean>
+
+
  <!-- Policy controllers  -->
      <bean id="attrPolicy" class="org.openiam.webadmin.policy.attr.AttributePolicyController">
 		<property name="commandName" value="attrPolicyCmd" />
@@ -133,6 +165,9 @@
                 <prop key="/managedSysAttrMap.cnt">managedSysAttrMap</prop>
                 <prop key="/attrPolicy.cnt">attrPolicy</prop>
                 <prop key="/managedSysApprover.cnt">managedSysApprover</prop>
+                <prop key="/metadataTypeList.cnt">metadataTypeList</prop>
+                <prop key="/metadataType.cnt">metadataType</prop>
+                <prop key="/metadataAttribute.cnt">metadataAttribute</prop>
             </props>
         </property>
     </bean>

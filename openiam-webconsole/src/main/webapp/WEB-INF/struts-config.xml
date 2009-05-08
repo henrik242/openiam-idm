@@ -550,7 +550,7 @@
     </action>
 
     <action    path="/idman/orgSearch"
-               type="org.openiam.webadmin.user.OrgSearchAction"
+               type="org.springframework.web.struts.DelegatingActionProxy"
                name="orgSearchForm" scope="request" parameter="action" 
                validate="false" unknown="false">
       <forward name="view"         path="/home.jsp?bodyjsp=idman/orgsearch.jsp"/>          

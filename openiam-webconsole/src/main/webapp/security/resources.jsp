@@ -130,7 +130,7 @@ function openEditWin(url, title, resourceId) {
 
     	<html:form method="POST" action="/security/resourceTree.do?method=removeResource" >
 
-		<table width="100%" cellpadding=2>
+		<table width="100%" cellpadding="0" cellspacing="0" border="1">
 
            <html:hidden property="resourceParent" value="<%=parentResourceId%>" />
           

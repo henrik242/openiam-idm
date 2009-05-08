@@ -105,6 +105,18 @@
 </div>
 <% } %>
 
+<% if ( sideMenuGroup!= null && sideMenuGroup.equalsIgnoreCase("METADATA")) { 
+	 String typeId = (String)request.getAttribute("typeId");
+%>
+<div id="menu12">
+ <ul>
+    <!-- CSS Tabs -->
+	<li><a href="metadataType.cnt?typeId=<%=typeId%>&menuGroup=METADATA">Type</a></li>
+	<li><a href="metadataAttribute.cnt?typeId=<%=typeId%>&menuGroup=METADATA">Attributes</a></li>
+
+ </ul>
+</div>
+<% } %>
  
 
 

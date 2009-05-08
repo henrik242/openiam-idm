@@ -14,10 +14,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-
-
 <% 
-
 	String uri = request.getRequestURI();
 	String queryParam = request.getQueryString();
 %>
@@ -25,6 +22,8 @@
 
 <!-- OpenIAM Legacy style sheets -->
 <link href="<%=request.getContextPath()%>/diamelleapp.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/jquery.js"></script>       
+<script type="text/javascript" src="<%=request.getContextPath()%>/webconsole.js"></script>       
 
 
 <!-- ENDLIBS -->

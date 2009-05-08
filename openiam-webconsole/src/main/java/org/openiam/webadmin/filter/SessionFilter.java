@@ -64,10 +64,8 @@ public class SessionFilter implements javax.servlet.Filter {
 		
 		String url = request.getRequestURI();
 		
-		System.out.println("filter url=" + url);
 		
 		if ( url == null || url.equals("/") || url.endsWith("index.do") || url.endsWith("login.do")   ) {
-			System.out.println("login page=true");
 			loginPage = true; 
 		//boolean isJsp = url.endsWith(".jsp");
 		}
