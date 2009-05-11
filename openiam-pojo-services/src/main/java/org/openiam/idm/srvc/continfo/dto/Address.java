@@ -37,6 +37,8 @@ public class Address implements java.io.Serializable {
 	// Fields    
 	
 	    protected Boolean isActive = new Boolean("True");
+	    protected String bldgNumber;
+	    protected String streetDirection;
 	    protected String address1;
 	    protected String address2;
 	    protected String address3;
@@ -57,8 +59,6 @@ public class Address implements java.io.Serializable {
 	
 
 	// Constructors
-
-
 
 
 	/** default constructor */
@@ -381,6 +381,22 @@ public class Address implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getBldgNumber() {
+		return bldgNumber;
+	}
+
+	public void setBldgNumber(String bldgNumber) {
+		this.bldgNumber = bldgNumber;
+	}
+
+	public String getStreetDirection() {
+		return streetDirection;
+	}
+
+	public void setStreetDirection(String streetDirection) {
+		this.streetDirection = streetDirection;
 	}
 	
 }

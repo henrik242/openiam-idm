@@ -19,8 +19,6 @@ public class MetadataType implements java.io.Serializable {
 
 	private String metadataTypeId;
 	private String description;
-	
-
 
 	private int active = 0;
 	private int syncManagedSys = 0;

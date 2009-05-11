@@ -17,6 +17,18 @@
                 <comment></comment>
             </column>
         </property>
+        
+       <property name="bldgNumber" type="string">
+            <column name="BLDG_NUM" length="45">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="streetDirection" type="string">
+            <column name="STREET_DIRECTION" length="45">
+                <comment></comment>
+            </column>
+        </property>
+        
         <property name="address1" type="string">
             <column name="ADDRESS1" length="45">
                 <comment></comment>
