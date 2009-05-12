@@ -167,14 +167,7 @@
     <home>diamelle.ebc.navigator.NavigatorHome</home>
     <remote>diamelle.ebc.navigator.Navigator</remote>
    </ejb-ref>
-<!-- 
- <ejb-ref id="EjbRef_1115827810843">
-    <ejb-ref-name>ejb/CategoryService</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.common.cat.CategoryServiceHome</home>
-    <remote>diamelle.common.cat.CategoryService</remote>
- </ejb-ref>
--->
+
 
  <ejb-ref id="EjbRef_1115827810859">
     <ejb-ref-name>ejb/Authenticator</ejb-ref-name>
@@ -201,15 +194,6 @@
 
 
 
-<!-- 
-  <ejb-ref id="EjbRef_1127849156234">
-    <description />
-    <ejb-ref-name>ejb/MetadataManager</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <home>diamelle.common.meta.MetadataManagerHome</home>
-    <remote>diamelle.common.meta.MetadataManager</remote>
-  </ejb-ref>
--->
 
   <ejb-ref id="EjbRef_1130864835718">
     <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>

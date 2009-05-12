@@ -24,16 +24,16 @@
 
 
 	<bean name="/idman/approveUser" class="org.openiam.webadmin.user.ApproveUserAction" >
+		<property name="userMgr" ref="userManager" />
 	</bean> 		
-	<bean name="/idman/approveUserFail" class="org.openiam.webadmin.user.ApproveUserAction" /> 		
+	<bean name="/idman/approveUserFail" class="org.openiam.webadmin.user.ApproveUserAction" >
+		<property name="userMgr" ref="userManager" />
+	</bean>
+			
 
 	<bean name="/security/role" class="org.openiam.webadmin.access.RoleAction" /> 		
 	<bean name="/security/roleValidate" class="org.openiam.webadmin.access.RoleAction" /> 	
-<!-- 
-	<bean name="/maint/serviceList"  class="org.openiam.webadmin.maint.ServiceListAction" />
-  
-	<bean name="/maint/service"  class="org.openiam.webadmin.maint.ServiceAction" />
--->
+
 	<bean name="/feder/idpList"  class="org.openiam.webadmin.feder.IdPListAction">
     </bean>   
     
