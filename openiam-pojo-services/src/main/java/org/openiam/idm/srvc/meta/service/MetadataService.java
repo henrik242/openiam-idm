@@ -1,6 +1,8 @@
 package org.openiam.idm.srvc.meta.service;
 
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.meta.dto.MetadataType;
 import org.openiam.idm.srvc.meta.dto.MetadataElement;
 
@@ -11,6 +13,7 @@ import org.openiam.idm.srvc.meta.dto.MetadataElement;
  * @author suneet
  * @version 1
  */
+@WebService
 public interface MetadataService {
 
 	  /**

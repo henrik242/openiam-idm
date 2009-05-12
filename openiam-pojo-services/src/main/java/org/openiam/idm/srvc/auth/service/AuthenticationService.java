@@ -1,7 +1,10 @@
 package org.openiam.idm.srvc.auth.service;
 
 
+import javax.jws.WebService;
+
 import org.openiam.exception.*;
+import org.openiam.idm.srvc.auth.context.AuthenticationContext;
 import org.openiam.idm.srvc.auth.dto.*;
 
 /**
@@ -10,23 +13,24 @@ import org.openiam.idm.srvc.auth.dto.*;
  * various methods </font>
  * </p>
  */
-
+@WebService
 public interface AuthenticationService {
 
 	/**
-	 * This method sets the auth state and credentials of the user accordingly
-	 * when the user logs out. <br>
+	 * This method executes a global logout so that the user is logged out all the application they have logged into. <br>
 	 * For example:
 	 * <p>
 	 * <code>
-	 *   authenticationService.logout(userId);<br>
+	 *   authenticationService.globalLogout(userId);<br>
 	 * </code>
 	 * 
 	 * 
 	 * @param userId
 	 *            The id of the user.
 	 */
-	void logout(String userId);
+	void globalLogout(String userId);
+	
+	
 
 
 	/**
@@ -53,7 +57,7 @@ public interface AuthenticationService {
 	 *            The bulk accessor class for the PasswordLoginBean.
 	 * @return SSOSubject which holds user information
 	 */
-	Subject authenticate(Login loginValue) throws AuthenticationException;
+	Subject authenticate(AuthenticationContext ctx) throws AuthenticationException;
 	
 	/**
 	 * passwordLogin provides a simple approach to enabling password based authentication.
@@ -63,8 +67,7 @@ public interface AuthenticationService {
 	 * @return
 	 * @throws AuthenticationException
 	 */
-	Subject passwordLogin(String domainId, String principal, String password) 
-		throws AuthenticationException;
+	Subject passwordAuth(String domainId, String principal, String password) throws AuthenticationException;
 
 
 	/**
@@ -87,10 +90,10 @@ public interface AuthenticationService {
 	 *            An encoded string unique for each login incidence
 	 * @return SSOSubject which holds user information.
 	 */
-	Subject authenticate(String userId, String token) ;
+	Subject authenticateByToken(String userId, String token, String tokenType) ;
 	
-	boolean validateToken(String loginId, String token);
+	boolean validateToken(String loginId, String token, String tokenType);
 	
-	boolean validateTokenByUser(String userId, String token);
+	boolean validateTokenByUser(String userId, String token, String tokenType);
 
 }

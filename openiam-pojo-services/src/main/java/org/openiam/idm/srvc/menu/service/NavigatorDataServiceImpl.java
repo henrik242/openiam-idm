@@ -6,6 +6,8 @@ package org.openiam.idm.srvc.menu.service;
 import java.util.*;
 import java.rmi.*;
 
+import javax.jws.WebService;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.menu.dto.Menu;
@@ -22,6 +24,9 @@ import org.openiam.idm.srvc.menu.dto.MenuId;
  * @author Suneet Shah
  * @version 2
  */
+@WebService(endpointInterface = "org.openiam.idm.srvc.menu.service.NavigatorDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/menu/service",
+		serviceName = "NavigationService")
 public class NavigatorDataServiceImpl implements NavigatorDataService{
 
 	NavigatorDAO navigatorDao;
@@ -60,10 +65,7 @@ public class NavigatorDataServiceImpl implements NavigatorDataService{
 
 	
 	
-	public String getAllMenuOptionIDs(String parentMenuGroupId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public Collection<Menu> getAllSubMenu(String parentMenuGroupId,
 			String languageCd) {
@@ -71,20 +73,13 @@ public class NavigatorDataServiceImpl implements NavigatorDataService{
 		return null;
 	}
 
-	public Collection<Menu> getAllSubMenu(String parentMenuGroupId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public List<Menu> getInitialMenuOptions(String userId, String languageCd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Menu> getInitialMenuOptions(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public Menu getMenu(String menuId, String languageCd) {
 		  if (menuId == null)
@@ -217,13 +212,7 @@ order by DISPLAY_ORDER;
 		this.navigatorDao = navigatorDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.openiam.idm.srvc.menu.service.NavigatorDataService#getMenu(java.lang.String)
-	 */
-	public Menu getMenu(String menuId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 

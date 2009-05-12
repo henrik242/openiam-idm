@@ -11,6 +11,9 @@
     					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
 
 	<!-- Service Beans -->
+	<bean id="authenticate" class="org.openiam.idm.srvc.auth.service.AuthenticationServiceImpl">
+	</bean>
+	
 	<bean id="serviceManager" class="org.openiam.idm.srvc.service.service.ServiceMgr">
 		<constructor-arg ref="serviceDAO"></constructor-arg>
 	</bean>

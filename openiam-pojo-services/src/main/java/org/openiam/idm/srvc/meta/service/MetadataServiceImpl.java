@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.jws.WebService;
+
 import org.apache.log4j.Category;
 import org.openiam.idm.srvc.meta.dto.MetadataElement;
 import org.openiam.idm.srvc.meta.dto.MetadataType;
@@ -14,6 +16,10 @@ import org.openiam.idm.srvc.meta.dto.MetadataType;
  * @author suneet
  * @version 1
  */
+
+@WebService(endpointInterface = "org.openiam.idm.srvc.meta.service.MetadataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/meta/service",
+		serviceName = "MetadataWebService")
 public class MetadataServiceImpl implements MetadataService {
 
 	MetadataTypeDAO metadataTypeDao;

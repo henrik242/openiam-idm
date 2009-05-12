@@ -15,6 +15,9 @@ import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
 public class AuthenticationContext implements Serializable {
 
 	private String authenticationType;
+	
+	private String resourceId;
+	
 	private Credential credential;
 	
 	private String serviceId;

@@ -3,6 +3,8 @@ package org.openiam.idm.srvc.menu.service;
 import org.openiam.idm.srvc.menu.dto.*;
 import java.util.*;
 
+import javax.jws.WebService;
+
 /**
  * Interface of the <code>NavigatorDataService</code>.
  * <p>
@@ -45,15 +47,10 @@ import java.util.*;
 
 *
 */
+@WebService
 public interface NavigatorDataService {
 
-	/**
-	  * Returns a top level menu for the user specified by userId. UserId is available
-	  * through the user bean.  This also implies that the user is known to the system.
-	  * @param  userId     The user id (not the login id) for which you are trying to find valid menu options
-	  * @returns  A list containing valid menu options.
-	 */
-	List<Menu> getInitialMenuOptions(String userId) ;
+
 
 	/**
 	  * Returns a top level menu for the user specified by userId. UserId is available
@@ -97,14 +94,7 @@ public interface NavigatorDataService {
 	
 
 
-	/**
-	 * Returns a <code>String</code> of MenuIds for all the menus in the
-	 * parentMenuGroupId hierarchy. This includes menu options found several level deep in the
-	 * hierarchy. The String of Ids is comma separated.
-	 * @param parentMenuGroupId
-	 * @return String
-	 */
-	String getAllMenuOptionIDs(String parentMenuGroupId);
+
 
 	/**
 	 * Returns a <code>String</code> of MenuIds for all the menus in the
@@ -116,15 +106,7 @@ public interface NavigatorDataService {
 	 */
 	String getAllMenuOptionIDs(String parentMenuGroupId, String languageCd);
 
-	/**
-	 * Returns a Collection of Menu objects for all the menus in the
-	 * parentMenuGroupId hierachy. This includes menu options found several levels deep in the
-	 * hiearchy.
-	 * @param parentMenuGroupId
-	 * @return Collection of Menu objects
-	 *
-	 */
-	Collection<Menu> getAllSubMenu(String parentMenuGroupId) ;
+
 	/**
 	 * Returns a Collection of Menu objects for all the menus in the
 	 * parentMenuGroupId hierachy. This includes menu options found several levels deep in the
@@ -141,12 +123,7 @@ public interface NavigatorDataService {
 	 * @param data
 	 */
 	public void addMenu(Menu data);
-	/**
-	 * Gets a Menu object for the menuId passed in.
-	 * @param id - menuId
-	 * @return Menu
-	 */
-	Menu getMenu(String menuId);
+
 	/**
 	 * Gets a Menu object for the menuId and languageCd passed in
 	 * @param id - menuId

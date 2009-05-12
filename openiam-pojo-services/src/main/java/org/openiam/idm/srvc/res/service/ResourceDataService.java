@@ -1,11 +1,14 @@
 package org.openiam.idm.srvc.res.service;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.res.dto.ResourceType;
 
 /**
  * <code>ResourceDataService</code> component provides the ability to manage
  * the resource tree, resource type and the privileges to these resources.
  */
+@WebService
 public interface ResourceDataService {
 
 	 /**

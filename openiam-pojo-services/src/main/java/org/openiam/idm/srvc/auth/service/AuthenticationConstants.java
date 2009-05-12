@@ -14,7 +14,12 @@ public class AuthenticationConstants {
 	public static final String AUTHN_TYPE_TOKEN = "TOKEN";
 	public static final String AUTHN_TYPE_SAML2 = "SAML2";
 	public static final String AUTHN_TYPE_CERT = "CERT";
-
+	
+	/* TOKEN TYPES */
+	public static final int OPENIAM_TOKEN = 1; 
+	public static final int SAML1_TOKEN = 2; 
+	public static final int SAML2_TOKEN = 3; 
+	
 	
 	/**
 	 * SUCCESS - successful login.
