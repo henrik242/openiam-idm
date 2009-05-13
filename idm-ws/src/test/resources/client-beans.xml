@@ -9,13 +9,13 @@
         http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 
- 
+ <!-- 
     <bean id="organizationService" class="org.openiam.idm.srvc.org.service.OrganizationDataService" 
       factory-bean="clientFactory" factory-method="create"/>
 
 	<bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.org.service.OrganizationDataService"/>
-	  <property name="address" value="http://localhost:8080/iam-ws/OrganizationDataService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/OrganizationDataService"/>
 	</bean>
 
    <bean id="groupService" class="org.openiam.idm.srvc.grp.service.GroupDataService" 
@@ -24,8 +24,19 @@
 
 	<bean id="groupFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.grp.service.GroupDataService"/>
-	  <property name="address" value="http://localhost:8080/iam-ws/GroupDataService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/GroupDataService"/>
 	</bean>
+ -->
+
+   <bean id="authenticateService" class="org.openiam.idm.srvc.auth.service.AuthenticationService" 
+      factory-bean="authenticateFactory" factory-method="create"/>
+
+
+	<bean id="authenticateFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.auth.service.AuthenticationService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/AuthenticationService"/>
+	</bean>
+
 
 
 	  
