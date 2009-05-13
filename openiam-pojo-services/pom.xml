@@ -22,6 +22,19 @@
       <email>suneet_shah@openiam.com</email>
     </developer>
   </developers>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+        	<doctitle>OpenIAM Java Services API v2</doctitle>
+        	<windowtitle>OpenIAM Java Documentation</windowtitle>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+  
   <build>
     <resources>
       <resource>
