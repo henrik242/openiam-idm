@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    				   http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd" >
+    				   
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<jaxws:endpoint 
+	  id="authenticationService" 
+	  implementor="#authenticate"
+	  address="/AuthenticationService" />
+<!-- 
+	<jaxws:endpoint 
+	  id="metaService" 
+	  implementor="#metadataService"
+	  address="/MetadataWebService" />
+-->	  
+	  
+	<jaxws:endpoint id="roleDataService"
+		implementor="#roleDataService"
+		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
+		address="/RoleDataService"/>
+		
+	<jaxws:endpoint 
+	  id="navigationService" 
+	  implementor="#navigatorDataService"
+	  address="/NavigationService" />
+
+
+	  		
+ <!--   
+	<jaxws:endpoint id="organizationDataService"
+		implementor="#orgManager"
+		wsdlLocation="WEB-INF/wsdl/OrganizationDataService.wsdl" address="/OrganizationDataService" >
+	</jaxws:endpoint>
+ -->
+ <!-- 		
+	<jaxws:endpoint id="userDataService"
+		implementor="#userManager"
+		wsdlLocation="WEB-INF/wsdl/UserDataService.wsdl"
+		address="/UserDataService"/>		
+-->
+ 
+<!--  
+	<jaxws:endpoint id="groupDataService"
+		implementor="#groupManager"
+		wsdlLocation="WEB-INF/wsdl/GroupDataService.wsdl"
+		address="/GroupDataService"/>
+-->  
+     
+
+		
+ 
+	<jaxws:endpoint 
+	  id="HelloWorld" 
+	  implementor="org.openiam.idm.srvc.HelloWorldImpl" 
+	  address="/HelloWorld" >
+	 	  
+	 </jaxws:endpoint>
+	  
+</beans>
+<!-- END SNIPPET: beans -->
