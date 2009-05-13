@@ -9,6 +9,7 @@ CREATE TABLE SECURITY_DOMAIN (
 CREATE TABLE LANGUAGE (
        LANGUAGE_CD          varchar(5) NOT NULL,
        LANGUAGE             varchar(20) NULL,
+	   LOCALE				INT NULL DEFAULT 0,
        PRIMARY KEY (LANGUAGE_CD)
 );
 
@@ -74,7 +75,7 @@ CREATE TABLE METADATA_ELEMENT (
 		DEFAULT_VALUE		VARCHAR(100) NULL,
 		VALUE_LIST			VARCHAR(1000),
 		LABEL				VARCHAR(100),
-		MULTI_VALUE			VARCHAR(500),
+		MULTI_VALUE			INT NULL,
 		AUDITABLE			INT NULL,
 		REQUIRED			INT NULL,
 		/* DETERMINES IF THE USER WHO OWN A RECORD AND SEE AND EDIT THEIR RECORD */
@@ -450,12 +451,36 @@ CREATE TABLE IMAGE (
        PRIMARY KEY (IMAGE_ID)
 );
 
+CREATE TABLE LOCATION (
+       LOCATION_ID           varchar(32) NOT NULL,
+	   NAME					VARCHAR(40) NULL,
+       COUNTRY              varchar(30) NULL,
+	   BLDG_NUM				VARCHAR(10) NULL,
+	   STREET_DIRECTION		VARCHAR(20) NULL,
+       ADDRESS1             varchar(45) NULL,
+       ADDRESS2             varchar(45) NULL,
+	   ADDRESS3             varchar(45) NULL,
+       CITY                 varchar(30) NULL,
+       STATE                varchar(15) NULL,
+       POSTAL_CD            varchar(10) NULL,
+	   ORGANIZATION_ID		VARCHAR(20) NULL,
+       ACTIVE				INT NULL DEFAULT 1,
+       PRIMARY KEY (LOCATION_ID)
+);
+
 CREATE TABLE ADDRESS (
        ADDRESS_ID           varchar(20) NOT NULL,
 	   NAME					VARCHAR(40) NULL,
        COUNTRY              varchar(30) NULL,
+	   BLDG_NUM				VARCHAR(10) NULL,
+	   STREET_DIRECTION		VARCHAR(20) NULL,
        ADDRESS1             varchar(45) NULL,
        ADDRESS2             varchar(45) NULL,
+	   ADDRESS3             varchar(45) NULL,
+	   ADDRESS4             varchar(45) NULL,
+	   ADDRESS5             varchar(45) NULL,
+	   ADDRESS6             varchar(45) NULL,
+	   ADDRESS7             varchar(45) NULL,
        CITY                 varchar(30) NULL,
        STATE                varchar(15) NULL,
        POSTAL_CD            varchar(10) NULL,
@@ -467,13 +492,6 @@ CREATE TABLE ADDRESS (
        PRIMARY KEY (ADDRESS_ID)
 );
 
-
-Alter table ADDRESS
-  add column ADDRESS3 VARCHAR(45) NULL,
-  add column ADDRESS4 VARCHAR(45) NULL,
-  add column ADDRESS5 VARCHAR(45) NULL,
-  add column ADDRESS6 VARCHAR(45) NULL,
-  add column ADDRESS7 VARCHAR(45) NULL;
 
 
 

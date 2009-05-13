@@ -253,7 +253,7 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) valu
 /* Admin MENU options */
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_AUDITLOG','ADMIN','Audit Log','Audit Log','home.jsp?bodyjsp=/log/searchlog.jsp', 'en',1,14);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECDOMAIN','ADMIN','Security Domain','Security Domain','home.jsp?bodyjsp=ui/domain/domain.html', 'en',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('METADATA','ADMIN','Metadata','Metadata','admin/index.jsp', 'en',2);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('METADATA','ADMIN','Metadata','Metadata','metadataTypeList.cnt', 'en',2);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','ADMIN','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','ADMIN','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
 
@@ -912,7 +912,7 @@ insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPE
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4500','104', 'c', 'countryName - 2 character country code', 1,curdate(), '3000', '');
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4501','104', 'cn', 'commonName', 1,curdate(), '3000', '');
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4502','104', 'mail', 'email address', 1,curdate(), '3000', '');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4503','104', 'mobile', 'mobileTelephoneNumber'', 1,curdate(), '3000', '');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4503','104', 'mobile', 'mobileTelephoneNumber', 1,curdate(), '3000', '');
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4504','104', 'o', 'organization name', 1,curdate(), '3000', '');
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4505','104', 'ou', 'organizationalUnitName', 1,curdate(), '3000', '');
 insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE) VALUES ('4506','104', 'pager', 'pagerTelephoneNumber', 1,curdate(), '3000', '');
