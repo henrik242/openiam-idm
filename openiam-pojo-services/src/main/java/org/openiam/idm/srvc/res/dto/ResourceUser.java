@@ -8,12 +8,12 @@ package org.openiam.idm.srvc.res.dto;
 public class ResourceUser implements java.io.Serializable {
 
 	private ResourceUserId id;
-	private Resources resources;
+	private Resource resources;
 
 	public ResourceUser() {
 	}
 
-	public ResourceUser(ResourceUserId id, Resources resources) {
+	public ResourceUser(ResourceUserId id, Resource resources) {
 		this.id = id;
 		this.resources = resources;
 	}
@@ -26,11 +26,11 @@ public class ResourceUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Resources getResources() {
+	public Resource getResources() {
 		return this.resources;
 	}
 
-	public void setResources(Resources resources) {
+	public void setResources(Resource resources) {
 		this.resources = resources;
 	}
 

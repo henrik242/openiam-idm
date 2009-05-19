@@ -2,16 +2,19 @@ package org.openiam.idm.srvc.res.dto;
 
 // Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
  * Resources are items that need to be managed or protected. These can be both logic and physical in nature.
  */
-public class Resources implements java.io.Serializable {
+public class Resource implements java.io.Serializable {
 
 	private String resourceId;
 	private ResourceType resourceType;
+	private String resourceName;
 	private String description;
 	private String resourceParent;
 	private String branchId;
@@ -21,24 +24,33 @@ public class Resources implements java.io.Serializable {
 	private Integer sensitiveApp;
 	private Set<ResourceRole> resourceRoles = new HashSet<ResourceRole>(0);
 	private Set<ResourceUser> resourceUsers = new HashSet<ResourceUser>(0);
-	private Set<ResourcePolicy> resourcePolicies = new HashSet<ResourcePolicy>(
-			0);
-	private Set<ResourceProp> resourceProps = new HashSet<ResourceProp>(0);
+	private Set<ResourcePolicy> resourcePolicies = new HashSet<ResourcePolicy>(0);
+	private Map<String,ResourceProp> resourceProps = new HashMap<String,ResourceProp>(0);
 
-	public Resources() {
+	public Resource() {
 	}
 
-	public Resources(String resourceId) {
+	public Resource(String resourceId) {
 		this.resourceId = resourceId;
 	}
 
-	public Resources(String resourceId, ResourceType resourceType,
+
+	
+	public Resource(String resourceId, String resourceName,
+			String resourceType) {
+		super();
+		this.resourceId = resourceId;
+		this.resourceName = resourceName;
+		this.resourceType = new ResourceType(resourceType);
+	}
+
+	public Resource(String resourceId, ResourceType resourceType,
 			String description, String resourceParent, String branchId,
 			String categoryId, Integer displayOrder, Integer nodeLevel,
 			Integer sensitiveApp, Set<ResourceRole> resourceRoles,
 			Set<ResourceUser> resourceUsers,
 			Set<ResourcePolicy> resourcePolicies,
-			Set<ResourceProp> resourceProps) {
+			Map<String,ResourceProp> resourceProps) {
 		this.resourceId = resourceId;
 		this.resourceType = resourceType;
 		this.description = description;
@@ -150,11 +162,21 @@ public class Resources implements java.io.Serializable {
 		this.resourcePolicies = resourcePolicies;
 	}
 
-	public Set<ResourceProp> getResourceProps() {
-		return this.resourceProps;
+
+
+	public String getResourceName() {
+		return resourceName;
 	}
 
-	public void setResourceProps(Set<ResourceProp> resourceProps) {
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
+
+	public Map<String, ResourceProp> getResourceProps() {
+		return resourceProps;
+	}
+
+	public void setResourceProps(Map<String, ResourceProp> resourceProps) {
 		this.resourceProps = resourceProps;
 	}
 

@@ -36,7 +36,7 @@ public class ResourceDAOImpl implements ResourceDAO {
 		}
 	}
 
-	public void persist(Resources transientInstance) {
+	public void persist(Resource transientInstance) {
 		log.debug("persisting Resources instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
@@ -48,7 +48,7 @@ public class ResourceDAOImpl implements ResourceDAO {
 	}
 
 
-	public void remove(Resources persistentInstance) {
+	public void remove(Resource persistentInstance) {
 		log.debug("deleting Resources instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
@@ -59,10 +59,10 @@ public class ResourceDAOImpl implements ResourceDAO {
 		}
 	}
 
-	public Resources update(Resources detachedInstance) {
+	public Resource update(Resource detachedInstance) {
 		log.debug("merging Resources instance");
 		try {
-			Resources result = (Resources) sessionFactory.getCurrentSession()
+			Resource result = (Resource) sessionFactory.getCurrentSession()
 					.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -72,10 +72,10 @@ public class ResourceDAOImpl implements ResourceDAO {
 		}
 	}
 
-	public Resources findById(java.lang.String id) {
+	public Resource findById(java.lang.String id) {
 		log.debug("getting Resources instance with id: " + id);
 		try {
-			Resources instance = (Resources) sessionFactory.getCurrentSession()
+			Resource instance = (Resource) sessionFactory.getCurrentSession()
 					.get("org.openiam.idm.srvc.res.dto.Resources", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
@@ -89,10 +89,10 @@ public class ResourceDAOImpl implements ResourceDAO {
 		}
 	}
 
-	public List<Resources> findByExample(Resources instance) {
+	public List<Resource> findByExample(Resource instance) {
 		log.debug("finding Resources instance by example");
 		try {
-			List<Resources> results = (List<Resources>) sessionFactory
+			List<Resource> results = (List<Resource>) sessionFactory
 					.getCurrentSession().createCriteria(
 							"org.openiam.idm.srvc.prov.service.Resources").add(
 							create(instance)).list();

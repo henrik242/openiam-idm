@@ -9,12 +9,12 @@ package org.openiam.idm.srvc.res.dto;
 public class ResourceRole implements java.io.Serializable {
 
 	private ResourceRoleId id;
-	private Resources resources;
+	private Resource resources;
 
 	public ResourceRole() {
 	}
 
-	public ResourceRole(ResourceRoleId id, Resources resources) {
+	public ResourceRole(ResourceRoleId id, Resource resources) {
 		this.id = id;
 		this.resources = resources;
 	}
@@ -27,11 +27,11 @@ public class ResourceRole implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Resources getResources() {
+	public Resource getResources() {
 		return this.resources;
 	}
 
-	public void setResources(Resources resources) {
+	public void setResources(Resource resources) {
 		this.resources = resources;
 	}
 

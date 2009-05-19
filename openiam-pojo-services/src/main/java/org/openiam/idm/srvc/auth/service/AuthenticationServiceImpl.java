@@ -69,7 +69,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	public Subject passwordAuth(String domainId, String principal,
 			String password) throws AuthenticationException {
 		// TODO Auto-generated method stub
-		return null;
+		Subject sub = new Subject();
+		sub.setPrincipal(principal);
+		sub.setResultCode(AuthenticationConstants.RESULT_SUCCESS);
+		return sub;
 	}
 
 	/* (non-Javadoc)

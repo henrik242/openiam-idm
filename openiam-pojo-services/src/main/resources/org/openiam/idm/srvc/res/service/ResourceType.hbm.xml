@@ -20,11 +20,5 @@
         <property name="processName" type="string">
             <column name="PROCESS_NAME" length="80" />
         </property>
-        <set name="resourceses" inverse="true">
-            <key>
-                <column name="RESOURCE_TYPE_ID" length="20" />
-            </key>
-            <one-to-many class="org.openiam.idm.srvc.res.dto.Resources" />
-        </set>
     </class>
 </hibernate-mapping>

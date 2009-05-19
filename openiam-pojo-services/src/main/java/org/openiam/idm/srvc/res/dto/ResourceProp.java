@@ -8,23 +8,38 @@ package org.openiam.idm.srvc.res.dto;
 public class ResourceProp implements java.io.Serializable {
 
 	private String resourcePropId;
-	private Resources resources;
+	private String resourceId;
 	private String metadataId;
-	private String propValue;
+	private String name;
+	private String value;
 
 	public ResourceProp() {
 	}
 
+	public ResourceProp(String metadataId, String name, String resourceId,
+			String resourcePropId, String value) {
+		super();
+		this.metadataId = metadataId;
+		this.name = name;
+		this.resourceId = resourceId;
+		this.resourcePropId = resourcePropId;
+		this.value = value;
+	}
+
+	
 	public ResourceProp(String resourcePropId) {
 		this.resourcePropId = resourcePropId;
 	}
 
-	public ResourceProp(String resourcePropId, Resources resources,
-			String metadataId, String propValue) {
+
+
+	public ResourceProp(String name, String resourceId, String resourcePropId,
+			String value) {
+		super();
+		this.name = name;
+		this.resourceId = resourceId;
 		this.resourcePropId = resourcePropId;
-		this.resources = resources;
-		this.metadataId = metadataId;
-		this.propValue = propValue;
+		this.value = value;
 	}
 
 	public String getResourcePropId() {
@@ -35,13 +50,7 @@ public class ResourceProp implements java.io.Serializable {
 		this.resourcePropId = resourcePropId;
 	}
 
-	public Resources getResources() {
-		return this.resources;
-	}
 
-	public void setResources(Resources resources) {
-		this.resources = resources;
-	}
 
 	public String getMetadataId() {
 		return this.metadataId;
@@ -51,12 +60,31 @@ public class ResourceProp implements java.io.Serializable {
 		this.metadataId = metadataId;
 	}
 
-	public String getPropValue() {
-		return this.propValue;
+	public String getResourceId() {
+		return resourceId;
 	}
 
-	public void setPropValue(String propValue) {
-		this.propValue = propValue;
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+
+
 
 }

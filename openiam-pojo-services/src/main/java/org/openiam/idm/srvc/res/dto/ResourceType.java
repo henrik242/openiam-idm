@@ -15,7 +15,6 @@ public class ResourceType implements java.io.Serializable {
 	private String metadataTypeId;
 	private Integer provisionResource;
 	private String processName;
-	private Set<Resources> resourceses = new HashSet<Resources>(0);
 
 	public ResourceType() {
 	}
@@ -26,13 +25,13 @@ public class ResourceType implements java.io.Serializable {
 
 	public ResourceType(String resourceTypeId, String description,
 			String metadataTypeId, Integer provisionResource,
-			String processName, Set<Resources> resourceses) {
+			String processName, Set<Resource> resourceses) {
 		this.resourceTypeId = resourceTypeId;
 		this.description = description;
 		this.metadataTypeId = metadataTypeId;
 		this.provisionResource = provisionResource;
 		this.processName = processName;
-		this.resourceses = resourceses;
+
 	}
 
 	public String getResourceTypeId() {
@@ -75,12 +74,6 @@ public class ResourceType implements java.io.Serializable {
 		this.processName = processName;
 	}
 
-	public Set<Resources> getResourceses() {
-		return this.resourceses;
-	}
 
-	public void setResourceses(Set<Resources> resourceses) {
-		this.resourceses = resourceses;
-	}
 
 }

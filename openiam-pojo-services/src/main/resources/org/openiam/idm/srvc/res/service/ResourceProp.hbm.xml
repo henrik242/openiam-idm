@@ -8,13 +8,15 @@
             <column name="RESOURCE_PROP_ID" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resources" fetch="select">
+
+        <property name="resourceId" type="string">
             <column name="RESOURCE_ID" length="20" />
-        </many-to-one>
+        </property>
+        
         <property name="metadataId" type="string">
             <column name="METADATA_ID" length="20" />
         </property>
-        <property name="propValue" type="string">
+        <property name="value" type="string">
             <column name="PROP_VALUE" length="100" />
         </property>
     </class>

@@ -10,7 +10,7 @@ import java.util.Date;
 public class ResourcePolicy implements java.io.Serializable {
 
 	private String resourcePolicyId;
-	private Resources resources;
+	private Resource resources;
 	private String roleId;
 	private Date policyStart;
 	private Date policyEnd;
@@ -23,7 +23,7 @@ public class ResourcePolicy implements java.io.Serializable {
 		this.resourcePolicyId = resourcePolicyId;
 	}
 
-	public ResourcePolicy(String resourcePolicyId, Resources resources,
+	public ResourcePolicy(String resourcePolicyId, Resource resources,
 			String roleId, Date policyStart, Date policyEnd,
 			Integer applyToChildren) {
 		this.resourcePolicyId = resourcePolicyId;
@@ -42,11 +42,11 @@ public class ResourcePolicy implements java.io.Serializable {
 		this.resourcePolicyId = resourcePolicyId;
 	}
 
-	public Resources getResources() {
+	public Resource getResources() {
 		return this.resources;
 	}
 
-	public void setResources(Resources resources) {
+	public void setResources(Resource resources) {
 		this.resources = resources;
 	}
 
