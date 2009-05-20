@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import javax.jws.WebService;
+
 
 import org.openiam.idm.srvc.secdomain.dto.*;
 /**
@@ -12,6 +14,9 @@ import org.openiam.idm.srvc.secdomain.dto.*;
  * @author Suneet Shah
  *
  */
+@WebService(endpointInterface = "org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/secdomain/service", 
+		serviceName = "SecurityDomainWebService")
 public class SecurityDomainDataServiceImpl implements SecurityDomainDataService {
 
 	protected SecurityDomainDAO secDomainDao;
@@ -69,7 +74,7 @@ public class SecurityDomainDataServiceImpl implements SecurityDomainDataService 
   /* (non-Javadoc)
  * @see org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService#removeSecurityDomain(java.lang.String)
  */
-  public void removeSecurityDomain(String id) {
+  public void removeSecurityDomainById(String id) {
 	  if (id == null)
 		  throw new NullPointerException("Service id is null");
 

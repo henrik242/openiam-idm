@@ -20,6 +20,7 @@ import org.openiam.idm.srvc.loc.dto.Location;
  * @version 2.0
  */
 	
+@WebService
 public interface LocationDataService {
 
 	/**

@@ -1,8 +1,13 @@
 package org.openiam.idm.srvc.email;
 
+import javax.jws.WebService;
+
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
+@WebService(endpointInterface = "org.openiam.idm.srvc.email.MailService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/email", 
+		serviceName = "EmailWebService")
 public class MailServiceImpl implements MailService {
 
 	private MailSender mailSender;
@@ -25,7 +30,7 @@ public class MailServiceImpl implements MailService {
 	public void send(String from, String to, String subject, String msg) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		if (from != null && from.length()  > 0) {
-			message.setFrom("suneet_shah@openiam.com");
+			message.setFrom(from);
 		}else {
 			message.setFrom(defaultSender);
 		}

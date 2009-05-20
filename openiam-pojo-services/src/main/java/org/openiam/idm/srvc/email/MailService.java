@@ -1,10 +1,13 @@
 package org.openiam.idm.srvc.email;
 
+import javax.jws.WebService;
+
 /**
  * Provides methods to be able to send emails.
  * @author suneet
  *
  */
+@WebService
 public interface MailService {
 
 	/**

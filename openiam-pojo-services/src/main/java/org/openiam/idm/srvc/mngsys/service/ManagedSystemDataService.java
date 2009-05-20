@@ -1,5 +1,7 @@
 package org.openiam.idm.srvc.mngsys.service;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
 
 /**
@@ -7,6 +9,7 @@ import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
  * @author suneet shah
  *
  */
+@WebService
 public interface ManagedSystemDataService {
 
 	/**

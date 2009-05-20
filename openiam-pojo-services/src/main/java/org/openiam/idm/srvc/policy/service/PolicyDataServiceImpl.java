@@ -23,6 +23,8 @@ package org.openiam.idm.srvc.policy.service;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.policy.dto.Policy;
 import org.openiam.idm.srvc.policy.dto.PolicyDef;
 
@@ -32,6 +34,9 @@ import org.openiam.idm.srvc.policy.dto.PolicyDef;
  * @author suneet
  *
  */
+@WebService(endpointInterface = "org.openiam.idm.srvc.policy.service.PolicyDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/policy/service", 
+		serviceName = "PolicyWebService")
 public class PolicyDataServiceImpl implements PolicyDataService {
 
 	PolicyDefDAO policyDefDao;

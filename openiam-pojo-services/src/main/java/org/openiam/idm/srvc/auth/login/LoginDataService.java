@@ -1,5 +1,7 @@
 package org.openiam.idm.srvc.auth.login;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.auth.dto.*;
 
 /**
@@ -9,6 +11,7 @@ import org.openiam.idm.srvc.auth.dto.*;
  * @author Suneet Shah
  *
  */
+@WebService
 public interface LoginDataService {
 
 	/**

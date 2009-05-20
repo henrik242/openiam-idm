@@ -34,7 +34,7 @@ public class Location implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1982532513415681152L;
-	String locationId;
+	private String locationId;
 	private String name;
 	private String country;
 	private String bldgNum;

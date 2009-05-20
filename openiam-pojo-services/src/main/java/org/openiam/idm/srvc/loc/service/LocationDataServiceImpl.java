@@ -23,6 +23,8 @@ package org.openiam.idm.srvc.loc.service;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.lang.dto.Language;
 import org.openiam.idm.srvc.loc.dto.Location;
 
@@ -30,6 +32,9 @@ import org.openiam.idm.srvc.loc.dto.Location;
  * @author suneet
  *
  */
+@WebService(endpointInterface = "org.openiam.idm.srvc.loc.service.LocationDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/loc/service", 
+		serviceName = "LocationWebService")
 public class LocationDataServiceImpl implements LocationDataService {
 
 	LocationDAO locationDao;

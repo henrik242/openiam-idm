@@ -6,7 +6,11 @@ import org.openiam.util.encrypt.*;
 
 import java.util.*;
 
+import javax.jws.WebService;
 
+@WebService(endpointInterface = "org.openiam.idm.srvc.auth.login.LoginDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/auth/service", 
+		serviceName = "LoginWebService")
 public class LoginDataServiceImpl implements LoginDataService {
 
 	protected LoginDAO loginDao;

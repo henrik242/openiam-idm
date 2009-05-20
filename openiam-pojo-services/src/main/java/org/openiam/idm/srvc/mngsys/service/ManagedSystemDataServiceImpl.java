@@ -2,10 +2,15 @@ package org.openiam.idm.srvc.mngsys.service;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
 
+@WebService(endpointInterface = "org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService", 
+		targetNamespace = "urn:idm.openiam.org/srvc/mngsys/service", 
+		serviceName = "ManagedSystemWebService")
 public class ManagedSystemDataServiceImpl implements ManagedSystemDataService {
 
 	ManagedSysDAO managedSysDao;

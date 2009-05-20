@@ -23,6 +23,8 @@
  */
 package org.openiam.idm.srvc.policy.service;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.policy.dto.Policy;
 import org.openiam.idm.srvc.policy.dto.PolicyDef;
 
@@ -30,6 +32,7 @@ import org.openiam.idm.srvc.policy.dto.PolicyDef;
  * @author suneet
  *
  */
+@WebService
 public interface PolicyDataService {
 	/**
 	 * Returns an array of policy types that are supported by the system.

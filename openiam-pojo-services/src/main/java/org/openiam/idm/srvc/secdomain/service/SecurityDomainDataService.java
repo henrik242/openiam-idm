@@ -1,5 +1,7 @@
 package org.openiam.idm.srvc.secdomain.service;
 
+import javax.jws.WebService;
+
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 
 /**
@@ -7,7 +9,7 @@ import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
  * @author Suneet Shah
  *
  */
-
+@WebService
 public interface SecurityDomainDataService {
 
 	/**
@@ -35,7 +37,7 @@ public interface SecurityDomainDataService {
 	 * 
 	 * @param id - domainId id
 	 */
-	public abstract void removeSecurityDomain(String id);
+	public abstract void removeSecurityDomainById(String id);
 
 	/**
 	 * Removes an existing service.
