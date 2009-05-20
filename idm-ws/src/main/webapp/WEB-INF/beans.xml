@@ -14,19 +14,6 @@
 	  id="authenticationService" 
 	  implementor="#authenticate"
 	  address="/AuthenticationService" />
-<!-- 
-	<jaxws:endpoint id="roleDataService"
-		implementor="#roleDataService"
-		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
-		address="/RoleDataService"/>
-		
-	<jaxws:endpoint 
-	  id="metaService" 
-	  implementor="#metadataService"
-	  address="/MetadataWebService" />
--->	  
-	  
-
 		
 	<jaxws:endpoint 
 	  id="navigationService" 
@@ -37,39 +24,59 @@
 	<jaxws:endpoint id="groupDataService"
 		implementor="#groupManager"
 		wsdlLocation="WEB-INF/wsdl/GroupDataService.wsdl"
-		address="/GroupDataService"/>
+		address="/GroupDataWebService"/>
 		
-		
-	  		
- <!--   
-	<jaxws:endpoint id="organizationDataService"
-		implementor="#orgManager"
-		wsdlLocation="WEB-INF/wsdl/OrganizationDataService.wsdl" address="/OrganizationDataService" >
-	</jaxws:endpoint>
- -->
- <!-- 		
 	<jaxws:endpoint id="userDataService"
 		implementor="#userManager"
 		wsdlLocation="WEB-INF/wsdl/UserDataService.wsdl"
-		address="/UserDataService"/>		
--->
- 
-<!--  
-	<jaxws:endpoint id="groupDataService"
-		implementor="#groupManager"
-		wsdlLocation="WEB-INF/wsdl/GroupDataService.wsdl"
-		address="/GroupDataService"/>
--->  
-     
-
+		address="/UserDataService"/>	
 		
+	<jaxws:endpoint id="roleService"
+		implementor="#roleDataService"
+		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
+		address="/RoleDataWebService"/>		
+	  		
  
+	<jaxws:endpoint id="orgDataService"
+		implementor="#orgManager"
+		wsdlLocation="WEB-INF/wsdl/OrganizationDataService.wsdl" 
+		address="/OrganizationDataService" >
+	</jaxws:endpoint>
+
 	<jaxws:endpoint 
-	  id="HelloWorld" 
-	  implementor="org.openiam.idm.srvc.HelloWorldImpl" 
-	  address="/HelloWorld" >
-	 	  
-	 </jaxws:endpoint>
-	  
+	  id="metaService" 
+	  implementor="#metadataService"
+	  address="/MetadataWebService" />
+
+	<jaxws:endpoint id="policyService" 
+	  implementor="#policyDataService"
+	  address="/PolicyWebService" >
+	</jaxws:endpoint>     
+
+	<jaxws:endpoint id="emailService" 
+	  implementor="#mailService"
+	  address="/EmailWebService" >
+	</jaxws:endpoint>   
+
+	<jaxws:endpoint id="secDomService" 
+	  implementor="#secDomainService"
+	  address="/SecurityDomainWebService" >
+	</jaxws:endpoint> 		
+
+	<jaxws:endpoint id="locationService" 
+	  implementor="#locationDataService"
+	  address="/LocationWebService" >
+	</jaxws:endpoint> 
+
+	<jaxws:endpoint id="managedService" 
+	  implementor="#managedSysService"
+	  address="/ManagedSystemWebService" >
+	</jaxws:endpoint> 	
+	
+	<jaxws:endpoint id="loginService" 
+	  implementor="#loginManager"
+	  address="/LoginWebService" >
+	</jaxws:endpoint> 	
+	
 </beans>
 <!-- END SNIPPET: beans -->
