@@ -21,7 +21,8 @@ import javax.xml.bind.annotation.XmlType;
     "parentType",
     "phoneExt",
     "phoneId",
-    "phoneNbr"
+    "phoneNbr",
+    "name"
 })
 public class Phone implements java.io.Serializable {
 

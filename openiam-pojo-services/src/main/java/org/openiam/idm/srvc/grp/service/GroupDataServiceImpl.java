@@ -29,6 +29,7 @@ import org.openiam.exception.data.ObjectNotFoundException;
  * @version 2.0
  */
 //Note: as per spec serviceName goes in impl class and name goes in interface
+	
 @WebService(endpointInterface = "org.openiam.idm.srvc.grp.service.GroupDataService", 
 		targetNamespace = "urn:idm.openiam.org/srvc/grp/service", 
 		serviceName = "GroupDataWebService")

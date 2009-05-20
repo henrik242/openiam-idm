@@ -14,7 +14,7 @@ public class Resource implements java.io.Serializable {
 
 	private String resourceId;
 	private ResourceType resourceType;
-	private String resourceName;
+	private String name;
 	private String description;
 	private String resourceParent;
 	private String branchId;
@@ -40,7 +40,7 @@ public class Resource implements java.io.Serializable {
 			String resourceType) {
 		super();
 		this.resourceId = resourceId;
-		this.resourceName = resourceName;
+		this.name = resourceName;
 		this.resourceType = new ResourceType(resourceType);
 	}
 
@@ -164,13 +164,7 @@ public class Resource implements java.io.Serializable {
 
 
 
-	public String getResourceName() {
-		return resourceName;
-	}
 
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
-	}
 
 	public Map<String, ResourceProp> getResourceProps() {
 		return resourceProps;
@@ -178,6 +172,14 @@ public class Resource implements java.io.Serializable {
 
 	public void setResourceProps(Map<String, ResourceProp> resourceProps) {
 		this.resourceProps = resourceProps;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

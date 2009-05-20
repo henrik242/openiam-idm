@@ -13,6 +13,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "address", propOrder = {
     "isActive",
+    "bldgNumber",
+    "streetDirection",
     "address1",
     "address2",
     "address3",
@@ -28,7 +30,8 @@ import javax.xml.bind.annotation.XmlType;
     "parentId",
     "parentType",
     "postalCd",
-    "state"
+    "state",
+    "name"
 })
 public class Address implements java.io.Serializable {
 	

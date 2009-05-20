@@ -1,33 +1,42 @@
 package org.openiam.idm.srvc.cat.dto;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 
 import org.openiam.idm.srvc.cat.dto.CategoryLanguage;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "category", propOrder = {
+    "categoryId",
+    "createdBy",
+    "categoryName",
+    "categoryDesc",
+    "createDate",
+    "parentId",
+    "showList",
+    "displayOrder",
+    "childCategories",
+    "categoryLanguages"
+})
 public class Category implements Serializable {
 	private String categoryId;
-
 	private String createdBy;
 	private String categoryName;
 	private String categoryDesc;
-	private Timestamp createDate;
+	@XmlSchemaType(name = "dateTime")
+	private Date createDate;
 	private String parentId;
 	private int showList;
 	private int displayOrder;
 	private Category[] childCategories;
-
-	
 	private Set<CategoryLanguage> categoryLanguages = new HashSet<CategoryLanguage>(0);
-
-
 	static final long serialVersionUID = 7480627520054050204L;
 	
 	public Category() {
@@ -66,11 +75,11 @@ public class Category implements Serializable {
 		this.categoryDesc = categoryDesc;
 	}
 
-	public Timestamp getCreateDate() {
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(Timestamp createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 

@@ -6,7 +6,7 @@
     <class name="org.openiam.idm.srvc.res.dto.ResourceRole" table="RESOURCE_ROLE">
         <composite-id name="id" class="org.openiam.idm.srvc.res.dto.ResourceRoleId">
             <key-property name="resourceId" type="string">
-                <column name="RESOURCE_ID" length="20" />
+                <column name="RESOURCE_ID" length="32" />
             </key-property>
             <key-property name="roleId" type="string">
                 <column name="ROLE_ID" length="20" />
@@ -15,8 +15,8 @@
                 <column name="PRIVILEGE_ID" length="20" />
             </key-property>
         </composite-id>
-        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resources" update="false" insert="false" fetch="select">
-            <column name="RESOURCE_ID" length="20" not-null="true" />
+        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resource" update="false" insert="false" fetch="select">
+            <column name="RESOURCE_ID" length="32" not-null="true" />
         </many-to-one>
     </class>
 </hibernate-mapping>

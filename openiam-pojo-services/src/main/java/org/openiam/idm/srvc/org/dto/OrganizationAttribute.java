@@ -33,7 +33,7 @@ import org.openiam.idm.srvc.meta.dto.MetadataElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "organizationAttribute", propOrder = {
     "attrId",
-    "metadataId",
+    "metadataElementId",
     "name",
     "organizationId",
     "value"

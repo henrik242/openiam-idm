@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
     "emailId",
     "isDefault",
     "parentId",
-    "parentType"
+    "parentType",
+    "name"
 })
 public class EmailAddress implements java.io.Serializable {
 

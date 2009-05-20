@@ -43,7 +43,8 @@ import org.openiam.idm.srvc.user.dto.User;
     "provisionObjName",
     "status",
     "subGroup",
-    "metadataTypeId"
+    "metadataTypeId",
+    "selected"
 })
 
 public class Group implements java.io.Serializable {

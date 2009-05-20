@@ -21,7 +21,6 @@ import org.openiam.idm.srvc.grp.dto.*;
  */
 @WebService(targetNamespace = "urn:idm.openiam.org/srvc/role/service", name = "RoleDataService")
 //@XmlSeeAlso({org.openiam.idm.srvc.user.dto.ObjectFactory.class,org.openiam.idm.srvc.org.dto.ObjectFactory.class,org.openiam.idm.srvc.continfo.dto.ObjectFactory.class,org.openiam.idm.srvc.grp.dto.ObjectFactory.class,org.openiam.idm.srvc.role.types.ObjectFactory.class,org.openiam.idm.srvc.role.dto.ObjectFactory.class,org.openiam.idm.srvc.meta.dto.ObjectFactory.class})
-
 public interface RoleDataService {
 
 	/**

@@ -5,12 +5,12 @@
 <hibernate-mapping>
     <class name="org.openiam.idm.srvc.res.dto.ResourceProp" table="RESOURCE_PROP">
         <id name="resourcePropId" type="string">
-            <column name="RESOURCE_PROP_ID" length="20" />
-            <generator class="assigned" />
+            <column name="RESOURCE_PROP_ID" length="32" />
+            <generator class="uuid" />
         </id>
 
         <property name="resourceId" type="string">
-            <column name="RESOURCE_ID" length="20" />
+            <column name="RESOURCE_ID" length="32" />
         </property>
         
         <property name="metadataId" type="string">

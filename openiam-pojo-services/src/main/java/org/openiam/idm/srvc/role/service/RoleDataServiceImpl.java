@@ -18,6 +18,7 @@ import java.util.*;
 import javax.jws.WebService;
 
 //Note: as per spec serviceName goes in impl class and name goes in interface
+		
 @WebService(endpointInterface = "org.openiam.idm.srvc.role.service.RoleDataService", 
 		targetNamespace = "urn:idm.openiam.org/srvc/role/service", 
 		serviceName = "RoleDataWebService")

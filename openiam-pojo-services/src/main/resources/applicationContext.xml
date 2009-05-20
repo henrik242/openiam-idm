@@ -405,7 +405,7 @@
 				<value>org/openiam/idm/srvc/res/service/ResourcePolicy.hbm.xml</value>
 				<value>org/openiam/idm/srvc/res/service/ResourceProp.hbm.xml</value>
 				<value>org/openiam/idm/srvc/res/service/ResourceRole.hbm.xml</value>
-				<value>org/openiam/idm/srvc/res/service/Resources.hbm.xml</value>
+				<value>org/openiam/idm/srvc/res/service/Resource.hbm.xml</value>
 				<value>org/openiam/idm/srvc/res/service/ResourceUser.hbm.xml</value>
 				<value>org/openiam/idm/srvc/lang/service/Language.hbm.xml</value>
 				<value>org/openiam/idm/srvc/loc/service/Location.hbm.xml</value>

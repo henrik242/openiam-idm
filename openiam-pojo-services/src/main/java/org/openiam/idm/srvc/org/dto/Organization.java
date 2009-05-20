@@ -48,8 +48,12 @@ import java.util.Map;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "organization", propOrder = { "alias", "attributes",
 		"createDate", "createdBy", "description", "domainName", "ldapStr",
-		"lstUpdate", "lstUpdatedBy", "metadataTypeId", "orgId",
-		"organizationName", "parentId", "status" })
+		"lstUpdate", "lstUpdatedBy", 
+		"metadataTypeId", 
+		"orgId",
+		"organizationName", 
+		"parentId", 
+		"status" })
 public class Organization implements java.io.Serializable {
 
 	/**

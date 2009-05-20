@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA -->
 <hibernate-mapping>
-    <class name="org.openiam.idm.srvc.res.dto.Resources" table="RESOURCES" >
+    <class name="org.openiam.idm.srvc.res.dto.Resource" table="RESOURCES" >
         <id name="resourceId" type="string">
-            <column name="RESOURCE_ID" length="20" />
-            <generator class="assigned" />
+            <column name="RESOURCE_ID" length="32" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="resourceType" class="org.openiam.idm.srvc.res.dto.ResourceType" fetch="select">
             <column name="RESOURCE_TYPE_ID" length="20" />
@@ -14,8 +14,11 @@
         <property name="description" type="string">
             <column name="DESCRIPTION" length="100" />
         </property>
+        <property name="name" type="string">
+            <column name="NAME" length="40" />
+        </property>
         <property name="resourceParent" type="string">
-            <column name="RESOURCE_PARENT" length="20" />
+            <column name="RESOURCE_PARENT" length="32" />
         </property>
         <property name="branchId" type="string">
             <column name="BRANCH_ID" length="20" />
@@ -34,25 +37,25 @@
         </property>
         <set name="resourceRoles" inverse="true">
             <key>
-                <column name="RESOURCE_ID" length="20" not-null="true" />
+                <column name="RESOURCE_ID" length="32" not-null="true" />
             </key>
             <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceRole" />
         </set>
         <set name="resourceUsers" inverse="true">
             <key>
-                <column name="RESOURCE_ID" length="20" not-null="true" />
+                <column name="RESOURCE_ID" length="32" not-null="true" />
             </key>
             <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceUser" />
         </set>
         <set name="resourcePolicies" inverse="true">
             <key>
-                <column name="RESOURCE_ID" length="20" />
+                <column name="RESOURCE_ID" length="32" />
             </key>
             <one-to-many class="org.openiam.idm.srvc.res.dto.ResourcePolicy" />
         </set>
         <set name="resourceProps" inverse="true">
             <key>
-                <column name="RESOURCE_ID" length="20" />
+                <column name="RESOURCE_ID" length="32" />
             </key>
             <one-to-many class="org.openiam.idm.srvc.res.dto.ResourceProp" />
         </set>

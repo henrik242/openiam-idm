@@ -169,15 +169,15 @@ import org.openiam.idm.srvc.grp.dto.Group;
 	@XmlJavaTypeAdapter(UserAttributeMapAdapter.class)
 	protected Map<String, UserAttribute> userAttributes = new HashMap<String, UserAttribute>(0);
 
-	@XmlJavaTypeAdapter(AddressMapAdapter.class)
+	//@XmlJavaTypeAdapter(AddressMapAdapter.class)
 	//protected Map<String, Address> addresses = new HashMap<String,Address>(0);
 	protected Set<Address> addresses = new HashSet<Address>(0);
 
-	@XmlJavaTypeAdapter(PhoneMapAdapter.class)
+	//@XmlJavaTypeAdapter(PhoneMapAdapter.class)
 	//protected Map<String, Phone> phones = new HashMap<String,Phone>(0);
 	protected Set<Phone> phones = new HashSet<Phone>(0);
 	
-	@XmlJavaTypeAdapter(EmailAddressMapAdapter.class)
+	//@XmlJavaTypeAdapter(EmailAddressMapAdapter.class)
 	protected Set<EmailAddress> emailAddresses = new HashSet<EmailAddress>(0);
 
 	

@@ -8,8 +8,8 @@
             <column name="RESOURCE_POLICY_ID" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resources" fetch="select">
-            <column name="RESOURCE_ID" length="20" />
+        <many-to-one name="resources" class="org.openiam.idm.srvc.res.dto.Resource" fetch="select">
+            <column name="RESOURCE_ID" length="32" />
         </many-to-one>
         <property name="roleId" type="string">
             <column name="ROLE_ID" length="20" />
