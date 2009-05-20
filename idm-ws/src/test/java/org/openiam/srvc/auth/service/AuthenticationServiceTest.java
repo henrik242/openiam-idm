@@ -8,6 +8,7 @@ import java.util.*;
 
 import org.openiam.idm.srvc.auth.dto.Subject;
 import org.openiam.idm.srvc.auth.service.AuthenticationService;
+import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
 import org.openiam.exception.AuthenticationException;
 
 import org.springframework.context.ApplicationContext;
@@ -41,12 +42,25 @@ public class AuthenticationServiceTest extends AbstractDependencyInjectionSpring
 		
 		try {
 			Subject sub = authService.passwordAuth("USR_SEC_DOMAIN", "sshah", "passwd00");
+			
+			System.out.println("Subject: " + sub);
+			
 		}catch(AuthenticationException ae) {
 			ae.printStackTrace();
 		}
 		
 	}
 	
+	public void testValidateToken() {
+		
+
+			boolean retval = authService.validateToken("sshah","1234","OPENIAM_TOKEN"); 
+			
+			System.out.println("retval: " + retval);
+			
+
+		
+	}
 	
 	
 }

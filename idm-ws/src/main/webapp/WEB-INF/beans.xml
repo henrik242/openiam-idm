@@ -15,16 +15,18 @@
 	  implementor="#authenticate"
 	  address="/AuthenticationService" />
 <!-- 
+	<jaxws:endpoint id="roleDataService"
+		implementor="#roleDataService"
+		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
+		address="/RoleDataService"/>
+		
 	<jaxws:endpoint 
 	  id="metaService" 
 	  implementor="#metadataService"
 	  address="/MetadataWebService" />
 -->	  
 	  
-	<jaxws:endpoint id="roleDataService"
-		implementor="#roleDataService"
-		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
-		address="/RoleDataService"/>
+
 		
 	<jaxws:endpoint 
 	  id="navigationService" 
@@ -32,6 +34,12 @@
 	  address="/NavigationService" />
 
 
+	<jaxws:endpoint id="groupDataService"
+		implementor="#groupManager"
+		wsdlLocation="WEB-INF/wsdl/GroupDataService.wsdl"
+		address="/GroupDataService"/>
+		
+		
 	  		
  <!--   
 	<jaxws:endpoint id="organizationDataService"
