@@ -51,6 +51,9 @@ public class AuthenticationContext implements Serializable {
 		credential = cred;
 	}
 	
+	public Credential getCredential() {
+		return credential;
+	}
 
 
 	

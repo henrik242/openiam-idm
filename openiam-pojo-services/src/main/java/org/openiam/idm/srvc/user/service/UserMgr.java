@@ -276,6 +276,16 @@ public class UserMgr implements UserDataService {
 		// / this.userMsgProducer.sendMessage(user.getUserId(),"DELETE");
 
 	}
+	
+	/**
+	 * Returns a User object based on the Users principal name.  The user principal name is unique with in a security domain.
+	 * @param securityDomain
+	 * @param principalName
+	 * @return
+	 */
+	public User getUserByPrincipal(String securityDomain, String principalName) {
+		return null;
+	}
 
 	/*
 	 * (non-Javadoc)

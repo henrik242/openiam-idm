@@ -19,5 +19,16 @@
                 <comment></comment>
             </column>
         </property>
+        <property name="defaultLoginModule" type="string">
+            <column name="LOGIN_MODULE" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="authSysId" type="string">
+            <column name="AUTH_SYS_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
     </class>
  </hibernate-mapping>

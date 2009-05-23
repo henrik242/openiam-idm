@@ -18,12 +18,12 @@ package org.openiam.exception;
  */
 public class AuthenticationException extends Exception {
     
-	String errorCode;
-	public AuthenticationException(String errCd) {
+	int errorCode;
+	public AuthenticationException(int errCd) {
     	
     	this.errorCode = errCd;
     }
-	public String getErrorCode() {
+	public int getErrorCode() {
 		return errorCode;
 	}
 

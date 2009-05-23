@@ -35,6 +35,7 @@ public interface LoginDataService {
 	public void updateLogin(Login login);
 	public void removeLogin(String serviceId, String login);
 	public Login getLogin(String serviceId, String login);
+	public Login getLoginByManagedSys(String serviceId, String login,String sysId) ;
 	public Login[] getLoginByUser(String userId);
 	
 	void lockLogin(String serviceId, String login);

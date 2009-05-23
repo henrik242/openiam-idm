@@ -56,6 +56,24 @@ public class LoginDataServiceImpl implements LoginDataService {
 		return lg;
 	}
 
+	public Login getLoginByManagedSys(String serviceId, String login,String sysId) {
+		if (serviceId == null)
+			throw new NullPointerException("service is null");
+		if (login == null)
+			throw new NullPointerException("Login is null");
+		LoginId id = new LoginId(serviceId, login, sysId);
+		
+		Login lg = loginDao.findById(id);
+		System.out.println("Lg=" + lg);
+
+		// decrypt the password and then return the object
+		//if (lg != null && lg.getPassword() != null) {
+		//	lg.setPassword( cryptor.decrypt(lg.getPassword()) ) ;
+		//}
+		//
+		return lg;
+	}
+	
 	public Login[] getLoginByUser(String userId) {
 		if (userId == null)
 			throw new NullPointerException("userId is null");

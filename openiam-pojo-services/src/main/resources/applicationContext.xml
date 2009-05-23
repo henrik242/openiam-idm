@@ -10,10 +10,24 @@
     					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
     					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
 
-	<!-- Service Beans -->
+	<!-- Authentication Beans -->
 	<bean id="authenticate" class="org.openiam.idm.srvc.auth.service.AuthenticationServiceImpl">
+		<property name="defaultLoginModule" ref="defaultLoginModuleManager" />
+		<property name="authStateDao" ref="authStateDAO" />
+		<property name="loginManager" ref="loginManager" />
 	</bean>
-	
+
+	<bean id="defaultLoginModuleManager" class="org.openiam.idm.srvc.auth.spi.DefaultLoginModule" >
+		<property name="defaultToken" ref="defaultSSOToken" />
+		<property name="loginManager" ref="loginManager" />
+		<property name="userManager" ref="userManager" />
+	</bean>
+
+	<bean id="defaultSSOToken" class="org.openiam.idm.srvc.auth.sso.DefaultTokenModule" >
+		<property name="cryptor" ref="cryptor" />
+	</bean>
+			
+	<!-- Service Beans -->
 	<bean id="serviceManager" class="org.openiam.idm.srvc.service.service.ServiceMgr">
 		<constructor-arg ref="serviceDAO"></constructor-arg>
 	</bean>
@@ -139,6 +153,10 @@
 	</bean>	
 
 	<bean id="loginAttrDAO" class="org.openiam.idm.srvc.auth.login.LoginAttributeDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory"></property>		
+	</bean>	
+
+	<bean id="authStateDAO" class="org.openiam.idm.srvc.auth.login.AuthStateDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory"></property>		
 	</bean>	
 	
@@ -382,6 +400,7 @@
 				<!-- Audit log Maps -->
 				<value>org/openiam/idm/srvc/auth/login/Login.hbm.xml</value>
 				<value>org/openiam/idm/srvc/auth/login/LoginAttribute.hbm.xml</value>
+				<value>org/openiam/idm/srvc/auth/login/AuthState.hbm.xml</value>
 				<!--  Policy Maps -->
 				<value>org/openiam/idm/srvc/policy/service/Policy.hbm.xml</value>
 				<value>org/openiam/idm/srvc/policy/service/PolicyAttribute.hbm.xml</value>
@@ -593,8 +612,11 @@
     <aop:pointcut id="locationOperation" expression="execution(* org.openiam.idm.srvc.loc.service.LocationDataService.*(..))"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="locationOperation"/>
   </aop:config> 
-  
+
+    <aop:config>
+    <aop:pointcut id="authenticationOperation" expression="execution(* org.openiam.idm.srvc.auth.service.AuthenticationService.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="authenticationOperation"/>
+  </aop:config>   
       
 </beans>
-
 

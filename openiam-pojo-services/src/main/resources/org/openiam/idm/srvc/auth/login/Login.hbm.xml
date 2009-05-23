@@ -9,12 +9,13 @@
             <key-property name="serviceId" type="string">
                 <column name="SERVICE_ID" length="20" />
             </key-property>
-            <key-property name="managedSysId" type="string">
-                <column name="MANAGED_SYS_ID" length="50" />
-            </key-property>
             <key-property name="login" type="string">
                 <column name="LOGIN" length="50" />
             </key-property>
+            <key-property name="managedSysId" type="string">
+                <column name="MANAGED_SYS_ID" length="50" />
+            </key-property>
+
         </composite-id>
         <many-to-one name="user" class="org.openiam.idm.srvc.user.dto.User" fetch="select">
             <column name="USER_ID" length="20">

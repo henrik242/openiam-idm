@@ -61,6 +61,14 @@ public interface UserDataService {
 	 * @see org.openiam.idm.srvc.user.service.UserDataService#removeUser(java.lang.String)
 	 */
 	public void removeUser(String id);
+	
+	/**
+	 * Returns a User object based on the Users principal name.  The user principal name is unique with in a security domain.
+	 * @param securityDomain
+	 * @param principalName
+	 * @return
+	 */
+	public User getUserByPrincipal(String securityDomain, String principalName);
 
 	public List<User> findUsersByLastUpdateRange(Date startDate, Date endDate);
 

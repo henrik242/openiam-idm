@@ -16,6 +16,10 @@ public class SecurityDomain implements java.io.Serializable {
 	private String domainId;
 	private String name;
 	private String status;
+	private String defaultLoginModule;
+	private String authSysId;
+	
+
 	
 
 
@@ -52,6 +56,22 @@ public class SecurityDomain implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getDefaultLoginModule() {
+		return defaultLoginModule;
+	}
+
+	public void setDefaultLoginModule(String defaultLoginModule) {
+		this.defaultLoginModule = defaultLoginModule;
+	}
+
+	public String getAuthSysId() {
+		return authSysId;
+	}
+
+	public void setAuthSysId(String authSysId) {
+		this.authSysId = authSysId;
 	}
 
 
