@@ -13,8 +13,6 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 
 public class DomainController extends MultiActionController {
 
@@ -89,7 +87,7 @@ public class DomainController extends MultiActionController {
 
 
 		// delete the record
-		domainService.removeSecurityDomain(domainId);
+		domainService.removeSecurityDomainById(domainId);
 		
 
 

@@ -73,9 +73,14 @@ public class ResourceTreeAction extends NavigationDispatchAction {
 			super.setNavigation(mapping, form, request, response);
 			String categoryId = (String) session.getAttribute("categoryId");
 
+			System.out.println("--categoryId=" + categoryId);
+			
 			if (categoryId == null || categoryId.length() == 0) {
 				Context ctx = new InitialContext();
 				categoryId = (String) ctx.lookup("java:comp/env/RootCategory");
+				
+				System.out.println("categoryId=" + categoryId);
+				
 				super.setCategories(
 					categoryId,
 					langCd,
@@ -102,6 +107,8 @@ public class ResourceTreeAction extends NavigationDispatchAction {
 				System.out.println("resources for categoryId " + categoryId);
 				// if no resourceId, get root branches
 				resources = acl.getCategoryBranches(categoryId);
+				
+				System.out.println("Resource=" + resources);
 			}
 			request.setAttribute("resources", resources);
 

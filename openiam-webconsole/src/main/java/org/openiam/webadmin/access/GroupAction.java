@@ -320,8 +320,12 @@ public class GroupAction extends NavigationDispatchAction  {
 		}
 
 		groupValue.setProvisionObjName( (String)groupForm.get("provProcessName") );
-		groupValue.setParentGrpId((String)groupForm.getString("parentGroup"));
-		
+		if ( ((String)groupForm.getString("parentGroup")) != null && 
+			 ((String)groupForm.getString("parentGroup")).equals(""))  {
+			groupValue.setParentGrpId(null);
+		}else {		
+			groupValue.setParentGrpId((String)groupForm.getString("parentGroup"));
+		}
   
 		return groupValue;
 	}

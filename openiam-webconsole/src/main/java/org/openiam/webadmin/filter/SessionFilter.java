@@ -74,7 +74,7 @@ public class SessionFilter implements javax.servlet.Filter {
 		/* There is no User attribute so redirect to login page */
 			if(session.getAttribute("userId") == null)	{
 				log.info("Session expired, redirecting to login page");
-				response.sendRedirect(expirePage);
+				response.sendRedirect(request.getContextPath() + expirePage);
 				return;
 			}
 		}

@@ -9,9 +9,8 @@
 
 <head>
 <title>OpenIAM - Administration Console</title>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-<META HTTP-EQUIV="Expires" CONTENT="-1">
-
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 <% 
@@ -22,8 +21,7 @@
 
 <!-- OpenIAM Legacy style sheets -->
 <link href="<%=request.getContextPath()%>/diamelleapp.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/jquery.js"></script>       
-<script type="text/javascript" src="<%=request.getContextPath()%>/webconsole.js"></script>       
+   
 
 
 <!-- ENDLIBS -->

@@ -33,7 +33,6 @@
 package org.openiam.webadmin.user;
 
 import org.openiam.webadmin.busdel.base.*;
-import org.openiam.webadmin.busdel.identity.UserAccess;
 
 import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.org.dto.Organization;
@@ -93,8 +92,7 @@ public class OrgAction extends NavigationDispatchAction  {
         	Organization org = new Organization();
             String orgId = null;
         	
-        	
-           UserAccess userAccess = new UserAccess();
+        
            
            orgId = request.getParameter("orgId");
            if (orgId == null) {
@@ -164,39 +162,6 @@ public class OrgAction extends NavigationDispatchAction  {
     }
      
   
-
-
-
-    /**
-     * Deletes a User and all its dependencies
-     */
-    public ActionForward deleteUser ( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse res ) throws IOException, ServletException {
-
- /*       try {
-           HttpSession session = request.getSession();
-           String personId = request.getParameter("personId");
-           UserAccess userAccess = new UserAccess();
-           
-           UserData ud = userAccess.getUser(personId);
-           if (ud != null) {
-           	ud.setStatusId("DELETED");
-           	userAccess.saveUser(ud);
-            AuditLogAccess.logEvent("User id=" + personId + " has been deleted.",
-              		request.getRemoteHost(),(String)session.getAttribute("userId"),  
-               		(String)session.getAttribute("login"),"IDM");
-           }
- 
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    	//return (mapping.findForward("success"));
-*/        return (mapping.findForward("search"));
-    }
-
-
-
-
-
 
     /**
      * Retrieves the data from Form and sets in the UserData object
