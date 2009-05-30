@@ -36,7 +36,7 @@ function validateInt(fld) {
 <table width="620" border="0" cellspacing="2" cellpadding="1" align="center"> 
 	<tr>
       <td colspan="3" class="title">         
-          <strong>New Request Information</strong>
+          <strong>Create Request</strong>
       </td>
       <td colspan="1" class="text" align="right">         
           <font size="1" color="red">*</font> Required         
@@ -124,11 +124,6 @@ function validateInt(fld) {
 
    </tr>
  
-   
-   
-
-	  <td colspan="6">&nbsp;</td>
-	 </tr>
 
     <tr>
     	  <td colspan="6">&nbsp;</td>

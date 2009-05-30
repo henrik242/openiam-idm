@@ -121,12 +121,7 @@
       <version>1</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>diamelle.ejb</groupId>
-      <artifactId>token</artifactId>
-      <version>1</version>
-      <scope>provided</scope>
-    </dependency>
+
 
     <dependency>
       <groupId>org.apache.struts</groupId>

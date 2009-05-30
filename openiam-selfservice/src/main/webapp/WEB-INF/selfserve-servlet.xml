@@ -82,11 +82,11 @@
 		<property name="mailService" ref="mailService" />
      </bean>		  
   
-     <bean id="newRequest" class="org.openiam.selfsrvc.prov.NewRequestController">
+     <bean id="createRequest" class="org.openiam.selfsrvc.prov.NewRequestController">
      	<property name="sessionForm"><value>true</value></property>
 		<property name="commandName" value="newRequestCmd" />
 		<property name="commandClass" value="org.openiam.selfsrvc.prov.NewRequestCommand" />
-		<property name="formView" value="/priv/newrequest" />
+		<property name="formView" value="/priv/createrequest" />
 		<property name="successView" value="/priv/confirm" />
 
      </bean>
@@ -106,42 +106,13 @@
                 <prop key="/requestDetail.selfserve">requestDetail</prop>
                 <prop key="pub/reportIncident.selfserve">reportIncident</prop>
                 <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
-                 <prop key="/createRequest.selfserve">newRequest</prop>
+                <prop key="/createRequest.selfserve">newHire</prop>
             </props>
         </property>
     </bean>
      
 
-     <!-- Method name resolver for Audit Reports  -->
-<!-- 
-	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
-		<property name="paramName" value="method" />
-  		<property name="methodParamNames">
-  			<list>
-  				<value>view</value>
-  				<value>pswd</value>
-  			</list>
-  		</property>
-  		<property name="logicalMappings">
-  			<props>
-  				<prop key="view">auditReport</prop>
-  				<prop key="pswd">passwordChangeReport</prop>
-  			</props>
-  		</property>
-	</bean>
--->
-      
-<!--      
-     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-    		<property name="mappings">
-    			<props>
-    				<prop key="/auditReport.report">auditReportController</prop>
-					<prop key="/passwordChangeReport.report">auditReportController</prop>
-					<prop key="/allRolesReport.report">accessReportController</prop>
-    			</props>
-    		</property>
-    	</bean>
--->    	
+ 	
 
     
 	

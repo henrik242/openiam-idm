@@ -16,13 +16,11 @@ import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.selfsrvc.AppConfiguration;
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.AuthenticatorAccess;
-import org.openiam.webadmin.busdel.security.TokenAccess;
 import org.springframework.web.context.WebApplicationContext;
 import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.webadmin.busdel.security.IdQuestionAccess;
 
 import diamelle.security.auth.*;
-import diamelle.security.token.*;
 import diamelle.util.Log;
 import diamelle.ebc.user.*;
 

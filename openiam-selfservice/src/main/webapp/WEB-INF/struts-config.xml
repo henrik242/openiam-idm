@@ -321,10 +321,7 @@
      	parameter="method" scope="request" validate="false">
          <forward name="success" path="/home.jsp?bodyjsp=/prov/myTasks.jsp"/> 
      </action>
-     <action path="/priv/prov/createRequest"  type="org.springframework.web.struts.DelegatingActionProxy" 
-     	parameter="method" scope="request" validate="false">
-         <forward name="new" path="/home.jsp?bodyjsp=/prov/createRequest.jsp"/> 
-     </action>
+
      
      <action    path="/priv/reModel"
                type="org.openiam.selfsrvc.prov.ReModelAction"
@@ -530,9 +527,6 @@
  
   
     
-    <action path="/createRequest" type="diamelle.security.custportal.prov.CreateRequestAction" validate="false" scope="request" >
-    	
-    </action>
     
     
     <action

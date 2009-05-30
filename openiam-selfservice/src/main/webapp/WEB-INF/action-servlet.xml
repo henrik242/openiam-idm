@@ -40,8 +40,6 @@
 	<bean name="/logout"  class="org.openiam.selfsrvc.login.LogoutAction" />
 	<bean name="/permission"  class="org.openiam.selfsrvc.login.PermissionAction" />
 
-	<bean name="/priv/prov/myTasks"  class="org.openiam.selfsrvc.prov.MyTasksAction" />
-	<bean name="/priv/prov/createRequest"  class="org.openiam.selfsrvc.prov.CreateRequestAction" />
 	
 	<bean name="/priv/password"  class="org.openiam.selfsrvc.pswd.PasswordChangeAction" >
 		<property name="passwordConfig" ref="passwordConfiguration" />

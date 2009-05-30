@@ -73,7 +73,6 @@ public class UserAction extends NavigationDispatchAction  {
 	UserAccess userAccess = null;
 	AuthenticatorAccess authAccess = null; 
 	AuditLogAccess logAccess = null;
-	TokenAccess tknAccess = null;
 	
 	UserDataServiceAccess userDataAccess = null;
 	GroupDataServiceAccess groupDataAcc = null;
@@ -91,9 +90,6 @@ public class UserAction extends NavigationDispatchAction  {
 		userAccess = new UserAccess();
 		authAccess = new AuthenticatorAccess();
 		logAccess = new AuditLogAccess();
-		tknAccess = new TokenAccess();
-//		orgAccess = new OrganizationAccess();
-//		serviceAccess = new ServiceAccess();
 		metaAccess = new MetadataAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1089,9 +1085,6 @@ public class UserAction extends NavigationDispatchAction  {
         }
         if (detailView.equalsIgnoreCase("HISTORY")) {
         	return userAccess.getUserNotes(personId);
-        }
-        if (detailView.equalsIgnoreCase("TOKEN")) {
-        	return tknAccess.getUserRequest(personId);
         }
 
         } catch (Exception e) {

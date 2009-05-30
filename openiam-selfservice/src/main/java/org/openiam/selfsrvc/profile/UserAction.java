@@ -43,13 +43,11 @@ import diamelle.common.service.Service;
 import diamelle.common.service.ServiceMgr;
 import diamelle.common.status.StatusCodeValue;
 
-import diamelle.common.org.*;
 import diamelle.ebc.user.*;
 import diamelle.security.auth.*;
 import diamelle.security.idquest.QuestionValue;
 import diamelle.security.policy.PolicyAttrValue;
 import diamelle.security.policy.PolicyConstants;
-import diamelle.security.token.*;
 import diamelle.util.Log;
 import java.io.*;
 
@@ -59,8 +57,6 @@ import java.rmi.RemoteException;
 import java.sql.*;
 
 import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -75,9 +71,6 @@ public class UserAction extends NavigationDispatchAction  {
 	UserAccess userAccess = null;
 	AuthenticatorAccess authAccess = null; 
 	AuditLogAccess logAccess = null;
-	TokenAccess tknAccess = null;
-//	OrganizationAccess orgAccess = null;
-//	ServiceAccess serviceAccess = null;
 	MetadataAccess metaAccess = null;
 	IdQuestionAccess questAccess = new IdQuestionAccess();
 	PolicyAccess policyAccess = new PolicyAccess();
@@ -88,9 +81,6 @@ public class UserAction extends NavigationDispatchAction  {
 		userAccess = new UserAccess();
 		authAccess = new AuthenticatorAccess();
 		logAccess = new AuditLogAccess();
-		tknAccess = new TokenAccess();
-//		orgAccess = new OrganizationAccess();
-//		serviceAccess = new ServiceAccess();
 		metaAccess = new MetadataAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -860,16 +850,7 @@ public class UserAction extends NavigationDispatchAction  {
            UserData ud = userAccess.getUser(personId);
            request.setAttribute("status", ud.getStatusId());
 
-           //UserAccess userAccess = new UserAccess();
-           TokenRequestValue userToken = (TokenRequestValue)getTabDetail("TOKEN", personId);
-           if ( userToken != null && 
-           		userToken.getTokenSerialNbr() != null) {
-           		TokenValue tokenValue = this.tknAccess.getToken( userToken.getTokenSerialNbr() );
-           		request.setAttribute("tokenDetail", tokenValue);
-           }
           
-           request.setAttribute("token", userToken);
-
            DynaValidatorForm userForm = (DynaValidatorForm) form;
            this.editUser(request, userForm, "Token");
 
@@ -1196,9 +1177,6 @@ public class UserAction extends NavigationDispatchAction  {
         }
         if (detailView.equalsIgnoreCase("HISTORY")) {
         	return userAccess.getUserNotes(personId);
-        }
-        if (detailView.equalsIgnoreCase("TOKEN")) {
-        	return tknAccess.getUserRequest(personId);
         }
 
         } catch (Exception e) {
