@@ -57,7 +57,7 @@ public interface AuthenticationService {
 	 *            The bulk accessor class for the PasswordLoginBean.
 	 * @return SSOSubject which holds user information
 	 */
-	Subject authenticate(AuthenticationContext ctx) throws AuthenticationException;
+	//Subject authenticate(AuthenticationContext ctx) throws AuthenticationException;
 	
 	/**
 	 * passwordLogin provides a simple approach to enabling password based authentication.
@@ -95,5 +95,8 @@ public interface AuthenticationService {
 	boolean validateToken(String loginId, String token, String tokenType);
 	
 	boolean validateTokenByUser(String userId, String token, String tokenType);
+	
+	void updateAppStatus (String managedSysId, String loginId, String status, String sessionId, String token);
+	
 
 }

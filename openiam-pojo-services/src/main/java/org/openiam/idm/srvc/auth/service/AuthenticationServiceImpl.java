@@ -21,17 +21,27 @@
  */
 package org.openiam.idm.srvc.auth.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.jws.WebService;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openiam.exception.AuthenticationException;
+import org.openiam.idm.srvc.auth.context.AuthContextFactory;
 import org.openiam.idm.srvc.auth.context.AuthenticationContext;
 import org.openiam.idm.srvc.auth.context.PasswordCredential;
 import org.openiam.idm.srvc.auth.dto.AuthState;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.dto.Subject;
 import org.openiam.idm.srvc.auth.login.AuthStateDAO;
+import org.openiam.idm.srvc.auth.login.LoginDAOImpl;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.auth.spi.LoginModule;
+import org.openiam.idm.srvc.auth.spi.LoginModuleFactory;
+import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 
 /**
  * @author suneet
@@ -43,10 +53,13 @@ import org.openiam.idm.srvc.auth.spi.LoginModule;
 		serviceName = "AuthenticationService")
 public class AuthenticationServiceImpl implements AuthenticationService {
 	
-	LoginModule defaultLoginModule;
-	AuthStateDAO authStateDao;
-	LoginDataService loginManager;
+	protected LoginModule defaultLoginModule;
+	protected AuthStateDAO authStateDao;
+	protected LoginDataService loginManager;
+	protected SecurityDomainDataService secDomainService; 
+	protected String authContextClass;
 	
+	private static final Log log = LogFactory.getLog(AuthenticationServiceImpl.class);
 
 	
 	/* (non-Javadoc)
@@ -78,16 +91,33 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.auth.service.AuthenticationService#passwordAuth(java.lang.String, java.lang.String, java.lang.String)
 	 */
-	public Subject passwordAuth(String domainId, String principal,
+	public Subject passwordAuth(String secDomainId, String principal,
 			String password) throws AuthenticationException {
 	
-		AuthenticationContext ctx = new AuthenticationContext();
+		AuthenticationContext ctx = null;
+		LoginModule loginModule = null;
+		
+		SecurityDomain secDomain = secDomainService.getSecurityDomain(secDomainId);
+		if (secDomain == null) {
+			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_DOMAIN);
+		}
+		try {
+			loginModule = LoginModuleFactory.createModule(secDomain.getDefaultLoginModule());
+			ctx = AuthContextFactory.createContext(authContextClass);
+		}catch(Exception ie) {
+			log.error(ie.getMessage(),ie);
+			new AuthenticationException(AuthenticationConstants.INTERNAL_ERROR,ie.getMessage(),ie);
+		}
 		PasswordCredential cred = (PasswordCredential) ctx.createCredentialObject( AuthenticationConstants.AUTHN_TYPE_PASSWORD );
-		cred.setCredentials(domainId, principal,password);
+		cred.setCredentials(secDomainId, principal,password);
 		ctx.setCredential(AuthenticationConstants.AUTHN_TYPE_PASSWORD , cred);
-		Subject sub = defaultLoginModule.login(ctx);
 		
+		Map<String,Object> authParamMap = new HashMap<String,Object>();
+		authParamMap.put("SEC_DOMAIN_ID",secDomainId);
+		ctx.setAuthParam(authParamMap);
 		
+		Subject sub = loginModule.login(ctx);
+	
 		sub.setPrincipal(principal);
 		sub.setResultCode(AuthenticationConstants.RESULT_SUCCESS);
 		return sub;
@@ -136,6 +166,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public void updateAppStatus (String managedSysId, String loginId, String status, String sessionId, String token) {
+		
+	}
 
 	public LoginModule getDefaultLoginModule() {
 		return defaultLoginModule;
@@ -161,4 +195,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		this.loginManager = loginManager;
 	}
 
+	public SecurityDomainDataService getSecDomainService() {
+		return secDomainService;
+	}
+
+	public void setSecDomainService(SecurityDomainDataService secDomainService) {
+		this.secDomainService = secDomainService;
+	}
+
+	public String getAuthContextClass() {
+		return authContextClass;
+	}
+
+	public void setAuthContextClass(String authContextClass) {
+		this.authContextClass = authContextClass;
+	}
+	
 }

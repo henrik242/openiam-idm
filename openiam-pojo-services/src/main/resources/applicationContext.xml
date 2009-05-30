@@ -15,6 +15,9 @@
 		<property name="defaultLoginModule" ref="defaultLoginModuleManager" />
 		<property name="authStateDao" ref="authStateDAO" />
 		<property name="loginManager" ref="loginManager" />
+		<property name="secDomainService" ref="secDomainService" />
+		<property name="authContextClass" value="org.openiam.idm.srvc.auth.context.AuthenticationContextImpl" />
+		
 	</bean>
 
 	<bean id="defaultLoginModuleManager" class="org.openiam.idm.srvc.auth.spi.DefaultLoginModule" >
@@ -26,6 +29,7 @@
 	<bean id="defaultSSOToken" class="org.openiam.idm.srvc.auth.sso.DefaultTokenModule" >
 		<property name="cryptor" ref="cryptor" />
 	</bean>
+
 			
 	<!-- Service Beans -->
 	<bean id="serviceManager" class="org.openiam.idm.srvc.service.service.ServiceMgr">
@@ -145,6 +149,7 @@
 		<property name="loginDao" ref="loginDAO" />
 		<property name="loginAttrDao" ref="loginAttrDAO" />
 		<property name="cryptor" ref="cryptor" />
+		<property name="secDomainService" ref="secDomainService" />
 
 	</bean>
 

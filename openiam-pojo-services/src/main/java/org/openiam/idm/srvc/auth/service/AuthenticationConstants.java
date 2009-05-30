@@ -21,6 +21,7 @@ public class AuthenticationConstants {
 	public static final String SAML2_TOKEN ="SAML2_TOKEN"; 
 	
 	
+	public static final int INTERNAL_ERROR = -1;
 	/**
 	 * SUCCESS - successful login.
 	 */
@@ -41,6 +42,8 @@ public class AuthenticationConstants {
 	 * INVALID_PASSWORD - Invalid password
 	 */
 	public static final int RESULT_INVALID_PASSWORD = 101;
+	
+	public static final int RESULT_INVALID_DOMAIN = 109;
 	/**
 	 * PASSWORD_EXPIRED - Password has expired
 	 */

@@ -24,6 +24,8 @@ package org.openiam.idm.srvc.auth.spi;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.context.AuthenticationContext;
 import org.openiam.idm.srvc.auth.context.PasswordCredential;
@@ -45,6 +47,7 @@ public class DefaultLoginModule implements LoginModule {
 	LoginDataService loginManager;
 	UserDataService userManager;
 	
+	private static final Log log = LogFactory.getLog(DefaultLoginModule.class);
 
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#globalLogout(java.lang.String, java.lang.String)
@@ -65,14 +68,14 @@ public class DefaultLoginModule implements LoginModule {
 		String principal = cred.getPrincipal();
 		String domainId = cred.getDomainId();
 		String password = cred.getPassword();
-		
-		Login lg = loginManager.getLogin(domainId,principal);
-		
+			
 		if (principal == null || principal.isEmpty())
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_LOGIN);
 		
 		if (password == null 	|| password.equals(""))
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_PASSWORD);
+		
+		Login lg = loginManager.getLogin(domainId,principal);
 		
 		if (lg == null) {
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_LOGIN);
@@ -147,6 +150,8 @@ public class DefaultLoginModule implements LoginModule {
 		tokenParam.put("USER_ID",userId);
 		return defaultToken.createToken(tokenParam);
 	}
+
+
 
 
 

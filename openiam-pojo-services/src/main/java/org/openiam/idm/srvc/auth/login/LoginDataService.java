@@ -2,6 +2,7 @@ package org.openiam.idm.srvc.auth.login;
 
 import javax.jws.WebService;
 
+import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.dto.*;
 
 /**
@@ -34,7 +35,7 @@ public interface LoginDataService {
 	public Login addLogin(Login login);
 	public void updateLogin(Login login);
 	public void removeLogin(String serviceId, String login);
-	public Login getLogin(String serviceId, String login);
+	public Login getLogin(String serviceId, String login) throws AuthenticationException ;
 	public Login getLoginByManagedSys(String serviceId, String login,String sysId) ;
 	public Login[] getLoginByUser(String userId);
 	

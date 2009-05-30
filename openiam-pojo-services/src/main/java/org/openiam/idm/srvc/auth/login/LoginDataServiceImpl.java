@@ -1,7 +1,11 @@
 package org.openiam.idm.srvc.auth.login;
 
+import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.dto.LoginId;
+import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
+import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
+import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.util.encrypt.*;
 
 import java.util.*;
@@ -15,6 +19,8 @@ public class LoginDataServiceImpl implements LoginDataService {
 
 	protected LoginDAO loginDao;
 	protected LoginAttributeDAO loginAttrDao;
+	protected SecurityDomainDataService secDomainService; 
+	
 	
 	protected Cryptor cryptor;
 
@@ -38,12 +44,19 @@ public class LoginDataServiceImpl implements LoginDataService {
 
 	}
 
-	public Login getLogin(String serviceId, String login) {
-		if (serviceId == null)
+	public Login getLogin(String secDomainId, String login) throws AuthenticationException {
+		if (secDomainId == null)
 			throw new NullPointerException("service is null");
+		
 		if (login == null)
 			throw new NullPointerException("Login is null");
-		LoginId id = new LoginId(serviceId, login, serviceId);
+		
+		SecurityDomain secDomain = secDomainService.getSecurityDomain(secDomainId);
+		if (secDomain == null) {
+			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_DOMAIN);
+		}
+		
+		LoginId id = new LoginId(secDomainId, login, secDomain.getAuthSysId());
 		
 		Login lg = loginDao.findById(id);
 		System.out.println("Lg=" + lg);
@@ -174,6 +187,14 @@ public class LoginDataServiceImpl implements LoginDataService {
 
 	public void setCryptor(Cryptor crypt) {
 		this.cryptor = crypt;
+	}
+
+	public SecurityDomainDataService getSecDomainService() {
+		return secDomainService;
+	}
+
+	public void setSecDomainService(SecurityDomainDataService secDomainService) {
+		this.secDomainService = secDomainService;
 	}
 
 }

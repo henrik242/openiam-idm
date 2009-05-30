@@ -1,60 +1,61 @@
+/*
+ * Copyright 2009, OpenIAM LLC 
+ * This file is part of the OpenIAM Identity and Access Management Suite
+ *
+ *   OpenIAM Identity and Access Management Suite is free software: 
+ *   you can redistribute it and/or modify
+ *   it under the terms of the Lesser GNU General Public License 
+ *   version 3 as published by the Free Software Foundation.
+ *
+ *   OpenIAM is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   Lesser GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with OpenIAM.  If not, see <http://www.gnu.org/licenses/>. *
+ */
+
+/**
+ * 
+ */
 package org.openiam.idm.srvc.auth.context;
 
-import java.io.Serializable;
 import java.util.Map;
-import java.util.HashMap;
-
-import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
 
 /**
  * AuthenticationContext enables a higher level of flexibility during the authentication
  * process.
- * @author Suneet Shah
+ * @author suneet
  *
  */
-public class AuthenticationContext implements Serializable {
+public interface AuthenticationContext {
 
-	private String authenticationType;
-	
-	private String resourceId;
-	
-	private Credential credential;
-	
-	private String serviceId;
-	private String principal;
-	private String password;
-	
-	
-	private Map<String,Object> authParamList = new HashMap();
-	
-
-	
-	public void AuthenticationContext() {
-		
-	}
-	
-	
 	/**
 	 * Returns an object to capture the credentials appropriate for a specific type of 
 	 * authentication. The type of authentication is specified by the authnType parameter.
 	 * @param authnType
 	 */
-	public Credential createCredentialObject(String authnType) {
-		if (authnType.equals(AuthenticationConstants.AUTHN_TYPE_PASSWORD)) {
-			return new PasswordCredential();
-		}
-		return null;
-	}
-	
-	public void setCredential(String authnType, Credential cred) {
-		authenticationType = authnType;
-		credential = cred;
-	}
-	
-	public Credential getCredential() {
-		return credential;
-	}
+	public abstract Credential createCredentialObject(String authnType);
 
+	public abstract void setCredential(String authnType, Credential cred);
 
-	
+	public abstract Credential getCredential();
+
+	public abstract String getResourceId();
+
+	public abstract void setResourceId(String resourceId);
+
+	/**
+	 * Returns a map of a authentication parameters that are needed by the login module.
+	 * @return
+	 */
+	public abstract Map<String, Object> getAuthParam();
+
+	/**
+	 * Sets the parameters that are to be used by the login module.
+	 * @param authParam
+	 */
+	public abstract void setAuthParam(Map<String, Object> authParam);
+
 }
