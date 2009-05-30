@@ -68,10 +68,11 @@ CREATE TABLE RESOURCE_TYPE(
 );
 
 CREATE TABLE RESOURCES(
-       RESOURCE_ID          varchar(20) NOT NULL,
+       RESOURCE_ID          varchar(32) NOT NULL,
        RESOURCE_TYPE_ID     varchar(20) NULL,
        DESCRIPTION          varchar(100) NULL,
-       RESOURCE_PARENT      varchar(20) NULL,
+	   NAME      			varchar(40) NULL,
+       RESOURCE_PARENT      varchar(32) NULL,
        BRANCH_ID            varchar(20) NULL,
        CATEGORY_ID	    varchar(20) NULL,
        DISPLAY_ORDER	    int NULL,
@@ -86,10 +87,10 @@ CREATE TABLE RESOURCES(
 
 
 CREATE TABLE RESOURCE_PROP (
-       RESOURCE_PROP_ID     varchar(20) NOT NULL,
-       RESOURCE_ID          varchar(20) NULL,
+       RESOURCE_PROP_ID     varchar(32) NOT NULL,
+       RESOURCE_ID          varchar(32) NULL,
        METADATA_ID          varchar(20) NULL,
-       PROP_VALUE           varchar(100) NULL,
+       PROP_VALUE           varchar(500) NULL,
        PRIMARY KEY (RESOURCE_PROP_ID), 
 	CONSTRAINT FK_RESOURCE_PROP_RESOURCE
        FOREIGN KEY (RESOURCE_ID) REFERENCES RESOURCES(RESOURCE_ID)
@@ -100,7 +101,7 @@ CREATE TABLE PRIVILEGE(
        PRIMARY KEY (PRIVILEGE_ID)
 );
 CREATE TABLE RESOURCE_USER(
-       RESOURCE_ID          varchar(20) NOT NULL,
+       RESOURCE_ID          varchar(32) NOT NULL,
        USER_ID              varchar(20) NOT NULL,
        PRIVILEGE_ID         varchar(20) NOT NULL,
        PRIMARY KEY (RESOURCE_ID, USER_ID, PRIVILEGE_ID), 
@@ -115,7 +116,7 @@ CREATE TABLE RESOURCE_USER(
 );
 
 CREATE TABLE RESOURCE_ROLE(
-       RESOURCE_ID          varchar(20) NOT NULL,
+       RESOURCE_ID          varchar(32) NOT NULL,
        ROLE_ID              varchar(20) NOT NULL,
        PRIVILEGE_ID         varchar(20) NOT NULL,
        PRIMARY KEY (RESOURCE_ID, ROLE_ID, PRIVILEGE_ID), 

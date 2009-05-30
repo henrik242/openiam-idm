@@ -206,7 +206,7 @@ INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SECURITY_MANAGER','SEC
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ROOT', NULL ,'Root','Root', null, 'en',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECURITY','ROOT','Access Control','Access Control','security/index.jsp', 'en',1);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDMAN','ROOT','User Admin','User Admin','idman/index.jsp', 'en',2);
-
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('PROVISIONING','ROOT','Policy','Policy','security/policy.do?method=init&nav=reset', 'en',1,12);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_POLICY','ROOT','Policy','Policy','security/policy.do?method=init&nav=reset', 'en',1,12);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ADMIN','ROOT','Administration','Administration','admin/index.jsp', 'en',20);
 
@@ -236,6 +236,10 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, acti
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_TREE','SECURITY_ACL','Resource Tree','Resource Tree','security/resourceTree.do?method=init&categoryId=ACL&menuId=SECURITY_ACL', 'en',1,2);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_PRIVILEGE','SECURITY_ACL','Privileges','Privileges','security/privilege.do?method=init&menuId=SECURITY_ACL', 'en',1,6);
 
+/* Provisioning MENU options */
+
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','PROVISIONING','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','PROVISIONING','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
 
 
 /* Reporting MENU options */
@@ -254,8 +258,6 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) valu
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_AUDITLOG','ADMIN','Audit Log','Audit Log','home.jsp?bodyjsp=/log/searchlog.jsp', 'en',1,14);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECDOMAIN','ADMIN','Security Domain','Security Domain','home.jsp?bodyjsp=ui/domain/domain.html', 'en',1);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('METADATA','ADMIN','Metadata','Metadata','metadataTypeList.cnt', 'en',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','ADMIN','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','ADMIN','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
 
 
 
@@ -281,6 +283,11 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, disp
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('PROFILE','SELFCENTER', 'Edit Your Profile', 'Edit Your Profile', 'priv/customProfile.do?method=view', 'en', '5',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('REPORTINC','SELFCENTER', 'Report Security Incident', 'Report Security Incident', 'pub/reportIncident.selfserve', 'en', '6',1);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CONTADMIN','SELFCENTER', 'Contact Admin', 'Contact Admin', 'pub/contactAdmin.selfserve', 'en', '7',1);
+
+/* Menus in French */
+
+
+
 
 /* Menus in Spanish */
 
@@ -441,6 +448,7 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ADMIN','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SECDOMAIN','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('METADATA','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROVCONNECT','SUPER_SEC_ADMIN');
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROVISIONING', 'SUPER_SEC_ADMIN');
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MNGSYS','SUPER_SEC_ADMIN');
 
