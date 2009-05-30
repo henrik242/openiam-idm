@@ -25,12 +25,17 @@
 		implementor="#groupManager"
 		wsdlLocation="WEB-INF/wsdl/GroupDataService.wsdl"
 		address="/GroupDataWebService"/>
+
+	<jaxws:endpoint id="userDataService"
+		implementor="#userManager"
+		address="/UserDataService"/>	
 		
+<!-- 	
 	<jaxws:endpoint id="userDataService"
 		implementor="#userManager"
 		wsdlLocation="WEB-INF/wsdl/UserDataService.wsdl"
 		address="/UserDataService"/>	
-		
+-->		
 	<jaxws:endpoint id="roleService"
 		implementor="#roleDataService"
 		wsdlLocation="WEB-INF/wsdl/RoleDataService.wsdl"
