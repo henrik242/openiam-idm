@@ -1,4 +1,4 @@
-insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('IDM','IDM','ON-LINE');
+ï»¿insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('IDM','IDM','ON-LINE');
 insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS) values('USR_SEC_DOMAIN','USER SECURITY DOMAIN','ON-LINE');
 
 insert into SERVICE (SERVICE_ID, SERVICE_NAME, STATUS) values('USR_SEC_DOMAIN','USER SECURITY DOMAIN','ON-LINE');
@@ -118,7 +118,7 @@ insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('RDBMS_Connector','RDBMS 
 
 insert into METADATA_TYPE(TYPE_ID, DESCRIPTION) values('SOAP_Connector','SOAP Connector');
 
-UPDATE METADATA_TYPE 
+UPDATE METADATA_TYPE
 SET ACTIVE = 1, SYNC_MANAGED_SYS = 1;
 
 insert into COMPANY(company_id, company_name, status, type_ID) values('100','OpenIAM', 'ACTIVE', 'OrgOpenIAM');
@@ -238,8 +238,8 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, acti
 
 /* Provisioning MENU options */
 
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','PROVISIONING','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','PROVISIONING','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','ADMIN','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','ADMIN','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
 
 
 /* Reporting MENU options */
@@ -271,7 +271,6 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, disp
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('NEWHIRE','ACCESSCENTER','New Hire', 'New Hire', 'newHire.selfserve','en', '1' ,0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('MANAGEREQ', 'ACCESSCENTER' , 'Manage Requests','Manage Requests','requestList.selfserve', 'en','2',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CREATEREQ','ACCESSCENTER','Create Request', 'Create Request', 'createRequest.selfserve', 'en', '3',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGACCESS','ACCESSCENTER','Change Access', 'Change Access', 'changeAccess.selfserve', 'en', '4',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('TERMINATEACCESS','ACCESSCENTER','Terminate', 'Terminate', 'terminateAccess.selfserv', 'en', '5',0);
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('SELFCENTER','SELFSERVICE','Self Service Center', 'Self Service Center', null, 'en', '2',0);
@@ -283,72 +282,6 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, disp
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('PROFILE','SELFCENTER', 'Edit Your Profile', 'Edit Your Profile', 'priv/customProfile.do?method=view', 'en', '5',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('REPORTINC','SELFCENTER', 'Report Security Incident', 'Report Security Incident', 'pub/reportIncident.selfserve', 'en', '6',1);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CONTADMIN','SELFCENTER', 'Contact Admin', 'Contact Admin', 'pub/contactAdmin.selfserve', 'en', '7',1);
-
-/* Menus in French */
-
-
-
-
-/* Menus in Spanish */
-
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ROOT', NULL ,'Raíz','Raíz', null, 'es',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECURITY','ROOT','Control de Acceso','Control de Acceso','security/index.jsp', 'es',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDMAN','ROOT','Usuario Administrador','Usuario Administrador','idman/index.jsp', 'es',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_POLICY','ROOT','Políticas','Políticas','security/policy.do?method=init&nav=reset', 'es',1,12);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ADMIN','ROOT','Administración','Administración','admin/index.jsp', 'es',20);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('USER','IDMAN','Usuario','Usuario','menunav.do', 'es',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ORG','IDMAN','Organización','Organización','menunav.do', 'es',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('APPRVUSER','IDMAN','Aprobar','Aprobar Usaurio','idman/approveUser.do?method=viewUserList', 'es',5);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('QUERYUSER','USER','Buscar','Buscar Usuario','idman/userSearch.do?action=view', 'es',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ADDUSER','USER','Agregar','Agregar Usuario','idman/user.do?method=userForm', 'es',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('EDITUSER','USER','Editar','Editar Usuario','idman/user.do?method=identities&mode=EDIT', 'es',3);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('DELUSER','USER','Eliminar','Eliminar Usuario','idman/user.do?method=deleteUser&mode=DEL', 'es',4);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('QUERYORG','ORG','Buscar','Buscar Org.','idman/orgSearch.do?action=view', 'es',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('ADDORG','ORG','Agregar','Agregar Org.','idman/org.do?method=addOrg', 'es',3);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('EDITORG','ORG','Editar','Editar Org.','idman/org.do?method=editOrg&mode=EDIT', 'es',4);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('DELORG','ORG','Eliminar','Eliminar Org.','idman/org.do?method=delOrg&mode=DEL', 'es',5);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_ACL','SECURITY','Recursos','Recursos','security/resourceTree.do?method=init&categoryId=ACL&menuId=SECURITY_ACL', 'es',1,6);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_GROUP','SECURITY','Grupos','Grupos','security/group.do?method=init&nav=reset', 'es',1,4);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_MENU','SECURITY','Menú','Menú','security/menu.do?method=init&nav=reset', 'es',1,8);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_ROLE','SECURITY','Roles','Roles','security/role.do?method=viewRoles&nav=reset', 'es',1,2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_RTYPE','SECURITY_ACL','Tipo de Recursos','Tipo de Recursos','security/resourcetype.do?method=init&menuId=SECURITY_ACL', 'es',1,4);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_TREE','SECURITY_ACL','Arbol de Recursos','Arbol de Recursos','security/resourceTree.do?method=init&categoryId=ACL&menuId=SECURITY_ACL', 'es',1,2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_PRIVILEGE','SECURITY_ACL','Privilegios','Privilegios','security/privilege.do?method=init&menuId=SECURITY_ACL', 'es',1,6);
-/* Reporting MENU options */
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('REPORT','ROOT','Reporte','Reporte','security/reportIndex.do', 'es',16);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('USERREPORT','REPORT','Usuario de Reportes ','Información de usuarios de Reporte','', 'es');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('AUDITREPORT','REPORT','Auditoria de Reportes','Información de Auditoria de Reportes','', 'es');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('PASSWORDREPORT','REPORT','Contraseña de Reportes','Contraseña de Reportes','', 'es');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('PSWDCHANGE_RPT','PASSWORDREPORT','Cambio de Contraseña','Reporte de Cambio de Contraseña','home.jsp?bodyjsp=ui/report/passwordRpt.html', 'es');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('AUDIT_RPT','AUDITREPORT','Reporte de Auditoria','Reporte de Auditoria','home.jsp?bodyjsp=ui/report/audit.jsp', 'es');
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('ALLROLERPT','ACCESSREPORT','Todos los Roles','Reporte de Todos los Roles','allRolesReport.report?method=allRole', 'es');
-/* Admin MENU options */
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, active, display_order) values('SECURITY_AUDITLOG','ADMIN','Log de Auditoria','Log de Auditoria','home.jsp?bodyjsp=/log/searchlog.jsp', 'es',1,14);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('SECDOMAIN','ADMIN','Seguridad de Dominio','Seguridad de Dominio','home.jsp?bodyjsp=ui/domain/domain.html', 'es',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('METADATA','ADMIN','Metadatos','Metadatos','admin/index.jsp', 'es',2);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','ADMIN','Conectores','Conectores de Provisionamiento','connectorList.cnt', 'es',3);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','ADMIN','Sistemas Administrados','Sistemas Administrados','managedSysList.cnt', 'es',4);
-
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('ENT_APPS', 'ROOT' ,'Aplicaciones Enterprise','Aplicaciones Enterprise','', 'es',0);
-
-/* Self Service MENU options */
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order) values('SELFSERVICE', 'ROOT' ,'AUTOGESTION','AUTOGESTION','', 'es',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('ACCESSCENTER','SELFSERVICE', 'Centro de Gestión de Acceso', 'Centro de Gestión de Acceso', null, 'es', '1',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('NEWHIRE','ACCESSCENTER','Nuevas Contrataciones', 'Nuevas Contrataciones', 'newHire.selfserve','es', '1' ,0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('MANAGEREQ', 'ACCESSCENTER' , 'Gestión de Requerimientos','Gestión de Requerimientos','requestList.selfserve', 'es','2',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CREATEREQ','ACCESSCENTER','Crear Requerimiento', 'Crear Requerimiento', 'createRequest.selfserve', 'es', '3',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGACCESS','ACCESSCENTER','Cambiar Acceso', 'Cambiar Acceso', 'changeAccess.selfserve', 'es', '4',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('TERMINATEACCESS','ACCESSCENTER','Terminar', 'Terminar', 'terminateAccess.selfserv', 'es', '5',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('SELFCENTER','SELFSERVICE','Centro de AutoGestión', 'Centro de AutoGestión', null, 'es', '2',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('DIRECTORY','SELFCENTER','Directorio de búsqueda', 'Directorio de búsqueda', 'pub/directory.do?method=view', 'es', '1',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGPSWD','SELFCENTER', 'Cambio de Contraseña', 'Cambio de Contraseña', 'priv/password.do?method=view', 'es', '2',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('IDQUEST','SELFCENTER', 'Respuesta de Seguridad', 'Respuesta de Seguridad', 'priv/idquest.do?method=view', 'es', '3',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('FORGOTPSWD','SELFCENTER', '¿Olvidaste tu contraseña?', '¿Olvidaste tu contraseña?', 'pub/unLockUser.do?method=view', 'es', '4',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('PROFILE','SELFCENTER', 'Modificar mi perfil', 'Modificar mi perfil', 'priv/customProfile.do?method=view', 'es', '5',0);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('REPORTINC','SELFCENTER', 'Informe de Incidentes de Seguridad', 'Informe de Incidentes de Seguridad', 'pub/reportIncident.selfserve', 'es', '6',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CONTADMIN','SELFCENTER', 'Contactar al Administrador', 'Contactar al Administrador', 'pub/contactAdmin.selfserve', 'es', '7',1);
-
-
 
 /* service admin role */
 
@@ -385,7 +318,6 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SECURITY_ROLE','SUPER_SEC_ADMIN
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('NEWHIRE','END_USER');
-INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','END_USER');
@@ -401,7 +333,6 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('TERMINATEACCESS','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','HR');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','HR');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('NEWHIRE','HR');
-INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','HR');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','HR');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','HR');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','HR');
@@ -417,7 +348,6 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('TERMINATEACCESS','HR');
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','MANAGER');
-INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','MANAGER');
@@ -431,7 +361,6 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CREATEREQ','MANAGER');
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','SECURITY_MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','SECURITY_MANAGER');
-INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('CHNGACCESS','SECURITY_MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MANAGEREQ','SECURITY_MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFCENTER','SECURITY_MANAGER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('DIRECTORY','SECURITY_MANAGER');
@@ -534,16 +463,6 @@ insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, descriptio
 insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'USER', 'DELETED','en','String','DELETED','100', 'IDM');
 insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'USER', 'INACTIVE','en','String','INACTIVE','100', 'IDM');
 insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'USER', 'BLACK LISTED','en','String','BLACKLISTED','100', 'IDM');
-
-
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'PENDING','en','String','PENDING','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'UN-ASSIGNED','en','String','UN-ASSIGNED','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'ASSIGNED-UNLOCKED','en','String','ASSIGNED-UNLOCKED','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'ASSIGNED-LOCKED','en','String','ASSIGNED-LOCKED','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'ACTIVE','en','String','ACTIVE','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'LOST','en','String','LOST','100', 'IDM');
-insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'TOKEN', 'DISABLED','en','String','DISABLED','100', 'IDM');
-
 
 
 insert into STATUS ( CODE_GROUP, status_cd, LANGUAGE_CD, status_type, description, COMPANY_OWNER_ID, SERVICE_ID) values( 'OPERATION', 'DL','en','String','DELETE','100', 'IDM');
