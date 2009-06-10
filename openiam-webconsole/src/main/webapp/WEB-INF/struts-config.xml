@@ -530,25 +530,27 @@
     			
         	<forward name="success" path="/home.jsp"/>
          	<forward name="failure" path="/home.jsp"/>
-     	</action>
+     </action>
       
-		<action path="/idman/index" type="org.openiam.webadmin.user.IndexAction">				
+	 <action path="/idman/index" type="org.openiam.webadmin.user.IndexAction">				
 			<forward name="welcome" path="/home.jsp?bodyjsp=blank.jsp"/>
          	<forward name="failure" path="/home.jsp"/>
-       	</action>
+     </action>
+	 <action path="/admin/index" type="org.springframework.web.struts.DelegatingActionProxy">				
+			<forward name="success" path="/home.jsp?bodyjsp=blank.jsp"/>
+         	<forward name="failure" path="/home.jsp"/>
+     </action>
 
-		   
-               
     <action    path="/idman/userSearch"
                type="org.springframework.web.struts.DelegatingActionProxy"
-               name="searchForm"
-               scope="request"
+               name="searchForm" scope="request"
                parameter="action"
                validate="false" unknown="false">
       <forward name="view"         path="/home.jsp?bodyjsp=idman/search.jsp"/>          
       <forward name="success"      path="/home.jsp?bodyjsp=idman/searchresult.jsp"/>      
     </action>
-
+     
+		   
     <action    path="/idman/orgSearch"
                type="org.springframework.web.struts.DelegatingActionProxy"
                name="orgSearchForm" scope="request" parameter="action" 

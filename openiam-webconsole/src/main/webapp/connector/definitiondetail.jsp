@@ -31,13 +31,6 @@
               <td class="tdlightnormal" ><form:input path="metadataTypeId" size="40" maxlength="40" /></td>
           </tr>
           <tr>
-              <td class="tddark">Compliance Level</td>
-			  <td class="tdlightnormal"><form:select path="stdComplianceLevel">
-	              <form:option value="1.0" />
-          		</form:select>
-			  </td>
-		  </tr>
-          <tr>
               <td class="tddark" >Communication Protocol</td>
 			  <td class="tdlightnormal"><form:select path="clientCommProtocol">
 		              <form:option value="-Select a value" />

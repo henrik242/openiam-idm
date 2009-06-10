@@ -46,7 +46,7 @@
  		   </td>
     	</tr>
           <tr>
-              <td colspan="5" align="left"> <a href="connectorDetail.cnt">View Detail</a></td>
+              <td colspan="5" align="left"> <a href="connectorDetail.cnt">New Connector</a></td>
           </tr>
           
           

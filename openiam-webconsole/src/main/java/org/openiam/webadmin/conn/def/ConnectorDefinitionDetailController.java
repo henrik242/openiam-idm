@@ -54,7 +54,6 @@ public class ConnectorDefinitionDetailController extends SimpleFormController {
 }
 
 	
-	
 
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request,
@@ -64,10 +63,15 @@ public class ConnectorDefinitionDetailController extends SimpleFormController {
 		ConnectorDefinitionDetailCommand connectorDetailCmd = (ConnectorDefinitionDetailCommand)command;
 		ProvisionConnector connector = getConnector(connectorDetailCmd);
 
-		if (connector.getConnectorId() == null || connector.getConnectorId().length() == 0) {
-			connectorService.addConnector(connector);
-		}else {
-			connectorService.updateConnector(connector);
+		String btn = request.getParameter("btn");
+		if (btn != null && btn.equalsIgnoreCase("Delete")) {
+			connectorService.removeConnector(connector.getConnectorId());
+		}else {	
+			if (connector.getConnectorId() == null || connector.getConnectorId().length() == 0) {
+				connectorService.addConnector(connector);
+			}else {
+				connectorService.updateConnector(connector);
+			}
 		}
 		
 		ModelAndView mav = new ModelAndView(getSuccessView());
