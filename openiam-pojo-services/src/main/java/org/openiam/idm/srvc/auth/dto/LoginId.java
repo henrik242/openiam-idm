@@ -9,27 +9,33 @@ package org.openiam.idm.srvc.auth.dto;
 public class LoginId  implements java.io.Serializable {
 
 
-     private String serviceId;
+     private String domainId;
      private String login;
      private String managedSysId;
 
 
+     public String toString() {
+    	 String str= "serviceId=" + domainId + 
+    	 		"  login=" + login + 
+    	 		"  managedSysId=" + managedSysId;
+    	 return str;
+     }
 
 	public LoginId() {
     }
 
-    public LoginId(String serviceId, String login, String managedSysId) {
-       this.serviceId = serviceId;
+    public LoginId(String domainId, String login, String managedSysId) {
+       this.domainId = domainId;
        this.login = login;
        this.managedSysId = managedSysId;
     }
    
-    public String getServiceId() {
-        return this.serviceId;
+    public String getDomainId() {
+        return this.domainId;
     }
     
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
     }
     public String getLogin() {
         return this.login;
@@ -53,14 +59,14 @@ public class LoginId  implements java.io.Serializable {
 		 if ( !(other instanceof LoginId) ) return false;
 		 LoginId castOther = ( LoginId ) other; 
          
-		 return ( (this.getServiceId()==castOther.getServiceId()) || ( this.getServiceId()!=null && castOther.getServiceId()!=null && this.getServiceId().equals(castOther.getServiceId()) ) )
+		 return ( (this.getDomainId()==castOther.getDomainId()) || ( this.getDomainId()!=null && castOther.getDomainId()!=null && this.getDomainId().equals(castOther.getDomainId()) ) )
  && ( (this.getLogin()==castOther.getLogin()) || ( this.getLogin()!=null && castOther.getLogin()!=null && this.getLogin().equals(castOther.getLogin()) ) );
    }
    
    public int hashCode() {
          int result = 17;
          
-         result = 37 * result + ( getServiceId() == null ? 0 : this.getServiceId().hashCode() );
+         result = 37 * result + ( getDomainId() == null ? 0 : this.getDomainId().hashCode() );
          result = 37 * result + ( getLogin() == null ? 0 : this.getLogin().hashCode() );
          return result;
    }   

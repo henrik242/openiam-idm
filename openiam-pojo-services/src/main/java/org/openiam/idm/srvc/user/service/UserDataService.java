@@ -69,6 +69,8 @@ public interface UserDataService {
 	 * @return
 	 */
 	public User getUserByPrincipal(String securityDomain, String principalName);
+	
+	public User getUserByName(String firstName, String lastName);
 
 	public List<User> findUsersByLastUpdateRange(Date startDate, Date endDate);
 

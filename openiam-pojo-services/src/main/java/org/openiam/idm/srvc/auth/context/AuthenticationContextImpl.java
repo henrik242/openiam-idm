@@ -32,6 +32,22 @@ public class AuthenticationContextImpl implements Serializable, AuthenticationCo
 		
 	}
 	
+	/**
+	 * Add a parameter to the context
+	 * @param key
+	 * @param value
+	 */
+	public void addParam(String key, Object value) {
+		authParam.put(key, value);
+	}
+	/**
+	 * Retrieve a parameter from the context
+	 * @param key
+	 * @return
+	 */
+	public Object getParam(String key) {
+		return (authParam.get(key));
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.auth.context.AuthenticationContext#createCredentialObject(java.lang.String)

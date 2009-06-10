@@ -259,7 +259,10 @@ public class AddressDAOImpl implements AddressDAO, AddressWSDAO {
 		qry.setString("parentId", parentId);
 		qry.setString("parentType", parentType);
 		qry.setString("name", name);
-		return (Address)qry.uniqueResult();		
+		List<Address> result = (List<Address>)qry.list();
+		if (result == null || result.size() == 0)
+			return null;
+		return result.get(0);		
 	}
 
 	public Address[] findByParentAsArray(String parentId, String parentType) {

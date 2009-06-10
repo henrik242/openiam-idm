@@ -127,7 +127,10 @@ public class EmailAddressDAOImpl  implements EmailAddressDAO, EmailAddressWSDAO 
 		qry.setString("parentId", parentId);
 		qry.setString("parentType", parentType);
 		qry.setString("name", name);
-		return (EmailAddress)qry.uniqueResult();		
+		List<EmailAddress> result = (List<EmailAddress>)qry.list();
+		if (result == null || result.size() == 0)
+			return null;
+		return result.get(0);	
 
 	}
 

@@ -17,13 +17,11 @@
 		<property name="loginManager" ref="loginManager" />
 		<property name="secDomainService" ref="secDomainService" />
 		<property name="authContextClass" value="org.openiam.idm.srvc.auth.context.AuthenticationContextImpl" />
-		
+		<property name="defaultToken" ref="defaultSSOToken" />
+		<property name="userManager" ref="userManager" />
 	</bean>
 
 	<bean id="defaultLoginModuleManager" class="org.openiam.idm.srvc.auth.spi.DefaultLoginModule" >
-		<property name="defaultToken" ref="defaultSSOToken" />
-		<property name="loginManager" ref="loginManager" />
-		<property name="userManager" ref="userManager" />
 	</bean>
 
 	<bean id="defaultSSOToken" class="org.openiam.idm.srvc.auth.sso.DefaultTokenModule" >
@@ -442,7 +440,7 @@
 
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>			
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>			
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>

@@ -60,7 +60,7 @@ public interface AuthenticationService {
 	//Subject authenticate(AuthenticationContext ctx) throws AuthenticationException;
 	
 	/**
-	 * passwordLogin provides a simple approach to enabling password based authentication.
+	 * passwordAuth provides a simple approach to enabling password based authentication.
 	 * @param domainId
 	 * @param principal
 	 * @param password
@@ -71,7 +71,7 @@ public interface AuthenticationService {
 
 
 	/**
-	 * For Single Sig nOn, takes the userId and checks if this user has been
+	 * For Single Sign On, takes the userId and checks if this user has been
 	 * authenticated. The userId may have come from a token or a Subject object.
 	 * If authentication is successful returns a Subject which has principals,
 	 * userGroups userId, authenticating authority, credentials, token and

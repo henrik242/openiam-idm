@@ -153,11 +153,33 @@ public class UserDAOImpl implements UserDAO{
 		}
 	}
 	
+	public User findByName(String firstName, String lastName) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Query qry = session.createQuery("from org.openiam.idm.srvc.user.dto.User u " + 
+					" where u.lastName = :lastName and u.firstName = :firstName");
+			qry.setString("firstName", firstName);
+			qry.setString("lastName", lastName);
+			List<User> results = (List<User>)qry.list();
+
+			if (results != null && !results.isEmpty() ) {
+				return results.get(0);
+			}else {
+				return null;
+			}
+		} catch (HibernateException re) {
+		log.error("get failed", re);
+		throw re;
+	}
+	}
+	
 	public List findByStatus(String status) {
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("from org.openiam.idm.srvc.user.dto.User u " + 
 				" where u.status = :status order by u.lastName asc");
 		qry.setString("status", status);
+		qry.setMaxResults(maxResultSetSize);
+		qry.setFetchSize(maxResultSetSize);
 		List<User> results = (List<User>)qry.list();
 		return results;
 	}
@@ -341,10 +363,14 @@ public class UserDAOImpl implements UserDAO{
 		}		
 		
 
-		
+		qry.setMaxResults(maxResultSetSize);
+		qry.setFetchSize(maxResultSetSize);
 		List<User> result = (List<User>) qry.list();
-		if (result == null || result.size() == 0)
+		if (result == null || result.size() == 0) {
+			log.debug("search result is null");
 			return null;
+		}
+		log.debug("search resultset size=" + result.size());
 		return result;			
 
 		

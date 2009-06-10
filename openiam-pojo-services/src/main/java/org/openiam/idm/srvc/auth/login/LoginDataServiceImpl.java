@@ -1,5 +1,7 @@
 package org.openiam.idm.srvc.auth.login;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.dto.LoginId;
@@ -20,12 +22,12 @@ public class LoginDataServiceImpl implements LoginDataService {
 	protected LoginDAO loginDao;
 	protected LoginAttributeDAO loginAttrDao;
 	protected SecurityDomainDataService secDomainService; 
-	
-	
+		
 	protected Cryptor cryptor;
 
 	static protected ResourceBundle res = ResourceBundle.getBundle("securityconf");
 	boolean encrypt = true;	// default encryption setting
+	private static final Log log = LogFactory.getLog(LoginDataServiceImpl.class);
 	
 	public Login addLogin(Login login) {
 		if (login == null)
@@ -69,21 +71,27 @@ public class LoginDataServiceImpl implements LoginDataService {
 		return lg;
 	}
 
-	public Login getLoginByManagedSys(String serviceId, String login,String sysId) {
-		if (serviceId == null)
-			throw new NullPointerException("service is null");
+	public Login getLoginByManagedSys(String domainId, String login,String sysId) {
+		if (domainId == null)
+			throw new NullPointerException("domainId is null");
 		if (login == null)
 			throw new NullPointerException("Login is null");
-		LoginId id = new LoginId(serviceId, login, sysId);
+		
+		log.debug("getLoginByManagedSys Params = domainId=" + domainId + " login=" + login + " AuthSysId=" + sysId);
+		
+		LoginId id = new LoginId(domainId, login, sysId);
 		
 		Login lg = loginDao.findById(id);
+		
+		log.debug("login=" + lg);
+		
 		System.out.println("Lg=" + lg);
 
-		// decrypt the password and then return the object
-		//if (lg != null && lg.getPassword() != null) {
-		//	lg.setPassword( cryptor.decrypt(lg.getPassword()) ) ;
-		//}
-		//
+		if (lg != null && lg.getPassword() != null) {
+			lg.setPassword( cryptor.decrypt(lg.getPassword()) ) ;
+		}
+		
+
 		return lg;
 	}
 	

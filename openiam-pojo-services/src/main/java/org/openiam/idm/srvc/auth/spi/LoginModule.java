@@ -24,6 +24,9 @@ package org.openiam.idm.srvc.auth.spi;
 import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.context.AuthenticationContext;
 import org.openiam.idm.srvc.auth.dto.Subject;
+import org.openiam.idm.srvc.auth.login.LoginDataService;
+import org.openiam.idm.srvc.auth.sso.SSOTokenModule;
+import org.openiam.idm.srvc.user.service.UserDataService;
 
 /**
  * Interface for a LoginModule.  A LoginModule is responsible for authentication. All LoginModules in OpenIAM must
@@ -55,5 +58,9 @@ public interface LoginModule {
 	 * @param principal
 	 */
 	void globalLogout(String securityDomain, String principal);
+	
+	void setTokenModule(SSOTokenModule defaultToken);
+	void setLoginService(LoginDataService loginManager);
+	void setUserService(UserDataService userManager);
 	
 }

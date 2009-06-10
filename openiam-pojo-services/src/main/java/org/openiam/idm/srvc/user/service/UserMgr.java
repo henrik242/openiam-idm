@@ -298,6 +298,11 @@ public class UserMgr implements UserDataService {
 		return userDao.findByLastUpdateRange(startDate, endDate);
 
 	}
+	
+	public User getUserByName(String firstName, String lastName) {
+		return userDao.findByName(firstName, lastName);
+	}
+
 
 	/*
 	 * (non-Javadoc)

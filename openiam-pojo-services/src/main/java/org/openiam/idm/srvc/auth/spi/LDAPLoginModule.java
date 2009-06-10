@@ -24,6 +24,9 @@ package org.openiam.idm.srvc.auth.spi;
 import org.openiam.exception.AuthenticationException;
 import org.openiam.idm.srvc.auth.context.AuthenticationContext;
 import org.openiam.idm.srvc.auth.dto.Subject;
+import org.openiam.idm.srvc.auth.login.LoginDataService;
+import org.openiam.idm.srvc.auth.sso.SSOTokenModule;
+import org.openiam.idm.srvc.user.service.UserDataService;
 
 /**
  * LDAPLoginModule provides basic password based authentication using an LDAP directory.
@@ -56,6 +59,30 @@ public class LDAPLoginModule implements LoginModule {
 			String managedSysId) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setLoginService(org.openiam.idm.srvc.auth.login.LoginDataService)
+	 */
+	public void setLoginService(LoginDataService loginManager) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setTokenModule(org.openiam.idm.srvc.auth.sso.SSOTokenModule)
+	 */
+	public void setTokenModule(SSOTokenModule defaultToken) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setUserService(org.openiam.idm.srvc.user.service.UserDataService)
+	 */
+	public void setUserService(UserDataService userManager) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

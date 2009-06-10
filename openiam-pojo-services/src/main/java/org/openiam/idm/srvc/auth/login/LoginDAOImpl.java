@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -111,7 +112,7 @@ public class LoginDAOImpl implements LoginDAO {
             }
             return instance;
         }
-        catch (RuntimeException re) {
+        catch (HibernateException re) {
             log.error("get failed", re);
             throw re;
         }
@@ -139,7 +140,7 @@ public class LoginDAOImpl implements LoginDAO {
     public List<Login> findUser(String userId) {
     	Session session = sessionFactory.getCurrentSession();
     	Query qry = session.createQuery("from org.openiam.idm.srvc.auth.dto.Login l " +
-    			" where l.user.userId = :userId order by l.status desc, l.id.managedSysId asc " );
+    			" where l.userId = :userId order by l.status desc, l.id.managedSysId asc " );
     	qry.setString("userId", userId);
     	List<Login> results = (List<Login>)qry.list();
     	return results;

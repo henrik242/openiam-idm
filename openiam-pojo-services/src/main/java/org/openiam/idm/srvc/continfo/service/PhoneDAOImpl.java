@@ -16,6 +16,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import org.openiam.idm.srvc.continfo.dto.Address;
+import org.openiam.idm.srvc.continfo.dto.EmailAddress;
 import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.util.ws.collection.MapItem;
 
@@ -124,7 +125,10 @@ public class PhoneDAOImpl implements PhoneDAO, PhoneWSDAO {
 		qry.setString("parentId", parentId);
 		qry.setString("parentType", parentType);
 		qry.setString("name", name);
-		return (Phone)qry.uniqueResult();		
+		List<Phone> result = (List<Phone>)qry.list();
+		if (result == null || result.size() == 0)
+			return null;
+		return result.get(0);		
 
 	}
 

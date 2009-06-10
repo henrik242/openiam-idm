@@ -16,8 +16,7 @@ public class Login  implements java.io.Serializable {
 
 
      private LoginId id;
-     private User user;
-     private Service service;
+     private String userId;
      private String password;
      private String pwdEquivalentToken;
      private Date pwdChanged;
@@ -42,16 +41,14 @@ public class Login  implements java.io.Serializable {
     }
 
 	
-    public Login(LoginId id, Service service, int resetPwd, int isLocked) {
+    public Login(LoginId id, int resetPwd, int isLocked) {
         this.id = id;
-        this.service = service;
         this.resetPwd = resetPwd;
         this.isLocked = isLocked;
     }
-    public Login(LoginId id, User users, Service service, String password, String pwdEquivalentToken, Date pwdChanged, Date pwdExp, int resetPwd, int isLocked, String status, Date gracePeriod, Date createDate, String createdBy, String currentLoginHost, Integer authFailCount, Date lastAuthAttempt, Set<LoginAttribute> loginAttributes) {
+    public Login(LoginId id, String userId, String password, String pwdEquivalentToken, Date pwdChanged, Date pwdExp, int resetPwd, int isLocked, String status, Date gracePeriod, Date createDate, String createdBy, String currentLoginHost, Integer authFailCount, Date lastAuthAttempt, Set<LoginAttribute> loginAttributes) {
        this.id = id;
-       this.user = users;
-       this.service = service;
+       this.userId = userId;
        this.password = password;
        this.pwdEquivalentToken = pwdEquivalentToken;
        this.pwdChanged = pwdChanged;
@@ -76,20 +73,9 @@ public class Login  implements java.io.Serializable {
     public void setId(LoginId id) {
         this.id = id;
     }
-    public User getUser() {
-        return this.user;
-    }
     
-    public void setUser(User users) {
-        this.user = users;
-    }
-    public Service getService() {
-        return this.service;
-    }
+
     
-    public void setService(Service service) {
-        this.service = service;
-    }
     public String getPassword() {
         return this.password;
     }
@@ -229,9 +215,26 @@ public class Login  implements java.io.Serializable {
 		this.selected = selected;
 	}
 
+	public String toString() {
+		String str = "Login id=" + id + 
+					 " status=" + status + 
+					 " createdBy=" + createdBy + 
+					 " canonicalName=" + canonicalName;
+		return str;
+
+	}
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 
 
 }
-
 

@@ -6,7 +6,7 @@
     <class name="org.openiam.idm.srvc.auth.dto.Login" table="LOGIN" >
         <comment></comment>
         <composite-id name="id" class="org.openiam.idm.srvc.auth.dto.LoginId">
-            <key-property name="serviceId" type="string">
+            <key-property name="domainId" type="string">
                 <column name="SERVICE_ID" length="20" />
             </key-property>
             <key-property name="login" type="string">
@@ -17,16 +17,12 @@
             </key-property>
 
         </composite-id>
-        <many-to-one name="user" class="org.openiam.idm.srvc.user.dto.User" fetch="select">
+        <property name="userId" type="string">
             <column name="USER_ID" length="20">
                 <comment></comment>
             </column>
-        </many-to-one>
-        <many-to-one name="service" class="org.openiam.idm.srvc.service.dto.Service" update="false" insert="false" fetch="select">
-            <column name="SERVICE_ID" length="20" not-null="true">
-                <comment></comment>
-            </column>
-        </many-to-one>
+        </property>
+        
         <property name="password" type="string">
             <column name="PASSWORD" length="80">
                 <comment></comment>

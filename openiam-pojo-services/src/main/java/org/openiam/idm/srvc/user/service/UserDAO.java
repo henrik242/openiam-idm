@@ -18,6 +18,9 @@ public interface UserDAO {
 	public void remove(User persistentInstance) ;
 	public User update(User detachedInstance) ;
 	public User findById(String id) ;
+	
+	public User findByName(String firstName, String lastName);
+	
 	public List<User> findByLastUpdateRange(Date startDate, Date endDate);
 	public List findByExample(User instance);
 	

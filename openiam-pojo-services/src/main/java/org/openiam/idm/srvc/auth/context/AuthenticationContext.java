@@ -57,5 +57,18 @@ public interface AuthenticationContext {
 	 * @param authParam
 	 */
 	public abstract void setAuthParam(Map<String, Object> authParam);
+	
+	/**
+	 * Add a parameter to the context
+	 * @param key
+	 * @param value
+	 */
+	public void addParam(String key, Object value);
+	/**
+	 * Retrieve a parameter from the context
+	 * @param key
+	 * @return
+	 */
+	public Object getParam(String key);
 
 }

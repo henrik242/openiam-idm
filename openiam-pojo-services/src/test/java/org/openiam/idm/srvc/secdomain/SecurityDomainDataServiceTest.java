@@ -6,12 +6,7 @@ import static org.junit.Assert.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.*;
 import org.springframework.test.*;
-import org.springframework.test.jpa.AbstractJpaTests;
-import java.util.*;
 
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import org.openiam.idm.srvc.secdomain.dto.*;
@@ -76,11 +71,6 @@ public class SecurityDomainDataServiceTest extends AbstractDependencyInjectionSp
 
 	}
 
-	public void testRemoveDomain() {
-		secDomService.removeSecurityDomain(secDom.getDomainId());
-		SecurityDomain domTest = secDomService.getSecurityDomain(this.secDom.getDomainId());
-		assertNull(domTest);
 
-	}
 
 }

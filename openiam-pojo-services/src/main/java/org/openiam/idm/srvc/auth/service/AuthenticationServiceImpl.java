@@ -36,12 +36,13 @@ import org.openiam.idm.srvc.auth.dto.AuthState;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.dto.Subject;
 import org.openiam.idm.srvc.auth.login.AuthStateDAO;
-import org.openiam.idm.srvc.auth.login.LoginDAOImpl;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.auth.spi.LoginModule;
 import org.openiam.idm.srvc.auth.spi.LoginModuleFactory;
+import org.openiam.idm.srvc.auth.sso.SSOTokenModule;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
+import org.openiam.idm.srvc.user.service.UserDataService;
 
 /**
  * @author suneet
@@ -58,6 +59,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	protected LoginDataService loginManager;
 	protected SecurityDomainDataService secDomainService; 
 	protected String authContextClass;
+	
+	protected SSOTokenModule defaultToken;
+	protected UserDataService userManager;
 	
 	private static final Log log = LogFactory.getLog(AuthenticationServiceImpl.class);
 
@@ -97,16 +101,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		AuthenticationContext ctx = null;
 		LoginModule loginModule = null;
 		
+		log.debug("secDomainId=" + secDomainId + " principal=" + principal);
+		
 		SecurityDomain secDomain = secDomainService.getSecurityDomain(secDomainId);
 		if (secDomain == null) {
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_DOMAIN);
 		}
 		try {
+			log.debug("loginModule=" + secDomain.getDefaultLoginModule());
+			
 			loginModule = LoginModuleFactory.createModule(secDomain.getDefaultLoginModule());
+			/* Dependency injection fails when we use our own factory. 
+			 * Set the necessary beans directly 
+			 */
+			loginModule.setLoginService(loginManager);
+			loginModule.setTokenModule(defaultToken);
+			loginModule.setUserService(userManager);
 			ctx = AuthContextFactory.createContext(authContextClass);
 		}catch(Exception ie) {
 			log.error(ie.getMessage(),ie);
-			new AuthenticationException(AuthenticationConstants.INTERNAL_ERROR,ie.getMessage(),ie);
+			throw (new AuthenticationException(AuthenticationConstants.INTERNAL_ERROR,ie.getMessage(),ie));
 		}
 		PasswordCredential cred = (PasswordCredential) ctx.createCredentialObject( AuthenticationConstants.AUTHN_TYPE_PASSWORD );
 		cred.setCredentials(secDomainId, principal,password);
@@ -114,12 +128,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 		Map<String,Object> authParamMap = new HashMap<String,Object>();
 		authParamMap.put("SEC_DOMAIN_ID",secDomainId);
+		authParamMap.put("AUTH_SYS_ID", secDomain.getAuthSysId());
 		ctx.setAuthParam(authParamMap);
 		
 		Subject sub = loginModule.login(ctx);
-	
-		sub.setPrincipal(principal);
-		sub.setResultCode(AuthenticationConstants.RESULT_SUCCESS);
+
 		return sub;
 	}
 
@@ -139,7 +152,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 		// find the user for the loginId / principal
 		Login lg = loginManager.getLoginByManagedSys("USR_SEC_DOMAIN", loginId, "0");
-		AuthState authSt = authStateDao.findById(lg.getUser().getUserId());
+		AuthState authSt = authStateDao.findById(lg.getUserId());
 		
 		if (authSt == null )
 			return false;
@@ -209,6 +222,22 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	public void setAuthContextClass(String authContextClass) {
 		this.authContextClass = authContextClass;
+	}
+
+	public SSOTokenModule getDefaultToken() {
+		return defaultToken;
+	}
+
+	public void setDefaultToken(SSOTokenModule defaultToken) {
+		this.defaultToken = defaultToken;
+	}
+
+	public UserDataService getUserManager() {
+		return userManager;
+	}
+
+	public void setUserManager(UserDataService userManager) {
+		this.userManager = userManager;
 	}
 	
 }

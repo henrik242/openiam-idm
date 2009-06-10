@@ -21,6 +21,8 @@
  */
 package org.openiam.idm.srvc.auth.spi;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +37,10 @@ import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
 import org.openiam.idm.srvc.auth.sso.SSOTokenModule;
 import org.openiam.idm.srvc.user.service.UserDataService;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 /**
  * DefaultLoginModule provides basic password based authentication using the OpenIAM repository.
@@ -49,6 +55,10 @@ public class DefaultLoginModule implements LoginModule {
 	
 	private static final Log log = LogFactory.getLog(DefaultLoginModule.class);
 
+	
+	public DefaultLoginModule() {	
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#globalLogout(java.lang.String, java.lang.String)
 	 */
@@ -75,7 +85,7 @@ public class DefaultLoginModule implements LoginModule {
 		if (password == null 	|| password.equals(""))
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_PASSWORD);
 		
-		Login lg = loginManager.getLogin(domainId,principal);
+		Login lg = loginManager.getLoginByManagedSys(domainId,principal, (String)authContext.getParam("AUTH_SYS_ID"));
 		
 		if (lg == null) {
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_LOGIN);
@@ -89,7 +99,7 @@ public class DefaultLoginModule implements LoginModule {
 			failCount++;
 			lg.setAuthFailCount(failCount);
 			if (failCount >= 3) {
-				 // lock ther record and save the record.
+				 // lock the record and save the record.
 				lg.setIsLocked(1);
 				loginManager.updateLogin(lg);				
 				throw new AuthenticationException(AuthenticationConstants.RESULT_LOGIN_LOCKED);
@@ -102,8 +112,7 @@ public class DefaultLoginModule implements LoginModule {
 		
 		// Successful login
 		Subject sub = new Subject();
-		sub.setUserId(lg.getUser().getUserId());
-		sub.setToken(lg.getUser().getUserId());
+		sub.setUserId(lg.getUserId());
 		sub.setResultCode(1);
 		
 		
@@ -119,36 +128,36 @@ public class DefaultLoginModule implements LoginModule {
 
 	}
 
-	public SSOTokenModule getDefaultToken() {
-		return defaultToken;
-	}
 
-	public void setDefaultToken(SSOTokenModule defaultToken) {
-		this.defaultToken = defaultToken;
-	}
-
-	public LoginDataService getLoginManager() {
-		return loginManager;
-	}
-
-	public void setLoginManager(LoginDataService loginManager) {
-		this.loginManager = loginManager;
-	}
-
-	public UserDataService getUserManager() {
-		return userManager;
-	}
-
-	public void setUserManager(UserDataService userManager) {
-		this.userManager = userManager;
-	}
-	
 	/* supporting methods */
 	
 	private String token(String userId) {
 		Map tokenParam = new HashMap();
 		tokenParam.put("USER_ID",userId);
 		return defaultToken.createToken(tokenParam);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setLoginService(org.openiam.idm.srvc.auth.login.LoginDataService)
+	 */
+	public void setLoginService(LoginDataService loginManager) {
+		this.loginManager = loginManager;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setTokenModule(org.openiam.idm.srvc.auth.sso.SSOTokenModule)
+	 */
+	public void setTokenModule(SSOTokenModule defaultToken) {
+		this.defaultToken = defaultToken;	
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.idm.srvc.auth.spi.LoginModule#setUserService(org.openiam.idm.srvc.user.service.UserDataService)
+	 */
+	public void setUserService(UserDataService userManager) {
+		this.userManager = userManager;
+		
 	}
 
 
