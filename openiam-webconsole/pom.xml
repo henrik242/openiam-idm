@@ -100,6 +100,11 @@
       <version>2.1.0</version>
     </dependency>
     <dependency>
+      <groupId>org.openiam</groupId>
+      <artifactId>idm-connector-core</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    <dependency>
       <groupId>diamelle.ejb</groupId>
       <artifactId>foundation</artifactId>
       <version>1</version>
