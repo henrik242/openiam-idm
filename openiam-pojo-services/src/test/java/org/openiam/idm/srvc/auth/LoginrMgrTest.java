@@ -85,16 +85,16 @@ public class LoginrMgrTest extends AbstractDependencyInjectionSpringContextTests
 	
 	
 	public void testLoginsForUser() {	
-		Login[] lgAry = loginService.getLoginByUser(login2.getUser().getUserId());
+		Login[] lgAry = loginService.getLoginByUser(login2.getUserId());
 		assertEquals(2, lgAry.length);		
 	}
 	
 	
 	public void testRemoveLogin() {	
-		loginService.removeLogin(login.getId().getServiceId(), login.getId().getLogin());
+		loginService.removeLogin(login.getId().getManagedSysId(), login.getId().getLogin());
 	//	assertNull(loginService.getLogin(login.getId().getServiceId(), login.getId().getLogin()), "0");
 		
-		loginService.removeLogin(login2.getId().getServiceId(), login2.getId().getLogin());
+		loginService.removeLogin(login2.getId().getManagedSysId(), login2.getId().getLogin());
 		
 	}	
 

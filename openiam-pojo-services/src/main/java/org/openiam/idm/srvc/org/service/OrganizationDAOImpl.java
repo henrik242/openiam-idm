@@ -97,7 +97,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("from org.openiam.idm.srvc.org.dto.Organization a " +
-						" where a.parentId = :orgId order by a.organizationName asc  " );
+						" where a.parentId = :orgId order by a.orgId asc  " );
 		qry.setString("orgId", orgId);
 		qry.setCacheable(true);
 		qry.setCacheRegion("query.organization.findChildOrganization");
