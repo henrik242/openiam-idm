@@ -73,14 +73,14 @@ public class NewHireValidator implements Validator {
 
 	private void valiDatePhoneNumbers(NewHireCommand cmd, Errors err) {
 		// work phone
-		if (cmd.getWorkAreaCode() != null && !cmd.getWorkAreaCode().isEmpty()) { 
+		if (cmd.getWorkAreaCode() != null && !(cmd.getWorkAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getWorkAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("workAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getWorkPhone() != null && !cmd.getWorkPhone().isEmpty()) { 
+		if (cmd.getWorkPhone() != null && !(cmd.getWorkPhone().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getWorkAreaCode());
 			}catch(NumberFormatException ne) {
@@ -89,14 +89,14 @@ public class NewHireValidator implements Validator {
 		}
 		
 		// cell phone
-		if (cmd.getCellAreaCode() != null && !cmd.getCellAreaCode().isEmpty() ) { 
+		if (cmd.getCellAreaCode() != null && !(cmd.getCellAreaCode().length()==0) ) { 
 			try {
 			Integer.valueOf( cmd.getCellAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("cellAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getCellPhone() != null && !cmd.getCellAreaCode().isEmpty()) { 
+		if (cmd.getCellPhone() != null && !(cmd.getCellAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getCellPhone());
 			}catch(NumberFormatException ne) {
@@ -104,14 +104,14 @@ public class NewHireValidator implements Validator {
 			}
 		}
 		// fax phone
-		if (cmd.getFaxAreaCode() != null && !cmd.getFaxAreaCode().isEmpty()) { 
+		if (cmd.getFaxAreaCode() != null && !(cmd.getFaxAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getFaxAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("faxAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getFaxPhone() != null && !cmd.getFaxPhone().isEmpty()) { 
+		if (cmd.getFaxPhone() != null && !(cmd.getFaxPhone().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getFaxPhone());
 			}catch(NumberFormatException ne) {
@@ -121,14 +121,14 @@ public class NewHireValidator implements Validator {
 		
 		
 		// home phone
-		if (cmd.getHomePhoneAreaCode() != null && !cmd.getHomePhoneAreaCode().isEmpty()) { 
+		if (cmd.getHomePhoneAreaCode() != null && !(cmd.getHomePhoneAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getHomePhoneAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("homePhoneAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getHomePhoneNbr() != null && !cmd.getHomePhoneNbr().isEmpty()) { 
+		if (cmd.getHomePhoneNbr() != null && !(cmd.getHomePhoneNbr().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getHomePhoneNbr());
 			}catch(NumberFormatException ne) {
@@ -137,14 +137,14 @@ public class NewHireValidator implements Validator {
 		}
 		
 		// Alt Cell phone
-		if (cmd.getAltCellAreaCode() != null && !cmd.getAltCellAreaCode().isEmpty()) { 
+		if (cmd.getAltCellAreaCode() != null && !(cmd.getAltCellAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getAltCellAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("altCellAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getAltCellNbr() != null && !cmd.getAltCellNbr().isEmpty()) { 
+		if (cmd.getAltCellNbr() != null && !(cmd.getAltCellNbr().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getAltCellNbr());
 			}catch(NumberFormatException ne) {
@@ -153,14 +153,14 @@ public class NewHireValidator implements Validator {
 		}
 
 		// Personal Cell phone
-		if (cmd.getPersonalAreaCode() != null && !cmd.getPersonalAreaCode().isEmpty()) { 
+		if (cmd.getPersonalAreaCode() != null && !(cmd.getPersonalAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getPersonalAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("personalAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getPersonalNbr() != null && !cmd.getPersonalNbr().isEmpty()) { 
+		if (cmd.getPersonalNbr() != null && !(cmd.getPersonalNbr().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getPersonalNbr());
 			}catch(NumberFormatException ne) {
@@ -169,14 +169,14 @@ public class NewHireValidator implements Validator {
 		}
 		
 		// All Phone area code
-		if (cmd.getAltPhoneAreaCode() != null && !cmd.getAltPhoneAreaCode().isEmpty()) { 
+		if (cmd.getAltPhoneAreaCode() != null && !(cmd.getAltPhoneAreaCode().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getAltPhoneAreaCode());
 			}catch(NumberFormatException ne) {
 				err.rejectValue("altPhoneAreaCode", "error.notnumber");
 			}
 		}
-		if (cmd.getAltPhoneNbr() != null && !cmd.getAltPhoneNbr().isEmpty()) { 
+		if (cmd.getAltPhoneNbr() != null && !(cmd.getAltPhoneNbr().length()==0)) { 
 			try {
 			Integer.valueOf( cmd.getAltPhoneNbr());
 			}catch(NumberFormatException ne) {

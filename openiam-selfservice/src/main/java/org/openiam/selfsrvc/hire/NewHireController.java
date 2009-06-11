@@ -142,12 +142,12 @@ public class NewHireController extends SimpleFormController {
 	        groupManager.addUserToGroup("END_USER_GRP",usr.getUserId());
 	        
 	        // add to group
-	        if (newHireCmd.getGroup() != null && !newHireCmd.getGroup().isEmpty()) {
+	        if (newHireCmd.getGroup() != null && !(newHireCmd.getGroup().length()==0)) {
 	        	groupManager.addUserToGroup(newHireCmd.getGroup(), usr.getUserId());
 	        }
 	
 	        // add to role
-	        if (newHireCmd.getRole() != null && !newHireCmd.getRole().isEmpty()) {
+	        if (newHireCmd.getRole() != null && !(newHireCmd.getRole().length()==0)) {
 	        	log.info("Add role: domain=" + defaultDomainId + " role=" + newHireCmd.getRole() + " " + usr.getUserId());
 	        	roleDataService.addUserToRole(defaultDomainId, newHireCmd.getRole(), usr.getUserId());
 	        }
@@ -316,8 +316,8 @@ public class NewHireController extends SimpleFormController {
 	
 	private Login getLogin(NewHireCommand newHireCmd, User usr, LoginId loginId) {
 		Login lg = new Login();
-
-		lg.setUser(usr);
+		
+		lg.setUserId(usr.getUserId());
 
  		lg.setId(loginId);
  		lg.setAuthFailCount(0);
