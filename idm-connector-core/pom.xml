@@ -8,10 +8,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openiam</groupId>
   <artifactId>idm-connector-core</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <name>idm-connector-core</name>
-  <version>1.0-rc1</version>
-  <description>OpenIAM Core connectors and infrastructure</description>
+  <version>2.1.0</version>
+  <description>OpenIAM Core connectors and connector infrastructure</description>
   <ciManagement>
     <system>idm</system>
     <url>http://build.openiam.org:8085/idm/</url>
@@ -19,12 +19,13 @@
       <notifier>
         <configuration>
           <address>suneet_shah@openiam.com</address>
+          <address>arun_shah@openiam.com</address>
         </configuration>
       </notifier>
     </notifiers>
   </ciManagement>
   <build>
-    <finalName>idm-connector-ldap</finalName>
+    <finalName>idm-connector-core</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -85,7 +86,11 @@
       <version>${cxf.version}</version>
     </dependency>
    
-    
+     <dependency>
+      <groupId>org.openiam</groupId>
+      <artifactId>openiam-pojo-services</artifactId>
+      <version>2.1.0</version>
+    </dependency>  
   
     <dependency>
       <groupId>junit</groupId>

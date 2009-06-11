@@ -1,0 +1,128 @@
+/*
+ * Copyright 2009, OpenIAM LLC 
+ * This file is part of the OpenIAM Identity and Access Management Suite
+ *
+ *   OpenIAM Identity and Access Management Suite is free software: 
+ *   you can redistribute it and/or modify
+ *   it under the terms of the Lesser GNU General Public License 
+ *   version 3 as published by the Free Software Foundation.
+ *
+ *   OpenIAM is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   Lesser GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with OpenIAM.  If not, see <http://www.gnu.org/licenses/>. *
+ */
+
+/**
+ * 
+ */
+package org.openiam.spml2.spi.ldap;
+
+import javax.jws.WebService;
+
+import org.openiam.spml2.interf.SpmlComplete;
+import org.openiam.spml2.msg.AddRequestType;
+import org.openiam.spml2.msg.AddResponseType;
+import org.openiam.spml2.msg.DeleteRequestType;
+import org.openiam.spml2.msg.ListTargetsRequestType;
+import org.openiam.spml2.msg.ListTargetsResponseType;
+import org.openiam.spml2.msg.LookupRequestType;
+import org.openiam.spml2.msg.LookupResponseType;
+import org.openiam.spml2.msg.ModifyRequestType;
+import org.openiam.spml2.msg.ModifyResponseType;
+import org.openiam.spml2.msg.ResponseType;
+import org.openiam.spml2.msg.password.ExpirePasswordRequestType;
+import org.openiam.spml2.msg.password.ResetPasswordRequestType;
+import org.openiam.spml2.msg.password.ResetPasswordResponseType;
+import org.openiam.spml2.msg.password.SetPasswordRequestType;
+import org.openiam.spml2.msg.password.ValidatePasswordRequestType;
+import org.openiam.spml2.msg.password.ValidatePasswordResponseType;
+
+/**
+ * Updates the OpenIAM repository with data received from external client.
+ * @author suneet
+ *
+ */
+@WebService(endpointInterface="org.openiam.spml2.interf.SpmlComplete",
+		targetNamespace="urn:idm.openiam.org/spml2/service",
+		serviceName="LDAPConnectorService")
+public class LdapSpmlComplete implements SpmlComplete {
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlCore#add(org.openiam.spml2.msg.AddRequestType)
+	 */
+	public AddResponseType add(AddRequestType reqType) {
+		System.out.println("add request called..");
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlCore#delete(org.openiam.spml2.msg.DeleteRequestType)
+	 */
+	public ResponseType delete(DeleteRequestType reqType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlCore#listTargets(org.openiam.spml2.msg.ListTargetsRequestType)
+	 */
+	public ListTargetsResponseType listTargets(ListTargetsRequestType reqType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlCore#lookup(org.openiam.spml2.msg.LookupRequestType)
+	 */
+	public LookupResponseType lookup(LookupRequestType reqType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlCore#modify(org.openiam.spml2.msg.ModifyRequestType)
+	 */
+	public ModifyResponseType modify(ModifyRequestType reqType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlPassword#expirePassword(org.openiam.spml2.msg.password.ExpirePasswordRequestType)
+	 */
+	public ResponseType expirePassword(ExpirePasswordRequestType request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlPassword#resetPassword(org.openiam.spml2.msg.password.ResetPasswordRequestType)
+	 */
+	public ResetPasswordResponseType resetPassword(
+			ResetPasswordRequestType request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlPassword#setPassword(org.openiam.spml2.msg.password.SetPasswordRequestType)
+	 */
+	public ResponseType setPassword(SetPasswordRequestType request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.openiam.spml2.interf.SpmlPassword#validatePassword(org.openiam.spml2.msg.password.ValidatePasswordRequestType)
+	 */
+	public ValidatePasswordResponseType validatePassword(
+			ValidatePasswordRequestType request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

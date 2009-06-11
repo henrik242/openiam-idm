@@ -11,3 +11,4 @@ import javax.jws.WebService;
 public interface SpmlComplete extends SpmlCore, SpmlPassword{
 
 }
+
