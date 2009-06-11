@@ -2,6 +2,7 @@ CREATE TABLE SECURITY_DOMAIN (
        DOMAIN_ID            varchar(20) NOT NULL,
        NAME         		varchar(40) NULL,
        STATUS				VARCHAR(20) NULL,
+       /* Refers to which managed system to use for authentication */
 	   AUTH_SYS_ID			VARCHAR(20) NULL,
 	   LOGIN_MODULE			VARCHAR(100) NULL,
        PRIMARY KEY (DOMAIN_ID)
