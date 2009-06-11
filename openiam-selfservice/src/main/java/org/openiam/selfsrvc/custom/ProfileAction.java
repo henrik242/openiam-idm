@@ -10,6 +10,15 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.BasicAttributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.ModificationItem;
+import javax.naming.ldap.InitialLdapContext;
+import javax.naming.ldap.LdapContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
@@ -53,6 +62,9 @@ public class ProfileAction extends NavigationDispatchAction {
 	
 	MetadataService metadataSrvc = null;
 	UserDataService userDataSrvc = null;
+	
+	static protected ResourceBundle res = ResourceBundle.getBundle("ldapconf");
+	static protected ResourceBundle secres = ResourceBundle.getBundle("securityconf");
 	
 	
 	public ProfileAction() {
@@ -131,7 +143,13 @@ public class ProfileAction extends NavigationDispatchAction {
           
            if (personId != null && personId.length() > 0){
      		   userData.setUserId(personId);
-   		      		   
+   		      	
+     		   // get the old user record to update ldap
+     		   User oldUser = userDataSrvc.getUserWithDependent(personId, false);
+               String ldapFirstName = oldUser.getFirstName();
+               String ldapLastName = oldUser.getLastName();
+     		   
+     		   
      		  // update an existing user record
      		  userDataSrvc.updateUserWithDependent(userData, false); 
      		  // LOG the event
@@ -167,8 +185,20 @@ public class ProfileAction extends NavigationDispatchAction {
                userDataSrvc.updatePhone(altcellPhone);
                userDataSrvc.updatePhone(homePhone);
                
-             //  userDataSrvc.updatePhone(personalPhone);
+            // update ldap with new user information
+            
+            ModificationItem[] mods = new ModificationItem[5];
+            //mods[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("cn", userData.getFirstName() + " " + userData.getLastName()));
+            mods[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("sn", userData.getLastName()));
+            mods[1] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("description", "LDAP User"));
+            mods[2] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("displayName",  userData.getLastName() + "," + userData.getFirstName()));
+            mods[3] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("givenName",  userData.getFirstName()));
+            mods[4] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("title", userData.getTitle()));
                
+       		Map<String, Object> attributes = new HashMap<String, Object>();			
+
+    		String uid =  ldapLastName + "." + ldapFirstName;              
+            updateLdap(uid, mods);
 
            } 
 	              
@@ -228,6 +258,7 @@ public class ProfileAction extends NavigationDispatchAction {
            }
            
            User userData = userDataSrvc.getUserWithDependent(personId,false);
+
            
            System.out.println("UserData in view = " + userData);
 
@@ -572,6 +603,105 @@ public class ProfileAction extends NavigationDispatchAction {
 	   	
 		
 	    return roleList;	
+	}
+ 	
+	public void updateLdap(String uid, ModificationItem[] mods) { 
+
+		Hashtable envDC = new Hashtable();
+		String urlLdap = res.getString("hostname");
+		String adminName = res.getString("accountid");
+		String password = res.getString("accountpassword");
+		
+		System.out.println("**accountid = " + adminName);
+
+		
+	//	ocesam1.ocfl.net
+		
+		envDC.put(Context.PROVIDER_URL,urlLdap);
+		envDC.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");		
+		envDC.put(Context.SECURITY_AUTHENTICATION, "simple" ); // simple
+		envDC.put(Context.SECURITY_PRINCIPAL,adminName);  //"administrator@diamelle.local"
+		envDC.put(Context.SECURITY_CREDENTIALS,password);
+
+
+ 	
+ 		String ldapName = getLdapName(uid);
+
+ 		//BasicAttributes basicAttr = getAttributes(uid, organizationalUnits, attributes);
+ 		try {
+ 			System.out.println("Creating ldap entry: " + ldapName);
+ 			
+ 			LdapContext ctxLdap = new InitialLdapContext(envDC,null);
+			System.out.println("Directory context = " + ctxLdap);
+ 			
+ 			//Context result = ctxLdap.createSubcontext(ldapName, basicAttr);
+ 			
+ 			//System.out.println("Directory subcontext called = " + result);
+ 			
+ 			
+			//ModificationItem[] mods = new ModificationItem[1];
+			 
+			//Replace the "unicdodePwd" attribute with a new value
+			//Password must be both Unicode and a quoted string
+			//String password = "\"" + "password123" + "\"";
+			//byte[] bytePassword = password.getBytes("UTF-16LE");
+ 
+			//mods[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("userPassword", password));
+ 
+			// Perform the update
+			ctxLdap.modifyAttributes(ldapName, mods);
+
+			ctxLdap.close();
+ 			
+
+ 		} catch (NamingException ne) {
+ 			ne.printStackTrace();
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		}
+
+ 	}     
+ 	
+	public String getLdapName(String uid) {
+
+		String baseDN = res.getString("baseDN");
+		String userIdAttribute = res.getString("userIdAttribute");
+		String ldapName = userIdAttribute + "=" + uid + "," + baseDN;
+
+		System.out.println("ldapName=" + ldapName);
+
+		return ldapName;
+	}
+
+	private BasicAttributes getAttributes(String uid, String[] organizationalUnits, 
+			Map<String,Object> attributes) {
+
+
+
+		BasicAttributes attrs = new BasicAttributes();
+		// associate the object class
+		//attrs.put(oc);
+
+		Attribute ou = new BasicAttribute("ou");
+		int size = organizationalUnits.length;
+		for (int i = 0; i < size; i++) {
+			ou.add(organizationalUnits[i]); 
+		}
+		attrs.put(ou);
+
+		Iterator iter = attributes.entrySet().iterator();
+		for (int i = 0; i < attributes.size(); i++)
+		{
+		  Map.Entry entry = (Map.Entry) iter.next();
+		  String key = (String) entry.getKey();			  
+		  Object value = entry.getValue();
+		  // skip non string values
+		  if (value instanceof String) {
+			  attrs.put(key, (String)value);
+		  } 
+		}
+		
+		return attrs;
 	}
  	
 	

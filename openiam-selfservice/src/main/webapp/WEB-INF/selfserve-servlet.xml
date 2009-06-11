@@ -106,7 +106,7 @@
                 <prop key="/requestDetail.selfserve">requestDetail</prop>
                 <prop key="pub/reportIncident.selfserve">reportIncident</prop>
                 <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
-                <prop key="/createRequest.selfserve">newHire</prop>
+                <prop key="/createRequest.selfserve">createRequest</prop>
             </props>
         </property>
     </bean>

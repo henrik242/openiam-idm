@@ -178,7 +178,7 @@ public class NewHireController extends SimpleFormController {
 
 		
 		// ADD TO LDAP - SEND TO CONNECTOR
-		String uid = usr.getLastName() + "." + usr.getFirstName()+ "01";
+		String uid = usr.getLastName() + "." + usr.getFirstName();
 		
 		String[] oc = { "top", "person", "organizationalPerson", "inetOrgPerson" };
 		String[] organizationalUnits = { "Auditor Controller" };
@@ -191,7 +191,7 @@ public class NewHireController extends SimpleFormController {
 		attributes.put("givenName",usr.getLastName() + "," + usr.getFirstName());
 		attributes.put("mail", loginId.getLogin());
 		attributes.put("title","Manager");
-		attributes.put("uid",usr.getLastName() + "." + usr.getFirstName()+ "01");
+		attributes.put("uid",usr.getLastName() + "." + usr.getFirstName());
 		
 		byte[] bytePassword = "passwd00".getBytes("UTF-16LE");
 		
@@ -256,7 +256,7 @@ public class NewHireController extends SimpleFormController {
 		usr.setManagerId( newHireCmd.getManagedBy() );
 		usr.setDeptCd( newHireCmd.getDepartment() );
 		usr.setTitle( newHireCmd.getTitle() );
-		usr.setStatus( newHireCmd.getStatus() );
+		usr.setStatus( "APPROVED" );
 		usr.setCompanyId( newHireCmd.getCompanyName() );
 		usr.setDeptCd( newHireCmd.getDepartment() );
 		usr.setNickname( newHireCmd.getNickname() );

@@ -4,33 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
-<script type="text/javascript">
-<!--
-function defaultFields() {
-	var theForm = document.getElementById ('newHireCmd');
-	theForm.userPrincipalName.value = theForm.firstName.value + '.' + theForm.lastName.value + '@ceoit.ocgov.com' ;
-	theForm.email1.value = theForm.nickname.value + '.' + theForm.lastName.value + '@ceoit.ocgov.com' ;
-	theForm.email2.value = theForm.nickname.value + '.' + theForm.lastName.value + '@ocgov.com' ;
-}
-
-String.prototype.toProperCase = function() 
-{
-    return this.charAt(0).toUpperCase() + this.substring(1,this.length).toLowerCase();
-}
-
-
-function validateInt(fld) {
-   if (isNaN(fld.value)) {
-		alert(fld.name + " is not a number");
-		return false;
-	}
-	return true;
-}
-
-
-
-//-->
-</script>
 
 <form:form commandName="newRequestCmd">
 <table width="620" border="0" cellspacing="2" cellpadding="1" align="center"> 

@@ -65,20 +65,61 @@
    		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
    		<load-on-startup>2</load-on-startup>
    </servlet> 
+   
+  <servlet>
+  	<description>The servlet loads the DSP pages.</description>
+  	<servlet-name>dspLoader</servlet-name>
+  	<servlet-class>org.zkoss.web.servlet.dsp.InterpreterServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>ZK loader for ZUML pages</description>
+  	<servlet-name>zkLoader</servlet-name>
+  	<servlet-class>org.zkoss.zk.ui.http.DHtmlLayoutServlet</servlet-class>
+  	<init-param>
+  		<param-name>update-uri</param-name>
+  		<param-value>/zkau</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+  	<description>The asynchronous update engine for ZK</description>
+  	<servlet-name>auEngine</servlet-name>
+  	<servlet-class>org.zkoss.zk.au.http.DHtmlUpdateServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>selfserve</servlet-name>
     <url-pattern>*.selfserve</url-pattern>
   </servlet-mapping> 
 
+ <servlet-mapping>
+  	<servlet-name>dspLoader</servlet-name>
+  	<url-pattern>*.dsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>zkLoader</servlet-name>
+  	<url-pattern>*.zul</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>zkLoader</servlet-name>
+  	<url-pattern>*.zhtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>auEngine</servlet-name>
+  	<url-pattern>/zkau/*</url-pattern>
+  </servlet-mapping>
+
+
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.zul</welcome-file>
   </welcome-file-list>
   
  
@@ -205,6 +246,12 @@
 	<listener>
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+  	<display-name>ZK Session Cleaner</display-name>
+  		<listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
+ 	</listener>
+	
+	
 	<context-param>
 	    <param-name>contextConfigLocation</param-name>
 	    <param-value>/WEB-INF/applicationContext*.xml /WEB-INF/selfServeBeans.xml classpath:applicationContext.xml
