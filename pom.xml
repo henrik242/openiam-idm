@@ -6,13 +6,13 @@
 	<groupId>org.openiam</groupId>
 	<artifactId>openiam</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-rc2</version>
+	<version>2.1.0</version>
 	<name>openiam Project</name>
 	<description>openiam is open source Identity and access Management Project</description>
 	<url>http://www.openiam.org</url>
 	<modules>
 		<module>openiam-pojo-services</module>
-		<module>openiam-esb</module>
+		<!--module>openiam-esb</module--><!-- Coming Soon.... -->
 		<module>openiam-webcommon</module>
 		<module>openiam-webconsole</module>
 		<module>openiam-selfservice</module>
