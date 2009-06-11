@@ -17,6 +17,7 @@
 		<module>openiam-webconsole</module>
 		<module>openiam-selfservice</module>
 		<module>idm-connector-core</module>
+		<module>idm-ws</module>
 		
 	</modules>
 	<inceptionYear>2008</inceptionYear>
