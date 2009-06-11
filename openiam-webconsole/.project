@@ -1,7 +1,9 @@
 <projectDescription>
   <name>openiam_webConsole</name>
-  <comment>IAM Admin Console based on Struts but Migrating to Spring MVC</comment>
-  <projects/>
+  <comment>IDM Admin Console based on Struts but Migrating to Spring MVC</comment>
+  <projects>
+    <project>openiam-pojo-services</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

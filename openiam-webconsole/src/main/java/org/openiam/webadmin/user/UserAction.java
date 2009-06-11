@@ -33,6 +33,9 @@
 package org.openiam.webadmin.user;
 
 
+import org.openiam.spml2.interf.SpmlComplete;
+import org.openiam.spml2.msg.AddRequestType;
+import org.openiam.spml2.msg.PSOIdentifierType;
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
 import org.openiam.webadmin.busdel.identity.*;
@@ -41,6 +44,7 @@ import org.openiam.webadmin.busdel.identity.*;
 
 
 import org.openiam.idm.srvc.grp.dto.Group;
+import org.openiam.idm.srvc.mngsys.dto.ProvisionConnector;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.role.service.RoleDataService;
 import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
@@ -56,6 +60,7 @@ import org.openiam.idm.srvc.continfo.dto.EmailAddress;
 import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.meta.dto.MetadataElement;
 import org.openiam.idm.srvc.meta.service.MetadataService;
+import org.openiam.idm.srvc.mngsys.service.ConnectorDataService;
 
 
 import diamelle.base.composite.Component;
@@ -86,6 +91,9 @@ import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.validator.DynaValidatorForm;
 import org.springframework.web.context.WebApplicationContext;
 
+import org.apache.cxf.frontend.ClientProxyFactoryBean;
+
+
 
 
 public class UserAction extends NavigationDispatchAction  {
@@ -103,7 +111,7 @@ public class UserAction extends NavigationDispatchAction  {
 	UserDataService userDataSrvc = null;
 	IdmAuditLogDataService auditService = null;
 
-	private static final Log log = LogFactory.getLog(UserAction.class);
+	private static final org.apache.commons.logging.Log logger = LogFactory.getLog(UserAction.class);
 
 	
 	//protected Spml2Service ldapService;
@@ -281,7 +289,37 @@ public class UserAction extends NavigationDispatchAction  {
                userDataSrvc.updatePhone(workPhone);
                userDataSrvc.updatePhone(cellPhone);
                userDataSrvc.updatePhone(faxPhone);
-
+               
+               // test code - sas
+               // call the connector service
+               logger.debug("Calling provisioning connector service");
+               
+               ConnectorDataService conDS = (ConnectorDataService) webContext.getBean("connectorService");
+               ProvisionConnector[] conArray = conDS.getAllConnectors();
+               if (conArray != null && conArray.length > 0) {             
+            	   int size = conArray.length;
+            	   for (int i=0; i<size; i++) {
+            		   ProvisionConnector con = conArray[i];
+            		   
+		               ClientProxyFactoryBean factory = new ClientProxyFactoryBean();
+		               factory.setServiceClass(SpmlComplete.class);
+		               
+		               logger.debug("Service endpoint : " + conArray[i].getServiceUrl() );
+		               
+		               factory.setAddress(conArray[i].getServiceUrl());
+		               SpmlComplete client = (SpmlComplete) factory.create();    
+		               
+		               logger.debug("client created " + client);
+		               
+		               AddRequestType addReqType = new AddRequestType();
+		               PSOIdentifierType idType = new PSOIdentifierType(userData.getUserId(),null, "target");
+		               addReqType.setPsoID(idType);
+		               client.add(addReqType);
+		               
+		               logger.debug("client add operation called ");
+            	   }
+               }
+               //
 	              // get the attributes
                updateAttributes(request,personId, userDataSrvc, userData.getMetadataTypeId());
 
@@ -389,6 +427,35 @@ public class UserAction extends NavigationDispatchAction  {
 	             		   request.getRequestURI(),"USER_SERVICE", "IDM", (String)session.getAttribute("userId"));                
 	                auditService.addLog(log);
 	                        
+	                
+	                logger.debug("Calling provisioning connector service for new user");
+	                
+	                ConnectorDataService conDS = (ConnectorDataService) webContext.getBean("connectorService");
+	                ProvisionConnector[] conArray = conDS.getAllConnectors();
+	                if (conArray != null && conArray.length > 0) {             
+	             	   int size = conArray.length;
+	             	   for (int i=0; i<size; i++) {
+	             		   ProvisionConnector con = conArray[i];
+	             		   
+	 		               ClientProxyFactoryBean factory = new ClientProxyFactoryBean();
+	 		               factory.setServiceClass(SpmlComplete.class);
+	 		               
+	 		               logger.debug("Service endpoint : " + conArray[i].getServiceUrl() );
+	 		               
+	 		               factory.setAddress(conArray[i].getServiceUrl());
+	 		               SpmlComplete client = (SpmlComplete) factory.create();    
+	 		               
+	 		               logger.debug("client created " + client);
+	 		               
+	 		               AddRequestType addReqType = new AddRequestType();
+	 		               PSOIdentifierType idType = new PSOIdentifierType(userData.getUserId(),null, "target");
+	 		               addReqType.setPsoID(idType);
+	 		               client.add(addReqType);
+	 		               
+	 		               logger.debug("client add operation called ");
+	             	   }
+	                }
+
 
 
 	     
