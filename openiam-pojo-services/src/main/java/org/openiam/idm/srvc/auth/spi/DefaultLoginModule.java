@@ -78,8 +78,9 @@ public class DefaultLoginModule implements LoginModule {
 		String principal = cred.getPrincipal();
 		String domainId = cred.getDomainId();
 		String password = cred.getPassword();
-			
-		if (principal == null || principal.isEmpty())
+		
+		//TODO principal.length==0 can be changed to principal.isEmpty() once we move to Java 6
+		if (principal == null || principal.length()==0)
 			throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_LOGIN);
 		
 		if (password == null 	|| password.equals(""))
