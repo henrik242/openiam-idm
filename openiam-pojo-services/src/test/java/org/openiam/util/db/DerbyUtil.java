@@ -1,7 +1,11 @@
 package org.openiam.util.db;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.Driver;
@@ -37,8 +41,11 @@ public class DerbyUtil {
 	
 	public static void buildOpeniamDB() throws Exception
 	{
+		//TODO make code more robust, if database is already created, simply drop all the elements
 		Connection conn=createDataBase(DATABASE_NAME);
-		ij.runScript(conn, new FileInputStream("../schema/rdbms/all/derby_schema_all.sql"), "US-ASCII", System.out, "US-ASCII");	
+		//TODO use logging...
+		OutputStream os=new ByteArrayOutputStream();
+		ij.runScript(conn, new FileInputStream("../schema/rdbms/all/derby_schema_all.sql"), "US-ASCII", os, "US-ASCII");	
 		
 	}
 	
