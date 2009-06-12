@@ -440,7 +440,7 @@
 
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>			
+				<prop key="hibernate.dialect">${openiam.hibernate.dialect}</prop>			
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
