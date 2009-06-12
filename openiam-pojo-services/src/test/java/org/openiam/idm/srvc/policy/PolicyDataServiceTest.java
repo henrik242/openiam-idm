@@ -10,9 +10,9 @@ import org.openiam.idm.srvc.policy.dto.PolicyDef;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class PolicyDataServiceTest extends AbstractDependencyInjectionSpringContextTests {
+public class PolicyDataServiceTest extends AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

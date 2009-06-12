@@ -10,9 +10,9 @@ import org.openiam.idm.srvc.email.MailService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class MailServiceTest extends AbstractDependencyInjectionSpringContextTests  {
+public class MailServiceTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

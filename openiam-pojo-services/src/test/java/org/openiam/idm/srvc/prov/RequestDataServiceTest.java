@@ -14,9 +14,9 @@ import org.openiam.idm.srvc.prov.request.service.RequestDataService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class RequestDataServiceTest extends AbstractDependencyInjectionSpringContextTests {
+public class RequestDataServiceTest extends AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

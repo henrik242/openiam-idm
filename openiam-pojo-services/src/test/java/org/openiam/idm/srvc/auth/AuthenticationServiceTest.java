@@ -15,9 +15,9 @@ import org.openiam.exception.AuthenticationException;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class AuthenticationServiceTest extends AbstractDependencyInjectionSpringContextTests  {
+public class AuthenticationServiceTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

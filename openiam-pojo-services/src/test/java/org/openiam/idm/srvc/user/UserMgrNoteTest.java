@@ -10,9 +10,9 @@ import org.openiam.idm.srvc.user.dto.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class UserMgrNoteTest extends AbstractDependencyInjectionSpringContextTests  {
+public class UserMgrNoteTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

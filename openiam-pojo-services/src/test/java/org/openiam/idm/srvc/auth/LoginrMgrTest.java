@@ -11,9 +11,9 @@ import org.openiam.idm.srvc.auth.login.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class LoginrMgrTest extends AbstractDependencyInjectionSpringContextTests  {
+public class LoginrMgrTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

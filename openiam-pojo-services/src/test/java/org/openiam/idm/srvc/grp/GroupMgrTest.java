@@ -15,9 +15,9 @@ import org.openiam.idm.srvc.user.service.UserDataService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class GroupMgrTest extends AbstractDependencyInjectionSpringContextTests {
+public class GroupMgrTest extends AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

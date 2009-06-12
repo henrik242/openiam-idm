@@ -14,10 +14,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.openiam.base.AbstractOpenIAMTestCase;
 import org.openiam.idm.srvc.service.dto.*;
 import org.openiam.idm.srvc.service.service.*;
 
-public class ServiceMgrTest extends AbstractDependencyInjectionSpringContextTests {
+public class ServiceMgrTest extends AbstractOpenIAMTestCase {
 
 	ServiceMgr mgr;
 	Service service;

@@ -13,9 +13,9 @@ import org.openiam.idm.srvc.cat.dto.CategoryLanguageId;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class CategoryServiceTest extends AbstractDependencyInjectionSpringContextTests {
+public class CategoryServiceTest extends AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

@@ -1,16 +1,13 @@
 package org.openiam.idm.srvc.loc;
 
 import org.junit.Test;
-import org.openiam.idm.srvc.lang.dto.Language;
+import org.openiam.base.AbstractOpenIAMTestCase;
 import org.openiam.idm.srvc.loc.dto.Location;
 import org.openiam.idm.srvc.loc.service.LocationDataService;
-import org.openiam.idm.srvc.menu.dto.*;
-import org.openiam.idm.srvc.menu.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
 
-public class LocationServiceTest extends AbstractDependencyInjectionSpringContextTests  {
+public class LocationServiceTest extends AbstractOpenIAMTestCase  {
 
 
 	ApplicationContext ctx = null;
@@ -30,16 +27,6 @@ public class LocationServiceTest extends AbstractDependencyInjectionSpringContex
 
 
 		locationDataService = (LocationDataService)ctx.getBean("locationDataService");
-		
-		
-	} 
-
-	
-	/* Test direct address methods */
-	
-	@Test
-	public void testaddLocation() {
-				
 		Location loc = new Location();
 		loc.setName("Home");
 		loc.setAddress1("Some St");
@@ -51,6 +38,16 @@ public class LocationServiceTest extends AbstractDependencyInjectionSpringContex
 		locationDataService.addLocation(loc);
 		
 		locId = loc.getLocationId();
+		
+	} 
+
+	
+	/* Test direct address methods */
+	
+	@Test
+	public void testaddLocation() {
+				
+		
 		assertNotNull(locId);
 		
 	}

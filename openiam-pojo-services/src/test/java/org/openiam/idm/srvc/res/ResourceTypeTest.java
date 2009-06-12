@@ -10,9 +10,9 @@ import org.openiam.idm.srvc.res.dto.ResourceType;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class ResourceTypeTest extends AbstractDependencyInjectionSpringContextTests {
+public class ResourceTypeTest extends AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

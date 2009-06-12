@@ -14,9 +14,9 @@ import org.openiam.util.db.Search;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class UserMgrTest extends AbstractDependencyInjectionSpringContextTests  {
+public class UserMgrTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

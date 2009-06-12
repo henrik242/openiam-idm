@@ -13,10 +13,10 @@ import org.openiam.idm.srvc.user.service.UserDataService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
 public class UserRoleDataServiceTest extends
-		AbstractDependencyInjectionSpringContextTests {
+AbstractOpenIAMTestCase {
 
 	ApplicationContext ctx = null;
 

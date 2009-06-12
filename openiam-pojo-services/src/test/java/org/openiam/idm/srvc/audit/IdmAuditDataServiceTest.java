@@ -9,9 +9,9 @@ import org.openiam.idm.srvc.audit.dto.*;
 import org.openiam.idm.srvc.audit.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class IdmAuditDataServiceTest extends AbstractDependencyInjectionSpringContextTests  {
+public class IdmAuditDataServiceTest extends AbstractOpenIAMTestCase  {
 
 
 	ApplicationContext ctx = null;

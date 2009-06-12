@@ -1,13 +1,12 @@
 package org.openiam.base.id;
 
 import org.junit.Test;
-import org.openiam.idm.srvc.audit.dto.*;
-import org.openiam.idm.srvc.audit.service.*;
+import org.openiam.util.db.DerbyUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class SequenceGenTest extends AbstractDependencyInjectionSpringContextTests  {
+public class SequenceGenTest extends AbstractOpenIAMTestCase  {
 
 
 	ApplicationContext ctx = null;
@@ -16,7 +15,6 @@ public class SequenceGenTest extends AbstractDependencyInjectionSpringContextTes
 
 	
 	@Override
-
 	protected void onSetUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.onSetUp();
@@ -26,7 +24,7 @@ public class SequenceGenTest extends AbstractDependencyInjectionSpringContextTes
 		seqGenDao = (SequenceGenDAO)ctx.getBean("seqGenDAO");
 		
 		
-	} 
+	}
 
 	
 	/* Test direct address methods */

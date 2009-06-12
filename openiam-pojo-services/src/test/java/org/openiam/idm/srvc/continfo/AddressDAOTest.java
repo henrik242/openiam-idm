@@ -13,7 +13,7 @@ import org.openiam.idm.srvc.continfo.service.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
 
 /**
@@ -22,7 +22,7 @@ import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
  *
  */
 
-public class AddressDAOTest extends AbstractDependencyInjectionSpringContextTests  {
+public class AddressDAOTest extends AbstractOpenIAMTestCase  {
 
 	ApplicationContext ctx = null;
 

@@ -11,7 +11,7 @@ import org.openiam.idm.srvc.continfo.service.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 import org.springframework.test.AbstractTransactionalSpringContextTests;
 import org.springframework.transaction.*;
 
@@ -22,7 +22,7 @@ import org.springframework.transaction.*;
  *
  */
 
-public class EmailAddressDAOTest extends AbstractDependencyInjectionSpringContextTests  {
+public class EmailAddressDAOTest extends AbstractOpenIAMTestCase  {
 //public class EmailAddressDAOTest extends AbstractTransactionalSpringContextTests  {
 	
 	ApplicationContext ctx = null;

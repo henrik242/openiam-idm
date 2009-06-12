@@ -7,9 +7,9 @@ import org.openiam.idm.srvc.menu.dto.*;
 import org.openiam.idm.srvc.menu.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.openiam.base.AbstractOpenIAMTestCase;
 
-public class LanguageServiceTest extends AbstractDependencyInjectionSpringContextTests  {
+public class LanguageServiceTest extends AbstractOpenIAMTestCase  {
 
 
 	ApplicationContext ctx = null;

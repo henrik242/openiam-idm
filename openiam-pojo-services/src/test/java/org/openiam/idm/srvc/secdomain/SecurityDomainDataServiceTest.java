@@ -9,10 +9,11 @@ import org.springframework.test.*;
 
 import org.junit.Test;
 
+import org.openiam.base.AbstractOpenIAMTestCase;
 import org.openiam.idm.srvc.secdomain.dto.*;
 import org.openiam.idm.srvc.secdomain.service.*;
 
-public class SecurityDomainDataServiceTest extends AbstractDependencyInjectionSpringContextTests {
+public class SecurityDomainDataServiceTest extends AbstractOpenIAMTestCase {
 
 	SecurityDomainDataService secDomService;
 	SecurityDomain secDom;
