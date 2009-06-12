@@ -38,7 +38,7 @@ public class DerbyUtil {
 	public static void buildOpeniamDB() throws Exception
 	{
 		Connection conn=createDataBase(DATABASE_NAME);
-		ij.runScript(conn, new FileInputStream("../schema/rdbms/common/hbm2ddl.sql"), "US-ASCII", System.out, "US-ASCII");	
+		ij.runScript(conn, new FileInputStream("../schema/rdbms/all/derby_schema_all.sql"), "US-ASCII", System.out, "US-ASCII");	
 		
 	}
 	
