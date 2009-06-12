@@ -38,7 +38,7 @@ public class LocationServiceTest extends AbstractDependencyInjectionSpringContex
 	/* Test direct address methods */
 	
 	@Test
-	public void testaddLanguage() {
+	public void testaddLocation() {
 				
 		Location loc = new Location();
 		loc.setName("Home");
@@ -51,6 +51,7 @@ public class LocationServiceTest extends AbstractDependencyInjectionSpringContex
 		locationDataService.addLocation(loc);
 		
 		locId = loc.getLocationId();
+		assertNotNull(locId);
 		
 	}
 
