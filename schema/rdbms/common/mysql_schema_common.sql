@@ -186,12 +186,29 @@ CREATE TABLE USERS(
  	   MAIDEN_NAME 			VARCHAR(40) NULL,
  	   NICKNAME 			VARCHAR(40) NULL,
 	   PASSWORD_THEME		VARCHAR(20) NULL,
+	   COUNTRY              varchar(30) NULL,
+	   BLDG_NUM				VARCHAR(10) NULL,
+	   STREET_DIRECTION		VARCHAR(20) NULL,
+       ADDRESS1             varchar(45) NULL,
+       ADDRESS2             varchar(45) NULL,
+	   ADDRESS3             varchar(45) NULL,
+	   ADDRESS4             varchar(45) NULL,
+	   ADDRESS5             varchar(45) NULL,
+	   ADDRESS6             varchar(45) NULL,
+	   ADDRESS7             varchar(45) NULL,
+       CITY                 varchar(30) NULL,
+       STATE                varchar(15) NULL,
+       POSTAL_CD            varchar(10) NULL,
+	   EMAIL_ADDRESS        varchar(100) NULL,
+	   AREA_CD              varchar(10) NULL,
+       COUNTRY_CD           varchar(3) NULL,
+       PHONE_NBR            varchar(50) NULL,
+       PHONE_EXT			VARCHAR(20) NULL,
        PRIMARY KEY (USER_ID), 
 	CONSTRAINT FK_USERS_METADATA_TYPE
          FOREIGN KEY (TYPE_ID)
                              	REFERENCES METADATA_TYPE(TYPE_ID)
 );
-
 
 
 
