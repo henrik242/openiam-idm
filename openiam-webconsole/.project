@@ -3,6 +3,7 @@
   <comment>IDM Admin Console based on Struts but Migrating to Spring MVC</comment>
   <projects>
     <project>openiam-pojo-services</project>
+    <project>openiam-webcommon</project>
   </projects>
   <buildSpec>
     <buildCommand>

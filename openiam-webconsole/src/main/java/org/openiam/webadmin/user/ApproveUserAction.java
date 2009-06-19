@@ -53,11 +53,7 @@ public class ApproveUserAction extends NavigationDispatchAction {
 	// --------------------------------------------------------- Methods
 
 	public ApproveUserAction() {
-		try {
-			//userAccess = new UserAccess();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}		
+
 	}
 	
 	public void init() {

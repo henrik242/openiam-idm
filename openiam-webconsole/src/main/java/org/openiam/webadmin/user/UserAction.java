@@ -35,6 +35,7 @@ package org.openiam.webadmin.user;
 
 import org.openiam.spml2.interf.SpmlComplete;
 import org.openiam.spml2.msg.AddRequestType;
+import org.openiam.spml2.msg.ModifyRequestType;
 import org.openiam.spml2.msg.PSOIdentifierType;
 import org.openiam.webadmin.busdel.base.*;
 import org.openiam.webadmin.busdel.security.*;
@@ -241,7 +242,7 @@ public class UserAction extends NavigationDispatchAction  {
      		   userData.setUserId(personId);
      		   
      		   if (userForm.get("submit").equals("Unlock User")) {
-     		   		//userData.setStatusId("");
+     		   		userData.setStatus("APPROVED");
      		   }
      		   if (userForm.get("submit").equals("Blacklist User")){
      		   		userData.setStatus("BLACK LISTED");
@@ -311,15 +312,15 @@ public class UserAction extends NavigationDispatchAction  {
 		               
 		               logger.debug("client created " + client);
 		               
-		               AddRequestType addReqType = new AddRequestType();
+		               ModifyRequestType modReqType = new ModifyRequestType();
 		               PSOIdentifierType idType = new PSOIdentifierType(userData.getUserId(),null, "target");
-		               addReqType.setPsoID(idType);
-		               client.add(addReqType);
+		               modReqType.setPsoID(idType);
+		               client.modify(modReqType);
 		               
-		               logger.debug("client add operation called ");
+		               logger.debug("client modify operation called ");
             	   }
                }
-               //
+                            //
 	              // get the attributes
                updateAttributes(request,personId, userDataSrvc, userData.getMetadataTypeId());
 
@@ -428,7 +429,7 @@ public class UserAction extends NavigationDispatchAction  {
 	                auditService.addLog(log);
 	                        
 	                
-	                logger.debug("Calling provisioning connector service for new user");
+	              logger.debug("Calling provisioning connector service for new user");
 	                
 	                ConnectorDataService conDS = (ConnectorDataService) webContext.getBean("connectorService");
 	                ProvisionConnector[] conArray = conDS.getAllConnectors();
@@ -455,7 +456,7 @@ public class UserAction extends NavigationDispatchAction  {
 	 		               logger.debug("client add operation called ");
 	             	   }
 	                }
-
+	  
 
 
 	     
@@ -511,6 +512,10 @@ public class UserAction extends NavigationDispatchAction  {
      	// if we do, then update it. if we don't add it.
 
  		init();
+ 		
+ 		if (typeId == null ) {
+ 			return;
+ 		}
 		
     	MetadataElement[] elementAry = metadataSrvc.getMetadataElementByType(typeId);
      	

@@ -19,12 +19,21 @@
     </bean>    
 	<bean name="/admin/index"  class="org.openiam.webadmin.admin.AdminIndexAction">
     </bean>
-        
+	<bean name="/access/accessIndex"  class="org.openiam.webadmin.admin.AccessIndexAction">
+    </bean>
+	<bean name="/prov/provIndex"  class="org.openiam.webadmin.admin.ProvIndexAction">
+    </bean>        
 
 	<bean name="/idman/orgSearch"  class="org.openiam.webadmin.user.OrgSearchAction">
 		<property name="metadataService" ref="metadataService" />	
     </bean>  
-
+	<bean name="/idman/org"  class="org.openiam.webadmin.user.OrgAction">
+		<property name="metadataService" ref="metadataService" />	
+    </bean> 
+	<bean name="/idman/orgValidate"  class="org.openiam.webadmin.user.OrgAction">
+		<property name="metadataService" ref="metadataService" />	
+    </bean> 
+        
 
 	<bean name="/idman/approveUser" class="org.openiam.webadmin.user.ApproveUserAction" >
 		<property name="userMgr" ref="userManager" />
@@ -51,6 +60,10 @@
     <bean name="/idman/userValidate"  class="org.openiam.webadmin.user.UserAction">
      </bean>   	
 
+    <bean name="/idman/userNotes"  class="org.openiam.webadmin.user.UserNotesAction">
+    	<property name="userMgr" ref="userManager" />
+     </bean>  
+     
 
   
     <bean name="/idman/userSearch" class="org.openiam.webadmin.user.UserSearchAction">

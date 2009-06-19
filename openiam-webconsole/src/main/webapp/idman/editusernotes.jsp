@@ -36,7 +36,7 @@ function checkState(url, closeSelf) {
 <html:html>
 <body onload="checkState('idman/user.do?method=history',true);" >
 
-<html:form action = "/userNotes.do?method=saveNote" >
+<html:form action = "/idman/userNotes.do?method=saveNote" >
 <table width="100%" border="0" cellspacing="2" cellpadding="1" align="center">
    <tr>
       <td colspan="3" class="title">         

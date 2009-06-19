@@ -6,7 +6,7 @@ package org.openiam.webadmin.metadata;
  *
  *   OpenIAM Identity and Access Management Suite is free software: 
  *   you can redistribute it and/or modify
- *   it under the terms of the Lesser GNU General Public License 
+ *   it under the terms of the GNU General Public License 
  *   version 3 as published by the Free Software Foundation.
  *
  *   OpenIAM is distributed in the hope that it will be useful,
@@ -18,16 +18,6 @@ package org.openiam.webadmin.metadata;
  *  along with OpenIAM.  If not, see <http://www.gnu.org/licenses/>. *
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
-import java.util.ResourceBundle;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,21 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.BindException;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import org.openiam.idm.srvc.cat.dto.Category;
 import org.openiam.idm.srvc.cat.service.CategoryDataService;
 import org.openiam.idm.srvc.meta.dto.MetadataType;
 import org.openiam.idm.srvc.meta.service.MetadataService;
-import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
-import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
-import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
-import org.openiam.idm.srvc.prov.request.dto.RequestUser;
-import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
-import org.openiam.idm.srvc.secdomain.dto.SecurityDomain;
-import org.openiam.webadmin.conn.mngsys.ManagedSysConnectionCommand;
+
 
 public class MetadataTypeController extends SimpleFormController {
 

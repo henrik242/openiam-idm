@@ -35,7 +35,9 @@
   Iterator it = menuList.iterator();
 %>
   <tr><td class="title">
-    <b><bean:message key="permissions.heading"/></b>
+  	<select>
+  		<option>IDENTITY</option>>
+  	</select>
 <%
 
     while (it.hasNext()) {

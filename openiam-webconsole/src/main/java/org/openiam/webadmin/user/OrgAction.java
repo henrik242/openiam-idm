@@ -34,6 +34,8 @@ package org.openiam.webadmin.user;
 
 import org.openiam.webadmin.busdel.base.*;
 
+import org.openiam.idm.srvc.meta.dto.MetadataType;
+import org.openiam.idm.srvc.meta.service.MetadataService;
 import org.openiam.idm.srvc.org.service.OrganizationDataService;
 import org.openiam.idm.srvc.org.dto.Organization;
 
@@ -56,12 +58,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class OrgAction extends NavigationDispatchAction  {
 
-	MetadataAccess metaAccess = null;
+	MetadataService metadataService;
 
 	public OrgAction() {
 		try {
 
-		metaAccess = new MetadataAccess();
+		//metaAccess = new MetadataAccess();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -193,19 +195,13 @@ public class OrgAction extends NavigationDispatchAction  {
   
   
     private List getTypeList() throws RemoteException {
-    	ArrayList newCodeList = new ArrayList();
-    	metaAccess = new MetadataAccess();
-    	Map typeMap = metaAccess.getMetadataTypes("ORG_TYPE");
-      
-        if (typeMap != null && typeMap.size() > 0) {
+    	MetadataType[] typeAry = metadataService.getTypesInCategory("ORG_TYPE");
+    	ArrayList newCodeList = new ArrayList();     
+    	if (typeAry != null && typeAry.length > 0) {
         	newCodeList.add(new LabelValueBean("",""));
-        	Set set = typeMap.keySet();
-        	Iterator it = set.iterator();
-        	while (it.hasNext()) {
-        		String key = (String)it.next();
-        		String value = (String)typeMap.get(key);
-        		LabelValueBean label = new LabelValueBean(value,key);
-        	 	newCodeList.add(label);
+        	for ( MetadataType type: typeAry) {
+        		LabelValueBean label = new LabelValueBean(type.getDescription(),type.getMetadataTypeId());
+        		newCodeList.add(label);
         	}
 
         }
@@ -220,6 +216,16 @@ public class OrgAction extends NavigationDispatchAction  {
            	session.setAttribute("services", getTypeList());
            	
         } 		
+	}
+
+
+	public MetadataService getMetadataService() {
+		return metadataService;
+	}
+
+
+	public void setMetadataService(MetadataService metadataService) {
+		this.metadataService = metadataService;
 	}
 
 }

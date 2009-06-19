@@ -74,7 +74,6 @@ import diamelle.security.auth.GroupValue;
 public class IndexAction extends NavigationAction {
 	LoginAccess loginAccess = new LoginAccess();
 	SecurityAccess secAccess = new SecurityAccess();
-	//MetadataAccess metaAccess = new MetadataAccess();
 
 	ServiceAccess serviceAccess = null;
 	OrganizationDataService orgDataService;
@@ -98,7 +97,6 @@ public class IndexAction extends NavigationAction {
 		String langCd = locale.getLanguage();
 
 		HttpSession session = request.getSession();
-		//String userId = (String) session.getAttribute("userId");
 		String userId = request.getParameter("userId");
 		String login = request.getParameter("lg");
 		String menuId = request.getParameter("menuid");
@@ -137,7 +135,6 @@ public class IndexAction extends NavigationAction {
 	
 	private void loadStaticData(HttpSession session, ServletContext servletCtx) throws RemoteException {
 		session.setAttribute("operationList", getOperationStatusList());
-		//session.setAttribute("groupList", getGroupList());
 		session.setAttribute("countryList", getCountryList());
 		session.setAttribute("userTypes", this.getUserMetadataTypes());
 		session.setAttribute("companyList", getCompanyList());

@@ -147,14 +147,14 @@ function openNoteWin(url, title, form, width, height) {
 
   <tr>
        <td class="tddark" align="right" width="20%">Address</td>
-       <td class="tdlight" width="40%"  colspan="2"><%= JSPUtil.display( userForm.get("address1") )%>
+       <td class="tdlight" width="40%"  colspan="2"><%= JSPUtil.display( userForm.get("address1") )%></td>
        <td class="tddark" align="right" width="20%">Work Phone</td>
        <td class="tdlight" width="20%">
        (<%=JSPUtil.display(userForm.get("phone_areacd"))%>)<%=JSPUtil.display(userForm.get("phone_nbr"))%> </td>
    </tr>
  <tr>
        <td class="tddark" align="right" width="20%"></td>
-       <td class="tdlight" colspan=2><%=JSPUtil.display( userForm.get("address2") )%></td>
+       <td class="tdlight" colspan="2"><%=JSPUtil.display( userForm.get("address2") )%></td>
        <td class="tddark" align="right" width="20%">Cell Phone</td>
        <td class="tdlight" width="20%">
        (<%=JSPUtil.display(userForm.get("cell_areacd"))%>)<%=JSPUtil.display(userForm.get("cell_nbr"))%></td>
@@ -195,13 +195,13 @@ function openNoteWin(url, title, form, width, height) {
     <tr >
        <td colspan="5" align ="right">
        <% if ( !status.equalsIgnoreCase("DELETED")) {%>
-       <html:submit property="submit" value="Delete User" onclick="openNoteWin('userNotes.do?method=newNote&mode=DL', 'Address', this.form,425,225);return false;"/>
+       <html:submit property="submit" value="Delete User" onclick="openNoteWin('<%=request.getContextPath() %>/idman/userNotes.do?method=newNote&mode=DL', 'Address', this.form,425,225);return false;"/>
        <% } %>
        <% if ( !status.equalsIgnoreCase("BLACK LISTED") && !status.equalsIgnoreCase("DELETED")) {%>
-       <html:submit property="submit" value="Blacklist User" onclick="openNoteWin('userNotes.do?method=newNote&mode=BL', 'Address', this.form,425,225); return false;"/>
+       <html:submit property="submit" value="Blacklist User" onclick="openNoteWin('<%=request.getContextPath() %>/idman/userNotes.do?method=newNote&mode=BL', 'Address', this.form,425,225); return false;"/>
       <% } %>
       <% if ( status.equalsIgnoreCase("BLACK LISTED") && !status.equalsIgnoreCase("DELETED")) {%> 
-       <html:submit property="submit" value="Un-Blacklist User" onclick="openNoteWin('userNotes.do?method=newNote&mode=UB', 'Address', this.form,425,225); return false;"/>
+       <html:submit property="submit" value="Un-Blacklist User" onclick="openNoteWin('<%=request.getContextPath() %>/idman/userNotes.do?method=newNote&mode=UB', 'Address', this.form,425,225); return false;"/>
       <% } %>
 
        </td>

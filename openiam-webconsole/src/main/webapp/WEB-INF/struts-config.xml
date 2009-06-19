@@ -540,6 +540,14 @@
 			<forward name="success" path="/home.jsp?bodyjsp=blank.jsp"/>
          	<forward name="failure" path="/home.jsp"/>
      </action>
+	 <action path="/prov/provIndex" type="org.springframework.web.struts.DelegatingActionProxy">				
+			<forward name="success" path="/home.jsp?bodyjsp=blank.jsp"/>
+         	<forward name="failure" path="/home.jsp"/>
+     </action>
+	 <action path="/access/accessIndex" type="org.springframework.web.struts.DelegatingActionProxy">				
+			<forward name="success" path="/home.jsp?bodyjsp=blank.jsp"/>
+         	<forward name="failure" path="/home.jsp"/>
+     </action>     
 
     <action    path="/idman/userSearch"
                type="org.springframework.web.struts.DelegatingActionProxy"
@@ -561,7 +569,7 @@
     
    
     <action    path="/idman/org"
-               type="org.openiam.webadmin.user.OrgAction"
+               type="org.springframework.web.struts.DelegatingActionProxy"
                name="orgForm" parameter="method"
                scope="request" validate="false" unknown="false">
     
@@ -572,7 +580,7 @@
     </action>
 
     <action    path="/idman/orgValidate"
-               type="org.openiam.webadmin.user.OrgAction"
+               type="org.springframework.web.struts.DelegatingActionProxy"
                name="orgForm"
                parameter="method"
                scope="request"
@@ -625,13 +633,13 @@
           <forward name="success"         path="/idman/user.do?method=identities"/>     
     </action>    
 
-      <action path="/userNotes" 
+      <action path="/idman/userNotes" 
          input="/idman/editusernotes.jsp"  name="userNotesForm"   parameter="method"
-         scope="request"           type="org.openiam.webadmin.user.UserNotesAction">
+         scope="request"           type="org.springframework.web.struts.DelegatingActionProxy">
          
-         <forward name="success" path="/user.do?method=history" />
+         <forward name="success" path="/idman/user.do?method=history" />
          <forward name="new" path="/idman/editusernotes.jsp" />
-         <forward name="saved" path="/userNotes.do?method=newNote" />
+         <forward name="saved" path="/idman/userNotes.do?method=newNote" />
       
       </action>    
      

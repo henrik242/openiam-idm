@@ -14,14 +14,15 @@
  		int recordCount = 0;
  		int curPage = 0;
  		
- 		Integer pageCount = (Integer)request.getAttribute("pageCount");
+ 		//Integer pageCount = (Integer)request.getAttribute("pageCount");
  		Integer resultSize = (Integer)request.getAttribute("resultSize");
- 		Integer currentPage = (Integer)request.getAttribute("currentPage");
- 		curPage = currentPage.intValue();
+ 		//Integer currentPage = (Integer)request.getAttribute("currentPage");
+ 		//curPage = currentPage.intValue();
 
- 		if (pageCount != null) {
- 			size = pageCount.intValue();
- 		}
+ 		//if (pageCount != null) {
+ 		//	size = pageCount.intValue();
+ 		//}
+ 		
  		if (resultSize != null) {
  			recordCount = resultSize.intValue();
  		}

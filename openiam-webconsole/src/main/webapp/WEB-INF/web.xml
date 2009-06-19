@@ -132,7 +132,7 @@
     <description>Root menu group to get applications</description>
     <env-entry-name>rootPermissionMenu</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
-    <env-entry-value>ROOT</env-entry-value>
+    <env-entry-value>IDM</env-entry-value>
   </env-entry>
   <env-entry>
     <env-entry-name>rootCategory</env-entry-name>

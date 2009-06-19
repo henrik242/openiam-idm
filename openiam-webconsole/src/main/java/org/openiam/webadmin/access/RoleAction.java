@@ -804,9 +804,9 @@ public class RoleAction extends NavigationDispatchAction {
 				"security/role.do?method=editRole", "role.jsp");
 		l.add(option);
 
-		option = new TabOption("Access Controls", false, "security/role.do?method=acl",
-				"roleresources.jsp");
-		l.add(option);
+		//option = new TabOption("Access Controls", false, "security/role.do?method=acl",
+		//		"roleresources.jsp");
+		//l.add(option);
 	
 		option = new TabOption("Permissions", false,
 				"security/role.do?method=permissions", "permissionlist.jsp");
