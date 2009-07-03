@@ -298,7 +298,7 @@ CREATE TABLE POLICY (
 CREATE TABLE POLICY_MEMBERSHIP (
        POLICY_MEM_ID        varchar(32) NOT NULL,
        POLICY_ID            varchar(32) NULL,
-       SERVICE_ID           varchar(20) NULL,
+       DOMAIN_ID           	varchar(20) NULL,
        RESOURCE_TYPE        varchar(20) NULL,
        RESOURCE_OBJ_ID      varchar(20) NULL,
        PRIMARY KEY (POLICY_MEM_ID), 
