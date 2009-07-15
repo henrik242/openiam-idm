@@ -1,0 +1,2926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="RoleDataService" resourceRoot="" soapui-version="2.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">C:\workspace\idm\idm-ws\soap-ui-test</con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RoleDataServiceBinding" type="wsdl" bindingName="{urn:idm.openiam.org/srvc/role/service}RoleDataServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/idm-ws/RoleDataWebService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/idm-ws/RoleDataWebService?wsdl"><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=organization.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/org/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:metadata="urn:idm.openiam.org/srvc/meta/dto" xmlns:tns="urn:idm.openiam.org/srvc/org/dto">
+  <import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd"/>
+  <complexType name="organization">
+    <sequence>
+      <element minOccurs="0" name="alias" type="string"/>
+      <element minOccurs="0" name="attributes" type="tns:organizationAttributeMap"/>
+      <element minOccurs="0" name="createDate" type="dateTime"/>
+      <element minOccurs="0" name="createdBy" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="domainName" type="string"/>
+      <element minOccurs="0" name="ldapStr" type="string"/>
+      <element minOccurs="0" name="lstUpdate" type="dateTime"/>
+      <element minOccurs="0" name="lstUpdatedBy" type="string"/>
+      <element minOccurs="0" name="metadataType" type="string"/>
+      <element minOccurs="0" name="orgId" type="string"/>
+      <element minOccurs="0" name="organizationName" type="string"/>
+      <element minOccurs="0" name="parentId" type="string"/>
+      <element minOccurs="0" name="status" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="organizationAttribute">
+    <sequence>
+      <element minOccurs="0" name="attrId" type="string"/>
+      <element minOccurs="0" name="metadataElement" type="metadata:metadataElement"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element minOccurs="0" name="org" type="tns:organization"/>
+      <element minOccurs="0" name="value" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="organizationAttributeMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="organizationAttributeEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="organizationAttribute" type="tns:organizationAttribute"/>
+          </sequence>
+          <attribute name="id" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="organizationAttributeSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="organizationAttributeObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="organizationAttribute" type="tns:organizationAttribute"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=group.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies)-->
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/grp/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:meta="urn:idm.openiam.org/srvc/meta/dto" xmlns:role="urn:idm.openiam.org/srvc/role/dto" xmlns:tns="urn:idm.openiam.org/srvc/grp/dto" xmlns:user="urn:idm.openiam.org/srvc/user/dto">
+  <import namespace="urn:idm.openiam.org/srvc/role/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=role.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/user/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=user.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd"/>
+  <complexType name="group">
+    <sequence>
+      <element minOccurs="0" name="roles" type="role:roleSet"/>
+      <element minOccurs="0" name="attributes" type="tns:groupAttributeMap"/>
+      <element minOccurs="0" name="users" type="user:userSet"/>
+      <element minOccurs="0" name="companyId" type="string"/>
+      <element minOccurs="0" name="createDate" type="dateTime"/>
+      <element minOccurs="0" name="createdBy" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="groupClass" type="string"/>
+      <element minOccurs="0" name="grpId" type="string"/>
+      <element minOccurs="0" name="grpName" type="string"/>
+      <element minOccurs="0" name="inheritFromParent" type="boolean"/>
+      <element minOccurs="0" name="lastUpdate" type="dateTime"/>
+      <element minOccurs="0" name="lastUpdatedBy" type="string"/>
+      <element minOccurs="0" name="parentGrpId" type="string"/>
+      <element minOccurs="0" name="provisionMethod" type="string"/>
+      <element minOccurs="0" name="provisionObjName" type="string"/>
+      <element minOccurs="0" name="status" type="string"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="subGroup" type="tns:group"/>
+    </sequence>
+  </complexType>
+  <complexType name="groupSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="groupObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="group" type="tns:group"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="groupAttribute">
+    <sequence>
+      <element minOccurs="0" name="groupId" type="string"/>
+      <element minOccurs="0" name="id" type="string"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element minOccurs="0" name="value" type="string"/>
+      <element minOccurs="0" name="metadataElement" type="meta:metadataElement"/>
+    </sequence>
+  </complexType>
+  <complexType name="groupAttributeMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="groupAttributeEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="groupAttribute" type="tns:groupAttribute"/>
+          </sequence>
+          <attribute name="key" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=continfo.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/continfo/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/continfo/dto">
+  <complexType name="address">
+    <sequence>
+      <element minOccurs="0" name="isActive" type="boolean"/>
+      <element minOccurs="0" name="address1" type="string"/>
+      <element minOccurs="0" name="address2" type="string"/>
+      <element minOccurs="0" name="address3" type="string"/>
+      <element minOccurs="0" name="address4" type="string"/>
+      <element minOccurs="0" name="address5" type="string"/>
+      <element minOccurs="0" name="address6" type="string"/>
+      <element minOccurs="0" name="address7" type="string"/>
+      <element minOccurs="0" name="addressId" type="string"/>
+      <element minOccurs="0" name="city" type="string"/>
+      <element minOccurs="0" name="country" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="isDefault" type="int"/>
+      <element minOccurs="0" name="parentId" type="string"/>
+      <element minOccurs="0" name="parentType" type="string"/>
+      <element minOccurs="0" name="postalCd" type="string"/>
+      <element minOccurs="0" name="state" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="addressMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="addressEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="address" type="tns:address"/>
+          </sequence>
+          <attribute name="key" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="emailAddress">
+    <sequence>
+      <element minOccurs="0" name="isActive" type="boolean"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="emailAddress" type="string"/>
+      <element minOccurs="0" name="emailId" type="string"/>
+      <element minOccurs="0" name="isDefault" type="int"/>
+      <element minOccurs="0" name="parentId" type="string"/>
+      <element minOccurs="0" name="parentType" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="emailAddressMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="emailAddressEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="emailAddress" type="tns:emailAddress"/>
+          </sequence>
+          <attribute name="key" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="phone">
+    <sequence>
+      <element minOccurs="0" name="isActive" type="boolean"/>
+      <element minOccurs="0" name="areaCd" type="string"/>
+      <element minOccurs="0" name="countryCd" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="isDefault" type="int"/>
+      <element minOccurs="0" name="parentId" type="string"/>
+      <element minOccurs="0" name="parentType" type="string"/>
+      <element minOccurs="0" name="phoneExt" type="string"/>
+      <element minOccurs="0" name="phoneId" type="string"/>
+      <element minOccurs="0" name="phoneNbr" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="phoneMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="phoneEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="phone" type="tns:phone"/>
+          </sequence>
+          <attribute name="key" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=user.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies)-->
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/user/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cont="urn:idm.openiam.org/srvc/continfo/dto" xmlns:meta="urn:idm.openiam.org/srvc/meta/dto" xmlns:tns="urn:idm.openiam.org/srvc/user/dto">
+  <import namespace="urn:idm.openiam.org/srvc/continfo/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=continfo.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd"/>
+  <complexType name="userAttribute">
+    <sequence>
+      <element minOccurs="0" name="id" type="string"/>
+      <element minOccurs="0" name="metadataId" type="string"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element minOccurs="0" name="userId" type="string"/>
+      <element minOccurs="0" name="value" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="userAttributeMap">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="userAttributeEntry">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="userAttribute" type="tns:userAttribute"/>
+          </sequence>
+          <attribute name="key" type="string"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="userAttributeSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="userAttributeObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="userAttribute" type="tns:userAttribute"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="userNote">
+    <sequence>
+      <element minOccurs="0" name="createDate" type="dateTime"/>
+      <element minOccurs="0" name="createdBy" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="noteType" type="string"/>
+      <element minOccurs="0" name="userId" type="string"/>
+      <element minOccurs="0" name="userNoteId" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="userNoteSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="userNoteItem">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="userNote" type="tns:userNote"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="supervisor">
+    <sequence>
+      <element minOccurs="0" name="comments" type="string"/>
+      <element minOccurs="0" name="employee" type="tns:user"/>
+      <element minOccurs="0" name="endDate" type="dateTime"/>
+      <element minOccurs="0" name="isPrimarySuper" type="int"/>
+      <element minOccurs="0" name="orgStructureId" type="string"/>
+      <element minOccurs="0" name="startDate" type="dateTime"/>
+      <element minOccurs="0" name="status" type="string"/>
+      <element minOccurs="0" name="supervisor" type="tns:user"/>
+      <element minOccurs="0" name="supervisorType" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="baseObject">
+    <sequence>
+      <element minOccurs="0" name="objectState" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="user">
+    <complexContent>
+      <extension base="tns:baseObject">
+        <sequence>
+          <element minOccurs="0" name="addresses" type="cont:addressMap"/>
+          <element minOccurs="0" name="birthdate" type="dateTime"/>
+          <element minOccurs="0" name="companyId" type="string"/>
+          <element minOccurs="0" name="companyOwnerId" type="string"/>
+          <element minOccurs="0" name="createDate" type="dateTime"/>
+          <element minOccurs="0" name="createdBy" type="string"/>
+          <element minOccurs="0" name="dept" type="string"/>
+          <element minOccurs="0" name="emailAddresses" type="cont:emailAddressMap"/>
+          <element minOccurs="0" name="employeeId" type="string"/>
+          <element minOccurs="0" name="employeeType" type="string"/>
+          <element minOccurs="0" name="expirationDate" type="dateTime"/>
+          <element minOccurs="0" name="firstName" type="string"/>
+          <element minOccurs="0" name="jobCode" type="string"/>
+          <element minOccurs="0" name="lastName" type="string"/>
+          <element minOccurs="0" name="lastUpdate" type="dateTime"/>
+          <element minOccurs="0" name="lastUpdatedBy" type="string"/>
+          <element minOccurs="0" name="locationId" type="string"/>
+          <element minOccurs="0" name="managerId" type="string"/>
+          <element minOccurs="0" name="metadataType" type="meta:metadataType"/>
+          <element minOccurs="0" name="middleInit" type="string"/>
+          <element minOccurs="0" name="phones" type="cont:phoneMap"/>
+          <element minOccurs="0" name="prefix" type="string"/>
+          <element minOccurs="0" name="sex" type="string"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="suffix" type="string"/>
+          <element minOccurs="0" name="title" type="string"/>
+          <element minOccurs="0" name="userAttributes" type="tns:userAttributeMap"/>
+          <element minOccurs="0" name="userId" type="string"/>
+          <element minOccurs="0" name="userTypeInd" type="string"/>
+          <element minOccurs="0" name="userNotes" type="tns:userNoteSet"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="userSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="userObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="user" type="tns:user"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=role.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies)-->
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/role/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:grp="urn:idm.openiam.org/srvc/grp/dto" xmlns:meta="urn:idm.openiam.org/srvc/meta/dto" xmlns:tns="urn:idm.openiam.org/srvc/role/dto" xmlns:user="urn:idm.openiam.org/srvc/user/dto">
+  <import namespace="urn:idm.openiam.org/srvc/grp/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=group.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/user/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=user.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd"/>
+  <complexType name="roleSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="roleObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="role" type="tns:role"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="role">
+    <sequence>
+      <element minOccurs="0" name="createDate" type="dateTime"/>
+      <element minOccurs="0" name="createdBy" type="string"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="groups" type="grp:groupSet"/>
+      <element minOccurs="0" name="id" type="tns:roleId"/>
+      <element minOccurs="0" name="provisionObjName" type="string"/>
+      <element minOccurs="0" name="parentRoleId" type="string"/>
+      <element minOccurs="0" name="roleAttributes" type="tns:roleAttributeSet"/>
+      <element minOccurs="0" name="roleName" type="string"/>
+      <element minOccurs="0" name="userAssociationMethod" type="int"/>
+      <element minOccurs="0" name="users" type="user:userSet"/>
+    </sequence>
+  </complexType>
+  <complexType name="roleId">
+    <sequence>
+      <element minOccurs="0" name="roleId" type="string"/>
+      <element minOccurs="0" name="serviceId" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="roleAttribute">
+    <sequence>
+      <element minOccurs="0" name="metadataId" type="string"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element minOccurs="0" name="roleAttrId" type="string"/>
+      <element minOccurs="0" name="roleId" type="string"/>
+      <element minOccurs="0" name="serviceId" type="string"/>
+      <element minOccurs="0" name="value" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="roleAttributeSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="roleAttributeObj">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="roleAttribute" type="tns:roleAttribute"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="RoleDataWebService" targetNamespace="urn:idm.openiam.org/srvc/role/service" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:grp="urn:idm.openiam.org/srvc/grp/dto" xmlns:meta="urn:idm.openiam.org/srvc/meta/dto" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="urn:idm.openiam.org/srvc/continfo/dto" xmlns:ns2="urn:idm.openiam.org/srvc/org/dto" xmlns:role="urn:idm.openiam.org/srvc/role/dto" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:idm.openiam.org/srvc/role/service" xmlns:types="urn:idm.openiam.org/srvc/role/types" xmlns:user="urn:idm.openiam.org/srvc/user/dto" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/role/types" xmlns:tns="urn:idm.openiam.org/srvc/role/types">
+      <import namespace="urn:idm.openiam.org/srvc/grp/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=group.xsd"/>
+      <import namespace="urn:idm.openiam.org/srvc/user/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=user.xsd"/>
+      <import namespace="urn:idm.openiam.org/srvc/role/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=role.xsd"/>
+      <import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd"/>
+      <complexType name="getAllAttributes">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getAllAttributesResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:roleAttribute"/>
+        </sequence>
+      </complexType>
+      <complexType name="getUserRolesByService">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="userId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getUserRolesByServiceResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeGroupFromRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="groupId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeGroupFromRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="removeAllGroupsFromRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeAllGroupsFromRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="updateAttribute">
+        <sequence>
+          <element minOccurs="0" name="roleAttribute" type="role:roleAttribute"/>
+        </sequence>
+      </complexType>
+      <complexType name="updateAttributeResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="isUserInRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="userId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="isUserInRoleResponse">
+        <sequence>
+          <element name="return" type="boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="addRole">
+        <sequence>
+          <element minOccurs="0" name="role" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="addRoleResponse">
+        <sequence>
+          <element minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRolesInService">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRolesInServiceResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="getUserRoles">
+        <sequence>
+          <element minOccurs="0" name="userId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getUserRolesResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRoleResponse">
+        <sequence>
+          <element minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRoleWithDependants">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRoleWithDependantsResponse">
+        <sequence>
+          <element minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeUserFromRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="userId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeUserFromRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="removeAllAttributes">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeAllAttributesResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="isGroupInRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="groupId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="isGroupInRoleResponse">
+        <sequence>
+          <element name="return" type="boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="updateRole">
+        <sequence>
+          <element minOccurs="0" name="role" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="updateRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="getRolesInGroup">
+        <sequence>
+          <element minOccurs="0" name="groupId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getRolesInGroupResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="addAttribute">
+        <sequence>
+          <element minOccurs="0" name="roleAttribute" type="role:roleAttribute"/>
+        </sequence>
+      </complexType>
+      <complexType name="addAttributeResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="getAttribute">
+        <sequence>
+          <element minOccurs="0" name="attrId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getAttributeResponse">
+        <sequence>
+          <element minOccurs="0" name="return" type="role:roleAttribute"/>
+        </sequence>
+      </complexType>
+      <complexType name="addGroupToRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="groupId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="addGroupToRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="addUserToRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+          <element minOccurs="0" name="userId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="addUserToRoleResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="removeAttribute">
+        <sequence>
+          <element minOccurs="0" name="roleAttribute" type="role:roleAttribute"/>
+        </sequence>
+      </complexType>
+      <complexType name="removeAttributeResponse">
+        <sequence/>
+      </complexType>
+      <complexType name="getAllRoles">
+        <sequence/>
+      </complexType>
+      <complexType name="getAllRolesResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="role:role"/>
+        </sequence>
+      </complexType>
+      <complexType name="getGroupsInRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getGroupsInRoleResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="grp:group"/>
+        </sequence>
+      </complexType>
+      <complexType name="getUsersInRole">
+        <sequence>
+          <element minOccurs="0" name="serviceId" type="string"/>
+          <element minOccurs="0" name="roleId" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="getUsersInRoleResponse">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="return" type="user:user"/>
+        </sequence>
+      </complexType>
+      <element name="addAttribute" type="tns:addAttribute"/>
+      <element name="addAttributeResponse" type="tns:addAttributeResponse"/>
+      <element name="addGroupToRole" type="tns:addGroupToRole"/>
+      <element name="addGroupToRoleResponse" type="tns:addGroupToRoleResponse"/>
+      <element name="addRole" type="tns:addRole"/>
+      <element name="addRoleResponse" type="tns:addRoleResponse"/>
+      <element name="addUserToRole" type="tns:addUserToRole"/>
+      <element name="addUserToRoleResponse" type="tns:addUserToRoleResponse"/>
+      <element name="getAllAttributes" type="tns:getAllAttributes"/>
+      <element name="getAllAttributesResponse" type="tns:getAllAttributesResponse"/>
+      <element name="getAllRoles" type="tns:getAllRoles"/>
+      <element name="getAllRolesResponse" type="tns:getAllRolesResponse"/>
+      <element name="getAttribute" type="tns:getAttribute"/>
+      <element name="getAttributeResponse" type="tns:getAttributeResponse"/>
+      <element name="getRole" type="tns:getRole"/>
+      <element name="getRoleResponse" type="tns:getRoleResponse"/>
+      <element name="getRoleWithDependants" type="tns:getRoleWithDependants"/>
+      <element name="getRoleWithDependantsResponse" type="tns:getRoleWithDependantsResponse"/>
+      <element name="getRolesInGroup" type="tns:getRolesInGroup"/>
+      <element name="getRolesInGroupResponse" type="tns:getRolesInGroupResponse"/>
+      <element name="getRolesInService" type="tns:getRolesInService"/>
+      <element name="getRolesInServiceResponse" type="tns:getRolesInServiceResponse"/>
+      <element name="getUserRoles" type="tns:getUserRoles"/>
+      <element name="getUserRolesByService" type="tns:getUserRolesByService"/>
+      <element name="getUserRolesByServiceResponse" type="tns:getUserRolesByServiceResponse"/>
+      <element name="getUserRolesResponse" type="tns:getUserRolesResponse"/>
+      <element name="isGroupInRole" type="tns:isGroupInRole"/>
+      <element name="isGroupInRoleResponse" type="tns:isGroupInRoleResponse"/>
+      <element name="isUserInRole" type="tns:isUserInRole"/>
+      <element name="isUserInRoleResponse" type="tns:isUserInRoleResponse"/>
+      <element name="removeAllAttributes" type="tns:removeAllAttributes"/>
+      <element name="removeAllAttributesResponse" type="tns:removeAllAttributesResponse"/>
+      <element name="removeAllGroupsFromRole" type="tns:removeAllGroupsFromRole"/>
+      <element name="removeAllGroupsFromRoleResponse" type="tns:removeAllGroupsFromRoleResponse"/>
+      <element name="removeAttribute" type="tns:removeAttribute"/>
+      <element name="removeAttributeResponse" type="tns:removeAttributeResponse"/>
+      <element name="removeGroupFromRole" type="tns:removeGroupFromRole"/>
+      <element name="removeGroupFromRoleResponse" type="tns:removeGroupFromRoleResponse"/>
+      <element name="removeRole" type="tns:removeRole"/>
+      <element name="removeRoleResponse" type="tns:removeRoleResponse"/>
+      <element name="removeUserFromRole" type="tns:removeUserFromRole"/>
+      <element name="removeUserFromRoleResponse" type="tns:removeUserFromRoleResponse"/>
+      <element name="updateAttribute" type="tns:updateAttribute"/>
+      <element name="updateAttributeResponse" type="tns:updateAttributeResponse"/>
+      <element name="updateRole" type="tns:updateRole"/>
+      <element name="updateRoleResponse" type="tns:updateRoleResponse"/>
+      <element name="getGroupsInRole" type="tns:getGroupsInRole"/>
+      <element name="getGroupsInRoleResponse" type="tns:getGroupsInRoleResponse"/>
+      <element name="getUsersInRole" type="tns:getUsersInRole"/>
+      <element name="getUsersInRoleResponse" type="tns:getUsersInRoleResponse"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="isUserInRole">
+    <wsdl:part element="types:isUserInRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesInGroup">
+    <wsdl:part element="types:getRolesInGroup" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRoleResponse">
+    <wsdl:part element="types:getRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRoleResponse">
+    <wsdl:part element="types:addRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRoleWithDependants">
+    <wsdl:part element="types:getRoleWithDependants" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllGroupsFromRole">
+    <wsdl:part element="types:removeAllGroupsFromRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttributeResponse">
+    <wsdl:part element="types:removeAttributeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUserFromRoleResponse">
+    <wsdl:part element="types:removeUserFromRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttributeResponse">
+    <wsdl:part element="types:addAttributeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRoles">
+    <wsdl:part element="types:getUserRoles" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRole">
+    <wsdl:part element="types:getRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersInRoleResponse">
+    <wsdl:part element="types:getUsersInRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRole">
+    <wsdl:part element="types:addRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeGroupFromRoleResponse">
+    <wsdl:part element="types:removeGroupFromRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addGroupToRole">
+    <wsdl:part element="types:addGroupToRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttributeResponse">
+    <wsdl:part element="types:getAttributeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttribute">
+    <wsdl:part element="types:addAttribute" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeGroupFromRole">
+    <wsdl:part element="types:removeGroupFromRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttribute">
+    <wsdl:part element="types:removeAttribute" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isGroupInRoleResponse">
+    <wsdl:part element="types:isGroupInRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesInService">
+    <wsdl:part element="types:getRolesInService" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRolesResponse">
+    <wsdl:part element="types:getUserRolesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttribute">
+    <wsdl:part element="types:updateAttribute" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGroupsInRoleResponse">
+    <wsdl:part element="types:getGroupsInRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttribute">
+    <wsdl:part element="types:getAttribute" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesInServiceResponse">
+    <wsdl:part element="types:getRolesInServiceResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRolesByService">
+    <wsdl:part element="types:getUserRolesByService" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllAttributesResponse">
+    <wsdl:part element="types:removeAllAttributesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUserFromRole">
+    <wsdl:part element="types:removeUserFromRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllAttributes">
+    <wsdl:part element="types:removeAllAttributes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesInGroupResponse">
+    <wsdl:part element="types:getRolesInGroupResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addGroupToRoleResponse">
+    <wsdl:part element="types:addGroupToRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributesResponse">
+    <wsdl:part element="types:getAllAttributesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isGroupInRole">
+    <wsdl:part element="types:isGroupInRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRoles">
+    <wsdl:part element="types:getAllRoles" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserToRoleResponse">
+    <wsdl:part element="types:addUserToRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isUserInRoleResponse">
+    <wsdl:part element="types:isUserInRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRole">
+    <wsdl:part element="types:removeRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributes">
+    <wsdl:part element="types:getAllAttributes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttributeResponse">
+    <wsdl:part element="types:updateAttributeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateRole">
+    <wsdl:part element="types:updateRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserToRole">
+    <wsdl:part element="types:addUserToRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllGroupsFromRoleResponse">
+    <wsdl:part element="types:removeAllGroupsFromRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRoleWithDependantsResponse">
+    <wsdl:part element="types:getRoleWithDependantsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRoleResponse">
+    <wsdl:part element="types:removeRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersInRole">
+    <wsdl:part element="types:getUsersInRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateRoleResponse">
+    <wsdl:part element="types:updateRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRolesResponse">
+    <wsdl:part element="types:getAllRolesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGroupsInRole">
+    <wsdl:part element="types:getGroupsInRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRolesByServiceResponse">
+    <wsdl:part element="types:getUserRolesByServiceResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RoleDataService">
+    <wsdl:operation name="getAllAttributes">
+      <wsdl:input message="tns:getAllAttributes" name="getAllAttributes"></wsdl:input>
+      <wsdl:output message="tns:getAllAttributesResponse" name="getAllAttributesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRolesByService">
+      <wsdl:input message="tns:getUserRolesByService" name="getUserRolesByService"></wsdl:input>
+      <wsdl:output message="tns:getUserRolesByServiceResponse" name="getUserRolesByServiceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeGroupFromRole">
+      <wsdl:input message="tns:removeGroupFromRole" name="removeGroupFromRole"></wsdl:input>
+      <wsdl:output message="tns:removeGroupFromRoleResponse" name="removeGroupFromRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllGroupsFromRole">
+      <wsdl:input message="tns:removeAllGroupsFromRole" name="removeAllGroupsFromRole"></wsdl:input>
+      <wsdl:output message="tns:removeAllGroupsFromRoleResponse" name="removeAllGroupsFromRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttribute">
+      <wsdl:input message="tns:updateAttribute" name="updateAttribute"></wsdl:input>
+      <wsdl:output message="tns:updateAttributeResponse" name="updateAttributeResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUserInRole">
+      <wsdl:input message="tns:isUserInRole" name="isUserInRole"></wsdl:input>
+      <wsdl:output message="tns:isUserInRoleResponse" name="isUserInRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <wsdl:input message="tns:addRole" name="addRole"></wsdl:input>
+      <wsdl:output message="tns:addRoleResponse" name="addRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesInService">
+      <wsdl:input message="tns:getRolesInService" name="getRolesInService"></wsdl:input>
+      <wsdl:output message="tns:getRolesInServiceResponse" name="getRolesInServiceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <wsdl:input message="tns:removeRole" name="removeRole"></wsdl:input>
+      <wsdl:output message="tns:removeRoleResponse" name="removeRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRoles">
+      <wsdl:input message="tns:getUserRoles" name="getUserRoles"></wsdl:input>
+      <wsdl:output message="tns:getUserRolesResponse" name="getUserRolesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRole">
+      <wsdl:input message="tns:getRole" name="getRole"></wsdl:input>
+      <wsdl:output message="tns:getRoleResponse" name="getRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRoleWithDependants">
+      <wsdl:input message="tns:getRoleWithDependants" name="getRoleWithDependants"></wsdl:input>
+      <wsdl:output message="tns:getRoleWithDependantsResponse" name="getRoleWithDependantsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUserFromRole">
+      <wsdl:input message="tns:removeUserFromRole" name="removeUserFromRole"></wsdl:input>
+      <wsdl:output message="tns:removeUserFromRoleResponse" name="removeUserFromRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllAttributes">
+      <wsdl:input message="tns:removeAllAttributes" name="removeAllAttributes"></wsdl:input>
+      <wsdl:output message="tns:removeAllAttributesResponse" name="removeAllAttributesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isGroupInRole">
+      <wsdl:input message="tns:isGroupInRole" name="isGroupInRole"></wsdl:input>
+      <wsdl:output message="tns:isGroupInRoleResponse" name="isGroupInRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateRole">
+      <wsdl:input message="tns:updateRole" name="updateRole"></wsdl:input>
+      <wsdl:output message="tns:updateRoleResponse" name="updateRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesInGroup">
+      <wsdl:input message="tns:getRolesInGroup" name="getRolesInGroup"></wsdl:input>
+      <wsdl:output message="tns:getRolesInGroupResponse" name="getRolesInGroupResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttribute">
+      <wsdl:input message="tns:addAttribute" name="addAttribute"></wsdl:input>
+      <wsdl:output message="tns:addAttributeResponse" name="addAttributeResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttribute">
+      <wsdl:input message="tns:getAttribute" name="getAttribute"></wsdl:input>
+      <wsdl:output message="tns:getAttributeResponse" name="getAttributeResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addGroupToRole">
+      <wsdl:input message="tns:addGroupToRole" name="addGroupToRole"></wsdl:input>
+      <wsdl:output message="tns:addGroupToRoleResponse" name="addGroupToRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUserToRole">
+      <wsdl:input message="tns:addUserToRole" name="addUserToRole"></wsdl:input>
+      <wsdl:output message="tns:addUserToRoleResponse" name="addUserToRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <wsdl:input message="tns:removeAttribute" name="removeAttribute"></wsdl:input>
+      <wsdl:output message="tns:removeAttributeResponse" name="removeAttributeResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <wsdl:input message="tns:getAllRoles" name="getAllRoles"></wsdl:input>
+      <wsdl:output message="tns:getAllRolesResponse" name="getAllRolesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroupsInRole">
+      <wsdl:input message="tns:getGroupsInRole" name="getGroupsInRole"></wsdl:input>
+      <wsdl:output message="tns:getGroupsInRoleResponse" name="getGroupsInRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersInRole">
+      <wsdl:input message="tns:getUsersInRole" name="getUsersInRole"></wsdl:input>
+      <wsdl:output message="tns:getUsersInRoleResponse" name="getUsersInRoleResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoleDataServiceBinding" type="tns:RoleDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllAttributes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRolesByService">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserRolesByService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserRolesByServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeGroupFromRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeGroupFromRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeGroupFromRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllGroupsFromRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllGroupsFromRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllGroupsFromRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUserInRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isUserInRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isUserInRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesInService">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRolesInService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRolesInServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRoleWithDependants">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRoleWithDependants">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRoleWithDependantsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUserFromRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeUserFromRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeUserFromRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllAttributes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isGroupInRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isGroupInRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isGroupInRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesInGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRolesInGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRolesInGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addGroupToRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addGroupToRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addGroupToRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUserToRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addUserToRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addUserToRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroupsInRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGroupsInRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGroupsInRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersInRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsersInRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersInRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoleDataWebService">
+    <wsdl:port binding="tns:RoleDataServiceBinding" name="RoleDataServicePort">
+      <soap:address location="http://localhost:8080/idm-ws/RoleDataWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/idm-ws/RoleDataWebService?xsd=metadata.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies)-->
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/meta/dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:org="urn:idm.openiam.org/srvc/org/dto" xmlns:tns="urn:idm.openiam.org/srvc/meta/dto" xmlns:user="urn:idm.openiam.org/srvc/user/dto">
+  <import namespace="urn:idm.openiam.org/srvc/user/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=user.xsd"/>
+  <import namespace="urn:idm.openiam.org/srvc/org/dto" schemaLocation="http://localhost:8080/idm-ws/RoleDataWebService?xsd=organization.xsd"/>
+  <complexType name="metadataType">
+    <sequence>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="typeId" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="metadataElement">
+    <sequence>
+      <element minOccurs="0" name="attributeName" type="string"/>
+      <element minOccurs="0" name="attributeType" type="string"/>
+      <element minOccurs="0" name="companyAttributes" type="org:organizationAttributeSet"/>
+      <element minOccurs="0" name="description" type="string"/>
+      <element minOccurs="0" name="displayHandler" type="string"/>
+      <element minOccurs="0" name="metadataId" type="string"/>
+      <element minOccurs="0" name="metadataOptions" type="tns:metadataOptionSet"/>
+      <element minOccurs="0" name="metadataType" type="tns:metadataType"/>
+      <element minOccurs="0" name="metadataValues" type="tns:metadataValueSet"/>
+      <element minOccurs="0" name="rank" type="int"/>
+      <element minOccurs="0" name="templateDetails" type="tns:templateDetailSet"/>
+      <element minOccurs="0" name="userAttributes" type="user:userAttributeSet"/>
+    </sequence>
+  </complexType>
+  <complexType name="metadataOption">
+    <sequence>
+      <element minOccurs="0" name="metadataValueId" type="string"/>
+      <element minOccurs="0" name="metadataElement" type="tns:metadataElement"/>
+      <element minOccurs="0" name="valueConstraint" type="string"/>
+      <element minOccurs="0" name="attributeValue" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="metadataOptionSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="metadataOptionObj" nillable="true">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="metadataOption" type="tns:metadataOption"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="metadataValue">
+    <sequence>
+      <element minOccurs="0" name="metadataValueId" type="string"/>
+      <element minOccurs="0" name="metadataElement" type="tns:metadataElement"/>
+      <element minOccurs="0" name="valueConstraint" type="string"/>
+      <element minOccurs="0" name="attributeValue" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="metadataValueSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="metadataValueObj" nillable="true">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="metadataValue" type="tns:metadataValue"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="metadataTemplate">
+    <sequence>
+      <element minOccurs="0" name="templateId" type="string"/>
+      <element minOccurs="0" name="metadataType" type="tns:metadataType"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element minOccurs="0" name="url" type="string"/>
+      <element minOccurs="0" name="templateType" type="string"/>
+      <element minOccurs="0" name="templateDetails" type="tns:templateDetailSet"/>
+    </sequence>
+  </complexType>
+  <complexType name="templateDetail">
+    <sequence>
+      <element minOccurs="0" name="templateDetailId" type="string"/>
+      <element minOccurs="0" name="metadataElement" type="tns:metadataElement"/>
+      <element minOccurs="0" name="metadataTemplate" type="tns:metadataTemplate"/>
+      <element minOccurs="0" name="languageCd" type="string"/>
+      <element minOccurs="0" name="label" type="string"/>
+      <element minOccurs="0" name="presentationObjectType" type="string"/>
+      <element minOccurs="0" name="securityEnabled" type="int"/>
+      <element minOccurs="0" name="fldSize" type="int"/>
+      <element minOccurs="0" name="font" type="string"/>
+      <element minOccurs="0" name="color" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="templateDetailSet">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="templateDetailObj" nillable="true">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="templateDetail" type="tns:templateDetail"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addAttribute" bindingOperationName="addAttribute" type="Request-Response" outputName="addAttributeResponse" inputName="addAttribute" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types" xmlns:dto="urn:idm.openiam.org/srvc/role/dto">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:addAttribute>
+         <!--Optional:-->
+         <roleAttribute>
+            <!--Optional:-->
+            <dto:metadataId>?</dto:metadataId>
+            <!--Optional:-->
+            <dto:name>?</dto:name>
+            <!--Optional:-->
+            <dto:roleAttrId>?</dto:roleAttrId>
+            <!--Optional:-->
+            <dto:roleId>?</dto:roleId>
+            <!--Optional:-->
+            <dto:serviceId>?</dto:serviceId>
+            <!--Optional:-->
+            <dto:value>?</dto:value>
+         </roleAttribute>
+      </typ:addAttribute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/addAttribute"/></con:call></con:operation><con:operation isOneWay="false" action="" name="addGroupToRole" bindingOperationName="addGroupToRole" type="Request-Response" outputName="addGroupToRoleResponse" inputName="addGroupToRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:addGroupToRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <groupId>?</groupId>
+      </typ:addGroupToRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/addGroupToRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="addRole" bindingOperationName="addRole" type="Request-Response" outputName="addRoleResponse" inputName="addRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types" xmlns:dto="urn:idm.openiam.org/srvc/role/dto" xmlns:dto1="urn:idm.openiam.org/srvc/grp/dto" xmlns:dto2="urn:idm.openiam.org/srvc/meta/dto" xmlns:dto3="urn:idm.openiam.org/srvc/org/dto" xmlns:dto4="urn:idm.openiam.org/srvc/user/dto" xmlns:dto5="urn:idm.openiam.org/srvc/continfo/dto">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:addRole>
+         <!--Optional:-->
+         <role>
+            <!--Optional:-->
+            <dto:createDate>?</dto:createDate>
+            <!--Optional:-->
+            <dto:createdBy>?</dto:createdBy>
+            <!--Optional:-->
+            <dto:description>?</dto:description>
+            <!--Optional:-->
+            <dto:groups>
+               <!--Zero or more repetitions:-->
+               <dto1:groupObj>
+                  <!--Optional:-->
+                  <dto1:group>
+                     <!--Optional:-->
+                     <dto1:roles>
+                        <!--Zero or more repetitions:-->
+                        <dto:roleObj>
+                           <!--Optional:-->
+                           <dto:role/>
+                        </dto:roleObj>
+                     </dto1:roles>
+                     <!--Optional:-->
+                     <dto1:attributes>
+                        <!--Zero or more repetitions:-->
+                        <dto1:groupAttributeEntry key="?">
+                           <!--Optional:-->
+                           <dto1:groupAttribute>
+                              <!--Optional:-->
+                              <dto1:groupId>?</dto1:groupId>
+                              <!--Optional:-->
+                              <dto1:id>?</dto1:id>
+                              <!--Optional:-->
+                              <dto1:name>?</dto1:name>
+                              <!--Optional:-->
+                              <dto1:value>?</dto1:value>
+                              <!--Optional:-->
+                              <dto1:metadataElement>
+                                 <!--Optional:-->
+                                 <dto2:attributeName>?</dto2:attributeName>
+                                 <!--Optional:-->
+                                 <dto2:attributeType>?</dto2:attributeType>
+                                 <!--Optional:-->
+                                 <dto2:companyAttributes>
+                                    <!--Zero or more repetitions:-->
+                                    <dto3:organizationAttributeObj>
+                                       <!--Optional:-->
+                                       <dto3:organizationAttribute>
+                                          <!--Optional:-->
+                                          <dto3:attrId>?</dto3:attrId>
+                                          <!--Optional:-->
+                                          <dto3:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto3:name>?</dto3:name>
+                                          <!--Optional:-->
+                                          <dto3:org>
+                                             <!--Optional:-->
+                                             <dto3:alias>?</dto3:alias>
+                                             <!--Optional:-->
+                                             <dto3:attributes>
+                                                <!--Zero or more repetitions:-->
+                                                <dto3:organizationAttributeEntry id="?">
+                                                   <!--Optional:-->
+                                                   <dto3:organizationAttribute/>
+                                                </dto3:organizationAttributeEntry>
+                                             </dto3:attributes>
+                                             <!--Optional:-->
+                                             <dto3:createDate>?</dto3:createDate>
+                                             <!--Optional:-->
+                                             <dto3:createdBy>?</dto3:createdBy>
+                                             <!--Optional:-->
+                                             <dto3:description>?</dto3:description>
+                                             <!--Optional:-->
+                                             <dto3:domainName>?</dto3:domainName>
+                                             <!--Optional:-->
+                                             <dto3:ldapStr>?</dto3:ldapStr>
+                                             <!--Optional:-->
+                                             <dto3:lstUpdate>?</dto3:lstUpdate>
+                                             <!--Optional:-->
+                                             <dto3:lstUpdatedBy>?</dto3:lstUpdatedBy>
+                                             <!--Optional:-->
+                                             <dto3:metadataType>?</dto3:metadataType>
+                                             <!--Optional:-->
+                                             <dto3:orgId>?</dto3:orgId>
+                                             <!--Optional:-->
+                                             <dto3:organizationName>?</dto3:organizationName>
+                                             <!--Optional:-->
+                                             <dto3:parentId>?</dto3:parentId>
+                                             <!--Optional:-->
+                                             <dto3:status>?</dto3:status>
+                                          </dto3:org>
+                                          <!--Optional:-->
+                                          <dto3:value>?</dto3:value>
+                                       </dto3:organizationAttribute>
+                                    </dto3:organizationAttributeObj>
+                                 </dto2:companyAttributes>
+                                 <!--Optional:-->
+                                 <dto2:description>?</dto2:description>
+                                 <!--Optional:-->
+                                 <dto2:displayHandler>?</dto2:displayHandler>
+                                 <!--Optional:-->
+                                 <dto2:metadataId>?</dto2:metadataId>
+                                 <!--Optional:-->
+                                 <dto2:metadataOptions>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:metadataOptionObj>
+                                       <!--Optional:-->
+                                       <dto2:metadataOption>
+                                          <!--Optional:-->
+                                          <dto2:metadataValueId>?</dto2:metadataValueId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:valueConstraint>?</dto2:valueConstraint>
+                                          <!--Optional:-->
+                                          <dto2:attributeValue>?</dto2:attributeValue>
+                                       </dto2:metadataOption>
+                                    </dto2:metadataOptionObj>
+                                 </dto2:metadataOptions>
+                                 <!--Optional:-->
+                                 <dto2:metadataType>
+                                    <!--Optional:-->
+                                    <dto2:description>?</dto2:description>
+                                    <!--Optional:-->
+                                    <dto2:typeId>?</dto2:typeId>
+                                 </dto2:metadataType>
+                                 <!--Optional:-->
+                                 <dto2:metadataValues>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:metadataValueObj>
+                                       <!--Optional:-->
+                                       <dto2:metadataValue>
+                                          <!--Optional:-->
+                                          <dto2:metadataValueId>?</dto2:metadataValueId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:valueConstraint>?</dto2:valueConstraint>
+                                          <!--Optional:-->
+                                          <dto2:attributeValue>?</dto2:attributeValue>
+                                       </dto2:metadataValue>
+                                    </dto2:metadataValueObj>
+                                 </dto2:metadataValues>
+                                 <!--Optional:-->
+                                 <dto2:rank>?</dto2:rank>
+                                 <!--Optional:-->
+                                 <dto2:templateDetails>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:templateDetailObj>
+                                       <!--Optional:-->
+                                       <dto2:templateDetail>
+                                          <!--Optional:-->
+                                          <dto2:templateDetailId>?</dto2:templateDetailId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:metadataTemplate>
+                                             <!--Optional:-->
+                                             <dto2:templateId>?</dto2:templateId>
+                                             <!--Optional:-->
+                                             <dto2:metadataType>
+                                                <!--Optional:-->
+                                                <dto2:description>?</dto2:description>
+                                                <!--Optional:-->
+                                                <dto2:typeId>?</dto2:typeId>
+                                             </dto2:metadataType>
+                                             <!--Optional:-->
+                                             <dto2:name>?</dto2:name>
+                                             <!--Optional:-->
+                                             <dto2:url>?</dto2:url>
+                                             <!--Optional:-->
+                                             <dto2:templateType>?</dto2:templateType>
+                                             <!--Optional:-->
+                                             <dto2:templateDetails/>
+                                          </dto2:metadataTemplate>
+                                          <!--Optional:-->
+                                          <dto2:languageCd>?</dto2:languageCd>
+                                          <!--Optional:-->
+                                          <dto2:label>?</dto2:label>
+                                          <!--Optional:-->
+                                          <dto2:presentationObjectType>?</dto2:presentationObjectType>
+                                          <!--Optional:-->
+                                          <dto2:securityEnabled>?</dto2:securityEnabled>
+                                          <!--Optional:-->
+                                          <dto2:fldSize>?</dto2:fldSize>
+                                          <!--Optional:-->
+                                          <dto2:font>?</dto2:font>
+                                          <!--Optional:-->
+                                          <dto2:color>?</dto2:color>
+                                       </dto2:templateDetail>
+                                    </dto2:templateDetailObj>
+                                 </dto2:templateDetails>
+                                 <!--Optional:-->
+                                 <dto2:userAttributes>
+                                    <!--Zero or more repetitions:-->
+                                    <dto4:userAttributeObj>
+                                       <!--Optional:-->
+                                       <dto4:userAttribute>
+                                          <!--Optional:-->
+                                          <dto4:id>?</dto4:id>
+                                          <!--Optional:-->
+                                          <dto4:metadataId>?</dto4:metadataId>
+                                          <!--Optional:-->
+                                          <dto4:name>?</dto4:name>
+                                          <!--Optional:-->
+                                          <dto4:userId>?</dto4:userId>
+                                          <!--Optional:-->
+                                          <dto4:value>?</dto4:value>
+                                       </dto4:userAttribute>
+                                    </dto4:userAttributeObj>
+                                 </dto2:userAttributes>
+                              </dto1:metadataElement>
+                           </dto1:groupAttribute>
+                        </dto1:groupAttributeEntry>
+                     </dto1:attributes>
+                     <!--Optional:-->
+                     <dto1:users>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userObj>
+                           <!--Optional:-->
+                           <dto4:user>
+                              <!--Optional:-->
+                              <dto4:objectState>?</dto4:objectState>
+                              <!--Optional:-->
+                              <dto4:addresses>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:addressEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:address>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:address1>?</dto5:address1>
+                                       <!--Optional:-->
+                                       <dto5:address2>?</dto5:address2>
+                                       <!--Optional:-->
+                                       <dto5:address3>?</dto5:address3>
+                                       <!--Optional:-->
+                                       <dto5:address4>?</dto5:address4>
+                                       <!--Optional:-->
+                                       <dto5:address5>?</dto5:address5>
+                                       <!--Optional:-->
+                                       <dto5:address6>?</dto5:address6>
+                                       <!--Optional:-->
+                                       <dto5:address7>?</dto5:address7>
+                                       <!--Optional:-->
+                                       <dto5:addressId>?</dto5:addressId>
+                                       <!--Optional:-->
+                                       <dto5:city>?</dto5:city>
+                                       <!--Optional:-->
+                                       <dto5:country>?</dto5:country>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                       <!--Optional:-->
+                                       <dto5:postalCd>?</dto5:postalCd>
+                                       <!--Optional:-->
+                                       <dto5:state>?</dto5:state>
+                                    </dto5:address>
+                                 </dto5:addressEntry>
+                              </dto4:addresses>
+                              <!--Optional:-->
+                              <dto4:birthdate>?</dto4:birthdate>
+                              <!--Optional:-->
+                              <dto4:companyId>?</dto4:companyId>
+                              <!--Optional:-->
+                              <dto4:companyOwnerId>?</dto4:companyOwnerId>
+                              <!--Optional:-->
+                              <dto4:createDate>?</dto4:createDate>
+                              <!--Optional:-->
+                              <dto4:createdBy>?</dto4:createdBy>
+                              <!--Optional:-->
+                              <dto4:dept>?</dto4:dept>
+                              <!--Optional:-->
+                              <dto4:emailAddresses>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:emailAddressEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:emailAddress>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:emailAddress>?</dto5:emailAddress>
+                                       <!--Optional:-->
+                                       <dto5:emailId>?</dto5:emailId>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                    </dto5:emailAddress>
+                                 </dto5:emailAddressEntry>
+                              </dto4:emailAddresses>
+                              <!--Optional:-->
+                              <dto4:employeeId>?</dto4:employeeId>
+                              <!--Optional:-->
+                              <dto4:employeeType>?</dto4:employeeType>
+                              <!--Optional:-->
+                              <dto4:expirationDate>?</dto4:expirationDate>
+                              <!--Optional:-->
+                              <dto4:firstName>?</dto4:firstName>
+                              <!--Optional:-->
+                              <dto4:jobCode>?</dto4:jobCode>
+                              <!--Optional:-->
+                              <dto4:lastName>?</dto4:lastName>
+                              <!--Optional:-->
+                              <dto4:lastUpdate>?</dto4:lastUpdate>
+                              <!--Optional:-->
+                              <dto4:lastUpdatedBy>?</dto4:lastUpdatedBy>
+                              <!--Optional:-->
+                              <dto4:locationId>?</dto4:locationId>
+                              <!--Optional:-->
+                              <dto4:managerId>?</dto4:managerId>
+                              <!--Optional:-->
+                              <dto4:metadataType>
+                                 <!--Optional:-->
+                                 <dto2:description>?</dto2:description>
+                                 <!--Optional:-->
+                                 <dto2:typeId>?</dto2:typeId>
+                              </dto4:metadataType>
+                              <!--Optional:-->
+                              <dto4:middleInit>?</dto4:middleInit>
+                              <!--Optional:-->
+                              <dto4:phones>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:phoneEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:phone>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:areaCd>?</dto5:areaCd>
+                                       <!--Optional:-->
+                                       <dto5:countryCd>?</dto5:countryCd>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                       <!--Optional:-->
+                                       <dto5:phoneExt>?</dto5:phoneExt>
+                                       <!--Optional:-->
+                                       <dto5:phoneId>?</dto5:phoneId>
+                                       <!--Optional:-->
+                                       <dto5:phoneNbr>?</dto5:phoneNbr>
+                                    </dto5:phone>
+                                 </dto5:phoneEntry>
+                              </dto4:phones>
+                              <!--Optional:-->
+                              <dto4:prefix>?</dto4:prefix>
+                              <!--Optional:-->
+                              <dto4:sex>?</dto4:sex>
+                              <!--Optional:-->
+                              <dto4:status>?</dto4:status>
+                              <!--Optional:-->
+                              <dto4:suffix>?</dto4:suffix>
+                              <!--Optional:-->
+                              <dto4:title>?</dto4:title>
+                              <!--Optional:-->
+                              <dto4:userAttributes>
+                                 <!--Zero or more repetitions:-->
+                                 <dto4:userAttributeEntry key="?">
+                                    <!--Optional:-->
+                                    <dto4:userAttribute>
+                                       <!--Optional:-->
+                                       <dto4:id>?</dto4:id>
+                                       <!--Optional:-->
+                                       <dto4:metadataId>?</dto4:metadataId>
+                                       <!--Optional:-->
+                                       <dto4:name>?</dto4:name>
+                                       <!--Optional:-->
+                                       <dto4:userId>?</dto4:userId>
+                                       <!--Optional:-->
+                                       <dto4:value>?</dto4:value>
+                                    </dto4:userAttribute>
+                                 </dto4:userAttributeEntry>
+                              </dto4:userAttributes>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:userTypeInd>?</dto4:userTypeInd>
+                              <!--Optional:-->
+                              <dto4:userNotes>
+                                 <!--Zero or more repetitions:-->
+                                 <dto4:userNoteItem>
+                                    <!--Optional:-->
+                                    <dto4:userNote>
+                                       <!--Optional:-->
+                                       <dto4:createDate>?</dto4:createDate>
+                                       <!--Optional:-->
+                                       <dto4:createdBy>?</dto4:createdBy>
+                                       <!--Optional:-->
+                                       <dto4:description>?</dto4:description>
+                                       <!--Optional:-->
+                                       <dto4:noteType>?</dto4:noteType>
+                                       <!--Optional:-->
+                                       <dto4:userId>?</dto4:userId>
+                                       <!--Optional:-->
+                                       <dto4:userNoteId>?</dto4:userNoteId>
+                                    </dto4:userNote>
+                                 </dto4:userNoteItem>
+                              </dto4:userNotes>
+                           </dto4:user>
+                        </dto4:userObj>
+                     </dto1:users>
+                     <!--Optional:-->
+                     <dto1:companyId>?</dto1:companyId>
+                     <!--Optional:-->
+                     <dto1:createDate>?</dto1:createDate>
+                     <!--Optional:-->
+                     <dto1:createdBy>?</dto1:createdBy>
+                     <!--Optional:-->
+                     <dto1:description>?</dto1:description>
+                     <!--Optional:-->
+                     <dto1:groupClass>?</dto1:groupClass>
+                     <!--Optional:-->
+                     <dto1:grpId>?</dto1:grpId>
+                     <!--Optional:-->
+                     <dto1:grpName>?</dto1:grpName>
+                     <!--Optional:-->
+                     <dto1:inheritFromParent>?</dto1:inheritFromParent>
+                     <!--Optional:-->
+                     <dto1:lastUpdate>?</dto1:lastUpdate>
+                     <!--Optional:-->
+                     <dto1:lastUpdatedBy>?</dto1:lastUpdatedBy>
+                     <!--Optional:-->
+                     <dto1:parentGrpId>?</dto1:parentGrpId>
+                     <!--Optional:-->
+                     <dto1:provisionMethod>?</dto1:provisionMethod>
+                     <!--Optional:-->
+                     <dto1:provisionObjName>?</dto1:provisionObjName>
+                     <!--Optional:-->
+                     <dto1:status>?</dto1:status>
+                     <!--Zero or more repetitions:-->
+                     <dto1:subGroup/>
+                  </dto1:group>
+               </dto1:groupObj>
+            </dto:groups>
+            <!--Optional:-->
+            <dto:id>
+               <!--Optional:-->
+               <dto:roleId>?</dto:roleId>
+               <!--Optional:-->
+               <dto:serviceId>?</dto:serviceId>
+            </dto:id>
+            <!--Optional:-->
+            <dto:provisionObjName>?</dto:provisionObjName>
+            <!--Optional:-->
+            <dto:parentRoleId>?</dto:parentRoleId>
+            <!--Optional:-->
+            <dto:roleAttributes>
+               <!--Zero or more repetitions:-->
+               <dto:roleAttributeObj>
+                  <!--Optional:-->
+                  <dto:roleAttribute>
+                     <!--Optional:-->
+                     <dto:metadataId>?</dto:metadataId>
+                     <!--Optional:-->
+                     <dto:name>?</dto:name>
+                     <!--Optional:-->
+                     <dto:roleAttrId>?</dto:roleAttrId>
+                     <!--Optional:-->
+                     <dto:roleId>?</dto:roleId>
+                     <!--Optional:-->
+                     <dto:serviceId>?</dto:serviceId>
+                     <!--Optional:-->
+                     <dto:value>?</dto:value>
+                  </dto:roleAttribute>
+               </dto:roleAttributeObj>
+            </dto:roleAttributes>
+            <!--Optional:-->
+            <dto:roleName>?</dto:roleName>
+            <!--Optional:-->
+            <dto:userAssociationMethod>?</dto:userAssociationMethod>
+            <!--Optional:-->
+            <dto:users>
+               <!--Zero or more repetitions:-->
+               <dto4:userObj>
+                  <!--Optional:-->
+                  <dto4:user>
+                     <!--Optional:-->
+                     <dto4:objectState>?</dto4:objectState>
+                     <!--Optional:-->
+                     <dto4:addresses>
+                        <!--Zero or more repetitions:-->
+                        <dto5:addressEntry key="?">
+                           <!--Optional:-->
+                           <dto5:address>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:address1>?</dto5:address1>
+                              <!--Optional:-->
+                              <dto5:address2>?</dto5:address2>
+                              <!--Optional:-->
+                              <dto5:address3>?</dto5:address3>
+                              <!--Optional:-->
+                              <dto5:address4>?</dto5:address4>
+                              <!--Optional:-->
+                              <dto5:address5>?</dto5:address5>
+                              <!--Optional:-->
+                              <dto5:address6>?</dto5:address6>
+                              <!--Optional:-->
+                              <dto5:address7>?</dto5:address7>
+                              <!--Optional:-->
+                              <dto5:addressId>?</dto5:addressId>
+                              <!--Optional:-->
+                              <dto5:city>?</dto5:city>
+                              <!--Optional:-->
+                              <dto5:country>?</dto5:country>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                              <!--Optional:-->
+                              <dto5:postalCd>?</dto5:postalCd>
+                              <!--Optional:-->
+                              <dto5:state>?</dto5:state>
+                           </dto5:address>
+                        </dto5:addressEntry>
+                     </dto4:addresses>
+                     <!--Optional:-->
+                     <dto4:birthdate>?</dto4:birthdate>
+                     <!--Optional:-->
+                     <dto4:companyId>?</dto4:companyId>
+                     <!--Optional:-->
+                     <dto4:companyOwnerId>?</dto4:companyOwnerId>
+                     <!--Optional:-->
+                     <dto4:createDate>?</dto4:createDate>
+                     <!--Optional:-->
+                     <dto4:createdBy>?</dto4:createdBy>
+                     <!--Optional:-->
+                     <dto4:dept>?</dto4:dept>
+                     <!--Optional:-->
+                     <dto4:emailAddresses>
+                        <!--Zero or more repetitions:-->
+                        <dto5:emailAddressEntry key="?">
+                           <!--Optional:-->
+                           <dto5:emailAddress>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:emailAddress>?</dto5:emailAddress>
+                              <!--Optional:-->
+                              <dto5:emailId>?</dto5:emailId>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                           </dto5:emailAddress>
+                        </dto5:emailAddressEntry>
+                     </dto4:emailAddresses>
+                     <!--Optional:-->
+                     <dto4:employeeId>?</dto4:employeeId>
+                     <!--Optional:-->
+                     <dto4:employeeType>?</dto4:employeeType>
+                     <!--Optional:-->
+                     <dto4:expirationDate>?</dto4:expirationDate>
+                     <!--Optional:-->
+                     <dto4:firstName>?</dto4:firstName>
+                     <!--Optional:-->
+                     <dto4:jobCode>?</dto4:jobCode>
+                     <!--Optional:-->
+                     <dto4:lastName>?</dto4:lastName>
+                     <!--Optional:-->
+                     <dto4:lastUpdate>?</dto4:lastUpdate>
+                     <!--Optional:-->
+                     <dto4:lastUpdatedBy>?</dto4:lastUpdatedBy>
+                     <!--Optional:-->
+                     <dto4:locationId>?</dto4:locationId>
+                     <!--Optional:-->
+                     <dto4:managerId>?</dto4:managerId>
+                     <!--Optional:-->
+                     <dto4:metadataType>
+                        <!--Optional:-->
+                        <dto2:description>?</dto2:description>
+                        <!--Optional:-->
+                        <dto2:typeId>?</dto2:typeId>
+                     </dto4:metadataType>
+                     <!--Optional:-->
+                     <dto4:middleInit>?</dto4:middleInit>
+                     <!--Optional:-->
+                     <dto4:phones>
+                        <!--Zero or more repetitions:-->
+                        <dto5:phoneEntry key="?">
+                           <!--Optional:-->
+                           <dto5:phone>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:areaCd>?</dto5:areaCd>
+                              <!--Optional:-->
+                              <dto5:countryCd>?</dto5:countryCd>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                              <!--Optional:-->
+                              <dto5:phoneExt>?</dto5:phoneExt>
+                              <!--Optional:-->
+                              <dto5:phoneId>?</dto5:phoneId>
+                              <!--Optional:-->
+                              <dto5:phoneNbr>?</dto5:phoneNbr>
+                           </dto5:phone>
+                        </dto5:phoneEntry>
+                     </dto4:phones>
+                     <!--Optional:-->
+                     <dto4:prefix>?</dto4:prefix>
+                     <!--Optional:-->
+                     <dto4:sex>?</dto4:sex>
+                     <!--Optional:-->
+                     <dto4:status>?</dto4:status>
+                     <!--Optional:-->
+                     <dto4:suffix>?</dto4:suffix>
+                     <!--Optional:-->
+                     <dto4:title>?</dto4:title>
+                     <!--Optional:-->
+                     <dto4:userAttributes>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userAttributeEntry key="?">
+                           <!--Optional:-->
+                           <dto4:userAttribute>
+                              <!--Optional:-->
+                              <dto4:id>?</dto4:id>
+                              <!--Optional:-->
+                              <dto4:metadataId>?</dto4:metadataId>
+                              <!--Optional:-->
+                              <dto4:name>?</dto4:name>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:value>?</dto4:value>
+                           </dto4:userAttribute>
+                        </dto4:userAttributeEntry>
+                     </dto4:userAttributes>
+                     <!--Optional:-->
+                     <dto4:userId>?</dto4:userId>
+                     <!--Optional:-->
+                     <dto4:userTypeInd>?</dto4:userTypeInd>
+                     <!--Optional:-->
+                     <dto4:userNotes>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userNoteItem>
+                           <!--Optional:-->
+                           <dto4:userNote>
+                              <!--Optional:-->
+                              <dto4:createDate>?</dto4:createDate>
+                              <!--Optional:-->
+                              <dto4:createdBy>?</dto4:createdBy>
+                              <!--Optional:-->
+                              <dto4:description>?</dto4:description>
+                              <!--Optional:-->
+                              <dto4:noteType>?</dto4:noteType>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:userNoteId>?</dto4:userNoteId>
+                           </dto4:userNote>
+                        </dto4:userNoteItem>
+                     </dto4:userNotes>
+                  </dto4:user>
+               </dto4:userObj>
+            </dto:users>
+         </role>
+      </typ:addRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/addRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="addUserToRole" bindingOperationName="addUserToRole" type="Request-Response" outputName="addUserToRoleResponse" inputName="addUserToRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:addUserToRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <userId>?</userId>
+      </typ:addUserToRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/addUserToRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAllAttributes" bindingOperationName="getAllAttributes" type="Request-Response" outputName="getAllAttributesResponse" inputName="getAllAttributes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getAllAttributes>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:getAllAttributes>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getAllAttributes"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAllRoles" bindingOperationName="getAllRoles" type="Request-Response" outputName="getAllRolesResponse" inputName="getAllRoles" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getAllRoles/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getAllRoles"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAttribute" bindingOperationName="getAttribute" type="Request-Response" outputName="getAttributeResponse" inputName="getAttribute" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getAttribute>
+         <!--Optional:-->
+         <attrId>?</attrId>
+      </typ:getAttribute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getAttribute"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getGroupsInRole" bindingOperationName="getGroupsInRole" type="Request-Response" outputName="getGroupsInRoleResponse" inputName="getGroupsInRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getGroupsInRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:getGroupsInRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getGroupsInRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getRole" bindingOperationName="getRole" type="Request-Response" outputName="getRoleResponse" inputName="getRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:getRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getRolesInGroup" bindingOperationName="getRolesInGroup" type="Request-Response" outputName="getRolesInGroupResponse" inputName="getRolesInGroup" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getRolesInGroup>
+         <!--Optional:-->
+         <groupId>?</groupId>
+      </typ:getRolesInGroup>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getRolesInGroup"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getRolesInService" bindingOperationName="getRolesInService" type="Request-Response" outputName="getRolesInServiceResponse" inputName="getRolesInService" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getRolesInService>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+      </typ:getRolesInService>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getRolesInService"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getRoleWithDependants" bindingOperationName="getRoleWithDependants" type="Request-Response" outputName="getRoleWithDependantsResponse" inputName="getRoleWithDependants" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getRoleWithDependants>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:getRoleWithDependants>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getRoleWithDependants"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserRoles" bindingOperationName="getUserRoles" type="Request-Response" outputName="getUserRolesResponse" inputName="getUserRoles" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getUserRoles>
+         <!--Optional:-->
+         <userId>?</userId>
+      </typ:getUserRoles>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getUserRoles"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserRolesByService" bindingOperationName="getUserRolesByService" type="Request-Response" outputName="getUserRolesByServiceResponse" inputName="getUserRolesByService" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getUserRolesByService>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <userId>?</userId>
+      </typ:getUserRolesByService>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getUserRolesByService"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUsersInRole" bindingOperationName="getUsersInRole" type="Request-Response" outputName="getUsersInRoleResponse" inputName="getUsersInRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getUsersInRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:getUsersInRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getUsersInRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="isGroupInRole" bindingOperationName="isGroupInRole" type="Request-Response" outputName="isGroupInRoleResponse" inputName="isGroupInRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:isGroupInRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <groupId>?</groupId>
+      </typ:isGroupInRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/isGroupInRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="isUserInRole" bindingOperationName="isUserInRole" type="Request-Response" outputName="isUserInRoleResponse" inputName="isUserInRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:isUserInRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <userId>?</userId>
+      </typ:isUserInRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/isUserInRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeAllAttributes" bindingOperationName="removeAllAttributes" type="Request-Response" outputName="removeAllAttributesResponse" inputName="removeAllAttributes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeAllAttributes>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:removeAllAttributes>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeAllAttributes"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeAllGroupsFromRole" bindingOperationName="removeAllGroupsFromRole" type="Request-Response" outputName="removeAllGroupsFromRoleResponse" inputName="removeAllGroupsFromRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeAllGroupsFromRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:removeAllGroupsFromRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeAllGroupsFromRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeAttribute" bindingOperationName="removeAttribute" type="Request-Response" outputName="removeAttributeResponse" inputName="removeAttribute" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types" xmlns:dto="urn:idm.openiam.org/srvc/role/dto">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeAttribute>
+         <!--Optional:-->
+         <roleAttribute>
+            <!--Optional:-->
+            <dto:metadataId>?</dto:metadataId>
+            <!--Optional:-->
+            <dto:name>?</dto:name>
+            <!--Optional:-->
+            <dto:roleAttrId>?</dto:roleAttrId>
+            <!--Optional:-->
+            <dto:roleId>?</dto:roleId>
+            <!--Optional:-->
+            <dto:serviceId>?</dto:serviceId>
+            <!--Optional:-->
+            <dto:value>?</dto:value>
+         </roleAttribute>
+      </typ:removeAttribute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeAttribute"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeGroupFromRole" bindingOperationName="removeGroupFromRole" type="Request-Response" outputName="removeGroupFromRoleResponse" inputName="removeGroupFromRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeGroupFromRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <groupId>?</groupId>
+      </typ:removeGroupFromRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeGroupFromRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeRole" bindingOperationName="removeRole" type="Request-Response" outputName="removeRoleResponse" inputName="removeRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+      </typ:removeRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeUserFromRole" bindingOperationName="removeUserFromRole" type="Request-Response" outputName="removeUserFromRoleResponse" inputName="removeUserFromRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:removeUserFromRole>
+         <!--Optional:-->
+         <serviceId>?</serviceId>
+         <!--Optional:-->
+         <roleId>?</roleId>
+         <!--Optional:-->
+         <userId>?</userId>
+      </typ:removeUserFromRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/removeUserFromRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="updateAttribute" bindingOperationName="updateAttribute" type="Request-Response" outputName="updateAttributeResponse" inputName="updateAttribute" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types" xmlns:dto="urn:idm.openiam.org/srvc/role/dto">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:updateAttribute>
+         <!--Optional:-->
+         <roleAttribute>
+            <!--Optional:-->
+            <dto:metadataId>?</dto:metadataId>
+            <!--Optional:-->
+            <dto:name>?</dto:name>
+            <!--Optional:-->
+            <dto:roleAttrId>?</dto:roleAttrId>
+            <!--Optional:-->
+            <dto:roleId>?</dto:roleId>
+            <!--Optional:-->
+            <dto:serviceId>?</dto:serviceId>
+            <!--Optional:-->
+            <dto:value>?</dto:value>
+         </roleAttribute>
+      </typ:updateAttribute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/updateAttribute"/></con:call></con:operation><con:operation isOneWay="false" action="" name="updateRole" bindingOperationName="updateRole" type="Request-Response" outputName="updateRoleResponse" inputName="updateRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types" xmlns:dto="urn:idm.openiam.org/srvc/role/dto" xmlns:dto1="urn:idm.openiam.org/srvc/grp/dto" xmlns:dto2="urn:idm.openiam.org/srvc/meta/dto" xmlns:dto3="urn:idm.openiam.org/srvc/org/dto" xmlns:dto4="urn:idm.openiam.org/srvc/user/dto" xmlns:dto5="urn:idm.openiam.org/srvc/continfo/dto">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:updateRole>
+         <!--Optional:-->
+         <role>
+            <!--Optional:-->
+            <dto:createDate>?</dto:createDate>
+            <!--Optional:-->
+            <dto:createdBy>?</dto:createdBy>
+            <!--Optional:-->
+            <dto:description>?</dto:description>
+            <!--Optional:-->
+            <dto:groups>
+               <!--Zero or more repetitions:-->
+               <dto1:groupObj>
+                  <!--Optional:-->
+                  <dto1:group>
+                     <!--Optional:-->
+                     <dto1:roles>
+                        <!--Zero or more repetitions:-->
+                        <dto:roleObj>
+                           <!--Optional:-->
+                           <dto:role/>
+                        </dto:roleObj>
+                     </dto1:roles>
+                     <!--Optional:-->
+                     <dto1:attributes>
+                        <!--Zero or more repetitions:-->
+                        <dto1:groupAttributeEntry key="?">
+                           <!--Optional:-->
+                           <dto1:groupAttribute>
+                              <!--Optional:-->
+                              <dto1:groupId>?</dto1:groupId>
+                              <!--Optional:-->
+                              <dto1:id>?</dto1:id>
+                              <!--Optional:-->
+                              <dto1:name>?</dto1:name>
+                              <!--Optional:-->
+                              <dto1:value>?</dto1:value>
+                              <!--Optional:-->
+                              <dto1:metadataElement>
+                                 <!--Optional:-->
+                                 <dto2:attributeName>?</dto2:attributeName>
+                                 <!--Optional:-->
+                                 <dto2:attributeType>?</dto2:attributeType>
+                                 <!--Optional:-->
+                                 <dto2:companyAttributes>
+                                    <!--Zero or more repetitions:-->
+                                    <dto3:organizationAttributeObj>
+                                       <!--Optional:-->
+                                       <dto3:organizationAttribute>
+                                          <!--Optional:-->
+                                          <dto3:attrId>?</dto3:attrId>
+                                          <!--Optional:-->
+                                          <dto3:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto3:name>?</dto3:name>
+                                          <!--Optional:-->
+                                          <dto3:org>
+                                             <!--Optional:-->
+                                             <dto3:alias>?</dto3:alias>
+                                             <!--Optional:-->
+                                             <dto3:attributes>
+                                                <!--Zero or more repetitions:-->
+                                                <dto3:organizationAttributeEntry id="?">
+                                                   <!--Optional:-->
+                                                   <dto3:organizationAttribute/>
+                                                </dto3:organizationAttributeEntry>
+                                             </dto3:attributes>
+                                             <!--Optional:-->
+                                             <dto3:createDate>?</dto3:createDate>
+                                             <!--Optional:-->
+                                             <dto3:createdBy>?</dto3:createdBy>
+                                             <!--Optional:-->
+                                             <dto3:description>?</dto3:description>
+                                             <!--Optional:-->
+                                             <dto3:domainName>?</dto3:domainName>
+                                             <!--Optional:-->
+                                             <dto3:ldapStr>?</dto3:ldapStr>
+                                             <!--Optional:-->
+                                             <dto3:lstUpdate>?</dto3:lstUpdate>
+                                             <!--Optional:-->
+                                             <dto3:lstUpdatedBy>?</dto3:lstUpdatedBy>
+                                             <!--Optional:-->
+                                             <dto3:metadataType>?</dto3:metadataType>
+                                             <!--Optional:-->
+                                             <dto3:orgId>?</dto3:orgId>
+                                             <!--Optional:-->
+                                             <dto3:organizationName>?</dto3:organizationName>
+                                             <!--Optional:-->
+                                             <dto3:parentId>?</dto3:parentId>
+                                             <!--Optional:-->
+                                             <dto3:status>?</dto3:status>
+                                          </dto3:org>
+                                          <!--Optional:-->
+                                          <dto3:value>?</dto3:value>
+                                       </dto3:organizationAttribute>
+                                    </dto3:organizationAttributeObj>
+                                 </dto2:companyAttributes>
+                                 <!--Optional:-->
+                                 <dto2:description>?</dto2:description>
+                                 <!--Optional:-->
+                                 <dto2:displayHandler>?</dto2:displayHandler>
+                                 <!--Optional:-->
+                                 <dto2:metadataId>?</dto2:metadataId>
+                                 <!--Optional:-->
+                                 <dto2:metadataOptions>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:metadataOptionObj>
+                                       <!--Optional:-->
+                                       <dto2:metadataOption>
+                                          <!--Optional:-->
+                                          <dto2:metadataValueId>?</dto2:metadataValueId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:valueConstraint>?</dto2:valueConstraint>
+                                          <!--Optional:-->
+                                          <dto2:attributeValue>?</dto2:attributeValue>
+                                       </dto2:metadataOption>
+                                    </dto2:metadataOptionObj>
+                                 </dto2:metadataOptions>
+                                 <!--Optional:-->
+                                 <dto2:metadataType>
+                                    <!--Optional:-->
+                                    <dto2:description>?</dto2:description>
+                                    <!--Optional:-->
+                                    <dto2:typeId>?</dto2:typeId>
+                                 </dto2:metadataType>
+                                 <!--Optional:-->
+                                 <dto2:metadataValues>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:metadataValueObj>
+                                       <!--Optional:-->
+                                       <dto2:metadataValue>
+                                          <!--Optional:-->
+                                          <dto2:metadataValueId>?</dto2:metadataValueId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:valueConstraint>?</dto2:valueConstraint>
+                                          <!--Optional:-->
+                                          <dto2:attributeValue>?</dto2:attributeValue>
+                                       </dto2:metadataValue>
+                                    </dto2:metadataValueObj>
+                                 </dto2:metadataValues>
+                                 <!--Optional:-->
+                                 <dto2:rank>?</dto2:rank>
+                                 <!--Optional:-->
+                                 <dto2:templateDetails>
+                                    <!--Zero or more repetitions:-->
+                                    <dto2:templateDetailObj>
+                                       <!--Optional:-->
+                                       <dto2:templateDetail>
+                                          <!--Optional:-->
+                                          <dto2:templateDetailId>?</dto2:templateDetailId>
+                                          <!--Optional:-->
+                                          <dto2:metadataElement/>
+                                          <!--Optional:-->
+                                          <dto2:metadataTemplate>
+                                             <!--Optional:-->
+                                             <dto2:templateId>?</dto2:templateId>
+                                             <!--Optional:-->
+                                             <dto2:metadataType>
+                                                <!--Optional:-->
+                                                <dto2:description>?</dto2:description>
+                                                <!--Optional:-->
+                                                <dto2:typeId>?</dto2:typeId>
+                                             </dto2:metadataType>
+                                             <!--Optional:-->
+                                             <dto2:name>?</dto2:name>
+                                             <!--Optional:-->
+                                             <dto2:url>?</dto2:url>
+                                             <!--Optional:-->
+                                             <dto2:templateType>?</dto2:templateType>
+                                             <!--Optional:-->
+                                             <dto2:templateDetails/>
+                                          </dto2:metadataTemplate>
+                                          <!--Optional:-->
+                                          <dto2:languageCd>?</dto2:languageCd>
+                                          <!--Optional:-->
+                                          <dto2:label>?</dto2:label>
+                                          <!--Optional:-->
+                                          <dto2:presentationObjectType>?</dto2:presentationObjectType>
+                                          <!--Optional:-->
+                                          <dto2:securityEnabled>?</dto2:securityEnabled>
+                                          <!--Optional:-->
+                                          <dto2:fldSize>?</dto2:fldSize>
+                                          <!--Optional:-->
+                                          <dto2:font>?</dto2:font>
+                                          <!--Optional:-->
+                                          <dto2:color>?</dto2:color>
+                                       </dto2:templateDetail>
+                                    </dto2:templateDetailObj>
+                                 </dto2:templateDetails>
+                                 <!--Optional:-->
+                                 <dto2:userAttributes>
+                                    <!--Zero or more repetitions:-->
+                                    <dto4:userAttributeObj>
+                                       <!--Optional:-->
+                                       <dto4:userAttribute>
+                                          <!--Optional:-->
+                                          <dto4:id>?</dto4:id>
+                                          <!--Optional:-->
+                                          <dto4:metadataId>?</dto4:metadataId>
+                                          <!--Optional:-->
+                                          <dto4:name>?</dto4:name>
+                                          <!--Optional:-->
+                                          <dto4:userId>?</dto4:userId>
+                                          <!--Optional:-->
+                                          <dto4:value>?</dto4:value>
+                                       </dto4:userAttribute>
+                                    </dto4:userAttributeObj>
+                                 </dto2:userAttributes>
+                              </dto1:metadataElement>
+                           </dto1:groupAttribute>
+                        </dto1:groupAttributeEntry>
+                     </dto1:attributes>
+                     <!--Optional:-->
+                     <dto1:users>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userObj>
+                           <!--Optional:-->
+                           <dto4:user>
+                              <!--Optional:-->
+                              <dto4:objectState>?</dto4:objectState>
+                              <!--Optional:-->
+                              <dto4:addresses>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:addressEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:address>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:address1>?</dto5:address1>
+                                       <!--Optional:-->
+                                       <dto5:address2>?</dto5:address2>
+                                       <!--Optional:-->
+                                       <dto5:address3>?</dto5:address3>
+                                       <!--Optional:-->
+                                       <dto5:address4>?</dto5:address4>
+                                       <!--Optional:-->
+                                       <dto5:address5>?</dto5:address5>
+                                       <!--Optional:-->
+                                       <dto5:address6>?</dto5:address6>
+                                       <!--Optional:-->
+                                       <dto5:address7>?</dto5:address7>
+                                       <!--Optional:-->
+                                       <dto5:addressId>?</dto5:addressId>
+                                       <!--Optional:-->
+                                       <dto5:city>?</dto5:city>
+                                       <!--Optional:-->
+                                       <dto5:country>?</dto5:country>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                       <!--Optional:-->
+                                       <dto5:postalCd>?</dto5:postalCd>
+                                       <!--Optional:-->
+                                       <dto5:state>?</dto5:state>
+                                    </dto5:address>
+                                 </dto5:addressEntry>
+                              </dto4:addresses>
+                              <!--Optional:-->
+                              <dto4:birthdate>?</dto4:birthdate>
+                              <!--Optional:-->
+                              <dto4:companyId>?</dto4:companyId>
+                              <!--Optional:-->
+                              <dto4:companyOwnerId>?</dto4:companyOwnerId>
+                              <!--Optional:-->
+                              <dto4:createDate>?</dto4:createDate>
+                              <!--Optional:-->
+                              <dto4:createdBy>?</dto4:createdBy>
+                              <!--Optional:-->
+                              <dto4:dept>?</dto4:dept>
+                              <!--Optional:-->
+                              <dto4:emailAddresses>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:emailAddressEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:emailAddress>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:emailAddress>?</dto5:emailAddress>
+                                       <!--Optional:-->
+                                       <dto5:emailId>?</dto5:emailId>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                    </dto5:emailAddress>
+                                 </dto5:emailAddressEntry>
+                              </dto4:emailAddresses>
+                              <!--Optional:-->
+                              <dto4:employeeId>?</dto4:employeeId>
+                              <!--Optional:-->
+                              <dto4:employeeType>?</dto4:employeeType>
+                              <!--Optional:-->
+                              <dto4:expirationDate>?</dto4:expirationDate>
+                              <!--Optional:-->
+                              <dto4:firstName>?</dto4:firstName>
+                              <!--Optional:-->
+                              <dto4:jobCode>?</dto4:jobCode>
+                              <!--Optional:-->
+                              <dto4:lastName>?</dto4:lastName>
+                              <!--Optional:-->
+                              <dto4:lastUpdate>?</dto4:lastUpdate>
+                              <!--Optional:-->
+                              <dto4:lastUpdatedBy>?</dto4:lastUpdatedBy>
+                              <!--Optional:-->
+                              <dto4:locationId>?</dto4:locationId>
+                              <!--Optional:-->
+                              <dto4:managerId>?</dto4:managerId>
+                              <!--Optional:-->
+                              <dto4:metadataType>
+                                 <!--Optional:-->
+                                 <dto2:description>?</dto2:description>
+                                 <!--Optional:-->
+                                 <dto2:typeId>?</dto2:typeId>
+                              </dto4:metadataType>
+                              <!--Optional:-->
+                              <dto4:middleInit>?</dto4:middleInit>
+                              <!--Optional:-->
+                              <dto4:phones>
+                                 <!--Zero or more repetitions:-->
+                                 <dto5:phoneEntry key="?">
+                                    <!--Optional:-->
+                                    <dto5:phone>
+                                       <!--Optional:-->
+                                       <dto5:isActive>?</dto5:isActive>
+                                       <!--Optional:-->
+                                       <dto5:areaCd>?</dto5:areaCd>
+                                       <!--Optional:-->
+                                       <dto5:countryCd>?</dto5:countryCd>
+                                       <!--Optional:-->
+                                       <dto5:description>?</dto5:description>
+                                       <!--Optional:-->
+                                       <dto5:isDefault>?</dto5:isDefault>
+                                       <!--Optional:-->
+                                       <dto5:parentId>?</dto5:parentId>
+                                       <!--Optional:-->
+                                       <dto5:parentType>?</dto5:parentType>
+                                       <!--Optional:-->
+                                       <dto5:phoneExt>?</dto5:phoneExt>
+                                       <!--Optional:-->
+                                       <dto5:phoneId>?</dto5:phoneId>
+                                       <!--Optional:-->
+                                       <dto5:phoneNbr>?</dto5:phoneNbr>
+                                    </dto5:phone>
+                                 </dto5:phoneEntry>
+                              </dto4:phones>
+                              <!--Optional:-->
+                              <dto4:prefix>?</dto4:prefix>
+                              <!--Optional:-->
+                              <dto4:sex>?</dto4:sex>
+                              <!--Optional:-->
+                              <dto4:status>?</dto4:status>
+                              <!--Optional:-->
+                              <dto4:suffix>?</dto4:suffix>
+                              <!--Optional:-->
+                              <dto4:title>?</dto4:title>
+                              <!--Optional:-->
+                              <dto4:userAttributes>
+                                 <!--Zero or more repetitions:-->
+                                 <dto4:userAttributeEntry key="?">
+                                    <!--Optional:-->
+                                    <dto4:userAttribute>
+                                       <!--Optional:-->
+                                       <dto4:id>?</dto4:id>
+                                       <!--Optional:-->
+                                       <dto4:metadataId>?</dto4:metadataId>
+                                       <!--Optional:-->
+                                       <dto4:name>?</dto4:name>
+                                       <!--Optional:-->
+                                       <dto4:userId>?</dto4:userId>
+                                       <!--Optional:-->
+                                       <dto4:value>?</dto4:value>
+                                    </dto4:userAttribute>
+                                 </dto4:userAttributeEntry>
+                              </dto4:userAttributes>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:userTypeInd>?</dto4:userTypeInd>
+                              <!--Optional:-->
+                              <dto4:userNotes>
+                                 <!--Zero or more repetitions:-->
+                                 <dto4:userNoteItem>
+                                    <!--Optional:-->
+                                    <dto4:userNote>
+                                       <!--Optional:-->
+                                       <dto4:createDate>?</dto4:createDate>
+                                       <!--Optional:-->
+                                       <dto4:createdBy>?</dto4:createdBy>
+                                       <!--Optional:-->
+                                       <dto4:description>?</dto4:description>
+                                       <!--Optional:-->
+                                       <dto4:noteType>?</dto4:noteType>
+                                       <!--Optional:-->
+                                       <dto4:userId>?</dto4:userId>
+                                       <!--Optional:-->
+                                       <dto4:userNoteId>?</dto4:userNoteId>
+                                    </dto4:userNote>
+                                 </dto4:userNoteItem>
+                              </dto4:userNotes>
+                           </dto4:user>
+                        </dto4:userObj>
+                     </dto1:users>
+                     <!--Optional:-->
+                     <dto1:companyId>?</dto1:companyId>
+                     <!--Optional:-->
+                     <dto1:createDate>?</dto1:createDate>
+                     <!--Optional:-->
+                     <dto1:createdBy>?</dto1:createdBy>
+                     <!--Optional:-->
+                     <dto1:description>?</dto1:description>
+                     <!--Optional:-->
+                     <dto1:groupClass>?</dto1:groupClass>
+                     <!--Optional:-->
+                     <dto1:grpId>?</dto1:grpId>
+                     <!--Optional:-->
+                     <dto1:grpName>?</dto1:grpName>
+                     <!--Optional:-->
+                     <dto1:inheritFromParent>?</dto1:inheritFromParent>
+                     <!--Optional:-->
+                     <dto1:lastUpdate>?</dto1:lastUpdate>
+                     <!--Optional:-->
+                     <dto1:lastUpdatedBy>?</dto1:lastUpdatedBy>
+                     <!--Optional:-->
+                     <dto1:parentGrpId>?</dto1:parentGrpId>
+                     <!--Optional:-->
+                     <dto1:provisionMethod>?</dto1:provisionMethod>
+                     <!--Optional:-->
+                     <dto1:provisionObjName>?</dto1:provisionObjName>
+                     <!--Optional:-->
+                     <dto1:status>?</dto1:status>
+                     <!--Zero or more repetitions:-->
+                     <dto1:subGroup/>
+                  </dto1:group>
+               </dto1:groupObj>
+            </dto:groups>
+            <!--Optional:-->
+            <dto:id>
+               <!--Optional:-->
+               <dto:roleId>?</dto:roleId>
+               <!--Optional:-->
+               <dto:serviceId>?</dto:serviceId>
+            </dto:id>
+            <!--Optional:-->
+            <dto:provisionObjName>?</dto:provisionObjName>
+            <!--Optional:-->
+            <dto:parentRoleId>?</dto:parentRoleId>
+            <!--Optional:-->
+            <dto:roleAttributes>
+               <!--Zero or more repetitions:-->
+               <dto:roleAttributeObj>
+                  <!--Optional:-->
+                  <dto:roleAttribute>
+                     <!--Optional:-->
+                     <dto:metadataId>?</dto:metadataId>
+                     <!--Optional:-->
+                     <dto:name>?</dto:name>
+                     <!--Optional:-->
+                     <dto:roleAttrId>?</dto:roleAttrId>
+                     <!--Optional:-->
+                     <dto:roleId>?</dto:roleId>
+                     <!--Optional:-->
+                     <dto:serviceId>?</dto:serviceId>
+                     <!--Optional:-->
+                     <dto:value>?</dto:value>
+                  </dto:roleAttribute>
+               </dto:roleAttributeObj>
+            </dto:roleAttributes>
+            <!--Optional:-->
+            <dto:roleName>?</dto:roleName>
+            <!--Optional:-->
+            <dto:userAssociationMethod>?</dto:userAssociationMethod>
+            <!--Optional:-->
+            <dto:users>
+               <!--Zero or more repetitions:-->
+               <dto4:userObj>
+                  <!--Optional:-->
+                  <dto4:user>
+                     <!--Optional:-->
+                     <dto4:objectState>?</dto4:objectState>
+                     <!--Optional:-->
+                     <dto4:addresses>
+                        <!--Zero or more repetitions:-->
+                        <dto5:addressEntry key="?">
+                           <!--Optional:-->
+                           <dto5:address>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:address1>?</dto5:address1>
+                              <!--Optional:-->
+                              <dto5:address2>?</dto5:address2>
+                              <!--Optional:-->
+                              <dto5:address3>?</dto5:address3>
+                              <!--Optional:-->
+                              <dto5:address4>?</dto5:address4>
+                              <!--Optional:-->
+                              <dto5:address5>?</dto5:address5>
+                              <!--Optional:-->
+                              <dto5:address6>?</dto5:address6>
+                              <!--Optional:-->
+                              <dto5:address7>?</dto5:address7>
+                              <!--Optional:-->
+                              <dto5:addressId>?</dto5:addressId>
+                              <!--Optional:-->
+                              <dto5:city>?</dto5:city>
+                              <!--Optional:-->
+                              <dto5:country>?</dto5:country>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                              <!--Optional:-->
+                              <dto5:postalCd>?</dto5:postalCd>
+                              <!--Optional:-->
+                              <dto5:state>?</dto5:state>
+                           </dto5:address>
+                        </dto5:addressEntry>
+                     </dto4:addresses>
+                     <!--Optional:-->
+                     <dto4:birthdate>?</dto4:birthdate>
+                     <!--Optional:-->
+                     <dto4:companyId>?</dto4:companyId>
+                     <!--Optional:-->
+                     <dto4:companyOwnerId>?</dto4:companyOwnerId>
+                     <!--Optional:-->
+                     <dto4:createDate>?</dto4:createDate>
+                     <!--Optional:-->
+                     <dto4:createdBy>?</dto4:createdBy>
+                     <!--Optional:-->
+                     <dto4:dept>?</dto4:dept>
+                     <!--Optional:-->
+                     <dto4:emailAddresses>
+                        <!--Zero or more repetitions:-->
+                        <dto5:emailAddressEntry key="?">
+                           <!--Optional:-->
+                           <dto5:emailAddress>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:emailAddress>?</dto5:emailAddress>
+                              <!--Optional:-->
+                              <dto5:emailId>?</dto5:emailId>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                           </dto5:emailAddress>
+                        </dto5:emailAddressEntry>
+                     </dto4:emailAddresses>
+                     <!--Optional:-->
+                     <dto4:employeeId>?</dto4:employeeId>
+                     <!--Optional:-->
+                     <dto4:employeeType>?</dto4:employeeType>
+                     <!--Optional:-->
+                     <dto4:expirationDate>?</dto4:expirationDate>
+                     <!--Optional:-->
+                     <dto4:firstName>?</dto4:firstName>
+                     <!--Optional:-->
+                     <dto4:jobCode>?</dto4:jobCode>
+                     <!--Optional:-->
+                     <dto4:lastName>?</dto4:lastName>
+                     <!--Optional:-->
+                     <dto4:lastUpdate>?</dto4:lastUpdate>
+                     <!--Optional:-->
+                     <dto4:lastUpdatedBy>?</dto4:lastUpdatedBy>
+                     <!--Optional:-->
+                     <dto4:locationId>?</dto4:locationId>
+                     <!--Optional:-->
+                     <dto4:managerId>?</dto4:managerId>
+                     <!--Optional:-->
+                     <dto4:metadataType>
+                        <!--Optional:-->
+                        <dto2:description>?</dto2:description>
+                        <!--Optional:-->
+                        <dto2:typeId>?</dto2:typeId>
+                     </dto4:metadataType>
+                     <!--Optional:-->
+                     <dto4:middleInit>?</dto4:middleInit>
+                     <!--Optional:-->
+                     <dto4:phones>
+                        <!--Zero or more repetitions:-->
+                        <dto5:phoneEntry key="?">
+                           <!--Optional:-->
+                           <dto5:phone>
+                              <!--Optional:-->
+                              <dto5:isActive>?</dto5:isActive>
+                              <!--Optional:-->
+                              <dto5:areaCd>?</dto5:areaCd>
+                              <!--Optional:-->
+                              <dto5:countryCd>?</dto5:countryCd>
+                              <!--Optional:-->
+                              <dto5:description>?</dto5:description>
+                              <!--Optional:-->
+                              <dto5:isDefault>?</dto5:isDefault>
+                              <!--Optional:-->
+                              <dto5:parentId>?</dto5:parentId>
+                              <!--Optional:-->
+                              <dto5:parentType>?</dto5:parentType>
+                              <!--Optional:-->
+                              <dto5:phoneExt>?</dto5:phoneExt>
+                              <!--Optional:-->
+                              <dto5:phoneId>?</dto5:phoneId>
+                              <!--Optional:-->
+                              <dto5:phoneNbr>?</dto5:phoneNbr>
+                           </dto5:phone>
+                        </dto5:phoneEntry>
+                     </dto4:phones>
+                     <!--Optional:-->
+                     <dto4:prefix>?</dto4:prefix>
+                     <!--Optional:-->
+                     <dto4:sex>?</dto4:sex>
+                     <!--Optional:-->
+                     <dto4:status>?</dto4:status>
+                     <!--Optional:-->
+                     <dto4:suffix>?</dto4:suffix>
+                     <!--Optional:-->
+                     <dto4:title>?</dto4:title>
+                     <!--Optional:-->
+                     <dto4:userAttributes>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userAttributeEntry key="?">
+                           <!--Optional:-->
+                           <dto4:userAttribute>
+                              <!--Optional:-->
+                              <dto4:id>?</dto4:id>
+                              <!--Optional:-->
+                              <dto4:metadataId>?</dto4:metadataId>
+                              <!--Optional:-->
+                              <dto4:name>?</dto4:name>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:value>?</dto4:value>
+                           </dto4:userAttribute>
+                        </dto4:userAttributeEntry>
+                     </dto4:userAttributes>
+                     <!--Optional:-->
+                     <dto4:userId>?</dto4:userId>
+                     <!--Optional:-->
+                     <dto4:userTypeInd>?</dto4:userTypeInd>
+                     <!--Optional:-->
+                     <dto4:userNotes>
+                        <!--Zero or more repetitions:-->
+                        <dto4:userNoteItem>
+                           <!--Optional:-->
+                           <dto4:userNote>
+                              <!--Optional:-->
+                              <dto4:createDate>?</dto4:createDate>
+                              <!--Optional:-->
+                              <dto4:createdBy>?</dto4:createdBy>
+                              <!--Optional:-->
+                              <dto4:description>?</dto4:description>
+                              <!--Optional:-->
+                              <dto4:noteType>?</dto4:noteType>
+                              <!--Optional:-->
+                              <dto4:userId>?</dto4:userId>
+                              <!--Optional:-->
+                              <dto4:userNoteId>?</dto4:userNoteId>
+                           </dto4:userNote>
+                        </dto4:userNoteItem>
+                     </dto4:userNotes>
+                  </dto4:user>
+               </dto4:userObj>
+            </dto:users>
+         </role>
+      </typ:updateRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/role/service/RoleDataService/updateRole"/></con:call></con:operation></con:interface><con:testSuite name="RoleDataServiceBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addRole TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addRole"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>RoleDataServiceBinding</con:interface><con:operation>addRole</con:operation><con:request name="addRole"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:addRole><role><dto:id xmlns:dto="urn:idm.openiam.org/srvc/role/dto"><dto:roleId>MY ROLE</dto:roleId><dto:serviceId>IDM</dto:serviceId></dto:id><dto:roleName xmlns:dto="urn:idm.openiam.org/srvc/role/dto">My Role</dto:roleName></role></typ:addRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/role/service/RoleDataService/addRole" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUserRoles TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getUserRoles"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>RoleDataServiceBinding</con:interface><con:operation>getUserRoles</con:operation><con:request name="getUserRoles"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/RoleDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:idm.openiam.org/srvc/role/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:getUserRoles><userId>3006</userId></typ:getUserRoles>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/role/service/RoleDataService/getUserRoles" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/></con:soapui-project>
