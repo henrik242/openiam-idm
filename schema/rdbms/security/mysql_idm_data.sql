@@ -236,7 +236,7 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, acti
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','PROVISIONING','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','PROVISIONING','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
-
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDSYNC','PROVISIONING','Synchronization','Synchronization','managedSysList.cnt', 'en',5);
 /* Reporting MENU options */
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('USERREPORT','REPORT','User Reports','User Information Reports','', 'en');
@@ -266,7 +266,7 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, disp
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('SELFCENTER','SELFSERVICE','Self Service Center', 'Self Service Center', null, 'en', '2',0);
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('DIRECTORY','SELFCENTER','Directory Lookup', 'Directory Lookup', 'pub/directory.do?method=view', 'en', '1',1);
-insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGPSWD','SELFCENTER', 'Change Password', 'Change Password', 'priv/password.do?method=view', 'en', '2',0);
+insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('CHNGPSWD','SELFCENTER', 'Change Password', 'Change Password', 'passwordChange.selfserve', 'en', '2',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('IDQUEST','SELFCENTER', 'Challenge Response', 'Challenge Response', 'priv/idquest.do?method=view', 'en', '3',0);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('FORGOTPSWD','SELFCENTER', 'Forgot Password', 'Forgot Password', 'pub/unLockUser.do?method=view', 'en', '4',1);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, display_order, PUBLIC_URL) values('PROFILE','SELFCENTER', 'Edit Your Profile', 'Edit Your Profile', 'priv/customProfile.do?method=view', 'en', '5',0);
@@ -303,7 +303,7 @@ INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SECURITY_ROLE','SUPER_SEC_ADMIN
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('PROVCONNECT','SUPER_SEC_ADMIN');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('MNGSYS','SUPER_SEC_ADMIN');
-
+INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('IDSYNC','SUPER_SEC_ADMIN');
 
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('SELFSERVICE','END_USER');
 INSERT INTO PERMISSIONS(MENU_ID,ROLE_ID) VALUES('ACCESSCENTER','END_USER');
@@ -702,6 +702,8 @@ INSERT INTO PRIVILEGE(PRIVILEGE_ID, DESCRIPTION) VALUES('EXECUTE','Execute');
 INSERT INTO PRIVILEGE(PRIVILEGE_ID, DESCRIPTION) VALUES('UPDATE','Update');
 INSERT INTO PRIVILEGE(PRIVILEGE_ID, DESCRIPTION) VALUES('DELETE','Delete');
 
+/* locations */
+insert into LOCATION(LOCATION_ID, NAME, COUNTRY, ADDRESS1, CITY, STATE, POSTAL_CD) VALUES ('100', 'HQ', 'US', 'MAIN ST', 'MY TOWN', 'NY', '12345');
 
 
 /* POLICY ENTRIES */

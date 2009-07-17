@@ -73,11 +73,13 @@ CREATE TABLE RESOURCES(
        DESCRIPTION          varchar(100) NULL,
 	   NAME      			varchar(40) NULL,
        RESOURCE_PARENT      varchar(32) NULL,
-       BRANCH_ID            varchar(20) NULL,
-       CATEGORY_ID	    varchar(20) NULL,
-       DISPLAY_ORDER	    int NULL,
-       NODE_LEVEL	    int NULL,
-       SENSITIVE_APP	int null,
+       BRANCH_ID            varchar(32) NULL,
+       CATEGORY_ID	    	varchar(20) NULL,
+       DISPLAY_ORDER	    int NULL  DEFAULT 1,
+       NODE_LEVEL	    	int NULL  DEFAULT 1,
+       SENSITIVE_APP		int null  DEFAULT 0,
+	   	 STATUS				VARCHAR(20) NULL,
+       MANAGED_SYS_ID			VARCHAR(20) NULL,   
        PRIMARY KEY (RESOURCE_ID), 
 	CONSTRAINT FK_RESOURCE_RESOURCE_TYPE
        FOREIGN KEY (RESOURCE_TYPE_ID)  REFERENCES RESOURCE_TYPE(RESOURCE_TYPE_ID),
@@ -90,7 +92,9 @@ CREATE TABLE RESOURCE_PROP (
        RESOURCE_PROP_ID     varchar(32) NOT NULL,
        RESOURCE_ID          varchar(32) NULL,
        METADATA_ID          varchar(20) NULL,
+	     NAME					VARCHAR(20) NOT NULL,
        PROP_VALUE           varchar(500) NULL,
+       PROP_GROUP           VARCHAR(20) NULL,
        PRIMARY KEY (RESOURCE_PROP_ID), 
 	CONSTRAINT FK_RESOURCE_PROP_RESOURCE
        FOREIGN KEY (RESOURCE_ID) REFERENCES RESOURCES(RESOURCE_ID)

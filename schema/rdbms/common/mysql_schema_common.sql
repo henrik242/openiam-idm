@@ -5,7 +5,11 @@ CREATE TABLE SECURITY_DOMAIN (
        /* Refers to which managed system to use for authentication */
 	   AUTH_SYS_ID			VARCHAR(20) NULL,
 	   LOGIN_MODULE			VARCHAR(100) NULL,
-       PRIMARY KEY (DOMAIN_ID)
+       /* Default policies for the domain */
+       PASSWORD_POLICY	    	VARCHAR(20) NULL,
+       AUTHENTICATION_POLICY	VARCHAR(20) NULL,
+       AUDIT_POLICY	    		VARCHAR(20) NULL,
+	PRIMARY KEY (DOMAIN_ID)
 );
 
 
