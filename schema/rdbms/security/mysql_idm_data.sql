@@ -187,13 +187,13 @@ insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('
 
 
 
-insert into USER_GRP (grp_id, user_id) 	values('SUPER_SEC_ADMIN_GRP','3000');
-insert into USER_GRP (grp_id, user_id) 	values('SUPER_SEC_ADMIN_GRP','3001');
-insert into USER_GRP (grp_id, user_id) 	values('END_USER_GRP','3006');
+insert into USER_GRP (USER_GRP, grp_id, user_id) 	values('1000','SUPER_SEC_ADMIN_GRP','3000');
+insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1001','SUPER_SEC_ADMIN_GRP','3001');
+insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1002','END_USER_GRP','3006');
 
-insert into USER_GRP (grp_id, user_id) 	values('HR_GRP','3007');
-insert into USER_GRP (grp_id, user_id) 	values('MNGR_GRP','3008');
-insert into USER_GRP (grp_id, user_id) 	values('SECURITY_GRP','3009');
+insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1003','HR_GRP','3007');
+insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1004','MNGR_GRP','3008');
+insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1005','SECURITY_GRP','3009');
 
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SUPER_SEC_ADMIN','SUPER_SEC_ADMIN_GRP', 'IDM');
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('END_USER','END_USER_GRP', 'USR_SEC_DOMAIN');

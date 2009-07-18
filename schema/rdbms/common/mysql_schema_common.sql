@@ -172,7 +172,7 @@ CREATE TABLE USERS(
        TYPE_ID              varchar(20) NULL,
        TITLE                varchar(30) NULL,
 	   DEPT_CD				VARCHAR(50) NULL, /* Dept - can POINT TO AN OU in a directory */
-	   DEPT					VARCHAR(50) NULL, /* Dept - can POINT TO AN OU in a directory */
+	   DEPT					VARCHAR(50) NULL, 
 	   DEPT_NAME			VARCHAR(100) NULL,
 	   MAIL_CODE			VARCHAR(50) NULL,	   
        DIVISION				VARCHAR(50) NULL,
@@ -386,9 +386,13 @@ CREATE TABLE GRP_ATTRIBUTES (
 
 
 CREATE TABLE USER_GRP(
-   	GRP_ID               varchar(20) NOT NULL,
-   	USER_ID              varchar(20) NOT NULL,
-	PRIMARY KEY (GRP_ID, USER_ID),
+	USER_GRP_ID			VARCHAR(32) NOT NULL,
+   	GRP_ID              varchar(20) NOT NULL,
+   	USER_ID             varchar(20) NOT NULL,
+	STATUS				VARCHAR(20) NULL DEFAULT 'ACTIVE',  
+    CREATE_DATE			DATETIME NULL,
+    CREATED_BY			VARCHAR(20) NULL,
+	PRIMARY KEY (USER_GRP_ID),
        CONSTRAINT FK_USR_GRP_GPR
        FOREIGN KEY (GRP_ID)  REFERENCES GRP(GRP_ID),
        CONSTRAINT FK_USR_GRP_USR
