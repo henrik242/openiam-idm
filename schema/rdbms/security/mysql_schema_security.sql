@@ -19,7 +19,7 @@ CREATE TABLE ROLE(
 
 
 CREATE TABLE ROLE_ATTRIBUTE (
-	   ROLE_ATTR_ID			VARCHAR(20) NOT NULL,
+	   ROLE_ATTR_ID			VARCHAR(32) NOT NULL,
        NAME                 varchar(20) NULL,
        VALUE                varchar(255) NULL,
        METADATA_ID          varchar(20) NULL,

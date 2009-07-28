@@ -1,6 +1,11 @@
 insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS, LOGIN_MODULE, AUTH_SYS_ID) values('IDM','IDM','ON-LINE', 'org.openiam.idm.srvc.auth.spi.DefaultLoginModule','0');
 insert into SECURITY_DOMAIN (DOMAIN_ID, NAME, STATUS, LOGIN_MODULE, AUTH_SYS_ID) values('USR_SEC_DOMAIN','DEFAULT DOMAIN','ON-LINE', 'org.openiam.idm.srvc.auth.spi.DefaultLoginModule','0');
 
+update SECURITY_DOMAIN
+ SET AUTHENTICATION_POLICY='4001',
+     PASSWORD_POLICY='4000',
+	 AUDIT_POLICY='4002';
+
 insert into SERVICE (SERVICE_ID, SERVICE_NAME, STATUS) values('USR_SEC_DOMAIN','USER SECURITY DOMAIN','ON-LINE');
 
 insert into LANGUAGE (LANGUAGE_CD, LANGUAGE) VALUES ('en','English');
@@ -187,13 +192,13 @@ insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('
 
 
 
-insert into USER_GRP (USER_GRP, grp_id, user_id) 	values('1000','SUPER_SEC_ADMIN_GRP','3000');
-insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1001','SUPER_SEC_ADMIN_GRP','3001');
-insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1002','END_USER_GRP','3006');
+insert into USER_GRP (USER_GRP_ID, grp_id, user_id) 	values('1000','SUPER_SEC_ADMIN_GRP','3000');
+insert into USER_GRP (USER_GRP_ID,grp_id, user_id) 	values('1001','SUPER_SEC_ADMIN_GRP','3001');
+insert into USER_GRP (USER_GRP_ID,grp_id, user_id) 	values('1002','END_USER_GRP','3006');
 
-insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1003','HR_GRP','3007');
-insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1004','MNGR_GRP','3008');
-insert into USER_GRP (USER_GRP,grp_id, user_id) 	values('1005','SECURITY_GRP','3009');
+insert into USER_GRP (USER_GRP_ID,grp_id, user_id) 	values('1003','HR_GRP','3007');
+insert into USER_GRP (USER_GRP_ID,grp_id, user_id) 	values('1004','MNGR_GRP','3008');
+insert into USER_GRP (USER_GRP_ID,grp_id, user_id) 	values('1005','SECURITY_GRP','3009');
 
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('SUPER_SEC_ADMIN','SUPER_SEC_ADMIN_GRP', 'IDM');
 INSERT INTO GRP_ROLE(ROLE_ID,GRP_ID, SERVICE_ID) VALUES ('END_USER','END_USER_GRP', 'USR_SEC_DOMAIN');
@@ -237,6 +242,7 @@ insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, acti
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('PROVCONNECT','PROVISIONING','Connectors','Provisioning Connectors','connectorList.cnt', 'en',3);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('MNGSYS','PROVISIONING','Managed Systems','Managed Systems','managedSysList.cnt', 'en',4);
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD, DISPLAY_ORDER) values('IDSYNC','PROVISIONING','Synchronization','Synchronization','managedSysList.cnt', 'en',5);
+
 /* Reporting MENU options */
 
 insert into MENU (menu_id, menu_group, menu_name,menu_desc,url,LANGUAGE_CD) values('USERREPORT','REPORT','User Reports','User Information Reports','', 'en');
