@@ -371,7 +371,7 @@ CREATE TABLE GRP (
 
 
 CREATE TABLE GRP_ATTRIBUTES (
-       ID                   varchar(20) NOT NULL,
+       ID                   varchar(32) NOT NULL,
        GRP_ID               varchar(20) NULL,
        METADATA_ID          varchar(20) NULL,
        NAME                 varchar(20) NULL,
