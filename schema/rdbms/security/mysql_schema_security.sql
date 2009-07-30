@@ -180,7 +180,7 @@ CREATE TABLE LOGIN(
 );
 
 CREATE TABLE LOGIN_ATTRIBUTE (
-	   LOGIN_ATTR_ID		VARCHAR(20) NOT NULL,
+	   LOGIN_ATTR_ID		VARCHAR(32) NOT NULL,
        LOGIN                varchar(30) NOT NULL,
        SERVICE_ID	    	varchar(20) NOT NULL,
        NAME                 varchar(20) NULL,
@@ -219,7 +219,7 @@ CREATE TABLE PWD_HISTORY (
 );
 
 CREATE TABLE PWD_LOGIN_HISTORY (
-       PWD_LOGIN_ID         varchar(20) NOT NULL,
+       PWD_LOGIN_ID         varchar(32) NOT NULL,
        SERVICE_ID           varchar(20) NULL,
        LOGIN                varchar(30) NULL,
        PASSWORD             varchar(80) NULL,
@@ -242,7 +242,7 @@ CREATE TABLE CREDENTIALS (
 
 
 CREATE TABLE IDENTITY_QUEST_GRP (
-       IDENTITY_QUEST_GRP_ID varchar(20) NOT NULL,
+       IDENTITY_QUEST_GRP_ID varchar(32) NOT NULL,
        NAME                 varchar(60) NULL,
        STATUS               varchar(20) NULL,
        COMPANY_OWNER_ID     varchar(20) NULL,
@@ -254,8 +254,8 @@ CREATE TABLE IDENTITY_QUEST_GRP (
 );
 
 CREATE TABLE IDENTITY_QUESTION (
-       IDENTITY_QUESTION_ID 	varchar(20) NOT NULL,
-       IDENTITY_QUEST_GRP_ID 	varchar(20) NULL,
+       IDENTITY_QUESTION_ID 	varchar(32) NOT NULL,
+       IDENTITY_QUEST_GRP_ID 	varchar(32) NULL,
        QUESTION_TEXT        	varchar(255) NULL,
        REQUIRED             	int NULL,
  	USER_ID			VARCHAR(20),	
@@ -264,8 +264,8 @@ CREATE TABLE IDENTITY_QUESTION (
               FOREIGN KEY (IDENTITY_QUEST_GRP_ID) REFERENCES IDENTITY_QUEST_GRP(IDENTITY_QUEST_GRP_ID)
 );
 CREATE TABLE USER_IDENTITY_ANS (
-       IDENTITY_ANS_ID      varchar(20) NOT NULL,
-       IDENTITY_QUESTION_ID varchar(20) NULL,
+       IDENTITY_ANS_ID      varchar(32) NOT NULL,
+       IDENTITY_QUESTION_ID varchar(32) NULL,
 	   QUESTION_TEXT		varchar(255) null,
        USER_ID              varchar(20) NULL,
        QUESTION_ANSWER      varchar(255) NULL,

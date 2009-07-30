@@ -148,7 +148,7 @@ CREATE TABLE COMPANY_ATTACHMENT_REF (
 
 
 CREATE TABLE COMPANY_ATTRIBUTE (
-       COMPANY_ATTR_ID      varchar(20) NOT NULL,
+       COMPANY_ATTR_ID      varchar(32) NOT NULL,
        COMPANY_ID           varchar(20) NULL,
        NAME                 varchar(20) NULL,
        VALUE                varchar(255) NULL,
@@ -275,7 +275,7 @@ CREATE TABLE USER_ATTACHMENT_REF (
 
 
 CREATE TABLE USER_ATTRIBUTES (
-       ID                   varchar(20) NOT NULL,
+       ID                   varchar(32) NOT NULL,
        USER_ID              varchar(20) NULL,
        METADATA_ID          varchar(20) NULL,
        NAME                 varchar(20) NULL,
@@ -508,7 +508,7 @@ CREATE TABLE LOCATION (
 );
 
 CREATE TABLE ADDRESS (
-       ADDRESS_ID           varchar(20) NOT NULL,
+       ADDRESS_ID           varchar(32) NOT NULL,
 	   NAME					VARCHAR(40) NULL,
        COUNTRY              varchar(30) NULL,
 	   BLDG_NUM				VARCHAR(10) NULL,
@@ -535,7 +535,7 @@ CREATE TABLE ADDRESS (
 
 
 CREATE TABLE EMAIL_ADDRESS (
-       EMAIL_ID             varchar(20) NOT NULL,
+       EMAIL_ID             varchar(32) NOT NULL,
 	   NAME					VARCHAR(40) NULL,
        DESCRIPTION          varchar(100) NULL,
        EMAIL_ADDRESS        varchar(100) NULL,
@@ -546,7 +546,7 @@ CREATE TABLE EMAIL_ADDRESS (
        PRIMARY KEY (EMAIL_ID)
 );
 CREATE TABLE PHONE (
-       PHONE_ID             varchar(20) NOT NULL,
+       PHONE_ID             varchar(32) NOT NULL,
 	   NAME					VARCHAR(40) NULL,
        AREA_CD              varchar(10) NULL,
        COUNTRY_CD           varchar(3) NULL,
