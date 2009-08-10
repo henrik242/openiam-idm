@@ -182,13 +182,13 @@ insert into GRP (grp_id, grp_name)   values('HR_GRP','HR Group');
 insert into GRP (grp_id, grp_name)   values('MNGR_GRP','Manager Group');
 insert into GRP (grp_id, grp_name)   values('SECURITY_GRP','Security Group');
 
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3000','sys','','APPROVED','100');
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3001','sys2','','APPROVED','100');
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3006','Scott','Nelson','APPROVED','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3000','sys','','ACTIVE','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID ) values('3001','sys2','','ACTIVE','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3006','Scott','Nelson','ACTIVE','100');
 
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3007','HR','User','APPROVED','100');
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3008','Hiring','Manager','APPROVED','100');
-insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3009','Security','Manager','APPROVED','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3007','HR','User','ACTIVE','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3008','Hiring','Manager','ACTIVE','100');
+insert into USERS (user_id,first_name, last_name, STATUS, COMPANY_ID  ) values('3009','Security','Manager','ACTIVE','100');
 
 
 
