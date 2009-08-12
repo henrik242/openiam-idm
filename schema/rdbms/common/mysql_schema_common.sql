@@ -321,7 +321,7 @@ CREATE TABLE SERVICE_CONFIG (
 
 
 CREATE TABLE STATUS (
-       STATUS_CD           	varchar(20) NOT NULL,
+       STATUS_CD           	varchar(40) NOT NULL,
 	   STATUS_TYPE			VARCHAR(20) NULL,
        DESCRIPTION          varchar(80) NULL,
        CODE_GROUP			VARCHAR(40) NOT NULL,
