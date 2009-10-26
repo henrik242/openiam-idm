@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd ">
+
+
+   <bean id="provisionController" class="org.openiam.provision.service.ProvisionService" 
+      factory-bean="provisionServiceFactory" factory-method="create"/>
+
+
+	<bean id="provisionServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.provision.service.ProvisionService"/>
+	  <property name="address" value="http://localhost:8080/idm-connector-ws/ProvisionControllerService"/>
+	</bean>
+
+	<!--  User Service -->
+   <bean id="userServiceClient" class="org.openiam.idm.srvc.user.ws.UserDataWebService" 
+      factory-bean="userServiceFactory" factory-method="create"/>
+
+
+	<bean id="userServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.user.ws.UserDataWebService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/UserDataService"/>
+	</bean>
+	
+	<!--  Navigator Service -->
+   <bean id="navServiceClient" class="org.openiam.idm.srvc.menu.ws.NavigatorDataWebService" 
+      factory-bean="navServiceFactory" factory-method="create"/>
+
+
+	<bean id="navServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.menu.ws.NavigatorDataWebService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/NavigationService"/>
+	</bean>	
+		
+	<!--  Role Service -->
+   <bean id="roleServiceClient" class="org.openiam.idm.srvc.role.ws.RoleDataWebService" 
+      factory-bean="roleServiceFactory" factory-method="create"/>
+
+
+	<bean id="roleServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.role.ws.RoleDataWebService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/RoleDataWebService"/>
+	</bean>	
+	<!--  Group Service -->
+
+   <bean id="groupServiceClient" class="org.openiam.idm.srvc.grp.ws.GroupDataWebService" 
+      factory-bean="groupServiceFactory" factory-method="create"/>
+
+
+	<bean id="groupServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.grp.ws.GroupDataWebService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/GroupDataWebService"/>
+	</bean>
+	
+	<!--  Authentication Service -->
+
+   <bean id="loginServiceClient" class="org.openiam.idm.srvc.auth.login.LoginDataService" 
+      factory-bean="loginServiceFactory" factory-method="create"/>
+
+
+	<bean id="loginServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.auth.login.LoginDataService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/LoginWebService"/>
+	</bean>
+
+   <bean id="authServiceClient" class="org.openiam.idm.srvc.auth.service.AuthenticationService" 
+      factory-bean="authServiceFactory" factory-method="create"/>
+
+
+	<bean id="authServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.auth.service.AuthenticationService"/>
+	  <property name="address" value="http://localhost:8080/idm-ws/idmsrvc/AuthenticationService"/>
+	</bean>
+  
+</beans>

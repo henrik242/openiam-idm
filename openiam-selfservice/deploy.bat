@@ -1,0 +1,2 @@
+rem xcopy C:\workspace\idm\openiam-selfservice\target\*.war C:\appserver\dev-jboss-4.2.3.GA\server\default\deploy /Y
+xcopy c:\workspace\idm\openiam-selfservice\target\*.war C:\appserver\apache-tomcat-6.0.20\webapps /Y

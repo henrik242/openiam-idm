@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="C:\workspace\idm\idm-ws\soap-ui-test" soapui-version="2.5.1" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="OrganizationDataService">C:/workspace/idm/idm-ws/soap-ui-test/OrganizationDataService-soapui-project.xml</con:project>
+  <con:project name="RoleDataService">C:/workspace/idm/idm-ws/soap-ui-test/RoleDataService-soapui-project.xml</con:project>
+  <con:project name="NavigationDataService">C:/workspace/idm/idm-ws/soap-ui-test/NavigationDataService-soapui-project.xml</con:project>
+  <con:project name="AuditService">C:/workspace/idm/idm-ws/soap-ui-test/AuditService-soapui-project.xml</con:project>
+  <con:project name="ExampleConnector">C:/workspace/idm/idm-connector-core/soap-ui-test/ExampleConnector-soapui-project.xml</con:project>
+  <con:project name="GroupDataService">C:/workspace/idm/idm-ws/soap-ui-test/GroupDataService-soapui-project.xml</con:project>
+  <con:project name="UserDataService">C:/workspace/idm/idm-ws/soap-ui-test/UserDataService-soapui-project.xml</con:project>
+  <con:project name="LoginDataService">C:/workspace/idm/idm-ws/soap-ui-test/LoginDataService-soapui-project.xml</con:project>
+  <con:project name="Provisioning Service">C:/workspace/idm/idm-connector-ws/soap-ui-test/Provisioning Service-soapui-project.xml</con:project>
+  <con:project name="AuthenticationService">C:/workspace/idm/idm-ws/soap-ui-test/AuthenticationService-soapui-project.xml</con:project>
+</con:soapui-workspace>
