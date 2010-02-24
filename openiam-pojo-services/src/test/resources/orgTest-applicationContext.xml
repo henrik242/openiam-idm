@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+
+
+	<!-- User Test Beans -->
+ 
+	<bean id="orgBean" class="org.openiam.idm.srvc.org.dto.Organization" >
+		<property name="alias" value="BIGCORP"/>
+		<property name="description" value="Parent Corp"/>
+		<property name="domainName" value="BIGCORP.COM"/>
+		<property name="ldapStr" value="cn=BIGCORP"/>
+		<property name="lstUpdatedBy" value="3006"/>
+		<property name="createdBy" value="100" />
+		<property name="organizationName" value="BIG CORP" />
+		<property name="orgId" value="200" />
+		<property name="parentId" value="" />		
+		<property name="status" value="ACTIVE" />	
+	</bean>
+	<bean id="orgBean2" class="org.openiam.idm.srvc.org.dto.Organization" >
+		<property name="alias" value="BIGCORP_FINANCE"/>
+		<property name="description" value="Subsidiary of BigCorp"/>
+		<property name="domainName" value="BIGCORP-finance.COM"/>
+		<property name="ldapStr" value="ou=BIGCORPFinance"/>
+		<property name="lstUpdatedBy" value="3006"/>
+		<property name="createdBy" value="3006" />
+		<property name="organizationName" value="Big Finance CORP" />
+		<property name="orgId" value="201" />
+		<property name="parentId" value="200" />		
+		<property name="status" value="ACTIVE" />		
+	</bean>
+	
+	<bean id="orgBean3" class="org.openiam.idm.srvc.org.dto.Organization" >
+		<property name="alias" value="BIGCORP_AUTO"/>
+		<property name="description" value="Subsidiary of BigCorp"/>
+		<property name="domainName" value="BIGCORP-AUTO.COM"/>
+		<property name="ldapStr" value="ou=BIGCORPAUTO"/>
+		<property name="lstUpdatedBy" value="3006"/>
+		<property name="createdBy" value="3006" />
+		<property name="organizationName" value="Big Auto CORP" />
+		<property name="orgId" value="202" />
+		<property name="parentId" value="200" />		
+		<property name="status" value="IN-ACTIVE" />			
+	</bean>
+
+	<bean id="orgAttribute" class="org.openiam.idm.srvc.org.dto.OrganizationAttribute" >
+		<property name="attrId" value="10001"/>
+		<property name="name" value="SSN"/>
+		<property name="organizationId" value="200" />
+		<property name="value" value="11111122"/>	
+	</bean>
+	<bean id="orgAttribute2" class="org.openiam.idm.srvc.org.dto.OrganizationAttribute" >
+		<property name="attrId" value="10002"/>
+		<property name="name" value="City"/>
+		<property name="organizationId" value="200" />
+		<property name="value" value="Cortlandt"/>	
+	</bean>
+	<bean id="orgAttribute3" class="org.openiam.idm.srvc.org.dto.OrganizationAttribute" >
+		<property name="attrId" value="10003"/>
+		<property name="name" value="state"/>
+		<property name="organizationId" value="200" />
+		<property name="value" value="NY"/>	
+	</bean>
+
+
+	
+	
+</beans>
+
+

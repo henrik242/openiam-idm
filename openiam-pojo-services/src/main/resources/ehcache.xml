@@ -1,0 +1,228 @@
+<ehcache>
+
+    <!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path -->
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <!--Default Cache configuration. These will applied to caches programmatically created through
+        the CacheManager.
+
+        The following attributes are required:
+
+        maxInMemory                    - Sets the maximum number of objects that will be created in memory
+        eternal                        - Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+                                         element is never expired.
+        overflowToDisk                 - Sets whether elements can overflow to disk when the in-memory cache
+                                         has reached the maxInMemory limit.
+
+        The following attributes are optional:
+        timeToIdleSeconds              - Sets the time to idle for an element before it expires.
+                                         i.e. The maximum amount of time between accesses before an element expires
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that an Element can idle for infinity.
+                                         The default value is 0.
+        timeToLiveSeconds              - Sets the time to live for an element before it expires.
+                                         i.e. The maximum time between creation time and when an element expires.
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that and Element can live for infinity.
+                                         The default value is 0.
+        diskPersistent                 - Whether the disk store persists between restarts of the Virtual Machine.
+                                         The default value is false.
+        diskExpiryThreadIntervalSeconds- The number of seconds between runs of the disk expiry thread. The default value
+                                         is 120 seconds.
+        -->
+
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="180"
+        timeToLiveSeconds="28880"
+        overflowToDisk="true"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="180"
+        memoryStoreEvictionPolicy="LRU"
+        />
+
+
+    <cache name="org.openiam.idm.srvc.org.dto.Organization"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+     
+	<cache name="query.organization.findAllOrganization"
+	    maxElementsInMemory="1000"
+	    eternal="false"
+	    timeToLiveSeconds="28880"
+	    overflowToDisk="true"
+    />
+	<cache name="query.organization.findChildOrganization"
+	    maxElementsInMemory="1000"
+	    eternal="false"
+	    timeToLiveSeconds="28880"
+	    overflowToDisk="true"
+    />
+
+	<cache name="query.organization.findOrganizationByClassification"
+	    maxElementsInMemory="1000"
+	    eternal="false"
+	    timeToLiveSeconds="28880"
+	    overflowToDisk="true"
+    />         
+     
+    <cache name="org.openiam.idm.srvc.cd.dto.ReferenceData"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.orgpolicy.dto.OrgPolicy"
+        maxElementsInMemory="50"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+     
+	<cache name="query.orgPolicy.getAllPolicyMessages"
+    maxElementsInMemory="100"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+
+     
+    <cache name="org.openiam.idm.srvc.service.dto.Service"
+        maxElementsInMemory="200"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.menu.dto.Menu"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+     
+    <cache name="org.openiam.idm.srvc.meta.dto.MetadataType"
+        maxElementsInMemory="250"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.meta.dto.MetadataType.elementAttributes"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+     <cache name="org.openiam.idm.srvc.meta.dto.MetadataType.categories"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.grp.dto.Group"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.grp.dto.Group.attributes"
+        maxElementsInMemory="4000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+          
+    <cache name="org.openiam.idm.srvc.role.dto.Role"
+        maxElementsInMemory="200"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.role.dto.Role.roleAttributes"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />              
+    <cache name="org.openiam.idm.srvc.role.dto.Role.groups"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />  
+	<cache name="query.role.findUsersInRole"
+    maxElementsInMemory="1000"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+
+	<cache name="query.role.findUsersRole"
+    maxElementsInMemory="1000"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+	<cache name="query.role.findIndirectUsersRole"
+    maxElementsInMemory="1000"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+    
+
+
+	<cache name="query.role.findAllRoles"
+    maxElementsInMemory="1000"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+
+    <cache name="org.openiam.idm.srvc.res.dto.Resource"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="query.resource.findResourceForRole"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+          
+
+    <cache name="org.openiam.idm.srvc.policy.dto.Policy"
+        maxElementsInMemory="500"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="org.openiam.idm.srvc.policy.dto.Policy.policyAttributes"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+
+    <cache name="query.menu.findMenuByUser"
+        maxElementsInMemory="250"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+    <cache name="query.menu.findbyMenuGroup"
+        maxElementsInMemory="250"
+        eternal="false"
+        overflowToDisk="false" 
+     />
+
+	<cache name="query.iq.findAllQuestions"
+    maxElementsInMemory="100"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+	<cache name="query.iq.findQuestionByQuestionGroup"
+    maxElementsInMemory="100"
+    eternal="false"
+    timeToLiveSeconds="28880"
+    overflowToDisk="true"
+    />
+                      
+</ehcache>

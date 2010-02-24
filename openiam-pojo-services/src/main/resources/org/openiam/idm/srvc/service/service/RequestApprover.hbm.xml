@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2007 12:21:40 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping default-lazy="false">
+    <class name="org.openiam.idm.srvc.service.dto.RequestApprover" table="REQUEST_APPROVER">
+        <comment></comment>
+        <id name="requestApproverId" type="string">
+            <column name="REQUEST_APPROVER_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="service" class="org.openiam.idm.srvc.service.dto.Service" fetch="select">
+            <column name="SERVICE_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="approverType" type="string">
+            <column name="APPROVER_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="approverId" type="string">
+            <column name="APPROVER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="approvalLevel" type="string">
+            <column name="APPROVAL_LEVEL" length="20">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

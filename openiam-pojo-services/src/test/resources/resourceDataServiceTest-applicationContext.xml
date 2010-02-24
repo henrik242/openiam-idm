@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- Test Bean R1000 -->
+
+	<bean id="resourceBeanR1000" class="org.openiam.idm.srvc.res.dto.Resource" >
+		<property name="name" value="R1000"/>	
+		<property name="description" value="USA Sales"/>	
+		<property name="branchId" value=""/>	
+		<property name="categoryId" value="ACL"/>	
+		<property name="displayOrder" value="1"/>	
+		<property name="nodeLevel" value="0"/>	
+		<property name="sensitiveApp" value="0"/>	
+	</bean>
+	
+	<bean id="resourceTypeBeanRT1" class="org.openiam.idm.srvc.res.dto.ResourceType" >
+		<property name="resourceTypeId" value="RT1" />
+		<property name="description" value="Resource Type 1" />
+		<property name="metadataTypeId" value="FILE" />
+		<property name="provisionResource" value="1" />
+		<property name="processName" value="uuuuu" />
+	</bean>
+	
+	<bean id="resourcePropR1000-RP01" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1000-RP01" />
+	</bean>
+
+	<bean id="resourcePropR1000-RP02" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1000-RP02" />
+	</bean>
+
+
+	<!-- bean id="resourceRoleR1000" class="org.openiam.idm.srvc.res.dto.ResourceRole" >
+		<property name="id" ref="resourceRoleIdR1000" />
+	</bean>
+
+	<bean id="resourceRoleIdR1000" class="org.openiam.idm.srvc.res.dto.ResourceRoleId" >
+		<property name="resourceId" value="R1000" />
+		<property name="roleId" value="END_USER" />
+		<property name="privilegeId" value="READ" />
+	</bean>
+
+	<bean id="resourceUserR1000-3000" class="org.openiam.idm.srvc.res.dto.ResourceUser" >
+		<property name="id" ref="resourceUserIdR1000-3000" />
+	</bean>
+
+	<bean id="resourceUserIdR1000-3000" class="org.openiam.idm.srvc.res.dto.ResourceUserId" >
+		<property name="resourceId" value="R1000" />
+		<property name="userId" value="3000" />
+		<property name="privilegeId" value="READ" />
+	</bean>
+
+	<bean id="resourceUserR1000-3001" class="org.openiam.idm.srvc.res.dto.ResourceUser" >
+		<property name="id" ref="resourceUserIdR1000-3001" />
+	</bean>
+
+	<bean id="resourceUserIdR1000-3001" class="org.openiam.idm.srvc.res.dto.ResourceUserId" >
+		<property name="resourceId" value="R1000" />
+		<property name="userId" value="3001" />
+		<property name="privilegeId" value="READ" />
+	</bean-->
+	
+	<!-- Test Bean R1100 -->
+
+	<bean id="resourceBeanR1100" class="org.openiam.idm.srvc.res.dto.Resource" >
+		<property name="description" value="Eastern Region Sales"/>	
+		<property name="name" value="R1100"/>	
+		<property name="branchId" value="R1100"/>	
+		<property name="categoryId" value="ACL"/>	
+		<property name="displayOrder" value="1"/>	
+		<property name="nodeLevel" value="1"/>	
+		<property name="sensitiveApp" value="0"/>	
+	</bean>
+	
+	<bean id="resourcePropR1100-RP01" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1100-RP01" />
+	</bean>
+
+	<bean id="resourcePropR1100-RP02" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1100-RP02" />
+	</bean>
+
+
+	<!-- bean id="resourceRoleR1100" class="org.openiam.idm.srvc.res.dto.ResourceRole" >
+		<property name="id" ref="resourceRoleIdR1100" />
+	</bean>
+
+	<bean id="resourceRoleIdR1100" class="org.openiam.idm.srvc.res.dto.ResourceRoleId" >
+		<property name="resourceId" value="R1100" />
+		<property name="roleId" value="END_USER" />
+		<property name="privilegeId" value="READ" />
+	</bean>
+	
+	<bean id="resourceUserR1100-3000" class="org.openiam.idm.srvc.res.dto.ResourceUser" >
+		<property name="id" ref="resourceUserIdR1100-3000" />
+	</bean>
+
+	<bean id="resourceUserIdR1100-3000" class="org.openiam.idm.srvc.res.dto.ResourceUserId" >
+		<property name="resourceId" value="R1100" />
+		<property name="userId" value="3000" />
+		<property name="privilegeId" value="READ" />
+	</bean-->
+
+	<!-- Test Bean R1200 -->
+
+	<bean id="resourceBeanR1200" class="org.openiam.idm.srvc.res.dto.Resource" >
+		<property name="name" value="R1200"/>	
+		<property name="description" value="Western Region Sales"/>	
+		<property name="branchId" value="R1200"/>	
+		<property name="categoryId" value="ACL"/>	
+		<property name="displayOrder" value="2"/>	
+		<property name="nodeLevel" value="1"/>	
+		<property name="sensitiveApp" value="0"/>	
+	</bean>
+	
+	<bean id="resourcePropR1200-RP01" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1200-RP01" />
+	</bean>
+
+	<bean id="resourcePropR1200-RP02" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1200-RP02" />
+	</bean>
+
+
+	<!-- bean id="resourceRoleR1200" class="org.openiam.idm.srvc.res.dto.ResourceRole" >
+		<property name="id" ref="resourceRoleIdR1200" />
+	</bean>
+
+	<bean id="resourceRoleIdR1200" class="org.openiam.idm.srvc.res.dto.ResourceRoleId" >
+		<property name="resourceId" value="R1200" />
+		<property name="roleId" value="END_USER" />
+		<property name="privilegeId" value="READ" />
+	</bean-->
+	
+	<!-- Test Bean R1210 -->
+
+	<bean id="resourceBeanR1210" class="org.openiam.idm.srvc.res.dto.Resource" >
+		<property name="name" value="R1210"/>	
+		<property name="description" value="California Sales"/>	
+		<property name="branchId" value="R1200"/>	
+		<property name="categoryId" value="ACL"/>	
+		<property name="displayOrder" value="1"/>	
+		<property name="nodeLevel" value="2"/>	
+		<property name="sensitiveApp" value="0"/>	
+	</bean>
+	
+	<bean id="resourcePropR1210-RP01" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1210-RP01" />
+	</bean>
+
+	<bean id="resourcePropR1210-RP02" class="org.openiam.idm.srvc.res.dto.ResourceProp" >
+		<property name="metadataId" value="150" />
+		<property name="propValue" value="R1210-RP02" />
+	</bean>
+
+
+	<!--bean id="resourceRoleR1210" class="org.openiam.idm.srvc.res.dto.ResourceRole" >
+		<property name="id" ref="resourceRoleIdR1210" />
+	</bean>
+
+	< bean id="resourceRoleIdR1210" class="org.openiam.idm.srvc.res.dto.ResourceRoleId" >
+		<property name="resourceId" value="R1210" />
+		<property name="roleId" value="END_USER" />
+		<property name="privilegeId" value="READ" />
+	</bean-->
+	
+
+
+	<!-- aop -->
+	
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+   	</bean>
+
+  <aop:config>
+    <aop:pointcut id="resourceDAOOperation" expression="execution(* org.openiam.idm.srvc.res.service.ResourceDAOImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="resourceDAOOperation"/>
+  </aop:config>  
+	
+ <aop:config>
+    <aop:pointcut id="resourceTypeDAOOperation" expression="execution(* org.openiam.idm.srvc.res.service.ResourceTypeDAOImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="resourceTypeDAOOperation"/>
+  </aop:config>  
+ <aop:config>
+    <aop:pointcut id="resourcePropDAOOperation" expression="execution(* org.openiam.idm.srvc.res.service.ResourcePropDAOImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="resourcePropDAOOperation"/>
+  </aop:config>  
+ <aop:config>
+    <aop:pointcut id="resourceRoleDAOOperation" expression="execution(* org.openiam.idm.srvc.res.service.ResourceRoleDAOImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="resourceRoleDAOOperation"/>
+  </aop:config>  
+<aop:config>
+    <aop:pointcut id="resourceUserDAOOperation" expression="execution(* org.openiam.idm.srvc.res.service.ResourceUserDAOImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="resourceUserDAOOperation"/>
+  </aop:config>  
+	
+	</beans>
+	

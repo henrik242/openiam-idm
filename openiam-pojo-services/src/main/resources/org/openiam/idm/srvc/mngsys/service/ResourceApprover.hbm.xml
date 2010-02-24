@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 24, 2009 9:53:19 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ResourceApprover" table="RES_APPROVER" >
+        <id name="resApproverId" type="string">
+            <column name="RES_APPROVER_ID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="managedSysId" type="string">
+            <column name="MANAGED_SYS_ID" length="32" />
+        </property>
+        <property name="taskAction" type="string">
+            <column name="TASK_ACTION" length="32" />
+        </property>
+        <property name="approverId" type="string">
+            <column name="APPROVER_ID" length="32" />
+        </property>
+        <property name="approverType" type="string">
+            <column name="APPROVER_TYPE" length="20" />
+        </property>
+        <property name="approverLevel" type="java.lang.Integer">
+            <column name="APPROVER_LEVEL" />
+        </property>
+        <property name="msgId" type="string">
+            <column name="MSG_ID" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>

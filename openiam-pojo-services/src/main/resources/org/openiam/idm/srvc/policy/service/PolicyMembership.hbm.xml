@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2007 6:04:08 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.policy.dto.PolicyMembership" table="POLICY_MEMBERSHIP" >
+        <comment></comment>
+        <id name="policyMemId" type="string">
+            <column name="POLICY_MEM_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+
+        <property name="policyId" type="string">
+            <column name="POLICY_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="domainId" type="string">
+            <column name="DOMAIN_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="resourceType" type="string">
+            <column name="RESOURCE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="resourceObjId" type="string">
+            <column name="RESOURCE_OBJ_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

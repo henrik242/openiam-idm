@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+
+
+	<!-- User Test Beans -->
+
+	<bean id="userBeanAddress" class="org.openiam.idm.srvc.user.dto.User" >
+		<property name="firstName" value="Ameet"/>
+		<property name="lastName" value="Shah"/>
+		<property name="title" value="VP Business Development"/>
+		<property name="dept" value="Sales"/>
+		<property name="createdBy" value="100" />
+		<property name="employeeId" value="U1234" />
+		<property name="employeeType" value="Full Time" />
+		<property name="locationId" value="NY" />	
+		<property name="userId" value="99001" />		
+	</bean>
+	
+	<bean id="loginBean" class="org.openiam.idm.srvc.auth.dto.Login">
+		<property name="id" ref="loginBeanId" />
+		<property name="status" value="PENDING" />
+		<property name="authFailCount" value="0" />
+		<property name="isLocked" value="0" />
+		<property name="password" value="suneet" />
+		<property name="user" ref="userBeanAddress" />
+	</bean>
+	<bean id="loginBean2" class="org.openiam.idm.srvc.auth.dto.Login">
+		<property name="id" ref="loginBeanId2" />
+		<property name="status" value="PENDING" />
+		<property name="authFailCount" value="0" />
+		<property name="isLocked" value="0" />
+		<property name="password" value="suneet" />
+		<property name="user" ref="userBeanAddress" />
+	</bean>
+
+	<bean id="loginBeanId" class="org.openiam.idm.srvc.auth.dto.LoginId">
+		<property name="login" value="bsmith" />
+		<property name="serviceId" value="SELFSERVICE" />
+
+	</bean>
+	<bean id="loginBeanId2" class="org.openiam.idm.srvc.auth.dto.LoginId">
+		<property name="login" value="bsmith" />
+		<property name="serviceId" value="IDM" />
+	</bean>	
+<!-- 	
+	<bean id="loginAttrBean" class="org.openiam.idm.srvc.auth.dto.LoginAttribute">
+		<property name="loginAttrId" value="100" />
+		<property name="login" ref="loginBean2" />
+		<property name="name" value="ATTR1" />
+		<property name="value" value="100" />
+	</bean>
+-->
+</beans>
+
+
