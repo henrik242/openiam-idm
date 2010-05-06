@@ -1,0 +1,16 @@
+<projectDescription>
+  <name>idm-ws</name>
+  <comment>OpenIAM Identity Management Web Services. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>openiam-pojo-intf</project>
+    <project>openiam-pojo-services</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>

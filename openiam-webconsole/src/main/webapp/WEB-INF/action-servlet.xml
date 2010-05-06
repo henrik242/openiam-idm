@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+
+ 	<bean name="/menunav"  class="org.openiam.webadmin.admin.MenuNavigationAction">	
+		<property name="navDS" ref="navServiceClient" />
+    </bean> 
+
+	<bean name="/logout"  class="org.openiam.webadmin.login.LogoutAction">
+		<property name="authenticate" ref="authenticate" />	
+    </bean> 
+    
+   
+	<bean name="/idman/index"  class="org.openiam.webadmin.user.IndexAction">
+		<property name="metadataService" ref="metadataServiceClient" />	
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="secDomainService" ref="secDomainService" />		
+		<property name="refDataService" ref="refDataService" />		
+		<property name="orgDataService" ref="orgManager" />
+    </bean>    
+	<bean name="/admin/index"  class="org.openiam.webadmin.admin.AdminIndexAction">
+		<property name="navDS" ref="navServiceClient" />
+    </bean>
+    
+	<bean name="/access/accessIndex"  class="org.openiam.webadmin.admin.AccessIndexAction">
+		<property name="navDS" ref="navServiceClient" />
+    </bean>
+	<bean name="/prov/provIndex"  class="org.openiam.webadmin.admin.ProvIndexAction">
+		<property name="navDS" ref="navServiceClient" />
+    </bean>        
+
+	
+  
+    <bean name="/idman/userSearch" class="org.openiam.webadmin.user.UserSearchAction">
+    	<property name="roleDataService" ref="roleServiceClient" />
+    	<property name="groupManager" ref="groupServiceClient" />
+    	<property name="orgManager" ref="orgManager" />
+    	<property name="defaultSecurityDoamin" value="USR_SEC_DOMAIN" />
+    	<property name="maxResultSize" value="100" />
+    	<property name="refDataService" ref="refDataService" />	
+    	<property name="userMgr" ref="userServiceClient" />	
+    	<property name="configuration" ref="appConfiguration" />
+    </bean>
+
+   
+
+
+
+    <bean name="/security/policy"  class="org.openiam.webadmin.access.PolicyAction">
+			<property name="policyDS" ref="policyDataService" /> 
+			<property name="secDomainService" ref="secDomainService" />	
+    </bean> 
+
+    <bean name="/security/policySearch"  class="org.openiam.webadmin.access.PolicyAction">
+			<property name="policyDS" ref="policyDataService" /> 
+			<property name="secDomainService" ref="secDomainService" />	
+    </bean> 
+    
+     <bean name="/security/policyValidate"  class="org.openiam.webadmin.access.PolicyAction">
+			<property name="policyDS" ref="policyDataService" /> 
+			<property name="secDomainService" ref="secDomainService" />	
+    </bean> 
+     <bean name="/security/rulesPolicy"  class="org.openiam.webadmin.access.PolicyAction">
+			<property name="policyDS" ref="policyDataService" /> 
+			<property name="secDomainService" ref="secDomainService" />	
+    </bean> 
+     <bean name="/security/rulesPolicyValidate"  class="org.openiam.webadmin.access.PolicyAction">
+			<property name="policyDS" ref="policyDataService" /> 
+			<property name="secDomainService" ref="secDomainService" />	
+    </bean>     
+       			
+
+
+	<bean name="/security/reportIndex"  class="org.openiam.webadmin.rpt.ReportIndexAction">
+		<property name="navigationDataService" ref="navServiceClient" />
+    </bean> 
+	<bean name="/report2/reportParam"  class="org.openiam.webadmin.rpt.ReportParamAction">
+    </bean> 
+	<bean name="/report/showReport"  class="org.openiam.webadmin.rpt.ShowReportAction">
+    </bean> 
+  
+    
+	
+</beans>
+
+
+

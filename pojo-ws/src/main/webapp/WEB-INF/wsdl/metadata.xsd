@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/meta/dto" xmlns:user="urn:idm.openiam.org/srvc/user/dto" xmlns:org="urn:idm.openiam.org/srvc/org/dto" targetNamespace="urn:idm.openiam.org/srvc/meta/dto" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:idm.openiam.org/srvc/user/dto" schemaLocation="user.xsd"/>
+	<import namespace="urn:idm.openiam.org/srvc/org/dto" schemaLocation="organization.xsd"/>
+	<complexType name="metadataType">
+		<sequence>
+			<element name="description" type="string" minOccurs="0"/>
+			<element name="typeId" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="metadataElement">
+		<sequence>
+			<element name="attributeName" type="string" minOccurs="0"/>
+			<element name="attributeType" type="string" minOccurs="0"/>
+			<element name="companyAttributes" type="org:organizationAttributeSet" minOccurs="0"/>
+			<element name="description" type="string" minOccurs="0"/>
+			<element name="displayHandler" type="string" minOccurs="0"/>
+			<element name="metadataId" type="string" minOccurs="0"/>
+			<element name="metadataOptions" type="tns:metadataOptionSet" minOccurs="0"/>
+			<element name="metadataType" type="tns:metadataType" minOccurs="0"/>
+			<element name="metadataValues" type="tns:metadataValueSet" minOccurs="0"/>
+			<element name="rank" type="int" minOccurs="0"/>
+			<element name="templateDetails" type="tns:templateDetailSet" minOccurs="0"/>
+			<element name="userAttributes" type="user:userAttributeSet" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="metadataOption">
+		<sequence>
+			<element name="metadataValueId" type="string" minOccurs="0"/>
+			<element name="metadataElement" type="tns:metadataElement" minOccurs="0"/>
+			<element name="valueConstraint" type="string" minOccurs="0"/>
+			<element name="attributeValue" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="metadataOptionSet">
+		<sequence>
+			<element name="metadataOptionObj" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="metadataOption" type="tns:metadataOption" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="metadataValue">
+		<sequence>
+			<element name="metadataValueId" type="string" minOccurs="0"/>
+			<element name="metadataElement" type="tns:metadataElement" minOccurs="0"/>
+			<element name="valueConstraint" type="string" minOccurs="0"/>
+			<element name="attributeValue" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="metadataValueSet">
+		<sequence>
+			<element name="metadataValueObj" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="metadataValue" type="tns:metadataValue" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="metadataTemplate">
+		<sequence>
+			<element name="templateId" type="string" minOccurs="0"/>
+			<element name="metadataType" type="tns:metadataType" minOccurs="0"/>
+			<element name="name" type="string" minOccurs="0"/>
+			<element name="url" type="string" minOccurs="0"/>
+			<element name="templateType" type="string" minOccurs="0"/>
+			<element name="templateDetails" type="tns:templateDetailSet" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="templateDetail">
+		<sequence>
+			<element name="templateDetailId" type="string" minOccurs="0"/>
+			<element name="metadataElement" type="tns:metadataElement" minOccurs="0"/>
+			<element name="metadataTemplate" type="tns:metadataTemplate" minOccurs="0"/>
+			<element name="languageCd" type="string" minOccurs="0"/>
+			<element name="label" type="string" minOccurs="0"/>
+			<element name="presentationObjectType" type="string" minOccurs="0"/>
+			<element name="securityEnabled" type="int" minOccurs="0"/>
+			<element name="fldSize" type="int" minOccurs="0"/>
+			<element name="font" type="string" minOccurs="0"/>
+			<element name="color" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="templateDetailSet">
+		<sequence>
+			<element name="templateDetailObj" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="templateDetail" type="tns:templateDetail" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

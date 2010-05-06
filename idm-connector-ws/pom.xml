@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <parent>
+    <artifactId>openiam</artifactId>
+    <groupId>org.openiam</groupId>
+    <version>2.1.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openiam</groupId>
+  <artifactId>idm-connector-ws</artifactId>
+  <packaging>war</packaging>
+  <name>idm-connector-ws</name>
+  <version>2.1.0</version>
+  <description>OpenIAM Provisioning Web Services</description>
+  <ciManagement>
+    <system>idm</system>
+    <url>http://build.openiam.org:8085/idm/</url>
+    <notifiers>
+      <notifier>
+        <configuration>
+          <address>arun_shah@openiam.com</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <build>
+    <finalName>idm-connector-ws</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.15</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jms</artifactId>
+          <groupId>javax.jms</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jmxri</artifactId>
+          <groupId>com.sun.jmx</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jmxtools</artifactId>
+          <groupId>com.sun.jdmk</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+ 
+   
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-core</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-common-utilities</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+  
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+   
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-jms</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-management</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+ 
+     <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-ws-security</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>  
+     
+    <dependency>
+    	<groupId>asm</groupId>
+    	<artifactId>asm</artifactId>
+    	<version>2.2.3</version>
+    </dependency>
+     
+     <dependency>
+      <groupId>org.openiam</groupId>
+      <artifactId>openiam-pojo-intf</artifactId>
+      <version>2.1.0</version>
+    </dependency>  
+    <dependency>
+      <groupId>org.openiam</groupId>
+      <artifactId>idm-connector-core</artifactId>
+      <version>2.1.0</version>
+    </dependency>    
+
+    <dependency>
+      <groupId>org.openiam</groupId>
+      <artifactId>iam-interceptor</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    
+        
+
+  </dependencies>
+  <properties>
+    <cxf.version>2.2.4</cxf.version>
+  </properties>
+</project>

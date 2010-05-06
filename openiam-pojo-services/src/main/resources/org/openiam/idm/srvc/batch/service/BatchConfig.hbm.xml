@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2010 11:45:17 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.batch.dto.BatchTask" table="BATCH_CONFIG">
+        <id name="taskId" type="string">
+            <column name="TASK_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="taskName" type="string">
+            <column name="TASK_NAME" length="50" />
+        </property>
+        <property name="frequency" type="java.lang.Integer">
+            <column name="FREQUENCY" />
+        </property>
+        <property name="frequencyUnitOfMeasure" type="string">
+            <column name="FREQUENCY_UNIT_OF_MEASURE" length="10" />
+        </property>
+        <property name="lastExecTime" type="timestamp">
+            <column name="LAST_EXEC_TIME" length="19" />
+        </property>
+        <property name="taskUrl" type="string">
+            <column name="TASK_URL" length="255" />
+        </property>
+    </class>
+</hibernate-mapping>

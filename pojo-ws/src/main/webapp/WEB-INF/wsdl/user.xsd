@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Suneet Shah (The McGraw-Hill Companies) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/user/dto" xmlns:meta="urn:idm.openiam.org/srvc/meta/dto" xmlns:cont="urn:idm.openiam.org/srvc/continfo/dto" targetNamespace="urn:idm.openiam.org/srvc/user/dto" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:idm.openiam.org/srvc/continfo/dto" schemaLocation="continfo.xsd"/>
+	<import namespace="urn:idm.openiam.org/srvc/meta/dto" schemaLocation="metadata.xsd"/>
+	<complexType name="userAttribute">
+		<sequence>
+			<element name="id" type="string" minOccurs="0"/>
+			<element name="metadataId" type="string" minOccurs="0"/>
+			<element name="name" type="string" minOccurs="0"/>
+			<element name="userId" type="string" minOccurs="0"/>
+			<element name="value" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="userAttributeMap">
+		<sequence>
+			<element name="userAttributeEntry" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="userAttribute" type="tns:userAttribute" minOccurs="0"/>
+					</sequence>
+					<attribute name="key" type="string"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="userAttributeSet">
+		<sequence>
+			<element name="userAttributeObj" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="userAttribute" type="tns:userAttribute" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="userNote">
+		<sequence>
+			<element name="createDate" type="dateTime" minOccurs="0"/>
+			<element name="createdBy" type="string" minOccurs="0"/>
+			<element name="description" type="string" minOccurs="0"/>
+			<element name="noteType" type="string" minOccurs="0"/>
+			<element name="userId" type="string" minOccurs="0"/>
+			<element name="userNoteId" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="userNoteSet">
+		<sequence>
+			<element name="userNoteItem" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="userNote" type="tns:userNote" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="supervisor">
+		<sequence>
+			<element name="comments" type="string" minOccurs="0"/>
+			<element name="employee" type="tns:user" minOccurs="0"/>
+			<element name="endDate" type="dateTime" minOccurs="0"/>
+			<element name="isPrimarySuper" type="int" minOccurs="0"/>
+			<element name="orgStructureId" type="string" minOccurs="0"/>
+			<element name="startDate" type="dateTime" minOccurs="0"/>
+			<element name="status" type="string" minOccurs="0"/>
+			<element name="supervisor" type="tns:user" minOccurs="0"/>
+			<element name="supervisorType" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="baseObject">
+		<sequence>
+			<element name="objectState" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="user">
+		<complexContent>
+			<extension base="tns:baseObject">
+				<sequence>
+					<element name="addresses" type="cont:addressMap" minOccurs="0"/>
+					<element name="birthdate" type="dateTime" minOccurs="0"/>
+					<element name="companyId" type="string" minOccurs="0"/>
+					<element name="companyOwnerId" type="string" minOccurs="0"/>
+					<element name="createDate" type="dateTime" minOccurs="0"/>
+					<element name="createdBy" type="string" minOccurs="0"/>
+					<element name="dept" type="string" minOccurs="0"/>
+					<element name="emailAddresses" type="cont:emailAddressMap" minOccurs="0"/>
+					<element name="employeeId" type="string" minOccurs="0"/>
+					<element name="employeeType" type="string" minOccurs="0"/>
+					<element name="expirationDate" type="dateTime" minOccurs="0"/>
+					<element name="firstName" type="string" minOccurs="0"/>
+					<element name="jobCode" type="string" minOccurs="0"/>
+					<element name="lastName" type="string" minOccurs="0"/>
+					<element name="lastUpdate" type="dateTime" minOccurs="0"/>
+					<element name="lastUpdatedBy" type="string" minOccurs="0"/>
+					<element name="locationId" type="string" minOccurs="0"/>
+					<element name="managerId" type="string" minOccurs="0"/>
+					<element name="metadataType" type="meta:metadataType" minOccurs="0"/>
+					<element name="middleInit" type="string" minOccurs="0"/>
+					<element name="phones" type="cont:phoneMap" minOccurs="0"/>
+					<element name="prefix" type="string" minOccurs="0"/>
+					<element name="sex" type="string" minOccurs="0"/>
+					<element name="status" type="string" minOccurs="0"/>
+					<element name="suffix" type="string" minOccurs="0"/>
+					<element name="title" type="string" minOccurs="0"/>
+					<element name="userAttributes" type="tns:userAttributeMap" minOccurs="0"/>
+					<element name="userId" type="string" minOccurs="0"/>
+					<element name="userTypeInd" type="string" minOccurs="0"/>
+					<element name="userNotes" type="tns:userNoteSet" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="userSet">
+		<sequence>
+			<element name="userObj" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="user" type="tns:user" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</schema>
