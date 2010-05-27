@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:spring="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+          http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.0/mule-jms.xsd
+          http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/3.0/mule-cxf.xsd
+          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.0/mule.xsd
+          http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.0/mule-vm.xsd">
+
+	<!-- Endpoints -->
+	<cxf:endpoint name="toAuthenticationService"
+		address="${webservice.path}AuthenticationService" />
+	<cxf:endpoint name="toQueryService" address="${webservice.path}QueryDataWebService" />
+	<cxf:endpoint name="toNavigatorService" address="${webservice.path}NavigationService" />
+	<cxf:endpoint name="toAuditService" address="${webservice.path}AuditService" />
+	<cxf:endpoint name="toGroupDataService" address="${webservice.path}GroupDataWebService" />
+	<cxf:endpoint name="toUserDataService" address="${webservice.path}UserDataService"/>	
+	<cxf:endpoint name="toRoleService" address="${webservice.path}RoleDataWebService" />
+	<cxf:endpoint name="toChallengeService"
+		address="${webservice.path}ChallengeResponseWebService" />
+	<cxf:endpoint name="toPasswordService" address="${webservice.path}PasswordWebService" />
+	<cxf:endpoint name="toResourceService"
+		address="${webservice.path}ResourceDataWebService" />
+	<cxf:endpoint name="toOrgDataService"
+		address="${webservice.path}OrganizationDataService" />
+	<cxf:endpoint name="toMetaService" address="${webservice.path}MetadataWebService" />
+	<cxf:endpoint name="toPolicyService" address="${webservice.path}PolicyWebService" />
+	<cxf:endpoint name="toEmailService" address="${webservice.path}EmailWebService" />
+	<cxf:endpoint name="toMsgService"
+		address="${webservice.path}SysMessageWebService" />
+	<cxf:endpoint name="toPolicyAcceptService" address="${webservice.path}OrgPolicyWebService" />
+	<cxf:endpoint name="toSecDomService"
+		address="${webservice.path}SecurityDomainWebService" />
+	<cxf:endpoint name="toLocationService"
+		address="${webservice.path}LocationDataWebService" />
+	<cxf:endpoint name="toManagedService"
+		address="${webservice.path}ManagedSystemWebService" />
+	<cxf:endpoint name="toLoginService" address="${webservice.path}LoginWebService" />
+	<cxf:endpoint name="toLoginWSService" address="${webservice.path}LoginDataWebService" />
+	<cxf:endpoint name="toProvReqService" address="${webservice.path}RequestWebService" />
+
+
+	<model>
+		<service name="authenticationService">
+			<inbound>
+				<inbound-endpoint ref="toAuthenticationService" />
+			</inbound>
+			<component>
+				<spring-object bean="authenticate" />
+			</component>
+		</service>
+		<service name="queryService">
+			<inbound>
+				<inbound-endpoint ref="toQueryService" />
+			</inbound>
+			<component>
+				<spring-object bean="queryWS" />
+			</component>
+		</service>
+		<service name="navigatorService">
+			<inbound>
+				<inbound-endpoint ref="toNavigatorService" />
+			</inbound>
+			<component>
+				<spring-object bean="navigatorWS" />
+			</component>
+		</service>
+		<service name="auditService">
+			<inbound>
+				<inbound-endpoint ref="toAuditService" />
+			</inbound>
+			<component>
+				<spring-object bean="auditWS" />
+			</component>
+		</service>
+		<service name="groupDataService">
+			<inbound>
+				<inbound-endpoint ref="toGroupDataService" />
+			</inbound>
+			<component>
+				<spring-object bean="groupWS" />
+			</component>
+		</service>
+		<service name="userDataService">
+			<inbound>
+				<inbound-endpoint ref="toUserDataService" />
+			</inbound>
+			<component>
+				<spring-object bean="userWS" />
+			</component>
+		</service>
+		<service name="roleService">
+			<inbound>
+				<inbound-endpoint ref="toRoleService" />
+			</inbound>
+			<component>
+				<spring-object bean="roleWS" />
+			</component>
+		</service>
+		<service name="challengeService">
+			<inbound>
+				<inbound-endpoint ref="toChallengeService" />
+			</inbound>
+			<component>
+				<spring-object bean="challengeResponse" />
+			</component>
+		</service>
+		<service name="passwordService">
+			<inbound>
+				<inbound-endpoint ref="toPasswordService" />
+			</inbound>
+			<component>
+				<spring-object bean="passwordWS" />
+			</component>
+		</service>
+		<service name="resourceService">
+			<inbound>
+				<inbound-endpoint ref="toResourceService" />
+			</inbound>
+			<component>
+				<spring-object bean="resourceDataService" />
+			</component>
+		</service>
+		<service name="orgDataService">
+			<inbound>
+				<inbound-endpoint ref="toOrgDataService" />
+			</inbound>
+			<component>
+				<spring-object bean="orgManager" />
+			</component>
+		</service>
+		<service name="metaService">
+			<inbound>
+				<inbound-endpoint ref="toMetaService" />
+			</inbound>
+			<component>
+				<spring-object bean="metadataWS" />
+			</component>
+		</service>
+		<service name="policyService">
+			<inbound>
+				<inbound-endpoint ref="toPolicyService" />
+			</inbound>
+			<component>
+				<spring-object bean="policyDataService" />
+			</component>
+		</service>
+		<service name="emailService">
+			<inbound>
+				<inbound-endpoint ref="toEmailService" />
+			</inbound>
+			<component>
+				<spring-object bean="mailService" />
+			</component>
+		</service>
+		<service name="msgService">
+			<inbound>
+				<inbound-endpoint ref="toMsgService" />
+			</inbound>
+			<component>
+				<spring-object bean="messageWS" />
+			</component>
+		</service>
+		<service name="policyAcceptService">
+			<inbound>
+				<inbound-endpoint ref="toPolicyAcceptService" />
+			</inbound>
+			<component>
+				<spring-object bean="orgPolicyWS" />
+			</component>
+		</service>
+		<service name="secDomService">
+			<inbound>
+				<inbound-endpoint ref="toSecDomService" />
+			</inbound>
+			<component>
+				<spring-object bean="secDomainService" />
+			</component>
+		</service>
+		<service name="locationService">
+			<inbound>
+				<inbound-endpoint ref="toLocationService" />
+			</inbound>
+			<component>
+				<spring-object bean="locationWS" />
+			</component>
+		</service>
+		<service name="managedService">
+			<inbound>
+				<inbound-endpoint ref="toManagedService" />
+			</inbound>
+			<component>
+				<spring-object bean="managedSysService" />
+			</component>
+		</service>
+		<service name="loginService">
+			<inbound>
+				<inbound-endpoint ref="toLoginService" />
+			</inbound>
+			<component>
+				<spring-object bean="loginManager" />
+			</component>
+		</service>
+		<service name="loginWSService">
+			<inbound>
+				<inbound-endpoint ref="toLoginWSService" />
+			</inbound>
+			<component>
+				<spring-object bean="loginWS" />
+			</component>
+		</service>
+		<service name="provReqService">
+			<inbound>
+				<inbound-endpoint ref="toProvReqService" />
+			</inbound>
+			<component>
+				<spring-object bean="provRequestWS" />
+			</component>
+		</service>
+	</model>
+</mule>
