@@ -31,7 +31,7 @@
 
 	<bean id="defaultProvisionServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.provision.service.ProvisionService"/>
-	  <property name="address" value="${openiam.service_host}/idm-connector-ws/ProvisioningService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.connector.ws.path}ProvisioningService"/>
 	</bean>
 		
 
@@ -52,7 +52,7 @@
 
 	<bean id="auditServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/AuditService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}AuditService"/>
 	</bean>
 
 	<!--  User Service -->
@@ -62,7 +62,7 @@
 
 	<bean id="userServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.user.ws.UserDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/UserDataService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}UserDataService"/>
 	</bean>
 	
 	<!--  Navigator Service -->
@@ -72,7 +72,7 @@
 
 	<bean id="navServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.menu.ws.NavigatorDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/NavigationService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}NavigationService"/>
 	</bean>	
 		
 	<!--  Role Service -->
@@ -82,7 +82,7 @@
 
 	<bean id="roleServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.role.ws.RoleDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/RoleDataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}RoleDataWebService"/>
 	</bean>	
 	<!--  Group Service -->
 
@@ -92,7 +92,7 @@
 
 	<bean id="groupServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.grp.ws.GroupDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/GroupDataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}GroupDataWebService"/>
 	</bean>
 	
 	<!--  Resource Service -->
@@ -102,7 +102,7 @@
 
 	<bean id="resourceServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.res.service.ResourceDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/ResourceDataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}ResourceDataWebService"/>
 	</bean>
 	
 	<!--  Challenge Response -->
@@ -113,7 +113,7 @@
 
 	<bean id="challengeServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.pswd.service.ChallengeResponseService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/ChallengeResponseWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}ChallengeResponseWebService"/>
 	</bean>
 	
 	<!--  SecDomain Response -->
@@ -124,7 +124,7 @@
 
 	<bean id="secDomainServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/SecurityDomainWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}SecurityDomainWebService"/>
 	</bean>
 	
 	<!--  Authentication Service -->
@@ -135,7 +135,7 @@
 
 	<bean id="loginServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.auth.ws.LoginDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/LoginDataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}LoginDataWebService"/>
 	</bean>
 
 
@@ -145,7 +145,7 @@
 
 	<bean id="authServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.auth.service.AuthenticationService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/AuthenticationService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}AuthenticationService"/>
 	</bean>
 
    <bean id="locationServiceClient" class="org.openiam.idm.srvc.loc.ws.LocationDataWebService" 
@@ -154,7 +154,7 @@
 
 	<bean id="locationServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.loc.ws.LocationDataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/LocationDataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}LocationDataWebService"/>
 	</bean>
 
 	<!--  Metadata Service -->
@@ -164,7 +164,7 @@
 
 	<bean id="metadataServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.meta.ws.MetadataWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/MetadataWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}MetadataWebService"/>
 	</bean>	
 	
 	<!--  Organization Service -->
@@ -174,7 +174,7 @@
 
 	<bean id="orgServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.org.service.OrganizationDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/OrganizationDataService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}OrganizationDataService"/>
 	</bean>
 
 	<!--  Managed System Service -->
@@ -184,7 +184,7 @@
 
 	<bean id="managedSysServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/ManagedSystemWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}ManagedSystemWebService"/>
 	</bean>
 
 	<!--  Password Service -->
@@ -194,7 +194,7 @@
 
 	<bean id="passwordServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.pswd.service.PasswordService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/PasswordWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}PasswordWebService"/>
 	</bean>
 
 
@@ -205,7 +205,7 @@
 
 	<bean id="policyServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.policy.service.PolicyDataService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/PolicyWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}PolicyWebService"/>
 	</bean>
 
 	<!--  Email Service -->
@@ -215,7 +215,7 @@
 
 	<bean id="mailServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.msg.service.MailService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/EmailWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}EmailWebService"/>
 	</bean>
 
 	<bean id="orgPolicyClient" class="org.openiam.idm.srvc.orgpolicy.ws.OrgPolicyWebService" 
@@ -223,7 +223,7 @@
 
 	<bean id="orgPolicyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.orgpolicy.ws.OrgPolicyWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/OrgPolicyWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}OrgPolicyWebService"/>
 	</bean>
 
 	<bean id="sysMessageClient" class="org.openiam.idm.srvc.msg.ws.SysMessageWebService" 
@@ -232,7 +232,7 @@
 
 	<bean id="sysMessageFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 	  <property name="serviceClass" value="org.openiam.idm.srvc.msg.ws.SysMessageWebService"/>
-	  <property name="address" value="${openiam.service_host}/idm-ws/idmsrvc/SysMessageWebService?"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}SysMessageWebService?"/>
 	</bean>
 
   
