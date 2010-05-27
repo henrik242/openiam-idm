@@ -161,7 +161,7 @@
   
   <properties>
     <cxf.version>2.2.4</cxf.version>
-    <springVersion>2.5.5</springVersion>
+    <springVersion>2.5.6</springVersion>
   </properties>
   
 </project>
