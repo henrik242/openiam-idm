@@ -8,6 +8,16 @@
           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.0/mule.xsd
           http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.0/mule-vm.xsd">
 
+	<!-- Connectors -->
+	<jms:activemq-connector name="jmsConnector"
+		brokerURL="vm://localhost" />
+
+	<spring:bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+		<spring:property name="config"
+			value="classpath:activemq.xml" />
+		<spring:property name="start" value="true" />
+	</spring:bean>
+
 	<!-- Endpoints -->
 	<cxf:endpoint name="toAuthenticationService"
 		address="${webservice.path}AuthenticationService" />
@@ -15,7 +25,7 @@
 	<cxf:endpoint name="toNavigatorService" address="${webservice.path}NavigationService" />
 	<cxf:endpoint name="toAuditService" address="${webservice.path}AuditService" />
 	<cxf:endpoint name="toGroupDataService" address="${webservice.path}GroupDataWebService" />
-	<cxf:endpoint name="toUserDataService" address="${webservice.path}UserDataService"/>	
+	<cxf:endpoint name="toUserDataService" address="${webservice.path}UserDataService" />
 	<cxf:endpoint name="toRoleService" address="${webservice.path}RoleDataWebService" />
 	<cxf:endpoint name="toChallengeService"
 		address="${webservice.path}ChallengeResponseWebService" />
@@ -69,6 +79,7 @@
 		<service name="auditService">
 			<inbound>
 				<inbound-endpoint ref="toAuditService" />
+				<jms:inbound-endpoint queue="AuditService" />
 			</inbound>
 			<component>
 				<spring-object bean="auditWS" />
