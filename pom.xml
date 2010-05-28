@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>org.openiam</groupId>
 	<artifactId>openiam</artifactId>
 	<packaging>pom</packaging>
 	<version>2.1.0</version>
+
 	<name>openiam Project</name>
 	<description>openiam is open source Identity and access Management Project</description>
 	<url>http://www.openiam.org</url>
-	<modules>
-		<module>iam-interceptor</module>
-		<module>openiam-pojo-intf</module>
-		<module>openiam-pojo-services</module>
-	  <module>pojo-ws</module>
-	  <module>idm-connector-intf</module>
-		<module>idm-connector-core</module>
-		<module>idm-connector-ws</module>	
-		<!--module>openiam-esb</module--><!-- Coming Soon.... -->
-		<!--module>openiam-webconsole</module -->
-		<!--module>openiam-selfservice</module -->
-		<!--module>idm-batch</module-->	
-	</modules>
+
 	<inceptionYear>2008</inceptionYear>
 	<developers>
 		<developer>
@@ -30,54 +19,29 @@
 			<id>ameet_shah</id>
 			<email>ameet_shah@openiam.com</email>
 			<roles>
-        <role>developer</role>
+				<role>developer</role>
 				<role>documentation</role>
-      </roles>
+			</roles>
 		</developer>
 		<developer>
 			<name>Arun Shah</name>
 			<id>arun.shah</id>
 			<email>arun_shah@openiam.com</email>
 			<roles>
-        <role>developer</role>
+				<role>developer</role>
 				<role>documentation</role>
-      </roles>
+			</roles>
 		</developer>
 		<developer>
 			<name>Suneet Shah</name>
 			<id>suneet_shah</id>
 			<email>suneet_shah@openiam.com</email>
 			<roles>
-        <role>developer</role>
+				<role>developer</role>
 				<role>documentation</role>
-      </roles>
+			</roles>
 		</developer>
 	</developers>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-        	<doctitle>OpenIAM Identity Manager API v2</doctitle>
-        	<windowtitle>OpenIAM Java Documentation</windowtitle>
-				  <aggregate>true</aggregate>
-        </configuration>
-      </plugin>
-      
-		  <plugin>
-			  <groupId>eviware</groupId>
-			  <artifactId>maven-soapui-plugin</artifactId>
-			  <version>2.5.1</version>
-			  <configuration>
-			    <projectFile>sample-soapui-project.xml</projectFile>
-			    <host>http://127.0.0.1:8181</host>
-			  </configuration>
-		  </plugin>
-
-    </plugins>
-  </reporting>
-  
 
 	<licenses>
 		<license>
@@ -86,31 +50,133 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	
-    <organization>
-        <name>OpenIAM LLC</name>
-        <url>http://www.openiam.com/</url>
-    </organization>
-    
+
+	<organization>
+		<name>OpenIAM LLC</name>
+		<url>http://www.openiam.com/</url>
+	</organization>
+
 	<!--  source configuration management system  -->
 	<issueManagement>
-        <system>JIRA</system>
-        <url>http://www.openiam.org/jira/</url>
-  </issueManagement>
-  
-  <scm>
-        <connection>scm:https://svn2.hosted-projects.com/openiam/idm//java-opensaml2/</connection>
-        <developerConnection>scm:https://svn2.hosted-projects.com/openiam/idm//</developerConnection>
-        <tag>HEAD</tag>
-        <url>https://svn2.hosted-projects.com/openiam/idm/</url>
-  </scm>
-      
+		<system>JIRA</system>
+		<url>http://www.openiam.org/jira/</url>
+	</issueManagement>
 
-    
+	<scm>
+		<connection>scm:https://svn2.hosted-projects.com/openiam/idm//java-opensaml2/</connection>
+		<developerConnection>scm:https://svn2.hosted-projects.com/openiam/idm//</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://svn2.hosted-projects.com/openiam/idm/</url>
+	</scm>
+
+	<modules>
+		<!--<module>iam-interceptor</module>-->
+		<module>openiam-pojo-intf</module>
+		<module>openiam-pojo-services</module>
+		<module>pojo-ws</module>
+		<module>idm-connector-intf</module>
+		<module>idm-connector-core</module>
+		<module>idm-connector-ws</module>
+		<module>openiam-idm-esb</module>
+		<module>openiam-webconsole</module>
+		<!--module>openiam-selfservice</module -->
+		<!--module>idm-batch</module-->
+	</modules>
+
 	<properties>
-		<spring.version>2.5.5</spring.version>
-		<cxf.version>2.2.4</cxf.version>
+		<mule.version>3.0.0-M3</mule.version>
+		<spring.version>2.5.6</spring.version>
+		<activemq.version>5.3.2</activemq.version>
+		<xbean.version>3.6</xbean.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Mule Dependencies -->
+			<dependency>
+				<groupId>org.mule</groupId>
+				<artifactId>mule-core</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<!-- Mule Modules -->
+			<dependency>
+				<groupId>org.mule.modules</groupId>
+				<artifactId>mule-module-builders</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.modules</groupId>
+				<artifactId>mule-module-client</artifactId>
+				<version>${mule.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.tests</groupId>
+				<artifactId>mule-tests-functional</artifactId>
+				<version>${mule.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Mule Transports -->
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-cxf</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-jms</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-servlet</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+
+			<!-- Other Dependencies -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>${activemq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xbean</groupId>
+				<artifactId>xbean-spring</artifactId>
+				<version>${xbean.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<doctitle>OpenIAM Identity Manager API v2</doctitle>
+					<windowtitle>OpenIAM Java Documentation</windowtitle>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>eviware</groupId>
+				<artifactId>maven-soapui-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<projectFile>sample-soapui-project.xml</projectFile>
+					<host>http://127.0.0.1:8181</host>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -132,7 +198,7 @@
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
-			</releases>		
+			</releases>
 		</repository>
 		<repository>
 			<id>codehaus</id>
@@ -172,22 +238,22 @@
 			<name>Maven Repository 2</name>
 			<url>http://repo2.maven.org/maven2</url>
 		</repository>
-		
-    <repository>
-            <id>shibboleth-release</id>
-            <name>Internet2 Releases</name>
-            <layout>default</layout>
-            <url>http://shibboleth.internet2.edu/downloads/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-    </repository>
-	
-    <repository>
-          <id>jasperreports</id>
-          <url>http://jasperreports.sourceforge.net/maven2</url>
-    </repository>
-		
+
+		<repository>
+			<id>shibboleth-release</id>
+			<name>Internet2 Releases</name>
+			<layout>default</layout>
+			<url>http://shibboleth.internet2.edu/downloads/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jasperreports</id>
+			<url>http://jasperreports.sourceforge.net/maven2</url>
+		</repository>
+
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -228,10 +294,10 @@
 			<url>http://ftp.cica.es/mirrors/maven2</url>
 			<layout>legacy</layout>
 		</pluginRepository>
-   <pluginRepository>
-      <id>eviwarePluginRepository</id>
-      <url>http://www.eviware.com/repository/maven2/</url>
-   </pluginRepository>
+		<pluginRepository>
+			<id>eviwarePluginRepository</id>
+			<url>http://www.eviware.com/repository/maven2/</url>
+		</pluginRepository>
 
 	</pluginRepositories>
 </project>

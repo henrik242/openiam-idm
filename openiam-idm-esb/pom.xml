@@ -13,13 +13,6 @@
 	<version>2.1.0</version>
 	<description>OpenIAM ESB Module based on Mule</description>
 
-	<properties>
-		<mule.version>3.0.0-M3</mule.version>
-		<spring.version>2.5.6</spring.version>
-		<activemq.version>5.3.2</activemq.version>
-		<xbean.version>3.6</xbean.version>
-	</properties>
-
 	<dependencies>
 		<!-- OpenIAM Dependencies -->
 		<dependency>
@@ -49,59 +42,49 @@
 		<dependency>
 			<groupId>org.mule</groupId>
 			<artifactId>mule-core</artifactId>
-			<version>${mule.version}</version>
 		</dependency>
 		<!-- Mule Modules -->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-builders</artifactId>
-			<version>${mule.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-client</artifactId>
-			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.tests</groupId>
 			<artifactId>mule-tests-functional</artifactId>
-			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- Mule Transports -->
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-cxf</artifactId>
-			<version>${mule.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-jms</artifactId>
-			<version>${mule.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-servlet</artifactId>
-			<version>${mule.version}</version>
 		</dependency>
 
 		<!-- Other Dependencies -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-core</artifactId>
-			<version>${activemq.version}</version>			
+			<artifactId>activemq-core</artifactId>		
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xbean</groupId>
 			<artifactId>xbean-spring</artifactId>
-			<version>${xbean.version}</version>
 		</dependency>
 	</dependencies>
 
