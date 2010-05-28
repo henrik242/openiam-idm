@@ -1,0 +1,46 @@
+<assembly>
+  <id>openiam-distribution-tomcat-6.0</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  
+  <fileSets>
+      <fileSet>
+          <directory>../../openiam-webconsole/target/</directory>
+          <outputDirectory>webapps</outputDirectory>
+          <includes>
+          	<include>webconsole.war</include>
+          </includes>
+    </fileSet>
+      <fileSet>
+          <directory>../../openiam-idm-esb/target/</directory>
+          <outputDirectory>webapps</outputDirectory>
+          <includes>
+          	<include>openiam-idm-esb.war</include>
+          </includes>
+    </fileSet>
+    <fileSet>
+    	<directory>../configurations</directory>
+    	<outputDirectory>lib</outputDirectory>
+    	<includes>
+    		<include>*.properties</include>
+    	</includes>
+    </fileSet>
+    <fileSet>
+        	<directory>../configurations/iamconf</directory>
+        	<outputDirectory>iamconf</outputDirectory>
+        	<includes>
+        		<include>**</include>
+        	</includes>
+    </fileSet>
+    <fileSet>
+        	<directory>../configurations/iamscripts</directory>
+        	<outputDirectory>iamscripts</outputDirectory>
+        	<includes>
+        		<include>**</include>
+        	</includes>
+    </fileSet>    
+    
+  </fileSets>
+  
+</assembly>

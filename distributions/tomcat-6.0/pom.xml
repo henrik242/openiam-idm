@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+        <groupId>org.openiam.distributions</groupId>
+        <artifactId>distributions</artifactId>
+        <version>2.1.0</version>
+    </parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.openiam.distributions.tomcat6</groupId>
+	<artifactId>openiam-distribution-tomcat6</artifactId>
+	<packaging>pom</packaging>
+	
+	<name>OpenIAM Tomcat Distribution</name>
+	
+	<modules>
+		<module>../../openiam-idm-esb</module>
+		<module>../../openiam-webconsole</module>				
+	</modules>
+	
+	<build>
+	        <plugins>
+	            <plugin>
+	                <artifactId>maven-assembly-plugin</artifactId>
+	                <version>2.1</version>
+	                <configuration>
+	                    <finalName>openiam-distribution-tomcat-6.0</finalName>
+	                    <descriptors>
+	                        <descriptor>assembly.xml</descriptor>
+	                    </descriptors>
+	                    <appendAssemblyId>false</appendAssemblyId>
+	                    <tarLongFileMode>gnu</tarLongFileMode>
+	                </configuration>
+	                <executions>
+	                    <execution>
+	                        <phase>package</phase>
+	                        <goals>
+	                            <!--
+	                                'attached' ensures there's only a single run bound to m2's lifecycle.
+	                                The default 'assembly' goal would run every plugin in this pom twice.
+	                            -->
+	                            <goal>attached</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+            </plugin>
+            </plugins>
+          </build>
+	
+</project>
