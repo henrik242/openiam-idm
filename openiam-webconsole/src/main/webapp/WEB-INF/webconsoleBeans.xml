@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+     					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+  
+	<bean id="appConfiguration" class="org.openiam.webadmin.admin.AppConfiguration">
+		<!--Indicates whether the user interface should show the individual services for 
+			synchronization or automatically sync internally   -->
+		<property name="displaySyncServices" value="false" />
+		<property name="displayDomainList" value="false" />
+		<property name="defaultSecurityDomain" value="USR_SEC_DOMAIN" />
+		<property name="defaultManagedSysId" value="0" />
+		<property name="defaultChallengeResponseGroup" value="GLOBAL" />
+		<property name="parentOrgId" value="100" />
+		<property name="userCategoryType" value="USER_TYPE" />
+		<property name="managedSystemType" value="MANAGED_SYS" />
+	</bean>
+
+
+	
+	
+	
+	
+
+
+
+	
+</beans>
+

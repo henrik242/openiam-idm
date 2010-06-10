@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+<!-- organization controllers  -->
+     <bean id="orgList" class="org.openiam.webadmin.org.OrganizationListController">
+     	<property name="commandName" value="orgListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.org.OrganizationListCommand" />
+		<property name="formView" value="/org/orglist" />
+		<property name="successView" value="/org/orglist" />
+		<property name="orgDataService" ref="orgManager" />		
+     </bean>
+     <bean id="orgDetail" class="org.openiam.webadmin.org.OrganizationDetailController">
+		<property name="commandName" value="orgDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.org.OrganizationDetailCommand" />
+		<property name="formView" value="/org/orgdetail" />
+		<property name="successView" value="/confirm" />
+		<property name="validator" ref="orgDetailValidator" />
+		<property name="orgDataService" ref="orgServiceClient" />	
+		<property name="metadataService" ref="metadataServiceClient" />
+		<property name="orgTypeCategory" value="ORG_TYPE" />
+		<property name="redirectView" value="orglist.cnt?mode=1" />
+     </bean>     
+     <bean id="orgDetailValidator" class="org.openiam.webadmin.org.OrgDetailValidator" />
+     
+<!-- group controller  -->
+     <bean id="groupList" class="org.openiam.webadmin.grp.GroupListController">
+     	<property name="commandName" value="groupListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.grp.GroupListCommand" />
+		<property name="formView" value="/group/grplist" />
+		<property name="successView" value="/group/grplist" />
+		<property name="groupManager" ref="groupServiceClient" />	
+     </bean>
+     <bean id="groupDetail" class="org.openiam.webadmin.grp.GroupDetailController">
+		<property name="commandName" value="groupDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.grp.GroupDetailCommand" />
+		<property name="formView" value="/group/groupdetail" />
+		<property name="successView" value="/confirm" />
+		<property name="validator" ref="groupDetailValidator" />
+		<property name="groupManager" ref="groupServiceClient" />
+		<property name="metadataService" ref="metadataServiceClient" />	
+		<property name="orgDataService" ref="orgServiceClient" />	
+		<property name="groupTypeCategory" value="GROUP_TYPE" />	
+		<property name="redirectView" value="grouplist.cnt?mode=1" />
+		<property name="auditHelper" ref="auditHelper" />
+     </bean> 
+     <bean id="groupDetailValidator" class="org.openiam.webadmin.grp.GroupDetailValidator" />
+<!-- role controller  -->
+     <bean id="roleList" class="org.openiam.webadmin.role.RoleListController">
+     	<property name="commandName" value="roleListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.role.RoleListCommand" />
+		<property name="formView" value="/role/rolelist" />
+		<property name="successView" value="/role/rolelist" />
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="secDomainService" ref="secDomainService" />
+     </bean>
+     <bean id="roleDetail" class="org.openiam.webadmin.role.RoleDetailController">
+		<property name="commandName" value="roleDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.role.RoleDetailCommand" />
+		<property name="formView" value="/role/roledetail" />
+		<property name="successView" value="/confirm" />
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="metadataService" ref="metadataServiceClient" />	
+		<property name="roleTypeCategory" value="ROLE_TYPE" />	
+		<property name="redirectView" value="rolelist.cnt?mode=1" />
+		<property name="validator" ref="roleDetailValidator" />
+		<property name="auditHelper" ref="auditHelper" />
+     </bean>
+     <bean id="roleDetailValidator" class="org.openiam.webadmin.role.RoleDetailValidator" >
+     <property name="roleDataService" ref="roleServiceClient" />
+     </bean>
+     
+     <bean id="roleResource" class="org.openiam.webadmin.role.RoleResourceController">
+		<property name="commandName" value="roleResCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.role.RoleResourceCommand" />
+		<property name="formView" value="/role/roleresource" />
+		<property name="successView" value="/confirm" />
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="metadataService" ref="metadataServiceClient" />	
+		<property name="roleTypeCategory" value="ROLE_TYPE" />	
+		 <property name="resourceDataService" ref="resourceServiceClient" />
+		<property name="redirectView" value="rolelist.cnt?mode=1" />
+     </bean>
+
+ <!-- Report Parameter controllers -->
+      <bean id="auditReportController" class="org.openiam.webadmin.rpt.audit.AuditReportController">
+		<property name="commandName" value="auditReportCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.rpt.audit.AuditReportCommand" />
+		<property name="formView" value="/report/auditparam" />
+		<property name="successView" value="report/templ/auditreport.jsp" />
+	    <property name="auditService" ref="auditServiceClient" />
+     </bean>     
+     <bean id="auditReportValidator" class="org.openiam.webadmin.rpt.audit.AuditReportValidator" />
+
+      <bean id="userReportController" class="org.openiam.webadmin.rpt.user.UserReportController">
+		<property name="commandName" value="userReportCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.rpt.user.UserReportCommand" />
+		<property name="formView" value="/report/userparam" />
+		<property name="successView" value="report/templ/userreport.jsp" />
+	   	<property name="roleDataService" ref="roleServiceClient" />
+     	<property name="userMgr" ref="userServiceClient" />
+     	<property name="orgManager" ref="orgServiceClient" />		
+     </bean> 
+        <bean id="inactivityReportController" class="org.openiam.webadmin.rpt.user.InactiveReportController">
+		<property name="commandName" value="inactiveReportCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.rpt.user.InactiveReportCommand" />
+		<property name="formView" value="/report/inactivityparam" />
+		<property name="successView" value="report/templ/inactivityreport.jsp" />
+	    <property name="roleDataService" ref="roleServiceClient" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="orgManager" ref="orgServiceClient" />		
+     </bean> 
+     
+
+  	 <!-- connector list controller  -->
+ 
+     <bean id="connectorList" class="org.openiam.webadmin.conn.def.ConnectorDefinitionListController">
+		<property name="successView" value="/connector/definitionlist" />
+		<property name="connectorService" ref="connectorService" />
+		
+     </bean>
+     <bean id="connectorDetail" class="org.openiam.webadmin.conn.def.ConnectorDefinitionDetailController">
+		<property name="commandName" value="connectorDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.def.ConnectorDefinitionDetailCommand" />
+		<property name="formView" value="/connector/definitiondetail" />
+		<property name="successView" value="/confirm" />
+
+		<property name="connectorService" ref="connectorService" />
+		<property name="defaultNameSpace" value="urn:idm.openiam.org/spml2/service" />
+		
+     </bean>
+     
+     <!-- managed system controller  -->
+
+
+     <bean id="managedSysList" class="org.openiam.webadmin.conn.mngsys.ManagedSysListController">
+		<property name="commandName" value="managedSysListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysListCommand" />
+		<property name="formView" value="/managedsys/syslist" />
+		<property name="successView" value="/managedsys/syslist" />
+		<property name="validator" ref="managedSysListValidator" />		
+
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />
+		
+     </bean>
+     <bean id="managedSysListValidator" class="org.openiam.webadmin.conn.mngsys.ManagedSysListValidator" />
+
+     <bean id="managedSysConnection" class="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionController">
+		<property name="commandName" value="managedSysConnectionCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionCommand" />
+		<property name="formView" value="/managedsys/sysconnection" />
+		<property name="successView" value="/managedsys/sysconnection" />
+		<property name="validator" ref="managedSysConnectionValidator" />	
+		
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />	
+		<property name="connectorService" ref="connectorService" />	
+     </bean>
+     <bean id="managedSysConnectionValidator" class="org.openiam.webadmin.conn.mngsys.ManagedSysConnectionValidator" />
+     
+
+
+
+     <bean id="synchList" class="org.openiam.webadmin.conn.mngsys.SynchListController">
+		<property name="commandName" value="synchListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.conn.mngsys.SynchListCommand" />
+		<property name="formView" value="/managedsys/synchlist" />
+		<property name="successView" value="/managedsys/synchlist" />
+
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="secDomainService" ref="secDomainService" />
+		
+     </bean>
+ <!-- Login Controllers  -->
+
+
+    <bean id="login" class="org.openiam.webadmin.login.LoginController" >
+    	<property name="commandName" value="loginCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.login.LoginCommand" />
+		<property name="formView" value="login" />
+		<property name="successView" value="welcome" />
+		<property name="validator" ref="loginValidator" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="rootMenu" value="IDM" />
+     </bean>
+     
+     <bean id="loginValidator" class="org.openiam.webadmin.login.LoginValidator" >
+     	<property name="authenticate" ref="authenticate" />
+     	<property name="securityDomain" value="IDM" />
+     </bean>
+
+ <!-- Metadata controllers  -->
+ 
+     <bean id="metadataTypeList" class="org.openiam.webadmin.metadata.MetadataTypeListController">
+		<property name="commandName" value="metadataTypeListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataTypeListCommand" />
+		<property name="formView" value="/meta/typelist" />
+		<property name="successView" value="/meta/typelist" />
+		<property name="validator" ref="metadataTypeListValidator" />	
+		<property name="metadataService" ref="metadataServiceClient"	/>
+		<property name="categorydataService" ref="categorydataService" />
+		<property name="baseCategory" value="ROOT" />		
+     </bean>
+     
+     <bean id="metadataTypeListValidator" class="org.openiam.webadmin.metadata.MetadataTypeListValidator" />
+
+     <bean id="metadataType" class="org.openiam.webadmin.metadata.MetadataTypeController">
+		<property name="commandName" value="metadataTypeCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataTypeCommand" />
+		<property name="formView" value="/meta/type" />
+		<property name="successView" value="/confirm" />
+		<property name="metadataService" ref="metadataServiceClient"	/>
+     </bean>
+     <bean id="metadataAttribute" class="org.openiam.webadmin.metadata.MetadataAttributeController">
+		<property name="commandName" value="metadataAttrCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.metadata.MetadataAttributeCommand" />
+		<property name="formView" value="/meta/attr" />
+		<property name="successView" value="/meta/attr" />
+		<property name="metadataService" ref="metadataServiceClient"	/>
+
+     </bean>
+
+
+ <!-- Policy controllers  -->
+     <bean id="policyDetail" class="org.openiam.webadmin.policy.attr.PolicyDetailController">
+		<property name="commandName" value="policyDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.policy.attr.PolicyDetailCommand" />
+		<property name="formView" value="/policy/policyDetail" />
+		<property name="successView" value="/confirm" />		
+		<property name="policyDataService" ref="policyDataService" />
+		<property name="redirectView" value="rolelist.cnt?mode=1" />
+     </bean> 
+     
+     <bean id="attrPolicy" class="org.openiam.webadmin.policy.attr.AttributePolicyController">
+		<property name="commandName" value="attrPolicyCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.policy.attr.AttributePolicyCommand" />
+		<property name="formView" value="/policy/attrPolicy" />
+		<property name="successView" value="/policy/policyList" />
+		<property name="validator" ref="attrPolicyValidator" />	
+		
+		<property name="policyDataService" ref="policyDataService" />
+     </bean>            
+     
+      <bean id="attrPolicyValidator" class="org.openiam.webadmin.policy.attr.AttributePolicyValidator" >
+      <property name="policyDataService" ref="policyDataService" />
+      </bean>
+
+     <bean id="assocPolicy" class="org.openiam.webadmin.policy.attr.AssocPasswordPolicyController">
+		<property name="commandName" value="assocPolicyCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.policy.attr.AssocPasswordPolicyCommand" />
+		<property name="formView" value="/policy/assocPasswordPolicy" />
+		<property name="successView" value="/confirm" />
+	
+		<property name="policyDataService" ref="policyDataService" />
+     </bean>    
+
+<!-- Location list controller  -->
+     <bean id="locationList" class="org.openiam.webadmin.admin.loc.LocationListController">
+		<property name="successView" value="/maint/locationlist" />
+		<property name="locationService" ref="locationServiceClient" />
+     </bean>
+
+    <bean id="locationDetail" class="org.openiam.webadmin.admin.loc.LocationDetailController">
+		<property name="commandName" value="locationCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.admin.loc.LocationCommand" />
+		<property name="formView" value="/maint/locationdetail" />
+		<property name="successView" value="/maint/locationlist" />
+		<property name="validator" ref="locationValidator" />		
+		<property name="locationService" ref="locationServiceClient" />
+		<property name="redirectView" value="locationList.cnt?mode=1" />
+		
+     </bean>
+     <bean id="locationValidator" class="org.openiam.webadmin.admin.loc.LocationValidator" />
+
+
+<!-- domainList controller  -->
+     <bean id="secDomainList" class="org.openiam.webadmin.admin.domain.SecurityDomainListController">
+		<property name="successView" value="/maint/secdomainlist" />
+		<property name="secDomainService" ref="secDomainService" />
+     </bean>
+
+    <bean id="secDomainDetail" class="org.openiam.webadmin.admin.domain.SecurityDomainDetailController">
+		<property name="commandName" value="secDomainCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.admin.domain.SecurityDomainCommand" />
+		<property name="formView" value="/maint/secdomaindetail" />
+		<property name="successView" value="/maint/domainlist" />
+		<property name="validator" ref="secDomainValidator" />	
+		<property name="secDomainService" ref="secDomainService" />	
+		<property name="policyDataService" ref="policyDataService" />
+		<property name="redirectView" value="secDomainList.cnt?mode=1" />
+		
+     </bean>
+     <bean id="secDomainValidator" class="org.openiam.webadmin.admin.domain.SecurityDomainValidator" />
+
+<!-- batch tasks controller  -->
+     <bean id="batchTaskList" class="org.openiam.webadmin.admin.batch.BatchTaskListController">
+		<property name="successView" value="/maint/batchtasklist" />
+		<property name="batchDataService" ref="batchDataService" />
+     </bean>
+
+    <bean id="batchTaskDetail" class="org.openiam.webadmin.admin.batch.BatchTaskDetailController">
+		<property name="commandName" value="batchTaskCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.admin.batch.BatchTaskCommand" />
+		<property name="formView" value="/maint/batchtaskdetail" />
+		<property name="successView" value="/maint/batchtasklist" />
+		<property name="batchDataService" ref="batchDataService" />
+		<property name="redirectView" value="batchList.cnt?mode=1" />
+		
+     </bean>
+
+
+<!-- Org policy controller -->
+     <bean id="orgPolicyList" class="org.openiam.webadmin.admin.orgpolicy.OrgPolicyListController">
+		<property name="successView" value="/maint/orgpolicylist" />
+		<property name="orgPolicyService" ref="orgPolicyClient" />		
+     </bean>
+     
+     <bean id="orgPolicyDetail" class="org.openiam.webadmin.admin.orgpolicy.OrgPolicyDetailController">
+		<property name="commandName" value="orgPolicyCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.admin.orgpolicy.OrgPolicyCommand" />
+		<property name="formView" value="/maint/orgpolicydetail" />
+		<property name="successView" value="/maint/orgpolicylist" />
+		<property name="redirectView" value="orgPolicyList.cnt?mode=1" />	
+		<property name="orgPolicyService" ref="orgPolicyClient" />	
+     </bean>
+
+<!-- Resource controller -->  
+   
+       <bean id="resourceList" class="org.openiam.webadmin.res.ResourceListController">
+		<property name="commandName" value="resourceListCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.ResourceListCommand" />
+		<property name="formView" value="/res/reslist" />
+		<property name="successView" value="/res/reslist" />
+		<property name="validator" ref="resListValidator" />		
+	    <property name="resourceDataService" ref="resourceServiceClient" />
+		
+     </bean>
+     <bean id="resListValidator" class="org.openiam.webadmin.res.ResourceListValidator" />
+ 
+     <bean id="resourceDetail" class="org.openiam.webadmin.res.ResourceDetailController">
+		<property name="commandName" value="resourceDetailCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.ResourceDetailCommand" />
+		<property name="formView" value="/res/resdetail" />
+		<property name="successView" value="/res/resdetail" />
+		<property name="validator" ref="resDetailValidator" />		
+	    <property name="resourceDataService" ref="resourceServiceClient" />
+	    <property name="navigationDataService" ref="navServiceClient" />		
+	    <property name="redirectView" value="resourcelist.cnt?mode=1" />	
+	    <property name="metadataService" ref="metadataServiceClient" />	
+	    <property name="managedSysClient" ref="managedSysServiceClient" />	
+     </bean>
+     
+     <bean id="resDetailValidator" class="org.openiam.webadmin.res.ResourceDetailValidator" />
+
+     <bean id="resourceMap" class="org.openiam.webadmin.res.AttributeMapController">
+		<property name="commandName" value="attrMapCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.AttributeMapCommand" />
+		<property name="formView" value="/res/resmap" />
+		<property name="successView" value="/res/reslist" />
+		<property name="validator" ref="resMapValidator" />		
+	    <property name="resourceDataService" ref="resourceServiceClient" />
+	    <property name="navigationDataService" ref="navServiceClient" />	
+	    <property name="policyDataService" ref="policyDataService" />		
+	    <property name="redirectView" value="resourceMap.cnt?mode=1" />
+     </bean>
+     <bean id="resMapValidator" class="org.openiam.webadmin.res.AttributeMapValidator" />
+
+     <bean id="deleteResourceMap" class="org.openiam.webadmin.res.DeleteAttributeMapController">
+	    <property name="resourceDataService" ref="resourceServiceClient" />
+	    <property name="navigationDataService" ref="navServiceClient" />	
+	    <property name="policyDataService" ref="policyDataService" />		
+	    <property name="redirectView" value="/resourcelist.cnt" />
+     </bean>           
+
+     <bean id="resourceApprovalFlow" class="org.openiam.webadmin.res.ResourceApprovalFlowController">
+		<property name="commandName" value="approvalCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.ResourceApprovalFlowCommand" />
+		<property name="formView" value="/res/resapprover" />
+		<property name="successView" value="/res/reslist" />
+	    <property name="resourceDataService" ref="resourceServiceClient" />
+	    <property name="navigationDataService" ref="navServiceClient" />	
+	    <property name="policyDataService" ref="policyDataService" />		
+	    <property name="redirectView" value="resApprovalFlow.cnt?mode=1" />
+	    <property name="managedSysService" ref="managedSysServiceClient" />
+	    <property name="userMgr" ref="userServiceClient" />
+     </bean>     
+<!-- Sys Message controller -->     
+
+     <bean id="sysMessageList" class="org.openiam.webadmin.admin.sysmsg.SysMsgListController">
+		<property name="successView" value="/maint/sysmsglist" />
+		<property name="sysMessageService" ref="sysMessageClient" />		
+     </bean>
+     
+     <bean id="sysMessageDetail" class="org.openiam.webadmin.admin.sysmsg.SysMsgDetailController">
+		<property name="commandName" value="sysMsgCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.admin.sysmsg.SysMsgCommand" />
+		<property name="formView" value="/maint/sysmsgdetail" />
+		<property name="successView" value="/maint/sysmsglist" />
+		<property name="redirectView" value="sysMessageList.cnt?mode=1" />	
+		<property name="sysMessageService" ref="sysMessageClient" />	
+		<property name="mailService" ref="mailServiceClient" />
+		<property name="emailAddress" value="OCid-support@ceoit.ocgov.com" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="auditUtil" ref="auditUtil" />
+     </bean>
+
+<!-- Load Data controllers  -->
+    
+
+     <bean id="syncConfigurationList" class="org.openiam.webadmin.sync.SynchConfigListController">
+	    <property name="successView" value="/sync/synchconfiglist" />
+     </bean>
+     
+
+     <bean id="syncConfiguration" class="org.openiam.webadmin.sync.SynchConfigurationController">
+ 
+        <property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="syncCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.sync.SynchConfigurationCommand" />
+		<property name="formView" value="/sync/syncconfig" />
+		<property name="successView" value="/sync/syncconfig" />
+     </bean>
+
+     <bean id="reconcilConfig" class="org.openiam.webadmin.res.ReconConfigurationController">
+ 
+        <property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="reconCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.ReconConfigurationCommand" />
+		<property name="formView" value="/res/reconconfig" />
+		<property name="successView" value="/res/reconconfig" />
+     </bean>
+     
+
+<!-- User Admin controllers  -->
+
+   <bean id="newUser" class="org.openiam.webadmin.user.NewUserController">
+        <property name="pages">  
+            <list>  
+            	<value>user/usertype</value>  
+                <value>user/adduser</value>  
+                <value>user/userapps</value>  
+            </list>  
+        </property>  
+        <property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="newUserCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.NewUserCommand" />
+		<property name="validator" ref="newUserValidator" />
+		
+		<property name="groupManager" ref="groupServiceClient" />
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="provService" ref="provisionServiceClient" />	
+		<property name="configuration" ref="appConfiguration" />
+		<property name="refDataService" ref="refDataService" />	
+		<property name="secDomainService" ref="secDomainServiceClient" />
+		<property name="metadataService" ref="metadataServiceClient"	/>
+
+		<property name="orgManager" ref="orgServiceClient" />
+		<property name="locationService" ref="locationServiceClient" />
+		<property name="resourceDataService" ref="resourceServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+     </bean>
+   
+     <bean id="newUserValidator" class="org.openiam.webadmin.user.NewUserValidator">
+     </bean>       
+
+    <bean id="editUser" class="org.openiam.webadmin.user.EditUserController">
+		<property name="commandName" value="editUserCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.EditUserCommand" />
+		<property name="formView" value="/user/edituser" />
+		<property name="successView" value="/confirm" />
+		
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="groupManager" ref="groupServiceClient" />
+		<property name="orgManager" ref="orgServiceClient" />		
+		<property name="locationDataService" ref="locationServiceClient" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="configuration" ref="appConfiguration" />
+		<property name="refDataService" ref="refDataService" />	
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="managedSysService" ref="managedSysServiceClient" />
+		<property name="provRequestService" ref="provisionServiceClient" />	
+				
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+		
+     </bean>
+
+ 
+
+    <bean id="userIdentity" class="org.openiam.webadmin.user.UserIdentityController">
+     	<property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="identityUserCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.UserIdentityCommand" />
+		<property name="formView" value="/user/useridentity" />
+		<property name="successView" value="/user/confirm" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="provRequestService" ref="provisionServiceClient" />	
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+     </bean>
+ 
+
+
+     <bean id="userHistory" class="org.openiam.webadmin.user.UserHistoryController">
+		<property name="successView" value="/user/userhist" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="auditService" ref="auditServiceClient" />
+		<property name="numberOfDays" value="21" />
+		
+     </bean>    
+
+    <bean id="userGroup" class="org.openiam.webadmin.user.UserGroupController">
+		<property name="commandName" value="usergrpCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.UserGroupCommand" />
+		<property name="formView" value="/user/usergroup" />
+		<property name="successView" value="/user/confirm" />
+		<property name="groupManager" ref="groupServiceClient" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+		<property name="provRequestService" ref="provisionServiceClient" />	
+     </bean>
+     
+    <bean id="userRole" class="org.openiam.webadmin.user.UserRoleController">
+     	<property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="userRoleCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.UserRoleCommand" />
+		<property name="formView" value="/user/userrole" />
+		<property name="successView" value="/user/confirm" />
+		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="provRequestService" ref="provisionServiceClient" />	
+     </bean>
+
+    <bean id="userChangeStatus" class="org.openiam.webadmin.user.UserChangeStatusController">
+		<property name="commandName" value="changeStatusCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.UserChangeStatusCommand" />
+		<property name="formView" value="/user/changestatus" />
+		<property name="successView" value="/user/confirm" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+     </bean>
+
+     <bean id="resetPassword" class="org.openiam.webadmin.user.ResetUserPasswordController">
+     	<property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="pswdChangeCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.ResetUserPasswordCommand" />
+		<property name="formView" value="/user/pswdchange" />
+		<property name="successView" value="/user/confirm" />
+		<property name="validator" ref="resetPasswordValidator" />
+		<property name="configuration" ref="appConfiguration" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="userMgr" ref="userServiceClient" />	
+		<property name="provRequestService" ref="provisionServiceClient" />	
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+     </bean> 
+     <bean id="resetPasswordValidator" class="org.openiam.webadmin.user.ResetUserPasswordValidator">
+     </bean> 
+     
+     <bean id="selectSupervisor" class="org.openiam.webadmin.user.SelectSupervisorController">
+		<property name="successView" value="user/selsupervisor.jsp" />
+		<property name="userMgr" ref="userServiceClient" />
+     </bean>
+     
+
+      <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     	<property name="prefix" value="home.jsp?bodyjsp=" />
+     	<property name="suffix" value=".jsp" />
+     </bean>
+     
+  
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+             	<prop key="/login.cnt">login</prop>
+             	<prop key="/orglist.cnt">orgList</prop>
+             	<prop key="/orgDetail.cnt">orgDetail</prop>
+             	<prop key="/grouplist.cnt">groupList</prop>
+             	<prop key="/groupDetail.cnt">groupDetail</prop>             	
+             	<prop key="/rolelist.cnt">roleList</prop>
+             	<prop key="/roleDetail.cnt">roleDetail</prop> 
+             	<prop key="/roleResource.cnt">roleResource</prop> 
+             
+                <!--  prop key="/domain.cnt">domainController </prop -->
+                <prop key="/connectorList.cnt">connectorList</prop>
+                <prop key="/connectorDetail.cnt">connectorDetail</prop>
+                <prop key="/managedSysList.cnt">managedSysList</prop>
+                <prop key="/managedSysConnection.cnt">managedSysConnection</prop>
+                <prop key="/synchList.cnt">synchList</prop>
+                <prop key="/attrPolicy.cnt">attrPolicy</prop>
+                <prop key="/policyDetail.cnt">policyDetail</prop>               
+                <prop key="/assocPasswordPolicy.cnt">assocPolicy</prop>
+                <prop key="/metadataTypeList.cnt">metadataTypeList</prop>
+                <prop key="/metadataType.cnt">metadataType</prop>
+                <prop key="/metadataAttribute.cnt">metadataAttribute</prop>
+                <prop key="/locationList.cnt">locationList</prop>
+                <prop key="/locationDetail.cnt">locationDetail</prop>
+                <prop key="/secDomainList.cnt">secDomainList</prop>
+                <prop key="/secDomainDetail.cnt">secDomainDetail</prop>
+                <prop key="/newUser.cnt">newUser</prop>
+                <prop key="/editUser.cnt">editUser</prop>
+                <prop key="/userIdentity.cnt">userIdentity</prop>
+                <prop key="/userGroup.cnt">userGroup</prop>
+                <prop key="/userRole.cnt">userRole</prop>
+                <prop key="/userHistory.cnt">userHistory</prop>               
+                <prop key="/userGroup.cnt">userGroup</prop>
+                <prop key="/userChangeStatus.cnt">userChangeStatus</prop>
+                <prop key="/selectSupervisor.cnt">selectSupervisor</prop>
+                <prop key="/resetPassword.cnt">resetPassword</prop>
+                <prop key="/auditReport.cnt">auditReportController</prop>
+                <prop key="/orgPolicyList.cnt">orgPolicyList</prop>
+                <prop key="/orgPolicyDetail.cnt">orgPolicyDetail</prop>
+                <prop key="/sysMessageList.cnt">sysMessageList</prop>
+                <prop key="/sysMessageDetail.cnt">sysMessageDetail</prop>
+                <prop key="/resourcelist.cnt">resourceList</prop>
+                <prop key="/resourceDetail.cnt">resourceDetail</prop>
+                <prop key="/resourceMap.cnt">resourceMap</prop>
+                <prop key="/resApprovalFlow.cnt">resourceApprovalFlow</prop>
+                <prop key="/deleteResourceMap.cnt">deleteResourceMap</prop>     
+
+                <prop key="/batchList.cnt">batchTaskList</prop>
+                <prop key="/batchDetail.cnt">batchTaskDetail</prop>
+                
+                <prop key="/userReport.cnt">userReportController</prop>     
+                <prop key="/inactivityReport.cnt">inactivityReportController</prop>   
+                <prop key="/syncUser.cnt">syncConfigurationList</prop>
+                <prop key="/syncConfiguration.cnt">syncConfiguration</prop>  
+                <prop key="/reconcilConfig.cnt">reconcilConfig</prop>                
+            </props>
+        </property>
+    </bean>
+        
+</beans>
+
+

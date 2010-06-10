@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="LocationDataWebService" resourceRoot="" soapui-version="3.0.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LocationDataWebServiceSoapBinding" type="wsdl" bindingName="{urn:idm.openiam.org/srvc/loc/service}LocationDataWebServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService?wsdl"><con:part><con:url>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LocationDataWebService" targetNamespace="urn:idm.openiam.org/srvc/loc/service" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:idm.openiam.org/srvc/loc/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/loc/service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+      </xs:complexType>
+      <xs:complexType name="LocationResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="location" type="tns:location"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="location">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="locationId" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="country" type="xs:string"/>
+          <xs:element minOccurs="0" name="bldgNum" type="xs:string"/>
+          <xs:element minOccurs="0" name="streetDirection" type="xs:string"/>
+          <xs:element minOccurs="0" name="address1" type="xs:string"/>
+          <xs:element minOccurs="0" name="address2" type="xs:string"/>
+          <xs:element minOccurs="0" name="address3" type="xs:string"/>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="state" type="xs:string"/>
+          <xs:element minOccurs="0" name="postalCd" type="xs:string"/>
+          <xs:element minOccurs="0" name="organizationId" type="xs:string"/>
+          <xs:element minOccurs="0" name="active" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LocationArrayResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="locationAry" nillable="true" type="tns:location"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="ResponseStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="success"/>
+          <xs:enumeration value="failure"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="getLocation" type="tns:getLocation"/>
+      <xs:complexType name="getLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="loc" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getLocationResponse" type="tns:getLocationResponse"/>
+      <xs:complexType name="getLocationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LocationResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="allLocations" type="tns:allLocations"/>
+      <xs:complexType name="allLocations">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="allLocationsResponse" type="tns:allLocationsResponse"/>
+      <xs:complexType name="allLocationsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LocationArrayResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="removeLocation" type="tns:removeLocation"/>
+      <xs:complexType name="removeLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="loc" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="removeLocationResponse" type="tns:removeLocationResponse"/>
+      <xs:complexType name="removeLocationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="updateLocation" type="tns:updateLocation"/>
+      <xs:complexType name="updateLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="loc" type="tns:location"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="updateLocationResponse" type="tns:updateLocationResponse"/>
+      <xs:complexType name="updateLocationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addLocation" type="tns:addLocation"/>
+      <xs:complexType name="addLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="loc" type="tns:location"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addLocationResponse" type="tns:addLocationResponse"/>
+      <xs:complexType name="addLocationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addLocation">
+    <wsdl:part element="tns:addLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allLocations">
+    <wsdl:part element="tns:allLocations" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLocation">
+    <wsdl:part element="tns:updateLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allLocationsResponse">
+    <wsdl:part element="tns:allLocationsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocationResponse">
+    <wsdl:part element="tns:getLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocation">
+    <wsdl:part element="tns:getLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addLocationResponse">
+    <wsdl:part element="tns:addLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLocation">
+    <wsdl:part element="tns:removeLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLocationResponse">
+    <wsdl:part element="tns:updateLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLocationResponse">
+    <wsdl:part element="tns:removeLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LocationDataService">
+    <wsdl:operation name="getLocation">
+      <wsdl:input message="tns:getLocation" name="getLocation"></wsdl:input>
+      <wsdl:output message="tns:getLocationResponse" name="getLocationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allLocations">
+      <wsdl:input message="tns:allLocations" name="allLocations"></wsdl:input>
+      <wsdl:output message="tns:allLocationsResponse" name="allLocationsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLocation">
+      <wsdl:input message="tns:removeLocation" name="removeLocation"></wsdl:input>
+      <wsdl:output message="tns:removeLocationResponse" name="removeLocationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLocation">
+      <wsdl:input message="tns:updateLocation" name="updateLocation"></wsdl:input>
+      <wsdl:output message="tns:updateLocationResponse" name="updateLocationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLocation">
+      <wsdl:input message="tns:addLocation" name="addLocation"></wsdl:input>
+      <wsdl:output message="tns:addLocationResponse" name="addLocationResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LocationDataWebServiceSoapBinding" type="tns:LocationDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allLocations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="allLocations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="allLocationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LocationDataWebService">
+    <wsdl:port binding="tns:LocationDataWebServiceSoapBinding" name="LocationDataWebServiceImplPort">
+      <soap:address location="http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addLocation" bindingOperationName="addLocation" type="Request-Response" outputName="addLocationResponse" inputName="addLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addLocation>
+         <!--Optional:-->
+         <loc>
+            <!--Optional:-->
+            <locationId>?</locationId>
+            <!--Optional:-->
+            <name>?</name>
+            <!--Optional:-->
+            <description>?</description>
+            <!--Optional:-->
+            <country>?</country>
+            <!--Optional:-->
+            <bldgNum>?</bldgNum>
+            <!--Optional:-->
+            <streetDirection>?</streetDirection>
+            <!--Optional:-->
+            <address1>?</address1>
+            <!--Optional:-->
+            <address2>?</address2>
+            <!--Optional:-->
+            <address3>?</address3>
+            <!--Optional:-->
+            <city>?</city>
+            <!--Optional:-->
+            <state>?</state>
+            <!--Optional:-->
+            <postalCd>?</postalCd>
+            <!--Optional:-->
+            <organizationId>?</organizationId>
+            <!--Optional:-->
+            <active>?</active>
+         </loc>
+      </ser:addLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/addLocation"/></con:call></con:operation><con:operation isOneWay="false" action="" name="allLocations" bindingOperationName="allLocations" type="Request-Response" outputName="allLocationsResponse" inputName="allLocations" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:allLocations/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/allLocations"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLocation" bindingOperationName="getLocation" type="Request-Response" outputName="getLocationResponse" inputName="getLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLocation>
+         <!--Optional:-->
+         <loc>?</loc>
+      </ser:getLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/getLocation"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeLocation" bindingOperationName="removeLocation" type="Request-Response" outputName="removeLocationResponse" inputName="removeLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeLocation>
+         <!--Optional:-->
+         <loc>?</loc>
+      </ser:removeLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/removeLocation"/></con:call></con:operation><con:operation isOneWay="false" action="" name="updateLocation" bindingOperationName="updateLocation" type="Request-Response" outputName="updateLocationResponse" inputName="updateLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateLocation>
+         <!--Optional:-->
+         <loc>
+            <!--Optional:-->
+            <locationId>?</locationId>
+            <!--Optional:-->
+            <name>?</name>
+            <!--Optional:-->
+            <description>?</description>
+            <!--Optional:-->
+            <country>?</country>
+            <!--Optional:-->
+            <bldgNum>?</bldgNum>
+            <!--Optional:-->
+            <streetDirection>?</streetDirection>
+            <!--Optional:-->
+            <address1>?</address1>
+            <!--Optional:-->
+            <address2>?</address2>
+            <!--Optional:-->
+            <address3>?</address3>
+            <!--Optional:-->
+            <city>?</city>
+            <!--Optional:-->
+            <state>?</state>
+            <!--Optional:-->
+            <postalCd>?</postalCd>
+            <!--Optional:-->
+            <organizationId>?</organizationId>
+            <!--Optional:-->
+            <active>?</active>
+         </loc>
+      </ser:updateLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/updateLocation"/></con:call></con:operation></con:interface><con:testSuite name="LocationDataWebServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addLocation TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addLocation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LocationDataWebServiceSoapBinding</con:interface><con:operation>addLocation</con:operation><con:request name="addLocation"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addLocation>
+         <!--Optional:-->
+         <loc>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            <name>Test</name>
+            <!--Optional:-->
+            <description>Test Description</description>
+	   <internalLocationId>AB_Location</internalLocationId>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+         </loc>
+      </ser:addLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/addLocation" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="allLocations TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="allLocations"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LocationDataWebServiceSoapBinding</con:interface><con:operation>allLocations</con:operation><con:request name="allLocations"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:allLocations/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/allLocations" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLocation TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLocation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LocationDataWebServiceSoapBinding</con:interface><con:operation>getLocation</con:operation><con:request name="getLocation"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLocation>
+         <!--Optional:-->
+         
+      <loc>101</loc></ser:getLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/getLocation" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="removeLocation TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="removeLocation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LocationDataWebServiceSoapBinding</con:interface><con:operation>removeLocation</con:operation><con:request name="removeLocation"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeLocation>
+         <!--Optional:-->
+         <loc>?</loc>
+      </ser:removeLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/removeLocation"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="updateLocation TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="updateLocation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LocationDataWebServiceSoapBinding</con:interface><con:operation>updateLocation</con:operation><con:request name="updateLocation"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/LocationDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/loc/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateLocation>
+         <!--Optional:-->
+         <loc>
+            <!--Optional:-->
+            <locationId>?</locationId>
+            <!--Optional:-->
+            <name>?</name>
+            <!--Optional:-->
+            <description>?</description>
+            <!--Optional:-->
+            <country>?</country>
+            <!--Optional:-->
+            <bldgNum>?</bldgNum>
+            <!--Optional:-->
+            <streetDirection>?</streetDirection>
+            <!--Optional:-->
+            <address1>?</address1>
+            <!--Optional:-->
+            <address2>?</address2>
+            <!--Optional:-->
+            <address3>?</address3>
+            <!--Optional:-->
+            <city>?</city>
+            <!--Optional:-->
+            <state>?</state>
+            <!--Optional:-->
+            <postalCd>?</postalCd>
+            <!--Optional:-->
+            <organizationId>?</organizationId>
+            <!--Optional:-->
+            <active>?</active>
+         </loc>
+      </ser:updateLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/loc/service/LocationDataService/updateLocation"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:xmlTemplates/><con:xmlTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>

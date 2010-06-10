@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2010 8:20:09 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.synch.dto.SynchConfigDataMapping" table="SYNCH_CONFIG_DATA_MAPPING" >
+        <id name="mappingId" type="string">
+            <column name="MAPPING_ID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="synchConfigId" type="string">
+            <column name="SYNCH_CONFIG_ID" length="32" />
+        </property>
+        <property name="idmFieldName" type="string">
+            <column name="IDM_FIELD_NAME" length="40" />
+        </property>
+        <property name="srcFieldName" type="string">
+            <column name="SRC_FIELD_NAME" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

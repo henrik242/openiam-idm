@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="NavigationDataService" soapui-version="2.5.1" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">C:\workspace\idm\idm-ws\soap-ui-test</con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="NavigationWebServiceSoapBinding" type="wsdl" bindingName="{urn:idm.openiam.org/srvc/menu/service}NavigationWebServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/idm-ws/idmsrvc/NavigationService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/idm-ws/idmsrvc/NavigationService?wsdl"><con:part><con:url>http://localhost:8080/idm-ws/idmsrvc/NavigationService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="NavigationWebService" targetNamespace="urn:idm.openiam.org/srvc/menu/service" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:idm.openiam.org/srvc/menu/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/menu/service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+      </xs:complexType>
+      <xs:complexType name="MenuResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="menu" type="tns:menu"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="menu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="active" type="xs:boolean"/>
+          <xs:element name="displayOrder" type="xs:int"/>
+          <xs:element minOccurs="0" name="id" type="tns:menuId"/>
+          <xs:element minOccurs="0" name="menuDesc" type="xs:string"/>
+          <xs:element minOccurs="0" name="menuGroup" type="xs:string"/>
+          <xs:element minOccurs="0" name="menuName" type="xs:string"/>
+          <xs:element minOccurs="0" name="publicUrl" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="subMenus" nillable="true" type="tns:menu"/>
+          <xs:element minOccurs="0" name="url" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="menuId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="languageCd" type="xs:string"/>
+          <xs:element minOccurs="0" name="menuId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MenuListResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="menuList" nillable="true" type="tns:menu"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="ResponseStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="success"/>
+          <xs:enumeration value="failure"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="getAllMenuOptionIDs" type="tns:getAllMenuOptionIDs"/>
+      <xs:complexType name="getAllMenuOptionIDs">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAllMenuOptionIDsResponse" type="tns:getAllMenuOptionIDsResponse"/>
+      <xs:complexType name="getAllMenuOptionIDsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getMenu" type="tns:getMenu"/>
+      <xs:complexType name="getMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getMenuResponse" type="tns:getMenuResponse"/>
+      <xs:complexType name="getMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroupSelectedByUser" type="tns:menuGroupSelectedByUser"/>
+      <xs:complexType name="menuGroupSelectedByUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroupSelectedByUserResponse" type="tns:menuGroupSelectedByUserResponse"/>
+      <xs:complexType name="menuGroupSelectedByUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addMenu" type="tns:addMenu"/>
+      <xs:complexType name="addMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:menu"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addMenuResponse" type="tns:addMenuResponse"/>
+      <xs:complexType name="addMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="updateMenu" type="tns:updateMenu"/>
+      <xs:complexType name="updateMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:menu"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="updateMenuResponse" type="tns:updateMenuResponse"/>
+      <xs:complexType name="updateMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroup" type="tns:menuGroup"/>
+      <xs:complexType name="menuGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroupResponse" type="tns:menuGroupResponse"/>
+      <xs:complexType name="menuGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAllSubMenu" type="tns:getAllSubMenu"/>
+      <xs:complexType name="getAllSubMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAllSubMenuResponse" type="tns:getAllSubMenuResponse"/>
+      <xs:complexType name="getAllSubMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="removeMenu" type="tns:removeMenu"/>
+      <xs:complexType name="removeMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element name="arg1" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="removeMenuResponse" type="tns:removeMenuResponse"/>
+      <xs:complexType name="removeMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getInitialMenuOptions" type="tns:getInitialMenuOptions"/>
+      <xs:complexType name="getInitialMenuOptions">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getInitialMenuOptionsResponse" type="tns:getInitialMenuOptionsResponse"/>
+      <xs:complexType name="getInitialMenuOptionsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroupByUser" type="tns:menuGroupByUser"/>
+      <xs:complexType name="menuGroupByUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="menuGroupByUserResponse" type="tns:menuGroupByUserResponse"/>
+      <xs:complexType name="menuGroupByUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="menuGroupSelectedByUser">
+    <wsdl:part element="tns:menuGroupSelectedByUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllSubMenuResponse">
+    <wsdl:part element="tns:getAllSubMenuResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMenu">
+    <wsdl:part element="tns:addMenu" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMenuResponse">
+    <wsdl:part element="tns:removeMenuResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMenu">
+    <wsdl:part element="tns:updateMenu" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInitialMenuOptionsResponse">
+    <wsdl:part element="tns:getInitialMenuOptionsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInitialMenuOptions">
+    <wsdl:part element="tns:getInitialMenuOptions" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupResponse">
+    <wsdl:part element="tns:menuGroupResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMenuResponse">
+    <wsdl:part element="tns:getMenuResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupByUserResponse">
+    <wsdl:part element="tns:menuGroupByUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllSubMenu">
+    <wsdl:part element="tns:getAllSubMenu" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMenuResponse">
+    <wsdl:part element="tns:addMenuResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllMenuOptionIDsResponse">
+    <wsdl:part element="tns:getAllMenuOptionIDsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllMenuOptionIDs">
+    <wsdl:part element="tns:getAllMenuOptionIDs" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMenuResponse">
+    <wsdl:part element="tns:updateMenuResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupSelectedByUserResponse">
+    <wsdl:part element="tns:menuGroupSelectedByUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMenu">
+    <wsdl:part element="tns:getMenu" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupByUser">
+    <wsdl:part element="tns:menuGroupByUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroup">
+    <wsdl:part element="tns:menuGroup" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMenu">
+    <wsdl:part element="tns:removeMenu" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="NavigationDataService">
+    <wsdl:operation name="getAllMenuOptionIDs">
+      <wsdl:input message="tns:getAllMenuOptionIDs" name="getAllMenuOptionIDs"></wsdl:input>
+      <wsdl:output message="tns:getAllMenuOptionIDsResponse" name="getAllMenuOptionIDsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <wsdl:input message="tns:getMenu" name="getMenu"></wsdl:input>
+      <wsdl:output message="tns:getMenuResponse" name="getMenuResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupSelectedByUser">
+      <wsdl:input message="tns:menuGroupSelectedByUser" name="menuGroupSelectedByUser"></wsdl:input>
+      <wsdl:output message="tns:menuGroupSelectedByUserResponse" name="menuGroupSelectedByUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMenu">
+      <wsdl:input message="tns:addMenu" name="addMenu"></wsdl:input>
+      <wsdl:output message="tns:addMenuResponse" name="addMenuResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMenu">
+      <wsdl:input message="tns:updateMenu" name="updateMenu"></wsdl:input>
+      <wsdl:output message="tns:updateMenuResponse" name="updateMenuResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroup">
+      <wsdl:input message="tns:menuGroup" name="menuGroup"></wsdl:input>
+      <wsdl:output message="tns:menuGroupResponse" name="menuGroupResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSubMenu">
+      <wsdl:input message="tns:getAllSubMenu" name="getAllSubMenu"></wsdl:input>
+      <wsdl:output message="tns:getAllSubMenuResponse" name="getAllSubMenuResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMenu">
+      <wsdl:input message="tns:removeMenu" name="removeMenu"></wsdl:input>
+      <wsdl:output message="tns:removeMenuResponse" name="removeMenuResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInitialMenuOptions">
+      <wsdl:input message="tns:getInitialMenuOptions" name="getInitialMenuOptions"></wsdl:input>
+      <wsdl:output message="tns:getInitialMenuOptionsResponse" name="getInitialMenuOptionsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupByUser">
+      <wsdl:input message="tns:menuGroupByUser" name="menuGroupByUser"></wsdl:input>
+      <wsdl:output message="tns:menuGroupByUserResponse" name="menuGroupByUserResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NavigationWebServiceSoapBinding" type="tns:NavigationDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllMenuOptionIDs">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllMenuOptionIDs">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllMenuOptionIDsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupSelectedByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroupSelectedByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupSelectedByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSubMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllSubMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllSubMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInitialMenuOptions">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInitialMenuOptions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInitialMenuOptionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroupByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NavigationWebService">
+    <wsdl:port binding="tns:NavigationWebServiceSoapBinding" name="NavigationWebServicePort">
+      <soap:address location="http://localhost:8080/idm-ws/idmsrvc/NavigationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addMenu" bindingOperationName="addMenu" type="Request-Response" outputName="addMenuResponse" inputName="addMenu" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addMenu>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            <active>?</active>
+            <displayOrder>?</displayOrder>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <languageCd>?</languageCd>
+               <!--Optional:-->
+               <menuId>?</menuId>
+            </id>
+            <!--Optional:-->
+            <menuDesc>?</menuDesc>
+            <!--Optional:-->
+            <menuGroup>?</menuGroup>
+            <!--Optional:-->
+            <menuName>?</menuName>
+            <!--Optional:-->
+            <publicUrl>?</publicUrl>
+            <!--Optional:-->
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <subMenus/>
+            <!--Optional:-->
+            <url>?</url>
+         </arg0>
+      </ser:addMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/addMenu"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAllMenuOptionIDs" bindingOperationName="getAllMenuOptionIDs" type="Request-Response" outputName="getAllMenuOptionIDsResponse" inputName="getAllMenuOptionIDs" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllMenuOptionIDs>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+      </ser:getAllMenuOptionIDs>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/getAllMenuOptionIDs"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAllSubMenu" bindingOperationName="getAllSubMenu" type="Request-Response" outputName="getAllSubMenuResponse" inputName="getAllSubMenu" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllSubMenu>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+      </ser:getAllSubMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/getAllSubMenu"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getInitialMenuOptions" bindingOperationName="getInitialMenuOptions" type="Request-Response" outputName="getInitialMenuOptionsResponse" inputName="getInitialMenuOptions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getInitialMenuOptions>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+      </ser:getInitialMenuOptions>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/getInitialMenuOptions"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getMenu" bindingOperationName="getMenu" type="Request-Response" outputName="getMenuResponse" inputName="getMenu" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getMenu>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+      </ser:getMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/getMenu"/></con:call></con:operation><con:operation isOneWay="false" action="" name="menuGroup" bindingOperationName="menuGroup" type="Request-Response" outputName="menuGroupResponse" inputName="menuGroup" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroup>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+      </ser:menuGroup>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroup"/></con:call></con:operation><con:operation isOneWay="false" action="" name="menuGroupByUser" bindingOperationName="menuGroupByUser" type="Request-Response" outputName="menuGroupByUserResponse" inputName="menuGroupByUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroupByUser>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+      </ser:menuGroupByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroupByUser"/></con:call></con:operation><con:operation isOneWay="false" action="" name="menuGroupSelectedByUser" bindingOperationName="menuGroupSelectedByUser" type="Request-Response" outputName="menuGroupSelectedByUserResponse" inputName="menuGroupSelectedByUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroupSelectedByUser>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+      </ser:menuGroupSelectedByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroupSelectedByUser"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeMenu" bindingOperationName="removeMenu" type="Request-Response" outputName="removeMenuResponse" inputName="removeMenu" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeMenu>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <arg1>?</arg1>
+      </ser:removeMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/removeMenu"/></con:call></con:operation><con:operation isOneWay="false" action="" name="updateMenu" bindingOperationName="updateMenu" type="Request-Response" outputName="updateMenuResponse" inputName="updateMenu" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateMenu>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            <active>?</active>
+            <displayOrder>?</displayOrder>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <languageCd>?</languageCd>
+               <!--Optional:-->
+               <menuId>?</menuId>
+            </id>
+            <!--Optional:-->
+            <menuDesc>?</menuDesc>
+            <!--Optional:-->
+            <menuGroup>?</menuGroup>
+            <!--Optional:-->
+            <menuName>?</menuName>
+            <!--Optional:-->
+            <publicUrl>?</publicUrl>
+            <!--Optional:-->
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <subMenus/>
+            <!--Optional:-->
+            <url>?</url>
+         </arg0>
+      </ser:updateMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/updateMenu"/></con:call></con:operation></con:interface><con:testSuite name="NavigationWebServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addMenu TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addMenu"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>addMenu</con:operation><con:request name="addMenu"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addMenu><arg0><active>true</active><displayOrder>1</displayOrder><id><languageCd>en</languageCd><menuId>TMENU</menuId></id><menuDesc>Test Menu</menuDesc><menuGroup>ROOT</menuGroup><menuName>TestMENU</menuName><publicUrl>false</publicUrl><selected>true</selected><url>/TESTURL</url></arg0></ser:addMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/addMenu" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getMenu TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getMenu"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>getMenu</con:operation><con:request name="getMenu"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getMenu><arg0>TMENU</arg0><arg1>en</arg1></ser:getMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/getMenu" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="menuGroup TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="menuGroup"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>menuGroup</con:operation><con:request name="menuGroup"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroup><arg0>IDM</arg0><arg1>en</arg1></ser:menuGroup>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroup" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="menuGroupByUser TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="menuGroupByUser"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>menuGroupByUser</con:operation><con:request name="menuGroupByUser"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroupByUser><arg0>IDM</arg0><arg1>3001</arg1><arg2>en</arg2></ser:menuGroupByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroupByUser" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="menuGroupSelectedByUser TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="menuGroupSelectedByUser"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>menuGroupSelectedByUser</con:operation><con:request name="menuGroupSelectedByUser"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:menuGroupSelectedByUser><arg0>IDM</arg0><arg1>3001</arg1><arg2>en</arg2></ser:menuGroupSelectedByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/menuGroupSelectedByUser" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="updateMenu TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="updateMenu"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>updateMenu</con:operation><con:request name="updateMenu"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateMenu><arg0><active>true</active><displayOrder>1</displayOrder><id><languageCd>en</languageCd><menuId>TMENU</menuId></id><menuDesc>test - upd</menuDesc><menuGroup>ROOT</menuGroup><menuName>name - up</menuName><url>XX</url></arg0></ser:updateMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/updateMenu" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="removeMenu TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="removeMenu"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>NavigationWebServiceSoapBinding</con:interface><con:operation>removeMenu</con:operation><con:request name="removeMenu"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/idm-ws/idmsrvc/NavigationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/menu/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeMenu>
+         <arg0>TMENU</arg0><arg1>false</arg1>
+      </ser:removeMenu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/menu/service/NavigationDataService/removeMenu" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

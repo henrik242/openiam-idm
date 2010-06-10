@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.4//EN"  "http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd">
+<jboss-web>
+
+
+<!-- 
+	<ejb-ref>
+        <ejb-ref-name>ejb/Navigator</ejb-ref-name>
+		<jndi-name>diamelle.ebc.Navigator</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/Authenticator</ejb-ref-name>
+		<jndi-name>diamelle.security.Authenticator</jndi-name>
+	</ejb-ref>	
+
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/SecurityManager</ejb-ref-name>
+		<jndi-name>diamelle.security.SecurityManager</jndi-name>
+	</ejb-ref>
+
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/AccessController</ejb-ref-name>
+		<jndi-name>diamelle.security.AccessController</jndi-name>
+	</ejb-ref>
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/IdQuestionManager</ejb-ref-name>
+ 		<jndi-name>diamelle.security.IdQuestionManager</jndi-name>
+	</ejb-ref>	
+
+	<ejb-ref>
+        <ejb-ref-name>ejb/PolicyManager</ejb-ref-name>
+		<jndi-name>diamelle.security.PolicyManager</jndi-name>
+	</ejb-ref>
+  -->
+			
+</jboss-web>   
+
