@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>openiam</artifactId>
+		<groupId>org.openiam</groupId>
+		<version>2.1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.openiam</groupId>
+	<artifactId>openiam-idm-esb</artifactId>
+	<name>openiam-idm-esb</name>
+	<packaging>war</packaging>
+	<version>2.1.0</version>
+	<description>OpenIAM ESB Module based on Mule</description>
+
+	<dependencies>
+		<!-- OpenIAM Dependencies -->
+		<dependency>
+			<groupId>org.openiam</groupId>
+			<artifactId>openiam-pojo-services</artifactId>
+			<version>2.1.0</version>
+		      <exclusions>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-api</artifactId>
+			        </exclusion>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-jdk14</artifactId>
+			        </exclusion>
+    			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.openiam</groupId>
+			<artifactId>openiam-idm-services</artifactId>
+			<version>2.1.0</version>
+		      <exclusions>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-api</artifactId>
+			        </exclusion>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-jdk14</artifactId>
+			        </exclusion>
+    			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openiam</groupId>
+			<artifactId>idm-connector-core</artifactId>
+			<version>2.1.0</version>
+		      <exclusions>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-api</artifactId>
+			        </exclusion>
+			        <exclusion>
+				    	<groupId>org.slf4j</groupId>
+				    	<artifactId>slf4j-jdk14</artifactId>
+			        </exclusion>
+    			</exclusions>
+		</dependency>
+
+		<!-- Mule Dependencies -->
+		<dependency>
+			<groupId>org.mule</groupId>
+			<artifactId>mule-core</artifactId>
+		</dependency>
+		<!-- Mule Modules -->
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-builders</artifactId>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-cxf</artifactId>
+			 <version>3.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-client</artifactId>
+		</dependency>
+
+		<!-- Mule Transports -->
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-jms</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-file</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-servlet</artifactId>
+		</dependency>
+
+		<!-- Other Dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>		
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<developers>
+		<developer>
+			<id>Arun_Shah</id>
+			<name>Arun Shah</name>
+			<email>arun_shah@openiam.com</email>
+		</developer>
+		<developer>
+			<id>Suneet_shah</id>
+			<name>Suneet Shah</name>
+			<email>suneet_shah@openiam.com</email>
+		</developer>
+	</developers>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<doctitle>OpenIAM Java Services API v2</doctitle>
+					<windowtitle>OpenIAM Java Documentation</windowtitle>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<build>
+		<finalName>openiam-idm-esb</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<argLine>-Xmx256m</argLine>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<reportFormat>brief</reportFormat>
+					<useFile>false</useFile>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.0</version>
+				<executions>
+					<execution>
+						<id>service</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<quiet>true</quiet>
+					<author>false</author>
+					<version>true</version>
+					<doctitle>${project.name} ${project.version} Java API.</doctitle>
+					<windowtitle>${project.name} ${project.version} Java API.
+					</windowtitle>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 4, 2008 1:12:08 AM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.role.dto.Role" table="ROLE" >
+    	<cache usage="read-write"/>
+        <comment></comment>
+        <composite-id name="id" class="org.openiam.idm.srvc.role.dto.RoleId">
+            <key-property name="serviceId" type="string">
+                <column name="SERVICE_ID" length="20" />
+            </key-property>
+            <key-property name="roleId" type="string">
+                <column name="ROLE_ID" length="32" />
+            </key-property>
+        </composite-id>
+        
+
+        <property name="roleName" type="string">
+            <column name="ROLE_NAME" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="provisionObjName" type="string">
+            <column name="PROVISION_OBJ_NAME" length="80">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="metadataTypeId" type="string">
+            <column name="TYPE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+         <property name="parentRoleId" type="string">
+            <column name="PARENT_ROLE_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+
+         <property name="ownerId" type="string">
+            <column name="OWNER_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="inheritFromParent" type="java.lang.Integer">
+            <column name="INHERIT_FROM_PARENT" >
+                <comment></comment>
+            </column>
+        </property>
+         <property name="internalRoleId" type="string">
+            <column name="INTERNAL_ROLE_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+                
+       
+        <set name="roleAttributes" lazy="false" cascade="all-delete-orphan" inverse="false" >
+            <key>
+                <column name="SERVICE_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+                <column name="ROLE_ID" length="32" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.role.dto.RoleAttribute" />
+        </set>
+
+        <set name="rolePolicy" lazy="false" cascade="all-delete-orphan" inverse="false" >
+            <key>
+                <column name="SERVICE_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+                <column name="ROLE_ID" length="32" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.role.dto.RolePolicy" />
+        </set>
+        
+        
+         <set name="groups" table="GRP_ROLE" lazy="false" fetch="select" >
+            <key>
+               <column name="SERVICE_ID" length="20"  not-null="true"/>
+               <column name="ROLE_ID" length="32"  not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.openiam.idm.srvc.grp.dto.Group">
+                <column name="GRP_ID" length="32" not-null="true">
+                    <comment></comment>
+                </column>
+            </many-to-many>
+        </set>       
+   
+    </class>
+</hibernate-mapping>

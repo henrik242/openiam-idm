@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ProvisionConnector" table="PROVISION_CONNECTOR">
+        <id name="connectorId" type="string">
+            <column name="CONNECTOR_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40" />
+        </property>
+        <property name="metadataTypeId" type="string">
+            <column name="METADATA_TYPE_ID" length="20" />
+        </property>
+        <property name="stdComplianceLevel" type="string">
+            <column name="STD_COMPLIANCE_LEVEL" length="20" />
+        </property>
+        <property name="clientCommProtocol" type="string">
+            <column name="CLIENT_COMM_PROTOCOL" length="20"  />
+        </property>
+        <property name="serviceUrl" type="string">
+            <column name="SERVICE_URL" length="100" />
+        </property>
+        <property name="serviceNameSpace" type="string">
+            <column name="SERVICE_NAMESPACE" length="100" />
+        </property>
+        <property name="className" type="string">
+            <column name="CLASS_NAME" length="60" />
+        </property>
+        <property name="wsdlUrl" type="string">
+            <column name="SERVICE_WSDL" length="100" />
+        </property>
+        <property name="servicePort" type="string">
+            <column name="SERVICE_PORT" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>
+

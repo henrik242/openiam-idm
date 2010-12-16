@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 4, 2008 1:12:08 AM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.rpt.qryobject.dto.UserLoginStatusReport" table="USER" >
+        <comment></comment>
+
+        <id name="userId" type="string">
+            <column name="USER_ID" length="32" />
+            <generator class="assigned" />
+        </id>
+
+        <property name="unit" type="string">
+            <column name="UNIT" length="40">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="supervisorName" type="string">
+            <column name="SUPER_FIRST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="supervisorLastName" type="string">
+            <column name="SUPER_LAST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="title" type="string">
+            <column name="TITLE" length="40">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="company" type="string">
+            <column name="COMPANY_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        
+	
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="login" type="string">
+            <column name="LOGIN" length="200">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deptCd" type="string">
+            <column name="DEPT_CD" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="division" type="string">
+            <column name="DIVISION" length="32">
+                <comment></comment>
+            </column>
+        </property>
+                
+        <property name="timeStamp" type="timestamp">
+            <column name="TIME_STAMP" length="19">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="response" type="string">
+            <column name="RESPONSE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="lastLogin" type="timestamp">
+            <column name="LAST_LOGIN" length="19">
+                <comment></comment>
+            </column>
+        </property>
+                
+        <property name="employeeType" type="string">
+            <column name="EMPLOYEE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="phoneNbr" type="string">
+            <column name="PHONE_NBR">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="middleInit" type="string">
+            <column name="MIDDLE_INIT" length="50">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="emailAddress" type="string">
+            <column name="EMAIL_ADDRESS" length="320" />
+        </property>               
+          <property name="areaCode" type="string">
+            <column name="AREA_CD" length="10" />
+        </property>                
+         <property name="nickName" type="string">
+            <column name="NICKNAME" length="40" />
+        </property>  
+
+
+   
+    </class>
+</hibernate-mapping>

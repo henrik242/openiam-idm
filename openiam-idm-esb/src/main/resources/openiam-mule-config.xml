@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" 
+	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" 
+	xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"	
+	xsi:schemaLocation="
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        	http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.0/mule.xsd
+       	  http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.0/mule-vm.xsd
+          http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.0/mule-jms.xsd
+          http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/3.0/mule-cxf.xsd" >
+
+
+	<!-- Connectors -->
+	
+	<jms:activemq-connector name="jmsConnector"
+		brokerURL="vm://localhost" />
+
+	<spring:bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+		<spring:property name="config"
+			value="classpath:activemq.xml" />
+		<spring:property name="start" value="true" />
+	</spring:bean>
+
+
+
+		<model name="policyServiceModel">
+			<service name="policyService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}PolicyWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="policyDataService" />
+				</component>
+			</service>
+		</model>
+			 
+
+		<model name="batchServiceModel">
+			<service name="batchWebService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}BatchDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="batchDataService" />
+				</component>
+			</service>
+		</model>
+
+		<model name="categoryWebServiceModel">
+			<service name="categoryWebService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}CategoryDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="categorydataService" />
+				</component>
+			</service>
+		</model>
+
+		<model name="referenceDataWebServiceModel">
+			<service name="referenceDataWebService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ReferenceDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="refDataService" />
+				</component>
+			</service>
+		</model>
+
+		<model name="authenticationServiceModel">
+			<service name="authenticationService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}AuthenticationService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="authenticate" />
+				</component>
+			</service>
+		</model>
+
+		<model name="loginWSServiceModel">
+			<service name="loginWSService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}LoginDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="loginWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="queryServiceModel">
+			<service name="queryService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}QueryDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="queryWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="navigatorServiceModel">
+			<service name="navigatorService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}NavigationService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="navigatorWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="auditServiceModel">
+			<service name="auditService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}AuditService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="auditWS" />
+				</component>
+			</service>
+		</model>
+
+
+		<model name="groupDataServiceModel">
+			<service name="groupDataService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}GroupDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="groupWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="userDataServiceModel">
+			<service name="userDataService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}UserDataService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="userWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="roleServiceModel">
+			<service name="roleService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}RoleDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="roleWS" />
+				</component>
+			</service>
+		</model>
+		
+		<model name="challengeServiceModel">
+			<service name="challengeService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ChallengeResponseWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="challengeResponse" />
+				</component>
+			</service>
+		</model>	
+
+		<model name="passwordServiceModel">
+			<service name="passwordService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}PasswordWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="passwordWS" />
+				</component>
+			</service>
+		</model>	
+
+		<model name="resourceServiceModel">
+			<service name="resourceService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ResourceDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="resourceDataService" />
+				</component>
+			</service>
+		</model>	
+
+		<model name="orgDataServiceModel">
+			<service name="orgDataService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}OrganizationDataService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="orgManager" />
+				</component>
+			</service>
+		</model>		
+
+		<model name="metaServiceModel">
+			<service name="metaService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}MetadataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="metadataWS" />
+				</component>
+			</service>
+		</model>	
+
+		<model name="emailServiceModel">
+			<service name="emailService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}EmailWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="mailService" />
+				</component>
+			</service>
+		</model>	
+
+		<model name="msgServiceModel">
+			<service name="msgService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}SysMessageWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="messageWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="policyAcceptServiceModel">
+			<service name="policyAcceptService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}OrgPolicyWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="orgPolicyWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="secDomServiceModel">
+			<service name="secDomService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}SecurityDomainWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="secDomainService" />
+				</component>
+			</service>
+		</model>
+
+		<model name="locationServiceModel">
+			<service name="locationService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}LocationDataWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="locationWS" />
+				</component>
+			</service>
+		</model>
+
+
+</mule>

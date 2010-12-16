@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 12, 2007 10:46:14 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.org.dto.Organization" table="COMPANY" >
+    	<cache usage="read-write"/>
+        <comment></comment>
+        <id name="orgId" type="string">
+        	<column name="COMPANY_ID" length="32" />
+            <generator class="uuid" />
+           
+        </id>
+
+        <property name="metadataTypeId" type="string">
+            <column name="TYPE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="classification" type="org.openiam.idm.srvc.org.dto.OrgClassificationEnumUserType">
+            <column name="CLASSIFICATION" length="40">
+                <comment></comment>
+            </column>
+        </property>        
+        
+
+        <property name="organizationName" type="string">
+            <column name="COMPANY_NAME" length="200">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lstUpdate" type="timestamp">
+            <column name="LST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lstUpdatedBy" type="string">
+            <column name="LST_UPDATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="parentId" type="string">
+            <column name="PARENT_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="alias" type="string">
+            <column name="ALIAS" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="domainName" type="string">
+            <column name="DOMAIN_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ldapStr" type="string">
+            <column name="LDAP_STR">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="internalOrgId" type="string">
+            <column name="INTERNAL_COMPANY_ID">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="abbreviation" type="string">
+            <column name="ABBREVIATION" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="symbol" type="string">
+            <column name="SYMBOL" length="10">
+                <comment></comment>
+            </column>
+        </property>
+                      
+      
+      
+        <map name="attributes" cascade="all-delete-orphan" lazy="true" inverse="false">
+        	<key>
+        		<column name="COMPANY_ID" length="20" />
+        	</key>
+         	<map-key  column="NAME"   type="string"  />
+         	<one-to-many class="org.openiam.idm.srvc.org.dto.OrganizationAttribute" />
+        </map> 
+        
+
+    </class>
+</hibernate-mapping>
