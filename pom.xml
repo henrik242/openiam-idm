@@ -71,7 +71,7 @@
 		<module>idm-connector-intf</module>
 		<module>idm-connector-core</module>
 		<module>openiam-idm-esb</module>
-		<-module>openiam-webconsole</module>
+		<module>openiam-webconsole</module>
 		<module>openiam-selfservice</module>
 		<module>idm-batch</module>
 	</modules>
