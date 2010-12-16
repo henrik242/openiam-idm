@@ -78,9 +78,6 @@
 		<property name="connectorService" ref="connectorService" />	
 	</bean>
 
-<!-- ========================= BPM Related Service ========================= -->
-
-	<bean id="bpmWS" class="org.openiam.idm.srvc.bpm.service.BpmServiceImpl" />
 
 	<!-- Provisioning Connector Beans -->
 	<bean id="connectorService" class="org.openiam.idm.srvc.mngsys.service.ConnectorDataServiceImpl" >
