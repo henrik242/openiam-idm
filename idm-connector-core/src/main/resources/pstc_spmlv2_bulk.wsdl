@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="pstc_spmlv2_bulk" targetNamespace="urn:oasis:names:tc:SPML:2:0:bulk" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:SPML:2:0:bulk" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:spml="urn:oasis:names:tc:SPML:2:0" xmlns:spmlbulk="urn:oasis:names:tc:SPML:2:0:bulk" xmlns:spmlsearch="urn:oasis:names:tc:SPML:2:0:search" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  	<import namespace="urn:oasis:names:tc:SPML:2:0" schemaLocation="pstc_spmlv2_core.xsd"/>
+
+
+  	<import namespace="urn:oasis:names:tc:SPML:2:0:search" schemaLocation="pstc_spmlv2_search.xsd"/>
+	
+	<complexType name="BulkModifyRequestType">
+		<complexContent>
+			<extension base="spml:RequestType">
+				<sequence>
+					<element ref="spmlsearch:query"/>
+					<element maxOccurs="unbounded" name="modification" type="spml:ModificationType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="BulkDeleteRequestType">
+		<complexContent>
+			<extension base="spml:RequestType">
+				<sequence>
+					<element ref="spmlsearch:query"/>
+				</sequence>
+				<attribute name="recursive" type="boolean" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>	
+	
+	<element name="bulkModifyRequest" type="spmlbulk:BulkModifyRequestType"/>
+	<element name="bulkModifyResponse" type="spml:ResponseType"/>
+	<element name="bulkDeleteRequest" type="spmlbulk:BulkDeleteRequestType"/>
+	<element name="bulkDeleteResponse" type="spml:ResponseType"/>
+	
+</schema>
+  </wsdl:types>
+</wsdl:definitions>

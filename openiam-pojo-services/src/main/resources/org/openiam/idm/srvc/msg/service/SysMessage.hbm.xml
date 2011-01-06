@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 27, 2009 11:18:13 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.msg.dto.SysMessage" table="IAM_SYS_MESSAGES" >
+        <cache usage="read-write"/>
+        <id name="msgId" type="string">
+            <column name="MSG_DELIVERY_ID" length="32" />
+             <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40" />
+        </property>
+        <property name="targetAudienceType" type="string">
+            <column name="TARGET_AUDIENCE_TYPE" length="20" />
+        </property>
+        <property name="targetAudience" type="string">
+            <column name="TARGET_AUDIENCE" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="START_DATE" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="END_DATE" length="10" />
+        </property>
+        <property name="msg" type="string">
+            <column name="MSG" length="65535" />
+        </property>
+        <property name="msgSubject" type="string">
+            <column name="MSG_SUBJECT" length="100" />
+        </property>
+               
+        <property name="showOnResource" type="string">
+            <column name="SHOW_ON_RESOURCE" length="40" />
+        </property>
+        <property name="deliverBy" type="string">
+            <column name="DELIVER_BY" length="20" />
+        </property>
+        <property name="msgFrom" type="string">
+            <column name="MSG_FROM" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+

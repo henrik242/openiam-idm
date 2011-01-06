@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="idmServices" soapui-version="2.0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">C:\workspace\idm\services\src\test\resources</con:setting></con:settings><con:properties/><con:wssContainer/></con:soapui-project>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 9, 2009 1:42:34 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.loc.dto.Location" table="LOCATION" >
+        <id name="locationId" type="string">
+            <column name="LOCATION_ID" length="32" />
+           <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="80" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="255" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="30" />
+        </property>
+        <property name="bldgNum" type="string">
+            <column name="BLDG_NUM" length="10" />
+        </property>
+        <property name="streetDirection" type="string">
+            <column name="STREET_DIRECTION" length="20" />
+        </property>
+        <property name="address1" type="string">
+            <column name="ADDRESS1" length="45" />
+        </property>
+        <property name="address2" type="string">
+            <column name="ADDRESS2" length="45" />
+        </property>
+        <property name="address3" type="string">
+            <column name="ADDRESS3" length="45" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="30" />
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="15" />
+        </property>
+        <property name="postalCd" type="string">
+            <column name="POSTAL_CD" length="10" />
+        </property>
+        <property name="organizationId" type="string">
+            <column name="ORGANIZATION_ID" length="20" />
+        </property>
+        <property name="internalLocationId" type="string">
+            <column name="INTERNAL_LOCATION_ID" length="32" />
+        </property>
+        <property name="active" type="java.lang.Integer">
+            <column name="ACTIVE" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+

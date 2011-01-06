@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 24, 2009 9:53:19 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ApproverAssociation" table="APPROVER_ASSOC" >
+        <id name="approverAssocId" type="string">
+            <column name="APPROVER_ASSOC_ID" length="32" />
+		    <generator class="uuid" />
+        </id>
+        <property name="requestType" type="string">
+            <column name="REQUEST_TYPE" length="32" />
+        </property>
+        <property name="action" type="string">
+            <column name="ACTN" length="32" />
+        </property>
+        <property name="associationObjId" type="string">
+            <column name="ASSOCIATION_OBJ_ID" length="32" />
+        </property>
+        <property name="approverUserId" type="string">
+            <column name="APPROVER_USER_ID" length="32" />
+        </property>
+        <property name="associationType" type="string">
+            <column name="ASSOCIATION_TYPE" length="20" />
+        </property>
+        <property name="approverLevel" type="java.lang.Integer">
+            <column name="APPROVER_LEVEL" />
+        </property>
+
+    </class>
+</hibernate-mapping>
+

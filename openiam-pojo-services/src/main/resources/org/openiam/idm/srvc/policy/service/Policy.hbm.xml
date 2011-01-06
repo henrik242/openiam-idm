@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2007 6:04:08 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.policy.dto.Policy" table="POLICY" lazy="false">
+   		<cache usage="read-write" />
+        <comment></comment>
+        <id name="policyId" type="string">
+            <column name="POLICY_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="policyDefId" type="string">
+            <column name="POLICY_DEF_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        
+
+        <property name="name" type="string">
+            <column name="NAME" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="rule" type="string">
+            <column name="RULE" length="65535"  />
+        </property>
+
+        <property name="ruleSrcUrl" type="string">
+            <column name="RULE_SRC_URL" length="80"  />
+        </property>
+               
+        <set name="policyAttributes" lazy="false" inverse="false" cascade="all-delete-orphan"  >
+            <key>
+                <column name="POLICY_ID" length="32">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyAttribute" />
+        </set>
+
+    </class>
+</hibernate-mapping>

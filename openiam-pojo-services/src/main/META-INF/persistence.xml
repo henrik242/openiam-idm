@@ -1,0 +1,25 @@
+<persistence>
+   <persistence-unit name="puServices" transaction-type="RESOURCE_LOCAL">
+      	<class>org.openiam.srvc.auth.dto.Login</class>
+		<class>org.openiam.srvc.auth.dto.LoginAttribute</class>
+		<class>org.openiam.srvc.cat.dto.Category</class>
+		<class>org.openiam.srvc.cat.dto.CategoryLanguage</class>
+      
+      
+      <properties>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+         <property name="hibernate.connection.username" value="idmuser"/>
+         <property name="hibernate.connection.password" value="idmuser"/>
+         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mysql"/>
+         <property name="hibernate.max_fetch_depth" value="3"/>
+       
+         <!-- cache configuration -->
+         <!-- property name="hibernate.ejb.classcache.org.hibernate.ejb.test.Item" value="read-write"/-->
+         <!-- property name="hibernate.ejb.collectioncache.org.hibernate.ejb.test.Item.distributors" value="read-write, RegionName"/-->
+
+         <!-- alternatively to <class> and <property> declarations, you can use a regular hibernate.cfg.xml file -->
+         <!-- property name="hibernate.ejb.cfgfile" value="/org/hibernate/ejb/test/hibernate.cfg.xml"/ -->
+      </properties>
+   </persistence-unit>
+</persistence>

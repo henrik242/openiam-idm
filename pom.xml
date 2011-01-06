@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.openiam</groupId>
+	<artifactId>openiam</artifactId>
+	<packaging>pom</packaging>
+	<version>2.1.0</version>
+
+	<name>OpenIAM Identity Manager</name>
+	<description>openiam is open source Identity and access Management Project</description>
+	<url>http://www.openiam.org</url>
+
+	<inceptionYear>2008</inceptionYear>
+	<developers>
+		<developer>
+			<name>Ameet Shah</name>
+			<id>ameet_shah</id>
+			<email>ameet_shah@openiam.com</email>
+			<roles>
+				<role>developer</role>
+				<role>documentation</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Arun Shah</name>
+			<id>arun.shah</id>
+			<email>arun_shah@openiam.com</email>
+			<roles>
+				<role>developer</role>
+				<role>documentation</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Suneet Shah</name>
+			<id>suneet_shah</id>
+			<email>suneet_shah@openiam.com</email>
+			<roles>
+				<role>developer</role>
+				<role>documentation</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>OpenIAM LLC</name>
+		<url>http://www.openiam.com/</url>
+	</organization>
+
+	<!--  source configuration management system  -->
+	<issueManagement>
+		<system>JIRA</system>
+		<url>http://jira.openiam.org</url>
+	</issueManagement>
+
+	<scm>
+		<connection>scm:https://svn2.hosted-projects.com/openiam/idm//java-opensaml2/</connection>
+		<developerConnection>scm:https://svn2.hosted-projects.com/openiam/idm//</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://svn2.hosted-projects.com/openiam/idm/</url>
+	</scm>
+
+	<modules>
+		<!--module>iam-interceptor</module -->
+		<module>openiam-pojo-intf</module>
+		<module>openiam-pojo-services</module>
+		<module>openiam-idm-intf</module>
+		<module>openiam-idm-services</module>
+		<module>idm-connector-intf</module>
+		<module>idm-connector-core</module>
+		
+		<!--module>openiam-idm-esb</module -->
+		
+		<!--module>pojo-ws</module -->
+		<!--module>idm-connector-ws</module -->
+		
+		<!--module>openiam-webconsole</module-->
+		<!--module>openiam-selfservice</module-->
+		<!--module>idm-batch</module-->
+	</modules>
+
+	<properties>
+		<!--mule.version>3.0.0-M3</mule.version -->
+		<mule.version>3.0.1</mule.version>
+		<spring.version>3.0.3.RELEASE</spring.version>
+		<cxf.version>2.2.2</cxf.version>
+		<!--spring.version>2.5.6</spring.version -->
+		<activemq.version>5.3.2</activemq.version>
+		<xbean.version>3.6</xbean.version>
+		<!--cxf.version>2.2.4</cxf.version -->
+		<groovy.version>1.7.3</groovy.version>
+		<googleapps.version>1.41.5</googleapps.version>
+		<bonita.version>5.2.2</bonita.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Mule Dependencies -->
+			<dependency>
+				<groupId>org.mule</groupId>
+				<artifactId>mule-core</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<!-- Mule Modules -->
+			<dependency>
+				<groupId>org.mule.modules</groupId>
+				<artifactId>mule-module-builders</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.modules</groupId>
+				<artifactId>mule-module-client</artifactId>
+				<version>${mule.version}</version>
+			</dependency>			
+			
+			<dependency>
+				<groupId>org.mule.modules</groupId>
+				<artifactId>mule-module-cxf</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			
+			<!-- Mule Transports -->
+
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-jms</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-vm</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-file</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-quartz</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mule.transports</groupId>
+				<artifactId>mule-transport-servlet</artifactId>
+				<version>${mule.version}</version>
+			</dependency>
+
+			<!-- Other Dependencies -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>${activemq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xbean</groupId>
+				<artifactId>xbean-spring</artifactId>
+				<version>${xbean.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<doctitle>OpenIAM Identity Manager API v2</doctitle>
+					<windowtitle>OpenIAM Java Documentation</windowtitle>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>eviware</groupId>
+				<artifactId>maven-soapui-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<projectFile>sample-soapui-project.xml</projectFile>
+					<host>http://127.0.0.1:8181</host>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>apache-incubating</id>
+			<name>Apache Incubating Repository</name>
+			<url>http://people.apache.org/repo/m2-incubating-repository/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>codehaus</id>
+			<url>http://dist.codehaus.org/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>jboss</id>
+			<url>http://repository.jboss.com/maven2/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<name>Java.net Repository for Maven2</name>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</repository>
+		
+		<!--
+		<repository>
+    <id>java.net</id>
+    <name>java.net</name>
+    <url>http://download.java.net/maven/2/</url>
+		</repository>
+		-->
+		
+		
+		<repository>
+			<id>mavenrepository</id>
+			<name>Maven Repository for Maven1</name>
+			<url>http://repo.marketcetera.org/maven</url>
+		</repository>
+		<repository>
+			<id>repo2</id>
+			<name>Maven Repository 2</name>
+			<url>http://repo2.maven.org/maven2</url>
+		</repository>
+
+		<repository>
+			<id>shibboleth-release</id>
+			<name>Internet2 Releases</name>
+			<layout>default</layout>
+			<url>http://shibboleth.internet2.edu/downloads/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+
+		<repository>
+			<id>jboss</id>
+			<url>http://repository.jboss.com/maven2</url>
+		</repository>
+
+		<repository>
+			<id>bonita</id>
+			<url>http://maven.ow2.org/maven2/org/ow2/bonita</url>
+		</repository>
+	
+		<!-- Google apps code library -->
+		<repository>
+		  <id>mandubian-mvn</id>
+		  <url>http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository</url>
+		</repository>
+
+
+
+
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>codehaus-plugins</id>
+			<url>http://dist.codehaus.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>apache.incubating</id>
+			<name>Apache Incubating Repository</name>
+			<url>http://people.apache.org/repo/m2-incubating-repository</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>java.net</id>
+			<name>Java.net Repository for Maven2</name>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</pluginRepository>
+		<pluginRepository>
+			<id>mavenrepository</id>
+			<name>Maven Repository for Maven1</name>
+			<url>http://ftp.cica.es/mirrors/maven2</url>
+			<layout>legacy</layout>
+		</pluginRepository>
+		<pluginRepository>
+			<id>eviwarePluginRepository</id>
+			<url>http://www.eviware.com/repository/maven2/</url>
+		</pluginRepository>
+
+	</pluginRepositories>
+</project>

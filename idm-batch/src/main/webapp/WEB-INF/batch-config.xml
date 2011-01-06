@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+    				   
+
+ 
+
+	<bean id="minuteTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="minuteJobDetail" />
+	    <property name="startDelay" value="350000" />
+	    <!-- repeat every 60 seconds -->
+	    <property name="repeatInterval" value="60000" />
+	</bean>
+
+	<bean id="fiveMinuteTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="fiveMinuteJobDetail" />
+	    <property name="startDelay" value="500000" />
+	    <!-- repeat every 60 seconds -->
+	    <property name="repeatInterval" value="300000" />
+	</bean>
+
+	<bean id="fifteenMinuteTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="fifteenMinuteJobDetail" />
+	    <property name="startDelay" value="500000" />
+	    <!-- repeat every 60 seconds -->
+	    <property name="repeatInterval" value="900000" />
+	</bean>
+
+	<bean id="sixtyMinuteTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="sixtyMinuteJobDetail" />
+	    <property name="startDelay" value="750000" />
+	    <!-- repeat every 60 seconds -->
+	    <property name="repeatInterval" value="3600000" />
+	</bean>
+	
+	<bean id="nightlyTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="nightlyJobDetail" />
+	    <!-- run every night at 1 AM -->
+	    <property name="cronExpression" value="0 0 1 * * ?" />
+	</bean>	
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" destroy-method="destroy">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="nightlyTrigger" />
+	            <ref bean="minuteTrigger" />
+	            <ref bean="fiveMinuteTrigger" />
+	            <ref bean="fifteenMinuteTrigger" />
+	            <ref bean="sixtyMinuteTrigger" />
+	        </list>
+	    </property>
+	</bean>
+
+<!-- 	
+	<bean id="unLockAccountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="unlockJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+	</bean>
+-->
+
+	<bean id="minuteJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="minuteJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="fiveMinuteJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="fiveMinuteJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="fifteenMinuteJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="fifteenMinuteJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="sixtyMinuteJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="sixtyMinuteJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+	</bean>
+				
+	
+	<bean id="unlockJob" class="org.openiam.batch.account.AccountUnlockJob">
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyDataService" />
+		<property name="secDomainService" ref="secDomainService" />
+	</bean>
+
+	<bean id="minuteJob" class="org.openiam.batch.account.MinuteJob">
+  		<property name="batchService" ref="batchDataService" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyServiceClient" />
+		<property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+		<property name="auditHelper" ref="auditHelper" />
+		<property name="frequencyMeasure" value="MINUTE" />
+	</bean>
+
+	<bean id="fiveMinuteJob" class="org.openiam.batch.account.MinuteJob">
+  		<property name="batchService" ref="batchDataService" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyServiceClient" />
+		<property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+		<property name="auditHelper" ref="auditHelper" />
+		<property name="frequencyMeasure" value="5MIN" />
+	</bean>
+
+	<bean id="fifteenMinuteJob" class="org.openiam.batch.account.MinuteJob">
+  		<property name="batchService" ref="batchDataService" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyServiceClient" />
+		<property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+		<property name="auditHelper" ref="auditHelper" />
+		<property name="frequencyMeasure" value="15MIN" />
+	</bean>
+	
+	<bean id="sixtyMinuteJob" class="org.openiam.batch.account.MinuteJob">
+  		<property name="batchService" ref="batchDataService" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyServiceClient" />
+		<property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+		<property name="auditHelper" ref="auditHelper" />
+		<property name="frequencyMeasure" value="60MIN" />
+	</bean>
+		
+
+	<bean id="nightlyJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  		<property name="targetObject" ref="nightlyJob" />
+  		<property name="targetMethod" value="execute" />
+  		<property name="concurrent" value="false" />
+  		
+	</bean>
+
+	
+	<bean id="nightlyJob" class="org.openiam.batch.account.NightlyBatchJob">
+  		<property name="batchService" ref="batchDataService" />
+		<property name="loginManager" ref="loginServiceClient" />
+		<property name="policyDataService" ref="policyServiceClient" />
+		<property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+		<property name="auditHelper" ref="auditHelper" />
+	</bean>	
+</beans>
+<!-- END SNIPPET: beans -->
+

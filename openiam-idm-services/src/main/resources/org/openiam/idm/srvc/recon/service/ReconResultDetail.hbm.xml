@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2010 8:20:09 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.recon.dto.ReconResultDetail" table="RECON_RESULT_DETAIL">
+        <id name="reconResultDetailId" type="string">
+            <column name="RECON_RESULT_DETAIL_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="reconResultId" type="string">
+            <column name="RECON_RESULT_ID" length="32" />
+        </property>
+        <property name="objectKey" type="string">
+            <column name="OBJECT_KEY" length="320" />
+        </property>
+        <property name="situation" type="date">
+            <column name="SITUATION" length="10" />
+        </property>
+        <property name="result" type="string">
+            <column name="RESULT" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
