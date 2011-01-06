@@ -20,10 +20,6 @@
 		<property name="groupManager" ref="groupServiceClient" />	
      </bean>
 
-     <bean id="launchProcess" class="org.openiam.selfsrvc.bpm.LaunchProcessController" >
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="bpmService" ref="bpmServiceClient" />				
-     </bean>
 
      
      <bean id="login" class="org.openiam.selfsrvc.login.LoginController" >
@@ -70,64 +66,9 @@
 		<property name="orgManager" ref="orgServiceClient" />
      </bean>
  
-	 <!-- request list controller  -->
- 
-     <bean id="requestList" class="org.openiam.selfsrvc.prov.RequestListController">
-		<property name="commandName" value="requestSearchCriteria" />
-		<property name="commandClass" value="org.openiam.selfsrvc.prov.RequestSearchCriteria" />
-		<property name="formView" value="/prov/requestlist" />
-		<property name="successView" value="/prov/requestlist" />
-		
-		<property name="provRequestService" ref="provRequestServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />
-     </bean>
-     
-     <bean id="requestDetail" class="org.openiam.selfsrvc.prov.RequestDetailController">
-		<property name="commandName" value="requestDetailCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.prov.RequestDetailCommand" />
-		<property name="formView" value="/prov/requestdetail" />
-		<property name="successView" value="/prov/confirm" />
-		
-		<property name="provRequestService" ref="provRequestServiceClient" />
-		
-		<property name="userManager" ref="userServiceClient" />
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="groupManager" ref="groupServiceClient" />	
-		<property name="provisionService" ref="provisionServiceClient" />
-		
-
-     </bean>
+	 
     
-    <!-- User Profile Controller  -->
-    <bean id="profile" class="org.openiam.selfsrvc.profile.ProfileController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="profileCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.profile.ProfileCommand" />
-		<property name="formView" value="/priv/profile" />
-		<property name="successView" value="/priv/confirm" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="orgManager" ref="orgServiceClient" />		
-		<property name="locationDataService" ref="locationServiceClient" />
-		
-		<property name="resourceName" value="SELFSERVICE_PROFILE" />
-		
-		<property name="configuration" ref="passwordConfiguration" />
-		<property name="refDataService" ref="referenceDataServiceClient" />	
-
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="managedSysService" ref="managedSysServiceClient" />
-		<property name="provRequestService" ref="provRequestServiceClient" />	
-		<property name="menuGroup" value="ENT_APPS" />
-		<property name="parentOrgId" value="100" />
-		<property name="validator" ref="profileValidator" />
-		<property name="provisionService" ref="provisionServiceClient" />
-     </bean>
  
-     <bean id="profileValidator" class="org.openiam.selfsrvc.profile.ProfileValidator">
-
-     </bean>  
     
     
     <!-- PasswordChange controller  -->
@@ -149,25 +90,6 @@
      	<property name="configuration" ref="passwordConfiguration" />
      </bean> 
 
- <!-- PasswordChange for a singel system   -->
-     <bean id="singlePasswordChange" class="org.openiam.selfsrvc.pswd.SingleSysPasswordChangeController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="singlePswdChangeCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.pswd.SingleSysPasswordChangeCommand" />
-		<property name="formView" value="/priv/pswdchange_onesystem" />
-		<property name="successView" value="/priv/confirm" />
-		<property name="validator" ref="singlePswdChangeValidator" />
-		<property name="configuration" ref="passwordConfiguration" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="provisionService" ref="provisionServiceClient" />
-     </bean>     
-
-
-     <bean id="singlePswdChangeValidator" class="org.openiam.selfsrvc.pswd.SingleSysPasswordChangeValidator">
-     	<property name="passwordService" ref="passwordServiceClient" />
-     	<property name="configuration" ref="passwordConfiguration" />
-     	<property name="loginManager" ref="loginServiceClient" />
-     </bean> 
  <!-- Challenge questions  -->
      <bean id="identityQuestion" class="org.openiam.selfsrvc.pswd.IdentityQuestionController">
      	<property name="sessionForm"><value>true</value></property>
@@ -186,35 +108,7 @@
      <bean id="identityQuestionValidator" class="org.openiam.selfsrvc.pswd.IdentityQuestionValidator">
 	 </bean> 
 	 
-	 <!-- Self Registration Page -->
-     <bean id="selfRegister" class="org.openiam.selfsrvc.reg.SelfRegistrationController">
-		<property name="sessionForm" value="true" />
-		<property name="commandName" value="selfRegCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.reg.SelfRegistrationCommand" />
-
-		<property name="formView" value="/pub/selfreg" />
-		<property name="successView" value="/pub/confirm" />
-		<property name="validator" ref="selfRegisterValidator" />
-		
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="mailService" ref="mailServiceClient" />
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="navigatorDataService" ref="navServiceClient" />
-		<property name="provRequestService" ref="provRequestServiceClient" />	
-		<property name="configuration" ref="passwordConfiguration" />
-		<property name="refDataService" ref="referenceDataServiceClient" />	
-		<property name="secDomainService" ref="secDomainServiceClient" />
-
-		<property name="orgManager" ref="orgServiceClient" />
-		<property name="locationService" ref="locationServiceClient" />
-		<property name="resourceDataService" ref="resourceServiceClient" />
-		<property name="provisionService" ref="provisionServiceClient" />
-     </bean>
-
-     <bean id="selfRegisterValidator" class="org.openiam.selfsrvc.reg.SelfRegistrationValidator">
-     </bean> 	 
+	 
 <!-- Account claim wizard  -->
 
 
@@ -271,99 +165,6 @@
      <bean id="forgotLoginValidator" class="org.openiam.selfsrvc.pswd.ForgotLoginValidator">
      </bean> 
 
-	<!-- New hire controller  -->
-     <bean id="newHire" class="org.openiam.selfsrvc.hire.NewHireController">
-        <property name="pages">  
-            <list>  
-                <value>priv/newhire</value>  
-                <value>priv/newhireapps</value>  
-            </list>  
-        </property>  
-		<property name="commandName" value="newHireCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.hire.NewHireCommand" />
-		
-		<property name="resourceName" value="SELFSERVICE_NEWHIRE" />	
-		<property name="validator" ref="newHireValidator" />
-				
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="navigatorDataService" ref="navServiceClient" />
-		<property name="orgManager" ref="orgServiceClient" />
-		<property name="locationService" ref="locationServiceClient" />
-		<property name="resourceDataService" ref="resourceServiceClient" />
-		<property name="configuration" ref="passwordConfiguration" />
-		<property name="secDomainService" ref="secDomainServiceClient" />
-		<property name="provisionService" ref="provisionServiceClient" />
-		<property name="auditService" ref="auditServiceClient" />
-		<property name="managedSysService" ref="managedSysServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />
-		
-		<property name="provRequestService" ref="provRequestServiceClient" />	
-		<property name="refDataService" ref="referenceDataServiceClient" />	
-     </bean>
-   
-     <bean id="newHireValidator" class="org.openiam.selfsrvc.hire.NewHireValidator">
-     </bean>       
-
-     <bean id="newUserNoApp" class="org.openiam.selfsrvc.hire.NewUserNoAppController">
-        <property name="pages">  
-            <list>  
-                <value>priv/newuser</value>  
-            </list>  
-        </property>  
-		<property name="commandName" value="newUserCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.hire.NewUserNoAppCommand" />
-		
-		<property name="validator" ref="newUserNoAppValidator" />
-				
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="navigatorDataService" ref="navServiceClient" />
-		<property name="orgManager" ref="orgServiceClient" />
-		<property name="locationService" ref="locationServiceClient" />
-		<property name="resourceDataService" ref="resourceServiceClient" />
-		<property name="configuration" ref="passwordConfiguration" />
-		<property name="secDomainService" ref="secDomainServiceClient" />
-		<property name="provisionService" ref="provisionServiceClient" />
-		<property name="auditService" ref="auditServiceClient" />
-		<property name="managedSysService" ref="managedSysServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />
-		
-		<property name="provRequestService" ref="provRequestServiceClient" />	
-		<property name="refDataService" ref="referenceDataServiceClient" />	
-     </bean>
-   
-     <bean id="newUserNoAppValidator" class="org.openiam.selfsrvc.hire.NewUserNoAppValidator">
-     </bean> 
-
-     <!-- change access controller  -->
-
-     <bean id="changeAccess" class="org.openiam.selfsrvc.prov.ChangeAccessWizardController">
-        <property name="pages">  
-            <list>  
-             	<value>prov/createrequest</value>
-                <value>prov/selectusers</value>  
-                <value>prov/selectapps</value>  
-            </list>  
-        </property>  
-		<property name="commandName" value="changeAccessCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.prov.ChangeAccessCommand" />
-				<property name="resourceName" value="SELFSERVICE_CREATEREQUEST" />
-		<property name="validator" ref="changeAccessValidator" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="resourceDataService" ref="resourceServiceClient" />
-		<property name="configuration" ref="passwordConfiguration" />
-		
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="provisionService" ref="provisionServiceClient" />	
-		<property name="orgManager" ref="orgServiceClient" />
-		
-     </bean>
-     <bean id="changeAccessValidator" class="org.openiam.selfsrvc.prov.ChangeAccessValidator">
-     	<property name="userMgr" ref="userServiceClient" />
-     	<property name="loginManager" ref="loginServiceClient" />
-     </bean>  
      
      <bean id="selectUser" class="org.openiam.selfsrvc.dlg.SelectUserController">
 		<property name="successView" value="user/seluser.jsp" />
@@ -398,111 +199,6 @@
 		<property name="successView" value="/priv/confirm" />
      </bean>
       
-      <!-- Delegated admin - user administration  -->
-      
-
-    <bean id="editUser" class="org.openiam.selfsrvc.usradmin.EditUserController">
-		<property name="commandName" value="editUserCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.EditUserCommand" />
-		<property name="formView" value="/usradm/edituser" />
-		<property name="successView" value="/confirm" />
-		
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="orgManager" ref="orgServiceClient" />		
-		<property name="locationDataService" ref="locationServiceClient" />
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="configuration" ref="appConfiguration" />
-		<property name="refDataService" ref="referenceDataServiceClient" />	
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="managedSysService" ref="managedSysServiceClient" />
-		<property name="provRequestService" ref="provisionServiceClient" />	
-				
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-		<property name="passwordService" ref="passwordServiceClient" />
-		
-     </bean>
-
- 
-
-    <bean id="userIdentity" class="org.openiam.selfsrvc.usradmin.UserIdentityController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="identityUserCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.UserIdentityCommand" />
-		<property name="formView" value="/usradm/useridentity" />
-		<property name="successView" value="/usradm/confirm" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="provRequestService" ref="provisionServiceClient" />	
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-     </bean>
- 
-
-
-     <bean id="userHistory" class="org.openiam.selfsrvc.usradmin.UserHistoryController">
-		<property name="successView" value="/usradm/userhist" />
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="auditService" ref="auditServiceClient" />
-		<property name="numberOfDays" value="21" />
-		
-     </bean>    
-
-    <bean id="userGroup" class="org.openiam.selfsrvc.usradmin.UserGroupController">
-		<property name="commandName" value="usergrpCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.UserGroupCommand" />
-		<property name="formView" value="/usradm/usergroup" />
-		<property name="successView" value="/usradm/confirm" />
-		<property name="groupManager" ref="groupServiceClient" />
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-		<property name="provRequestService" ref="provisionServiceClient" />	
-     </bean>
-     
-    <bean id="userRole" class="org.openiam.selfsrvc.usradmin.UserRoleController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="userRoleCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.UserRoleCommand" />
-		<property name="formView" value="/usradm/userrole" />
-		<property name="successView" value="/usradm/confirm" />
-		<property name="roleDataService" ref="roleServiceClient" />
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="provRequestService" ref="provisionServiceClient" />	
-     </bean>
-
-
-
-    <bean id="userChangeStatus" class="org.openiam.selfsrvc.usradmin.UserChangeStatusController">
-		<property name="commandName" value="changeStatusCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.UserChangeStatusCommand" />
-		<property name="formView" value="/usradm/changestatus" />
-		<property name="successView" value="/usradm/confirm" />
-		<property name="userMgr" ref="userServiceClient" />
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-     </bean>
-
-     <bean id="resetPassword" class="org.openiam.selfsrvc.usradmin.ResetUserPasswordController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="pswdChangeCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.usradmin.ResetUserPasswordCommand" />
-		<property name="formView" value="/usradm/pswdchange" />
-		<property name="successView" value="/usradm/confirm" />
-		<property name="validator" ref="resetPasswordValidator" />
-		<property name="configuration" ref="appConfiguration" />
-		<property name="loginManager" ref="loginServiceClient" />
-		<property name="userMgr" ref="userServiceClient" />	
-		<property name="provRequestService" ref="provisionServiceClient" />	
-		<property name="navigationDataService" ref="navServiceClient" />
-		<property name="redirectView" value="idman/userSearch.do?action=view" />
-     </bean> 
-     <bean id="resetPasswordValidator" class="org.openiam.selfsrvc.usradmin.ResetUserPasswordValidator">
-	     <property name="configuration" ref="passwordConfiguration" />
-	     <property name="passwordService" ref="passwordServiceClient" />
-     </bean> 
      
      <bean id="selectSupervisor" class="org.openiam.selfsrvc.usradmin.SelectSupervisorController">
 		<property name="successView" value="user/selsupervisor.jsp" />
@@ -511,14 +207,6 @@
       
       
        
- <!--     <bean id="createRequest" class="org.openiam.selfsrvc.prov.NewRequestController">
-     	<property name="sessionForm"><value>true</value></property>
-		<property name="commandName" value="newRequestCmd" />
-		<property name="commandClass" value="org.openiam.selfsrvc.prov.NewRequestCommand" />
-		<property name="formView" value="/priv/createrequest" />
-		<property name="successView" value="/priv/confirm" />
-     </bean>
--->
      
      <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
      	<property name="prefix" value="/home.jsp?bodyjsp=" />
@@ -531,37 +219,18 @@
             <props>
             	<prop key="/login.selfserve">login</prop>
             	<prop key="pub/viewUser.selfserve">viewUser</prop>
-                <prop key="/requestList.selfserve">requestList</prop>
-                <prop key="/newHire.selfserve">newHire</prop>
-                <prop key="/newUserNoApp.selfserve">newUserNoApp</prop>
-                <prop key="/requestDetail.selfserve">requestDetail</prop>
-                <prop key="pub/reportIncident.selfserve">reportIncident</prop>
+                 <prop key="pub/reportIncident.selfserve">reportIncident</prop>
                 <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
-                <prop key="/createRequest.selfserve">changeAccess</prop>
-                <prop key="/passwordChange.selfserve">passwordChange</prop>
-                <prop key="/singlepasswordChange.selfserve">singlePasswordChange</prop>
+                 <prop key="/passwordChange.selfserve">passwordChange</prop>
                 <prop key="/profile.selfserve">profile</prop>
                 <prop key="pub/unlockUser.selfserve">unlockUserWizard</prop>
                 <prop key="/identityQuestion.selfserve">identityQuestion</prop>
-                <prop key="pub/selfRegister.selfserve">selfRegister</prop>
-                
+               
                 
                 <prop key="/welcomePage.selfserve">welcomePage</prop>
                 <prop key="/selectUser.selfserve">selectUser</prop>
                 <prop key="pub/forgotLogin.selfserve">forgotLogin</prop>
-                <prop key="outofoffice.selfserve">outOfOffice</prop>
-                
-                <prop key="/editUser.selfserve">editUser</prop>
-                <prop key="/userIdentity.selfserve">userIdentity</prop>
-                <prop key="/userGroup.selfserve">userGroup</prop>
-                <prop key="/userRole.selfserve">userRole</prop>
-                <prop key="/userHistory.selfserve">userHistory</prop>               
-                <prop key="/userGroup.selfserve">userGroup</prop>
-                <prop key="/userChangeStatus.selfserve">userChangeStatus</prop>
-                <prop key="/selectSupervisor.selfserve">selectSupervisor</prop>
-                <prop key="/resetPassword.selfserve">resetPassword</prop>
-                <prop key="pub/launchProcess.selfserve">launchProcess</prop>
-                
+                <prop key="/selectSupervisor.selfserve">selectSupervisor</prop>               
             </props>
         </property>
     </bean>  
