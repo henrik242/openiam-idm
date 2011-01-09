@@ -1,1 +1,0 @@
-output="Hello, ${user.lastName}!"

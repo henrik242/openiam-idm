@@ -39,19 +39,6 @@
 			</service>
 		</model>
 
-		<model name="BpmWebServiceModel">
-			<service name="BpmWebService">
-				<inbound>
-						<inbound-endpoint address="${webservice.path}BpmWebService" 		exchange-pattern="request-response">
-						<cxf:jaxws-service />
-					</inbound-endpoint>
-				</inbound>
-				<component>
-					<spring-object bean="bpmWS" />
-				</component>
-			</service>
-		</model>
-
 		<model name="managedServiceModel">
 			<service name="managedService">
 				<inbound>

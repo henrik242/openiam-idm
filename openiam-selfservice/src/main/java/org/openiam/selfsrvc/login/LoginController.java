@@ -13,7 +13,6 @@ import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
 import org.openiam.idm.srvc.auth.ws.LoginDataWebService;
-import org.openiam.idm.srvc.bpm.service.BpmService;
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.grp.ws.GroupDataWebService;
 import org.openiam.idm.srvc.menu.dto.Menu;
@@ -64,7 +63,6 @@ public class LoginController extends SimpleFormController {
 	 protected RoleDataWebService roleDataService;
 	 protected ChallengeResponseService challengeResponse;
 	 protected LoginDataWebService loginManager;
-	 protected BpmService bpmService;
 	 
 	 
 	public LoginController() {
@@ -381,15 +379,6 @@ public class LoginController extends SimpleFormController {
 		this.rightMenuGroup3 = rightMenuGroup3;
 	}
 
-
-	public BpmService getBpmService() {
-		return bpmService;
-	}
-
-
-	public void setBpmService(BpmService bpmService) {
-		this.bpmService = bpmService;
-	}
 
 	
 

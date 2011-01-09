@@ -49,7 +49,6 @@
 		<property name="loginManager" ref="loginServiceClient" />
 		<property name="configuration" ref="passwordConfiguration" />
 		<property name="passwordService" ref="passwordServiceClient" />
-		<property name="bpmService" ref="bpmServiceClient" />
 		
 		<property name="sessionForm"><value>true</value></property>
 			
@@ -222,7 +221,6 @@
                  <prop key="pub/reportIncident.selfserve">reportIncident</prop>
                 <prop key="pub/contactAdmin.selfserve">contactAdmin</prop>
                  <prop key="/passwordChange.selfserve">passwordChange</prop>
-                <prop key="/profile.selfserve">profile</prop>
                 <prop key="pub/unlockUser.selfserve">unlockUserWizard</prop>
                 <prop key="/identityQuestion.selfserve">identityQuestion</prop>
                
