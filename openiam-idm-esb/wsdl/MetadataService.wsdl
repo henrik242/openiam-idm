@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MetadataWebServiceService" targetNamespace="http://ws.meta.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.meta.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://ws.meta.srvc.idm.openiam.org/" xmlns:tns="urn:idm.openiam.org/srvc/meta/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/meta/dto" version="1.0">
+<xs:import namespace="http://ws.meta.srvc.idm.openiam.org/"/>
+<xs:complexType name="MetadataElement">
+<xs:sequence>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="minLen" type="xs:int"/>
+<xs:element minOccurs="0" name="maxLen" type="xs:int"/>
+<xs:element minOccurs="0" name="defaultValue" type="xs:string"/>
+<xs:element minOccurs="0" name="valueList" type="xs:string"/>
+<xs:element minOccurs="0" name="label" type="xs:string"/>
+<xs:element minOccurs="0" name="multiValue" type="xs:string"/>
+<xs:element minOccurs="0" name="auditable" type="xs:int"/>
+<xs:element minOccurs="0" name="required" type="xs:int"/>
+<xs:element minOccurs="0" name="selfEditable" type="xs:int"/>
+<xs:element minOccurs="0" name="selfViewable" type="xs:int"/>
+<xs:element minOccurs="0" name="uiType" type="xs:string"/>
+<xs:element minOccurs="0" name="uiSize" type="xs:string"/>
+<xs:element minOccurs="0" name="valueSrc" type="xs:string"/>
+<xs:element minOccurs="0" name="minValue" type="xs:long"/>
+<xs:element minOccurs="0" name="maxValue" type="xs:long"/>
+<xs:element minOccurs="0" name="textCase" type="xs:string"/>
+<xs:element minOccurs="0" name="dataType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MetadataType">
+<xs:sequence>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element name="active" type="xs:int"/>
+<xs:element name="syncManagedSys" type="xs:int"/>
+<xs:element name="elementAttributes">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="tns:MetadataElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="ns1:category"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/meta/dto" xmlns:tns="http://ws.meta.srvc.idm.openiam.org/" elementFormDefault="unqualified" targetNamespace="http://ws.meta.srvc.idm.openiam.org/" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/meta/dto"/>
+<xs:element name="addMetadataElement" type="tns:addMetadataElement"/>
+<xs:element name="addMetadataElementResponse" type="tns:addMetadataElementResponse"/>
+<xs:element name="addMetadataType" type="tns:addMetadataType"/>
+<xs:element name="addMetadataTypeResponse" type="tns:addMetadataTypeResponse"/>
+<xs:element name="addTypeToCategory" type="tns:addTypeToCategory"/>
+<xs:element name="addTypeToCategoryResponse" type="tns:addTypeToCategoryResponse"/>
+<xs:element name="getAllElementsForCategoryType" type="tns:getAllElementsForCategoryType"/>
+<xs:element name="getAllElementsForCategoryTypeResponse" type="tns:getAllElementsForCategoryTypeResponse"/>
+<xs:element name="getMetadataElementById" type="tns:getMetadataElementById"/>
+<xs:element name="getMetadataElementByIdResponse" type="tns:getMetadataElementByIdResponse"/>
+<xs:element name="getMetadataElementByType" type="tns:getMetadataElementByType"/>
+<xs:element name="getMetadataElementByTypeResponse" type="tns:getMetadataElementByTypeResponse"/>
+<xs:element name="getMetadataType" type="tns:getMetadataType"/>
+<xs:element name="getMetadataTypeResponse" type="tns:getMetadataTypeResponse"/>
+<xs:element name="getMetadataTypes" type="tns:getMetadataTypes"/>
+<xs:element name="getMetadataTypesResponse" type="tns:getMetadataTypesResponse"/>
+<xs:element name="getTypesInCategory" type="tns:getTypesInCategory"/>
+<xs:element name="getTypesInCategoryResponse" type="tns:getTypesInCategoryResponse"/>
+<xs:element name="removeMetadataElement" type="tns:removeMetadataElement"/>
+<xs:element name="removeMetadataElementResponse" type="tns:removeMetadataElementResponse"/>
+<xs:element name="removeMetadataType" type="tns:removeMetadataType"/>
+<xs:element name="removeMetadataTypeResponse" type="tns:removeMetadataTypeResponse"/>
+<xs:element name="removeTypeFromCategory" type="tns:removeTypeFromCategory"/>
+<xs:element name="removeTypeFromCategoryResponse" type="tns:removeTypeFromCategoryResponse"/>
+<xs:element name="updateMetadataElement" type="tns:updateMetadataElement"/>
+<xs:element name="updateMetadataElementResponse" type="tns:updateMetadataElementResponse"/>
+<xs:element name="updateMetdataType" type="tns:updateMetdataType"/>
+<xs:element name="updateMetdataTypeResponse" type="tns:updateMetdataTypeResponse"/>
+<xs:complexType name="addMetadataElement">
+<xs:sequence>
+<xs:element minOccurs="0" name="metadataElement" type="ns1:MetadataElement"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addMetadataElementResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataElementResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MetadataElementResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="metadataElement" type="ns1:MetadataElement"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="errorCode" type="tns:ResponseErrorCode"/>
+<xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+<xs:element minOccurs="0" name="errorText" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="addMetadataType">
+<xs:sequence>
+<xs:element minOccurs="0" name="type" type="ns1:MetadataType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="category">
+<xs:sequence>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="categoryName" type="xs:string"/>
+<xs:element minOccurs="0" name="categoryDesc" type="xs:string"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+<xs:element name="showList" type="xs:int"/>
+<xs:element name="displayOrder" type="xs:int"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="childCategories" nillable="true" type="tns:category"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="categoryLanguages" nillable="true" type="tns:categoryLanguage"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="categoryLanguage">
+<xs:sequence>
+<xs:element minOccurs="0" name="categoryName" type="xs:string"/>
+<xs:element minOccurs="0" name="id" type="tns:categoryLanguageId"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="categoryLanguageId">
+<xs:sequence>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+<xs:element minOccurs="0" name="languageCd" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addMetadataTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataTypeResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MetadataTypeResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="metadataType" type="ns1:MetadataType"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="addTypeToCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addTypeToCategoryResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeMetadataType">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeMetadataTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataType">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataTypeResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataElementByType">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataElementByTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataElementArrayResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MetadataElementArrayResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="metadataElementAry" nillable="true" type="ns1:MetadataElement"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="removeMetadataElement">
+<xs:sequence>
+<xs:element minOccurs="0" name="elementId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeMetadataElementResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllElementsForCategoryType">
+<xs:sequence>
+<xs:element minOccurs="0" name="categoryType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllElementsForCategoryTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataElementArrayResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMetadataElement">
+<xs:sequence>
+<xs:element minOccurs="0" name="element" type="ns1:MetadataElement"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMetadataElementResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataElementResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeTypeFromCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeTypeFromCategoryResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataElementById">
+<xs:sequence>
+<xs:element minOccurs="0" name="elementId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMetadataElementByIdResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataElementResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMetdataType">
+<xs:sequence>
+<xs:element minOccurs="0" name="type" type="ns1:MetadataType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMetdataTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataTypeResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getTypesInCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getTypesInCategoryResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataTypeArrayResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MetadataTypeArrayResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="metadataTypeAry" nillable="true" type="ns1:MetadataType"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getMetadataTypes">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getMetadataTypesResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MetadataTypeArrayResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="ResponseStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="success"/>
+<xs:enumeration value="failure"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ResponseErrorCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="objectNotFound"/>
+<xs:enumeration value="classNotFound"/>
+<xs:enumeration value="principalNotFound"/>
+<xs:enumeration value="userNotFound"/>
+<xs:enumeration value="userStatus"/>
+<xs:enumeration value="supervisorlNotFound"/>
+<xs:enumeration value="DUPLICATE_PRINCIPAL"/>
+<xs:enumeration value="failPasswordPolicy"/>
+<xs:enumeration value="groupIdNull"/>
+<xs:enumeration value="groupIdInvalid"/>
+<xs:enumeration value="roleIdNull"/>
+<xs:enumeration value="roleIdInvalid"/>
+<xs:enumeration value="success"/>
+<xs:enumeration value="FAIL_SQL_ERORR"/>
+<xs:enumeration value="FAIL_CONNECTION"/>
+<xs:enumeration value="FAIL_ALPHA_CHAR_RULE"/>
+<xs:enumeration value="FAIL_LOWER_CASE_RULE"/>
+<xs:enumeration value="FAIL_UPPER_CASE_RULE"/>
+<xs:enumeration value="FAIL_NON_APHANUMERIC_RULE"/>
+<xs:enumeration value="FAIL_NUMERIC_CHAR_RULE"/>
+<xs:enumeration value="FAIL_HISTORY_RULE"/>
+<xs:enumeration value="FAIL_LENGTH_RULE"/>
+<xs:enumeration value="FAIL_NEQ_NAME"/>
+<xs:enumeration value="FAIL_NEQ_PASSWORD"/>
+<xs:enumeration value="FAIL_NEQ_PRINCIPAL"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_FREQUENCY"/>
+<xs:enumeration value="PASSWORD_POLICY_NOT_FOUND"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_ALLOW"/>
+<xs:enumeration value="FAIL_REJECT_CHARS_IN_PSWD"/>
+<xs:enumeration value="FAIL_ENCRYPTION"/>
+<xs:enumeration value="FAIL_DECRYPTION"/>
+<xs:enumeration value="FAIL_OTHER"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getMetadataType">
+    <wsdl:part name="parameters" element="tns:getMetadataType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTypesInCategory">
+    <wsdl:part name="parameters" element="tns:getTypesInCategory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMetadataElement">
+    <wsdl:part name="parameters" element="tns:updateMetadataElement">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMetadataType">
+    <wsdl:part name="parameters" element="tns:removeMetadataType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMetadataElementResponse">
+    <wsdl:part name="parameters" element="tns:updateMetadataElementResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataElementByIdResponse">
+    <wsdl:part name="parameters" element="tns:getMetadataElementByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllElementsForCategoryType">
+    <wsdl:part name="parameters" element="tns:getAllElementsForCategoryType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataElementByTypeResponse">
+    <wsdl:part name="parameters" element="tns:getMetadataElementByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataTypesResponse">
+    <wsdl:part name="parameters" element="tns:getMetadataTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataTypeResponse">
+    <wsdl:part name="parameters" element="tns:getMetadataTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataElementById">
+    <wsdl:part name="parameters" element="tns:getMetadataElementById">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMetadataElement">
+    <wsdl:part name="parameters" element="tns:removeMetadataElement">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMetadataElement">
+    <wsdl:part name="parameters" element="tns:addMetadataElement">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTypesInCategoryResponse">
+    <wsdl:part name="parameters" element="tns:getTypesInCategoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMetadataType">
+    <wsdl:part name="parameters" element="tns:addMetadataType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMetadataTypeResponse">
+    <wsdl:part name="parameters" element="tns:addMetadataTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTypeToCategory">
+    <wsdl:part name="parameters" element="tns:addTypeToCategory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMetadataElementResponse">
+    <wsdl:part name="parameters" element="tns:addMetadataElementResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeTypeFromCategory">
+    <wsdl:part name="parameters" element="tns:removeTypeFromCategory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataElementByType">
+    <wsdl:part name="parameters" element="tns:getMetadataElementByType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeTypeFromCategoryResponse">
+    <wsdl:part name="parameters" element="tns:removeTypeFromCategoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMetdataTypeResponse">
+    <wsdl:part name="parameters" element="tns:updateMetdataTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMetdataType">
+    <wsdl:part name="parameters" element="tns:updateMetdataType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataTypes">
+    <wsdl:part name="parameters" element="tns:getMetadataTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMetadataTypeResponse">
+    <wsdl:part name="parameters" element="tns:removeMetadataTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMetadataElementResponse">
+    <wsdl:part name="parameters" element="tns:removeMetadataElementResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTypeToCategoryResponse">
+    <wsdl:part name="parameters" element="tns:addTypeToCategoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllElementsForCategoryTypeResponse">
+    <wsdl:part name="parameters" element="tns:getAllElementsForCategoryTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MetadataWebService">
+    <wsdl:operation name="addMetadataElement">
+      <wsdl:input name="addMetadataElement" message="tns:addMetadataElement">
+    </wsdl:input>
+      <wsdl:output name="addMetadataElementResponse" message="tns:addMetadataElementResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMetadataType">
+      <wsdl:input name="addMetadataType" message="tns:addMetadataType">
+    </wsdl:input>
+      <wsdl:output name="addMetadataTypeResponse" message="tns:addMetadataTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTypeToCategory">
+      <wsdl:input name="addTypeToCategory" message="tns:addTypeToCategory">
+    </wsdl:input>
+      <wsdl:output name="addTypeToCategoryResponse" message="tns:addTypeToCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMetadataType">
+      <wsdl:input name="removeMetadataType" message="tns:removeMetadataType">
+    </wsdl:input>
+      <wsdl:output name="removeMetadataTypeResponse" message="tns:removeMetadataTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataType">
+      <wsdl:input name="getMetadataType" message="tns:getMetadataType">
+    </wsdl:input>
+      <wsdl:output name="getMetadataTypeResponse" message="tns:getMetadataTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataElementByType">
+      <wsdl:input name="getMetadataElementByType" message="tns:getMetadataElementByType">
+    </wsdl:input>
+      <wsdl:output name="getMetadataElementByTypeResponse" message="tns:getMetadataElementByTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMetadataElement">
+      <wsdl:input name="removeMetadataElement" message="tns:removeMetadataElement">
+    </wsdl:input>
+      <wsdl:output name="removeMetadataElementResponse" message="tns:removeMetadataElementResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllElementsForCategoryType">
+      <wsdl:input name="getAllElementsForCategoryType" message="tns:getAllElementsForCategoryType">
+    </wsdl:input>
+      <wsdl:output name="getAllElementsForCategoryTypeResponse" message="tns:getAllElementsForCategoryTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMetadataElement">
+      <wsdl:input name="updateMetadataElement" message="tns:updateMetadataElement">
+    </wsdl:input>
+      <wsdl:output name="updateMetadataElementResponse" message="tns:updateMetadataElementResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeTypeFromCategory">
+      <wsdl:input name="removeTypeFromCategory" message="tns:removeTypeFromCategory">
+    </wsdl:input>
+      <wsdl:output name="removeTypeFromCategoryResponse" message="tns:removeTypeFromCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataElementById">
+      <wsdl:input name="getMetadataElementById" message="tns:getMetadataElementById">
+    </wsdl:input>
+      <wsdl:output name="getMetadataElementByIdResponse" message="tns:getMetadataElementByIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMetdataType">
+      <wsdl:input name="updateMetdataType" message="tns:updateMetdataType">
+    </wsdl:input>
+      <wsdl:output name="updateMetdataTypeResponse" message="tns:updateMetdataTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTypesInCategory">
+      <wsdl:input name="getTypesInCategory" message="tns:getTypesInCategory">
+    </wsdl:input>
+      <wsdl:output name="getTypesInCategoryResponse" message="tns:getTypesInCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataTypes">
+      <wsdl:input name="getMetadataTypes" message="tns:getMetadataTypes">
+    </wsdl:input>
+      <wsdl:output name="getMetadataTypesResponse" message="tns:getMetadataTypesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MetadataWebServiceServiceSoapBinding" type="tns:MetadataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addMetadataElement">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMetadataElement">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMetadataElementResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMetadataType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMetadataType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMetadataTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTypeToCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addTypeToCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addTypeToCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMetadataType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMetadataTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMetadataType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeMetadataType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeMetadataTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataElementByType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMetadataElementByType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMetadataElementByTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMetadataElement">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeMetadataElement">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeMetadataElementResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllElementsForCategoryType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllElementsForCategoryType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllElementsForCategoryTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMetadataElement">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateMetadataElement">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateMetadataElementResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeTypeFromCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeTypeFromCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeTypeFromCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataElementById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMetadataElementById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMetadataElementByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMetdataType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateMetdataType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateMetdataTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTypesInCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTypesInCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTypesInCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataTypes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMetadataTypes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMetadataTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MetadataWebServiceService">
+    <wsdl:port name="MetadataWebServicePort" binding="tns:MetadataWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/MetadataWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

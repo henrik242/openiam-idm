@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2010 11:45:17 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.batch.dto.BatchTask" table="BATCH_CONFIG">
+        <id name="taskId" type="string">
+            <column name="TASK_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="taskName" type="string">
+            <column name="TASK_NAME" length="50" />
+        </property>
+        <property name="enabled" type="java.lang.Integer">
+            <column name="ENABLED" />
+        </property>
+        <property name="frequency" type="java.lang.Integer">
+            <column name="FREQUENCY" />
+        </property>
+        <property name="frequencyUnitOfMeasure" type="string">
+            <column name="FREQUENCY_UNIT_OF_MEASURE" length="10" />
+        </property>
+        <property name="lastExecTime" type="timestamp">
+            <column name="LAST_EXEC_TIME" length="19" />
+        </property>
+        <property name="taskUrl" type="string">
+            <column name="TASK_URL" length="255" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="param1" type="string">
+            <column name="PARAM1" length="255" />
+        </property>
+        <property name="param2" type="string">
+            <column name="PARAM2" length="255" />
+        </property>
+        <property name="param3" type="string">
+            <column name="PARAM3" length="255" />
+        </property>        
+        <property name="param4" type="string">
+            <column name="PARAM4" length="255" />
+        </property>
+        <property name="executionOrder" type="java.lang.Integer">
+            <column name="EXECUTION_ORDER"  />
+        </property>
+    </class>
+</hibernate-mapping>
+

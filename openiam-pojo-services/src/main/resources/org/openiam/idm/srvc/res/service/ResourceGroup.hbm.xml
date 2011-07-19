@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.res.dto.ResourceGroup" table="RESOURCE_GROUP">
+        <id name="resGroupId" type="string">
+            <column name="RES_GROUP_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="resourceId" type="string">
+            <column name="RESOURCE_ID" length="32" />
+        </property>
+        <property name="groupId" type="string">
+            <column name="GRP_ID" length="32" />
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="START_DATE" length="19" />
+        </property>
+         <property name="endDate" type="timestamp">
+            <column name="END_DATE" length="19" />
+        </property>
+
+
+    </class>
+</hibernate-mapping>
+
+

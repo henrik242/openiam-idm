@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AuthenticationServiceService" targetNamespace="http://service.auth.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.auth.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/grp/dto" xmlns:ns2="http://service.auth.srvc.idm.openiam.org/" xmlns:tns="urn:idm.openiam.org/srvc/role/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/role/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/grp/dto"/>
+<xs:import namespace="http://service.auth.srvc.idm.openiam.org/"/>
+<xs:element name="Role" type="tns:role"/>
+<xs:complexType name="roleSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="role" type="tns:role"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="role">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="groups" type="ns1:groupSet"/>
+<xs:element minOccurs="0" name="id" type="tns:roleId"/>
+<xs:element minOccurs="0" name="provisionObjName" type="xs:string"/>
+<xs:element minOccurs="0" name="parentRoleId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleAttributes" type="tns:roleAttributeSet"/>
+<xs:element minOccurs="0" name="roleName" type="xs:string"/>
+<xs:element name="userAssociationMethod" type="xs:int"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+<xs:element minOccurs="0" name="inheritFromParent" type="xs:int"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="childRoles" nillable="true" type="tns:role"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+<xs:element minOccurs="0" name="internalRoleId" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="rolePolicy" nillable="true" type="tns:RolePolicy"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="roleId">
+<xs:sequence>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="roleAttributeSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleAttributeObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="roleAttribute" type="tns:roleAttribute"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="roleAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="roleAttrId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RolePolicy">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="rolePolicyId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value1" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+<xs:element minOccurs="0" name="action" type="xs:string"/>
+<xs:element minOccurs="0" name="executionOrder" type="xs:int"/>
+<xs:element minOccurs="0" name="policyScript" type="xs:string"/>
+<xs:element minOccurs="0" name="actionQualifier" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/role/dto" xmlns:ns2="http://service.auth.srvc.idm.openiam.org/" xmlns:tns="urn:idm.openiam.org/srvc/grp/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/grp/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/role/dto"/>
+<xs:import namespace="http://service.auth.srvc.idm.openiam.org/"/>
+<xs:element name="Group" type="tns:Group"/>
+<xs:complexType name="Group">
+<xs:sequence>
+<xs:element minOccurs="0" name="roles" type="ns1:roleSet"/>
+<xs:element minOccurs="0" name="attributes" type="tns:groupAttributeMap"/>
+<xs:element minOccurs="0" name="companyId" type="xs:string"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="groupClass" type="xs:string"/>
+<xs:element minOccurs="0" name="grpId" type="xs:string"/>
+<xs:element minOccurs="0" name="grpName" type="xs:string"/>
+<xs:element minOccurs="0" name="inheritFromParent" type="xs:boolean"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="parentGrpId" type="xs:string"/>
+<xs:element minOccurs="0" name="provisionMethod" type="xs:string"/>
+<xs:element minOccurs="0" name="provisionObjName" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="subGroup" nillable="true" type="tns:Group"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+<xs:element minOccurs="0" name="internalGroupId" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="groupSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groupObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="group" type="tns:Group"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="groupAttributeMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groupAttributeEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="groupAttribute" type="tns:GroupAttribute"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GroupAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="groupId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.auth.srvc.idm.openiam.org/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.auth.srvc.idm.openiam.org/">
+<xs:element name="authenticateByToken" type="tns:authenticateByToken"/>
+<xs:element name="authenticateByTokenResponse" type="tns:authenticateByTokenResponse"/>
+<xs:element name="globalLogout" type="tns:globalLogout"/>
+<xs:element name="globalLogoutResponse" type="tns:globalLogoutResponse"/>
+<xs:element name="passwordAuth" type="tns:passwordAuth"/>
+<xs:element name="passwordAuthResponse" type="tns:passwordAuthResponse"/>
+<xs:element name="renewToken" type="tns:renewToken"/>
+<xs:element name="renewTokenResponse" type="tns:renewTokenResponse"/>
+<xs:element name="updateAppStatus" type="tns:updateAppStatus"/>
+<xs:element name="updateAppStatusResponse" type="tns:updateAppStatusResponse"/>
+<xs:element name="validateToken" type="tns:validateToken"/>
+<xs:element name="validateTokenByUser" type="tns:validateTokenByUser"/>
+<xs:element name="validateTokenByUserResponse" type="tns:validateTokenByUserResponse"/>
+<xs:element name="validateTokenResponse" type="tns:validateTokenResponse"/>
+<xs:complexType name="authenticateByToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="authenticateByTokenResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Subject"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Subject">
+<xs:sequence>
+<xs:element name="readOnly" type="xs:boolean"/>
+<xs:element name="expirationTime" type="xs:long"/>
+<xs:element name="resultCode" type="xs:int"/>
+<xs:element minOccurs="0" name="saml" type="xs:string"/>
+<xs:element minOccurs="0" name="samlType" type="xs:string"/>
+<xs:element name="daysToPwdExp" type="xs:int"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="ssoToken" type="tns:SSOToken"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groups" nillable="true" type="xs:anyType"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xs:anyType"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="principals" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="SSOToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="authLevel" type="xs:string"/>
+<xs:element minOccurs="0" name="provider" type="xs:string"/>
+<xs:element minOccurs="0" name="clientIP" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element name="maxIdleTime" type="xs:int"/>
+<xs:element minOccurs="0" name="expirationTime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createTime" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="renewToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="renewTokenResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="errorCode" type="tns:ResponseErrorCode"/>
+<xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+<xs:element minOccurs="0" name="errorText" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="updateAppStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAppStatusResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="globalLogout">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="globalLogoutResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="validateTokenByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="validateTokenByUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:BooleanResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BooleanResponse">
+<xs:sequence/>
+<xs:attribute name="value" type="xs:boolean" use="required"/>
+</xs:complexType>
+<xs:complexType name="passwordAuth">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="passwordAuthResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AuthenticationResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthenticationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="subject" type="tns:Subject"/>
+<xs:element name="authErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="authErrorMessage" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="validateToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="validateTokenResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:BooleanResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectState" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="ResponseStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="success"/>
+<xs:enumeration value="failure"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ResponseErrorCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="objectNotFound"/>
+<xs:enumeration value="classNotFound"/>
+<xs:enumeration value="principalNotFound"/>
+<xs:enumeration value="userNotFound"/>
+<xs:enumeration value="userStatus"/>
+<xs:enumeration value="supervisorlNotFound"/>
+<xs:enumeration value="DUPLICATE_PRINCIPAL"/>
+<xs:enumeration value="failPasswordPolicy"/>
+<xs:enumeration value="groupIdNull"/>
+<xs:enumeration value="groupIdInvalid"/>
+<xs:enumeration value="roleIdNull"/>
+<xs:enumeration value="roleIdInvalid"/>
+<xs:enumeration value="success"/>
+<xs:enumeration value="FAIL_SQL_ERORR"/>
+<xs:enumeration value="FAIL_CONNECTION"/>
+<xs:enumeration value="FAIL_ALPHA_CHAR_RULE"/>
+<xs:enumeration value="FAIL_LOWER_CASE_RULE"/>
+<xs:enumeration value="FAIL_UPPER_CASE_RULE"/>
+<xs:enumeration value="FAIL_NON_APHANUMERIC_RULE"/>
+<xs:enumeration value="FAIL_NUMERIC_CHAR_RULE"/>
+<xs:enumeration value="FAIL_HISTORY_RULE"/>
+<xs:enumeration value="FAIL_LENGTH_RULE"/>
+<xs:enumeration value="FAIL_NEQ_NAME"/>
+<xs:enumeration value="FAIL_NEQ_PASSWORD"/>
+<xs:enumeration value="FAIL_NEQ_PRINCIPAL"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_FREQUENCY"/>
+<xs:enumeration value="PASSWORD_POLICY_NOT_FOUND"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_ALLOW"/>
+<xs:enumeration value="FAIL_REJECT_CHARS_IN_PSWD"/>
+<xs:enumeration value="FAIL_ENCRYPTION"/>
+<xs:enumeration value="FAIL_DECRYPTION"/>
+<xs:enumeration value="FAIL_OTHER"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="AttributeOperationEnum">
+<xs:restriction base="xs:string">
+<xs:enumeration value="nochange"/>
+<xs:enumeration value="add"/>
+<xs:enumeration value="replace"/>
+<xs:enumeration value="delete"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+<xs:complexType name="AuthenticationException">
+<xs:sequence>
+<xs:element name="errorCode" nillable="true" type="xs:int"/>
+<xs:element name="errorMessage" nillable="true" type="xs:string"/>
+<xs:element name="exception" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="LogoutException" type="tns:LogoutException"/>
+<xs:complexType name="LogoutException">
+<xs:sequence>
+<xs:element name="errorCode" nillable="true" type="xs:int"/>
+<xs:element name="errorMessage" nillable="true" type="xs:string"/>
+<xs:element name="exception" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="validateTokenByUser">
+    <wsdl:part name="parameters" element="tns:validateTokenByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="passwordAuth">
+    <wsdl:part name="parameters" element="tns:passwordAuth">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="renewToken">
+    <wsdl:part name="parameters" element="tns:renewToken">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateByTokenResponse">
+    <wsdl:part name="parameters" element="tns:authenticateByTokenResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="globalLogout">
+    <wsdl:part name="parameters" element="tns:globalLogout">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateTokenByUserResponse">
+    <wsdl:part name="parameters" element="tns:validateTokenByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateTokenResponse">
+    <wsdl:part name="parameters" element="tns:validateTokenResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LogoutException">
+    <wsdl:part name="LogoutException" element="tns:LogoutException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAppStatus">
+    <wsdl:part name="parameters" element="tns:updateAppStatus">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateByToken">
+    <wsdl:part name="parameters" element="tns:authenticateByToken">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="passwordAuthResponse">
+    <wsdl:part name="parameters" element="tns:passwordAuthResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateToken">
+    <wsdl:part name="parameters" element="tns:validateToken">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationException">
+    <wsdl:part name="AuthenticationException" element="tns:AuthenticationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAppStatusResponse">
+    <wsdl:part name="parameters" element="tns:updateAppStatusResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="globalLogoutResponse">
+    <wsdl:part name="parameters" element="tns:globalLogoutResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="renewTokenResponse">
+    <wsdl:part name="parameters" element="tns:renewTokenResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AuthenticationService">
+    <wsdl:operation name="authenticateByToken">
+      <wsdl:input name="authenticateByToken" message="tns:authenticateByToken">
+    </wsdl:input>
+      <wsdl:output name="authenticateByTokenResponse" message="tns:authenticateByTokenResponse">
+    </wsdl:output>
+      <wsdl:fault name="AuthenticationException" message="tns:AuthenticationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="renewToken">
+      <wsdl:input name="renewToken" message="tns:renewToken">
+    </wsdl:input>
+      <wsdl:output name="renewTokenResponse" message="tns:renewTokenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAppStatus">
+      <wsdl:input name="updateAppStatus" message="tns:updateAppStatus">
+    </wsdl:input>
+      <wsdl:output name="updateAppStatusResponse" message="tns:updateAppStatusResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="globalLogout">
+      <wsdl:input name="globalLogout" message="tns:globalLogout">
+    </wsdl:input>
+      <wsdl:output name="globalLogoutResponse" message="tns:globalLogoutResponse">
+    </wsdl:output>
+      <wsdl:fault name="LogoutException" message="tns:LogoutException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateTokenByUser">
+      <wsdl:input name="validateTokenByUser" message="tns:validateTokenByUser">
+    </wsdl:input>
+      <wsdl:output name="validateTokenByUserResponse" message="tns:validateTokenByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="passwordAuth">
+      <wsdl:input name="passwordAuth" message="tns:passwordAuth">
+    </wsdl:input>
+      <wsdl:output name="passwordAuthResponse" message="tns:passwordAuthResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateToken">
+      <wsdl:input name="validateToken" message="tns:validateToken">
+    </wsdl:input>
+      <wsdl:output name="validateTokenResponse" message="tns:validateTokenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuthenticationServiceServiceSoapBinding" type="tns:AuthenticationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authenticateByToken">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="authenticateByToken">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authenticateByTokenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationException">
+        <soap:fault name="AuthenticationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="renewToken">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="renewToken">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="renewTokenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAppStatus">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateAppStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAppStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="globalLogout">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="globalLogout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="globalLogoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="LogoutException">
+        <soap:fault name="LogoutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="passwordAuth">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="passwordAuth">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="passwordAuthResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateTokenByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validateTokenByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validateTokenByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateToken">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validateToken">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validateTokenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuthenticationServiceService">
+    <wsdl:port name="AuthenticationServicePort" binding="tns:AuthenticationServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/AuthenticationServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

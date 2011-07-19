@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 20, 2008 7:54:59 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ManagedSystemObjectMatch" table="MNG_SYS_OBJECT_MATCH">
+        <id name="objectSearchId" type="string">
+            <column name="OBJECT_SEARCH_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="managedSys" type="string">
+            <column name="MANAGED_SYS_ID" length="32" />
+        </property>
+        
+        <property name="objectType" type="string">
+            <column name="OBJECT_TYPE" length="20" />
+        </property>
+        <property name="matchMethod" type="string">
+            <column name="MATCH_METHOD" length="20" />
+        </property>
+        <property name="searchFilter" type="string">
+            <column name="SEARCH_FILTER" length="1000" />
+        </property>
+        <property name="baseDn" type="string">
+            <column name="BASE_DN" length="200" />
+        </property>
+        <property name="searchBaseDn" type="string">
+            <column name="SEARCH_BASE_DN" length="200" />
+        </property>
+        <property name="keyField" type="string">
+            <column name="KEY_FIELD" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+

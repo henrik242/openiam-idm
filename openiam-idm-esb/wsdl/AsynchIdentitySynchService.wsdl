@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AsynchIdentitySynchServiceService" targetNamespace="http://www.openiam.org/service/synch" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.openiam.org/service/synch" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.openiam.org/service/synch" elementFormDefault="unqualified" targetNamespace="http://www.openiam.org/service/synch" version="1.0">
+<xs:element name="startSynchronization" type="tns:startSynchronization"/>
+<xs:element name="startSynchronizationResponse" type="tns:startSynchronizationResponse"/>
+<xs:complexType name="startSynchronization">
+<xs:sequence>
+<xs:element minOccurs="0" name="config" type="tns:SynchConfig"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="SynchConfig">
+<xs:sequence>
+<xs:element minOccurs="0" name="synchConfigId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="synchAdapter" type="xs:string"/>
+<xs:element minOccurs="0" name="fileName" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="loadMatchOnly" type="xs:int"/>
+<xs:element minOccurs="0" name="updateAttribute" type="xs:int"/>
+<xs:element minOccurs="0" name="synchFrequency" type="xs:string"/>
+<xs:element minOccurs="0" name="synchType" type="xs:string"/>
+<xs:element minOccurs="0" name="processRule" type="xs:string"/>
+<xs:element minOccurs="0" name="validationRule" type="xs:string"/>
+<xs:element minOccurs="0" name="transformationRule" type="xs:string"/>
+<xs:element minOccurs="0" name="matchFieldName" type="xs:string"/>
+<xs:element minOccurs="0" name="matchManagedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="matchSrcFieldName" type="xs:string"/>
+<xs:element minOccurs="0" name="srcLoginId" type="xs:string"/>
+<xs:element minOccurs="0" name="srcPassword" type="xs:string"/>
+<xs:element minOccurs="0" name="srcHost" type="xs:string"/>
+<xs:element minOccurs="0" name="driver" type="xs:string"/>
+<xs:element minOccurs="0" name="connectionUrl" type="xs:string"/>
+<xs:element minOccurs="0" name="query" type="xs:string"/>
+<xs:element minOccurs="0" name="queryTimeField" type="xs:string"/>
+<xs:element minOccurs="0" name="lastExecTime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="customMatchRule" type="xs:string"/>
+<xs:element minOccurs="0" name="customMatchAttr" type="xs:string"/>
+<xs:element minOccurs="0" name="customAdatperScript" type="xs:string"/>
+<xs:element minOccurs="0" name="baseDn" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="startSynchronizationResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="startSynchronization">
+    <wsdl:part name="parameters" element="tns:startSynchronization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startSynchronizationResponse">
+    <wsdl:part name="parameters" element="tns:startSynchronizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AsynchIdentitySynchService">
+    <wsdl:operation name="startSynchronization">
+      <wsdl:input name="startSynchronization" message="tns:startSynchronization">
+    </wsdl:input>
+      <wsdl:output name="startSynchronizationResponse" message="tns:startSynchronizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AsynchIdentitySynchServiceServiceSoapBinding" type="tns:AsynchIdentitySynchService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="startSynchronization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="startSynchronization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="startSynchronizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AsynchIdentitySynchServiceService">
+    <wsdl:port name="AsynchIdentitySynchServicePort" binding="tns:AsynchIdentitySynchServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/AsynchIdentitySynchServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ChallengeResponseServiceService" targetNamespace="urn:idm.openiam.org/srvc/pswd/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:idm.openiam.org/srvc/pswd/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/pswd/service" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/pswd/service" version="1.0">
+<xs:element name="addAnswer" type="tns:addAnswer"/>
+<xs:element name="addAnswerResponse" type="tns:addAnswerResponse"/>
+<xs:element name="addAnswers" type="tns:addAnswers"/>
+<xs:element name="addAnswersResponse" type="tns:addAnswersResponse"/>
+<xs:element name="addQuestion" type="tns:addQuestion"/>
+<xs:element name="addQuestionResponse" type="tns:addQuestionResponse"/>
+<xs:element name="allQuestions" type="tns:allQuestions"/>
+<xs:element name="allQuestionsResponse" type="tns:allQuestionsResponse"/>
+<xs:element name="answersByUser" type="tns:answersByUser"/>
+<xs:element name="answersByUserResponse" type="tns:answersByUserResponse"/>
+<xs:element name="getAnswer" type="tns:getAnswer"/>
+<xs:element name="getAnswerResponse" type="tns:getAnswerResponse"/>
+<xs:element name="getQuestion" type="tns:getQuestion"/>
+<xs:element name="getQuestionResponse" type="tns:getQuestionResponse"/>
+<xs:element name="isResponseValid" type="tns:isResponseValid"/>
+<xs:element name="isResponseValidResponse" type="tns:isResponseValidResponse"/>
+<xs:element name="questionsByGroup" type="tns:questionsByGroup"/>
+<xs:element name="questionsByGroupResponse" type="tns:questionsByGroupResponse"/>
+<xs:element name="questionsByUser" type="tns:questionsByUser"/>
+<xs:element name="questionsByUserResponse" type="tns:questionsByUserResponse"/>
+<xs:element name="removeAnswer" type="tns:removeAnswer"/>
+<xs:element name="removeAnswerResponse" type="tns:removeAnswerResponse"/>
+<xs:element name="removeQuestion" type="tns:removeQuestion"/>
+<xs:element name="removeQuestionResponse" type="tns:removeQuestionResponse"/>
+<xs:element name="saveAnswers" type="tns:saveAnswers"/>
+<xs:element name="saveAnswersResponse" type="tns:saveAnswersResponse"/>
+<xs:element name="updateAnswer" type="tns:updateAnswer"/>
+<xs:element name="updateAnswerResponse" type="tns:updateAnswerResponse"/>
+<xs:element name="updateQuestion" type="tns:updateQuestion"/>
+<xs:element name="updateQuestionResponse" type="tns:updateQuestionResponse"/>
+<xs:element name="userAnserExists" type="tns:userAnserExists"/>
+<xs:element name="userAnserExistsResponse" type="tns:userAnserExistsResponse"/>
+<xs:complexType name="addQuestion">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IdentityQuestion">
+<xs:complexContent>
+<xs:extension base="tns:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="identityQuestionId" type="xs:string"/>
+<xs:element minOccurs="0" name="identityQuestGrp" type="tns:IdentityQuestGroup"/>
+<xs:element minOccurs="0" name="questionText" type="xs:string"/>
+<xs:element minOccurs="0" name="required" type="xs:int"/>
+<xs:element minOccurs="0" name="active" type="xs:int"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectState" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IdentityQuestGroup">
+<xs:complexContent>
+<xs:extension base="tns:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="identityQuestGrpId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="companyOwnerId" type="xs:string"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="identityQuestions" nillable="true" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="addQuestionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAnswer">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UserIdentityAnswer">
+<xs:complexContent>
+<xs:extension base="tns:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="identityAnsId" type="xs:string"/>
+<xs:element minOccurs="0" name="identityQuestionId" type="xs:string"/>
+<xs:element minOccurs="0" name="questionText" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="questionAnswer" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="addAnswerResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="answersByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="answersByUserResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="allQuestions">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="allQuestionsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeQuestion">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeQuestionResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="addAnswers">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAnswersResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="questionsByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="questionsByUserResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAnswer">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAnswerResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="questionsByGroup">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="questionsByGroupResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getQuestion">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getQuestionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateQuestion">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateQuestionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:IdentityQuestion"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isResponseValid">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg4" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isResponseValidResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAnswer">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAnswerResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="userAnserExists">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userAnserExistsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="saveAnswers">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="saveAnswersResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAnswer">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAnswerResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:UserIdentityAnswer"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="removeQuestion">
+    <wsdl:part name="parameters" element="tns:removeQuestion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAnswerResponse">
+    <wsdl:part name="parameters" element="tns:addAnswerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="userAnserExists">
+    <wsdl:part name="parameters" element="tns:userAnserExists">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isResponseValid">
+    <wsdl:part name="parameters" element="tns:isResponseValid">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allQuestions">
+    <wsdl:part name="parameters" element="tns:allQuestions">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAnswer">
+    <wsdl:part name="parameters" element="tns:addAnswer">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addQuestion">
+    <wsdl:part name="parameters" element="tns:addQuestion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAnswers">
+    <wsdl:part name="parameters" element="tns:addAnswers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addQuestionResponse">
+    <wsdl:part name="parameters" element="tns:addQuestionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateQuestionResponse">
+    <wsdl:part name="parameters" element="tns:updateQuestionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeQuestionResponse">
+    <wsdl:part name="parameters" element="tns:removeQuestionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAnswerResponse">
+    <wsdl:part name="parameters" element="tns:updateAnswerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAnswerResponse">
+    <wsdl:part name="parameters" element="tns:removeAnswerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveAnswers">
+    <wsdl:part name="parameters" element="tns:saveAnswers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateQuestion">
+    <wsdl:part name="parameters" element="tns:updateQuestion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAnswer">
+    <wsdl:part name="parameters" element="tns:updateAnswer">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQuestionResponse">
+    <wsdl:part name="parameters" element="tns:getQuestionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAnswer">
+    <wsdl:part name="parameters" element="tns:removeAnswer">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQuestion">
+    <wsdl:part name="parameters" element="tns:getQuestion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allQuestionsResponse">
+    <wsdl:part name="parameters" element="tns:allQuestionsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="answersByUser">
+    <wsdl:part name="parameters" element="tns:answersByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="userAnserExistsResponse">
+    <wsdl:part name="parameters" element="tns:userAnserExistsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="answersByUserResponse">
+    <wsdl:part name="parameters" element="tns:answersByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveAnswersResponse">
+    <wsdl:part name="parameters" element="tns:saveAnswersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAnswersResponse">
+    <wsdl:part name="parameters" element="tns:addAnswersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAnswer">
+    <wsdl:part name="parameters" element="tns:getAnswer">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="questionsByUser">
+    <wsdl:part name="parameters" element="tns:questionsByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="questionsByUserResponse">
+    <wsdl:part name="parameters" element="tns:questionsByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isResponseValidResponse">
+    <wsdl:part name="parameters" element="tns:isResponseValidResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAnswerResponse">
+    <wsdl:part name="parameters" element="tns:getAnswerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="questionsByGroup">
+    <wsdl:part name="parameters" element="tns:questionsByGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="questionsByGroupResponse">
+    <wsdl:part name="parameters" element="tns:questionsByGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ChallengeResponseWebService">
+    <wsdl:operation name="addQuestion">
+      <wsdl:input name="addQuestion" message="tns:addQuestion">
+    </wsdl:input>
+      <wsdl:output name="addQuestionResponse" message="tns:addQuestionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAnswer">
+      <wsdl:input name="addAnswer" message="tns:addAnswer">
+    </wsdl:input>
+      <wsdl:output name="addAnswerResponse" message="tns:addAnswerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="answersByUser">
+      <wsdl:input name="answersByUser" message="tns:answersByUser">
+    </wsdl:input>
+      <wsdl:output name="answersByUserResponse" message="tns:answersByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allQuestions">
+      <wsdl:input name="allQuestions" message="tns:allQuestions">
+    </wsdl:input>
+      <wsdl:output name="allQuestionsResponse" message="tns:allQuestionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeQuestion">
+      <wsdl:input name="removeQuestion" message="tns:removeQuestion">
+    </wsdl:input>
+      <wsdl:output name="removeQuestionResponse" message="tns:removeQuestionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAnswers">
+      <wsdl:input name="addAnswers" message="tns:addAnswers">
+    </wsdl:input>
+      <wsdl:output name="addAnswersResponse" message="tns:addAnswersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="questionsByUser">
+      <wsdl:input name="questionsByUser" message="tns:questionsByUser">
+    </wsdl:input>
+      <wsdl:output name="questionsByUserResponse" message="tns:questionsByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnswer">
+      <wsdl:input name="updateAnswer" message="tns:updateAnswer">
+    </wsdl:input>
+      <wsdl:output name="updateAnswerResponse" message="tns:updateAnswerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="questionsByGroup">
+      <wsdl:input name="questionsByGroup" message="tns:questionsByGroup">
+    </wsdl:input>
+      <wsdl:output name="questionsByGroupResponse" message="tns:questionsByGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <wsdl:input name="getQuestion" message="tns:getQuestion">
+    </wsdl:input>
+      <wsdl:output name="getQuestionResponse" message="tns:getQuestionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateQuestion">
+      <wsdl:input name="updateQuestion" message="tns:updateQuestion">
+    </wsdl:input>
+      <wsdl:output name="updateQuestionResponse" message="tns:updateQuestionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isResponseValid">
+      <wsdl:input name="isResponseValid" message="tns:isResponseValid">
+    </wsdl:input>
+      <wsdl:output name="isResponseValidResponse" message="tns:isResponseValidResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAnswer">
+      <wsdl:input name="removeAnswer" message="tns:removeAnswer">
+    </wsdl:input>
+      <wsdl:output name="removeAnswerResponse" message="tns:removeAnswerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="userAnserExists">
+      <wsdl:input name="userAnserExists" message="tns:userAnserExists">
+    </wsdl:input>
+      <wsdl:output name="userAnserExistsResponse" message="tns:userAnserExistsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveAnswers">
+      <wsdl:input name="saveAnswers" message="tns:saveAnswers">
+    </wsdl:input>
+      <wsdl:output name="saveAnswersResponse" message="tns:saveAnswersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnswer">
+      <wsdl:input name="getAnswer" message="tns:getAnswer">
+    </wsdl:input>
+      <wsdl:output name="getAnswerResponse" message="tns:getAnswerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ChallengeResponseServiceServiceSoapBinding" type="tns:ChallengeResponseWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addAnswer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAnswer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAnswerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addQuestion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addQuestion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addQuestionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allQuestions">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="allQuestions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="allQuestionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="answersByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="answersByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="answersByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAnswers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAnswers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAnswersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeQuestion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeQuestion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeQuestionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="questionsByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="questionsByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="questionsByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnswer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateAnswer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAnswerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="questionsByGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="questionsByGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="questionsByGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getQuestion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getQuestionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isResponseValid">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isResponseValid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isResponseValidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateQuestion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateQuestion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateQuestionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAnswer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAnswer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAnswerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveAnswers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveAnswers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveAnswersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="userAnserExists">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="userAnserExists">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="userAnserExistsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnswer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAnswer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAnswerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChallengeResponseServiceService">
+    <wsdl:port name="ChallengeResponseWebServicePort" binding="tns:ChallengeResponseServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ChallengeResponseWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

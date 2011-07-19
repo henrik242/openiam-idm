@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.menu.dto.Permission" table="permissions">
+        <composite-id name="id" class="org.openiam.idm.srvc.menu.dto.PermissionId">
+            <key-property name="menuId" type="string">
+                <column name="MENU_ID" length="20" />
+            </key-property>
+            <key-property name="roleId" type="string">
+                <column name="ROLE_ID" length="32" />
+            </key-property>
+            <key-property name="serviceId" type="string">
+                <column name="SERVICE_ID" length="20" />
+            </key-property>
+        </composite-id>
+     </class>
+</hibernate-mapping>

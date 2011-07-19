@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ManagedSystemDataServiceService" targetNamespace="http://service.mngsys.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.mngsys.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.mngsys.srvc.idm.openiam.org/" elementFormDefault="unqualified" targetNamespace="http://service.mngsys.srvc.idm.openiam.org/" version="1.0">
+<xs:element name="addApproverAssociation" type="tns:addApproverAssociation"/>
+<xs:element name="addApproverAssociationResponse" type="tns:addApproverAssociationResponse"/>
+<xs:element name="addAttributeMap" type="tns:addAttributeMap"/>
+<xs:element name="addAttributeMapResponse" type="tns:addAttributeMapResponse"/>
+<xs:element name="addManagedSystem" type="tns:addManagedSystem"/>
+<xs:element name="addManagedSystemObjectMatch" type="tns:addManagedSystemObjectMatch"/>
+<xs:element name="addManagedSystemObjectMatchResponse" type="tns:addManagedSystemObjectMatchResponse"/>
+<xs:element name="addManagedSystemResponse" type="tns:addManagedSystemResponse"/>
+<xs:element name="getAllApproversByRequestType" type="tns:getAllApproversByRequestType"/>
+<xs:element name="getAllApproversByRequestTypeResponse" type="tns:getAllApproversByRequestTypeResponse"/>
+<xs:element name="getAllAttributeMaps" type="tns:getAllAttributeMaps"/>
+<xs:element name="getAllAttributeMapsResponse" type="tns:getAllAttributeMapsResponse"/>
+<xs:element name="getAllManagedSys" type="tns:getAllManagedSys"/>
+<xs:element name="getAllManagedSysResponse" type="tns:getAllManagedSysResponse"/>
+<xs:element name="getApproverAssociation" type="tns:getApproverAssociation"/>
+<xs:element name="getApproverAssociationResponse" type="tns:getApproverAssociationResponse"/>
+<xs:element name="getApproversByObjectId" type="tns:getApproversByObjectId"/>
+<xs:element name="getApproversByObjectIdResponse" type="tns:getApproversByObjectIdResponse"/>
+<xs:element name="getApproversByRequestType" type="tns:getApproversByRequestType"/>
+<xs:element name="getApproversByRequestTypeResponse" type="tns:getApproversByRequestTypeResponse"/>
+<xs:element name="getAttributeMap" type="tns:getAttributeMap"/>
+<xs:element name="getAttributeMapResponse" type="tns:getAttributeMapResponse"/>
+<xs:element name="getManagedSys" type="tns:getManagedSys"/>
+<xs:element name="getManagedSysByDomain" type="tns:getManagedSysByDomain"/>
+<xs:element name="getManagedSysByDomainResponse" type="tns:getManagedSysByDomainResponse"/>
+<xs:element name="getManagedSysByName" type="tns:getManagedSysByName"/>
+<xs:element name="getManagedSysByNameResponse" type="tns:getManagedSysByNameResponse"/>
+<xs:element name="getManagedSysByProvider" type="tns:getManagedSysByProvider"/>
+<xs:element name="getManagedSysByProviderResponse" type="tns:getManagedSysByProviderResponse"/>
+<xs:element name="getManagedSysByResource" type="tns:getManagedSysByResource"/>
+<xs:element name="getManagedSysByResourceResponse" type="tns:getManagedSysByResourceResponse"/>
+<xs:element name="getManagedSysResponse" type="tns:getManagedSysResponse"/>
+<xs:element name="getResourceAttributeMaps" type="tns:getResourceAttributeMaps"/>
+<xs:element name="getResourceAttributeMapsResponse" type="tns:getResourceAttributeMapsResponse"/>
+<xs:element name="managedSysObjectParam" type="tns:managedSysObjectParam"/>
+<xs:element name="managedSysObjectParamResponse" type="tns:managedSysObjectParamResponse"/>
+<xs:element name="removeAllApproverAssociations" type="tns:removeAllApproverAssociations"/>
+<xs:element name="removeAllApproverAssociationsResponse" type="tns:removeAllApproverAssociationsResponse"/>
+<xs:element name="removeApproverAssociation" type="tns:removeApproverAssociation"/>
+<xs:element name="removeApproverAssociationResponse" type="tns:removeApproverAssociationResponse"/>
+<xs:element name="removeApproversByObjectId" type="tns:removeApproversByObjectId"/>
+<xs:element name="removeApproversByObjectIdResponse" type="tns:removeApproversByObjectIdResponse"/>
+<xs:element name="removeApproversByObjectType" type="tns:removeApproversByObjectType"/>
+<xs:element name="removeApproversByObjectTypeResponse" type="tns:removeApproversByObjectTypeResponse"/>
+<xs:element name="removeApproversByUser" type="tns:removeApproversByUser"/>
+<xs:element name="removeApproversByUserResponse" type="tns:removeApproversByUserResponse"/>
+<xs:element name="removeAttributeMap" type="tns:removeAttributeMap"/>
+<xs:element name="removeAttributeMapResponse" type="tns:removeAttributeMapResponse"/>
+<xs:element name="removeManagedSystem" type="tns:removeManagedSystem"/>
+<xs:element name="removeManagedSystemObjectMatch" type="tns:removeManagedSystemObjectMatch"/>
+<xs:element name="removeManagedSystemObjectMatchResponse" type="tns:removeManagedSystemObjectMatchResponse"/>
+<xs:element name="removeManagedSystemResponse" type="tns:removeManagedSystemResponse"/>
+<xs:element name="removeResourceAttributeMaps" type="tns:removeResourceAttributeMaps"/>
+<xs:element name="removeResourceAttributeMapsResponse" type="tns:removeResourceAttributeMapsResponse"/>
+<xs:element name="updateApproverAssociation" type="tns:updateApproverAssociation"/>
+<xs:element name="updateApproverAssociationResponse" type="tns:updateApproverAssociationResponse"/>
+<xs:element name="updateAttributeMap" type="tns:updateAttributeMap"/>
+<xs:element name="updateAttributeMapResponse" type="tns:updateAttributeMapResponse"/>
+<xs:element name="updateManagedSystem" type="tns:updateManagedSystem"/>
+<xs:element name="updateManagedSystemObjectMatch" type="tns:updateManagedSystemObjectMatch"/>
+<xs:element name="updateManagedSystemObjectMatchResponse" type="tns:updateManagedSystemObjectMatchResponse"/>
+<xs:element name="updateManagedSystemResponse" type="tns:updateManagedSystemResponse"/>
+<xs:complexType name="removeAllApproverAssociations">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removeAllApproverAssociationsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByObjectId">
+<xs:sequence>
+<xs:element minOccurs="0" name="associationObjId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByObjectIdResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAttributeMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeMap" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AttributeMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeMapId" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="mapForObjectType" type="xs:string"/>
+<xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+<xs:element minOccurs="0" name="targetAttributeName" type="xs:string"/>
+<xs:element minOccurs="0" name="authoritativeSrc" type="xs:int"/>
+<xs:element minOccurs="0" name="attributePolicy" type="tns:Policy"/>
+<xs:element minOccurs="0" name="rule" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="storeInIamdb" type="xs:int"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Policy">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyDefId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:int"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="rule" type="xs:string"/>
+<xs:element minOccurs="0" name="ruleSrcUrl" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyMemberships" nillable="true" type="tns:PolicyMembership"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyAttributes" nillable="true" type="tns:PolicyAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyMembership">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyMemId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceType" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceObjId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyAttrId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="defParamId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="xs:string"/>
+<xs:element minOccurs="0" name="value1" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+<xs:element minOccurs="0" name="rule" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAttributeMapResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproverAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="approverAssociationId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproverAssociationResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getApproverAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="approverAssociationId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getApproverAssociationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ApproverAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="approverAssocId" type="xs:string"/>
+<xs:element minOccurs="0" name="requestType" type="xs:string"/>
+<xs:element minOccurs="0" name="action" type="xs:string"/>
+<xs:element minOccurs="0" name="associationObjId" type="xs:string"/>
+<xs:element minOccurs="0" name="approverUserId" type="xs:string"/>
+<xs:element minOccurs="0" name="approverName" type="xs:string"/>
+<xs:element minOccurs="0" name="associationType" type="xs:string"/>
+<xs:element minOccurs="0" name="approverLevel" type="xs:int"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addManagedSystem">
+<xs:sequence>
+<xs:element minOccurs="0" name="sys" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ManagedSys">
+<xs:sequence>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="connectorId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="hostUrl" type="xs:string"/>
+<xs:element minOccurs="0" name="port" type="xs:int"/>
+<xs:element minOccurs="0" name="commProtocol" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="pswd" type="xs:string"/>
+<xs:element minOccurs="0" name="decryptPassword" type="xs:string"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="primaryRepository" type="xs:int"/>
+<xs:element minOccurs="0" name="secondaryRepositoryId" type="xs:string"/>
+<xs:element minOccurs="0" name="updateSecondary" type="xs:int"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="mngSysObjectMatchs" nillable="true" type="tns:ManagedSystemObjectMatch"/>
+<xs:element minOccurs="0" name="driverUrl" type="xs:string"/>
+<xs:element minOccurs="0" name="connectionString" type="xs:string"/>
+<xs:element minOccurs="0" name="addHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="modifyHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="deleteHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="passwordHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="suspendHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="handler1" type="xs:string"/>
+<xs:element minOccurs="0" name="handler2" type="xs:string"/>
+<xs:element minOccurs="0" name="handler3" type="xs:string"/>
+<xs:element minOccurs="0" name="handler4" type="xs:string"/>
+<xs:element minOccurs="0" name="handler5" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ManagedSystemObjectMatch">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectSearchId" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSys" type="xs:string"/>
+<xs:element minOccurs="0" name="objectType" type="xs:string"/>
+<xs:element minOccurs="0" name="matchMethod" type="xs:string"/>
+<xs:element minOccurs="0" name="searchFilter" type="xs:string"/>
+<xs:element minOccurs="0" name="baseDn" type="xs:string"/>
+<xs:element minOccurs="0" name="searchBaseDn" type="xs:string"/>
+<xs:element minOccurs="0" name="keyField" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addManagedSystemResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllManagedSys">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllManagedSysResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByObjectType">
+<xs:sequence>
+<xs:element minOccurs="0" name="associationType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeApproversByObjectTypeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAttributeMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeMap" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAttributeMapResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateManagedSystem">
+<xs:sequence>
+<xs:element minOccurs="0" name="sys" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateManagedSystemResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getManagedSysByDomain">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByDomainResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllApproversByRequestType">
+<xs:sequence>
+<xs:element minOccurs="0" name="requestId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllApproversByRequestTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceAttributeMaps">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceAttributeMapsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceAttributeMaps">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceAttributeMapsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSys">
+<xs:sequence>
+<xs:element minOccurs="0" name="sysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllAttributeMaps">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllAttributeMapsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByProvider">
+<xs:sequence>
+<xs:element minOccurs="0" name="providerId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByProviderResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getApproversByRequestType">
+<xs:sequence>
+<xs:element minOccurs="0" name="requestType" type="xs:string"/>
+<xs:element name="level" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getApproversByRequestTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addManagedSystemObjectMatch">
+<xs:sequence>
+<xs:element minOccurs="0" name="obj" type="tns:ManagedSystemObjectMatch"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addManagedSystemObjectMatchResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="updateManagedSystemObjectMatch">
+<xs:sequence>
+<xs:element minOccurs="0" name="obj" type="tns:ManagedSystemObjectMatch"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateManagedSystemObjectMatchResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="updateApproverAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="approverAssociation" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateApproverAssociationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="managedSysObjectParam">
+<xs:sequence>
+<xs:element minOccurs="0" name="managedSystemId" type="xs:string"/>
+<xs:element minOccurs="0" name="objectType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="managedSysObjectParamResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ManagedSystemObjectMatch"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeManagedSystem">
+<xs:sequence>
+<xs:element minOccurs="0" name="sysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeManagedSystemResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getManagedSysByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getManagedSysByNameResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ManagedSys"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeManagedSystemObjectMatch">
+<xs:sequence>
+<xs:element minOccurs="0" name="obj" type="tns:ManagedSystemObjectMatch"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeManagedSystemObjectMatchResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="addApproverAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="approverAssociation" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addApproverAssociationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getApproversByObjectId">
+<xs:sequence>
+<xs:element minOccurs="0" name="associationObjId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getApproversByObjectIdResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ApproverAssociation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAttributeMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeMapId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAttributeMapResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAttributeMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeMapId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAttributeMapResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addApproverAssociationResponse">
+    <wsdl:part name="parameters" element="tns:addApproverAssociationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllApproverAssociationsResponse">
+    <wsdl:part name="parameters" element="tns:removeAllApproverAssociationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addManagedSystemResponse">
+    <wsdl:part name="parameters" element="tns:addManagedSystemResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addManagedSystemObjectMatch">
+    <wsdl:part name="parameters" element="tns:addManagedSystemObjectMatch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByNameResponse">
+    <wsdl:part name="parameters" element="tns:getManagedSysByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByProviderResponse">
+    <wsdl:part name="parameters" element="tns:getManagedSysByProviderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateApproverAssociationResponse">
+    <wsdl:part name="parameters" element="tns:updateApproverAssociationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceAttributeMaps">
+    <wsdl:part name="parameters" element="tns:removeResourceAttributeMaps">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproversByObjectIdResponse">
+    <wsdl:part name="parameters" element="tns:getApproversByObjectIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproverAssociation">
+    <wsdl:part name="parameters" element="tns:removeApproverAssociation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByResourceResponse">
+    <wsdl:part name="parameters" element="tns:getManagedSysByResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeManagedSystemResponse">
+    <wsdl:part name="parameters" element="tns:removeManagedSystemResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addManagedSystem">
+    <wsdl:part name="parameters" element="tns:addManagedSystem">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproversByObjectId">
+    <wsdl:part name="parameters" element="tns:getApproversByObjectId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateManagedSystem">
+    <wsdl:part name="parameters" element="tns:updateManagedSystem">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByResource">
+    <wsdl:part name="parameters" element="tns:getManagedSysByResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addApproverAssociation">
+    <wsdl:part name="parameters" element="tns:addApproverAssociation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysResponse">
+    <wsdl:part name="parameters" element="tns:getManagedSysResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverAssociationResponse">
+    <wsdl:part name="parameters" element="tns:getApproverAssociationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByUserResponse">
+    <wsdl:part name="parameters" element="tns:removeApproversByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeManagedSystemObjectMatchResponse">
+    <wsdl:part name="parameters" element="tns:removeManagedSystemObjectMatchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateManagedSystemResponse">
+    <wsdl:part name="parameters" element="tns:updateManagedSystemResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttributeMapResponse">
+    <wsdl:part name="parameters" element="tns:removeAttributeMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceAttributeMapsResponse">
+    <wsdl:part name="parameters" element="tns:removeResourceAttributeMapsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproverAssociation">
+    <wsdl:part name="parameters" element="tns:getApproverAssociation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttributeMap">
+    <wsdl:part name="parameters" element="tns:getAttributeMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addManagedSystemObjectMatchResponse">
+    <wsdl:part name="parameters" element="tns:addManagedSystemObjectMatchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateManagedSystemObjectMatch">
+    <wsdl:part name="parameters" element="tns:updateManagedSystemObjectMatch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByObjectIdResponse">
+    <wsdl:part name="parameters" element="tns:removeApproversByObjectIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttributeMap">
+    <wsdl:part name="parameters" element="tns:removeAttributeMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceAttributeMaps">
+    <wsdl:part name="parameters" element="tns:getResourceAttributeMaps">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributeMapsResponse">
+    <wsdl:part name="parameters" element="tns:getAllAttributeMapsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByDomain">
+    <wsdl:part name="parameters" element="tns:getManagedSysByDomain">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeManagedSystemObjectMatch">
+    <wsdl:part name="parameters" element="tns:removeManagedSystemObjectMatch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="managedSysObjectParamResponse">
+    <wsdl:part name="parameters" element="tns:managedSysObjectParamResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceAttributeMapsResponse">
+    <wsdl:part name="parameters" element="tns:getResourceAttributeMapsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateManagedSystemObjectMatchResponse">
+    <wsdl:part name="parameters" element="tns:updateManagedSystemObjectMatchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllApproversByRequestTypeResponse">
+    <wsdl:part name="parameters" element="tns:getAllApproversByRequestTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByObjectId">
+    <wsdl:part name="parameters" element="tns:removeApproversByObjectId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproversByRequestType">
+    <wsdl:part name="parameters" element="tns:getApproversByRequestType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllManagedSysResponse">
+    <wsdl:part name="parameters" element="tns:getAllManagedSysResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByObjectType">
+    <wsdl:part name="parameters" element="tns:removeApproversByObjectType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllApproversByRequestType">
+    <wsdl:part name="parameters" element="tns:getAllApproversByRequestType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllManagedSys">
+    <wsdl:part name="parameters" element="tns:getAllManagedSys">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByProvider">
+    <wsdl:part name="parameters" element="tns:getManagedSysByProvider">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSys">
+    <wsdl:part name="parameters" element="tns:getManagedSys">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="managedSysObjectParam">
+    <wsdl:part name="parameters" element="tns:managedSysObjectParam">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllApproverAssociations">
+    <wsdl:part name="parameters" element="tns:removeAllApproverAssociations">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttributeMapResponse">
+    <wsdl:part name="parameters" element="tns:addAttributeMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproverAssociationResponse">
+    <wsdl:part name="parameters" element="tns:removeApproverAssociationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateApproverAssociation">
+    <wsdl:part name="parameters" element="tns:updateApproverAssociation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApproversByRequestTypeResponse">
+    <wsdl:part name="parameters" element="tns:getApproversByRequestTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttributeMap">
+    <wsdl:part name="parameters" element="tns:updateAttributeMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributeMaps">
+    <wsdl:part name="parameters" element="tns:getAllAttributeMaps">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByObjectTypeResponse">
+    <wsdl:part name="parameters" element="tns:removeApproversByObjectTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeApproversByUser">
+    <wsdl:part name="parameters" element="tns:removeApproversByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttributeMapResponse">
+    <wsdl:part name="parameters" element="tns:updateAttributeMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttributeMap">
+    <wsdl:part name="parameters" element="tns:addAttributeMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeManagedSystem">
+    <wsdl:part name="parameters" element="tns:removeManagedSystem">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByName">
+    <wsdl:part name="parameters" element="tns:getManagedSysByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttributeMapResponse">
+    <wsdl:part name="parameters" element="tns:getAttributeMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getManagedSysByDomainResponse">
+    <wsdl:part name="parameters" element="tns:getManagedSysByDomainResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ManagedSystemDataService">
+    <wsdl:operation name="removeAllApproverAssociations">
+      <wsdl:input name="removeAllApproverAssociations" message="tns:removeAllApproverAssociations">
+    </wsdl:input>
+      <wsdl:output name="removeAllApproverAssociationsResponse" message="tns:removeAllApproverAssociationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByObjectId">
+      <wsdl:input name="removeApproversByObjectId" message="tns:removeApproversByObjectId">
+    </wsdl:input>
+      <wsdl:output name="removeApproversByObjectIdResponse" message="tns:removeApproversByObjectIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttributeMap">
+      <wsdl:input name="addAttributeMap" message="tns:addAttributeMap">
+    </wsdl:input>
+      <wsdl:output name="addAttributeMapResponse" message="tns:addAttributeMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproverAssociation">
+      <wsdl:input name="removeApproverAssociation" message="tns:removeApproverAssociation">
+    </wsdl:input>
+      <wsdl:output name="removeApproverAssociationResponse" message="tns:removeApproverAssociationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverAssociation">
+      <wsdl:input name="getApproverAssociation" message="tns:getApproverAssociation">
+    </wsdl:input>
+      <wsdl:output name="getApproverAssociationResponse" message="tns:getApproverAssociationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addManagedSystem">
+      <wsdl:input name="addManagedSystem" message="tns:addManagedSystem">
+    </wsdl:input>
+      <wsdl:output name="addManagedSystemResponse" message="tns:addManagedSystemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByResource">
+      <wsdl:input name="getManagedSysByResource" message="tns:getManagedSysByResource">
+    </wsdl:input>
+      <wsdl:output name="getManagedSysByResourceResponse" message="tns:getManagedSysByResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllManagedSys">
+      <wsdl:input name="getAllManagedSys" message="tns:getAllManagedSys">
+    </wsdl:input>
+      <wsdl:output name="getAllManagedSysResponse" message="tns:getAllManagedSysResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByUser">
+      <wsdl:input name="removeApproversByUser" message="tns:removeApproversByUser">
+    </wsdl:input>
+      <wsdl:output name="removeApproversByUserResponse" message="tns:removeApproversByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByObjectType">
+      <wsdl:input name="removeApproversByObjectType" message="tns:removeApproversByObjectType">
+    </wsdl:input>
+      <wsdl:output name="removeApproversByObjectTypeResponse" message="tns:removeApproversByObjectTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttributeMap">
+      <wsdl:input name="updateAttributeMap" message="tns:updateAttributeMap">
+    </wsdl:input>
+      <wsdl:output name="updateAttributeMapResponse" message="tns:updateAttributeMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManagedSystem">
+      <wsdl:input name="updateManagedSystem" message="tns:updateManagedSystem">
+    </wsdl:input>
+      <wsdl:output name="updateManagedSystemResponse" message="tns:updateManagedSystemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByDomain">
+      <wsdl:input name="getManagedSysByDomain" message="tns:getManagedSysByDomain">
+    </wsdl:input>
+      <wsdl:output name="getManagedSysByDomainResponse" message="tns:getManagedSysByDomainResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllApproversByRequestType">
+      <wsdl:input name="getAllApproversByRequestType" message="tns:getAllApproversByRequestType">
+    </wsdl:input>
+      <wsdl:output name="getAllApproversByRequestTypeResponse" message="tns:getAllApproversByRequestTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceAttributeMaps">
+      <wsdl:input name="removeResourceAttributeMaps" message="tns:removeResourceAttributeMaps">
+    </wsdl:input>
+      <wsdl:output name="removeResourceAttributeMapsResponse" message="tns:removeResourceAttributeMapsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceAttributeMaps">
+      <wsdl:input name="getResourceAttributeMaps" message="tns:getResourceAttributeMaps">
+    </wsdl:input>
+      <wsdl:output name="getResourceAttributeMapsResponse" message="tns:getResourceAttributeMapsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSys">
+      <wsdl:input name="getManagedSys" message="tns:getManagedSys">
+    </wsdl:input>
+      <wsdl:output name="getManagedSysResponse" message="tns:getManagedSysResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAttributeMaps">
+      <wsdl:input name="getAllAttributeMaps" message="tns:getAllAttributeMaps">
+    </wsdl:input>
+      <wsdl:output name="getAllAttributeMapsResponse" message="tns:getAllAttributeMapsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByProvider">
+      <wsdl:input name="getManagedSysByProvider" message="tns:getManagedSysByProvider">
+    </wsdl:input>
+      <wsdl:output name="getManagedSysByProviderResponse" message="tns:getManagedSysByProviderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproversByRequestType">
+      <wsdl:input name="getApproversByRequestType" message="tns:getApproversByRequestType">
+    </wsdl:input>
+      <wsdl:output name="getApproversByRequestTypeResponse" message="tns:getApproversByRequestTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addManagedSystemObjectMatch">
+      <wsdl:input name="addManagedSystemObjectMatch" message="tns:addManagedSystemObjectMatch">
+    </wsdl:input>
+      <wsdl:output name="addManagedSystemObjectMatchResponse" message="tns:addManagedSystemObjectMatchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManagedSystemObjectMatch">
+      <wsdl:input name="updateManagedSystemObjectMatch" message="tns:updateManagedSystemObjectMatch">
+    </wsdl:input>
+      <wsdl:output name="updateManagedSystemObjectMatchResponse" message="tns:updateManagedSystemObjectMatchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateApproverAssociation">
+      <wsdl:input name="updateApproverAssociation" message="tns:updateApproverAssociation">
+    </wsdl:input>
+      <wsdl:output name="updateApproverAssociationResponse" message="tns:updateApproverAssociationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="managedSysObjectParam">
+      <wsdl:input name="managedSysObjectParam" message="tns:managedSysObjectParam">
+    </wsdl:input>
+      <wsdl:output name="managedSysObjectParamResponse" message="tns:managedSysObjectParamResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeManagedSystem">
+      <wsdl:input name="removeManagedSystem" message="tns:removeManagedSystem">
+    </wsdl:input>
+      <wsdl:output name="removeManagedSystemResponse" message="tns:removeManagedSystemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByName">
+      <wsdl:input name="getManagedSysByName" message="tns:getManagedSysByName">
+    </wsdl:input>
+      <wsdl:output name="getManagedSysByNameResponse" message="tns:getManagedSysByNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeManagedSystemObjectMatch">
+      <wsdl:input name="removeManagedSystemObjectMatch" message="tns:removeManagedSystemObjectMatch">
+    </wsdl:input>
+      <wsdl:output name="removeManagedSystemObjectMatchResponse" message="tns:removeManagedSystemObjectMatchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addApproverAssociation">
+      <wsdl:input name="addApproverAssociation" message="tns:addApproverAssociation">
+    </wsdl:input>
+      <wsdl:output name="addApproverAssociationResponse" message="tns:addApproverAssociationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproversByObjectId">
+      <wsdl:input name="getApproversByObjectId" message="tns:getApproversByObjectId">
+    </wsdl:input>
+      <wsdl:output name="getApproversByObjectIdResponse" message="tns:getApproversByObjectIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttributeMap">
+      <wsdl:input name="removeAttributeMap" message="tns:removeAttributeMap">
+    </wsdl:input>
+      <wsdl:output name="removeAttributeMapResponse" message="tns:removeAttributeMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttributeMap">
+      <wsdl:input name="getAttributeMap" message="tns:getAttributeMap">
+    </wsdl:input>
+      <wsdl:output name="getAttributeMapResponse" message="tns:getAttributeMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManagedSystemDataServiceServiceSoapBinding" type="tns:ManagedSystemDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="removeAllApproverAssociations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllApproverAssociations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllApproverAssociationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByObjectId">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeApproversByObjectId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeApproversByObjectIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttributeMap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAttributeMap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAttributeMapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addManagedSystem">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addManagedSystem">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addManagedSystemResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproverAssociation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getApproverAssociation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getApproverAssociationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproverAssociation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeApproverAssociation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeApproverAssociationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getManagedSysByResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getManagedSysByResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllManagedSys">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllManagedSys">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllManagedSysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeApproversByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeApproversByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeApproversByObjectType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeApproversByObjectType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeApproversByObjectTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttributeMap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateAttributeMap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAttributeMapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManagedSystem">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateManagedSystem">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateManagedSystemResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByDomain">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getManagedSysByDomain">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getManagedSysByDomainResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllApproversByRequestType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllApproversByRequestType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllApproversByRequestTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceAttributeMaps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourceAttributeMaps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourceAttributeMapsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceAttributeMaps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceAttributeMaps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceAttributeMapsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSys">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getManagedSys">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getManagedSysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAttributeMaps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllAttributeMaps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllAttributeMapsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByProvider">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getManagedSysByProvider">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getManagedSysByProviderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproversByRequestType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getApproversByRequestType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getApproversByRequestTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addManagedSystemObjectMatch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addManagedSystemObjectMatch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addManagedSystemObjectMatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateManagedSystemObjectMatch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateManagedSystemObjectMatch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateManagedSystemObjectMatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="managedSysObjectParam">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="managedSysObjectParam">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="managedSysObjectParamResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateApproverAssociation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateApproverAssociation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateApproverAssociationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeManagedSystem">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeManagedSystem">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeManagedSystemResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getManagedSysByName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getManagedSysByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getManagedSysByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeManagedSystemObjectMatch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeManagedSystemObjectMatch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeManagedSystemObjectMatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addApproverAssociation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addApproverAssociation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addApproverAssociationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getApproversByObjectId">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getApproversByObjectId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getApproversByObjectIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttributeMap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAttributeMap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAttributeMapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttributeMap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAttributeMap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAttributeMapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManagedSystemDataServiceService">
+    <wsdl:port name="ManagedSystemDataServicePort" binding="tns:ManagedSystemDataServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ManagedSystemDataServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

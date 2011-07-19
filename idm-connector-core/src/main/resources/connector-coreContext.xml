@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+
+    <!-- Authentication Beans -->
+	<bean id="exampleConnector" class="org.openiam.spml2.spi.example.ExampleComplete">
+	
+	</bean>
+
+	<bean id="shellConnector" class="org.openiam.spml2.spi.example.ShellConnectorImpl">
+		<property name="managedSysService" ref="managedSysService" />	
+		<property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+		<property name="resourceDataService" ref="resourceDataService" />
+		<property name="auditDataService" ref="auditDataService" />	
+		<property name="loginManager" ref="loginManager" />
+		<property name="policyDao" ref="policyDAO" />
+		<property name="secDomainService" ref="secDomainService" />
+		<property name="userManager" ref="userManager" />
+	</bean>
+
+	<bean id="oracleConnector" class="org.openiam.spml2.spi.orcl.OracleConnectorImpl">
+	
+	</bean>
+
+
+	
+
+	<bean id="attrHelper" class="org.openiam.provision.service.UserAttributeHelper">
+			<property name="loginManager" ref="loginManager" />
+	</bean>
+	
+	<bean id="ldapConnector" class="org.openiam.spml2.spi.ldap.LdapConnectorImpl">
+		<property name="managedSysService" ref="managedSysService" />	
+		<property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+		<property name="resourceDataService" ref="resourceDataService" />
+		<property name="auditDataService" ref="auditDataService" />	
+		<property name="loginManager" ref="loginManager" />
+		<property name="policyDao" ref="policyDAO" />
+		<property name="secDomainService" ref="secDomainService" />
+		<property name="userManager" ref="userManager" />
+		<property name="ldapSuspend" ref="ldapSuspend" />
+		<property name="ldapPassword" ref="ldapPassword" />
+	</bean>
+
+	<bean id="ldapSuspend" class="org.openiam.spml2.spi.ldap.LdapSuspend">
+			<property name="managedSysService" ref="managedSysService" />	
+			<property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+			<property name="loginManager" ref="loginManager" />
+			<property name="sysConfiguration" ref="sysConfiguration" />
+	</bean>
+	
+
+
+	<bean id="ldapPassword" class="org.openiam.spml2.spi.ldap.LdapPassword">
+	
+	</bean>
+
+	<bean id="googleAppsConnector" class="org.openiam.spml2.spi.gapps.GoogleAppsConnectorImpl">
+		<property name="managedSysService" ref="managedSysService" />	
+		<property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+		<property name="resourceDataService" ref="resourceDataService" />
+		<property name="auditDataService" ref="auditDataService" />	
+		<property name="loginManager" ref="loginManager" />
+		<property name="policyDao" ref="policyDAO" />
+		<property name="secDomainService" ref="secDomainService" />
+		<property name="userManager" ref="userManager" />
+	</bean>
+
+
+    <bean id="appTableConnector" class="org.openiam.spml2.spi.jdbc.AppTableConnectorImpl">
+		<property name="managedSysService" ref="managedSysService" />
+		<property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+		<property name="resourceDataService" ref="resourceDataService" />
+		<property name="auditDataService" ref="auditDataService" />
+		<property name="loginManager" ref="loginManager" />
+		<property name="policyDao" ref="policyDAO" />
+		<property name="secDomainService" ref="secDomainService" />
+		<property name="userManager" ref="userManager" />
+        <property name="connectionMgr" ref="jdbcConnection" />
+	</bean>
+
+    <bean id="jdbcConnection" class="org.openiam.spml2.spi.jdbc.JDBCConnectionMgr">
+
+	</bean>
+
+
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	    	<list>
+		        <value>classpath:datasource.properties</value>
+		        <value>classpath:securityconf.properties</value>
+	        </list>
+	    </property>
+	</bean>
+
+
+  
+	<!-- Local DataSource that works in any environment -->
+	<!-- Note that DriverManagerDataSource does not pool; it is not intended for production -->
+	<!-- See JPetStore for an example of using Commons DBCP BasicDataSource as alternative -->
+	<!-- See Image Database for an example of using C3P0 ComboPooledDataSource as alternative -->
+
+     <!--bean id="dataSrc" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${openiam.driver_classname}" />
+        <property name="jdbcUrl" value="${openiam.driver_url}" />
+        <property name="user" value="${openiam.username}" />
+        <property name="password" value="${openiam.password}"/>
+
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="maxStatements" value="50"/>
+        <property name="idleConnectionTestPeriod" value="3000"/>
+        <property name="loginTimeout" value="300"/>
+
+     </bean-->
+
+
+  
+  
+
+  <!-- ensure that the above transactional advice runs for any execution
+      of an operation defined by the FooService interface -->
+
+ 
+  <aop:config>
+    <aop:pointcut id="ldapConnectorOperation" expression="execution(* org.openiam.spml2.spi.ldap.LdapConnectorImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="ldapConnectorOperation"/>
+  </aop:config>
+
+<!-- 
+  <aop:config>
+    <aop:pointcut id="adConnectorOperation" expression="execution(* org.openiam.spml2.spi.ad.ActiveDirConnectorImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="adConnectorOperation"/>
+  </aop:config>
+
+  <aop:config>
+    <aop:pointcut id="scriptConnectorOperation" expression="execution(* org.openiam.spml2.spi.script.ScriptConnectorImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="scriptConnectorOperation"/>
+  </aop:config>
+
+-->
+          
+</beans>
+
+

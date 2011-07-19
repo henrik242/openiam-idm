@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="NavigatorDataWebServiceService" targetNamespace="urn:idm.openiam.org/srvc/menu/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:idm.openiam.org/srvc/menu/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/menu/service" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/menu/service" version="1.0">
+<xs:element name="addMenu" type="tns:addMenu"/>
+<xs:element name="addMenuResponse" type="tns:addMenuResponse"/>
+<xs:element name="getAllMenuOptionIDs" type="tns:getAllMenuOptionIDs"/>
+<xs:element name="getAllMenuOptionIDsResponse" type="tns:getAllMenuOptionIDsResponse"/>
+<xs:element name="getMenu" type="tns:getMenu"/>
+<xs:element name="getMenuResponse" type="tns:getMenuResponse"/>
+<xs:element name="menuGroup" type="tns:menuGroup"/>
+<xs:element name="menuGroupByUser" type="tns:menuGroupByUser"/>
+<xs:element name="menuGroupByUserResponse" type="tns:menuGroupByUserResponse"/>
+<xs:element name="menuGroupResponse" type="tns:menuGroupResponse"/>
+<xs:element name="menuGroupSelectedByUser" type="tns:menuGroupSelectedByUser"/>
+<xs:element name="menuGroupSelectedByUserResponse" type="tns:menuGroupSelectedByUserResponse"/>
+<xs:element name="removeMenu" type="tns:removeMenu"/>
+<xs:element name="removeMenuResponse" type="tns:removeMenuResponse"/>
+<xs:element name="updateMenu" type="tns:updateMenu"/>
+<xs:element name="updateMenuResponse" type="tns:updateMenuResponse"/>
+<xs:complexType name="getAllMenuOptionIDs">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllMenuOptionIDsResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="errorCode" type="tns:ResponseErrorCode"/>
+<xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+<xs:element minOccurs="0" name="errorText" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="getMenu">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMenuResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MenuResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MenuResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="menu" type="tns:Menu"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Menu">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="tns:MenuId"/>
+<xs:element minOccurs="0" name="menuGroup" type="xs:string"/>
+<xs:element minOccurs="0" name="menuName" type="xs:string"/>
+<xs:element minOccurs="0" name="menuDesc" type="xs:string"/>
+<xs:element minOccurs="0" name="url" type="xs:string"/>
+<xs:element minOccurs="0" name="active" type="xs:boolean"/>
+<xs:element name="displayOrder" type="xs:int"/>
+<xs:element minOccurs="0" name="publicUrl" type="xs:boolean"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="subMenus" nillable="true" type="tns:Menu"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MenuId">
+<xs:sequence>
+<xs:element minOccurs="0" name="menuId" type="xs:string"/>
+<xs:element minOccurs="0" name="languageCd" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroupSelectedByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroupSelectedByUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MenuListResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="menuList" nillable="true" type="tns:Menu"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="addMenu">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Menu"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addMenuResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MenuResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMenu">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Menu"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateMenuResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroup">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroupResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeMenu">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element name="arg1" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeMenuResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroupByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="menuGroupByUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:MenuListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="ResponseStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="success"/>
+<xs:enumeration value="failure"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ResponseErrorCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="objectNotFound"/>
+<xs:enumeration value="classNotFound"/>
+<xs:enumeration value="principalNotFound"/>
+<xs:enumeration value="userNotFound"/>
+<xs:enumeration value="userStatus"/>
+<xs:enumeration value="supervisorlNotFound"/>
+<xs:enumeration value="DUPLICATE_PRINCIPAL"/>
+<xs:enumeration value="failPasswordPolicy"/>
+<xs:enumeration value="groupIdNull"/>
+<xs:enumeration value="groupIdInvalid"/>
+<xs:enumeration value="roleIdNull"/>
+<xs:enumeration value="roleIdInvalid"/>
+<xs:enumeration value="success"/>
+<xs:enumeration value="FAIL_SQL_ERORR"/>
+<xs:enumeration value="FAIL_CONNECTION"/>
+<xs:enumeration value="FAIL_ALPHA_CHAR_RULE"/>
+<xs:enumeration value="FAIL_LOWER_CASE_RULE"/>
+<xs:enumeration value="FAIL_UPPER_CASE_RULE"/>
+<xs:enumeration value="FAIL_NON_APHANUMERIC_RULE"/>
+<xs:enumeration value="FAIL_NUMERIC_CHAR_RULE"/>
+<xs:enumeration value="FAIL_HISTORY_RULE"/>
+<xs:enumeration value="FAIL_LENGTH_RULE"/>
+<xs:enumeration value="FAIL_NEQ_NAME"/>
+<xs:enumeration value="FAIL_NEQ_PASSWORD"/>
+<xs:enumeration value="FAIL_NEQ_PRINCIPAL"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_FREQUENCY"/>
+<xs:enumeration value="PASSWORD_POLICY_NOT_FOUND"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_ALLOW"/>
+<xs:enumeration value="FAIL_REJECT_CHARS_IN_PSWD"/>
+<xs:enumeration value="FAIL_ENCRYPTION"/>
+<xs:enumeration value="FAIL_DECRYPTION"/>
+<xs:enumeration value="FAIL_OTHER"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="menuGroupSelectedByUser">
+    <wsdl:part name="parameters" element="tns:menuGroupSelectedByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMenu">
+    <wsdl:part name="parameters" element="tns:addMenu">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMenuResponse">
+    <wsdl:part name="parameters" element="tns:removeMenuResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMenu">
+    <wsdl:part name="parameters" element="tns:updateMenu">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupResponse">
+    <wsdl:part name="parameters" element="tns:menuGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMenuResponse">
+    <wsdl:part name="parameters" element="tns:getMenuResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupByUserResponse">
+    <wsdl:part name="parameters" element="tns:menuGroupByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMenuResponse">
+    <wsdl:part name="parameters" element="tns:addMenuResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllMenuOptionIDsResponse">
+    <wsdl:part name="parameters" element="tns:getAllMenuOptionIDsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllMenuOptionIDs">
+    <wsdl:part name="parameters" element="tns:getAllMenuOptionIDs">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateMenuResponse">
+    <wsdl:part name="parameters" element="tns:updateMenuResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupSelectedByUserResponse">
+    <wsdl:part name="parameters" element="tns:menuGroupSelectedByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMenu">
+    <wsdl:part name="parameters" element="tns:getMenu">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroupByUser">
+    <wsdl:part name="parameters" element="tns:menuGroupByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="menuGroup">
+    <wsdl:part name="parameters" element="tns:menuGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeMenu">
+    <wsdl:part name="parameters" element="tns:removeMenu">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="NavigationDataService">
+    <wsdl:operation name="getAllMenuOptionIDs">
+      <wsdl:input name="getAllMenuOptionIDs" message="tns:getAllMenuOptionIDs">
+    </wsdl:input>
+      <wsdl:output name="getAllMenuOptionIDsResponse" message="tns:getAllMenuOptionIDsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <wsdl:input name="getMenu" message="tns:getMenu">
+    </wsdl:input>
+      <wsdl:output name="getMenuResponse" message="tns:getMenuResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupSelectedByUser">
+      <wsdl:input name="menuGroupSelectedByUser" message="tns:menuGroupSelectedByUser">
+    </wsdl:input>
+      <wsdl:output name="menuGroupSelectedByUserResponse" message="tns:menuGroupSelectedByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMenu">
+      <wsdl:input name="addMenu" message="tns:addMenu">
+    </wsdl:input>
+      <wsdl:output name="addMenuResponse" message="tns:addMenuResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMenu">
+      <wsdl:input name="updateMenu" message="tns:updateMenu">
+    </wsdl:input>
+      <wsdl:output name="updateMenuResponse" message="tns:updateMenuResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroup">
+      <wsdl:input name="menuGroup" message="tns:menuGroup">
+    </wsdl:input>
+      <wsdl:output name="menuGroupResponse" message="tns:menuGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMenu">
+      <wsdl:input name="removeMenu" message="tns:removeMenu">
+    </wsdl:input>
+      <wsdl:output name="removeMenuResponse" message="tns:removeMenuResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupByUser">
+      <wsdl:input name="menuGroupByUser" message="tns:menuGroupByUser">
+    </wsdl:input>
+      <wsdl:output name="menuGroupByUserResponse" message="tns:menuGroupByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NavigatorDataWebServiceServiceSoapBinding" type="tns:NavigationDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllMenuOptionIDs">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllMenuOptionIDs">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllMenuOptionIDsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupSelectedByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroupSelectedByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupSelectedByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="menuGroupByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="menuGroupByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="menuGroupByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NavigatorDataWebServiceService">
+    <wsdl:port name="NavigationDataServicePort" binding="tns:NavigatorDataWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/NavigationDataServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2010 8:20:09 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.synch.dto.SynchConfig" table="SYNCH_CONFIG" >
+        <id name="synchConfigId" type="string">
+            <column name="SYNCH_CONFIG_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="60" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="synchAdapter" type="string">
+            <column name="SYNCH_SRC" length="20" />
+        </property>
+        <property name="fileName" type="string">
+            <column name="FILE_NAME" length="80" />
+        </property>
+        <property name="managedSysId" type="string">
+            <column name="MANAGED_SYS_ID" length="32" />
+        </property>
+        <property name="loadMatchOnly" type="java.lang.Integer">
+            <column name="LOAD_MATCH_ONLY" />
+        </property>
+        <property name="updateAttribute" type="java.lang.Integer">
+            <column name="UPDATE_ATTRIBUTE" />
+        </property>
+        <property name="synchFrequency" type="string">
+            <column name="SYNCH_FREQUENCY" length="20" />
+        </property>
+        <property name="synchType" type="string">
+            <column name="SYNCH_TYPE" length="20" />
+        </property>
+
+        <property name="processRule" type="string">
+            <column name="PROCESS_RULE" length="80" />
+        </property>
+        <property name="validationRule" type="string">
+            <column name="VALIDATION_RULE" length="80" />
+        </property>
+        <property name="transformationRule" type="string">
+            <column name="TRANSFORMATION_RULE" length="80" />
+        </property>
+        <property name="matchFieldName" type="string">
+            <column name="MATCH_FIELD_NAME" length="40" />
+        </property>
+        <property name="matchSrcFieldName" type="string">
+            <column name="MATCH_SRC_FIELD_NAME" length="40" />
+        </property>
+        <property name="matchManagedSysId" type="string">
+            <column name="MATCH_MANAGED_SYS_ID" length="32" />
+        </property>
+
+        <property name="srcLoginId" type="string">
+            <column name="SRC_LOGIN_ID" length="100" />
+        </property>
+        <property name="srcPassword" type="string">
+            <column name="SRC_PASSWORD" length="100" />
+        </property>
+        <property name="srcHost" type="string">
+            <column name="SRC_HOST" length="100" />
+        </property>
+        <property name="driver" type="string">
+            <column name="DRIVER" length="50" />
+        </property>
+        <property name="connectionUrl" type="string">
+            <column name="CONNECTION_URL" length="100" />
+        </property>
+        <property name="query" type="string">
+            <column name="QUERY" length="1000" />
+        </property>        
+        <property name="queryTimeField" type="string">
+            <column name="QUERY_TIME_FIELD" length="50" />
+        </property>   
+         <property name="lastExecTime"  type="timestamp">
+            <column name="LAST_EXEC_TIME" length="19" />
+        </property>
+
+        <property name="lastRecProcessed"  type="string">
+            <column name="LAST_REC_PROCESSED" length="32" />
+        </property>
+
+
+         <property name="customMatchRule"  type="string">
+            <column name="CUSTOM_MATCH_RULE" length="100" />
+        </property>   
+         <property name="customAdatperScript"  type="string">
+            <column name="CUSTOM_ADAPTER_SCRIPT" length="80" />
+        </property>  
+
+         <property name="customMatchAttr"  type="string">
+            <column name="CUSTOM_MATCH_ATTR" length="40" />
+        </property>
+         <property name="baseDn"  type="string">
+            <column name="BASE_DN" length="40" />
+        </property>
+              
+    </class>
+</hibernate-mapping>
+
+
+
+
+

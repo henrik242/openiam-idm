@@ -1,0 +1,1720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ResourceDataServiceService" targetNamespace="urn:idm.openiam.org/srvc/res/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:idm.openiam.org/srvc/res/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/res/service" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/res/service" version="1.0">
+<xs:element name="addResource" type="tns:addResource"/>
+<xs:element name="addResourceProp" type="tns:addResourceProp"/>
+<xs:element name="addResourcePropResponse" type="tns:addResourcePropResponse"/>
+<xs:element name="addResourceResponse" type="tns:addResourceResponse"/>
+<xs:element name="addResourceRole" type="tns:addResourceRole"/>
+<xs:element name="addResourceRoleResponse" type="tns:addResourceRoleResponse"/>
+<xs:element name="addResourceType" type="tns:addResourceType"/>
+<xs:element name="addResourceTypeResponse" type="tns:addResourceTypeResponse"/>
+<xs:element name="addUserToResource" type="tns:addUserToResource"/>
+<xs:element name="addUserToResourceResponse" type="tns:addUserToResourceResponse"/>
+<xs:element name="findResourceProperties" type="tns:findResourceProperties"/>
+<xs:element name="findResourcePropertiesResponse" type="tns:findResourcePropertiesResponse"/>
+<xs:element name="findTypeOfResource" type="tns:findTypeOfResource"/>
+<xs:element name="findTypeOfResourceResponse" type="tns:findTypeOfResourceResponse"/>
+<xs:element name="getAllResourceProps" type="tns:getAllResourceProps"/>
+<xs:element name="getAllResourcePropsResponse" type="tns:getAllResourcePropsResponse"/>
+<xs:element name="getAllResourceRoles" type="tns:getAllResourceRoles"/>
+<xs:element name="getAllResourceRolesResponse" type="tns:getAllResourceRolesResponse"/>
+<xs:element name="getAllResourceTypes" type="tns:getAllResourceTypes"/>
+<xs:element name="getAllResourceTypesResponse" type="tns:getAllResourceTypesResponse"/>
+<xs:element name="getAllResources" type="tns:getAllResources"/>
+<xs:element name="getAllResourcesResponse" type="tns:getAllResourcesResponse"/>
+<xs:element name="getChildResources" type="tns:getChildResources"/>
+<xs:element name="getChildResourcesResponse" type="tns:getChildResourcesResponse"/>
+<xs:element name="getResource" type="tns:getResource"/>
+<xs:element name="getResourceByName" type="tns:getResourceByName"/>
+<xs:element name="getResourceByNameResponse" type="tns:getResourceByNameResponse"/>
+<xs:element name="getResourceFamily" type="tns:getResourceFamily"/>
+<xs:element name="getResourceFamilyResponse" type="tns:getResourceFamilyResponse"/>
+<xs:element name="getResourceProp" type="tns:getResourceProp"/>
+<xs:element name="getResourcePropResponse" type="tns:getResourcePropResponse"/>
+<xs:element name="getResourceResponse" type="tns:getResourceResponse"/>
+<xs:element name="getResourceRole" type="tns:getResourceRole"/>
+<xs:element name="getResourceRoleResponse" type="tns:getResourceRoleResponse"/>
+<xs:element name="getResourceTree" type="tns:getResourceTree"/>
+<xs:element name="getResourceTreeResponse" type="tns:getResourceTreeResponse"/>
+<xs:element name="getResourceTreeXML" type="tns:getResourceTreeXML"/>
+<xs:element name="getResourceTreeXMLResponse" type="tns:getResourceTreeXMLResponse"/>
+<xs:element name="getResourceType" type="tns:getResourceType"/>
+<xs:element name="getResourceTypeResponse" type="tns:getResourceTypeResponse"/>
+<xs:element name="getResourcesByBranch" type="tns:getResourcesByBranch"/>
+<xs:element name="getResourcesByBranchResponse" type="tns:getResourcesByBranchResponse"/>
+<xs:element name="getResourcesByCategory" type="tns:getResourcesByCategory"/>
+<xs:element name="getResourcesByCategoryResponse" type="tns:getResourcesByCategoryResponse"/>
+<xs:element name="getResourcesByName" type="tns:getResourcesByName"/>
+<xs:element name="getResourcesByNameResponse" type="tns:getResourcesByNameResponse"/>
+<xs:element name="getResourcesByType" type="tns:getResourcesByType"/>
+<xs:element name="getResourcesByTypeResponse" type="tns:getResourcesByTypeResponse"/>
+<xs:element name="getResourcesForRole" type="tns:getResourcesForRole"/>
+<xs:element name="getResourcesForRoleResponse" type="tns:getResourcesForRoleResponse"/>
+<xs:element name="getResourcesForRoles" type="tns:getResourcesForRoles"/>
+<xs:element name="getResourcesForRolesResponse" type="tns:getResourcesForRolesResponse"/>
+<xs:element name="getRootResources" type="tns:getRootResources"/>
+<xs:element name="getRootResourcesResponse" type="tns:getRootResourcesResponse"/>
+<xs:element name="getUserResources" type="tns:getUserResources"/>
+<xs:element name="getUserResourcesResponse" type="tns:getUserResourcesResponse"/>
+<xs:element name="isRoleAuthorized" type="tns:isRoleAuthorized"/>
+<xs:element name="isRoleAuthorizedResponse" type="tns:isRoleAuthorizedResponse"/>
+<xs:element name="isUserAuthorized" type="tns:isUserAuthorized"/>
+<xs:element name="isUserAuthorizedResponse" type="tns:isUserAuthorizedResponse"/>
+<xs:element name="removeAllResourceProps" type="tns:removeAllResourceProps"/>
+<xs:element name="removeAllResourcePropsResponse" type="tns:removeAllResourcePropsResponse"/>
+<xs:element name="removeAllResourceRoles" type="tns:removeAllResourceRoles"/>
+<xs:element name="removeAllResourceRolesResponse" type="tns:removeAllResourceRolesResponse"/>
+<xs:element name="removeAllResourceTypes" type="tns:removeAllResourceTypes"/>
+<xs:element name="removeAllResourceTypesResponse" type="tns:removeAllResourceTypesResponse"/>
+<xs:element name="removeAllResources" type="tns:removeAllResources"/>
+<xs:element name="removeAllResourcesResponse" type="tns:removeAllResourcesResponse"/>
+<xs:element name="removePropertiesByResource" type="tns:removePropertiesByResource"/>
+<xs:element name="removePropertiesByResourceResponse" type="tns:removePropertiesByResourceResponse"/>
+<xs:element name="removeResource" type="tns:removeResource"/>
+<xs:element name="removeResourceProp" type="tns:removeResourceProp"/>
+<xs:element name="removeResourcePropResponse" type="tns:removeResourcePropResponse"/>
+<xs:element name="removeResourceResponse" type="tns:removeResourceResponse"/>
+<xs:element name="removeResourceRole" type="tns:removeResourceRole"/>
+<xs:element name="removeResourceRoleResponse" type="tns:removeResourceRoleResponse"/>
+<xs:element name="removeResourceType" type="tns:removeResourceType"/>
+<xs:element name="removeResourceTypeResponse" type="tns:removeResourceTypeResponse"/>
+<xs:element name="removeResourcesByBranch" type="tns:removeResourcesByBranch"/>
+<xs:element name="removeResourcesByBranchResponse" type="tns:removeResourcesByBranchResponse"/>
+<xs:element name="removeResourcesByCategory" type="tns:removeResourcesByCategory"/>
+<xs:element name="removeResourcesByCategoryResponse" type="tns:removeResourcesByCategoryResponse"/>
+<xs:element name="removeResourcesByType" type="tns:removeResourcesByType"/>
+<xs:element name="removeResourcesByTypeResponse" type="tns:removeResourcesByTypeResponse"/>
+<xs:element name="removeUserFromAllResources" type="tns:removeUserFromAllResources"/>
+<xs:element name="removeUserFromAllResourcesResponse" type="tns:removeUserFromAllResourcesResponse"/>
+<xs:element name="updateResource" type="tns:updateResource"/>
+<xs:element name="updateResourceProp" type="tns:updateResourceProp"/>
+<xs:element name="updateResourcePropResponse" type="tns:updateResourcePropResponse"/>
+<xs:element name="updateResourceResponse" type="tns:updateResourceResponse"/>
+<xs:element name="updateResourceRole" type="tns:updateResourceRole"/>
+<xs:element name="updateResourceRoleResponse" type="tns:updateResourceRoleResponse"/>
+<xs:element name="updateResourceType" type="tns:updateResourceType"/>
+<xs:element name="updateResourceTypeResponse" type="tns:updateResourceTypeResponse"/>
+<xs:complexType name="addResourceProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourcePropId" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataId" type="xs:string"/>
+<xs:element minOccurs="0" name="propValue" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResourcePropResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Resource">
+<xs:complexContent>
+<xs:extension base="tns:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceType" type="tns:ResourceType"/>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceParent" type="xs:string"/>
+<xs:element minOccurs="0" name="branchId" type="xs:string"/>
+<xs:element minOccurs="0" name="categoryId" type="xs:string"/>
+<xs:element minOccurs="0" name="displayOrder" type="xs:int"/>
+<xs:element minOccurs="0" name="nodeLevel" type="xs:int"/>
+<xs:element minOccurs="0" name="sensitiveApp" type="xs:int"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="URL" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="resourceRoles" nillable="true" type="tns:ResourceRole"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="resourceProps" nillable="true" type="tns:ResourceProp"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="childResources" nillable="true" type="tns:Resource"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="resourceGroups" nillable="true" type="tns:ResourceGroup"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectState" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceType">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="provisionResource" type="xs:int"/>
+<xs:element minOccurs="0" name="processName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="tns:ResourceRoleId"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceRoleId">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="privilegeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceGroup">
+<xs:sequence>
+<xs:element minOccurs="0" name="resGroupId" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="groupId" type="xs:string"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByCategoryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceRoleResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceTree">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceTreeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceRoleId"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceRoleResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllResourceRoles">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removeAllResourceRolesResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getResourcesByType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllResourceTypes">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removeAllResourceTypesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllResources">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllResourcesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removePropertiesByResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removePropertiesByResourceResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isRoleAuthorized">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isRoleAuthorizedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceFamily">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceFamilyResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllResourceRoles">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllResourceRolesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceByNameResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceTypeResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="isUserAuthorized">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isUserAuthorizedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesForRoles">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesForRolesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllResourceTypes">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllResourceTypesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserResources">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserResourcesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ResourceUser"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="tns:ResourceUserId"/>
+<xs:element minOccurs="0" name="resource" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceUserId">
+<xs:sequence>
+<xs:element minOccurs="0" name="resourceId" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="privilegeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByTypeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByCategoryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcePropResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="addResourceType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResourceTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByNameResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getChildResources">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getChildResourcesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeUserFromAllResources">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeUserFromAllResourcesResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="addResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addUserToResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceUser"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addUserToResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceUser"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcePropResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesForRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesForRoleResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllResourceProps">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllResourcePropsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByBranch">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourcesByBranchResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourceProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateResourcePropResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByBranch">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourcesByBranchResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllResourceProps">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removeAllResourcePropsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findTypeOfResource">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findTypeOfResourceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllResources">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removeAllResourcesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceTreeXML">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResourceTreeXMLResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResourceRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResourceRoleResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ResourceRole"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceRole">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:ResourceRoleId"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeResourceRoleResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="findResourceProperties">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findResourcePropertiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ResourceProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getRootResources">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getRootResourcesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Resource"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="removeAllResources">
+    <wsdl:part name="parameters" element="tns:removeAllResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUserFromAllResourcesResponse">
+    <wsdl:part name="parameters" element="tns:removeUserFromAllResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourcePropResponse">
+    <wsdl:part name="parameters" element="tns:addResourcePropResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceTreeResponse">
+    <wsdl:part name="parameters" element="tns:getResourceTreeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserToResource">
+    <wsdl:part name="parameters" element="tns:addUserToResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePropertiesByResource">
+    <wsdl:part name="parameters" element="tns:removePropertiesByResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTypeOfResourceResponse">
+    <wsdl:part name="parameters" element="tns:findTypeOfResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResource">
+    <wsdl:part name="parameters" element="tns:addResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesForRoles">
+    <wsdl:part name="parameters" element="tns:getResourcesForRoles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceType">
+    <wsdl:part name="parameters" element="tns:addResourceType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourceProps">
+    <wsdl:part name="parameters" element="tns:getAllResourceProps">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootResources">
+    <wsdl:part name="parameters" element="tns:getRootResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findResourcePropertiesResponse">
+    <wsdl:part name="parameters" element="tns:findResourcePropertiesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourcesResponse">
+    <wsdl:part name="parameters" element="tns:getAllResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceFamily">
+    <wsdl:part name="parameters" element="tns:getResourceFamily">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceTreeXMLResponse">
+    <wsdl:part name="parameters" element="tns:getResourceTreeXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserToResourceResponse">
+    <wsdl:part name="parameters" element="tns:addUserToResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootResourcesResponse">
+    <wsdl:part name="parameters" element="tns:getRootResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceRoleResponse">
+    <wsdl:part name="parameters" element="tns:removeResourceRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceTypeResponse">
+    <wsdl:part name="parameters" element="tns:updateResourceTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByCategory">
+    <wsdl:part name="parameters" element="tns:getResourcesByCategory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByType">
+    <wsdl:part name="parameters" element="tns:getResourcesByType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRoleAuthorized">
+    <wsdl:part name="parameters" element="tns:isRoleAuthorized">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceRoleResponse">
+    <wsdl:part name="parameters" element="tns:updateResourceRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceProp">
+    <wsdl:part name="parameters" element="tns:getResourceProp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceProp">
+    <wsdl:part name="parameters" element="tns:removeResourceProp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceTreeXML">
+    <wsdl:part name="parameters" element="tns:getResourceTreeXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceRoleResponse">
+    <wsdl:part name="parameters" element="tns:addResourceRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceRole">
+    <wsdl:part name="parameters" element="tns:getResourceRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserResources">
+    <wsdl:part name="parameters" element="tns:getUserResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceResponse">
+    <wsdl:part name="parameters" element="tns:addResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourceRoles">
+    <wsdl:part name="parameters" element="tns:getAllResourceRoles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceRole">
+    <wsdl:part name="parameters" element="tns:removeResourceRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourceRoles">
+    <wsdl:part name="parameters" element="tns:removeAllResourceRoles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceRole">
+    <wsdl:part name="parameters" element="tns:addResourceRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourceTypesResponse">
+    <wsdl:part name="parameters" element="tns:getAllResourceTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByNameResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceResponse">
+    <wsdl:part name="parameters" element="tns:getResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isUserAuthorizedResponse">
+    <wsdl:part name="parameters" element="tns:isUserAuthorizedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceTypeResponse">
+    <wsdl:part name="parameters" element="tns:removeResourceTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByBranchResponse">
+    <wsdl:part name="parameters" element="tns:removeResourcesByBranchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByType">
+    <wsdl:part name="parameters" element="tns:removeResourcesByType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChildResources">
+    <wsdl:part name="parameters" element="tns:getChildResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByCategoryResponse">
+    <wsdl:part name="parameters" element="tns:removeResourcesByCategoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChildResourcesResponse">
+    <wsdl:part name="parameters" element="tns:getChildResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByTypeResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByBranch">
+    <wsdl:part name="parameters" element="tns:getResourcesByBranch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByName">
+    <wsdl:part name="parameters" element="tns:getResourcesByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourceTypes">
+    <wsdl:part name="parameters" element="tns:getAllResourceTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcePropResponse">
+    <wsdl:part name="parameters" element="tns:getResourcePropResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResources">
+    <wsdl:part name="parameters" element="tns:getAllResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceType">
+    <wsdl:part name="parameters" element="tns:removeResourceType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcePropResponse">
+    <wsdl:part name="parameters" element="tns:removeResourcePropResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceType">
+    <wsdl:part name="parameters" element="tns:updateResourceType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourceTypes">
+    <wsdl:part name="parameters" element="tns:removeAllResourceTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesForRolesResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesForRolesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserResourcesResponse">
+    <wsdl:part name="parameters" element="tns:getUserResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRoleAuthorizedResponse">
+    <wsdl:part name="parameters" element="tns:isRoleAuthorizedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourceRolesResponse">
+    <wsdl:part name="parameters" element="tns:getAllResourceRolesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourceProps">
+    <wsdl:part name="parameters" element="tns:removeAllResourceProps">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceFamilyResponse">
+    <wsdl:part name="parameters" element="tns:getResourceFamilyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findTypeOfResource">
+    <wsdl:part name="parameters" element="tns:findTypeOfResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByCategoryResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesByCategoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourceTypesResponse">
+    <wsdl:part name="parameters" element="tns:removeAllResourceTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourcePropResponse">
+    <wsdl:part name="parameters" element="tns:updateResourcePropResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResourcePropsResponse">
+    <wsdl:part name="parameters" element="tns:getAllResourcePropsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesForRole">
+    <wsdl:part name="parameters" element="tns:getResourcesForRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByCategory">
+    <wsdl:part name="parameters" element="tns:removeResourcesByCategory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourcePropsResponse">
+    <wsdl:part name="parameters" element="tns:removeAllResourcePropsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByBranch">
+    <wsdl:part name="parameters" element="tns:removeResourcesByBranch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUserFromAllResources">
+    <wsdl:part name="parameters" element="tns:removeUserFromAllResources">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceTypeResponse">
+    <wsdl:part name="parameters" element="tns:addResourceTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResource">
+    <wsdl:part name="parameters" element="tns:updateResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourcesByTypeResponse">
+    <wsdl:part name="parameters" element="tns:removeResourcesByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResource">
+    <wsdl:part name="parameters" element="tns:removeResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourceRolesResponse">
+    <wsdl:part name="parameters" element="tns:removeAllResourceRolesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceType">
+    <wsdl:part name="parameters" element="tns:getResourceType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllResourcesResponse">
+    <wsdl:part name="parameters" element="tns:removeAllResourcesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceByNameResponse">
+    <wsdl:part name="parameters" element="tns:getResourceByNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceTree">
+    <wsdl:part name="parameters" element="tns:getResourceTree">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findResourceProperties">
+    <wsdl:part name="parameters" element="tns:findResourceProperties">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceResponse">
+    <wsdl:part name="parameters" element="tns:updateResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResourceResponse">
+    <wsdl:part name="parameters" element="tns:removeResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceRoleResponse">
+    <wsdl:part name="parameters" element="tns:getResourceRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceByName">
+    <wsdl:part name="parameters" element="tns:getResourceByName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceRole">
+    <wsdl:part name="parameters" element="tns:updateResourceRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourceTypeResponse">
+    <wsdl:part name="parameters" element="tns:getResourceTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesForRoleResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesForRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePropertiesByResourceResponse">
+    <wsdl:part name="parameters" element="tns:removePropertiesByResourceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isUserAuthorized">
+    <wsdl:part name="parameters" element="tns:isUserAuthorized">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResourceProp">
+    <wsdl:part name="parameters" element="tns:addResourceProp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResource">
+    <wsdl:part name="parameters" element="tns:getResource">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResourceProp">
+    <wsdl:part name="parameters" element="tns:updateResourceProp">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResourcesByBranchResponse">
+    <wsdl:part name="parameters" element="tns:getResourcesByBranchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ResourceDataWebService">
+    <wsdl:operation name="addResourceProp">
+      <wsdl:input name="addResourceProp" message="tns:addResourceProp">
+    </wsdl:input>
+      <wsdl:output name="addResourcePropResponse" message="tns:addResourcePropResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResource">
+      <wsdl:input name="updateResource" message="tns:updateResource">
+    </wsdl:input>
+      <wsdl:output name="updateResourceResponse" message="tns:updateResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByCategory">
+      <wsdl:input name="removeResourcesByCategory" message="tns:removeResourcesByCategory">
+    </wsdl:input>
+      <wsdl:output name="removeResourcesByCategoryResponse" message="tns:removeResourcesByCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceRole">
+      <wsdl:input name="updateResourceRole" message="tns:updateResourceRole">
+    </wsdl:input>
+      <wsdl:output name="updateResourceRoleResponse" message="tns:updateResourceRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceTree">
+      <wsdl:input name="getResourceTree" message="tns:getResourceTree">
+    </wsdl:input>
+      <wsdl:output name="getResourceTreeResponse" message="tns:getResourceTreeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceRole">
+      <wsdl:input name="getResourceRole" message="tns:getResourceRole">
+    </wsdl:input>
+      <wsdl:output name="getResourceRoleResponse" message="tns:getResourceRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceRoles">
+      <wsdl:input name="removeAllResourceRoles" message="tns:removeAllResourceRoles">
+    </wsdl:input>
+      <wsdl:output name="removeAllResourceRolesResponse" message="tns:removeAllResourceRolesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByType">
+      <wsdl:input name="getResourcesByType" message="tns:getResourcesByType">
+    </wsdl:input>
+      <wsdl:output name="getResourcesByTypeResponse" message="tns:getResourcesByTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceType">
+      <wsdl:input name="updateResourceType" message="tns:updateResourceType">
+    </wsdl:input>
+      <wsdl:output name="updateResourceTypeResponse" message="tns:updateResourceTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceTypes">
+      <wsdl:input name="removeAllResourceTypes" message="tns:removeAllResourceTypes">
+    </wsdl:input>
+      <wsdl:output name="removeAllResourceTypesResponse" message="tns:removeAllResourceTypesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResources">
+      <wsdl:input name="getAllResources" message="tns:getAllResources">
+    </wsdl:input>
+      <wsdl:output name="getAllResourcesResponse" message="tns:getAllResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResource">
+      <wsdl:input name="removeResource" message="tns:removeResource">
+    </wsdl:input>
+      <wsdl:output name="removeResourceResponse" message="tns:removeResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePropertiesByResource">
+      <wsdl:input name="removePropertiesByResource" message="tns:removePropertiesByResource">
+    </wsdl:input>
+      <wsdl:output name="removePropertiesByResourceResponse" message="tns:removePropertiesByResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <wsdl:input name="isRoleAuthorized" message="tns:isRoleAuthorized">
+    </wsdl:input>
+      <wsdl:output name="isRoleAuthorizedResponse" message="tns:isRoleAuthorizedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceType">
+      <wsdl:input name="getResourceType" message="tns:getResourceType">
+    </wsdl:input>
+      <wsdl:output name="getResourceTypeResponse" message="tns:getResourceTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResource">
+      <wsdl:input name="getResource" message="tns:getResource">
+    </wsdl:input>
+      <wsdl:output name="getResourceResponse" message="tns:getResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceFamily">
+      <wsdl:input name="getResourceFamily" message="tns:getResourceFamily">
+    </wsdl:input>
+      <wsdl:output name="getResourceFamilyResponse" message="tns:getResourceFamilyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceRoles">
+      <wsdl:input name="getAllResourceRoles" message="tns:getAllResourceRoles">
+    </wsdl:input>
+      <wsdl:output name="getAllResourceRolesResponse" message="tns:getAllResourceRolesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceByName">
+      <wsdl:input name="getResourceByName" message="tns:getResourceByName">
+    </wsdl:input>
+      <wsdl:output name="getResourceByNameResponse" message="tns:getResourceByNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceType">
+      <wsdl:input name="removeResourceType" message="tns:removeResourceType">
+    </wsdl:input>
+      <wsdl:output name="removeResourceTypeResponse" message="tns:removeResourceTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <wsdl:input name="isUserAuthorized" message="tns:isUserAuthorized">
+    </wsdl:input>
+      <wsdl:output name="isUserAuthorizedResponse" message="tns:isUserAuthorizedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesForRoles">
+      <wsdl:input name="getResourcesForRoles" message="tns:getResourcesForRoles">
+    </wsdl:input>
+      <wsdl:output name="getResourcesForRolesResponse" message="tns:getResourcesForRolesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceTypes">
+      <wsdl:input name="getAllResourceTypes" message="tns:getAllResourceTypes">
+    </wsdl:input>
+      <wsdl:output name="getAllResourceTypesResponse" message="tns:getAllResourceTypesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserResources">
+      <wsdl:input name="getUserResources" message="tns:getUserResources">
+    </wsdl:input>
+      <wsdl:output name="getUserResourcesResponse" message="tns:getUserResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByType">
+      <wsdl:input name="removeResourcesByType" message="tns:removeResourcesByType">
+    </wsdl:input>
+      <wsdl:output name="removeResourcesByTypeResponse" message="tns:removeResourcesByTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByCategory">
+      <wsdl:input name="getResourcesByCategory" message="tns:getResourcesByCategory">
+    </wsdl:input>
+      <wsdl:output name="getResourcesByCategoryResponse" message="tns:getResourcesByCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceProp">
+      <wsdl:input name="removeResourceProp" message="tns:removeResourceProp">
+    </wsdl:input>
+      <wsdl:output name="removeResourcePropResponse" message="tns:removeResourcePropResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResourceType">
+      <wsdl:input name="addResourceType" message="tns:addResourceType">
+    </wsdl:input>
+      <wsdl:output name="addResourceTypeResponse" message="tns:addResourceTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByName">
+      <wsdl:input name="getResourcesByName" message="tns:getResourcesByName">
+    </wsdl:input>
+      <wsdl:output name="getResourcesByNameResponse" message="tns:getResourcesByNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChildResources">
+      <wsdl:input name="getChildResources" message="tns:getChildResources">
+    </wsdl:input>
+      <wsdl:output name="getChildResourcesResponse" message="tns:getChildResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUserFromAllResources">
+      <wsdl:input name="removeUserFromAllResources" message="tns:removeUserFromAllResources">
+    </wsdl:input>
+      <wsdl:output name="removeUserFromAllResourcesResponse" message="tns:removeUserFromAllResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResource">
+      <wsdl:input name="addResource" message="tns:addResource">
+    </wsdl:input>
+      <wsdl:output name="addResourceResponse" message="tns:addResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUserToResource">
+      <wsdl:input name="addUserToResource" message="tns:addUserToResource">
+    </wsdl:input>
+      <wsdl:output name="addUserToResourceResponse" message="tns:addUserToResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceProp">
+      <wsdl:input name="getResourceProp" message="tns:getResourceProp">
+    </wsdl:input>
+      <wsdl:output name="getResourcePropResponse" message="tns:getResourcePropResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesForRole">
+      <wsdl:input name="getResourcesForRole" message="tns:getResourcesForRole">
+    </wsdl:input>
+      <wsdl:output name="getResourcesForRoleResponse" message="tns:getResourcesForRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceProps">
+      <wsdl:input name="getAllResourceProps" message="tns:getAllResourceProps">
+    </wsdl:input>
+      <wsdl:output name="getAllResourcePropsResponse" message="tns:getAllResourcePropsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByBranch">
+      <wsdl:input name="getResourcesByBranch" message="tns:getResourcesByBranch">
+    </wsdl:input>
+      <wsdl:output name="getResourcesByBranchResponse" message="tns:getResourcesByBranchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceProp">
+      <wsdl:input name="updateResourceProp" message="tns:updateResourceProp">
+    </wsdl:input>
+      <wsdl:output name="updateResourcePropResponse" message="tns:updateResourcePropResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByBranch">
+      <wsdl:input name="removeResourcesByBranch" message="tns:removeResourcesByBranch">
+    </wsdl:input>
+      <wsdl:output name="removeResourcesByBranchResponse" message="tns:removeResourcesByBranchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceProps">
+      <wsdl:input name="removeAllResourceProps" message="tns:removeAllResourceProps">
+    </wsdl:input>
+      <wsdl:output name="removeAllResourcePropsResponse" message="tns:removeAllResourcePropsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findTypeOfResource">
+      <wsdl:input name="findTypeOfResource" message="tns:findTypeOfResource">
+    </wsdl:input>
+      <wsdl:output name="findTypeOfResourceResponse" message="tns:findTypeOfResourceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResources">
+      <wsdl:input name="removeAllResources" message="tns:removeAllResources">
+    </wsdl:input>
+      <wsdl:output name="removeAllResourcesResponse" message="tns:removeAllResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceTreeXML">
+      <wsdl:input name="getResourceTreeXML" message="tns:getResourceTreeXML">
+    </wsdl:input>
+      <wsdl:output name="getResourceTreeXMLResponse" message="tns:getResourceTreeXMLResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResourceRole">
+      <wsdl:input name="addResourceRole" message="tns:addResourceRole">
+    </wsdl:input>
+      <wsdl:output name="addResourceRoleResponse" message="tns:addResourceRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceRole">
+      <wsdl:input name="removeResourceRole" message="tns:removeResourceRole">
+    </wsdl:input>
+      <wsdl:output name="removeResourceRoleResponse" message="tns:removeResourceRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findResourceProperties">
+      <wsdl:input name="findResourceProperties" message="tns:findResourceProperties">
+    </wsdl:input>
+      <wsdl:output name="findResourcePropertiesResponse" message="tns:findResourcePropertiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootResources">
+      <wsdl:input name="getRootResources" message="tns:getRootResources">
+    </wsdl:input>
+      <wsdl:output name="getRootResourcesResponse" message="tns:getRootResourcesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ResourceDataServiceServiceSoapBinding" type="tns:ResourceDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addResourceProp">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addResourceProp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResourcePropResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourcesByCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourcesByCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateResourceRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResourceRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceTree">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceTree">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceTreeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesByType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesByTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllResourceRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllResourceRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateResourceType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResourceTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceTypes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllResourceTypes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllResourceTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isRoleAuthorized">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isRoleAuthorizedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePropertiesByResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removePropertiesByResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removePropertiesByResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllResourceRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllResourceRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceFamily">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceFamily">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceFamilyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceByName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourceType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourceTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isUserAuthorized">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isUserAuthorizedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceTypes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllResourceTypes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllResourceTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesForRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesForRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesForRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesByCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesByCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourcesByType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourcesByTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceProp">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourceProp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourcePropResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResourceType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addResourceType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResourceTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChildResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getChildResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getChildResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUserFromAllResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeUserFromAllResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeUserFromAllResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUserToResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addUserToResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addUserToResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceProp">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceProp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcePropResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResourceProps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllResourceProps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllResourcePropsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesForRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesForRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesForRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourcesByBranch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourcesByBranch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourcesByBranchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateResourceProp">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateResourceProp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResourcePropResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourcesByBranch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourcesByBranch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourcesByBranchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResourceProps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllResourceProps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllResourcePropsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findTypeOfResource">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findTypeOfResource">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findTypeOfResourceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addResourceRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addResourceRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResourceRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResourceTreeXML">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getResourceTreeXML">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResourceTreeXMLResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findResourceProperties">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findResourceProperties">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findResourcePropertiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeResourceRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeResourceRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResourceRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRootResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRootResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ResourceDataServiceService">
+    <wsdl:port name="ResourceDataWebServicePort" binding="tns:ResourceDataServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ResourceDataWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

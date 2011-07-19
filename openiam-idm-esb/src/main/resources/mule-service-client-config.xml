@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" 
+	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" 
+	xmlns:spring="http://www.springframework.org/schema/beans"
+ 	xmlns:context="http://www.springframework.org/schema/context"	
+ 	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xsi:schemaLocation="
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        	http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+        	http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.1/mule-http.xsd
+       	  	http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd
+          	http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.1/mule-jms.xsd
+         	 http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/3.1/mule-cxf.xsd" >
+
+
+
+		<message-properties-transformer  name="serviceContentType" scope="outbound">
+           <add-message-property key="Content-Type" value="text/xml" />
+        </message-properties-transformer>
+        
+           
+		
+		<flow name="connectorClientAdd">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageAdd" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]" exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="add" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+
+		</flow>
+	
+		<flow name="connectorClientModify">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageModify" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response"  >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="modify" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+	
+		
+		<flow name="connectorClientDelete">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageDelete" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="delete" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+	
+
+		<flow name="connectorClientExpirePassword">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageExpirePassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="expirePassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>					
+
+		<flow name="connectorClientExpireLookup">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageLookup" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="lookup" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>					
+
+		<flow name="connectorClientResetPassword">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageResetPassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="resetPassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	 		
+
+		<flow name="connectorClientResume">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageResume" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="resume" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	 		
+
+		<flow name="connectorClientSetPassword">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageSetPassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="setPassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	 
+
+		<flow name="connectorClientSuspend">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageSuspend" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="suspend" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+
+		<flow name="connectorClientTestConnection">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageTestConnection" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="testConnection" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+
+		<flow name="connectorClientValidatePassword">
+  			<vm:inbound-endpoint path="dispatchConnectorMessageValidatePassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint 
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.ConnectorService" operation="validatePassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>			
+
+		<!--  REMOTE CONNECTOR INTERFACE -->
+
+		<flow name="remoteConnectorClientAdd">
+  			<vm:inbound-endpoint path="remoteConnectorMessageAdd" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]" exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="add" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+
+		</flow>
+		
+		<flow name="remoteConnectorClientModify">
+  			<vm:inbound-endpoint path="remoteConnectorMessageModify" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"	exchange-pattern="request-response"  >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="modify" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+
+		<flow name="remoteConnectorClientDelete">
+  			<vm:inbound-endpoint path="remoteConnectorMessageDelete" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="delete" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+	
+	  <flow name="remoteConnectorClientResetPassword">
+  			<vm:inbound-endpoint path="remoteConnectorMessageResetPassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="resetPassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>		
+		
+		<flow name="remoteConnectorClientSetPassword">
+  			<vm:inbound-endpoint path="remoteConnectorMessageSetPassword" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="setPassword" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+	
+		<flow name="remoteConnectorClientResume">
+  			<vm:inbound-endpoint path="remoteConnectorMessageResume" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="resume" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+	
+		<flow name="remoteConnectorClientSuspend">
+  			<vm:inbound-endpoint path="remoteConnectorMessageSuspend" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="suspend" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+		
+		<flow name="remoteConnectorClientLookup">
+  			<vm:inbound-endpoint path="remoteConnectorMessageLookup" exchange-pattern="request-response"  >
+  			</vm:inbound-endpoint>
+  				 		   		
+	  		<outbound-endpoint responseTimeout="18000000"
+	  			address="http://#[header:INBOUND:serviceName]"
+	  			exchange-pattern="request-response" >
+	
+	  			 <cxf:jaxws-client serviceClass="org.openiam.spml2.interf.RemoteConnectorService" operation="lookup" >
+	  			 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>	
+
+		<flow name="synchronizationClient">
+  			<vm:inbound-endpoint path="synchronizationMessage" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+  				 		   		  				 		   		
+	  		<outbound-endpoint responseTimeout="72000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]IdentitySynchWebService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.idm.srvc.synch.ws.IdentitySynchWebService" operation="startSynchronization"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+
+    <!-- RECONCILIATION SYNCH CALL -->
+
+        <flow name="reconciliationClient">
+  			<vm:inbound-endpoint path="reconciliationMessage" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+
+	  		<outbound-endpoint responseTimeout="72000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]ReconciliationWebService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.idm.srvc.recon.ws.ReconciliationWebService" operation="startReconciliation"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+
+        <flow name="provisionServiceAddUser">
+  			<vm:inbound-endpoint path="provisionServiceAddMessage" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+
+	  		<outbound-endpoint responseTimeout="90000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]ProvisioningService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.provision.service.DefaultProvisioningService" operation="addUser"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+
+         <flow name="provisionServiceModifyUser">
+  			<vm:inbound-endpoint path="provisionServiceModifyMessage" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+
+	  		<outbound-endpoint responseTimeout="90000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]ProvisioningService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.provision.service.DefaultProvisioningService" operation="modifyUser"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+
+         <flow name="provisionServiceDeleteUser">
+  			<vm:inbound-endpoint path="provisionServiceDeleteMessage" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+
+	  		<outbound-endpoint responseTimeout="90000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]ProvisioningService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.provision.service.DefaultProvisioningService" operation="modifyUser"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
+	
+</mule>
+

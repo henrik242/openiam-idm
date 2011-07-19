@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PolicyDataServiceService" targetNamespace="http://service.policy.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.policy.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.policy.srvc.idm.openiam.org/" elementFormDefault="unqualified" targetNamespace="http://service.policy.srvc.idm.openiam.org/" version="1.0">
+<xs:element name="addPolicy" type="tns:addPolicy"/>
+<xs:element name="addPolicyDefinition" type="tns:addPolicyDefinition"/>
+<xs:element name="addPolicyDefinitionResponse" type="tns:addPolicyDefinitionResponse"/>
+<xs:element name="addPolicyResponse" type="tns:addPolicyResponse"/>
+<xs:element name="associatePolicyToObject" type="tns:associatePolicyToObject"/>
+<xs:element name="associatePolicyToObjectResponse" type="tns:associatePolicyToObjectResponse"/>
+<xs:element name="getAllPolicies" type="tns:getAllPolicies"/>
+<xs:element name="getAllPoliciesResponse" type="tns:getAllPoliciesResponse"/>
+<xs:element name="getAllPolicyDef" type="tns:getAllPolicyDef"/>
+<xs:element name="getAllPolicyDefResponse" type="tns:getAllPolicyDefResponse"/>
+<xs:element name="getAssociationsForPolicy" type="tns:getAssociationsForPolicy"/>
+<xs:element name="getAssociationsForPolicyResponse" type="tns:getAssociationsForPolicyResponse"/>
+<xs:element name="getPolicy" type="tns:getPolicy"/>
+<xs:element name="getPolicyDefParamByGroup" type="tns:getPolicyDefParamByGroup"/>
+<xs:element name="getPolicyDefParamByGroupResponse" type="tns:getPolicyDefParamByGroupResponse"/>
+<xs:element name="getPolicyDefinition" type="tns:getPolicyDefinition"/>
+<xs:element name="getPolicyDefinitionResponse" type="tns:getPolicyDefinitionResponse"/>
+<xs:element name="getPolicyResponse" type="tns:getPolicyResponse"/>
+<xs:element name="getPolicyTypes" type="tns:getPolicyTypes"/>
+<xs:element name="getPolicyTypesResponse" type="tns:getPolicyTypesResponse"/>
+<xs:element name="isPolicyExist" type="tns:isPolicyExist"/>
+<xs:element name="isPolicyExistResponse" type="tns:isPolicyExistResponse"/>
+<xs:element name="removePolicy" type="tns:removePolicy"/>
+<xs:element name="removePolicyDefinition" type="tns:removePolicyDefinition"/>
+<xs:element name="removePolicyDefinitionResponse" type="tns:removePolicyDefinitionResponse"/>
+<xs:element name="removePolicyResponse" type="tns:removePolicyResponse"/>
+<xs:element name="updatePolicy" type="tns:updatePolicy"/>
+<xs:element name="updatePolicyAssociation" type="tns:updatePolicyAssociation"/>
+<xs:element name="updatePolicyAssociationResponse" type="tns:updatePolicyAssociationResponse"/>
+<xs:element name="updatePolicyDefinition" type="tns:updatePolicyDefinition"/>
+<xs:element name="updatePolicyDefinitionResponse" type="tns:updatePolicyDefinitionResponse"/>
+<xs:element name="updatePolicyResponse" type="tns:updatePolicyResponse"/>
+<xs:complexType name="removePolicy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removePolicyResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getPolicyDefParamByGroup">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPolicyDefParamByGroupResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:PolicyDefParam"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyDefParam">
+<xs:sequence>
+<xs:element minOccurs="0" name="defParamId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyDefId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="xs:string"/>
+<xs:element minOccurs="0" name="value1" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+<xs:element minOccurs="0" name="repeats" type="xs:int"/>
+<xs:element minOccurs="0" name="policyParamHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="handlerLanguage" type="xs:string"/>
+<xs:element minOccurs="0" name="paramGroup" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyAttributes" nillable="true" type="tns:PolicyAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyAttrId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="defParamId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="xs:string"/>
+<xs:element minOccurs="0" name="value1" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+<xs:element minOccurs="0" name="rule" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicyDefinition">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:PolicyDef"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyDef">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyDefId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="policyType" type="xs:string"/>
+<xs:element minOccurs="0" name="locationType" type="xs:string"/>
+<xs:element minOccurs="0" name="policyRule" type="xs:string"/>
+<xs:element minOccurs="0" name="policyHandler" type="xs:string"/>
+<xs:element minOccurs="0" name="policyAdviseHandler" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyDefParams" nillable="true" type="tns:PolicyDefParam"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policies" nillable="true" type="tns:Policy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Policy">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyDefId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:int"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="rule" type="xs:string"/>
+<xs:element minOccurs="0" name="ruleSrcUrl" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyMemberships" nillable="true" type="tns:PolicyMembership"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="policyAttributes" nillable="true" type="tns:PolicyAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyMembership">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyMemId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceType" type="xs:string"/>
+<xs:element minOccurs="0" name="resourceObjId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicyDefinitionResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAssociationsForPolicy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAssociationsForPolicyResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:PolicyObjectAssoc"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PolicyObjectAssoc">
+<xs:sequence>
+<xs:element minOccurs="0" name="policyObjectId" type="xs:string"/>
+<xs:element minOccurs="0" name="policyId" type="xs:string"/>
+<xs:element minOccurs="0" name="associationLevel" type="xs:string"/>
+<xs:element minOccurs="0" name="associationValue" type="xs:string"/>
+<xs:element minOccurs="0" name="objectType" type="xs:string"/>
+<xs:element minOccurs="0" name="objectId" type="xs:string"/>
+<xs:element minOccurs="0" name="parentAssocId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addPolicy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Policy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addPolicyResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getPolicy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPolicyResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Policy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addPolicyDefinition">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:PolicyDef"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addPolicyDefinitionResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="isPolicyExist">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isPolicyExistResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllPolicyDef">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllPolicyDefResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:PolicyDef"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="associatePolicyToObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:PolicyObjectAssoc"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="associatePolicyToObjectResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="removePolicyDefinition">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removePolicyDefinitionResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getPolicyTypes">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getPolicyTypesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:Policy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicyResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllPolicies">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllPoliciesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Policy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicyAssociation">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:PolicyObjectAssoc"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updatePolicyAssociationResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getPolicyDefinition">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPolicyDefinitionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:PolicyDef"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllPolicies">
+    <wsdl:part name="parameters" element="tns:getAllPolicies">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPolicyExist">
+    <wsdl:part name="parameters" element="tns:isPolicyExist">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPolicyResponse">
+    <wsdl:part name="parameters" element="tns:addPolicyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicyResponse">
+    <wsdl:part name="parameters" element="tns:updatePolicyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssociationsForPolicy">
+    <wsdl:part name="parameters" element="tns:getAssociationsForPolicy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="associatePolicyToObjectResponse">
+    <wsdl:part name="parameters" element="tns:associatePolicyToObjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyTypesResponse">
+    <wsdl:part name="parameters" element="tns:getPolicyTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicyDefinition">
+    <wsdl:part name="parameters" element="tns:updatePolicyDefinition">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPolicyExistResponse">
+    <wsdl:part name="parameters" element="tns:isPolicyExistResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPolicyDefinition">
+    <wsdl:part name="parameters" element="tns:addPolicyDefinition">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicy">
+    <wsdl:part name="parameters" element="tns:getPolicy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicyDefinitionResponse">
+    <wsdl:part name="parameters" element="tns:updatePolicyDefinitionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyDefParamByGroupResponse">
+    <wsdl:part name="parameters" element="tns:getPolicyDefParamByGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPolicyDef">
+    <wsdl:part name="parameters" element="tns:getAllPolicyDef">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyDefinitionResponse">
+    <wsdl:part name="parameters" element="tns:getPolicyDefinitionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicyAssociationResponse">
+    <wsdl:part name="parameters" element="tns:updatePolicyAssociationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyTypes">
+    <wsdl:part name="parameters" element="tns:getPolicyTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssociationsForPolicyResponse">
+    <wsdl:part name="parameters" element="tns:getAssociationsForPolicyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicyAssociation">
+    <wsdl:part name="parameters" element="tns:updatePolicyAssociation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePolicy">
+    <wsdl:part name="parameters" element="tns:removePolicy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPolicyDefResponse">
+    <wsdl:part name="parameters" element="tns:getAllPolicyDefResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPolicy">
+    <wsdl:part name="parameters" element="tns:addPolicy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePolicyDefinitionResponse">
+    <wsdl:part name="parameters" element="tns:removePolicyDefinitionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPoliciesResponse">
+    <wsdl:part name="parameters" element="tns:getAllPoliciesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePolicyDefinition">
+    <wsdl:part name="parameters" element="tns:removePolicyDefinition">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyDefParamByGroup">
+    <wsdl:part name="parameters" element="tns:getPolicyDefParamByGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePolicy">
+    <wsdl:part name="parameters" element="tns:updatePolicy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyDefinition">
+    <wsdl:part name="parameters" element="tns:getPolicyDefinition">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removePolicyResponse">
+    <wsdl:part name="parameters" element="tns:removePolicyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPolicyDefinitionResponse">
+    <wsdl:part name="parameters" element="tns:addPolicyDefinitionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="associatePolicyToObject">
+    <wsdl:part name="parameters" element="tns:associatePolicyToObject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPolicyResponse">
+    <wsdl:part name="parameters" element="tns:getPolicyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PolicyDataService">
+    <wsdl:operation name="removePolicy">
+      <wsdl:input name="removePolicy" message="tns:removePolicy">
+    </wsdl:input>
+      <wsdl:output name="removePolicyResponse" message="tns:removePolicyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyDefParamByGroup">
+      <wsdl:input name="getPolicyDefParamByGroup" message="tns:getPolicyDefParamByGroup">
+    </wsdl:input>
+      <wsdl:output name="getPolicyDefParamByGroupResponse" message="tns:getPolicyDefParamByGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicyDefinition">
+      <wsdl:input name="updatePolicyDefinition" message="tns:updatePolicyDefinition">
+    </wsdl:input>
+      <wsdl:output name="updatePolicyDefinitionResponse" message="tns:updatePolicyDefinitionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAssociationsForPolicy">
+      <wsdl:input name="getAssociationsForPolicy" message="tns:getAssociationsForPolicy">
+    </wsdl:input>
+      <wsdl:output name="getAssociationsForPolicyResponse" message="tns:getAssociationsForPolicyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPolicy">
+      <wsdl:input name="addPolicy" message="tns:addPolicy">
+    </wsdl:input>
+      <wsdl:output name="addPolicyResponse" message="tns:addPolicyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicy">
+      <wsdl:input name="getPolicy" message="tns:getPolicy">
+    </wsdl:input>
+      <wsdl:output name="getPolicyResponse" message="tns:getPolicyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPolicyDefinition">
+      <wsdl:input name="addPolicyDefinition" message="tns:addPolicyDefinition">
+    </wsdl:input>
+      <wsdl:output name="addPolicyDefinitionResponse" message="tns:addPolicyDefinitionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPolicyExist">
+      <wsdl:input name="isPolicyExist" message="tns:isPolicyExist">
+    </wsdl:input>
+      <wsdl:output name="isPolicyExistResponse" message="tns:isPolicyExistResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPolicyDef">
+      <wsdl:input name="getAllPolicyDef" message="tns:getAllPolicyDef">
+    </wsdl:input>
+      <wsdl:output name="getAllPolicyDefResponse" message="tns:getAllPolicyDefResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="associatePolicyToObject">
+      <wsdl:input name="associatePolicyToObject" message="tns:associatePolicyToObject">
+    </wsdl:input>
+      <wsdl:output name="associatePolicyToObjectResponse" message="tns:associatePolicyToObjectResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePolicyDefinition">
+      <wsdl:input name="removePolicyDefinition" message="tns:removePolicyDefinition">
+    </wsdl:input>
+      <wsdl:output name="removePolicyDefinitionResponse" message="tns:removePolicyDefinitionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyTypes">
+      <wsdl:input name="getPolicyTypes" message="tns:getPolicyTypes">
+    </wsdl:input>
+      <wsdl:output name="getPolicyTypesResponse" message="tns:getPolicyTypesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicy">
+      <wsdl:input name="updatePolicy" message="tns:updatePolicy">
+    </wsdl:input>
+      <wsdl:output name="updatePolicyResponse" message="tns:updatePolicyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPolicies">
+      <wsdl:input name="getAllPolicies" message="tns:getAllPolicies">
+    </wsdl:input>
+      <wsdl:output name="getAllPoliciesResponse" message="tns:getAllPoliciesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicyAssociation">
+      <wsdl:input name="updatePolicyAssociation" message="tns:updatePolicyAssociation">
+    </wsdl:input>
+      <wsdl:output name="updatePolicyAssociationResponse" message="tns:updatePolicyAssociationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyDefinition">
+      <wsdl:input name="getPolicyDefinition" message="tns:getPolicyDefinition">
+    </wsdl:input>
+      <wsdl:output name="getPolicyDefinitionResponse" message="tns:getPolicyDefinitionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PolicyDataServiceServiceSoapBinding" type="tns:PolicyDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="removePolicy">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removePolicy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removePolicyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyDefParamByGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPolicyDefParamByGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPolicyDefParamByGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicyDefinition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updatePolicyDefinition">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updatePolicyDefinitionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAssociationsForPolicy">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAssociationsForPolicy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAssociationsForPolicyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPolicy">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addPolicy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addPolicyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPolicyDefinition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addPolicyDefinition">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addPolicyDefinitionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicy">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPolicy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPolicyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPolicyDef">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllPolicyDef">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllPolicyDefResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPolicyExist">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isPolicyExist">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isPolicyExistResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="associatePolicyToObject">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="associatePolicyToObject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="associatePolicyToObjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removePolicyDefinition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removePolicyDefinition">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removePolicyDefinitionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyTypes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPolicyTypes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPolicyTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicy">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updatePolicy">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updatePolicyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPolicies">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllPolicies">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllPoliciesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPolicyDefinition">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPolicyDefinition">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPolicyDefinitionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePolicyAssociation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updatePolicyAssociation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updatePolicyAssociationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PolicyDataServiceService">
+    <wsdl:port name="PolicyDataServicePort" binding="tns:PolicyDataServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/PolicyDataServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

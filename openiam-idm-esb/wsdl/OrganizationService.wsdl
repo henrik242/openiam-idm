@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrganizationDataServiceService" targetNamespace="urn:idm.openiam.org/srvc/org/service" xmlns:ns1="urn:idm.openiam.org/srvc/org/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:idm.openiam.org/srvc/org/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/org/dto" xmlns:tns="urn:idm.openiam.org/srvc/org/types" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/org/types" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/org/dto"/>
+<xs:element name="addAttribute" type="tns:addAttribute"/>
+<xs:element name="addAttributeResponse" type="tns:addAttributeResponse"/>
+<xs:element name="addOrganization" type="tns:addOrganization"/>
+<xs:element name="addOrganizationResponse" type="tns:addOrganizationResponse"/>
+<xs:element name="containsChildren" type="tns:containsChildren"/>
+<xs:element name="containsChildrenResponse" type="tns:containsChildrenResponse"/>
+<xs:element name="getAttribute" type="tns:getAttribute"/>
+<xs:element name="getAttributeResponse" type="tns:getAttributeResponse"/>
+<xs:element name="getOrganization" type="tns:getOrganization"/>
+<xs:element name="getOrganizationList" type="tns:getOrganizationList"/>
+<xs:element name="getOrganizationListResponse" type="tns:getOrganizationListResponse"/>
+<xs:element name="getOrganizationResponse" type="tns:getOrganizationResponse"/>
+<xs:element name="getTopLevelOrganizations" type="tns:getTopLevelOrganizations"/>
+<xs:element name="getTopLevelOrganizationsResponse" type="tns:getTopLevelOrganizationsResponse"/>
+<xs:element name="isRootOrganization" type="tns:isRootOrganization"/>
+<xs:element name="isRootOrganizationResponse" type="tns:isRootOrganizationResponse"/>
+<xs:element name="removeAllAttributes" type="tns:removeAllAttributes"/>
+<xs:element name="removeAllAttributesResponse" type="tns:removeAllAttributesResponse"/>
+<xs:element name="removeAttribute" type="tns:removeAttribute"/>
+<xs:element name="removeAttributeResponse" type="tns:removeAttributeResponse"/>
+<xs:element name="removeOrganization" type="tns:removeOrganization"/>
+<xs:element name="removeOrganizationResponse" type="tns:removeOrganizationResponse"/>
+<xs:element name="search" type="tns:search"/>
+<xs:element name="searchResponse" type="tns:searchResponse"/>
+<xs:element name="subOrganizations" type="tns:subOrganizations"/>
+<xs:element name="subOrganizationsResponse" type="tns:subOrganizationsResponse"/>
+<xs:element name="updateAttribute" type="tns:updateAttribute"/>
+<xs:element name="updateAttributeResponse" type="tns:updateAttributeResponse"/>
+<xs:element name="updateOrganization" type="tns:updateOrganization"/>
+<xs:element name="updateOrganizationResponse" type="tns:updateOrganizationResponse"/>
+<xs:complexType name="getOrganizationList">
+<xs:sequence>
+<xs:element minOccurs="0" name="parentOrgId" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOrganizationListResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="organization" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateOrganizationResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getTopLevelOrganizations">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getTopLevelOrganizationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="subOrganizations">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="subOrganizationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="organizationAttribute" type="ns1:organizationAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAttributeResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOrganizationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="search">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="xs:string"/>
+<xs:element minOccurs="0" name="classification" type="xs:string"/>
+<xs:element minOccurs="0" name="internalOrgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="searchResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="organization" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addOrganizationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="attributeId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAttributeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="ns1:organizationAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="organizationAttribute" type="ns1:organizationAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addAttributeResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="updateAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="organizationAttribute" type="ns1:organizationAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateAttributeResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="containsChildren">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="containsChildrenResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeOrganizationResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="isRootOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isRootOrganizationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllAttributes">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeAllAttributesResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/org/dto" xmlns:tns="urn:idm.openiam.org/srvc/org/service" targetNamespace="urn:idm.openiam.org/srvc/org/service" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/org/dto"/>
+<xs:element name="allDepartments" type="tns:allDepartments"/>
+<xs:element name="allDepartmentsResponse" type="tns:allDepartmentsResponse"/>
+<xs:element name="allDivisions" type="tns:allDivisions"/>
+<xs:element name="allDivisionsResponse" type="tns:allDivisionsResponse"/>
+<xs:element name="getAllAttributes" type="tns:getAllAttributes"/>
+<xs:element name="getAllAttributesResponse" type="tns:getAllAttributesResponse"/>
+<xs:element name="getAllOrganizations" type="tns:getAllOrganizations"/>
+<xs:element name="getAllOrganizationsResponse" type="tns:getAllOrganizationsResponse"/>
+<xs:element name="getOrganizationByType" type="tns:getOrganizationByType"/>
+<xs:element name="getOrganizationByTypeResponse" type="tns:getOrganizationByTypeResponse"/>
+<xs:complexType name="getOrganizationByType">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeId" type="xs:string"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOrganizationByTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllOrganizations">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getAllOrganizationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="allDepartments">
+<xs:sequence>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="allDepartmentsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="allDivisions">
+<xs:sequence>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="allDivisionsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:organization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllAttributes">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllAttributesResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="ns1:organizationAttributeMap"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:idm.openiam.org/srvc/org/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/org/dto" version="1.0">
+<xs:complexType name="organization">
+<xs:sequence>
+<xs:element minOccurs="0" name="alias" type="xs:string"/>
+<xs:element minOccurs="0" name="attributes" type="tns:organizationAttributeMap"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="domainName" type="xs:string"/>
+<xs:element minOccurs="0" name="ldapStr" type="xs:string"/>
+<xs:element minOccurs="0" name="lstUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lstUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="orgId" type="xs:string"/>
+<xs:element minOccurs="0" name="organizationName" type="xs:string"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+<xs:element minOccurs="0" name="classification" type="tns:OrgClassification"/>
+<xs:element minOccurs="0" name="internalOrgId" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="abbreviation" type="xs:string"/>
+<xs:element minOccurs="0" name="symbol" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="organizationAttributeMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="organizationAttributeEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="organizationAttribute" type="tns:organizationAttribute"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="organizationAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="attrId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="organizationId" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="OrgClassification">
+<xs:restriction base="xs:string">
+<xs:enumeration value="organization"/>
+<xs:enumeration value="department"/>
+<xs:enumeration value="division"/>
+<xs:enumeration value="agency"/>
+<xs:enumeration value="vendor"/>
+<xs:enumeration value="partner"/>
+<xs:enumeration value="subsidiary"/>
+<xs:enumeration value="customer"/>
+<xs:enumeration value="affiliate"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="removeAllAttributes">
+    <wsdl:part name="parameters" element="ns1:removeAllAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttributeResponse">
+    <wsdl:part name="result" element="ns1:addAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getAllAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allDivisionsResponse">
+    <wsdl:part name="parameters" element="tns:allDivisionsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeOrganizationResponse">
+    <wsdl:part name="result" element="ns1:removeOrganizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganizationList">
+    <wsdl:part name="parameters" element="ns1:getOrganizationList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllAttributes">
+    <wsdl:part name="parameters" element="tns:getAllAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="subOrganizationsResponse">
+    <wsdl:part name="result" element="ns1:subOrganizationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="containsChildren">
+    <wsdl:part name="parameters" element="ns1:containsChildren">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="search">
+    <wsdl:part name="parameters" element="ns1:search">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttributeResponse">
+    <wsdl:part name="result" element="ns1:updateAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganizationByType">
+    <wsdl:part name="parameters" element="tns:getOrganizationByType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTopLevelOrganizationsResponse">
+    <wsdl:part name="result" element="ns1:getTopLevelOrganizationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttribute">
+    <wsdl:part name="parameters" element="ns1:getAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllOrganizationsResponse">
+    <wsdl:part name="parameters" element="tns:getAllOrganizationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganization">
+    <wsdl:part name="parameters" element="ns1:getOrganization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="subOrganizations">
+    <wsdl:part name="parameters" element="ns1:subOrganizations">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRootOrganizationResponse">
+    <wsdl:part name="result" element="ns1:isRootOrganizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allDepartmentsResponse">
+    <wsdl:part name="parameters" element="tns:allDepartmentsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllAttributesResponse">
+    <wsdl:part name="result" element="ns1:removeAllAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttributeResponse">
+    <wsdl:part name="result" element="ns1:removeAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttribute">
+    <wsdl:part name="parameters" element="ns1:addAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganizationListResponse">
+    <wsdl:part name="result" element="ns1:getOrganizationListResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allDivisions">
+    <wsdl:part name="parameters" element="tns:allDivisions">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganizationResponse">
+    <wsdl:part name="result" element="ns1:getOrganizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isRootOrganization">
+    <wsdl:part name="parameters" element="ns1:isRootOrganization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttribute">
+    <wsdl:part name="parameters" element="ns1:removeAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeOrganization">
+    <wsdl:part name="parameters" element="ns1:removeOrganization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addOrganizationResponse">
+    <wsdl:part name="result" element="ns1:addOrganizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="containsChildrenResponse">
+    <wsdl:part name="result" element="ns1:containsChildrenResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAttribute">
+    <wsdl:part name="parameters" element="ns1:updateAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllOrganizations">
+    <wsdl:part name="parameters" element="tns:getAllOrganizations">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrganizationByTypeResponse">
+    <wsdl:part name="parameters" element="tns:getOrganizationByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrganizationResponse">
+    <wsdl:part name="result" element="ns1:updateOrganizationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrganization">
+    <wsdl:part name="parameters" element="ns1:updateOrganization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allDepartments">
+    <wsdl:part name="parameters" element="tns:allDepartments">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part name="result" element="ns1:searchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTopLevelOrganizations">
+    <wsdl:part name="parameters" element="ns1:getTopLevelOrganizations">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addOrganization">
+    <wsdl:part name="parameters" element="ns1:addOrganization">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttributeResponse">
+    <wsdl:part name="result" element="ns1:getAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OrganizationDataService">
+    <wsdl:operation name="getOrganizationList">
+      <wsdl:input name="getOrganizationList" message="tns:getOrganizationList">
+    </wsdl:input>
+      <wsdl:output name="getOrganizationListResponse" message="tns:getOrganizationListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrganization">
+      <wsdl:input name="updateOrganization" message="tns:updateOrganization">
+    </wsdl:input>
+      <wsdl:output name="updateOrganizationResponse" message="tns:updateOrganizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTopLevelOrganizations">
+      <wsdl:input name="getTopLevelOrganizations" message="tns:getTopLevelOrganizations">
+    </wsdl:input>
+      <wsdl:output name="getTopLevelOrganizationsResponse" message="tns:getTopLevelOrganizationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrganizationByType">
+      <wsdl:input name="getOrganizationByType" message="tns:getOrganizationByType">
+    </wsdl:input>
+      <wsdl:output name="getOrganizationByTypeResponse" message="tns:getOrganizationByTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="subOrganizations">
+      <wsdl:input name="subOrganizations" message="tns:subOrganizations">
+    </wsdl:input>
+      <wsdl:output name="subOrganizationsResponse" message="tns:subOrganizationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <wsdl:input name="removeAttribute" message="tns:removeAttribute">
+    </wsdl:input>
+      <wsdl:output name="removeAttributeResponse" message="tns:removeAttributeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrganization">
+      <wsdl:input name="getOrganization" message="tns:getOrganization">
+    </wsdl:input>
+      <wsdl:output name="getOrganizationResponse" message="tns:getOrganizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input name="search" message="tns:search">
+    </wsdl:input>
+      <wsdl:output name="searchResponse" message="tns:searchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrganization">
+      <wsdl:input name="addOrganization" message="tns:addOrganization">
+    </wsdl:input>
+      <wsdl:output name="addOrganizationResponse" message="tns:addOrganizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttribute">
+      <wsdl:input name="getAttribute" message="tns:getAttribute">
+    </wsdl:input>
+      <wsdl:output name="getAttributeResponse" message="tns:getAttributeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllOrganizations">
+      <wsdl:input name="getAllOrganizations" message="tns:getAllOrganizations">
+    </wsdl:input>
+      <wsdl:output name="getAllOrganizationsResponse" message="tns:getAllOrganizationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allDepartments">
+      <wsdl:input name="allDepartments" message="tns:allDepartments">
+    </wsdl:input>
+      <wsdl:output name="allDepartmentsResponse" message="tns:allDepartmentsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttribute">
+      <wsdl:input name="addAttribute" message="tns:addAttribute">
+    </wsdl:input>
+      <wsdl:output name="addAttributeResponse" message="tns:addAttributeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttribute">
+      <wsdl:input name="updateAttribute" message="tns:updateAttribute">
+    </wsdl:input>
+      <wsdl:output name="updateAttributeResponse" message="tns:updateAttributeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="containsChildren">
+      <wsdl:input name="containsChildren" message="tns:containsChildren">
+    </wsdl:input>
+      <wsdl:output name="containsChildrenResponse" message="tns:containsChildrenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeOrganization">
+      <wsdl:input name="removeOrganization" message="tns:removeOrganization">
+    </wsdl:input>
+      <wsdl:output name="removeOrganizationResponse" message="tns:removeOrganizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRootOrganization">
+      <wsdl:input name="isRootOrganization" message="tns:isRootOrganization">
+    </wsdl:input>
+      <wsdl:output name="isRootOrganizationResponse" message="tns:isRootOrganizationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allDivisions">
+      <wsdl:input name="allDivisions" message="tns:allDivisions">
+    </wsdl:input>
+      <wsdl:output name="allDivisionsResponse" message="tns:allDivisionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllAttributes">
+      <wsdl:input name="removeAllAttributes" message="tns:removeAllAttributes">
+    </wsdl:input>
+      <wsdl:output name="removeAllAttributesResponse" message="tns:removeAllAttributesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAttributes">
+      <wsdl:input name="getAllAttributes" message="tns:getAllAttributes">
+    </wsdl:input>
+      <wsdl:output name="getAllAttributesResponse" message="tns:getAllAttributesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrganizationDataServiceServiceSoapBinding" type="tns:OrganizationDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getOrganizationList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getOrganizationList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOrganizationListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrganizationByType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getOrganizationByType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOrganizationByTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTopLevelOrganizations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTopLevelOrganizations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTopLevelOrganizationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="subOrganizations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="subOrganizations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="subOrganizationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="search">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="searchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllOrganizations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllOrganizations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllOrganizationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allDepartments">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="allDepartments">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="allDepartmentsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAttribute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="containsChildren">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="containsChildren">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="containsChildrenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRootOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isRootOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isRootOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allDivisions">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="allDivisions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="allDivisionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAttributes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllAttributes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeAllAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrganizationDataServiceService">
+    <wsdl:port name="OrganizationDataServicePort" binding="tns:OrganizationDataServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/OrganizationDataServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

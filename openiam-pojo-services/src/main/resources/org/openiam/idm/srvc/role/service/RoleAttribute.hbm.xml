@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 4, 2008 1:12:08 AM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.role.dto.RoleAttribute" table="ROLE_ATTRIBUTE" >
+        <comment></comment>
+        <id name="roleAttrId" type="string">
+            <column name="ROLE_ATTR_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        
+        <property name="serviceId" type="string">
+            <column name="SERVICE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="roleId" type="string">
+            <column name="ROLE_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+		
+
+        <property name="name" type="string">
+            <column name="NAME" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value" type="string">
+            <column name="VALUE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="metadataElementId" type="string">
+            <column name="METADATA_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        
+         <property name="attrGroup" type="string">
+            <column name="ATTR_GROUP" length="20" />
+        </property>
+               
+    </class>
+</hibernate-mapping>

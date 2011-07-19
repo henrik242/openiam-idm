@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AuthorizationServiceService" targetNamespace="http://service.auth.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.auth.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/grp/dto" xmlns:ns2="http://service.auth.srvc.idm.openiam.org/" xmlns:tns="urn:idm.openiam.org/srvc/role/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/role/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/grp/dto"/>
+<xs:import namespace="http://service.auth.srvc.idm.openiam.org/"/>
+<xs:element name="Role" type="tns:role"/>
+<xs:complexType name="roleSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="role" type="tns:role"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="role">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="groups" type="ns1:groupSet"/>
+<xs:element minOccurs="0" name="id" type="tns:roleId"/>
+<xs:element minOccurs="0" name="provisionObjName" type="xs:string"/>
+<xs:element minOccurs="0" name="parentRoleId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleAttributes" type="tns:roleAttributeSet"/>
+<xs:element minOccurs="0" name="roleName" type="xs:string"/>
+<xs:element name="userAssociationMethod" type="xs:int"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+<xs:element minOccurs="0" name="inheritFromParent" type="xs:int"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="childRoles" nillable="true" type="tns:role"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+<xs:element minOccurs="0" name="internalRoleId" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="rolePolicy" nillable="true" type="tns:RolePolicy"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="roleId">
+<xs:sequence>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="roleAttributeSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleAttributeObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="roleAttribute" type="tns:roleAttribute"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="roleAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="roleAttrId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RolePolicy">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="rolePolicyId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+<xs:element minOccurs="0" name="roleId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value1" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+<xs:element minOccurs="0" name="action" type="xs:string"/>
+<xs:element minOccurs="0" name="executionOrder" type="xs:int"/>
+<xs:element minOccurs="0" name="policyScript" type="xs:string"/>
+<xs:element minOccurs="0" name="actionQualifier" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/role/dto" xmlns:ns2="http://service.auth.srvc.idm.openiam.org/" xmlns:tns="urn:idm.openiam.org/srvc/grp/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/grp/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/role/dto"/>
+<xs:import namespace="http://service.auth.srvc.idm.openiam.org/"/>
+<xs:element name="Group" type="tns:Group"/>
+<xs:complexType name="Group">
+<xs:sequence>
+<xs:element minOccurs="0" name="roles" type="ns1:roleSet"/>
+<xs:element minOccurs="0" name="attributes" type="tns:groupAttributeMap"/>
+<xs:element minOccurs="0" name="companyId" type="xs:string"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="groupClass" type="xs:string"/>
+<xs:element minOccurs="0" name="grpId" type="xs:string"/>
+<xs:element minOccurs="0" name="grpName" type="xs:string"/>
+<xs:element minOccurs="0" name="inheritFromParent" type="xs:boolean"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="parentGrpId" type="xs:string"/>
+<xs:element minOccurs="0" name="provisionMethod" type="xs:string"/>
+<xs:element minOccurs="0" name="provisionObjName" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="subGroup" nillable="true" type="tns:Group"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+<xs:element minOccurs="0" name="internalGroupId" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="groupSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groupObj" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="group" type="tns:Group"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="groupAttributeMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groupAttributeEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="groupAttribute" type="tns:GroupAttribute"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GroupAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="groupId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.auth.srvc.idm.openiam.org/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.auth.srvc.idm.openiam.org/">
+<xs:element name="getPermissions" type="tns:getPermissions"/>
+<xs:element name="getPermissionsResponse" type="tns:getPermissionsResponse"/>
+<xs:element name="isAuthorized" type="tns:isAuthorized"/>
+<xs:element name="isAuthorizedResponse" type="tns:isAuthorizedResponse"/>
+<xs:complexType name="isAuthorized">
+<xs:sequence>
+<xs:element minOccurs="0" name="request" type="tns:AuthzRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthzRequest">
+<xs:sequence>
+<xs:element minOccurs="0" name="principalName" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="principalAttributes" nillable="true" type="tns:AuthAttribute"/>
+<xs:element minOccurs="0" name="resourceName" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="resourceAttributes" nillable="true" type="tns:AuthAttribute"/>
+<xs:element minOccurs="0" name="action" type="xs:string"/>
+<xs:element minOccurs="0" name="requestTime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+<xs:element minOccurs="0" name="clientIp" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="requestParameters" nillable="true" type="tns:AuthAttribute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isAuthorizedResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AuthzResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthzResponse">
+<xs:sequence>
+<xs:element name="authorized" type="xs:boolean"/>
+<xs:element name="authErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="authErrorMessage" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="getPermissions">
+<xs:sequence>
+<xs:element minOccurs="0" name="request" type="tns:AuthzRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPermissionsResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:AuthenticationResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthenticationResponse">
+<xs:sequence>
+<xs:element name="authorized" type="xs:boolean"/>
+<xs:element name="authErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="authErrorMessage" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissionList" nillable="true" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectState" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="ResponseStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="success"/>
+<xs:enumeration value="failure"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="AttributeOperationEnum">
+<xs:restriction base="xs:string">
+<xs:enumeration value="nochange"/>
+<xs:enumeration value="add"/>
+<xs:enumeration value="replace"/>
+<xs:enumeration value="delete"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="LogoutException" type="tns:LogoutException"/>
+<xs:complexType name="LogoutException">
+<xs:sequence>
+<xs:element name="errorCode" nillable="true" type="xs:int"/>
+<xs:element name="errorMessage" nillable="true" type="xs:string"/>
+<xs:element name="exception" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="isAuthorizedResponse">
+    <wsdl:part name="parameters" element="tns:isAuthorizedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPermissionsResponse">
+    <wsdl:part name="parameters" element="tns:getPermissionsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPermissions">
+    <wsdl:part name="parameters" element="tns:getPermissions">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LogoutException">
+    <wsdl:part name="LogoutException" element="tns:LogoutException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAuthorized">
+    <wsdl:part name="parameters" element="tns:isAuthorized">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AuthorizationService">
+    <wsdl:operation name="isAuthorized">
+      <wsdl:input name="isAuthorized" message="tns:isAuthorized">
+    </wsdl:input>
+      <wsdl:output name="isAuthorizedResponse" message="tns:isAuthorizedResponse">
+    </wsdl:output>
+      <wsdl:fault name="LogoutException" message="tns:LogoutException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPermissions">
+      <wsdl:input name="getPermissions" message="tns:getPermissions">
+    </wsdl:input>
+      <wsdl:output name="getPermissionsResponse" message="tns:getPermissionsResponse">
+    </wsdl:output>
+      <wsdl:fault name="LogoutException" message="tns:LogoutException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuthorizationServiceServiceSoapBinding" type="tns:AuthorizationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="isAuthorized">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isAuthorized">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isAuthorizedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="LogoutException">
+        <soap:fault name="LogoutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPermissions">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPermissions">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPermissionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="LogoutException">
+        <soap:fault name="LogoutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuthorizationServiceService">
+    <wsdl:port name="AuthorizationServicePort" binding="tns:AuthorizationServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/AuthorizationServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

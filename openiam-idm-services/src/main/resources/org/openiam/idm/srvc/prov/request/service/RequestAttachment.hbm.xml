@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 9, 2009 5:33:58 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.prov.request.dto.RequestAttachment" table="REQUEST_ATTACHMENT" >
+        <id name="requestAttachmentId" type="string">
+            <column name="REQUEST_ATTACHMENT_ID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="provRequestId" type="string">
+            <column name="REQUEST_ID" length="32" not-null="true" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="NAME" length="20" />
+        </property>
+        <property name="attachment" type="string">
+            <column name="ATTACHMENT" length="20" />
+        </property>
+        <property name="userId" type="string">
+            <column name="USER_ID" length="20" />
+        </property>
+        <property name="attachmentDate" type="string">
+            <column name="ATTACHMENT_DATE" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

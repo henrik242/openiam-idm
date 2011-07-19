@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MailServiceService" targetNamespace="http://service.msg.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.msg.srvc.idm.openiam.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.msg.srvc.idm.openiam.org/" elementFormDefault="unqualified" targetNamespace="http://service.msg.srvc.idm.openiam.org/" version="1.0">
+<xs:element name="NotificationRequest" type="tns:NotificationRequest"/>
+<xs:element name="send" type="tns:send"/>
+<xs:element name="sendNotification" type="tns:sendNotification"/>
+<xs:element name="sendNotificationResponse" type="tns:sendNotificationResponse"/>
+<xs:element name="sendResponse" type="tns:sendResponse"/>
+<xs:element name="sendToAllUsers" type="tns:sendToAllUsers"/>
+<xs:element name="sendToAllUsersResponse" type="tns:sendToAllUsersResponse"/>
+<xs:element name="sendToGroup" type="tns:sendToGroup"/>
+<xs:element name="sendToGroupResponse" type="tns:sendToGroupResponse"/>
+<xs:element name="sendWithCC" type="tns:sendWithCC"/>
+<xs:element name="sendWithCCResponse" type="tns:sendWithCCResponse"/>
+<xs:complexType name="send">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sendResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="sendNotification">
+<xs:sequence>
+<xs:element minOccurs="0" name="req" type="tns:NotificationRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="NotificationRequest">
+<xs:sequence>
+<xs:element minOccurs="0" name="notificationType" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="cc" type="xs:string"/>
+<xs:element minOccurs="0" name="to" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="paramList" nillable="true" type="tns:NotificationParam"/>
+<xs:element minOccurs="0" name="requestId" type="xs:string"/>
+<xs:element minOccurs="0" name="linkedRequestId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="NotificationParam">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="valueObj" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sendNotificationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sendToGroup">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sendToGroupResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="sendToAllUsers">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="sendToAllUsersResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="sendWithCC">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+<xs:element minOccurs="0" name="arg4" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sendWithCCResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sendToAllUsersResponse">
+    <wsdl:part name="parameters" element="tns:sendToAllUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToGroupResponse">
+    <wsdl:part name="parameters" element="tns:sendToGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToGroup">
+    <wsdl:part name="parameters" element="tns:sendToGroup">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="send">
+    <wsdl:part name="parameters" element="tns:send">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendNotificationResponse">
+    <wsdl:part name="parameters" element="tns:sendNotificationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendNotification">
+    <wsdl:part name="parameters" element="tns:sendNotification">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToAllUsers">
+    <wsdl:part name="parameters" element="tns:sendToAllUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendWithCCResponse">
+    <wsdl:part name="parameters" element="tns:sendWithCCResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendWithCC">
+    <wsdl:part name="parameters" element="tns:sendWithCC">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendResponse">
+    <wsdl:part name="parameters" element="tns:sendResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MailService">
+    <wsdl:operation name="send">
+      <wsdl:input name="send" message="tns:send">
+    </wsdl:input>
+      <wsdl:output name="sendResponse" message="tns:sendResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <wsdl:input name="sendNotification" message="tns:sendNotification">
+    </wsdl:input>
+      <wsdl:output name="sendNotificationResponse" message="tns:sendNotificationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToGroup">
+      <wsdl:input name="sendToGroup" message="tns:sendToGroup">
+    </wsdl:input>
+      <wsdl:output name="sendToGroupResponse" message="tns:sendToGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToAllUsers">
+      <wsdl:input name="sendToAllUsers" message="tns:sendToAllUsers">
+    </wsdl:input>
+      <wsdl:output name="sendToAllUsersResponse" message="tns:sendToAllUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendWithCC">
+      <wsdl:input name="sendWithCC" message="tns:sendWithCC">
+    </wsdl:input>
+      <wsdl:output name="sendWithCCResponse" message="tns:sendWithCCResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MailServiceServiceSoapBinding" type="tns:MailService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="send">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="send">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendNotification">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendNotificationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendToGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendToGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToAllUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendToAllUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendToAllUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendWithCC">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendWithCC">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendWithCCResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MailServiceService">
+    <wsdl:port name="MailServicePort" binding="tns:MailServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/MailServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

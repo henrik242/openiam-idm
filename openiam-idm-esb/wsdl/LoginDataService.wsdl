@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="LoginDataWebServiceService" targetNamespace="urn:idm.openiam.org/srvc/auth/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:idm.openiam.org/srvc/auth/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/continfo/dto" xmlns:ns2="urn:idm.openiam.org/srvc/auth/service" xmlns:tns="urn:idm.openiam.org/srvc/user/dto" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/user/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/continfo/dto"/>
+<xs:import namespace="urn:idm.openiam.org/srvc/auth/service"/>
+<xs:complexType name="user">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="addresses" nillable="true" type="ns1:address"/>
+<xs:element minOccurs="0" name="birthdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="companyId" type="xs:string"/>
+<xs:element minOccurs="0" name="companyOwnerId" type="xs:string"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="deptCd" type="xs:string"/>
+<xs:element minOccurs="0" name="deptName" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="emailAddresses" nillable="true" type="ns1:emailAddress"/>
+<xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+<xs:element minOccurs="0" name="employeeType" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="jobCode" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+<xs:element minOccurs="0" name="locationCd" type="xs:string"/>
+<xs:element minOccurs="0" name="locationName" type="xs:string"/>
+<xs:element minOccurs="0" name="managerId" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+<xs:element minOccurs="0" name="classification" type="xs:string"/>
+<xs:element minOccurs="0" name="middleInit" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="phones" nillable="true" type="ns1:phone"/>
+<xs:element minOccurs="0" name="prefix" type="xs:string"/>
+<xs:element minOccurs="0" name="sex" type="xs:string"/>
+<xs:element minOccurs="0" name="status" type="tns:UserStatus"/>
+<xs:element minOccurs="0" name="secondaryStatus" type="tns:UserStatus"/>
+<xs:element minOccurs="0" name="suffix" type="xs:string"/>
+<xs:element minOccurs="0" name="title" type="xs:string"/>
+<xs:element minOccurs="0" name="userAttributes" type="tns:userAttributeMap"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="userTypeInd" type="xs:string"/>
+<xs:element minOccurs="0" name="userNotes" type="tns:userNoteSet"/>
+<xs:element minOccurs="0" name="division" type="xs:string"/>
+<xs:element minOccurs="0" name="costCenter" type="xs:string"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="lastDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="mailCode" type="xs:string"/>
+<xs:element minOccurs="0" name="nickname" type="xs:string"/>
+<xs:element minOccurs="0" name="maidenName" type="xs:string"/>
+<xs:element minOccurs="0" name="passwordTheme" type="xs:string"/>
+<xs:element minOccurs="0" name="country" type="xs:string"/>
+<xs:element minOccurs="0" name="bldgNum" type="xs:string"/>
+<xs:element minOccurs="0" name="streetDirection" type="xs:string"/>
+<xs:element minOccurs="0" name="suite" type="xs:string"/>
+<xs:element minOccurs="0" name="address1" type="xs:string"/>
+<xs:element minOccurs="0" name="address2" type="xs:string"/>
+<xs:element minOccurs="0" name="address3" type="xs:string"/>
+<xs:element minOccurs="0" name="address4" type="xs:string"/>
+<xs:element minOccurs="0" name="address5" type="xs:string"/>
+<xs:element minOccurs="0" name="address6" type="xs:string"/>
+<xs:element minOccurs="0" name="address7" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="state" type="xs:string"/>
+<xs:element minOccurs="0" name="postalCd" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="showInSearch" type="xs:int"/>
+<xs:element minOccurs="0" name="delAdmin" type="xs:int"/>
+<xs:element minOccurs="0" name="areaCd" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCd" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNbr" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneExt" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="principalList" nillable="true" type="ns2:Login"/>
+<xs:element minOccurs="0" name="supervisor" type="tns:supervisor"/>
+<xs:element minOccurs="0" name="alternateContactId" type="xs:string"/>
+<xs:element minOccurs="0" name="securityDomain" type="xs:string"/>
+<xs:element minOccurs="0" name="userOwnerId" type="xs:string"/>
+<xs:element minOccurs="0" name="datePasswordChanged" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="dateChallengeRespChanged" type="xs:dateTime"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userAttributeMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userAttributeEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="userAttribute" type="tns:userAttribute"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userAttribute">
+<xs:complexContent>
+<xs:extension base="ns2:BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userNoteSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userNoteItem" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="userNote" type="tns:userNote"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userNote">
+<xs:sequence>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="noteType" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="userNoteId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="supervisor">
+<xs:sequence>
+<xs:element minOccurs="0" name="comments" type="xs:string"/>
+<xs:element minOccurs="0" name="employee" type="tns:user"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="isPrimarySuper" type="xs:int"/>
+<xs:element minOccurs="0" name="orgStructureId" type="xs:string"/>
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="supervisor" type="tns:user"/>
+<xs:element minOccurs="0" name="supervisorType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="UserStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="active"/>
+<xs:enumeration value="inactive"/>
+<xs:enumeration value="pending_start_date"/>
+<xs:enumeration value="pending_approval"/>
+<xs:enumeration value="approval_declined"/>
+<xs:enumeration value="pending_user_validation"/>
+<xs:enumeration value="pending_initial_login"/>
+<xs:enumeration value="terminate"/>
+<xs:enumeration value="deleted"/>
+<xs:enumeration value="locked"/>
+<xs:enumeration value="locked_admin"/>
+<xs:enumeration value="disabled"/>
+<xs:enumeration value="retired"/>
+<xs:enumeration value="leave"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/auth/service" elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/continfo/dto" version="1.0">
+<xs:import namespace="urn:idm.openiam.org/srvc/auth/service"/>
+<xs:complexType name="address">
+<xs:sequence>
+<xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+<xs:element minOccurs="0" name="bldgNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="streetDirection" type="xs:string"/>
+<xs:element minOccurs="0" name="suite" type="xs:string"/>
+<xs:element minOccurs="0" name="address1" type="xs:string"/>
+<xs:element minOccurs="0" name="address2" type="xs:string"/>
+<xs:element minOccurs="0" name="address3" type="xs:string"/>
+<xs:element minOccurs="0" name="address4" type="xs:string"/>
+<xs:element minOccurs="0" name="address5" type="xs:string"/>
+<xs:element minOccurs="0" name="address6" type="xs:string"/>
+<xs:element minOccurs="0" name="address7" type="xs:string"/>
+<xs:element minOccurs="0" name="addressId" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="country" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+<xs:element minOccurs="0" name="parentType" type="xs:string"/>
+<xs:element minOccurs="0" name="postalCd" type="xs:string"/>
+<xs:element minOccurs="0" name="state" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="emailAddress">
+<xs:sequence>
+<xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="emailAddress" type="xs:string"/>
+<xs:element minOccurs="0" name="emailId" type="xs:string"/>
+<xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+<xs:element minOccurs="0" name="parentType" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="phone">
+<xs:sequence>
+<xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+<xs:element minOccurs="0" name="areaCd" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCd" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+<xs:element minOccurs="0" name="parentId" type="xs:string"/>
+<xs:element minOccurs="0" name="parentType" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneExt" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneId" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNbr" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneType" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addressMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="addressEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:ns2="urn:idm.openiam.org/srvc/continfo/dto" minOccurs="0" name="address" type="ns2:address"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="phoneMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="phoneEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:ns3="urn:idm.openiam.org/srvc/continfo/dto" minOccurs="0" name="phone" type="ns3:phone"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="emailAddressMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="emailAddressEntry" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:ns4="urn:idm.openiam.org/srvc/continfo/dto" minOccurs="0" name="emailAddress" type="ns4:emailAddress"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:idm.openiam.org/srvc/user/dto" xmlns:tns="urn:idm.openiam.org/srvc/auth/service" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/auth/service">
+<xs:import namespace="urn:idm.openiam.org/srvc/user/dto"/>
+<xs:element name="addLogin" type="tns:addLogin"/>
+<xs:element name="addLoginResponse" type="tns:addLoginResponse"/>
+<xs:element name="bulkResetPasswordChangeCount" type="tns:bulkResetPasswordChangeCount"/>
+<xs:element name="bulkResetPasswordChangeCountResponse" type="tns:bulkResetPasswordChangeCountResponse"/>
+<xs:element name="bulkUnLock" type="tns:bulkUnLock"/>
+<xs:element name="bulkUnLockResponse" type="tns:bulkUnLockResponse"/>
+<xs:element name="changeIdentityName" type="tns:changeIdentityName"/>
+<xs:element name="changeIdentityNameResponse" type="tns:changeIdentityNameResponse"/>
+<xs:element name="decryptPassword" type="tns:decryptPassword"/>
+<xs:element name="decryptPasswordResponse" type="tns:decryptPasswordResponse"/>
+<xs:element name="encryptPassword" type="tns:encryptPassword"/>
+<xs:element name="encryptPasswordResponse" type="tns:encryptPasswordResponse"/>
+<xs:element name="getInactiveUsers" type="tns:getInactiveUsers"/>
+<xs:element name="getInactiveUsersResponse" type="tns:getInactiveUsersResponse"/>
+<xs:element name="getLockedUserSince" type="tns:getLockedUserSince"/>
+<xs:element name="getLockedUserSinceResponse" type="tns:getLockedUserSinceResponse"/>
+<xs:element name="getLogin" type="tns:getLogin"/>
+<xs:element name="getLoginByDept" type="tns:getLoginByDept"/>
+<xs:element name="getLoginByDeptResponse" type="tns:getLoginByDeptResponse"/>
+<xs:element name="getLoginByDomain" type="tns:getLoginByDomain"/>
+<xs:element name="getLoginByDomainResponse" type="tns:getLoginByDomainResponse"/>
+<xs:element name="getLoginByManagedSys" type="tns:getLoginByManagedSys"/>
+<xs:element name="getLoginByManagedSysResponse" type="tns:getLoginByManagedSysResponse"/>
+<xs:element name="getLoginByUser" type="tns:getLoginByUser"/>
+<xs:element name="getLoginByUserResponse" type="tns:getLoginByUserResponse"/>
+<xs:element name="getLoginResponse" type="tns:getLoginResponse"/>
+<xs:element name="getPassword" type="tns:getPassword"/>
+<xs:element name="getPasswordResponse" type="tns:getPasswordResponse"/>
+<xs:element name="getPrimaryIdentity" type="tns:getPrimaryIdentity"/>
+<xs:element name="getPrimaryIdentityResponse" type="tns:getPrimaryIdentityResponse"/>
+<xs:element name="getUserByLogin" type="tns:getUserByLogin"/>
+<xs:element name="getUserByLoginResponse" type="tns:getUserByLoginResponse"/>
+<xs:element name="getUserNearPswdExpiration" type="tns:getUserNearPswdExpiration"/>
+<xs:element name="getUserNearPswdExpirationResponse" type="tns:getUserNearPswdExpirationResponse"/>
+<xs:element name="isPasswordEq" type="tns:isPasswordEq"/>
+<xs:element name="isPasswordEqResponse" type="tns:isPasswordEqResponse"/>
+<xs:element name="lockLogin" type="tns:lockLogin"/>
+<xs:element name="lockLoginResponse" type="tns:lockLoginResponse"/>
+<xs:element name="loginExists" type="tns:loginExists"/>
+<xs:element name="loginExistsResponse" type="tns:loginExistsResponse"/>
+<xs:element name="removeLogin" type="tns:removeLogin"/>
+<xs:element name="removeLoginResponse" type="tns:removeLoginResponse"/>
+<xs:element name="resetPassword" type="tns:resetPassword"/>
+<xs:element name="resetPasswordResponse" type="tns:resetPasswordResponse"/>
+<xs:element name="setPassword" type="tns:setPassword"/>
+<xs:element name="setPasswordResponse" type="tns:setPasswordResponse"/>
+<xs:element name="unLockLogin" type="tns:unLockLogin"/>
+<xs:element name="unLockLoginResponse" type="tns:unLockLoginResponse"/>
+<xs:element name="updateLogin" type="tns:updateLogin"/>
+<xs:element name="updateLoginResponse" type="tns:updateLoginResponse"/>
+<xs:complexType name="setPassword">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="setPasswordResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="errorCode" type="tns:ResponseErrorCode"/>
+<xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+<xs:element minOccurs="0" name="errorText" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+</xs:complexType>
+<xs:complexType name="getPassword">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPasswordResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPrimaryIdentity">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getPrimaryIdentityResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LoginResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="principal" type="tns:Login"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Login">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="tns:LoginId"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+<xs:element minOccurs="0" name="pwdEquivalentToken" type="xs:string"/>
+<xs:element minOccurs="0" name="pwdChanged" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="pwdExp" type="xs:dateTime"/>
+<xs:element name="firstTimeLogin" type="xs:int"/>
+<xs:element name="resetPassword" type="xs:int"/>
+<xs:element name="isLocked" type="xs:int"/>
+<xs:element minOccurs="0" name="status" type="xs:string"/>
+<xs:element minOccurs="0" name="gracePeriod" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+<xs:element minOccurs="0" name="currentLoginHost" type="xs:string"/>
+<xs:element minOccurs="0" name="authFailCount" type="xs:int"/>
+<xs:element minOccurs="0" name="lastAuthAttempt" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="canonicalName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastLogin" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+<xs:element name="selected" type="xs:boolean"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="loginAttributes" nillable="true" type="tns:LoginAttribute"/>
+<xs:element minOccurs="0" name="passwordChangeCount" type="xs:int"/>
+<xs:element minOccurs="0" name="operation" type="tns:AttributeOperationEnum"/>
+<xs:element minOccurs="0" name="origPrincipalName" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LoginId">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="login" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LoginAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="loginAttrId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="login" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="metadataId" type="xs:string"/>
+<xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Subject">
+<xs:sequence>
+<xs:element name="readOnly" type="xs:boolean"/>
+<xs:element name="expirationTime" type="xs:long"/>
+<xs:element name="resultCode" type="xs:int"/>
+<xs:element minOccurs="0" name="saml" type="xs:string"/>
+<xs:element minOccurs="0" name="samlType" type="xs:string"/>
+<xs:element name="daysToPwdExp" type="xs:int"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="ssoToken" type="tns:SSOToken"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="groups" nillable="true" type="xs:anyType"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xs:anyType"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="principals" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="SSOToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="authLevel" type="xs:string"/>
+<xs:element minOccurs="0" name="provider" type="xs:string"/>
+<xs:element minOccurs="0" name="clientIP" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element name="maxIdleTime" type="xs:int"/>
+<xs:element minOccurs="0" name="expirationTime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="createTime" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserNearPswdExpiration">
+<xs:sequence>
+<xs:element name="expDays" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserNearPswdExpirationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LoginListResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="principalList" nillable="true" type="tns:Login"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByDept">
+<xs:sequence>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="department" type="xs:string"/>
+<xs:element minOccurs="0" name="div" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByDeptResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="changeIdentityName">
+<xs:sequence>
+<xs:element minOccurs="0" name="newPrincipalName" type="xs:string"/>
+<xs:element minOccurs="0" name="newPassword" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="changeIdentityNameResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserByLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserByLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:UserResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UserResponse">
+<xs:complexContent>
+<xs:extension base="tns:Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="user" type="ns1:user"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BaseObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="objectState" type="xs:string"/>
+<xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="unLockLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="unLockLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="lockLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="lockLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByManagedSys">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByManagedSysResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLockedUserSince">
+<xs:sequence>
+<xs:element minOccurs="0" name="lastExecTime" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLockedUserSinceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bulkUnLock">
+<xs:sequence>
+<xs:element minOccurs="0" name="status" type="ns1:UserStatus"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bulkUnLockResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="principal" type="tns:Login"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="loginExists">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="loginExistsResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="decryptPassword">
+<xs:sequence>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="decryptPasswordResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByDomain">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByDomainResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="resetPassword">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="resetPasswordResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bulkResetPasswordChangeCount">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="bulkResetPasswordChangeCountResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="encryptPassword">
+<xs:sequence>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="encryptPasswordResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getInactiveUsers">
+<xs:sequence>
+<xs:element name="startDays" type="xs:int"/>
+<xs:element name="endDays" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getInactiveUsersResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isPasswordEq">
+<xs:sequence>
+<xs:element minOccurs="0" name="domainId" type="xs:string"/>
+<xs:element minOccurs="0" name="principal" type="xs:string"/>
+<xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+<xs:element minOccurs="0" name="newPassword" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isPasswordEqResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Response"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="principal" type="tns:Login"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addLoginResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLoginByUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="ResponseStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="success"/>
+<xs:enumeration value="failure"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ResponseErrorCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="objectNotFound"/>
+<xs:enumeration value="classNotFound"/>
+<xs:enumeration value="principalNotFound"/>
+<xs:enumeration value="userNotFound"/>
+<xs:enumeration value="userStatus"/>
+<xs:enumeration value="supervisorlNotFound"/>
+<xs:enumeration value="DUPLICATE_PRINCIPAL"/>
+<xs:enumeration value="failPasswordPolicy"/>
+<xs:enumeration value="groupIdNull"/>
+<xs:enumeration value="groupIdInvalid"/>
+<xs:enumeration value="roleIdNull"/>
+<xs:enumeration value="roleIdInvalid"/>
+<xs:enumeration value="success"/>
+<xs:enumeration value="FAIL_SQL_ERORR"/>
+<xs:enumeration value="FAIL_CONNECTION"/>
+<xs:enumeration value="FAIL_ALPHA_CHAR_RULE"/>
+<xs:enumeration value="FAIL_LOWER_CASE_RULE"/>
+<xs:enumeration value="FAIL_UPPER_CASE_RULE"/>
+<xs:enumeration value="FAIL_NON_APHANUMERIC_RULE"/>
+<xs:enumeration value="FAIL_NUMERIC_CHAR_RULE"/>
+<xs:enumeration value="FAIL_HISTORY_RULE"/>
+<xs:enumeration value="FAIL_LENGTH_RULE"/>
+<xs:enumeration value="FAIL_NEQ_NAME"/>
+<xs:enumeration value="FAIL_NEQ_PASSWORD"/>
+<xs:enumeration value="FAIL_NEQ_PRINCIPAL"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_FREQUENCY"/>
+<xs:enumeration value="PASSWORD_POLICY_NOT_FOUND"/>
+<xs:enumeration value="FAIL_PASSWORD_CHANGE_ALLOW"/>
+<xs:enumeration value="FAIL_REJECT_CHARS_IN_PSWD"/>
+<xs:enumeration value="FAIL_ENCRYPTION"/>
+<xs:enumeration value="FAIL_DECRYPTION"/>
+<xs:enumeration value="FAIL_OTHER"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="AttributeOperationEnum">
+<xs:restriction base="xs:string">
+<xs:enumeration value="nochange"/>
+<xs:enumeration value="add"/>
+<xs:enumeration value="replace"/>
+<xs:enumeration value="delete"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+<xs:complexType name="AuthenticationException">
+<xs:sequence>
+<xs:element name="errorCode" nillable="true" type="xs:int"/>
+<xs:element name="errorMessage" nillable="true" type="xs:string"/>
+<xs:element name="exception" nillable="true" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getLoginResponse">
+    <wsdl:part name="parameters" element="tns:getLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPasswordResponse">
+    <wsdl:part name="parameters" element="tns:setPasswordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLogin">
+    <wsdl:part name="parameters" element="tns:removeLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDomain">
+    <wsdl:part name="parameters" element="tns:getLoginByDomain">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unLockLoginResponse">
+    <wsdl:part name="parameters" element="tns:unLockLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkUnLockResponse">
+    <wsdl:part name="parameters" element="tns:bulkUnLockResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLoginResponse">
+    <wsdl:part name="parameters" element="tns:removeLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addLogin">
+    <wsdl:part name="parameters" element="tns:addLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkResetPasswordChangeCountResponse">
+    <wsdl:part name="parameters" element="tns:bulkResetPasswordChangeCountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeIdentityName">
+    <wsdl:part name="parameters" element="tns:changeIdentityName">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPassword">
+    <wsdl:part name="parameters" element="tns:setPassword">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDeptResponse">
+    <wsdl:part name="parameters" element="tns:getLoginByDeptResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByUserResponse">
+    <wsdl:part name="parameters" element="tns:getLoginByUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPrimaryIdentityResponse">
+    <wsdl:part name="parameters" element="tns:getPrimaryIdentityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLoginResponse">
+    <wsdl:part name="parameters" element="tns:getUserByLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNearPswdExpirationResponse">
+    <wsdl:part name="parameters" element="tns:getUserNearPswdExpirationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptPasswordResponse">
+    <wsdl:part name="parameters" element="tns:decryptPasswordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationException">
+    <wsdl:part name="AuthenticationException" element="tns:AuthenticationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLogin">
+    <wsdl:part name="parameters" element="tns:getUserByLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptPassword">
+    <wsdl:part name="parameters" element="tns:decryptPassword">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeIdentityNameResponse">
+    <wsdl:part name="parameters" element="tns:changeIdentityNameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDept">
+    <wsdl:part name="parameters" element="tns:getLoginByDept">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockLoginResponse">
+    <wsdl:part name="parameters" element="tns:lockLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPassword">
+    <wsdl:part name="parameters" element="tns:resetPassword">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPasswordEqResponse">
+    <wsdl:part name="parameters" element="tns:isPasswordEqResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginExistsResponse">
+    <wsdl:part name="parameters" element="tns:loginExistsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkResetPasswordChangeCount">
+    <wsdl:part name="parameters" element="tns:bulkResetPasswordChangeCount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLockedUserSince">
+    <wsdl:part name="parameters" element="tns:getLockedUserSince">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLockedUserSinceResponse">
+    <wsdl:part name="parameters" element="tns:getLockedUserSinceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLogin">
+    <wsdl:part name="parameters" element="tns:updateLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPasswordResponse">
+    <wsdl:part name="parameters" element="tns:getPasswordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPassword">
+    <wsdl:part name="parameters" element="tns:getPassword">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDomainResponse">
+    <wsdl:part name="parameters" element="tns:getLoginByDomainResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPasswordEq">
+    <wsdl:part name="parameters" element="tns:isPasswordEq">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unLockLogin">
+    <wsdl:part name="parameters" element="tns:unLockLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockLogin">
+    <wsdl:part name="parameters" element="tns:lockLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNearPswdExpiration">
+    <wsdl:part name="parameters" element="tns:getUserNearPswdExpiration">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByManagedSysResponse">
+    <wsdl:part name="parameters" element="tns:getLoginByManagedSysResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordResponse">
+    <wsdl:part name="parameters" element="tns:resetPasswordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptPassword">
+    <wsdl:part name="parameters" element="tns:encryptPassword">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptPasswordResponse">
+    <wsdl:part name="parameters" element="tns:encryptPasswordResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByUser">
+    <wsdl:part name="parameters" element="tns:getLoginByUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLogin">
+    <wsdl:part name="parameters" element="tns:getLogin">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginExists">
+    <wsdl:part name="parameters" element="tns:loginExists">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByManagedSys">
+    <wsdl:part name="parameters" element="tns:getLoginByManagedSys">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addLoginResponse">
+    <wsdl:part name="parameters" element="tns:addLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLoginResponse">
+    <wsdl:part name="parameters" element="tns:updateLoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInactiveUsersResponse">
+    <wsdl:part name="parameters" element="tns:getInactiveUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkUnLock">
+    <wsdl:part name="parameters" element="tns:bulkUnLock">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInactiveUsers">
+    <wsdl:part name="parameters" element="tns:getInactiveUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPrimaryIdentity">
+    <wsdl:part name="parameters" element="tns:getPrimaryIdentity">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LoginDataWebService">
+    <wsdl:operation name="setPassword">
+      <wsdl:input name="setPassword" message="tns:setPassword">
+    </wsdl:input>
+      <wsdl:output name="setPasswordResponse" message="tns:setPasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPassword">
+      <wsdl:input name="getPassword" message="tns:getPassword">
+    </wsdl:input>
+      <wsdl:output name="getPasswordResponse" message="tns:getPasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrimaryIdentity">
+      <wsdl:input name="getPrimaryIdentity" message="tns:getPrimaryIdentity">
+    </wsdl:input>
+      <wsdl:output name="getPrimaryIdentityResponse" message="tns:getPrimaryIdentityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNearPswdExpiration">
+      <wsdl:input name="getUserNearPswdExpiration" message="tns:getUserNearPswdExpiration">
+    </wsdl:input>
+      <wsdl:output name="getUserNearPswdExpirationResponse" message="tns:getUserNearPswdExpirationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogin">
+      <wsdl:input name="getLogin" message="tns:getLogin">
+    </wsdl:input>
+      <wsdl:output name="getLoginResponse" message="tns:getLoginResponse">
+    </wsdl:output>
+      <wsdl:fault name="AuthenticationException" message="tns:AuthenticationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDept">
+      <wsdl:input name="getLoginByDept" message="tns:getLoginByDept">
+    </wsdl:input>
+      <wsdl:output name="getLoginByDeptResponse" message="tns:getLoginByDeptResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeIdentityName">
+      <wsdl:input name="changeIdentityName" message="tns:changeIdentityName">
+    </wsdl:input>
+      <wsdl:output name="changeIdentityNameResponse" message="tns:changeIdentityNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <wsdl:input name="getUserByLogin" message="tns:getUserByLogin">
+    </wsdl:input>
+      <wsdl:output name="getUserByLoginResponse" message="tns:getUserByLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unLockLogin">
+      <wsdl:input name="unLockLogin" message="tns:unLockLogin">
+    </wsdl:input>
+      <wsdl:output name="unLockLoginResponse" message="tns:unLockLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockLogin">
+      <wsdl:input name="lockLogin" message="tns:lockLogin">
+    </wsdl:input>
+      <wsdl:output name="lockLoginResponse" message="tns:lockLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByManagedSys">
+      <wsdl:input name="getLoginByManagedSys" message="tns:getLoginByManagedSys">
+    </wsdl:input>
+      <wsdl:output name="getLoginByManagedSysResponse" message="tns:getLoginByManagedSysResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLogin">
+      <wsdl:input name="removeLogin" message="tns:removeLogin">
+    </wsdl:input>
+      <wsdl:output name="removeLoginResponse" message="tns:removeLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLockedUserSince">
+      <wsdl:input name="getLockedUserSince" message="tns:getLockedUserSince">
+    </wsdl:input>
+      <wsdl:output name="getLockedUserSinceResponse" message="tns:getLockedUserSinceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkUnLock">
+      <wsdl:input name="bulkUnLock" message="tns:bulkUnLock">
+    </wsdl:input>
+      <wsdl:output name="bulkUnLockResponse" message="tns:bulkUnLockResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLogin">
+      <wsdl:input name="updateLogin" message="tns:updateLogin">
+    </wsdl:input>
+      <wsdl:output name="updateLoginResponse" message="tns:updateLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loginExists">
+      <wsdl:input name="loginExists" message="tns:loginExists">
+    </wsdl:input>
+      <wsdl:output name="loginExistsResponse" message="tns:loginExistsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="decryptPassword">
+      <wsdl:input name="decryptPassword" message="tns:decryptPassword">
+    </wsdl:input>
+      <wsdl:output name="decryptPasswordResponse" message="tns:decryptPasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDomain">
+      <wsdl:input name="getLoginByDomain" message="tns:getLoginByDomain">
+    </wsdl:input>
+      <wsdl:output name="getLoginByDomainResponse" message="tns:getLoginByDomainResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <wsdl:input name="resetPassword" message="tns:resetPassword">
+    </wsdl:input>
+      <wsdl:output name="resetPasswordResponse" message="tns:resetPasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkResetPasswordChangeCount">
+      <wsdl:input name="bulkResetPasswordChangeCount" message="tns:bulkResetPasswordChangeCount">
+    </wsdl:input>
+      <wsdl:output name="bulkResetPasswordChangeCountResponse" message="tns:bulkResetPasswordChangeCountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encryptPassword">
+      <wsdl:input name="encryptPassword" message="tns:encryptPassword">
+    </wsdl:input>
+      <wsdl:output name="encryptPasswordResponse" message="tns:encryptPasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInactiveUsers">
+      <wsdl:input name="getInactiveUsers" message="tns:getInactiveUsers">
+    </wsdl:input>
+      <wsdl:output name="getInactiveUsersResponse" message="tns:getInactiveUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPasswordEq">
+      <wsdl:input name="isPasswordEq" message="tns:isPasswordEq">
+    </wsdl:input>
+      <wsdl:output name="isPasswordEqResponse" message="tns:isPasswordEqResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogin">
+      <wsdl:input name="addLogin" message="tns:addLogin">
+    </wsdl:input>
+      <wsdl:output name="addLoginResponse" message="tns:addLoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByUser">
+      <wsdl:input name="getLoginByUser" message="tns:getLoginByUser">
+    </wsdl:input>
+      <wsdl:output name="getLoginByUserResponse" message="tns:getLoginByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginDataWebServiceServiceSoapBinding" type="tns:LoginDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrimaryIdentity">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPrimaryIdentity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPrimaryIdentityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationException">
+        <soap:fault name="AuthenticationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNearPswdExpiration">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserNearPswdExpiration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserNearPswdExpirationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeIdentityName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeIdentityName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeIdentityNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDept">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByDept">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByDeptResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserByLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unLockLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="unLockLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unLockLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="lockLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lockLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByManagedSys">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByManagedSys">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByManagedSysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkUnLock">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="bulkUnLock">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bulkUnLockResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLockedUserSince">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLockedUserSince">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLockedUserSinceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loginExists">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="loginExists">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginExistsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="decryptPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="decryptPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="decryptPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDomain">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByDomain">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByDomainResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkResetPasswordChangeCount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="bulkResetPasswordChangeCount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bulkResetPasswordChangeCountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="resetPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="resetPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encryptPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="encryptPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="encryptPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInactiveUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInactiveUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInactiveUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPasswordEq">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isPasswordEq">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isPasswordEqResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoginDataWebServiceService">
+    <wsdl:port name="LoginDataWebServicePort" binding="tns:LoginDataWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/LoginDataWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

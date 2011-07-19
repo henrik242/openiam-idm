@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 12, 2007 10:46:14 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.continfo.dto.EmailAddress" table="EMAIL_ADDRESS">
+        <comment></comment>
+        <id name="emailId" type="string">
+            <column name="EMAIL_ID" length="32" />
+             <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="emailAddress" type="string">
+            <column name="EMAIL_ADDRESS" length="320">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="isDefault" type="java.lang.Integer">
+            <column name="IS_DEFAULT">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="active" type="java.lang.Boolean">
+            <column name="ACTIVE" >
+                <comment></comment>
+            </column>
+        </property>
+        <property name="parentId" type="string">
+            <column name="PARENT_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="parentType" type="string">
+            <column name="PARENT_TYPE" length="30">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
