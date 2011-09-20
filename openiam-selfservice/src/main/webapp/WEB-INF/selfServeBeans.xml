@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+     					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+  
+	<bean id="passwordConfiguration" class="org.openiam.selfsrvc.pswd.PasswordConfiguration">
+		<!--Indicates whether the user interface should show the individual services for 
+			synchronization or automatically sync internally   -->
+		<property name="displaySyncServices" value="false" />
+		<property name="displayDomainList" value="false" />
+		<property name="defaultSecurityDomain" value="USR_SEC_DOMAIN" />
+		<property name="defaultManagedSysId" value="0" />
+		<property name="defaultChallengeResponseGroup" value="GLOBAL" />
+		<property name="parentOrgId" value="100" />
+		<property name="managedSystemType" value="MANAGED_SYS" />
+	</bean>
+
+	<!-- Configurable parameters for the self service application -->
+	<bean id="appConfiguration" class="org.openiam.selfsrvc.AppConfiguration" >
+ 
+		<property name="logoUrl" value="images/openiamlog.jpg" />
+		<property name="title" value="OpenIAM Identity Manager- v2.1 - Self Service"/>
+		<property name="welcomePageUrl" value="/welcomePage.selfserve"/>
+		<property name="defaultLang" value="en"/>
+		<property name="maxResultSetSize" value="200"/>
+		<property name="parentOrgId" value="100"/>
+		<property name="defaultSecurityDomain" value="USR_SEC_DOMAIN" />
+		<property name="defaultManagedSysId" value="0" />
+        <property name="userCategoryType" value="USER_TYPE" />
+		<!--  name of public menu groups  -->
+		<property name="publicLeftMenuGroup" value="BUSINESCENTER" />
+		<property name="publicRightMenuGroup1" value="ACCESSCENTER" />
+		<property name="publicRightMenuGroup2" value="SELFCENTER" />
+		<property name="publicRightMenuGroup3" value="REPORTCENTER" />
+	</bean>		
+
+	<bean id="authenticationConfiguration" class="org.openiam.selfsrvc.login.AuthenticationConfiguration">
+		<!--Indicates the security domain that should be used by the self service application
+		as default.   -->
+		<property name="defaultSecurityDomain" value="USR_SEC_DOMAIN" />
+	</bean>
+	
+	
+	
+	
+
+
+
+	
+</beans>
+

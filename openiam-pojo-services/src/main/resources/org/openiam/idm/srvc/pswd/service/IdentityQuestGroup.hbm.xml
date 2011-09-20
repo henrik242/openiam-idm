@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Aug 23, 2009 12:07:52 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.pswd.dto.IdentityQuestGroup" table="IDENTITY_QUEST_GRP" >
+        <id name="identityQuestGrpId" type="string">
+            <column name="IDENTITY_QUEST_GRP_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="60" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="companyOwnerId" type="string">
+            <column name="COMPANY_OWNER_ID" length="32" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19" />
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="20" />
+        </property>
+        <set name="identityQuestions" inverse="true">
+            <key>
+                <column name="IDENTITY_QUEST_GRP_ID" length="32" />
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.pswd.dto.IdentityQuestion" />
+        </set>
+    </class>
+</hibernate-mapping>

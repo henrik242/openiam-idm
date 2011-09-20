@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Sep 2, 2010 12:56:46 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.synch.dto.ActivityLogDetail" table="ACTIVITY_LOG_DETAIL" >
+        <id name="activityLogDetailId" type="string">
+            <column name="ACTIVITY_LOG_DETAIL_ID" length="32" />
+             <generator class="uuid" />
+        </id>
+        <property name="activityLogId" type="string">
+            <column name="ACTIVITY_LOG_ID" length="32" not-null="true" />
+        </property>
+        <property name="msg" type="string">
+            <column name="MSG" length="100" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="dataRow" type="string">
+            <column name="DATA_ROW" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

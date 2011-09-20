@@ -1,0 +1,2048 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="LoginDataWebService" resourceRoot="" soapui-version="3.6.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="$Proxy93ServiceSoapBinding" type="wsdl" bindingName="{http://unknown.namespace/}$Proxy93ServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService?wsdl"><con:part><con:url>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="$Proxy93Service" targetNamespace="http://unknown.namespace/" xmlns:ns1="urn:idm.openiam.org/srvc/auth/service" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://unknown.namespace/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService?wsdl=LoginDataWebService.wsdl" namespace="urn:idm.openiam.org/srvc/auth/service"></wsdl:import>
+  <wsdl:binding name="$Proxy93ServiceSoapBinding" type="ns1:LoginDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrimaryIdentity">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPrimaryIdentity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPrimaryIdentityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationException">
+        <soap:fault name="AuthenticationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNearPswdExpiration">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserNearPswdExpiration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserNearPswdExpirationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeIdentityName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeIdentityName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeIdentityNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDept">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByDept">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByDeptResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserByLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unLockLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="unLockLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unLockLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="lockLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lockLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByManagedSys">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByManagedSys">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByManagedSysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkUnLock">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="bulkUnLock">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bulkUnLockResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLockedUserSince">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLockedUserSince">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLockedUserSinceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loginExists">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="loginExists">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginExistsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="decryptPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="decryptPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="decryptPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDomain">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByDomain">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByDomainResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkResetPasswordChangeCount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="bulkResetPasswordChangeCount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bulkResetPasswordChangeCountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="resetPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="resetPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encryptPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="encryptPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="encryptPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInactiveUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInactiveUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInactiveUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPasswordEq">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isPasswordEq">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isPasswordEqResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLoginByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLoginByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="$Proxy93Service">
+    <wsdl:port binding="tns:$Proxy93ServiceSoapBinding" name="$Proxy93Port">
+      <soap:address location="http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService?wsdl=LoginDataWebService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LoginDataWebService" targetNamespace="urn:idm.openiam.org/srvc/auth/service" xmlns:ns1="urn:idm.openiam.org/srvc/auth/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/user/dto" version="1.0" xmlns:ns1="urn:idm.openiam.org/srvc/continfo/dto" xmlns:ns2="urn:idm.openiam.org/srvc/auth/service" xmlns:tns="urn:idm.openiam.org/srvc/user/dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:idm.openiam.org/srvc/continfo/dto"/>
+      <xs:import namespace="urn:idm.openiam.org/srvc/auth/service"/>
+      <xs:complexType name="user">
+        <xs:complexContent>
+          <xs:extension base="ns2:BaseObject">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="addresses" nillable="true" type="ns1:address"/>
+              <xs:element minOccurs="0" name="birthdate" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="companyId" type="xs:string"/>
+              <xs:element minOccurs="0" name="companyOwnerId" type="xs:string"/>
+              <xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+              <xs:element minOccurs="0" name="deptCd" type="xs:string"/>
+              <xs:element minOccurs="0" name="deptName" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="emailAddresses" nillable="true" type="ns1:emailAddress"/>
+              <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+              <xs:element minOccurs="0" name="employeeType" type="xs:string"/>
+              <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+              <xs:element minOccurs="0" name="jobCode" type="xs:string"/>
+              <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+              <xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="lastUpdatedBy" type="xs:string"/>
+              <xs:element minOccurs="0" name="locationCd" type="xs:string"/>
+              <xs:element minOccurs="0" name="locationName" type="xs:string"/>
+              <xs:element minOccurs="0" name="managerId" type="xs:string"/>
+              <xs:element minOccurs="0" name="metadataTypeId" type="xs:string"/>
+              <xs:element minOccurs="0" name="classification" type="xs:string"/>
+              <xs:element minOccurs="0" name="middleInit" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="phones" nillable="true" type="ns1:phone"/>
+              <xs:element minOccurs="0" name="prefix" type="xs:string"/>
+              <xs:element minOccurs="0" name="sex" type="xs:string"/>
+              <xs:element minOccurs="0" name="status" type="tns:UserStatus"/>
+              <xs:element minOccurs="0" name="secondaryStatus" type="tns:UserStatus"/>
+              <xs:element minOccurs="0" name="suffix" type="xs:string"/>
+              <xs:element minOccurs="0" name="title" type="xs:string"/>
+              <xs:element minOccurs="0" name="userAttributes" type="tns:userAttributeMap"/>
+              <xs:element minOccurs="0" name="userId" type="xs:string"/>
+              <xs:element minOccurs="0" name="userTypeInd" type="xs:string"/>
+              <xs:element minOccurs="0" name="userNotes" type="tns:userNoteSet"/>
+              <xs:element minOccurs="0" name="division" type="xs:string"/>
+              <xs:element minOccurs="0" name="costCenter" type="xs:string"/>
+              <xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="lastDate" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="mailCode" type="xs:string"/>
+              <xs:element minOccurs="0" name="nickname" type="xs:string"/>
+              <xs:element minOccurs="0" name="maidenName" type="xs:string"/>
+              <xs:element minOccurs="0" name="passwordTheme" type="xs:string"/>
+              <xs:element minOccurs="0" name="country" type="xs:string"/>
+              <xs:element minOccurs="0" name="bldgNum" type="xs:string"/>
+              <xs:element minOccurs="0" name="streetDirection" type="xs:string"/>
+              <xs:element minOccurs="0" name="suite" type="xs:string"/>
+              <xs:element minOccurs="0" name="address1" type="xs:string"/>
+              <xs:element minOccurs="0" name="address2" type="xs:string"/>
+              <xs:element minOccurs="0" name="address3" type="xs:string"/>
+              <xs:element minOccurs="0" name="address4" type="xs:string"/>
+              <xs:element minOccurs="0" name="address5" type="xs:string"/>
+              <xs:element minOccurs="0" name="address6" type="xs:string"/>
+              <xs:element minOccurs="0" name="address7" type="xs:string"/>
+              <xs:element minOccurs="0" name="city" type="xs:string"/>
+              <xs:element minOccurs="0" name="state" type="xs:string"/>
+              <xs:element minOccurs="0" name="postalCd" type="xs:string"/>
+              <xs:element minOccurs="0" name="email" type="xs:string"/>
+              <xs:element minOccurs="0" name="showInSearch" type="xs:int"/>
+              <xs:element minOccurs="0" name="delAdmin" type="xs:int"/>
+              <xs:element minOccurs="0" name="areaCd" type="xs:string"/>
+              <xs:element minOccurs="0" name="countryCd" type="xs:string"/>
+              <xs:element minOccurs="0" name="phoneNbr" type="xs:string"/>
+              <xs:element minOccurs="0" name="phoneExt" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="principalList" nillable="true" type="ns2:Login"/>
+              <xs:element minOccurs="0" name="supervisor" type="tns:supervisor"/>
+              <xs:element minOccurs="0" name="alternateContactId" type="xs:string"/>
+              <xs:element minOccurs="0" name="securityDomain" type="xs:string"/>
+              <xs:element minOccurs="0" name="userOwnerId" type="xs:string"/>
+              <xs:element minOccurs="0" name="datePasswordChanged" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="dateChallengeRespChanged" type="xs:dateTime"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="userAttributeMap">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userAttributeEntry" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="userAttribute" type="tns:userAttribute"/>
+              </xs:sequence>
+              <xs:attribute name="key" type="xs:string"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userAttribute">
+        <xs:complexContent>
+          <xs:extension base="ns2:BaseObject">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string"/>
+              <xs:element minOccurs="0" name="metadataElementId" type="xs:string"/>
+              <xs:element minOccurs="0" name="name" type="xs:string"/>
+              <xs:element minOccurs="0" name="userId" type="xs:string"/>
+              <xs:element minOccurs="0" name="value" type="xs:string"/>
+              <xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+              <xs:element minOccurs="0" name="operation" type="ns2:AttributeOperationEnum"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="userNoteSet">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="userNoteItem" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="userNote" type="tns:userNote"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userNote">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="noteType" type="xs:string"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="userNoteId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="supervisor">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comments" type="xs:string"/>
+          <xs:element minOccurs="0" name="employee" type="tns:user"/>
+          <xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="isPrimarySuper" type="xs:int"/>
+          <xs:element minOccurs="0" name="orgStructureId" type="xs:string"/>
+          <xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+          <xs:element minOccurs="0" name="supervisor" type="tns:user"/>
+          <xs:element minOccurs="0" name="supervisorType" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="UserStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="active"/>
+          <xs:enumeration value="inactive"/>
+          <xs:enumeration value="pending_start_date"/>
+          <xs:enumeration value="pending_approval"/>
+          <xs:enumeration value="approval_declined"/>
+          <xs:enumeration value="pending_user_validation"/>
+          <xs:enumeration value="pending_initial_login"/>
+          <xs:enumeration value="terminate"/>
+          <xs:enumeration value="deleted"/>
+          <xs:enumeration value="locked"/>
+          <xs:enumeration value="locked_admin"/>
+          <xs:enumeration value="disabled"/>
+          <xs:enumeration value="retired"/>
+          <xs:enumeration value="leave"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="urn:idm.openiam.org/srvc/continfo/dto" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:idm.openiam.org/srvc/auth/service"/>
+      <xs:complexType name="address">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="bldgNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="streetDirection" type="xs:string"/>
+          <xs:element minOccurs="0" name="suite" type="xs:string"/>
+          <xs:element minOccurs="0" name="address1" type="xs:string"/>
+          <xs:element minOccurs="0" name="address2" type="xs:string"/>
+          <xs:element minOccurs="0" name="address3" type="xs:string"/>
+          <xs:element minOccurs="0" name="address4" type="xs:string"/>
+          <xs:element minOccurs="0" name="address5" type="xs:string"/>
+          <xs:element minOccurs="0" name="address6" type="xs:string"/>
+          <xs:element minOccurs="0" name="address7" type="xs:string"/>
+          <xs:element minOccurs="0" name="addressId" type="xs:string"/>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="country" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+          <xs:element minOccurs="0" name="parentId" type="xs:string"/>
+          <xs:element minOccurs="0" name="parentType" type="xs:string"/>
+          <xs:element minOccurs="0" name="postalCd" type="xs:string"/>
+          <xs:element minOccurs="0" name="state" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="emailAddress">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="emailAddress" type="xs:string"/>
+          <xs:element minOccurs="0" name="emailId" type="xs:string"/>
+          <xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+          <xs:element minOccurs="0" name="parentId" type="xs:string"/>
+          <xs:element minOccurs="0" name="parentType" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="phone">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="areaCd" type="xs:string"/>
+          <xs:element minOccurs="0" name="countryCd" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+          <xs:element minOccurs="0" name="parentId" type="xs:string"/>
+          <xs:element minOccurs="0" name="parentType" type="xs:string"/>
+          <xs:element minOccurs="0" name="phoneExt" type="xs:string"/>
+          <xs:element minOccurs="0" name="phoneId" type="xs:string"/>
+          <xs:element minOccurs="0" name="phoneNbr" type="xs:string"/>
+          <xs:element minOccurs="0" name="phoneType" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="operation" type="ns1:AttributeOperationEnum"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addressMap">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="addressEntry" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="address" type="ns2:address" xmlns:ns2="urn:idm.openiam.org/srvc/continfo/dto"/>
+              </xs:sequence>
+              <xs:attribute name="key" type="xs:string"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="phoneMap">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="phoneEntry" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="phone" type="ns3:phone" xmlns:ns3="urn:idm.openiam.org/srvc/continfo/dto"/>
+              </xs:sequence>
+              <xs:attribute name="key" type="xs:string"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="emailAddressMap">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="emailAddressEntry" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="emailAddress" type="ns4:emailAddress" xmlns:ns4="urn:idm.openiam.org/srvc/continfo/dto"/>
+              </xs:sequence>
+              <xs:attribute name="key" type="xs:string"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:idm.openiam.org/srvc/auth/service" xmlns:ns1="urn:idm.openiam.org/srvc/user/dto" xmlns:tns="urn:idm.openiam.org/srvc/auth/service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:idm.openiam.org/srvc/user/dto"/>
+      <xs:element name="addLogin" type="tns:addLogin"/>
+      <xs:element name="addLoginResponse" type="tns:addLoginResponse"/>
+      <xs:element name="bulkResetPasswordChangeCount" type="tns:bulkResetPasswordChangeCount"/>
+      <xs:element name="bulkResetPasswordChangeCountResponse" type="tns:bulkResetPasswordChangeCountResponse"/>
+      <xs:element name="bulkUnLock" type="tns:bulkUnLock"/>
+      <xs:element name="bulkUnLockResponse" type="tns:bulkUnLockResponse"/>
+      <xs:element name="changeIdentityName" type="tns:changeIdentityName"/>
+      <xs:element name="changeIdentityNameResponse" type="tns:changeIdentityNameResponse"/>
+      <xs:element name="decryptPassword" type="tns:decryptPassword"/>
+      <xs:element name="decryptPasswordResponse" type="tns:decryptPasswordResponse"/>
+      <xs:element name="encryptPassword" type="tns:encryptPassword"/>
+      <xs:element name="encryptPasswordResponse" type="tns:encryptPasswordResponse"/>
+      <xs:element name="getInactiveUsers" type="tns:getInactiveUsers"/>
+      <xs:element name="getInactiveUsersResponse" type="tns:getInactiveUsersResponse"/>
+      <xs:element name="getLockedUserSince" type="tns:getLockedUserSince"/>
+      <xs:element name="getLockedUserSinceResponse" type="tns:getLockedUserSinceResponse"/>
+      <xs:element name="getLogin" type="tns:getLogin"/>
+      <xs:element name="getLoginByDept" type="tns:getLoginByDept"/>
+      <xs:element name="getLoginByDeptResponse" type="tns:getLoginByDeptResponse"/>
+      <xs:element name="getLoginByDomain" type="tns:getLoginByDomain"/>
+      <xs:element name="getLoginByDomainResponse" type="tns:getLoginByDomainResponse"/>
+      <xs:element name="getLoginByManagedSys" type="tns:getLoginByManagedSys"/>
+      <xs:element name="getLoginByManagedSysResponse" type="tns:getLoginByManagedSysResponse"/>
+      <xs:element name="getLoginByUser" type="tns:getLoginByUser"/>
+      <xs:element name="getLoginByUserResponse" type="tns:getLoginByUserResponse"/>
+      <xs:element name="getLoginResponse" type="tns:getLoginResponse"/>
+      <xs:element name="getPassword" type="tns:getPassword"/>
+      <xs:element name="getPasswordResponse" type="tns:getPasswordResponse"/>
+      <xs:element name="getPrimaryIdentity" type="tns:getPrimaryIdentity"/>
+      <xs:element name="getPrimaryIdentityResponse" type="tns:getPrimaryIdentityResponse"/>
+      <xs:element name="getUserByLogin" type="tns:getUserByLogin"/>
+      <xs:element name="getUserByLoginResponse" type="tns:getUserByLoginResponse"/>
+      <xs:element name="getUserNearPswdExpiration" type="tns:getUserNearPswdExpiration"/>
+      <xs:element name="getUserNearPswdExpirationResponse" type="tns:getUserNearPswdExpirationResponse"/>
+      <xs:element name="isPasswordEq" type="tns:isPasswordEq"/>
+      <xs:element name="isPasswordEqResponse" type="tns:isPasswordEqResponse"/>
+      <xs:element name="lockLogin" type="tns:lockLogin"/>
+      <xs:element name="lockLoginResponse" type="tns:lockLoginResponse"/>
+      <xs:element name="loginExists" type="tns:loginExists"/>
+      <xs:element name="loginExistsResponse" type="tns:loginExistsResponse"/>
+      <xs:element name="removeLogin" type="tns:removeLogin"/>
+      <xs:element name="removeLoginResponse" type="tns:removeLoginResponse"/>
+      <xs:element name="resetPassword" type="tns:resetPassword"/>
+      <xs:element name="resetPasswordResponse" type="tns:resetPasswordResponse"/>
+      <xs:element name="setPassword" type="tns:setPassword"/>
+      <xs:element name="setPasswordResponse" type="tns:setPasswordResponse"/>
+      <xs:element name="unLockLogin" type="tns:unLockLogin"/>
+      <xs:element name="unLockLoginResponse" type="tns:unLockLoginResponse"/>
+      <xs:element name="updateLogin" type="tns:updateLogin"/>
+      <xs:element name="updateLoginResponse" type="tns:updateLoginResponse"/>
+      <xs:complexType name="setPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorCode" type="tns:ResponseErrorCode"/>
+          <xs:element minOccurs="0" name="responseValue" type="xs:anyType"/>
+          <xs:element minOccurs="0" name="errorText" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="status" type="tns:ResponseStatus" use="required"/>
+      </xs:complexType>
+      <xs:complexType name="getPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPrimaryIdentity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPrimaryIdentityResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="principal" type="tns:Login"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="tns:LoginId"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+          <xs:element minOccurs="0" name="pwdEquivalentToken" type="xs:string"/>
+          <xs:element minOccurs="0" name="pwdChanged" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="pwdExp" type="xs:dateTime"/>
+          <xs:element name="firstTimeLogin" type="xs:int"/>
+          <xs:element name="resetPassword" type="xs:int"/>
+          <xs:element name="isLocked" type="xs:int"/>
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+          <xs:element minOccurs="0" name="gracePeriod" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="createDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+          <xs:element minOccurs="0" name="currentLoginHost" type="xs:string"/>
+          <xs:element minOccurs="0" name="authFailCount" type="xs:int"/>
+          <xs:element minOccurs="0" name="lastAuthAttempt" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="canonicalName" type="xs:string"/>
+          <xs:element minOccurs="0" name="lastLogin" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="isDefault" type="xs:int"/>
+          <xs:element name="selected" type="xs:boolean"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="loginAttributes" nillable="true" type="tns:LoginAttribute"/>
+          <xs:element minOccurs="0" name="passwordChangeCount" type="xs:int"/>
+          <xs:element minOccurs="0" name="operation" type="tns:AttributeOperationEnum"/>
+          <xs:element minOccurs="0" name="origPrincipalName" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginAttribute">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="loginAttrId" type="xs:string"/>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="value" type="xs:string"/>
+          <xs:element minOccurs="0" name="metadataId" type="xs:string"/>
+          <xs:element minOccurs="0" name="attrGroup" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Subject">
+        <xs:sequence>
+          <xs:element name="readOnly" type="xs:boolean"/>
+          <xs:element name="expirationTime" type="xs:long"/>
+          <xs:element name="resultCode" type="xs:int"/>
+          <xs:element minOccurs="0" name="saml" type="xs:string"/>
+          <xs:element minOccurs="0" name="samlType" type="xs:string"/>
+          <xs:element name="daysToPwdExp" type="xs:int"/>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="ssoToken" type="tns:SSOToken"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="groups" nillable="true" type="xs:anyType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xs:anyType"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="principals" nillable="true" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SSOToken">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="tokenType" type="xs:string"/>
+          <xs:element minOccurs="0" name="token" type="xs:string"/>
+          <xs:element minOccurs="0" name="authLevel" type="xs:string"/>
+          <xs:element minOccurs="0" name="provider" type="xs:string"/>
+          <xs:element minOccurs="0" name="clientIP" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element name="maxIdleTime" type="xs:int"/>
+          <xs:element minOccurs="0" name="expirationTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="createTime" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserNearPswdExpiration">
+        <xs:sequence>
+          <xs:element name="expDays" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserNearPswdExpirationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginListResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="principalList" nillable="true" type="tns:Login"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByDept">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+          <xs:element minOccurs="0" name="department" type="xs:string"/>
+          <xs:element minOccurs="0" name="div" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByDeptResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeIdentityName">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="newPrincipalName" type="xs:string"/>
+          <xs:element minOccurs="0" name="newPassword" type="xs:string"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeIdentityNameResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserByLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserByLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:UserResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UserResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:Response">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="user" type="ns1:user"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="objectState" type="xs:string"/>
+          <xs:element minOccurs="0" name="selected" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="unLockLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="unLockLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByManagedSys">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByManagedSysResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLockedUserSince">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="lastExecTime" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLockedUserSinceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bulkUnLock">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="ns1:UserStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bulkUnLockResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="principal" type="tns:Login"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginExists">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginExistsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="decryptPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="decryptPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByDomain">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByDomainResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resetPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resetPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bulkResetPasswordChangeCount">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="bulkResetPasswordChangeCountResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="encryptPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="encryptPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInactiveUsers">
+        <xs:sequence>
+          <xs:element name="startDays" type="xs:int"/>
+          <xs:element name="endDays" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInactiveUsersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isPasswordEq">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="domainId" type="xs:string"/>
+          <xs:element minOccurs="0" name="principal" type="xs:string"/>
+          <xs:element minOccurs="0" name="managedSysId" type="xs:string"/>
+          <xs:element minOccurs="0" name="newPassword" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isPasswordEqResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="principal" type="tns:Login"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLoginByUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginListResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="success"/>
+          <xs:enumeration value="failure"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ResponseErrorCode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="objectNotFound"/>
+          <xs:enumeration value="classNotFound"/>
+          <xs:enumeration value="principalNotFound"/>
+          <xs:enumeration value="userNotFound"/>
+          <xs:enumeration value="userStatus"/>
+          <xs:enumeration value="supervisorlNotFound"/>
+          <xs:enumeration value="DUPLICATE_PRINCIPAL"/>
+          <xs:enumeration value="failPasswordPolicy"/>
+          <xs:enumeration value="groupIdNull"/>
+          <xs:enumeration value="groupIdInvalid"/>
+          <xs:enumeration value="roleIdNull"/>
+          <xs:enumeration value="roleIdInvalid"/>
+          <xs:enumeration value="success"/>
+          <xs:enumeration value="FAIL_SQL_ERORR"/>
+          <xs:enumeration value="FAIL_CONNECTION"/>
+          <xs:enumeration value="FAIL_ALPHA_CHAR_RULE"/>
+          <xs:enumeration value="FAIL_LOWER_CASE_RULE"/>
+          <xs:enumeration value="FAIL_UPPER_CASE_RULE"/>
+          <xs:enumeration value="FAIL_NON_APHANUMERIC_RULE"/>
+          <xs:enumeration value="FAIL_NUMERIC_CHAR_RULE"/>
+          <xs:enumeration value="FAIL_HISTORY_RULE"/>
+          <xs:enumeration value="FAIL_LENGTH_RULE"/>
+          <xs:enumeration value="FAIL_NEQ_NAME"/>
+          <xs:enumeration value="FAIL_NEQ_PASSWORD"/>
+          <xs:enumeration value="FAIL_NEQ_PRINCIPAL"/>
+          <xs:enumeration value="FAIL_PASSWORD_CHANGE_FREQUENCY"/>
+          <xs:enumeration value="PASSWORD_POLICY_NOT_FOUND"/>
+          <xs:enumeration value="FAIL_PASSWORD_CHANGE_ALLOW"/>
+          <xs:enumeration value="FAIL_REJECT_CHARS_IN_PSWD"/>
+          <xs:enumeration value="FAIL_ENCRYPTION"/>
+          <xs:enumeration value="FAIL_DECRYPTION"/>
+          <xs:enumeration value="DIRECTORY_NAMING_EXCEPTION"/>
+          <xs:enumeration value="FAIL_OTHER"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AttributeOperationEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="nochange"/>
+          <xs:enumeration value="add"/>
+          <xs:enumeration value="replace"/>
+          <xs:enumeration value="delete"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+      <xs:complexType name="AuthenticationException">
+        <xs:sequence>
+          <xs:element name="errorCode" nillable="true" type="xs:int"/>
+          <xs:element name="errorMessage" nillable="true" type="xs:string"/>
+          <xs:element name="exception" nillable="true" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getLoginResponse">
+    <wsdl:part element="ns1:getLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPasswordResponse">
+    <wsdl:part element="ns1:setPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLogin">
+    <wsdl:part element="ns1:removeLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDomain">
+    <wsdl:part element="ns1:getLoginByDomain" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unLockLoginResponse">
+    <wsdl:part element="ns1:unLockLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkUnLockResponse">
+    <wsdl:part element="ns1:bulkUnLockResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeLoginResponse">
+    <wsdl:part element="ns1:removeLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addLogin">
+    <wsdl:part element="ns1:addLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkResetPasswordChangeCountResponse">
+    <wsdl:part element="ns1:bulkResetPasswordChangeCountResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeIdentityName">
+    <wsdl:part element="ns1:changeIdentityName" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPassword">
+    <wsdl:part element="ns1:setPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDeptResponse">
+    <wsdl:part element="ns1:getLoginByDeptResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByUserResponse">
+    <wsdl:part element="ns1:getLoginByUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPrimaryIdentityResponse">
+    <wsdl:part element="ns1:getPrimaryIdentityResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLoginResponse">
+    <wsdl:part element="ns1:getUserByLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNearPswdExpirationResponse">
+    <wsdl:part element="ns1:getUserNearPswdExpirationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptPasswordResponse">
+    <wsdl:part element="ns1:decryptPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationException">
+    <wsdl:part element="ns1:AuthenticationException" name="AuthenticationException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLogin">
+    <wsdl:part element="ns1:getUserByLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptPassword">
+    <wsdl:part element="ns1:decryptPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeIdentityNameResponse">
+    <wsdl:part element="ns1:changeIdentityNameResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDept">
+    <wsdl:part element="ns1:getLoginByDept" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockLoginResponse">
+    <wsdl:part element="ns1:lockLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPassword">
+    <wsdl:part element="ns1:resetPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPasswordEqResponse">
+    <wsdl:part element="ns1:isPasswordEqResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginExistsResponse">
+    <wsdl:part element="ns1:loginExistsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkResetPasswordChangeCount">
+    <wsdl:part element="ns1:bulkResetPasswordChangeCount" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLockedUserSince">
+    <wsdl:part element="ns1:getLockedUserSince" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLockedUserSinceResponse">
+    <wsdl:part element="ns1:getLockedUserSinceResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLogin">
+    <wsdl:part element="ns1:updateLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPasswordResponse">
+    <wsdl:part element="ns1:getPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPassword">
+    <wsdl:part element="ns1:getPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByDomainResponse">
+    <wsdl:part element="ns1:getLoginByDomainResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isPasswordEq">
+    <wsdl:part element="ns1:isPasswordEq" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unLockLogin">
+    <wsdl:part element="ns1:unLockLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockLogin">
+    <wsdl:part element="ns1:lockLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNearPswdExpiration">
+    <wsdl:part element="ns1:getUserNearPswdExpiration" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByManagedSysResponse">
+    <wsdl:part element="ns1:getLoginByManagedSysResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordResponse">
+    <wsdl:part element="ns1:resetPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptPassword">
+    <wsdl:part element="ns1:encryptPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptPasswordResponse">
+    <wsdl:part element="ns1:encryptPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByUser">
+    <wsdl:part element="ns1:getLoginByUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLogin">
+    <wsdl:part element="ns1:getLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginExists">
+    <wsdl:part element="ns1:loginExists" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginByManagedSys">
+    <wsdl:part element="ns1:getLoginByManagedSys" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addLoginResponse">
+    <wsdl:part element="ns1:addLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateLoginResponse">
+    <wsdl:part element="ns1:updateLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInactiveUsersResponse">
+    <wsdl:part element="ns1:getInactiveUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bulkUnLock">
+    <wsdl:part element="ns1:bulkUnLock" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInactiveUsers">
+    <wsdl:part element="ns1:getInactiveUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPrimaryIdentity">
+    <wsdl:part element="ns1:getPrimaryIdentity" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LoginDataWebService">
+    <wsdl:operation name="setPassword">
+      <wsdl:input message="ns1:setPassword" name="setPassword"></wsdl:input>
+      <wsdl:output message="ns1:setPasswordResponse" name="setPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPassword">
+      <wsdl:input message="ns1:getPassword" name="getPassword"></wsdl:input>
+      <wsdl:output message="ns1:getPasswordResponse" name="getPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrimaryIdentity">
+      <wsdl:input message="ns1:getPrimaryIdentity" name="getPrimaryIdentity"></wsdl:input>
+      <wsdl:output message="ns1:getPrimaryIdentityResponse" name="getPrimaryIdentityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNearPswdExpiration">
+      <wsdl:input message="ns1:getUserNearPswdExpiration" name="getUserNearPswdExpiration"></wsdl:input>
+      <wsdl:output message="ns1:getUserNearPswdExpirationResponse" name="getUserNearPswdExpirationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogin">
+      <wsdl:input message="ns1:getLogin" name="getLogin"></wsdl:input>
+      <wsdl:output message="ns1:getLoginResponse" name="getLoginResponse"></wsdl:output>
+      <wsdl:fault message="ns1:AuthenticationException" name="AuthenticationException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDept">
+      <wsdl:input message="ns1:getLoginByDept" name="getLoginByDept"></wsdl:input>
+      <wsdl:output message="ns1:getLoginByDeptResponse" name="getLoginByDeptResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeIdentityName">
+      <wsdl:input message="ns1:changeIdentityName" name="changeIdentityName"></wsdl:input>
+      <wsdl:output message="ns1:changeIdentityNameResponse" name="changeIdentityNameResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <wsdl:input message="ns1:getUserByLogin" name="getUserByLogin"></wsdl:input>
+      <wsdl:output message="ns1:getUserByLoginResponse" name="getUserByLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unLockLogin">
+      <wsdl:input message="ns1:unLockLogin" name="unLockLogin"></wsdl:input>
+      <wsdl:output message="ns1:unLockLoginResponse" name="unLockLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockLogin">
+      <wsdl:input message="ns1:lockLogin" name="lockLogin"></wsdl:input>
+      <wsdl:output message="ns1:lockLoginResponse" name="lockLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByManagedSys">
+      <wsdl:input message="ns1:getLoginByManagedSys" name="getLoginByManagedSys"></wsdl:input>
+      <wsdl:output message="ns1:getLoginByManagedSysResponse" name="getLoginByManagedSysResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeLogin">
+      <wsdl:input message="ns1:removeLogin" name="removeLogin"></wsdl:input>
+      <wsdl:output message="ns1:removeLoginResponse" name="removeLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLockedUserSince">
+      <wsdl:input message="ns1:getLockedUserSince" name="getLockedUserSince"></wsdl:input>
+      <wsdl:output message="ns1:getLockedUserSinceResponse" name="getLockedUserSinceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkUnLock">
+      <wsdl:input message="ns1:bulkUnLock" name="bulkUnLock"></wsdl:input>
+      <wsdl:output message="ns1:bulkUnLockResponse" name="bulkUnLockResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLogin">
+      <wsdl:input message="ns1:updateLogin" name="updateLogin"></wsdl:input>
+      <wsdl:output message="ns1:updateLoginResponse" name="updateLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loginExists">
+      <wsdl:input message="ns1:loginExists" name="loginExists"></wsdl:input>
+      <wsdl:output message="ns1:loginExistsResponse" name="loginExistsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="decryptPassword">
+      <wsdl:input message="ns1:decryptPassword" name="decryptPassword"></wsdl:input>
+      <wsdl:output message="ns1:decryptPasswordResponse" name="decryptPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByDomain">
+      <wsdl:input message="ns1:getLoginByDomain" name="getLoginByDomain"></wsdl:input>
+      <wsdl:output message="ns1:getLoginByDomainResponse" name="getLoginByDomainResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <wsdl:input message="ns1:resetPassword" name="resetPassword"></wsdl:input>
+      <wsdl:output message="ns1:resetPasswordResponse" name="resetPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bulkResetPasswordChangeCount">
+      <wsdl:input message="ns1:bulkResetPasswordChangeCount" name="bulkResetPasswordChangeCount"></wsdl:input>
+      <wsdl:output message="ns1:bulkResetPasswordChangeCountResponse" name="bulkResetPasswordChangeCountResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encryptPassword">
+      <wsdl:input message="ns1:encryptPassword" name="encryptPassword"></wsdl:input>
+      <wsdl:output message="ns1:encryptPasswordResponse" name="encryptPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInactiveUsers">
+      <wsdl:input message="ns1:getInactiveUsers" name="getInactiveUsers"></wsdl:input>
+      <wsdl:output message="ns1:getInactiveUsersResponse" name="getInactiveUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isPasswordEq">
+      <wsdl:input message="ns1:isPasswordEq" name="isPasswordEq"></wsdl:input>
+      <wsdl:output message="ns1:isPasswordEqResponse" name="isPasswordEqResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogin">
+      <wsdl:input message="ns1:addLogin" name="addLogin"></wsdl:input>
+      <wsdl:output message="ns1:addLoginResponse" name="addLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginByUser">
+      <wsdl:input message="ns1:getLoginByUser" name="getLoginByUser"></wsdl:input>
+      <wsdl:output message="ns1:getLoginByUserResponse" name="getLoginByUserResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addLogin" bindingOperationName="addLogin" type="Request-Response" outputName="addLoginResponse" inputName="addLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addLogin>
+         <!--Optional:-->
+         <principal>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <managedSysId>?</managedSysId>
+            </id>
+            <!--Optional:-->
+            <userId>?</userId>
+            <!--Optional:-->
+            <password>?</password>
+            <!--Optional:-->
+            <pwdEquivalentToken>?</pwdEquivalentToken>
+            <!--Optional:-->
+            <pwdChanged>?</pwdChanged>
+            <!--Optional:-->
+            <pwdExp>?</pwdExp>
+            <firstTimeLogin>?</firstTimeLogin>
+            <resetPassword>?</resetPassword>
+            <isLocked>?</isLocked>
+            <!--Optional:-->
+            <status>?</status>
+            <!--Optional:-->
+            <gracePeriod>?</gracePeriod>
+            <!--Optional:-->
+            <createDate>?</createDate>
+            <!--Optional:-->
+            <createdBy>?</createdBy>
+            <!--Optional:-->
+            <currentLoginHost>?</currentLoginHost>
+            <!--Optional:-->
+            <authFailCount>?</authFailCount>
+            <!--Optional:-->
+            <lastAuthAttempt>?</lastAuthAttempt>
+            <!--Optional:-->
+            <canonicalName>?</canonicalName>
+            <!--Optional:-->
+            <lastLogin>?</lastLogin>
+            <!--Optional:-->
+            <isDefault>?</isDefault>
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <loginAttributes>
+               <!--Optional:-->
+               <loginAttrId>?</loginAttrId>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <name>?</name>
+               <!--Optional:-->
+               <value>?</value>
+               <!--Optional:-->
+               <metadataId>?</metadataId>
+               <!--Optional:-->
+               <attrGroup>?</attrGroup>
+            </loginAttributes>
+            <!--Optional:-->
+            <passwordChangeCount>?</passwordChangeCount>
+            <!--Optional:-->
+            <operation>?</operation>
+            <!--Optional:-->
+            <origPrincipalName>?</origPrincipalName>
+            <!--Optional:-->
+            <managedSysName>?</managedSysName>
+         </principal>
+      </ser:addLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/addLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="bulkResetPasswordChangeCount" bindingOperationName="bulkResetPasswordChangeCount" type="Request-Response" outputName="bulkResetPasswordChangeCountResponse" inputName="bulkResetPasswordChangeCount" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:bulkResetPasswordChangeCount/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/bulkResetPasswordChangeCount"/></con:call></con:operation><con:operation isOneWay="false" action="" name="bulkUnLock" bindingOperationName="bulkUnLock" type="Request-Response" outputName="bulkUnLockResponse" inputName="bulkUnLock" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:bulkUnLock>
+         <!--Optional:-->
+         <status>?</status>
+      </ser:bulkUnLock>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/bulkUnLock"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeIdentityName" bindingOperationName="changeIdentityName" type="Request-Response" outputName="changeIdentityNameResponse" inputName="changeIdentityName" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changeIdentityName>
+         <!--Optional:-->
+         <newPrincipalName>?</newPrincipalName>
+         <!--Optional:-->
+         <newPassword>?</newPassword>
+         <!--Optional:-->
+         <userId>?</userId>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <domainId>?</domainId>
+      </ser:changeIdentityName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/changeIdentityName"/></con:call></con:operation><con:operation isOneWay="false" action="" name="decryptPassword" bindingOperationName="decryptPassword" type="Request-Response" outputName="decryptPasswordResponse" inputName="decryptPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:decryptPassword>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:decryptPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/decryptPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="encryptPassword" bindingOperationName="encryptPassword" type="Request-Response" outputName="encryptPasswordResponse" inputName="encryptPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:encryptPassword>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:encryptPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/encryptPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getInactiveUsers" bindingOperationName="getInactiveUsers" type="Request-Response" outputName="getInactiveUsersResponse" inputName="getInactiveUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getInactiveUsers>
+         <startDays>?</startDays>
+         <endDays>?</endDays>
+      </ser:getInactiveUsers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getInactiveUsers"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLockedUserSince" bindingOperationName="getLockedUserSince" type="Request-Response" outputName="getLockedUserSinceResponse" inputName="getLockedUserSince" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLockedUserSince>
+         <!--Optional:-->
+         <lastExecTime>?</lastExecTime>
+      </ser:getLockedUserSince>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLockedUserSince"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLogin" bindingOperationName="getLogin" type="Request-Response" outputName="getLoginResponse" inputName="getLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+      </ser:getLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLoginByDept" bindingOperationName="getLoginByDept" type="Request-Response" outputName="getLoginByDeptResponse" inputName="getLoginByDept" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByDept>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <department>?</department>
+         <!--Optional:-->
+         <div>?</div>
+      </ser:getLoginByDept>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLoginByDept"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLoginByDomain" bindingOperationName="getLoginByDomain" type="Request-Response" outputName="getLoginByDomainResponse" inputName="getLoginByDomain" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByDomain>
+         <!--Optional:-->
+         <domainId>?</domainId>
+      </ser:getLoginByDomain>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLoginByDomain"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLoginByManagedSys" bindingOperationName="getLoginByManagedSys" type="Request-Response" outputName="getLoginByManagedSysResponse" inputName="getLoginByManagedSys" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByManagedSys>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getLoginByManagedSys>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLoginByManagedSys"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLoginByUser" bindingOperationName="getLoginByUser" type="Request-Response" outputName="getLoginByUserResponse" inputName="getLoginByUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByUser>
+         <!--Optional:-->
+         <userId>?</userId>
+      </ser:getLoginByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getLoginByUser"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getPassword" bindingOperationName="getPassword" type="Request-Response" outputName="getPasswordResponse" inputName="getPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getPrimaryIdentity" bindingOperationName="getPrimaryIdentity" type="Request-Response" outputName="getPrimaryIdentityResponse" inputName="getPrimaryIdentity" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getPrimaryIdentity>
+         <!--Optional:-->
+         <userId>?</userId>
+      </ser:getPrimaryIdentity>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getPrimaryIdentity"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserByLogin" bindingOperationName="getUserByLogin" type="Request-Response" outputName="getUserByLoginResponse" inputName="getUserByLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserByLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getUserByLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getUserByLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserNearPswdExpiration" bindingOperationName="getUserNearPswdExpiration" type="Request-Response" outputName="getUserNearPswdExpirationResponse" inputName="getUserNearPswdExpiration" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserNearPswdExpiration>
+         <expDays>?</expDays>
+      </ser:getUserNearPswdExpiration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/getUserNearPswdExpiration"/></con:call></con:operation><con:operation isOneWay="false" action="" name="isPasswordEq" bindingOperationName="isPasswordEq" type="Request-Response" outputName="isPasswordEqResponse" inputName="isPasswordEq" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:isPasswordEq>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <newPassword>?</newPassword>
+      </ser:isPasswordEq>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/isPasswordEq"/></con:call></con:operation><con:operation isOneWay="false" action="" name="lockLogin" bindingOperationName="lockLogin" type="Request-Response" outputName="lockLoginResponse" inputName="lockLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:lockLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:lockLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/lockLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="loginExists" bindingOperationName="loginExists" type="Request-Response" outputName="loginExistsResponse" inputName="loginExists" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:loginExists>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:loginExists>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/loginExists"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeLogin" bindingOperationName="removeLogin" type="Request-Response" outputName="removeLoginResponse" inputName="removeLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:removeLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/removeLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="resetPassword" bindingOperationName="resetPassword" type="Request-Response" outputName="resetPasswordResponse" inputName="resetPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:resetPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:resetPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/resetPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="setPassword" bindingOperationName="setPassword" type="Request-Response" outputName="setPasswordResponse" inputName="setPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:setPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:setPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/setPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="unLockLogin" bindingOperationName="unLockLogin" type="Request-Response" outputName="unLockLoginResponse" inputName="unLockLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:unLockLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:unLockLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/unLockLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="updateLogin" bindingOperationName="updateLogin" type="Request-Response" outputName="updateLoginResponse" inputName="updateLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateLogin>
+         <!--Optional:-->
+         <principal>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <managedSysId>?</managedSysId>
+            </id>
+            <!--Optional:-->
+            <userId>?</userId>
+            <!--Optional:-->
+            <password>?</password>
+            <!--Optional:-->
+            <pwdEquivalentToken>?</pwdEquivalentToken>
+            <!--Optional:-->
+            <pwdChanged>?</pwdChanged>
+            <!--Optional:-->
+            <pwdExp>?</pwdExp>
+            <firstTimeLogin>?</firstTimeLogin>
+            <resetPassword>?</resetPassword>
+            <isLocked>?</isLocked>
+            <!--Optional:-->
+            <status>?</status>
+            <!--Optional:-->
+            <gracePeriod>?</gracePeriod>
+            <!--Optional:-->
+            <createDate>?</createDate>
+            <!--Optional:-->
+            <createdBy>?</createdBy>
+            <!--Optional:-->
+            <currentLoginHost>?</currentLoginHost>
+            <!--Optional:-->
+            <authFailCount>?</authFailCount>
+            <!--Optional:-->
+            <lastAuthAttempt>?</lastAuthAttempt>
+            <!--Optional:-->
+            <canonicalName>?</canonicalName>
+            <!--Optional:-->
+            <lastLogin>?</lastLogin>
+            <!--Optional:-->
+            <isDefault>?</isDefault>
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <loginAttributes>
+               <!--Optional:-->
+               <loginAttrId>?</loginAttrId>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <name>?</name>
+               <!--Optional:-->
+               <value>?</value>
+               <!--Optional:-->
+               <metadataId>?</metadataId>
+               <!--Optional:-->
+               <attrGroup>?</attrGroup>
+            </loginAttributes>
+            <!--Optional:-->
+            <passwordChangeCount>?</passwordChangeCount>
+            <!--Optional:-->
+            <operation>?</operation>
+            <!--Optional:-->
+            <origPrincipalName>?</origPrincipalName>
+            <!--Optional:-->
+            <managedSysName>?</managedSysName>
+         </principal>
+      </ser:updateLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://unknown.namespace/LoginDataWebService/updateLogin"/></con:call></con:operation></con:interface><con:testSuite name="$Proxy93ServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>addLogin</con:operation><con:request name="addLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addLogin>
+         <!--Optional:-->
+         <principal>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <managedSysId>?</managedSysId>
+            </id>
+            <!--Optional:-->
+            <userId>?</userId>
+            <!--Optional:-->
+            <password>?</password>
+            <!--Optional:-->
+            <pwdEquivalentToken>?</pwdEquivalentToken>
+            <!--Optional:-->
+            <pwdChanged>?</pwdChanged>
+            <!--Optional:-->
+            <pwdExp>?</pwdExp>
+            <firstTimeLogin>?</firstTimeLogin>
+            <resetPassword>?</resetPassword>
+            <isLocked>?</isLocked>
+            <!--Optional:-->
+            <status>?</status>
+            <!--Optional:-->
+            <gracePeriod>?</gracePeriod>
+            <!--Optional:-->
+            <createDate>?</createDate>
+            <!--Optional:-->
+            <createdBy>?</createdBy>
+            <!--Optional:-->
+            <currentLoginHost>?</currentLoginHost>
+            <!--Optional:-->
+            <authFailCount>?</authFailCount>
+            <!--Optional:-->
+            <lastAuthAttempt>?</lastAuthAttempt>
+            <!--Optional:-->
+            <canonicalName>?</canonicalName>
+            <!--Optional:-->
+            <lastLogin>?</lastLogin>
+            <!--Optional:-->
+            <isDefault>?</isDefault>
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <loginAttributes>
+               <!--Optional:-->
+               <loginAttrId>?</loginAttrId>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <name>?</name>
+               <!--Optional:-->
+               <value>?</value>
+               <!--Optional:-->
+               <metadataId>?</metadataId>
+               <!--Optional:-->
+               <attrGroup>?</attrGroup>
+            </loginAttributes>
+            <!--Optional:-->
+            <passwordChangeCount>?</passwordChangeCount>
+            <!--Optional:-->
+            <operation>?</operation>
+            <!--Optional:-->
+            <origPrincipalName>?</origPrincipalName>
+            <!--Optional:-->
+            <managedSysName>?</managedSysName>
+         </principal>
+      </ser:addLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/addLogin" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="bulkResetPasswordChangeCount TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="bulkResetPasswordChangeCount"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>bulkResetPasswordChangeCount</con:operation><con:request name="bulkResetPasswordChangeCount"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:bulkResetPasswordChangeCount/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/bulkResetPasswordChangeCount"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="bulkUnLock TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="bulkUnLock"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>bulkUnLock</con:operation><con:request name="bulkUnLock"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:bulkUnLock>
+         <!--Optional:-->
+         <status>?</status>
+      </ser:bulkUnLock>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/bulkUnLock"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="changeIdentityName TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="changeIdentityName"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>changeIdentityName</con:operation><con:request name="changeIdentityName"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changeIdentityName>
+         <!--Optional:-->
+         <newPrincipalName>?</newPrincipalName>
+         <!--Optional:-->
+         <newPassword>?</newPassword>
+         <!--Optional:-->
+         <userId>?</userId>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <domainId>?</domainId>
+      </ser:changeIdentityName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/changeIdentityName"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="decryptPassword TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="decryptPassword"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>decryptPassword</con:operation><con:request name="decryptPassword"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:decryptPassword>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:decryptPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/decryptPassword"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="encryptPassword TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="encryptPassword"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>encryptPassword</con:operation><con:request name="encryptPassword"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:encryptPassword>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:encryptPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/encryptPassword"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getInactiveUsers TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getInactiveUsers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getInactiveUsers</con:operation><con:request name="getInactiveUsers"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getInactiveUsers>
+         <startDays>?</startDays>
+         <endDays>?</endDays>
+      </ser:getInactiveUsers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getInactiveUsers"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLockedUserSince TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLockedUserSince"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLockedUserSince</con:operation><con:request name="getLockedUserSince"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLockedUserSince>
+         <!--Optional:-->
+         <lastExecTime>?</lastExecTime>
+      </ser:getLockedUserSince>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLockedUserSince"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLogin</con:operation><con:request name="getLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+      </ser:getLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLoginByDept TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLoginByDept"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLoginByDept</con:operation><con:request name="getLoginByDept"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByDept>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <department>?</department>
+         <!--Optional:-->
+         <div>?</div>
+      </ser:getLoginByDept>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLoginByDept"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLoginByDomain TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLoginByDomain"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLoginByDomain</con:operation><con:request name="getLoginByDomain"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByDomain>
+         <!--Optional:-->
+         <domainId>?</domainId>
+      </ser:getLoginByDomain>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLoginByDomain"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLoginByManagedSys TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLoginByManagedSys"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLoginByManagedSys</con:operation><con:request name="getLoginByManagedSys"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByManagedSys>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getLoginByManagedSys>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLoginByManagedSys"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getLoginByUser TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getLoginByUser"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getLoginByUser</con:operation><con:request name="getLoginByUser"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getLoginByUser>
+         <!--Optional:-->
+         <userId>?</userId>
+      </ser:getLoginByUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getLoginByUser"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPassword TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getPassword"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getPassword</con:operation><con:request name="getPassword"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getPassword"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPrimaryIdentity TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getPrimaryIdentity"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getPrimaryIdentity</con:operation><con:request name="getPrimaryIdentity"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getPrimaryIdentity>
+         <!--Optional:-->
+         <userId>?</userId>
+      </ser:getPrimaryIdentity>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getPrimaryIdentity"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUserByLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getUserByLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getUserByLogin</con:operation><con:request name="getUserByLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserByLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:getUserByLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getUserByLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUserNearPswdExpiration TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getUserNearPswdExpiration"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>getUserNearPswdExpiration</con:operation><con:request name="getUserNearPswdExpiration"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserNearPswdExpiration>
+         <expDays>?</expDays>
+      </ser:getUserNearPswdExpiration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/getUserNearPswdExpiration"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="isPasswordEq TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="isPasswordEq"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>isPasswordEq</con:operation><con:request name="isPasswordEq"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:isPasswordEq>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <newPassword>?</newPassword>
+      </ser:isPasswordEq>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/isPasswordEq"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="lockLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="lockLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>lockLogin</con:operation><con:request name="lockLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:lockLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:lockLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/lockLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="loginExists TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="loginExists"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>loginExists</con:operation><con:request name="loginExists"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:loginExists>
+         <domainId>USR_SEC_DOMAIN</domainId>
+         <principal>snelson</principal>
+         <managedSysId>0</managedSysId>
+      </ser:loginExists>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/loginExists" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="removeLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="removeLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>removeLogin</con:operation><con:request name="removeLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:removeLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/removeLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="resetPassword TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="resetPassword"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>resetPassword</con:operation><con:request name="resetPassword"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:resetPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:resetPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/resetPassword"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="setPassword TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="setPassword"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>setPassword</con:operation><con:request name="setPassword"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:setPassword>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:setPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/setPassword"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="unLockLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="unLockLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>unLockLogin</con:operation><con:request name="unLockLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:unLockLogin>
+         <!--Optional:-->
+         <domainId>?</domainId>
+         <!--Optional:-->
+         <principal>?</principal>
+         <!--Optional:-->
+         <managedSysId>?</managedSysId>
+      </ser:unLockLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/unLockLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="updateLogin TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="updateLogin"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>$Proxy93ServiceSoapBinding</con:interface><con:operation>updateLogin</con:operation><con:request name="updateLogin"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/LoginDataWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:idm.openiam.org/srvc/auth/service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:updateLogin>
+         <!--Optional:-->
+         <principal>
+            <!--Optional:-->
+            <id>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <managedSysId>?</managedSysId>
+            </id>
+            <!--Optional:-->
+            <userId>?</userId>
+            <!--Optional:-->
+            <password>?</password>
+            <!--Optional:-->
+            <pwdEquivalentToken>?</pwdEquivalentToken>
+            <!--Optional:-->
+            <pwdChanged>?</pwdChanged>
+            <!--Optional:-->
+            <pwdExp>?</pwdExp>
+            <firstTimeLogin>?</firstTimeLogin>
+            <resetPassword>?</resetPassword>
+            <isLocked>?</isLocked>
+            <!--Optional:-->
+            <status>?</status>
+            <!--Optional:-->
+            <gracePeriod>?</gracePeriod>
+            <!--Optional:-->
+            <createDate>?</createDate>
+            <!--Optional:-->
+            <createdBy>?</createdBy>
+            <!--Optional:-->
+            <currentLoginHost>?</currentLoginHost>
+            <!--Optional:-->
+            <authFailCount>?</authFailCount>
+            <!--Optional:-->
+            <lastAuthAttempt>?</lastAuthAttempt>
+            <!--Optional:-->
+            <canonicalName>?</canonicalName>
+            <!--Optional:-->
+            <lastLogin>?</lastLogin>
+            <!--Optional:-->
+            <isDefault>?</isDefault>
+            <selected>?</selected>
+            <!--Zero or more repetitions:-->
+            <loginAttributes>
+               <!--Optional:-->
+               <loginAttrId>?</loginAttrId>
+               <!--Optional:-->
+               <domainId>?</domainId>
+               <!--Optional:-->
+               <login>?</login>
+               <!--Optional:-->
+               <name>?</name>
+               <!--Optional:-->
+               <value>?</value>
+               <!--Optional:-->
+               <metadataId>?</metadataId>
+               <!--Optional:-->
+               <attrGroup>?</attrGroup>
+            </loginAttributes>
+            <!--Optional:-->
+            <passwordChangeCount>?</passwordChangeCount>
+            <!--Optional:-->
+            <operation>?</operation>
+            <!--Optional:-->
+            <origPrincipalName>?</origPrincipalName>
+            <!--Optional:-->
+            <managedSysName>?</managedSysName>
+         </principal>
+      </ser:updateLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="http://unknown.namespace/LoginDataWebService/updateLogin"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Jul 18, 2009 8:49:09 AM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.role.dto.UserRole" table="USER_ROLE" >
+        <id name="userRoleId" type="string">
+            <column name="USER_ROLE_ID" length="32" />
+             <generator class="uuid" />
+        </id>
+        <property name="userId" type="string">
+            <column name="USER_ID" length="32" not-null="true" />
+        </property>
+        
+        <property name="serviceId" type="string">
+            <column name="SERVICE_ID" length="20" not-null="true" />
+        </property>
+        <property name="roleId" type="string">
+            <column name="ROLE_ID" length="32" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" />
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="START_DATE" length="19" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="END_DATE" length="19" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+

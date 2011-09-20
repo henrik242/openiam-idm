@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" 
+	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" 
+	xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"	
+  xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xsi:schemaLocation="
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        	http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+       		http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.1/mule-http.xsd
+       	  http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd
+          http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.1/mule-jms.xsd
+          http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/3.1/mule-cxf.xsd" >
+
+
+		<model name="IdentitySynchServiceModel">
+			<service name="IdentitySynchWebService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}IdentitySynchWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service  />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="synchServiceWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="asynchIdentitySynchServiceModel">
+			<service name="asynchIdentitySynchService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}Asynch-SynchronizatonService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="asynchSynchServiceWS" />
+				</component>
+			</service>
+		</model>
+
+     	<model name="ProvisionServiceModel">
+			<service name="ProvisionService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ProvisioningService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="defaultProvision" />
+				</component>
+			</service>
+	    </model>
+
+
+        <model name="AsynchProvisionServiceModel">
+			<service name="AsynchProvisionService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}AsynchUserProvisionService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="asynchProvisonWS" />
+				</component>
+			</service>
+	    </model>
+
+
+
+
+
+		<model name="managedServiceModel">
+			<service name="managedService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ManagedSystemWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="managedSysService" />
+				</component>
+			</service>
+		</model>
+
+		<model name="provReqServiceModel">
+			<service name="provReqService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}RequestWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="provRequestWS" />
+				</component>
+			</service>
+		</model>
+
+		<model name="connectorWebServiceModel">
+			<service name="connectorWebService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}ConnectorWebService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="connectorService" />
+				</component>
+			</service>
+		</model>
+				
+		<!-- Synchronization Objects  -->
+		<!-- Reconciliation Object  -->
+	
+		<!-- Web Services  -->
+	
+</mule>

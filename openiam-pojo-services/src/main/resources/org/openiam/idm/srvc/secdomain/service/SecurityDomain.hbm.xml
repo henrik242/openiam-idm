@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping default-lazy="false" >
+    <class name="org.openiam.idm.srvc.secdomain.dto.SecurityDomain" table="SECURITY_DOMAIN" >
+        <cache usage="read-write"/>
+        <comment></comment>
+        <id name="domainId" type="string">
+            <column name="DOMAIN_ID" length="20" />
+              <generator class="org.openiam.base.id.SequenceGenerator">
+                 <param name="table">sequence_gen</param>
+                 <param name="column">next_id</param>
+                 <param name="attribute">DOMAIN_ID</param>
+       		  </generator>
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="defaultLoginModule" type="string">
+            <column name="LOGIN_MODULE" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="authSysId" type="string">
+            <column name="AUTH_SYS_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="passwordPolicyId" type="string">
+            <column name="PASSWORD_POLICY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="authnPolicyId" type="string">
+            <column name="AUTHENTICATION_POLICY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="auditPolicyId" type="string">
+            <column name="AUDIT_POLICY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+
+
+    </class>
+ </hibernate-mapping>

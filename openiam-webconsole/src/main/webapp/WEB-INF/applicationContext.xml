@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    					http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	   <property name="basename" value="messages"/>
+	</bean>
+	
+	<!-- Email Configuration -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  <property name="host" value="mail.optonline.net"/>
+	  <property name="port" value="25" />
+	  <property name="protocol" value="smtp" />
+	</bean>
+	
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+	  <property name="from" value="identitymanager@diamelle.com"/>
+	  <property name="subject" value="Registration Request"/>
+	</bean>
+	
+	<bean id="emailManager" class="org.openiam.webadmin.user.EmailManager">
+	  <property name="mailSender" ref="mailSender"/>
+	  <property name="templateMessage" ref="templateMessage"/>
+	  <property name="approveText" value="Your id request has been approved and provisioned."/>
+	  <property name="rejectText"  value="Your request for an id can not be approved at this time."/>
+	</bean> 
+
+
+</beans>

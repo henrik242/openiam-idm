@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+
+<!-- Generated Dec 2, 2007 5:41:37 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+
+    <class name="org.openiam.idm.srvc.cd.dto.ReferenceData" table="STATUS" >
+        <cache usage="read-write"/>
+        
+        <comment></comment>
+        
+        <composite-id name="id" class="org.openiam.idm.srvc.cd.dto.ReferenceDataId">
+            <key-property name="codeGroup" type="string">
+                <column name="CODE_GROUP" length="40" />
+            </key-property>
+            <key-property name="statusCd" type="string">
+                <column name="STATUS_CD" length="20" />
+            </key-property>
+            <key-property name="languageCd" type="string">
+                <column name="LANGUAGE_CD" length="2" />
+            </key-property>
+        </composite-id>
+        <property name="statusType" type="string">
+            <column name="STATUS_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="weight" type="java.lang.Integer">
+            <column name="WEIGHT">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

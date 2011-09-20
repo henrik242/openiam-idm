@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<hibernate-mapping default-lazy="false" >
+    <class name="org.openiam.idm.srvc.service.dto.Service" table="SERVICE" >
+        <cache usage="read-write"/>
+        <comment></comment>
+        <id name="serviceId" type="string">
+            <column name="SERVICE_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="serviceName" type="string">
+            <column name="SERVICE_NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationIpAddress" type="string">
+            <column name="LOCATION_IP_ADDRESS" length="80">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="companyOwnerId" type="string">
+            <column name="COMPANY_OWNER_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="START_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="END_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="licenseKey" type="string">
+            <column name="LICENSE_KEY">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="serviceType" type="string">
+            <column name="SERVICE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="parentServiceId" type="string">
+            <column name="PARENT_SERVICE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="rootResourceId" type="string">
+            <column name="ROOT_RESOURCE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="accessControlModel" type="string">
+            <column name="ACCESS_CONTROL_MODEL" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        
+  <!--     
+        <set name="requestApprovers" cascade="all-delete-orphan">
+            <key>
+                <column name="SERVICE_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.service.dto.RequestApprover" />
+        </set>
+  -->     
+       
+        <set name="serviceConfigs" cascade="all-delete-orphan">
+            <key>
+                <column name="SERVICE_ID" length="20">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.service.dto.ServiceConfig" />
+        </set>
+        <set name="requestForms" cascade="all-delete-orphan">
+            <key>
+                <column name="SERVICE_ID" length="20" not-null="true">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.service.dto.RequestForm" />
+        </set>
+         </class>
+</hibernate-mapping>

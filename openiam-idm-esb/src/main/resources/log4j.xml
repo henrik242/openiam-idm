@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!--  
+*************************************************************************************
+*  This xml document is used to define Log4J Configuration
+*************************************************************************************
+*********************************************************************************
+* This appender simply outputs log messages to the console
+*
+*  %d - DateTime
+*
+*  %t - Thread
+*
+*  %C - Class
+*
+*  %m - Message
+*
+*  %n - New Line
+*
+*********************************************************************************
+-->
+    <root>
+	       <priority value="warn" />  
+	       <appender-ref ref="STDOUT" />  
+	       <appender-ref ref="A2" />
+    </root>
+ 	
+ 	<logger name="org.openiam">
+        <level value="debug"/>
+        <appender-ref ref="openiam-esb"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+ 	<logger name="org.apache">
+        <level value="warn"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+ 	
+ 	<logger name="org.mule">
+        <level value="warn"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+ 	<logger name="org.hibernate">
+        <level value="warn"/>
+        <appender-ref ref="A3"/>
+    </logger> 
+ 
+	 <appender name="openiam-esb" class="org.apache.log4j.RollingFileAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%c] %m%n" />
+		</layout>
+		<param name="File" value="../logs/openiam-idm.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="150MB" />
+		<param name="MaxBackupIndex" value="2" />
+
+
+       <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	       <param name="LevelMin" value="DEBUG" />
+	       <param name="LevelMax" value="FATAL" />
+	       <param name="AcceptOnMatch" value="true" />
+       </filter>
+
+		</appender>
+    
+ 
+       	
+      <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+       <layout class="org.apache.log4j.PatternLayout">
+	       <param name="ConversionPattern" value="%d [%t] %-5p %C{1} : %m%n" />
+       </layout>
+       <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	       <param name="LevelMin" value="WARN" />
+	       <param name="LevelMax" value="FATAL" />
+	       <param name="AcceptOnMatch" value="true" />
+       </filter>
+      </appender>
+
+       	<appender name="A2" class="org.apache.log4j.RollingFileAppender">
+	       <param name="File" value="../logs/idm-service.log" />
+	       <param name="MaxFileSize" value="150MB" />
+	       <param name="MaxBackupIndex" value="5" />
+					<layout class="org.apache.log4j.PatternLayout">
+						<param name="ConversionPattern" value="%d %-5p [%c] %m%n" />
+					</layout>
+       	</appender>
+
+       	<appender name="A3" class="org.apache.log4j.RollingFileAppender">
+					<layout class="org.apache.log4j.PatternLayout">
+						<param name="ConversionPattern" value="%d %-5p [%c] %m%n" />
+					</layout>
+	       <param name="File" value="../logs/idm-hibernate.log" />
+	       <param name="MaxFileSize" value="50MB" />
+	       <param name="MaxBackupIndex" value="1" />
+
+       	</appender>     
+
+ 	
+ </log4j:configuration> 

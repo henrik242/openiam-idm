@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+     
+    <class name="org.openiam.idm.srvc.user.dto.User" table="USERS" >
+        <comment></comment>
+        <id name="userId" type="string">
+            <column name="USER_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+
+        <property name="metadataTypeId" type="string">
+            <column name="TYPE_ID" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="classification" type="string">
+            <column name="CLASSIFICATION" length="20">
+                <comment></comment>
+            </column>
+        </property>       
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="middleInit" type="string">
+            <column name="MIDDLE_INIT" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="30">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deptCd" type="string">
+            <column name="DEPT_CD" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deptName" type="string">
+            <column name="DEPT_NAME" length="100">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="status" type="org.openiam.idm.srvc.user.dto.UserStatusEnumUserType">
+            <column name="STATUS" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="secondaryStatus" type="org.openiam.idm.srvc.user.dto.UserStatusEnumUserType">
+            <column name="SECONDARY_STATUS" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="birthdate" type="timestamp">
+            <column name="BIRTHDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sex" type="string">
+            <column name="SEX" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="LAST_UPDATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdatedBy" type="string">
+            <column name="LAST_UPDATED_BY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="prefix" type="string">
+            <column name="PREFIX" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="suffix" type="string">
+            <column name="SUFFIX" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userTypeInd" type="string">
+            <column name="USER_TYPE_IND" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeId" type="string">
+            <column name="EMPLOYEE_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="employeeType" type="string">
+            <column name="EMPLOYEE_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationCd" type="string">
+            <column name="LOCATION_CD" length="50">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="locationName" type="string">
+            <column name="LOCATION_NAME" length="100">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="companyId" type="string">
+            <column name="COMPANY_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="companyOwnerId" type="string">
+            <column name="COMPANY_OWNER_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="managerId" type="string">
+            <column name="MANAGER_ID" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="jobCode" type="string">
+            <column name="JOB_CODE" length="50">
+                <comment></comment>
+            </column>
+        </property>
+    
+       <property name="division" type="string">
+            <column name="DIVISION" length="50" />
+        </property>
+        <property name="costCenter" type="string">
+            <column name="COST_CENTER" length="20" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="START_DATE" length="10" />
+        </property>
+        <property name="lastDate" type="date">
+            <column name="LAST_DATE" length="10" />
+        </property>
+        <property name="mailCode" type="string">
+            <column name="MAIL_CODE" length="50" />
+        </property>
+
+        <property name="maidenName" type="string">
+            <column name="MAIDEN_NAME" length="40" />
+        </property>
+        <property name="nickname" type="string">
+            <column name="NICKNAME" length="40" />
+        </property>
+        <property name="passwordTheme" type="string">
+            <column name="PASSWORD_THEME" length="20" />
+        </property>
+
+        <property name="country" type="string">
+            <column name="COUNTRY" length="30" />
+        </property>                
+        <property name="bldgNum" type="string">
+            <column name="BLDG_NUM" length="10" />
+        </property>    
+        <property name="streetDirection" type="string">
+            <column name="STREET_DIRECTION" length="20" />
+        </property> 
+
+        <property name="suite" type="string">
+            <column name="SUITE" length="20" />
+        </property> 
+                
+        
+        <property name="address1" type="string">
+            <column name="ADDRESS1" length="45" />
+        </property> 
+        <property name="address2" type="string">
+            <column name="ADDRESS2" length="45" />
+        </property> 
+          <property name="address3" type="string">
+            <column name="ADDRESS3" length="45" />
+        </property>              
+        <property name="address4" type="string">
+            <column name="ADDRESS4" length="45" />
+        </property>               
+        <property name="address5" type="string">
+            <column name="ADDRESS5" length="45" />
+        </property>       
+        <property name="address6" type="string">
+            <column name="ADDRESS6" length="45" />
+        </property>    
+         <property name="address7" type="string">
+            <column name="ADDRESS7" length="45" />
+        </property> 
+         <property name="city" type="string">
+            <column name="CITY" length="30" />
+        </property> 
+         <property name="state" type="string">
+            <column name="STATE" length="15" />
+        </property> 
+         <property name="postalCd" type="string">
+            <column name="POSTAL_CD" length="10" />
+        </property> 
+         <property name="email" type="string">
+            <column name="EMAIL_ADDRESS" length="320" />
+        </property> 
+         <property name="areaCd" type="string">
+            <column name="AREA_CD" length="10" />
+        </property>                
+         <property name="countryCd" type="string">
+            <column name="COUNTRY_CD" length="10" />
+        </property> 
+
+         <property name="phoneNbr" type="string">
+            <column name="PHONE_NBR" length="50" />
+        </property> 
+         <property name="phoneExt" type="string">
+            <column name="PHONE_EXT" length="20" />
+        </property> 
+         <property name="showInSearch" type="java.lang.Integer">
+            <column name="SHOW_IN_SEARCH" not-null="false" />
+        </property> 
+         <property name="alternateContactId" type="string">
+            <column name="ALTERNATE_ID" length="32" />
+        </property> 
+
+         <property name="delAdmin" type="java.lang.Integer">
+            <column name="DEL_ADMIN" not-null="false" />
+        </property>
+
+         <property name="userOwnerId" type="string">
+            <column name="USER_OWNER_ID" />
+        </property>
+          <property name="datePasswordChanged" type="date">
+            <column name="DATE_PASSWORD_CHANGED" length="10" />
+        </property>
+          <property name="dateChallengeRespChanged" type="date">
+            <column name="DATE_CHALLENGE_RESP_CHANGED" length="10" />
+        </property>  
+  
+          
+
+    
+       <map name="userAttributes" cascade="all-delete-orphan" lazy="true" >
+  			<key>
+  				<column name="USER_ID" length="32" /> 
+  			</key>
+  			<map-key column="NAME" type="string" />
+  			<one-to-many class="org.openiam.idm.srvc.user.dto.UserAttribute" />
+ 		</map> 
+
+       <set name="addresses" cascade="all-delete-orphan" lazy="true" >
+  			<key>
+  				<column name="PARENT_ID" length="32" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.Address" />
+  			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set> 
+
+       <set name="phone" cascade="all-delete-orphan" lazy="true" >
+  			<key>
+  				<column name="PARENT_ID" length="32" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.Phone" />
+   			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set> 
+       <set name="emailAddress" cascade="all-delete-orphan" lazy="true" >
+  			<key>
+  				<column name="PARENT_ID" length="32" /> 
+  			</key>
+  			<one-to-many class="org.openiam.idm.srvc.continfo.dto.EmailAddress" />
+   			<filter name="parentTypeFilter" condition=":parentFilter = PARENT_TYPE" />
+ 		</set>  		
+     
+        <set name="userNotes" cascade="all-delete-orphan" lazy="false" inverse="false">
+            <key>
+                <column name="USER_ID" length="32">
+                    <comment></comment>
+                </column>
+            </key>
+            <one-to-many class="org.openiam.idm.srvc.user.dto.UserNote" />
+        </set>
+        
+
+
+ 		
+	
+      
+     </class>
+     
+<filter-def name="parentTypeFilter">
+    <filter-param name="parentFilter" type="string"/>
+</filter-def>
+
+</hibernate-mapping>

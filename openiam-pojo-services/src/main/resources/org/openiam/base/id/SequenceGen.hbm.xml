@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!--
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+        [<!ENTITY hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd"> ]>
+-->
+
+<!-- Generated Dec 2, 2007 5:41:37 PM by Hibernate Tools 3.2.0.b11 -->
+<hibernate-mapping>
+    <class name="org.openiam.base.id.SequenceGen" table="SEQUENCE_GEN" >
+        <comment></comment>
+        <id name="attribute" type="string">
+            <column name="ATTRIBUTE" length="32" />
+            <generator class="assigned" />
+        </id>
+        
+        <property name="nextId" type="java.lang.Integer">
+            <column name="NEXT_ID">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

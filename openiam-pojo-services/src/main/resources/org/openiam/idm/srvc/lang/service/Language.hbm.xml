@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+
+<!-- Generated May 9, 2009 1:42:34 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.lang.dto.Language" table="LANGUAGE" >
+        <id name="langCd" type="string">
+            <column name="LANGUAGE_CD" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="LANGUAGE" length="20" />
+        </property>
+        <property name="locale" type="boolean">
+            <column name="LOCALE" />
+        </property>
+    </class>
+</hibernate-mapping>

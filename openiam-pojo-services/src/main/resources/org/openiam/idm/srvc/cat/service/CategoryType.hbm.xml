@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+
+<!-- Generated Nov 22, 2008 1:32:51 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.cat.dto.CategoryType" table="CATEGORY_TYPE">
+        <composite-id name="id" class="org.openiam.idm.srvc.cat.dto.CategoryTypeId">
+            <key-property name="typeId" type="string">
+                <column name="TYPE_ID" length="20" />
+            </key-property>
+            <key-property name="categoryId" type="string">
+                <column name="CATEGORY_ID" length="20" />
+            </key-property>
+        </composite-id>
+
+    </class>
+</hibernate-mapping>

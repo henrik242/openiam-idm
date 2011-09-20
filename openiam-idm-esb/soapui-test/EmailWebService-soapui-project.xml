@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="EmailWebService" resourceRoot="" soapui-version="3.6.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="EmailWebServiceSoapBinding" type="wsdl" bindingName="{urn:idm.openiam.org/srvc/msg}EmailWebServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService?wsdl"><con:part><con:url>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="EmailWebService" targetNamespace="urn:idm.openiam.org/srvc/msg" xmlns:ns1="http://service.msg.srvc.idm.openiam.org/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:idm.openiam.org/srvc/msg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService?wsdl=MailService.wsdl" namespace="http://service.msg.srvc.idm.openiam.org/"></wsdl:import>
+  <wsdl:binding name="EmailWebServiceSoapBinding" type="ns1:MailService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="send">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="send">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendNotification">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendNotificationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToGroup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendToGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendToGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToAllUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendToAllUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendToAllUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendWithCC">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendWithCC">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendWithCCResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmailWebService">
+    <wsdl:port binding="tns:EmailWebServiceSoapBinding" name="EmailWebServicePort">
+      <soap:address location="http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService?wsdl=MailService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MailService" targetNamespace="http://service.msg.srvc.idm.openiam.org/" xmlns:ns1="http://service.msg.srvc.idm.openiam.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://service.msg.srvc.idm.openiam.org/" version="1.0" xmlns:tns="http://service.msg.srvc.idm.openiam.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="NotificationRequest" type="tns:NotificationRequest"/>
+      <xs:element name="send" type="tns:send"/>
+      <xs:element name="sendNotification" type="tns:sendNotification"/>
+      <xs:element name="sendNotificationResponse" type="tns:sendNotificationResponse"/>
+      <xs:element name="sendResponse" type="tns:sendResponse"/>
+      <xs:element name="sendToAllUsers" type="tns:sendToAllUsers"/>
+      <xs:element name="sendToAllUsersResponse" type="tns:sendToAllUsersResponse"/>
+      <xs:element name="sendToGroup" type="tns:sendToGroup"/>
+      <xs:element name="sendToGroupResponse" type="tns:sendToGroupResponse"/>
+      <xs:element name="sendWithCC" type="tns:sendWithCC"/>
+      <xs:element name="sendWithCCResponse" type="tns:sendWithCCResponse"/>
+      <xs:complexType name="send">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="sendNotification">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="req" type="tns:NotificationRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="NotificationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="notificationType" type="xs:string"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="cc" type="xs:string"/>
+          <xs:element minOccurs="0" name="to" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="paramList" nillable="true" type="tns:NotificationParam"/>
+          <xs:element minOccurs="0" name="requestId" type="xs:string"/>
+          <xs:element minOccurs="0" name="linkedRequestId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="NotificationParam">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="value" type="xs:string"/>
+          <xs:element minOccurs="0" name="valueObj" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendNotificationResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendToGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendToGroupResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="sendToAllUsers">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="sendToAllUsersResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="sendWithCC">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg4" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendWithCCResponse">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sendToAllUsersResponse">
+    <wsdl:part element="ns1:sendToAllUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToGroupResponse">
+    <wsdl:part element="ns1:sendToGroupResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToGroup">
+    <wsdl:part element="ns1:sendToGroup" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="send">
+    <wsdl:part element="ns1:send" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendNotificationResponse">
+    <wsdl:part element="ns1:sendNotificationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendNotification">
+    <wsdl:part element="ns1:sendNotification" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendToAllUsers">
+    <wsdl:part element="ns1:sendToAllUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendWithCCResponse">
+    <wsdl:part element="ns1:sendWithCCResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendWithCC">
+    <wsdl:part element="ns1:sendWithCC" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendResponse">
+    <wsdl:part element="ns1:sendResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MailService">
+    <wsdl:operation name="send">
+      <wsdl:input message="ns1:send" name="send"></wsdl:input>
+      <wsdl:output message="ns1:sendResponse" name="sendResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <wsdl:input message="ns1:sendNotification" name="sendNotification"></wsdl:input>
+      <wsdl:output message="ns1:sendNotificationResponse" name="sendNotificationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToGroup">
+      <wsdl:input message="ns1:sendToGroup" name="sendToGroup"></wsdl:input>
+      <wsdl:output message="ns1:sendToGroupResponse" name="sendToGroupResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendToAllUsers">
+      <wsdl:input message="ns1:sendToAllUsers" name="sendToAllUsers"></wsdl:input>
+      <wsdl:output message="ns1:sendToAllUsersResponse" name="sendToAllUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendWithCC">
+      <wsdl:input message="ns1:sendWithCC" name="sendWithCC"></wsdl:input>
+      <wsdl:output message="ns1:sendWithCCResponse" name="sendWithCCResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="send" bindingOperationName="send" type="Request-Response" outputName="sendResponse" inputName="send" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:send>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+         <!--Optional:-->
+         <arg3>?</arg3>
+      </ser:send>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/msg/MailService/send"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendNotification" bindingOperationName="sendNotification" type="Request-Response" outputName="sendNotificationResponse" inputName="sendNotification" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendNotification>
+         <req>
+            <notificationType>NEW_USER</notificationType>
+            <userId>3006</userId>
+         </req>
+      </ser:sendNotification>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/msg/MailService/sendNotification"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendToAllUsers" bindingOperationName="sendToAllUsers" type="Request-Response" outputName="sendToAllUsersResponse" inputName="sendToAllUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendToAllUsers/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/msg/MailService/sendToAllUsers"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendToGroup" bindingOperationName="sendToGroup" type="Request-Response" outputName="sendToGroupResponse" inputName="sendToGroup" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendToGroup>
+         <!--Optional:-->
+         <arg0>?</arg0>
+      </ser:sendToGroup>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/msg/MailService/sendToGroup"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendWithCC" bindingOperationName="sendWithCC" type="Request-Response" outputName="sendWithCCResponse" inputName="sendWithCC" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendWithCC>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+         <!--Optional:-->
+         <arg3>?</arg3>
+         <!--Optional:-->
+         <arg4>?</arg4>
+      </ser:sendWithCC>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:idm.openiam.org/srvc/msg/MailService/sendWithCC"/></con:call></con:operation></con:interface><con:testSuite name="EmailWebServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="send TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="send"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>EmailWebServiceSoapBinding</con:interface><con:operation>send</con:operation><con:request name="send"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:send>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+         <!--Optional:-->
+         <arg3>?</arg3>
+      </ser:send>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/msg/MailService/send"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sendNotification TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="sendNotification"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>EmailWebServiceSoapBinding</con:interface><con:operation>sendNotification</con:operation><con:request name="sendNotification"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendNotification>
+         <!--Optional:-->
+         <req>
+            <!--Optional:-->
+            <notificationType>?</notificationType>
+            <!--Optional:-->
+            <userId>?</userId>
+            <!--Optional:-->
+            <cc>?</cc>
+            <!--Optional:-->
+            <to>?</to>
+            <!--Zero or more repetitions:-->
+            <paramList>
+               <!--Optional:-->
+               <name>?</name>
+               <!--Optional:-->
+               <value>?</value>
+               <!--Optional:-->
+               <valueObj>?</valueObj>
+            </paramList>
+            <!--Optional:-->
+            <requestId>?</requestId>
+            <!--Optional:-->
+            <linkedRequestId>?</linkedRequestId>
+         </req>
+      </ser:sendNotification>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/msg/MailService/sendNotification"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sendToAllUsers TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="sendToAllUsers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>EmailWebServiceSoapBinding</con:interface><con:operation>sendToAllUsers</con:operation><con:request name="sendToAllUsers"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendToAllUsers/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/msg/MailService/sendToAllUsers"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sendToGroup TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="sendToGroup"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>EmailWebServiceSoapBinding</con:interface><con:operation>sendToGroup</con:operation><con:request name="sendToGroup"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendToGroup>
+         <!--Optional:-->
+         <arg0>?</arg0>
+      </ser:sendToGroup>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/msg/MailService/sendToGroup"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sendWithCC TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="sendWithCC"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>EmailWebServiceSoapBinding</con:interface><con:operation>sendWithCC</con:operation><con:request name="sendWithCC"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/openiam-idm-esb/idmsrvc/EmailWebService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.msg.srvc.idm.openiam.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:sendWithCC>
+         <!--Optional:-->
+         <arg0>?</arg0>
+         <!--Optional:-->
+         <arg1>?</arg1>
+         <!--Optional:-->
+         <arg2>?</arg2>
+         <!--Optional:-->
+         <arg3>?</arg3>
+         <!--Optional:-->
+         <arg4>?</arg4>
+      </ser:sendWithCC>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="urn:idm.openiam.org/srvc/msg/MailService/sendWithCC"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>

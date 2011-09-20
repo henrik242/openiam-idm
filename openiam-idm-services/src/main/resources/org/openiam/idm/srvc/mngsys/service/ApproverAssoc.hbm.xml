@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Dec 24, 2009 9:53:19 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="org.openiam.idm.srvc.mngsys.dto.ApproverAssociation" table="APPROVER_ASSOC" >
+        <id name="approverAssocId" type="string">
+            <column name="APPROVER_ASSOC_ID" length="32" />
+		    <generator class="uuid" />
+        </id>
+        <property name="requestType" type="string">
+            <column name="REQUEST_TYPE" length="32" />
+        </property>
+        <property name="action" type="string">
+            <column name="ACTN" length="32" />
+        </property>
+        <property name="associationObjId" type="string">
+            <column name="ASSOCIATION_OBJ_ID" length="32" />
+        </property>
+        <property name="approverUserId" type="string">
+            <column name="APPROVER_USER_ID" length="32" />
+        </property>
+        <property name="associationType" type="string">
+            <column name="ASSOCIATION_TYPE" length="20" />
+        </property>
+        <property name="approverLevel" type="java.lang.Integer">
+            <column name="APPROVER_LEVEL" />
+        </property>
+
+        <property name="notifyUserOnApprove" type="string">
+            <column name="ON_APPROVE_NOTIFY_USER_ID" length="32"  />
+        </property>
+
+        <property name="notifyUserOnReject" type="string">
+            <column name="ON_REJECT_NOTIFY_USER_ID" length="32" />
+        </property>
+
+         <property name="approveNotificationUserType" type="string">
+            <column name="APPROVE_NOTIFY_USER_TYPE" length="20"  />
+        </property>
+
+        <property name="rejectNotificationUserType" type="string">
+            <column name="REJECT_NOTIFY_USER_TYPE" length="20" />
+        </property>
+
+    </class>
+</hibernate-mapping>
+
+
+

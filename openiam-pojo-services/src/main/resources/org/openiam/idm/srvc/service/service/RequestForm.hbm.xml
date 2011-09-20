@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Apr 19, 2007 12:21:40 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping default-lazy="false">
+    <class name="org.openiam.idm.srvc.service.dto.RequestForm" table="REQUEST_FORM" >
+        <comment></comment>
+        <composite-id name="id" class="org.openiam.idm.srvc.service.dto.RequestFormId">
+            <key-property name="requestType" type="string">
+                <column name="REQUEST_TYPE" length="20" />
+            </key-property>
+            <key-property name="serviceId" type="string">
+                <column name="SERVICE_ID" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="service" class="org.openiam.idm.srvc.service.dto.Service" update="false" insert="false" fetch="select">
+            <column name="SERVICE_ID" length="20" not-null="true">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="isDefault" type="java.lang.Integer">
+            <column name="IS_DEFAULT">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="formTemplateUrl" type="string">
+            <column name="FORM_TEMPLATE_URL" length="80">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
+<!-- Generated Apr 19, 2007 12:21:40 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping default-lazy="false">
+    <class name="org.openiam.idm.srvc.service.dto.ServiceConfig" table="SERVICE_CONFIG">
+        <comment></comment>
+        <id name="serviceConfigId" type="string">
+            <column name="SERVICE_CONFIG_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="service" class="org.openiam.idm.srvc.service.dto.Service" 
+        	fetch="select">
+            <column name="SERVICE_ID" length="20">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value" type="string">
+            <column name="VALUE" length="40">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
