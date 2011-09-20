@@ -1,1 +1,0 @@
-output=user.firstName + "." + user.lastName + "@openiam.org"

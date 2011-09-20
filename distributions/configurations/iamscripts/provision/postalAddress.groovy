@@ -1,1 +1,0 @@
-output=user.bldgNum + " " + user.streetDirection + " " + user.address1
