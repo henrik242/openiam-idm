@@ -246,16 +246,6 @@
 	  <property name="address" value="${openiam.service_host}${openiam.connector.ws.path}SysMessageWebService?"/>
 	</bean>
 
-    <!--
-   <bean id="bpmServiceClient" class="org.openiam.idm.srvc.bpm.service.BpmService" 
-      factory-bean="bpmServiceFactory" factory-method="create"/>
-
-
-	<bean id="bpmServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-	  <property name="serviceClass" value="org.openiam.idm.srvc.bpm.service.BpmService"/>
-	  <property name="address" value="${openiam.service_host}${openiam.connector.ws.path}BpmWebService"/>
-	</bean>
-    -->
 
   
 </beans>

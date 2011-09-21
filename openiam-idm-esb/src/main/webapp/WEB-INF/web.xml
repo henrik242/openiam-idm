@@ -22,7 +22,7 @@
 
     <context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml classpath:idmservice-Context.xml classpath:idmservice-ee-Context.xml classpath:connector-coreContext.xml</param-value>
+		<param-value>classpath:applicationContext.xml classpath:idmservice-Context.xml classpath:connector-coreContext.xml</param-value>
 	</context-param>
 
     <!--

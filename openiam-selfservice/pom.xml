@@ -78,11 +78,6 @@
       <version>2.1.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.openiam</groupId>
-      <artifactId>openiam-idm-ee-intf</artifactId>
-      <version>2.1.0</version>
-    </dependency>
 
     <dependency>
       <groupId>org.apache.struts</groupId>

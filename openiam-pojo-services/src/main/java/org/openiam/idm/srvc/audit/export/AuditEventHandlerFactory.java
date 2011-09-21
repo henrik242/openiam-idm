@@ -2,7 +2,6 @@ package org.openiam.idm.srvc.audit.export;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import sun.tools.java.ClassNotFound;
 
 import java.util.ResourceBundle;
 

@@ -2,9 +2,9 @@
  * Copyright 2009-2011, OpenIAM LLC
  * This file is part of the OpenIAM Identity and Access Management Suite
  *
- *   OpenIAM Identity and Access Management Suite is free software: 
+ *   OpenIAM Identity and Access Management Suite is free software:
  *   you can redistribute it and/or modify
- *   it under the terms of the Lesser GNU General Public License 
+ *   it under the terms of the Lesser GNU General Public License
  *   version 3 as published by the Free Software Foundation.
  *
  *   OpenIAM is distributed in the hope that it will be useful,
@@ -369,27 +369,6 @@ public class LdapConnectorImpl extends AbstractSpml2Complete implements Connecto
 
             // add the user to a role
             // temp hack
-
-            //String role = getRole(reqType.getData().getAny());
-            List<String> roleStrList = getRole(reqType.getData().getAny());
-            if (roleStrList != null && roleStrList.size() > 0) {
-                for (String r : roleStrList) {
-                    r = r.toLowerCase();
-                    String roleDN = "cn=" + r + ",ou=roles,dc=gtawestdir,dc=com";
-
-                       ModificationItem mods[] = new ModificationItem[1];
-                       mods[0]= new ModificationItem(DirContext.ADD_ATTRIBUTE, new BasicAttribute("uniqueMember", ldapName));
-                       ldapctx.modifyAttributes(roleDN,mods);
-                }
-            }
-
-            String org = getOrg(reqType.getData().getAny());
-            String orgDN = "cn=" + org + ",ou=affiliations,dc=gtawestdir,dc=com";
-            if (org != null && org.length() > 0) {
-               ModificationItem mods[] = new ModificationItem[1];
-               mods[0]= new ModificationItem(DirContext.ADD_ATTRIBUTE, new BasicAttribute("uniqueMember", ldapName));
-               ldapctx.modifyAttributes(orgDN,mods);
-            }
 
             /*
 

@@ -1,10 +1,10 @@
 /*
- * Copyright 2009, OpenIAM LLC 
+ * Copyright 2009, OpenIAM LLC
  * This file is part of the OpenIAM Identity and Access Management Suite
  *
- *   OpenIAM Identity and Access Management Suite is free software: 
+ *   OpenIAM Identity and Access Management Suite is free software:
  *   you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License 
+ *   it under the terms of the GNU General Public License
  *   version 3 as published by the Free Software Foundation.
  *
  *   OpenIAM is distributed in the hope that it will be useful,
@@ -17,13 +17,12 @@
  */
 
 /**
- * 
+ *
  */
 package org.openiam.provision.type;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.relaxng.datatype.Datatype;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
  * The content carried by the most SPML requests includes an Extensible type to all
  * for flexibility in carrying the data. ExtensibleAttribute provides an
  * attribute model to capture a wide variety of data.
- * 
+ *
  * @author Suneet Shah
  *
  */
@@ -54,7 +53,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ExtensibleAttribute  implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8402148961330001942L;
 	protected String name;
@@ -68,9 +67,9 @@ public class ExtensibleAttribute  implements Serializable {
 
     protected static final Log log = LogFactory.getLog(ExtensibleAttribute.class);
 
-	
+
 	public ExtensibleAttribute() {
-		
+
 	}
 	public ExtensibleAttribute(String name, String value) {
 		this.name = name;
@@ -83,7 +82,7 @@ public class ExtensibleAttribute  implements Serializable {
 		this.metadataElementId = metadataElementId;
 		operation = ModificationAttribute.add;
 	}
-	
+
 	public ExtensibleAttribute(String name, String value, int operation, String dataType) {
 		super();
 		this.name = name;

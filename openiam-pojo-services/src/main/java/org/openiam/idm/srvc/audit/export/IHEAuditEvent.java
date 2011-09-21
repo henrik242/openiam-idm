@@ -48,55 +48,11 @@ public class IHEAuditEvent implements ExportAuditEvent{
 
 
 
-            <?xml version="1.0" encoding="UTF-8"?>
-            <AuditMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-              <EventIdentification EventActionCode="E" EventDateTime="2010-12-12T13:28:52.531-05:00" EventOutcomeIndicator="0">
-              <EventID csd-code="110114" codeSystemName="DCM" displayName="Application Activity"/>
-              <EventTypeCode csd-code="110122" codeSystemName="DCM" displayName="Login"/>
-              </EventIdentification>
-              <ActiveParticipant UserID="applicationId" UserIsRequestor="true">
-                <RoleIDCode csd-code="110150" codeSystemName="DCM" displayName="Application"/>
-              </ActiveParticipant>
-              <AuditSourceIdentification AuditSourceID="openiam"/>
-            </AuditMessage>
-
-
-      /*      <?xml version="1.0" encoding="UTF-8"?>
-            <AuditMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-              <EventIdentification EventActionCode="E" EventDateTime="2010-12-12T13:28:52.531-05:00" EventOutcomeIndicator="0">
-              <EventID csd-code="110100" codeSystemName="DCM" displayName="Application Activity"/>
-              <EventTypeCode csd-code="110120" codeSystemName="DCM" displayName="Application Start"/>
-              </EventIdentification>
-              <ActiveParticipant UserID="applicationId" UserIsRequestor="false">
-                <RoleIDCode csd-code="110150" codeSystemName="DCM" displayName="Application"/>
-              </ActiveParticipant>
-              <ActiveParticipant UserID="launcherId1" UserIsRequestor="false">
-                <RoleIDCode csd-code="110151" codeSystemName="DCM" displayName="Application Launcher"/>
-              </ActiveParticipant>
-              <ActiveParticipant UserID="launcherId2" UserIsRequestor="true">
-                <RoleIDCode csd-code="110151" codeSystemName="DCM" displayName="Application Launcher"/>
-              </ActiveParticipant>
-              <AuditSourceIdentification AuditSourceID="auditSourceId"/>
-            </AuditMessage>
-        */
 
     }
 
     private void logout(IdmAuditLog log) {
          System.out.println("logout event");
-
-
-         <?xml version="1.0" encoding="UTF-8"?>
-            <AuditMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-              <EventIdentification EventActionCode="E" EventDateTime="2010-12-12T13:28:52.531-05:00" EventOutcomeIndicator="0">
-              <EventID csd-code="110114" codeSystemName="DCM" displayName="Application Activity"/>
-              <EventTypeCode csd-code="110123" codeSystemName="DCM" displayName="Logout"/>
-              </EventIdentification>
-              <ActiveParticipant UserID="applicationId" UserIsRequestor="true">
-                <RoleIDCode csd-code="110150" codeSystemName="DCM" displayName="Application"/>
-              </ActiveParticipant>
-              <AuditSourceIdentification AuditSourceID="openiam"/>
-            </AuditMessage>
 
 
     }

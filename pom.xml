@@ -70,10 +70,17 @@
 	</scm>
 
 	<modules>
-		<!--<module>iam-interceptor</module-->
 		<module>openiam-pojo-intf</module>
-		<module>openiam-pojo-services</module>
-        <module>idm</module>
+		<module>openiam-pojo-services</module>		
+		<module>openiam-idm-intf</module>
+		<module>openiam-idm-services</module>
+		<module>idm-connector-intf</module>
+		<module>idm-connector-core</module>
+		<module>openiam-idm-esb</module>
+		<module>openiam-webconsole</module>
+		<module>openiam-selfservice</module>
+		
+	
 
     </modules>
 	<properties>
