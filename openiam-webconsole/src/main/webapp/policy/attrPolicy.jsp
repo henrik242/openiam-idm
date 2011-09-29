@@ -4,7 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
-   
+<head>
+<script language="javascript" type="text/javascript" src="./editarea/edit_area/edit_area_full.js"></script>
+<script language="javascript" type="text/javascript">
+editAreaLoader.init({
+        id : "groovytxt"               // textarea id
+        ,syntax: "java"                // syntax to be uses for highgliting
+        ,start_highlight: true         // to display with highlight mode on start-up
+	,toolbar:"go_to_line,undo,redo,highlight,word_wrap"
+});
+</script>
+</head>
+
 		<table  width="700pt">
 			<tr>
 				<td>
@@ -66,7 +77,7 @@
               <td><label for="username" class="attribute">Policy Rule</label></td>
 			  <td>
 			  <form:errors path="rule" cssClass="error"  />
-			  	<form:textarea path="rule" rows="10" cols="80" />
+			  	<form:textarea path="rule" rows="12" cols="80" id="groovytxt" />
 			  </td>
 		  </tr>
       

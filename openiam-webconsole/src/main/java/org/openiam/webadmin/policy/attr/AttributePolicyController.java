@@ -37,6 +37,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.policy.dto.Policy;
 import org.openiam.idm.srvc.policy.service.PolicyDataService;
+import org.openiam.webadmin.util.FileIO;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.CancellableFormController;
@@ -68,43 +69,6 @@ public class AttributePolicyController extends CancellableFormController {
 	}
 
 	/*
-	 * Populate AttributePolicyCommand's rule attribute with text from the rule
-	 * file, if a file is specified and exists
-	 */
-	private void loadRuleFromFile(AttributePolicyCommand pc) {
-		String path = pc.getRuleSrcUrl();
-		if (path != null && !path.isEmpty()) {
-			BufferedReader reader = null;
-			try {
-				// Get base path of script folder
-				ResourceBundle rb = ResourceBundle.getBundle("securityconf");
-				String base = rb.getString("scriptRoot");
-
-				// Load rule from file; will throw an exception on error
-				File f = new File(base, path);
-				reader = new BufferedReader(new FileReader(f));
-				StringBuffer sb = new StringBuffer();
-				for (String t = null; ((t = reader.readLine()) != null);) {
-					sb.append(t);
-					sb.append(System.getProperty("line.separator"));
-				}
-
-				// Set rule if text was loaded
-				pc.setRule(sb.toString());
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (reader != null)
-						reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	/*
 	 * Save the attribute's rule to a groovy script specified by its path. If
 	 * the path is invalid or not specified, create a groovy script in a default
 	 * location and update path.
@@ -112,13 +76,12 @@ public class AttributePolicyController extends CancellableFormController {
 	private void saveRuleToFile(AttributePolicyCommand pc) {
 		if (pc.getRule() != null && !pc.getRule().trim().isEmpty()) {
 			String updated_file_path = null;
-			
+
 			File dest = null; // Will contain final destination file
-			
+
 			// >>>> Try and find a valid destination for storing the script
 			// Get base address
-			ResourceBundle rb = ResourceBundle.getBundle("securityconf");
-			String base = rb.getString("scriptRoot");
+			String base = FileIO.getScriptFolderBasePath();
 
 			// Check associated rule path
 			String pc_pth = pc.getRuleSrcUrl();
@@ -132,54 +95,25 @@ public class AttributePolicyController extends CancellableFormController {
 				}
 			}
 
-			
 			// Set default path
 			if (dest == null) {
 				File default_dir = new File(base, DEFAULT_SCRIPT_DIR);
-				
+
 				if (!default_dir.isDirectory())
 					default_dir.mkdir();
-				
-				// Get next default ID
-				File[] in_dir = default_dir.listFiles();
-				int max_id = 0;
-				if (in_dir != null && in_dir.length > 0) {
-					Pattern pattern = Pattern.compile(pc.getName() + "\\-([0-9]+)\\.groovy");
-					for (File f : in_dir) {
-						Matcher mtch = pattern.matcher(f.getName());
-						if (mtch.find()) {
 
-							String num = mtch.group(1);
-							if (num != null && !num.isEmpty()) {
-								try {
-									Integer new_i = Integer.parseInt(num);
-									if (new_i.intValue() > max_id)
-										max_id = new_i.intValue();
-								} catch (NumberFormatException nfe) {
-								}
-							}
-						}
+				// Get new unique file name for default file
+				String newname = FileIO.getUniqueFilename(default_dir,
+						pc.getName(), "groovy");
 
-					}
-				}
-
-				// Increment index and create new identifier
-				String newname =  pc.getName() + "-" + (max_id + 1) + ".groovy";
 				dest = new File(default_dir, newname);
-				updated_file_path = new File(DEFAULT_SCRIPT_DIR, newname).getPath();
+				updated_file_path = new File(DEFAULT_SCRIPT_DIR, newname)
+						.getPath();
 			}
 
-			// >>>> Destination set, save file
-			try {
-				BufferedWriter out = new BufferedWriter(new FileWriter(dest));
-				out.write(pc.getRule());
-				out.close();
-
-				// Update rule path
+			// >>>> Destination set, save file and update path on success
+			if (FileIO.saveTextFile(dest, pc.getRule()))
 				pc.setRuleSrcUrl(updated_file_path);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -196,7 +130,14 @@ public class AttributePolicyController extends CancellableFormController {
 			attrPolicyCommand = policyToCommand(policy);
 
 			// Populate rule box with text from file
-			loadRuleFromFile(attrPolicyCommand);
+			String path = attrPolicyCommand.getRuleSrcUrl();
+			if (path != null && !path.isEmpty()) {
+				// Load rule from file
+				String base = FileIO.getScriptFolderBasePath();
+				StringBuffer sb = FileIO.loadTextFile(new File(base, path));
+				if (sb != null)
+					attrPolicyCommand.setRule(sb.toString());
+			}
 		} else {
 			attrPolicyCommand = new AttributePolicyCommand();
 		}
@@ -213,27 +154,39 @@ public class AttributePolicyController extends CancellableFormController {
 
 		// check which button was clicked
 		String btn = request.getParameter("btn");
-		if (btn != null && btn.equalsIgnoreCase("Delete")) {
-			Policy plcy = commandToPolicy(attrPolicyCommand);
-			policyDataService.removePolicy(plcy.getPolicyId());
-		} else {
-			// Save the policy text to file; if no file specified, create a default
-			saveRuleToFile(attrPolicyCommand);
 
-			Policy plcy = commandToPolicy(attrPolicyCommand);
-			if (plcy.getPolicyId() == null || plcy.getPolicyId().length() == 0) {
-				// new
-				policyDataService.addPolicy(plcy);
+		if (btn != null) {
+			if (btn.equalsIgnoreCase("Delete")) {
+				// Delete
+				Policy plcy = commandToPolicy(attrPolicyCommand);
+				policyDataService.removePolicy(plcy.getPolicyId());
+				
+			} else if (btn.equalsIgnoreCase("Reload")) {
+				// Reload
+
+				
 			} else {
-				// update
-				policyDataService.updatePolicy(plcy);
+				// Submit
+
+				// Save the policy text to file; if no file specified, create a default
+				saveRuleToFile(attrPolicyCommand);
+
+				Policy plcy = commandToPolicy(attrPolicyCommand);
+				if (plcy.getPolicyId() == null || plcy.getPolicyId().length() == 0) {
+					// new
+					policyDataService.addPolicy(plcy);
+				} else {
+					// update
+					policyDataService.updatePolicy(plcy);
+				}
 			}
+
 		}
 
 		// get the new policy list to show on the confirmation page
 		List<Policy> policyAry = policyDataService
 				.getAllPolicies(attrPolicyCommand.getPolicyDefId());
-	
+
 		ModelAndView mav = new ModelAndView(getSuccessView());
 		mav.addObject("attrPolicyCmd", attrPolicyCommand);
 		mav.addObject("confmsg", "Information was successfully saved");
