@@ -70,10 +70,6 @@ editAreaLoader.init({
 			  </td>
 		  </tr>
           <tr>
-			  <td><label for="username" class="attribute">Rule URL:</label></td>
-              <td><form:input path="ruleSrcUrl" size="60" maxlength="80" /></td>
-          </tr>
-          <tr>
               <td><label for="username" class="attribute">Policy Rule</label></td>
 			  <td>
 			  <form:errors path="rule" cssClass="error"  />
@@ -81,9 +77,6 @@ editAreaLoader.init({
 			  </td>
 		  </tr>
       
-  		  
-
-
          <tr>
     	  <td colspan="2">&nbsp;</td>
     	</tr>

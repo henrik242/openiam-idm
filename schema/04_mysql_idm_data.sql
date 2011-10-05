@@ -897,50 +897,6 @@ insert into POLICY_ATTRIBUTE (POLICY_ATTR_ID, DEF_PARAM_ID, POLICY_ID, NAME, OPE
 INSERT INTO POLICY_OBJECT_ASSOC (POLICY_OBJECT_ID, POLICY_ID, ASSOCIATION_LEVEL, ASSOCIATION_VALUE) VALUES ('1100', '4000', 'GLOBAL', 'GLOBAL');
 
 
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE, RULE_SRC_URL) VALUES ('4501','104', 'cn', 'commonName', 1,curdate(), '3000', '','provision/cn.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE, RULE_SRC_URL) VALUES ('4502','104', 'mail', 'email address', 1,curdate(), '3000', '','provision/mail.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE, RULE_SRC_URL) VALUES ('4540','104', 'userDefineEmail', 'email address', 1,curdate(), '3000', '','provision/emailUserDefined.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4503','104', 'o', 'organization name', 1,curdate(), '3000', '','provision/o.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4504','104', 'ou', 'organizationalUnitName', 1,curdate(), '3000', '','provision/ou.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4505','104', 'postalCode', 'commonName', 1,curdate(), '3000', '','provision/postalCode.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4506','104', 'sn', 'surname', 1,curdate(), '3000', '','provision/sn.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4507','104', 'st', 'stateOrProvinceName', 1,curdate(), '3000', '','provision/st.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4508','104', 'street', 'streetAddress', 1,curdate(), '3000', '','provision/street.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4509','104', 'userPassword', 'password', 1,curdate(), '3000', '','provision/userPassword.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4510','104', 'postalAddress', 'postalAddress', 1,curdate(), '3000', '','provision/postalAddress.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4511','104', 'telephoneNumber', 'Primary Telephone', 1,curdate(), '3000', '','provision/telephone.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4512','104', 'facsimileTelephoneNumber', 'Fax', 1,curdate(), '3000', '','provision/fax.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4513','104', 'mobile', 'mobileTelephoneNumber', 1,curdate(), '3000', '','provision/mobile.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4514','104', 'gn', 'givenName', 1,curdate(), '3000', '','provision/gn.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4515','104', 'uid', 'User Id', 1,curdate(), '3000', '','provision/uid.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4516','104', 'departmentCD', 'Department Code', 1,curdate(), '3000', '','provision/deptcd.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4517','104', 'displayName', 'Display Name', 1,curdate(), '3000', '','provision/displayName.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4518','104', 'employeeType', 'Employee Type', 1,curdate(), '3000', '','provision/employeeType.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4519','104', 'initials', 'Intials', 1,curdate(), '3000', '','provision/initials.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4521','104', 'objectclass', 'Department Number', 1,curdate(), '3000', '','provision/objectclass.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4522','104', 'title', 'Title', 1,curdate(), '3000', '','provision/title.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4541','104', 'dob', 'Date of Birth', 1,curdate(), '3000', '','provision/dob.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4542','104', 'middleInit', 'Middle Initial', 1,curdate(), '3000', '','provision/middleInit.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4543','104', 'employeeId', 'Employee ID', 1,curdate(), '3000', '','provision/employeeId.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4544','104', 'userDefinedPassword', 'Password By User', 1,curdate(), '3000', '','provision/userDefPassword.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4545','104', 'userRole', 'Role Membership', 1,curdate(), '3000', '','provision/userRole.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4546','104', 'userGroup', 'Group Membership', 1,curdate(), '3000', '','provision/userGroup.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4547','104', 'isEnabled', 'Is the User Enabled', 1,curdate(), '3000', '','provision/isEnabled.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4548','104', 'GUID', 'GUID', 1,curdate(), '3000', '','provision/guid.groovy');
-
-
-
-INSERT INTO POLICY(POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS,RULE_SRC_URL) VALUES('4562', '104', 'principal', 'PRIMARY_PRINICPAL', '1','provision/primary_principal.groovy');
-INSERT INTO POLICY(POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS,RULE_SRC_URL) VALUES('4563', '104', 'password', 'PRIMARY_PASSWORD', '1','provision/primary_pswd.groovy');
-INSERT INTO POLICY(POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS,RULE_SRC_URL) VALUES('4564', '104', 'emailAddress', 'PRIMARY_EMAIL', '1','provision/primary_email.groovy');
-INSERT INTO POLICY(POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS,RULE_SRC_URL) VALUES('4565', '104', 'domain', 'PRIMARY_DOMAIN', '1','provision/primaryDomain.groovy');
-
-/* Google Apps */
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4600','104', 'userName', 'Google User Name', 1,curdate(), '3000', '','provision/gapps/gappsUid.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4601','104', 'firstName', 'Google Fist Name', 1,curdate(), '3000', '','provision/gapps/gappsFirstName.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4602','104', 'lastName', 'Google Last Name', 1,curdate(), '3000', '','provision/gapps/gappsLastName.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4603','104', 'password', 'Google Password', 1,curdate(), '3000', '','provision/gapps/gappsPassword.groovy');
-
 
 /* USED AS LOGICAL GROUPING FOR RESOURCES */
 INSERT INTO CATEGORY(CATEGORY_ID,CATEGORY_NAME) VALUES('SECURITY','SECURITY');

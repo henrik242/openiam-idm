@@ -21,9 +21,7 @@ package org.openiam.webadmin.policy.attr;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.openiam.idm.srvc.menu.dto.Menu;
 import org.openiam.idm.srvc.policy.dto.PolicyConstants;
-import org.openiam.idm.srvc.policy.dto.PolicyDef;
 
 
 /**
@@ -32,7 +30,7 @@ import org.openiam.idm.srvc.policy.dto.PolicyDef;
  *
  */
 public class AttributePolicyCommand implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 	
 	private String policyId;
 	private String policyPKId;
@@ -45,7 +43,6 @@ public class AttributePolicyCommand implements Serializable {
 	private Date lastUpdate = new Date(System.currentTimeMillis());;
 	private String lastUpdatedBy;
 	private String rule;
-	private String ruleSrcUrl;
 	
 	public String getPolicyId() {
 		return policyId;
@@ -115,21 +112,4 @@ public class AttributePolicyCommand implements Serializable {
 	public void setPolicyPKId(String policyPKId) {
 		this.policyPKId = policyPKId;
 	}
-	public String getRuleSrcUrl() {
-		return ruleSrcUrl;
-	}
-	public void setRuleSrcUrl(String ruleSrcUrl) {
-		this.ruleSrcUrl = ruleSrcUrl;
-	}
-
-
-
-
-
-	
-	
-	
-	
-	
-
 }

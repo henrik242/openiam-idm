@@ -182,6 +182,8 @@ implements ProvisionService,  ApplicationContextAware  {
 
 		bindingMap.put("context", ac);
 		
+		
+		// TODO: THESE GROOVY SCRIPTS DO NOT EXIST
 		String gmSysKey = (String)se.execute(bindingMap, "provision/globalManagerSyskey.groovy");
 		
 		//TODO: Add policies to validate the request
@@ -225,6 +227,7 @@ implements ProvisionService,  ApplicationContextAware  {
 		}
 		
 	/* -- Temp hack -- */
+		//TODO: THESE GROOVY SCRIPTS DO NOT EXIST
 		String networxId = (String)se.execute(bindingMap, "provision/networxId.groovy");
 		String globalManagerId = (String)se.execute(bindingMap, "provision/globalManagerId.groovy");
 	
@@ -818,6 +821,7 @@ implements ProvisionService,  ApplicationContextAware  {
 			e.printStackTrace();
 		}
 		
+		//TODO: THESE GROOVY SCRIPTS DO NOT EXIST
 		String networxId = (String)se.execute(bindingMap, "provision/networxId.groovy");
 		String globalManagerId = (String)se.execute(bindingMap, "provision/globalManagerId.groovy");
 		String gmSysKey = (String)se.execute(bindingMap, "provision/globalManagerSyskey.groovy");

@@ -235,9 +235,9 @@ public class AddUser {
  			try {
 				for (  AttributeMap attr : policyAttrMap ) {
 					Policy policy = attr.getAttributePolicy();
-					String url = policy.getRuleSrcUrl();
-					if (url != null) {
-						String output = (String)se.execute(bindingMap, url);
+					String rule_script = policy.getRule();
+					if (rule_script != null) {
+						String output = (String)se.executeAsScript(bindingMap, rule_script);
 						String objectType = attr.getMapForObjectType();
 						if (objectType != null) {
 							if (objectType.equalsIgnoreCase("PRINCIPAL")) {

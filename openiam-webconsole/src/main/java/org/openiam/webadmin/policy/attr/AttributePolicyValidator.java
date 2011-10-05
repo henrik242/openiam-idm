@@ -18,14 +18,10 @@ package org.openiam.webadmin.policy.attr;
  */
 
 
-import java.util.List;
-
-import org.openiam.idm.srvc.policy.service.PolicyDataService;
 import org.openiam.idm.srvc.policy.dto.PolicyConstants;
-
-
-import org.springframework.validation.Validator;
+import org.openiam.idm.srvc.policy.service.PolicyDataService;
 import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 /**
  * Validation class for the Managed System list.
@@ -36,6 +32,7 @@ public class AttributePolicyValidator implements Validator {
 
 	PolicyDataService policyDataService;
 
+	@SuppressWarnings("rawtypes")
 	public boolean supports(Class cls) {
 		 return AttributePolicyCommand.class.equals(cls);
 	}
@@ -45,11 +42,10 @@ public class AttributePolicyValidator implements Validator {
 		AttributePolicyCommand attrPolicyCommand =  (AttributePolicyCommand) cmd;
 		
 		// check for required fields
-		if (attrPolicyCommand.getName() == null || attrPolicyCommand.getName().length()==0 ) {
+		if (attrPolicyCommand.getName() == null || attrPolicyCommand.getName().trim().isEmpty() ) {
 			err.rejectValue("name","required");
 		}
-		if ((attrPolicyCommand.getRule() == null || attrPolicyCommand.getRule().length()==0 ) &&
-		    ((attrPolicyCommand.getRuleSrcUrl() == null || attrPolicyCommand.getRuleSrcUrl().length()==0 ) ) ) {
+		if ((attrPolicyCommand.getRule() == null || attrPolicyCommand.getRule().trim().isEmpty() )) {
 			err.rejectValue("rule","required");
 		}		
 		if (err.getErrorCount() > 0) {
@@ -61,9 +57,7 @@ public class AttributePolicyValidator implements Validator {
 			if (policyDataService.isPolicyExist(PolicyConstants.ATTRIBUTE_POLICY, attrPolicyCommand.getName())) {
 				err.rejectValue("name","duplicate");
 			}
-		}
-
-		
+		}		
 	}
 
 	public PolicyDataService getPolicyDataService() {
@@ -73,6 +67,4 @@ public class AttributePolicyValidator implements Validator {
 	public void setPolicyDataService(PolicyDataService policyDataService) {
 		this.policyDataService = policyDataService;
 	}
-
-
 }
