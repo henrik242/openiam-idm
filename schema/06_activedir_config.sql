@@ -2,14 +2,14 @@ USE openiam;
 
 
 /* ACTIVE DIR Attributes*/
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4530','104', 'sAMAccountName', 'sAMAccountName', 1,curdate(), '3000', '','provision/ad/sAMAccountName.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4531','104', 'userPrincipalName', 'userPrincipalName', 1,curdate(), '3000', '','provision/ad/userPrincipalName.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4532','104', 'adCN', 'adCN', 1,curdate(), '3000', '','provision/ad/adCN.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4533','104', 'AccountDisabled', 'AccountDisabled', 1,curdate(), '3000', '','provision/ad/accountDisabled.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4534','104', 'profilePath', 'profilePath', 1,curdate(), '3000', '','provision/ad/profilePath.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4535','104', 'homeDirectory', 'homeDirectory', 1,curdate(), '3000', '','provision/ad/homeDirectory.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4536','104', 'homeDrive', 'homeDrive', 1,curdate(), '3000', '','provision/ad/homeDrive.groovy');
-insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4537','104', 'scriptPath', 'scriptPath', 1,curdate(), '3000', '','provision/ad/scriptPath.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4630','104', 'sAMAccountName', 'sAMAccountName', 1,curdate(), '3000', '','provision/ad/sAMAccountName.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4631','104', 'userPrincipalName', 'userPrincipalName', 1,curdate(), '3000', '','provision/ad/userPrincipalName.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4632','104', 'adCN', 'adCN', 1,curdate(), '3000', '','provision/ad/adCN.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4633','104', 'AccountDisabled', 'AccountDisabled', 1,curdate(), '3000', '','provision/ad/accountDisabled.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4634','104', 'profilePath', 'profilePath', 1,curdate(), '3000', '','provision/ad/profilePath.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4635','104', 'homeDirectory', 'homeDirectory', 1,curdate(), '3000', '','provision/ad/homeDirectory.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4636','104', 'homeDrive', 'homeDrive', 1,curdate(), '3000', '','provision/ad/homeDrive.groovy');
+insert into POLICY (POLICY_ID, POLICY_DEF_ID, NAME, DESCRIPTION, STATUS, CREATE_DATE, CREATED_BY, RULE,  RULE_SRC_URL) VALUES ('4637','104', 'scriptPath', 'scriptPath', 1,curdate(), '3000', '','provision/ad/scriptPath.groovy');
 
 
 
