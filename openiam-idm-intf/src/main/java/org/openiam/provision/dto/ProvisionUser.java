@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 import org.openiam.base.AttributeOperationEnum;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.grp.dto.Group;
+import org.openiam.idm.srvc.org.dto.Organization;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.user.dto.User;
 
@@ -46,6 +47,7 @@ import org.openiam.idm.srvc.user.dto.User;
     "requestId",
     "sessionId",
     "memberOfRoles",
+    "userAffiliations",
     "srcSystemId",
     "provisionModel",
     "securityDomain" ,
@@ -62,6 +64,7 @@ public class ProvisionUser extends org.openiam.idm.srvc.user.dto.User {
 	protected List<Login> principalList ;
 	protected List<Group> memberOfGroups;
 	protected List<Role> memberOfRoles;
+    protected List<Organization> userAffiliations;
 	protected List<Application> appAccess;
 	public ProvisionModelEnum  provisionModel;
 	public String securityDomain;
@@ -77,6 +80,7 @@ public class ProvisionUser extends org.openiam.idm.srvc.user.dto.User {
     /* Flag that indicates if target systems should be updated or not
      */
     protected boolean notifyTargetSystems = true;
+
 
 	public ProvisionUser() {
 		
@@ -360,5 +364,13 @@ public class ProvisionUser extends org.openiam.idm.srvc.user.dto.User {
 
     public void setEmailCredentialsToSupervisor(boolean emailCredentialsToSupervisor) {
         this.emailCredentialsToSupervisor = emailCredentialsToSupervisor;
+    }
+
+    public List<Organization> getUserAffiliations() {
+        return userAffiliations;
+    }
+
+    public void setUserAffiliations(List<Organization> userAffiliations) {
+        this.userAffiliations = userAffiliations;
     }
 }

@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
     "comment",
     "status",
     "mngSysGroupId",
-    "managedSysId"
+    "managedSysId",
+    "roleDomain"
 })
 public class RequestApprover implements java.io.Serializable {
 
@@ -38,6 +39,7 @@ public class RequestApprover implements java.io.Serializable {
 	protected Integer approverLevel;
 	protected String approverType;
 	protected String requestId;
+    protected String roleDomain;
     @XmlSchemaType(name = "dateTime")
 	protected Date actionDate;
 	protected String action;
@@ -173,6 +175,11 @@ public class RequestApprover implements java.io.Serializable {
 		this.approverLevel = approverLevel;
 	}
 
+    public String getRoleDomain() {
+        return roleDomain;
+    }
 
-
+    public void setRoleDomain(String roleDomain) {
+        this.roleDomain = roleDomain;
+    }
 }

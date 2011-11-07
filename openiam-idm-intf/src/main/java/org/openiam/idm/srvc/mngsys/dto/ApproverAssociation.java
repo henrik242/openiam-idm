@@ -25,7 +25,10 @@ import javax.xml.bind.annotation.XmlType;
         "approveNotificationUserType",
         "rejectNotificationUserType",
         "notifyUserOnApproveName",
-        "notifyUserOnRejectName"
+        "notifyUserOnRejectName",
+        "approverRoleId",
+        "approverRoleDomain",
+        "applyDelegationFilter"
 })
 public class ApproverAssociation implements java.io.Serializable {
 
@@ -38,6 +41,11 @@ public class ApproverAssociation implements java.io.Serializable {
     private String action;
     private String associationObjId;
     private String approverUserId;
+
+    private String approverRoleId;
+    private String approverRoleDomain;
+    private Integer applyDelegationFilter = new Integer(0);
+
     private String approverName;
     private String associationType;
     private Integer approverLevel;
@@ -199,5 +207,29 @@ public class ApproverAssociation implements java.io.Serializable {
 
     public void setRejectNotificationUserType(String rejectNotificationUserType) {
         this.rejectNotificationUserType = rejectNotificationUserType;
+    }
+
+    public String getApproverRoleId() {
+        return approverRoleId;
+    }
+
+    public void setApproverRoleId(String approverRoleId) {
+        this.approverRoleId = approverRoleId;
+    }
+
+    public String getApproverRoleDomain() {
+        return approverRoleDomain;
+    }
+
+    public void setApproverRoleDomain(String approverRoleDomain) {
+        this.approverRoleDomain = approverRoleDomain;
+    }
+
+    public Integer getApplyDelegationFilter() {
+        return applyDelegationFilter;
+    }
+
+    public void setApplyDelegationFilter(Integer applyDelegationFilter) {
+        this.applyDelegationFilter = applyDelegationFilter;
     }
 }

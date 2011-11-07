@@ -221,7 +221,7 @@ public interface ManagedSystemDataService {
 	 * @return the approvers by request type
 	 */
 	@WebMethod
-	ApproverAssociation getApproverByRequestType(
+	List<ApproverAssociation> getApproverByRequestType(
 			@WebParam(name = "requestType", targetNamespace = "")
 			String requestType,
 			@WebParam(name = "level", targetNamespace = "")

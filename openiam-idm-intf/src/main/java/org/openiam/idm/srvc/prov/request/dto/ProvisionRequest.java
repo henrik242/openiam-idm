@@ -33,7 +33,8 @@ import org.openiam.idm.srvc.mngsys.dto.ManagedSys;
     "requestAttributes",
     "requestApprovers",
     "requestAttachments",
-    "requestUsers"
+    "requestUsers",
+    "requestForOrgId"
 })
 public class ProvisionRequest implements java.io.Serializable {
 
@@ -55,6 +56,8 @@ public class ProvisionRequest implements java.io.Serializable {
 	protected String changeAccessBy;
 	protected String newRoleId;
 	protected String newServiceId;
+
+    protected String requestForOrgId;
 	
 	protected Set<ManagedSys> managedSyses = new HashSet<ManagedSys>(0);
 	protected Set<RequestAttribute> requestAttributes = new HashSet<RequestAttribute>(0);
@@ -229,5 +232,11 @@ public class ProvisionRequest implements java.io.Serializable {
 		this.managedResourceId = managedResourceId;
 	}
 
+    public String getRequestForOrgId() {
+        return requestForOrgId;
+    }
 
+    public void setRequestForOrgId(String requestForOrgId) {
+        this.requestForOrgId = requestForOrgId;
+    }
 }

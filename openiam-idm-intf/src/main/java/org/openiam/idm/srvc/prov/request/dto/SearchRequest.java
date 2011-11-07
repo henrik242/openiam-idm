@@ -1,7 +1,9 @@
 package org.openiam.idm.srvc.prov.request.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,7 +24,9 @@ import javax.xml.bind.annotation.XmlType;
     "startDate",
     "endDate",
     "approverId",
-    "level"
+    "level",
+    "requestForOrgList",
+    "roleIdList"
 })
 public class SearchRequest implements Serializable {
 
@@ -39,6 +43,9 @@ public class SearchRequest implements Serializable {
 	private Date endDate;
 	private String approverId;
 	private int level;
+
+    protected List<String> roleIdList = new ArrayList<String>();
+    protected List<String> requestForOrgList = new ArrayList<String>();
 	
 	public String getRequestId() {
 		return requestId;
@@ -82,5 +89,35 @@ public class SearchRequest implements Serializable {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
+
+    public List<String> getRoleIdList() {
+        return roleIdList;
+    }
+
+    public void setRoleIdList(List<String> roleIdList) {
+        this.roleIdList = roleIdList;
+    }
+
+    public List<String> getRequestForOrgList() {
+        return requestForOrgList;
+    }
+
+    public void setRequestForOrgList(List<String> requestForOrgList) {
+        this.requestForOrgList = requestForOrgList;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchRequest{" +
+                "requestId='" + requestId + '\'' +
+                ", requestorId='" + requestorId + '\'' +
+                ", status='" + status + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", approverId='" + approverId + '\'' +
+                ", level=" + level +
+                ", roleIdList=" + roleIdList +
+                ", requestForOrgList=" + requestForOrgList +
+                '}';
+    }
 }

@@ -60,7 +60,7 @@ public interface ApproverAssociationDAO {
 	 *            the level
 	 * @return the list
 	 */
-	ApproverAssociation findApproversByRequestType(String requestType,int level);
+	List<ApproverAssociation> findApproversByRequestType(String requestType,int level);
 
 	List<ApproverAssociation> findAllApproversByRequestType(String requestType);
 	

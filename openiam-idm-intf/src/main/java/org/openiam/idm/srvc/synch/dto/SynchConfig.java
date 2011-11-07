@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
 		"customMatchAttr",
 		"customAdatperScript",
 		"baseDn",
-        "lastRecProcessed"
+        "lastRecProcessed",
+        "wsScript",
+        "wsUrl"
 })
 /**
  * Object containing the configuration for a synchronization task
@@ -80,8 +82,9 @@ public class SynchConfig implements java.io.Serializable {
 	private String customAdatperScript;
 	private String customMatchAttr;
 	private String baseDn;
-	
-     
+
+    private String wsUrl;
+    private String wsScript;
 
 
 	
@@ -363,5 +366,21 @@ public class SynchConfig implements java.io.Serializable {
 
     public void setLastRecProcessed(String lastRecProcessed) {
         this.lastRecProcessed = lastRecProcessed;
+    }
+
+    public String getWsUrl() {
+        return wsUrl;
+    }
+
+    public void setWsUrl(String wsUrl) {
+        this.wsUrl = wsUrl;
+    }
+
+    public String getWsScript() {
+        return wsScript;
+    }
+
+    public void setWsScript(String wsScript) {
+        this.wsScript = wsScript;
     }
 }

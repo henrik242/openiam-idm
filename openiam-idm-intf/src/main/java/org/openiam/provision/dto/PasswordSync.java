@@ -21,6 +21,7 @@
  */
 package org.openiam.provision.dto;
 
+import org.openiam.base.BaseObject;
 import org.openiam.provision.type.ExtensibleAttribute;
 
 import java.io.Serializable;
@@ -49,7 +50,7 @@ import javax.xml.bind.annotation.XmlType;
     "passThruAttributes",
     "attributeList"
 })
-public class PasswordSync implements Serializable {
+public class PasswordSync extends BaseObject  {
 
 	/**
 	 * 
