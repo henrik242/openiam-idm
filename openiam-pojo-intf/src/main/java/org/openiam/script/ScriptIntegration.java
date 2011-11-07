@@ -31,6 +31,5 @@ import java.util.Map;
  */
 public interface ScriptIntegration {
 	public Object execute(Map<String, Object> bindingMap, String scriptName);
-	public Object executeAsScript(Map<String, Object> bindingMap, String rule_script);
 	public Object instantiateClass(Map<String, Object> bindingMap, String scriptName) throws IOException;
 }

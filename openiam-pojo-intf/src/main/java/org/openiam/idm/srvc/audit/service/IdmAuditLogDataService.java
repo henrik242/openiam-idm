@@ -25,5 +25,7 @@ public interface IdmAuditLogDataService {
 	 */
 	public List<IdmAuditLog>  search(SearchAudit search);
 
+    public void updateLog(IdmAuditLog log);
+
 
 }

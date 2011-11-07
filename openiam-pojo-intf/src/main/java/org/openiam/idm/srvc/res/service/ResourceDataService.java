@@ -461,6 +461,8 @@ public interface ResourceDataService {
 	 * @return true, if is user authorized
 	 */
 	boolean isUserAuthorized(String userId, String resourceId);
+
+    boolean isUserAuthorizedByProperty(String userId, String propertyName, String propertyValue);
 	
 	/**
 	 * Checks if is role authorized.
@@ -498,7 +500,8 @@ public interface ResourceDataService {
 	 */
 	List<Resource> getResourcesForRoles(String domainId, List<String> roleIdList);
 	
-	
+
+    List<Resource> getResourceObjForUser(String userId);
 
 	
 

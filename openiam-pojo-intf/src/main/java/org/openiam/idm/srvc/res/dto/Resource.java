@@ -2,9 +2,7 @@ package org.openiam.idm.srvc.res.dto;
 
 // Generated Mar 8, 2009 12:54:32 PM by Hibernate Tools 3.2.2.GA
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -33,7 +31,8 @@ import org.openiam.base.BaseObject;
     "resourceRoles",
     "resourceProps",
     "childResources",
-    "resourceGroups"
+    "resourceGroups",
+    "privileges"
 })
 public class Resource  extends BaseObject {
 
@@ -59,7 +58,8 @@ public class Resource  extends BaseObject {
     //protected Boolean selected = new Boolean(false);
     private Set<ResourceGroup> resourceGroups = new HashSet<ResourceGroup>(0);
 
-	
+    private Set<PrivilegeDef> privileges = new HashSet<PrivilegeDef>(0);
+    //private Set<UserPrivilege> userPrivileges = new HashSet<UserPrivilege>(0);
 
 	
 	public Resource() {
@@ -272,6 +272,14 @@ public class Resource  extends BaseObject {
 
     public void setResourceGroups(Set<ResourceGroup> resourceGroups) {
           this.resourceGroups = resourceGroups;
+    }
+
+    public Set<PrivilegeDef> getPrivileges() {
+          return privileges;
+    }
+
+    public void setPrivileges(Set<PrivilegeDef> privileges) {
+          this.privileges = privileges;
     }
 
 

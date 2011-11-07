@@ -28,5 +28,8 @@ public interface IdmAuditLogWebDataService {
 	 */
 	public IdmAuditLogListResponse search(SearchAudit search);
 
+    public void updateLog(IdmAuditLog log);
+
+
 
 }

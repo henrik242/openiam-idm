@@ -328,4 +328,7 @@ public interface ResourceDAO {
 	 */
 	int removeResourceRolePrivileges(String resourceId);
 
+    List<Resource> findResourcesForUserRole(String userId);
+
+
 }

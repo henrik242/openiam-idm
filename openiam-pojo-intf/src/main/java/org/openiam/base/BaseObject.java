@@ -13,7 +13,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BaseObject", propOrder = {
     "objectState",
-    "selected"
+    "selected",
+    "requestorLogin",
+    "requestorDomain",
+    "requestClientIP"
 })
 public class BaseObject implements java.io.Serializable{
 
@@ -29,6 +32,12 @@ public class BaseObject implements java.io.Serializable{
 	protected Boolean selected = new Boolean(false);
 	
 	protected String objectState = NEW;
+
+        // track the source of the request
+    protected String requestorLogin;
+    protected String requestorDomain;
+    protected String requestClientIP;
+
 
 	public BaseObject() {
 		
@@ -50,6 +59,27 @@ public class BaseObject implements java.io.Serializable{
 		this.selected = selected;
 	}
 
+    public String getRequestorLogin() {
+        return requestorLogin;
+    }
 
-	
+    public void setRequestorLogin(String requestorLogin) {
+        this.requestorLogin = requestorLogin;
+    }
+
+    public String getRequestorDomain() {
+        return requestorDomain;
+    }
+
+    public void setRequestorDomain(String requestorDomain) {
+        this.requestorDomain = requestorDomain;
+    }
+
+    public String getRequestClientIP() {
+        return requestClientIP;
+    }
+
+    public void setRequestClientIP(String requestClientIP) {
+        this.requestClientIP = requestClientIP;
+    }
 }

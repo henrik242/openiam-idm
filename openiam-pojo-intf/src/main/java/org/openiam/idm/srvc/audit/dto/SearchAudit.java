@@ -25,6 +25,9 @@ import javax.xml.bind.annotation.XmlType;
     "actionList",
     "customAttr1",
     "customAttrValue1",
+    "customAttrname1",
+    "customAttrValue2",
+    "customAttrname2",
     "reason",
     "objectTypeId",
     "actionId",
@@ -50,6 +53,9 @@ public class SearchAudit implements Serializable {
 	private String srcSystemId;
 	private String customAttr1;
 	private String customAttrValue1;
+    private String customAttrname1;
+    private String customAttrValue2;
+    private String customAttrname2;
 	private String reason;
 	
     private String objectTypeId;
@@ -157,5 +163,27 @@ public class SearchAudit implements Serializable {
 		this.sessionId = sessionId;
 	}
 
-	
+    public String getCustomAttrname1() {
+        return customAttrname1;
+    }
+
+    public void setCustomAttrname1(String customAttrname1) {
+        this.customAttrname1 = customAttrname1;
+    }
+
+    public String getCustomAttrValue2() {
+        return customAttrValue2;
+    }
+
+    public void setCustomAttrValue2(String customAttrValue2) {
+        this.customAttrValue2 = customAttrValue2;
+    }
+
+    public String getCustomAttrname2() {
+        return customAttrname2;
+    }
+
+    public void setCustomAttrname2(String customAttrname2) {
+        this.customAttrname2 = customAttrname2;
+    }
 }

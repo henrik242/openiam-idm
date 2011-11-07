@@ -54,7 +54,7 @@ public interface RoleDataService {
 	 * @param domainId
 	 * @param roleId
 	 */
-	void removeRole(String domainId, String roleId);
+	int removeRole(String domainId, String roleId);
 
 	/**
 	 * Returns an array of roles that are in a security domain.

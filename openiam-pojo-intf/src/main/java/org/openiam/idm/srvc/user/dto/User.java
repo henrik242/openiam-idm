@@ -214,7 +214,8 @@ import org.openiam.idm.srvc.role.dto.Role;
 	
 	protected Set<EmailAddress> emailAddresses = new HashSet<EmailAddress>(0);
 
-	
+
+
 	
 	//private Set userAttributes = new HashSet(0);
 
@@ -1455,4 +1456,6 @@ import org.openiam.idm.srvc.role.dto.Role;
                 ", emailAddresses=" + emailAddresses +
                 '}';
     }
+
+
 }

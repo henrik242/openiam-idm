@@ -20,11 +20,14 @@ import java.util.Map;
 import org.openiam.idm.srvc.org.dto.Organization;
 import org.openiam.idm.srvc.org.dto.OrganizationAttribute;
 import org.openiam.idm.srvc.org.dto.OrganizationAttributeMapAdapter;
+import org.openiam.idm.srvc.org.dto.UserAffiliation;
+import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.dto.UserRole;
 
- 
- /*
-  * 
-  */
+
+/*
+*
+*/
 
 
 @WebService(targetNamespace = "urn:idm.openiam.org/srvc/org/service", name = "OrganizationDataService")
@@ -260,4 +263,46 @@ public interface OrganizationDataService {
     
     @WebMethod    
     List<Organization> getAllOrganizations();
+
+        /* User Affiliation */
+    /**
+	 * Adds a user to a org using the UserOrg object.
+	 */
+    @WebMethod
+	public void assocUserToOrg(
+             @WebParam(name = "userorg", targetNamespace = "")
+             UserAffiliation userorg);
+
+
+    @WebMethod
+	public void updateUserOrgAssoc(
+            @WebParam(name = "userorg", targetNamespace = "")
+            UserAffiliation userorg) ;
+
+    @WebMethod
+	public List<Organization> getOrganizationsForUser(
+            @WebParam(name = "userId", targetNamespace = "")
+            String userId) ;
+
+    @WebMethod
+	public void addUserToOrg(
+             @WebParam(name = "orgId", targetNamespace = "")
+             String orgId,
+              @WebParam(name = "userId", targetNamespace = "")
+              String userId) ;
+
+	@WebMethod
+    public boolean isUserAffilatedWithOrg(
+            @WebParam(name = "orgId", targetNamespace = "")
+             String orgId,
+              @WebParam(name = "userId", targetNamespace = "")
+              String userId) ;
+
+    @WebMethod
+	public void removeUserFromOrg(
+            @WebParam(name = "orgId", targetNamespace = "")
+            String orgId,
+            @WebParam(name = "userId", targetNamespace = "")
+            String userId) ;
+
 }

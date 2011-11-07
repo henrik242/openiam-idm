@@ -16,6 +16,14 @@ public interface AuditHelper {
                        String requestId, String reason, String sessionId,
                        String reasonDetail);
 
+    IdmAuditLog addLog(String action, String domainId, String principal,
+                       String srcSystem, String userId, String targetSystem, String objectType,
+                       String objectId, String objectName,
+                       String actionStatus, String linkedLogId, String attrName, String attrValue,
+                       String requestId, String reason, String sessionId,
+                       String reasonDetail,
+                       String requestIP, String targetPrincipal, String targetUserDomain);
+
     IdmAuditLogDataService getAuditDataService();
 
     void setAuditDataService(IdmAuditLogDataService auditDataService);
@@ -26,7 +34,8 @@ public interface AuditHelper {
 			String actionStatus, String linkedLogId, String attrName, String attrValue,
 			String requestId, String reason, String sessionId,
             String reasonDetail,
-            String resourceName) ;
+            String resourceName,
+            String requestIP, String targetPrincipal, String targetUserDomain) ;
 
     public void persistLogList(List<IdmAuditLog> logList, String requestId, String sessionId);
 

@@ -1,5 +1,7 @@
 package org.openiam.idm.srvc.org.dto;
 
+import org.openiam.base.AttributeOperationEnum;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -33,7 +35,10 @@ import java.util.Map;
 		"internalOrgId",
 		"status", 
 		"abbreviation", 
-		"symbol" })
+		"symbol",
+        "selected",
+        "operation" }
+)
 public class Organization implements java.io.Serializable {
 
 	/**
@@ -62,6 +67,8 @@ public class Organization implements java.io.Serializable {
 	protected OrgClassificationEnum classification;
 	protected String abbreviation;
 	protected String symbol;
+    protected Boolean selected = new Boolean(false);
+    protected AttributeOperationEnum operation;
 
 	// Constructors
 
@@ -424,4 +431,19 @@ public class Organization implements java.io.Serializable {
 		this.symbol = symbol;
 	}
 
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
+    public AttributeOperationEnum getOperation() {
+        return operation;
+    }
+
+    public void setOperation(AttributeOperationEnum operation) {
+        this.operation = operation;
+    }
 }
