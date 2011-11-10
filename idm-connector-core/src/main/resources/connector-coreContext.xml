@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE beans [
-        <!ELEMENT beans (bean|aop:config)*>
-        <!ATTLIST beans
-                xmlns CDATA #REQUIRED
-                xmlns:xsi CDATA #REQUIRED
-                xmlns:aop CDATA #REQUIRED
-                xmlns:tx CDATA #REQUIRED
-                xmlns:jee CDATA #REQUIRED
-                xsi:schemaLocation CDATA #REQUIRED>
-        <!ELEMENT bean (property)*>
-        <!ATTLIST bean
-                class CDATA #REQUIRED
-                id CDATA #IMPLIED>
-        <!ELEMENT property (list)*>
-        <!ATTLIST property
-                name CDATA #REQUIRED
-                ref CDATA #IMPLIED>
-        <!ELEMENT list (value)*>
-        <!ELEMENT value (#PCDATA)>
-        <!ELEMENT aop:config (aop:pointcut|aop:advisor)*>
-        <!ELEMENT aop:pointcut (#PCDATA)>
-        <!ATTLIST aop:pointcut
-                id CDATA #REQUIRED
-                expression CDATA #REQUIRED>
-        <!ELEMENT aop:advisor (#PCDATA)>
-        <!ATTLIST aop:advisor
-                advice-ref CDATA #REQUIRED
-                pointcut-ref CDATA #REQUIRED>
-        ]>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aop="http://www.springframework.org/schema/aop"
@@ -78,6 +49,10 @@
 		<property name="userManager" ref="userManager" />
 		<property name="ldapSuspend" ref="ldapSuspend" />
 		<property name="ldapPassword" ref="ldapPassword" />
+        <property name="addCommand" ref="ldapAddCommmand" />
+        <property name="modifyCommand" ref="ldapModifyCommmand" />
+        <property name="lookupCommand" ref="ldapLookupCommmand" />
+        <property name="deleteCommand" ref="ldapDeleteCommmand" />
 	</bean>
 
 	<bean id="ldapSuspend" class="org.openiam.spml2.spi.ldap.LdapSuspend">
@@ -92,6 +67,34 @@
 	<bean id="ldapPassword" class="org.openiam.spml2.spi.ldap.LdapPassword">
 	
 	</bean>
+
+    <bean id="ldapAddCommmand" class="org.openiam.spml2.spi.ldap.LdapAddCommand">
+        <property name="managedSysService" ref="managedSysService" />
+        <property name="resourceDataService" ref="resourceDataService" />
+        <property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+
+	</bean>
+
+    <bean id="ldapLookupCommmand" class="org.openiam.spml2.spi.ldap.LdapLookupCommand">
+        <property name="managedSysService" ref="managedSysService" />
+        <property name="resourceDataService" ref="resourceDataService" />
+        <property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+
+	</bean>
+    <bean id="ldapModifyCommmand" class="org.openiam.spml2.spi.ldap.LdapModifyCommand">
+        <property name="managedSysService" ref="managedSysService" />
+        <property name="resourceDataService" ref="resourceDataService" />
+        <property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+
+	</bean>
+
+    <bean id="ldapDeleteCommmand" class="org.openiam.spml2.spi.ldap.LdapDeleteCommand">
+        <property name="managedSysService" ref="managedSysService" />
+        <property name="resourceDataService" ref="resourceDataService" />
+        <property name="managedSysObjectMatchDao" ref="managedSysObjectMatchDAO" />
+
+	</bean>
+
 
 	<bean id="googleAppsConnector" class="org.openiam.spml2.spi.gapps.GoogleAppsConnectorImpl">
 		<property name="managedSysService" ref="managedSysService" />	

@@ -11,7 +11,11 @@ import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 import javax.naming.ldap.LdapName;
 import java.util.Hashtable;
-
+import javax.naming.directory.SearchControls;
+import javax.naming.NamingEnumeration;
+import javax.naming.directory.Attributes;
+import javax.naming.ldap.*;
+import javax.naming.directory.SearchResult;
 /**
  * Created by IntelliJ IDEA.
  * User: suneetshah
@@ -41,6 +45,72 @@ public class LdapTest {
 
 
 	}
+
+    public static  void getMembership() {
+        System.out.println("GetMembership...");
+         try {
+            LdapContext ctx = connect();
+
+             //Create the search controls
+			SearchControls searchCtls = new SearchControls();
+
+			//Specify the search scope
+			searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+
+			//specify the LDAP search filter
+			String searchFilter = "(&(objectClass=inetOrgPerson)(uid=Suneet.GTAUser6))" ;
+
+			//Specify the Base for the search
+			String searchBase = "ou=users,DC=gtawestdir,DC=com";
+
+			//initialize counter to total the group members
+			int totalResults = 0;
+
+			//Specify the attributes to return
+			String returnedAtts[]={"memberOf", "isMemberOf"};
+			searchCtls.setReturningAttributes(returnedAtts);
+
+			//Search for objects using the filter
+			NamingEnumeration answer = ctx.search(searchBase, searchFilter, searchCtls);
+
+			//Loop through the search results
+			while (answer.hasMoreElements()) {
+				SearchResult sr = (SearchResult)answer.next();
+
+				System.out.println(">>>" + sr.getName());
+
+				//Print out the groups
+
+				Attributes attrs = sr.getAttributes();
+				if (attrs != null) {
+
+					try {
+						for (NamingEnumeration ae = attrs.getAll();ae.hasMore();) {
+							Attribute attr = (Attribute)ae.next();
+							System.out.println("Attribute: " + attr.getID());
+							for (NamingEnumeration e = attr.getAll();e.hasMore();totalResults++) {
+
+								System.out.println(" " +  totalResults + ". " +  e.next());
+							}
+
+						}
+
+					}
+					catch (NamingException e)	{
+						System.err.println("Problem listing membership: " + e);
+					}
+
+				}
+			}
+
+
+
+         }catch(Exception e) {
+
+             e.printStackTrace();
+         }
+
+    }
 
     public static void createOrg() {
         try {
@@ -98,7 +168,7 @@ public class LdapTest {
     public static void main(String[] args) {
         System.out.println("LdapTest called....");
 
-        LdapTest.createRole();
+        LdapTest.getMembership();
 
     }
 
