@@ -35,6 +35,9 @@ public class IdmAuditLogDataServiceImpl implements IdmAuditLogDataService {
 	 * @see org.openiam.idm.srvc.audit.service.IdmAuditLogDataService#addLog(org.openiam.idm.srvc.audit.dto.IdmAuditLog)
 	 */
 	public IdmAuditLog addLog(IdmAuditLog log) {
+
+        sysLog.debug("Persisting new audit event in database.");
+
 		// create a hash that can be used validate the logs integrity
 		String str = log.getActionId() + 
 					 log.getActionStatus() + 
@@ -47,28 +50,19 @@ public class IdmAuditLogDataServiceImpl implements IdmAuditLogDataService {
 					 log.getRequestId() +
 					 log.getActionDatetime();
 		log.setLogHash( hash.HexEncodedHash(str) );
+        log.setCustomAttrname2("PUBLISHED");
+        log.setCustomAttrvalue2("0");
 		auditDao.add(log);
 
-        exportEvent(log);
 
 		return log;
 	}
 
-    protected void exportEvent(IdmAuditLog log) {
-        ExportAuditEvent eventHandler =  AuditEventHandlerFactory.createInstance();
-        if (eventHandler == null) {
-            return;
-        }
-
-        try {
-            eventHandler.event(log);
-        }catch (Exception e) {
-           sysLog.error(e.toString());
-        }
-
+    public void updateLog(IdmAuditLog log) {
+        auditDao.update(log);
     }
 
-	public List<IdmAuditLog>  getCompleteLog() {
+    public List<IdmAuditLog>  getCompleteLog() {
 		return auditDao.findAll();
 	}
 	

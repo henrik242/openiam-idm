@@ -71,7 +71,7 @@ public class ResourceDataServiceImpl implements ResourceDataService {
 		this.resourceRoleDao = resourceRoleDao;
 	}
 
-	//	
+ 	//
 	// /**
 	// * Gets the resource user dao.
 	// *
@@ -103,8 +103,7 @@ public class ResourceDataServiceImpl implements ResourceDataService {
 		if (resource == null)
 			throw new IllegalArgumentException("Resource object is null");
 
-		resourceDao.add(resource);
-        return resource;
+		return resourceDao.add(resource);
 	}
 
 	/**
@@ -1118,6 +1117,16 @@ public class ResourceDataServiceImpl implements ResourceDataService {
 		return resourceUserDao.findAllResourceForUsers(userId);
 	}
 
+     public List<Resource> getResourceObjForUser(String userId) {
+		if (userId == null) {
+			throw new IllegalArgumentException("UserId object is null");
+		}
+
+        return resourceDao.findResourcesForUserRole(userId) ;
+	}
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -1157,6 +1166,45 @@ public class ResourceDataServiceImpl implements ResourceDataService {
 
 	}
 
+
+    public boolean isUserAuthorizedByProperty(String userId, String propertyName, String propertyValue) {
+       log.info("isUserAuthorized called.");
+
+        if (propertyName == null || propertyName.length() == 0) {
+            return false;
+        }
+        if (propertyValue == null || propertyValue.length() == 0) {
+            return false;
+        }
+
+        List<Resource> resList = getResourceObjForUser(userId);
+
+		log.info("- resList= " + resList);
+		if (resList == null) {
+			log.info("resource list for user is null");
+			return false;
+		}
+		for (Resource res : resList) {
+
+            ResourceProp prop =  res.getResourceProperty(propertyName);
+            if (prop != null) {
+                String val = prop.getPropValue();
+                if (val != null && val.length() > 0) {
+                    val = val.toLowerCase();
+                    propertyValue = propertyValue.toLowerCase();
+
+                    if (propertyValue.contains(val)) {
+                        return true;
+                    }
+
+                }
+            }
+		}
+
+		return false;
+
+    }
+
 	public boolean isRoleAuthorized(String domainId, String roleId,
 			String resourceId) {
 		log.info("isUserAuthorized called.");
@@ -1176,139 +1224,8 @@ public class ResourceDataServiceImpl implements ResourceDataService {
 		return false;
 	}
 
-/*	public AttributeMapDAO getAttributeMapDao() {
-		return attributeMapDao;
-	}
-
-	public void setAttributeMapDao(AttributeMapDAO attributeMapDao) {
-		this.attributeMapDao = attributeMapDao;
-	}
-
-	public AttributeMap getAttributeMap(String attributeMapId) {
-		if (attributeMapId == null)
-			throw new IllegalArgumentException("attributeMapId is null");
-
-		AttributeMap obj = attributeMapDao.findById(attributeMapId);
-
-		return obj;
-	}
-
-	public AttributeMap addAttributeMap(AttributeMap attributeMap) {
-		if (attributeMap == null)
-			throw new IllegalArgumentException("AttributeMap object is null");
-
-		return attributeMapDao.add(attributeMap);
-
-	}
-
-	public AttributeMap updateAttributeMap(AttributeMap attributeMap) {
-		if (attributeMap == null)
-			throw new IllegalArgumentException("attributeMap object is null");
-
-		return attributeMapDao.update(attributeMap);
-	}
-
-	public void removeAttributeMap(String attributeMapId) {
-		if (attributeMapId == null)
-			throw new IllegalArgumentException("attributeMapId is null");
-		AttributeMap obj = this.attributeMapDao.findById(attributeMapId);
-		this.attributeMapDao.remove(obj);
-	}
-
-	public int removeResourceAttributeMaps(String resourceId) {
-		if (resourceId == null)
-			throw new IllegalArgumentException("resourceId is null");
-
-		return this.attributeMapDao.removeResourceAttributeMaps(resourceId);
-	}
-
-	public List<AttributeMap> getResourceAttributeMaps(String resourceId) {
-		if (resourceId == null) {
-			throw new IllegalArgumentException("resourceId is null");
-		}
-		return attributeMapDao.findByResourceId(resourceId);
-	}
-
-	public List<AttributeMap> getAllAttributeMaps() {
-		List<AttributeMap> attributeMapList = attributeMapDao
-				.findAllAttributeMaps();
-
-		return attributeMapList;
-	}
-
-*/
-
 }
 
-//
-// // ResourceUser ---------------------------------------
-//
-// /**
-// * Add resource user
-// * @param resourceUser
-// * @return
-// */
-// public ResourceUser addResourceUser(ResourceUser resourceUser) {
-// if (resourceUser == null)
-// throw new IllegalArgumentException("ResourceUser object is null");
-//
-// return resourceUserDao.add(resourceUser);
-//
-// }
-//
-//
-// /**
-// * Find resource user
-// * @param resourceUserId
-// * @return
-// */
-// public ResourceUser getResourceUser(ResourceUserId resourceUserId) {
-// if (resourceUserId == null)
-// throw new IllegalArgumentException("resourceUserId is null");
-//
-// return resourceUserDao.findById(resourceUserId);
-// }
-//
-// /**
-// * Update resource user
-// * @param resourceUser
-// * @return
-// */
-// public ResourceUser updateResourceUser(ResourceUser resourceUser) {
-// if (resourceUser == null)
-// throw new IllegalArgumentException("resourceUser object is null");
-//
-// return resourceUserDao.update(resourceUser);
-// }
-//
-//
-// /**
-// * Find all resource users
-// * @return
-// */
-// public List<ResourceUser> getAllResourceUsers() {
-// List<ResourceUser> resourceUserList = resourceUserDao.findAllResourceUsers();
-//
-// return resourceUserList;
-// }
-//
-// /**
-// * Remove a resource user
-// * @param resourceUserId
-// */
-// public void removeResourceUser(ResourceUserId resourceUserId) {
-// if (resourceUserId == null)
-// throw new IllegalArgumentException("resourceUserId is null");
-// ResourceUser obj = this.resourceUserDao.findById(resourceUserId);
-// this.resourceUserDao.remove(obj);
-// }
-//
-// /**
-// * Remove all resource users
-// */
-// public void removeAllResourceUsers() {
-// this.resourceUserDao.removeAllResourceUsers();
-// }
-//
+
 
 

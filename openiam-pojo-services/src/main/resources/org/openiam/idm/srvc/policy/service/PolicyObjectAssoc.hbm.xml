@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping SYSTEM "classpath://hibernate-mapping-3.0.dtd" >
 <!-- Generated Dec 1, 2009 12:48:52 AM by Hibernate Tools 3.2.2.GA -->
 <hibernate-mapping>
-    <class name="org.openiam.idm.srvc.policy.dto.PolicyObjectAssoc" table="POLICY_OBJECT_ASSOC" lazy="false">
+    <class name="org.openiam.idm.srvc.policy.dto.PolicyObjectAssoc" table="POLICY_OBJECT_ASSOC">
          <id name="policyObjectId" type="string">
             <column name="POLICY_OBJECT_ID" length="32" />
             <generator class="uuid" />

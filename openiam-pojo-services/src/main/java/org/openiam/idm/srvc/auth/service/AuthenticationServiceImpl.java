@@ -261,8 +261,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		this.authStateDao.saveAuthState(authSt);
 		
 	
-		IdmAuditLog log = new IdmAuditLog( "AUTHENTICATION", "LOGOUT", "SUCCESS", null,null,userId,  null, null, null);
-		auditUtil.log(log);
+		//IdmAuditLog log = new IdmAuditLog( "AUTHENTICATION", "LOGOUT", "SUCCESS", null,null,userId,  null, null, null);
+		//auditUtil.log(log);
 		
 	}
 
@@ -272,6 +272,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	//public AuthenticationResponse passwordAuth(String secDomainId, String principal, String password) throws AuthenticationException {
 	@ManagedAttribute
     public AuthenticationResponse passwordAuth(String secDomainId, String principal, String password) {
+
+        log.debug("*** PasswordAuth called...");
 
 		 AuthenticationResponse authResp = new AuthenticationResponse(ResponseStatus.FAILURE);
 		 
@@ -285,8 +287,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String userId = null;
         User user = null;
 
-		
-		log.debug("secDomainId=" + secDomainId + " principal=" + principal);
+
 		
 		SecurityDomain secDomain = secDomainService.getSecurityDomain(secDomainId);
 		if (secDomain == null) {
@@ -299,9 +300,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         // Determine which login module to use
         // - get the Authentication policy for the domain
         String authPolicyId =  secDomain.getAuthnPolicyId();
+
         log.debug("Authn policyId=" + authPolicyId);
 
         authPolicy = policyDao.findById(authPolicyId);
+
         log.debug("Auth Policy object=" + authPolicy);
 
         PolicyAttribute modType = authPolicy.getAttribute("LOGIN_MOD_TYPE");
@@ -320,6 +323,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 /* Few basic checks must be met before calling the login module. */
                 /* Simplifies the login module */
                 if (principal == null || principal.length()==0) {
+
+                    log.debug("Invalid login:" + principal);
+
                     log("AUTHENTICATION", "AUTHENTICATION", "FAIL", "INVALID LOGIN", secDomainId, null, principal, null, null);
                     //throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_LOGIN);
 
@@ -329,6 +335,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 }
 
                 if (password == null 	|| password.equals("")) {
+
+                    log.debug("Invalid password");
+
                     log("AUTHENTICATION", "AUTHENTICATION", "FAIL", "INVALID PASSWORD", secDomainId, null, principal, null, null);
                     //throw new AuthenticationException(AuthenticationConstants.RESULT_INVALID_PASSWORD);
 
@@ -338,7 +347,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 }
 
                 lg = loginManager.getLoginByManagedSys(secDomainId,principal, secDomain.getAuthSysId());
+
                 log.debug("login object after looking up the login:" + lg);
+
                 if (lg == null) {
                     log.debug("Login not found. Throw authentication exception");
                     log("AUTHENTICATION", "AUTHENTICATION", "FAIL", "INVALID LOGIN", secDomainId, null, principal, null, null);
@@ -361,6 +372,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             }
 
 		try {
+
+            log.debug("Creating authentication context");
+
 			ctx = AuthContextFactory.createContext(authContextClass);
 			
 
@@ -368,7 +382,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			
 			PolicyAttribute selPolicy =  authPolicy.getAttribute("LOGIN_MODULE_SEL_POLCY");
 			if (selPolicy != null &&  selPolicy.getValue1() != null && selPolicy.getValue1().length() > 0 ) {
-				log.debug("Calling policy selection rule");
+
+                log.debug("Calling policy selection rule");
 			
 				Map<String, Object> bindingMap = new HashMap<String, Object>();
 				bindingMap.put("secDomainId", secDomainId);
@@ -394,14 +409,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 					System.out.println("Name=" + attr.getName());
 				}
 				*/
-			/*	PolicyAttribute modType = authPolicy.getAttribute("LOGIN_MOD_TYPE");
-				PolicyAttribute defaultModule = authPolicy.getAttribute("DEFAULT_LOGIN_MOD");
-				loginModName = defaultModule.getValue1();	
-				if (modType !=null) {
-					modSel.setModuleType( Integer.parseInt(modType.getValue1()));
-					modSel.setModuleName(loginModName);
-				}
-				*/
+
 			}
 			log.debug("login module name=" + loginModName);
 			
@@ -446,6 +454,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 				sub = loginModule.login(ctx);
 				
 			}catch(AuthenticationException ae) {
+
+                log.debug("Authentication error " + ae.toString());
+
 				int errCode = ae.getErrorCode();
 				switch (errCode) {
 				case AuthenticationConstants.RESULT_INVALID_DOMAIN:
@@ -488,6 +499,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 		updateAuthState(sub);
 		populateSubject(sub.getUserId(), sub);
+
+        log.debug("*** PasswordAuth complete...Returning response object");
 		
 		authResp.setSubject(sub);
 		authResp.setStatus(ResponseStatus.SUCCESS);

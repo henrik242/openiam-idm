@@ -42,7 +42,7 @@ public class PasswordLengthRule extends AbstractPasswordRule {
 		if (attribute.getValue1() != null && attribute.getValue1().length() > 0 )  {
 			minlen = Integer.parseInt(attribute.getValue1());
 		}
-		if (attribute.getValue2() != null) {
+		if (attribute.getValue2() != null && attribute.getValue2().length() > 0) {
 			maxlen = Integer.parseInt(attribute.getValue2());
 		}
 		if (password == null) {

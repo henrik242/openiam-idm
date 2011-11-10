@@ -10,6 +10,8 @@ import java.rmi.*;
 
 import org.hibernate.Hibernate;
 import org.openiam.idm.srvc.org.dto.*;
+import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.dto.UserRole;
 
 /**
  * <code>OrganizationManager</code> provides a service level interface to the
@@ -31,6 +33,7 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 	protected OrganizationDAO orgDao;
 
 	protected OrganizationAttributeDAO orgAttrDao;
+    protected UserAffiliationDAO orgAffiliationDao;
 	
 	
 	
@@ -290,6 +293,92 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 
 	}
 
+
+    /* User Affiliation */
+    /**
+	 * Adds a user to a org using the UserOrg object.
+	 */
+	public void assocUserToOrg(UserAffiliation userorg) {
+		if (userorg.getOrganizationId() == null)
+			throw new IllegalArgumentException("organizationId  is null");
+
+		if (userorg.getUserId() == null)
+			throw new IllegalArgumentException("userId object is null");
+
+        userorg.setUserAffiliationId(null);
+        this.orgAffiliationDao.add(userorg);
+
+	}
+
+
+	public void updateUserOrgAssoc(UserAffiliation userorg) {
+		if (userorg.getOrganizationId() == null)
+			throw new IllegalArgumentException("organizationId  is null");
+
+		if (userorg.getUserId() == null)
+			throw new IllegalArgumentException("userId object is null");
+
+        orgAffiliationDao.update(userorg);
+
+	}
+
+
+	public List<Organization> getOrganizationsForUser(String userId) {
+		if (userId == null) {
+			throw new IllegalArgumentException("userId is null");
+		}
+
+        return orgAffiliationDao.findOrgAffiliationsByUser(userId);
+
+	}
+
+
+	public void addUserToOrg(String orgId, String userId) {
+
+		if (orgId == null)
+			throw new IllegalArgumentException("organizationId  is null");
+
+		if (userId == null)
+			throw new IllegalArgumentException("userId object is null");
+
+        UserAffiliation ua = new UserAffiliation(userId,orgId);
+        orgAffiliationDao.add(ua);
+
+
+	}
+
+	public boolean isUserAffilatedWithOrg(String orgId, String userId) {
+
+		if (orgId == null)
+			throw new IllegalArgumentException("organizationId  is null");
+
+		if (userId == null)
+			throw new IllegalArgumentException("userId object is null");
+
+        List<Organization> orgList = orgAffiliationDao.findOrgAffiliationsByUser(userId);
+
+
+		for (Organization org : orgList) {
+            if (org.getOrgId().equals(orgId)) {
+                return true;
+            }
+		}
+		return false;
+	}
+
+	public void removeUserFromOrg(String orgId,	String userId) {
+				if (orgId == null)
+			throw new IllegalArgumentException("organizationId  is null");
+
+		if (userId == null)
+			throw new IllegalArgumentException("userId object is null");
+
+        orgAffiliationDao.removeUserFromOrg(orgId,userId);
+	}
+    /* Spring methods */
+
+
+
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.org.service.OrganizationDataService#getOrgAttrDao()
 	 */
@@ -338,5 +427,11 @@ public class OrganizationDataServiceImpl implements OrganizationDataService {
 	}
 
 
+    public UserAffiliationDAO getOrgAffiliationDao() {
+        return orgAffiliationDao;
+    }
 
+    public void setOrgAffiliationDao(UserAffiliationDAO orgAffiliationDao) {
+        this.orgAffiliationDao = orgAffiliationDao;
+    }
 }

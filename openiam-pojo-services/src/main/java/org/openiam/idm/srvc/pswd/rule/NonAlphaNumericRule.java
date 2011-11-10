@@ -53,7 +53,7 @@ public class NonAlphaNumericRule extends AbstractPasswordRule {
 		int charCtr = 0;
 		for (int i=0; i < password.length(); i++) {
 			int ch = password.charAt(i);
-			if ((ch >= 33 && ch <= 47) || (ch >= 60 && ch <= 64)) {
+			if ((ch >= 33 && ch <= 47) || (ch >= 58 && ch <= 64)) {
 				charCtr++;
 			}
 		}

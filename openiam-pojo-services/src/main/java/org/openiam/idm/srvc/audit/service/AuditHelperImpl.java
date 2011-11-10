@@ -92,11 +92,6 @@ public class AuditHelperImpl implements AuditHelper {
 			String requestId, String reason, String sessionId,
             String reasonDetail) {
 
-System.out.println("--------Action status=" + actionStatus);
-System.out.println("--------Action =" + action);
-System.out.println("--------objecttype =" + objectType);
-System.out.println("--------login =" + principal);
-
 		IdmAuditLog log = new IdmAuditLog();
 		log.setObjectId(objectId);
 		log.setObjectTypeId(objectType);
@@ -119,13 +114,49 @@ System.out.println("--------login =" + principal);
 		
 	}
 
+    public IdmAuditLog addLog(String action,String requestorDomainId, String requestorPrincipal,
+			String srcSystem, String userId, String targetSystem, String objectType,
+			String objectId, String objectName,
+			String actionStatus, String linkedLogId, String attrName, String attrValue,
+			String requestId, String reason, String sessionId,
+            String reasonDetail,
+            String requestIP, String targetPrincipal, String targetUserDomain) {
+
+		IdmAuditLog log = new IdmAuditLog();
+		log.setObjectId(objectId);
+		log.setObjectTypeId(objectType);
+		log.setActionId(action);
+		log.setActionStatus(actionStatus);
+		log.setDomainId(requestorDomainId);
+		log.setUserId(userId);
+		log.setPrincipal(requestorPrincipal);
+		log.setLinkedLogId(linkedLogId);
+		log.setSrcSystemId(srcSystem);
+		log.setTargetSystemId(targetSystem);
+		log.setCustomAttrname1(attrName);
+		log.setCustomAttrvalue1(attrValue);
+		log.setRequestId(requestId);
+		log.setReason(reason);
+		log.setSessionId(sessionId);
+        log.setReasonDetail(reasonDetail);
+        log.setHost(requestIP);
+        log.setCustomAttrname3("TARGET_IDENTITY");
+        log.setCustomAttrvalue3(targetPrincipal);
+        log.setCustomAttrname4("TARGET_DOMAIN");
+        log.setCustomAttrvalue4(targetUserDomain);
+
+		return logEvent(log);
+
+	}
+
     public IdmAuditLog createLogObject(String action,String domainId, String principal,
 			String srcSystem, String userId, String targetSystem, String objectType,
 			String objectId, String objectName,
 			String actionStatus, String linkedLogId, String attrName, String attrValue,
 			String requestId, String reason, String sessionId,
             String reasonDetail,
-            String resourceName) {
+            String resourceName,
+            String requestIP, String targetPrincipal, String targetUserDomain) {
 
 
 		IdmAuditLog log = new IdmAuditLog();
@@ -147,6 +178,12 @@ System.out.println("--------login =" + principal);
         log.setReasonDetail(reasonDetail);
         log.setResourceName(resourceName);
 
+        log.setHost(requestIP);
+        log.setCustomAttrname3("TARGET_IDENTITY");
+        log.setCustomAttrvalue3(targetPrincipal);
+        log.setCustomAttrname4("TARGET_DOMAIN");
+        log.setCustomAttrvalue4(targetUserDomain);
+
         return log;
 
 
@@ -161,6 +198,11 @@ System.out.println("--------login =" + principal);
             if (sessionId != null) {
                 log.setSessionId(sessionId);
             }
+
+            if (log.getLinkedLogId() == null || log.getLinkedLogId().length() ==0)  {
+                log.setLinkedLogId("NA");
+            }
+
             logEvent(log);
         }
     }

@@ -378,7 +378,8 @@ public class LoginDataServiceImpl implements LoginDataService {
 	public void updateLogin(Login login) {
 		if (login == null)
 			throw new NullPointerException("Login is null");
-		
+
+        log.debug("Updating Identity" + login);
         
        loginDao.update(login);
 	}

@@ -208,12 +208,12 @@ public class MailServiceImpl implements MailService, ApplicationContextAware {
 		send(null, usr.getEmail(), subject,emailBody);
 		
 		
-		auditHelper.addLog(req.getNotificationType(), null,	null,
+		/*auditHelper.addLog(req.getNotificationType(), null,	null,
 				"IDM SERVICE", null, null,"NOTIFICATION",
 				null, null, 
 				"SUCCESS", req.getLinkedRequestId(),  "TARGET_USER_ID", usr.getUserId(),
 				req.getRequestId(), null, null, null);
-		
+		*/
 		return true;
 	}
 	

@@ -200,6 +200,20 @@ public class ResourceRoleDAOImpl implements ResourceRoleDAO {
 		}		
 
 	}
-	
-	
+
+
+
+    public void removeResourceRole(String domainId, String roleId) {
+        //To change body of implemented methods use File | Settings | File Templates.
+
+        log.debug("removeResourceRole: domainId=" + domainId);
+		log.debug("removeResourceRole: roleId=" + roleId);
+
+		Session session = sessionFactory.getCurrentSession();
+		Query qry = session.createQuery("delete org.openiam.idm.srvc.res.dto.ResourceRole rr " +
+					" where rr.id.roleId = :roleId and rr.id.domainId = :domainId ");
+		qry.setString("roleId", roleId);
+		qry.setString("domainId", domainId);
+		qry.executeUpdate();
+    }
 }

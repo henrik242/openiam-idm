@@ -151,12 +151,22 @@ public class IdmAuditLogDAOImpl implements IdmAuditLogDAO {
 				criteria.add(Restrictions.ge("actionDatetime",  search.getStartDate()));
 			}
 
-			if (search.getCustomAttr1() != null ) {
-				criteria.add(Restrictions.eq("customAttrname1",  search.getCustomAttr1()));
-			}
+			//if (search.getCustomAttr1() != null ) {
+			//	criteria.add(Restrictions.eq("customAttrname1",  search.getCustomAttr1()));
+			//}
 			if (search.getCustomAttrValue1() != null ) {
 				criteria.add(Restrictions.eq("customAttrvalue1",  search.getCustomAttrValue1()));
 			}
+            if (search.getCustomAttrname1() != null ) {
+				criteria.add(Restrictions.eq("customAttrname1",  search.getCustomAttrname1()));
+			}
+            if (search.getCustomAttrValue2() != null ) {
+				criteria.add(Restrictions.eq("customAttrvalue2",  search.getCustomAttrValue2()));
+			}
+            if (search.getCustomAttrname2() != null ) {
+				criteria.add(Restrictions.eq("customAttrname2",  search.getCustomAttrname2()));
+			}
+
 			if (search.getReason() != null ) {
 				criteria.add(Restrictions.eq("reason",  search.getReason()));
 			}
@@ -223,6 +233,9 @@ public class IdmAuditLogDAOImpl implements IdmAuditLogDAO {
         
 
     }
+
+
+
      
 }
 

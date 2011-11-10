@@ -66,6 +66,8 @@ public class PolicyDAOImpl implements PolicyDAO {
 	public void remove(Policy persistentInstance) {
 		log.debug("deleting Policy instance");
 		try {
+            removePolicyAttributes(persistentInstance.getPolicyId());
+
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
 		} catch (HibernateException re) {
@@ -175,4 +177,21 @@ public class PolicyDAOImpl implements PolicyDAO {
 		}
 		
 	}
+    public int removePolicyAttributes(String policyID) {
+		try {
+            Session session = sessionFactory.getCurrentSession();
+            Query qry = session.createQuery("delete from org.openiam.idm.srvc.policy.dto.PolicyAttribute pa where" +
+                    " pa.policyId =:policyID ");
+
+            qry.setString("policyID", policyID);
+
+
+            return qry.executeUpdate();
+        }catch (HibernateException he) {
+            log.error(he);
+            throw he;
+
+        }
+	}
+
 }

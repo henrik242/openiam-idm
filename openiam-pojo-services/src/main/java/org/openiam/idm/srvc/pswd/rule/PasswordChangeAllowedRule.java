@@ -39,14 +39,19 @@ public class PasswordChangeAllowedRule extends AbstractPasswordRule {
 		boolean enabled = false;
 				
 		PolicyAttribute attribute = policy.getAttribute("PASSWORD_CHANGE_ALLOWED");
-		if (attribute.getValue1() != null && attribute.getValue1().length() > 0 ) {
+		if (attribute.getValue1() != null && attribute.getValue1().length() > 0) {
 			enabled = true;
 
 		}
 		if (enabled) {
-			if (attribute.getValue1() != null && attribute.getValue1().equalsIgnoreCase("0")) {
-				return PasswordValidationCode.FAIL_PASSWORD_CHANGE_ALLOW;
+			int changeCount =  lg.getPasswordChangeCount();
+			int changesAllowed =  Integer.parseInt(attribute.getValue1());
+
+			if (changeCount >= changesAllowed) {
+				return PasswordValidationCode.FAIL_PASSWORD_CHANGE_FREQUENCY;
 			}
+
+
 			
 		}
 			

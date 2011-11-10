@@ -11,4 +11,5 @@ import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
 public interface ExportAuditEvent {
 
     void event(IdmAuditLog log);
+    boolean isAlive();
 }

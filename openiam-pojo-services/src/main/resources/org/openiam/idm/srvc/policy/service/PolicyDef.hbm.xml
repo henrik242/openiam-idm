@@ -51,7 +51,7 @@
             </key>
             <one-to-many class="org.openiam.idm.srvc.policy.dto.PolicyDefParam" />
         </set>
-        <set name="policies" inverse="true">
+        <set name="policies" inverse="true" lazy="false">
             <key>
                 <column name="POLICY_DEF_ID" length="32">
                     <comment></comment>

@@ -141,8 +141,8 @@ public class PolicyDefDAOImpl implements PolicyDefDAO {
 				return null;
 			
 			for (PolicyDef p:result) {
-				Hibernate.initialize(p.getPolicies());
-				Hibernate.initialize(p.getPolicyDefParams());
+		    	Hibernate.initialize(p.getPolicies());
+	    		Hibernate.initialize(p.getPolicyDefParams());
 			}
 			
 			return result;			

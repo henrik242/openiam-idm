@@ -8,16 +8,14 @@ import java.util.Set;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
+
 import static org.hibernate.criterion.Example.create;
 
 
 import org.openiam.exception.data.ObjectNotFoundException;
 import org.openiam.idm.srvc.res.dto.*;
+import org.openiam.idm.srvc.user.dto.User;
 
 
 /**
@@ -143,6 +141,9 @@ public void setSessionFactory(SessionFactory session) {
 				Hibernate.initialize(instance.getResourceType());
 				Hibernate.initialize(instance.getResourceProps());
 				Hibernate.initialize(instance.getResourceRoles());
+                Hibernate.initialize(instance.getChildResources());
+                Hibernate.initialize(instance.getPrivileges());
+                Hibernate.initialize(instance.getResourceGroups());
 			}	
 			return instance;
 		} catch (HibernateException re) {
@@ -166,6 +167,9 @@ public void setSessionFactory(SessionFactory session) {
 				Hibernate.initialize(r.getResourceType());
 				Hibernate.initialize(r.getResourceProps());
 				Hibernate.initialize(r.getResourceRoles());
+                Hibernate.initialize(r.getChildResources());
+                Hibernate.initialize(r.getPrivileges());
+                Hibernate.initialize(r.getResourceGroups());
 			}
 			
 			return resources;
@@ -196,10 +200,13 @@ public void setSessionFactory(SessionFactory session) {
 				" order by a.resourceId asc");
 		List<Resource> result = (List<Resource>)qry.list();
 		
-		for (Resource obj:result) {
-			Hibernate.initialize(obj.getResourceProps());
-			Hibernate.initialize(obj.getResourceType());
-			Hibernate.initialize(obj.getResourceRoles());
+		for (Resource r:result) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
 		}
 		
 		return result;
@@ -208,15 +215,20 @@ public void setSessionFactory(SessionFactory session) {
 	public List<Resource> findResourcesByName(String resourceName) {
 		Session session = sessionFactory.getCurrentSession();
 		Query qry = session.createQuery("select resource from org.openiam.idm.srvc.res.dto.Resource as resource " +
-			" where resource.name = :resourceName " );
-		qry.setString("resName", resourceName);
+			" where resource.name like :resourceName " );
+		qry.setString("resourceName", resourceName);
+        qry.setCacheable(true);
+        qry.setCacheRegion("query.resource.findResourcesByName");
 		List<Resource> result = (List<Resource>)qry.list();
 		
-		for (Resource obj:result) {
-			Hibernate.initialize(obj.getResourceProps());
-			Hibernate.initialize(obj.getResourceType());
-			Hibernate.initialize(obj.getResourceRoles());
-		}
+        for (Resource r:result) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
+        }
 		
 		return result;
 	}
@@ -230,9 +242,9 @@ public void setSessionFactory(SessionFactory session) {
                 "where resource.name = :resourceName " +
                 "order by resource.displayOrder asc " );
 
-        qry.setString("name", resourceName);
+        qry.setString("resourceName", resourceName);
         qry.setCacheable(true);
-        qry.setCacheRegion("query.resource.findResourcesByCategory");
+        qry.setCacheRegion("query.resource.findResourceByName");
         List<Resource> resources = (List<Resource>) qry.list();
 
         if (resources != null && !resources.isEmpty()) {
@@ -240,6 +252,9 @@ public void setSessionFactory(SessionFactory session) {
             Hibernate.initialize(r.getResourceType());
             Hibernate.initialize(r.getResourceProps());
             Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
             return r;
         }
         return null;
@@ -264,16 +279,19 @@ public void setSessionFactory(SessionFactory session) {
                         "where resourceProp.name = :propName " +
                         "and resourceProp.propValue = :propValue");
 
-        qry.setString("name", propName);
+        qry.setString("propName", propName);
         qry.setString("propValue", propValue);
         qry.setCacheable(true);
         qry.setCacheRegion("query.resource.findResourceByProperty");
         List<Resource> resources = (List<Resource>)qry.list();
 
-        for (Resource obj:resources) {
-            Hibernate.initialize(obj.getResourceProps());
-            Hibernate.initialize(obj.getResourceType());
-            Hibernate.initialize(obj.getResourceRoles());
+        for (Resource r:resources) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
         }
 
         return resources;
@@ -310,6 +328,9 @@ public void setSessionFactory(SessionFactory session) {
                 Hibernate.initialize(r.getResourceType());
                 Hibernate.initialize(r.getResourceProps());
                 Hibernate.initialize(r.getResourceRoles());
+                Hibernate.initialize(r.getChildResources());
+                Hibernate.initialize(r.getPrivileges());
+                Hibernate.initialize(r.getResourceGroups());
                 return r;
             }
 
@@ -339,56 +360,7 @@ public void setSessionFactory(SessionFactory session) {
 		return t;
 	}
 
-/*		
-	// use update resource to do this
-	
-	public void linkTypeToResource(String resourceId, String resourceTypeId) {
-		
-		ResourceType rt = resourceTypeDao.findById(resourceTypeId);
-		if (rt == null) {
-			log.error("Resource not found for resourceId =" + resourceTypeId);
-			throw new ObjectNotFoundException();
-		}
-		
-		Resource res = findById(resourceId);				
-		if (res == null) {
-			log.error("Resource not found for resourceId =" + resourceId);
-			throw new ObjectNotFoundException();
-		}
 
-		
-		res.setResourceType(rt);
-
-		try {
-			sessionFactory.getCurrentSession().merge(res);
-			log.debug("persist successful");
-		} catch (HibernateException re) {
-			re.printStackTrace();
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-
-
-	public void unlinkTypeFromResource(String resourceId) {
-		Resource res = findById(resourceId);				
-		if (res == null) {
-			log.error("Resource not found for resourceId =" + resourceId);
-			throw new ObjectNotFoundException();
-		}
-		res.setResourceType(null);
-		
-		try {
-			sessionFactory.getCurrentSession().merge(res);
-			log.debug("persist successful");
-		} catch (HibernateException re) {
-			re.printStackTrace();
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
-	
-*/	
 	
 	// ResourceProp-----------------------------------------------------------------
 
@@ -415,7 +387,7 @@ public void setSessionFactory(SessionFactory session) {
 				
 		qry.setString("resourceId", resourceId);
 		qry.setCacheable(true);
-		qry.setCacheRegion("query.resource.findResourceProp");
+		qry.setCacheRegion("query.resource.findResourceProperties");
 		List<ResourceProp> result = (List<ResourceProp>) qry.list();
 
 		return result;
@@ -424,109 +396,10 @@ public void setSessionFactory(SessionFactory session) {
 
 
 
-// use resource update to do this	
-	
-//	public void linkPropertyToResource(String resourcePropId, String resourceId) {
-//		
-//		ResourceProp p = resourcePropDao.findById(resourcePropId);		
-//		Resource resource = findById(resourceId);	
-//		if (resource == null) {
-//			log.error("Resource not found for resourceId =" + resourceId);
-//			throw new ObjectNotFoundException();
-//		}
-//		
-//		//resource.getResourceProps().add(p);  makes no difference
-//		p.setResource(resource);
-//
-//		try {
-//			sessionFactory.getCurrentSession().merge(resource);
-//			log.debug("persist successful");
-//		} catch (HibernateException re) {
-//			re.printStackTrace();
-//			log.error("persist failed", re);
-//			throw re;
-//		}
-//	}
-//
-//
-//	public void unlinkPropertyFromResource(String resourcePropId, String resourceId) {
-//
-//		Resource resource = findById(resourceId);				
-//
-//		if (resource == null) {
-//			log.error("Resource not found for resourceId =" + resourceId);
-//			throw new ObjectNotFoundException();
-//		}
-//		
-//		Set<ResourceProp> all = resource.getResourceProps();
-//		if (all == null || all.isEmpty()) {
-//			return;
-//		}
-//		
-//		for (Iterator<ResourceProp> it = all.iterator(); it.hasNext(); ) {
-//		    ResourceProp p = it.next(); 
-//			if (p.getResourcePropId().equalsIgnoreCase(resourcePropId)) {
-//				//it.remove(); makes no difference
-//				p.setResource(null);
-//			}
-//		}
-//		
-//	}
-//	
+
 
 	
-// Resource Parent ==============================================================
 
-// use resource update to set parentId	
-	
-//	public void linkResourceToParent(String childResourceId, String parentResourceId) {
-//		Resource child = this.findById(childResourceId);
-//		if (child == null) {
-//			log.error("Resource not found for resourceId =" + childResourceId);
-//			throw new ObjectNotFoundException();
-//		}
-//
-//		//if (child.getResourceParent() != null) {
-//		//	child.getResourceParent().getChildResources().remove(child); // ?? makes no difference
-//		//}
-//
-//
-//		child.setResourceParent(parentResourceId);
-//		
-//		//parent.getChildResources().add(child);		//??
-//		
-//		try {
-//			sessionFactory.getCurrentSession().merge(child);
-//			log.debug("persist successful");
-//		} catch (HibernateException re) {
-//			re.printStackTrace();
-//			log.error("persist failed", re);
-//			throw re;
-//		}
-//	}
-//	
-//	public void unlinkResourceFromParent(String childResourceId) {
-//		Resource child = this.findById(childResourceId);
-//		if (child == null) {
-//			log.error("Resource not found for resourceId =" + childResourceId);
-//			throw new ObjectNotFoundException("Resource " + childResourceId + " does not exist");
-//		}
-//		
-//		//if (child.getResourceParent() != null) {
-//		//	child.getResourceParent().getChildResources().remove(child); // ?? does not make a difference
-//		//}
-//		
-//		child.setResourceParent(null);
-//		try {
-//			sessionFactory.getCurrentSession().merge(child);
-//			log.debug("persist successful");
-//		} catch (HibernateException re) {
-//			re.printStackTrace();
-//			log.error("persist failed", re);
-//			throw re;
-//		}
-//	}
-//	
 
 	// Resource additional operations ====================================================
 
@@ -549,16 +422,17 @@ public List<Resource> getResourcesByType(String resourceTypeId) {
 		
 		qry.setString("resourceTypeId", resourceTypeId);
 		qry.setCacheable(true);
-		qry.setCacheRegion("query.resource.findResourceByType");
+		qry.setCacheRegion("query.resource.getResourceByType");
 		List<Resource> resources = (List<Resource>) qry.list();
 		
-		for (Resource r:resources ) {
-			
-			Hibernate.initialize(r.getResourceType());
-			Hibernate.initialize(r.getResourceProps());
-			Hibernate.initialize(r.getResourceRoles());
-
-		}
+    for (Resource r:resources) {
+        Hibernate.initialize(r.getResourceType());
+        Hibernate.initialize(r.getResourceProps());
+        Hibernate.initialize(r.getResourceRoles());
+        Hibernate.initialize(r.getChildResources());
+        Hibernate.initialize(r.getPrivileges());
+        Hibernate.initialize(r.getResourceGroups());
+    }
 		
 		return resources;
 	}
@@ -575,15 +449,17 @@ public List<Resource> getResourcesByType(String resourceTypeId) {
 				
 		qry.setString("categoryId", categoryId);
 		qry.setCacheable(true);
-		qry.setCacheRegion("query.resource.findResourcesByCategory");
+		qry.setCacheRegion("query.resource.getResourcesByCategory");
 		List<Resource> resources = (List<Resource>) qry.list();
 		
-		for (Resource r:resources ) {
-			
-			Hibernate.initialize(r.getResourceType());
-			Hibernate.initialize(r.getResourceProps());
-			Hibernate.initialize(r.getResourceRoles());
-		}
+        for (Resource r:resources) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
+        }
 		
 		return resources;
 	}
@@ -599,15 +475,17 @@ public List<Resource> getResourcesByType(String resourceTypeId) {
 				
 		qry.setString("branchId", branchId);
 		qry.setCacheable(true);
-		qry.setCacheRegion("query.resource.findResourcesByBranch");
+		qry.setCacheRegion("query.resource.getResourcesByBranch");
 		List<Resource> resources = (List<Resource>) qry.list();
 		
-		for (Resource r:resources ) {
-			
-			Hibernate.initialize(r.getResourceType());
-			Hibernate.initialize(r.getResourceProps());
-			Hibernate.initialize(r.getResourceRoles());
-		}
+        for (Resource r:resources) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
+        }
 		
 		return resources;
 	}
@@ -626,13 +504,14 @@ public List<Resource> getResourcesByType(String resourceTypeId) {
 		qry.setCacheRegion("query.resource.getChildResources");
 		List<Resource> resources = (List<Resource>) qry.list();
 		
-		for (Resource r:resources ) {
-			
-			Hibernate.initialize(r.getResourceType());
-			Hibernate.initialize(r.getResourceProps());
-			Hibernate.initialize(r.getResourceRoles());
-			
-		}
+        for (Resource r:resources) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
+        }
 		
 		return resources;
 	}
@@ -651,12 +530,14 @@ public List<Resource> getResourcesByType(String resourceTypeId) {
 		qry.setCacheRegion("query.resource.getRootResources");
 		List<Resource> resources = (List<Resource>) qry.list();
 		
-		for (Resource r:resources ) {
-			
-			Hibernate.initialize(r.getResourceType());
-			Hibernate.initialize(r.getResourceProps());
-			Hibernate.initialize(r.getResourceRoles());
-		}
+        for (Resource r:resources) {
+            Hibernate.initialize(r.getResourceType());
+            Hibernate.initialize(r.getResourceProps());
+            Hibernate.initialize(r.getResourceRoles());
+            Hibernate.initialize(r.getChildResources());
+            Hibernate.initialize(r.getPrivileges());
+            Hibernate.initialize(r.getResourceGroups());
+        }
 		
 		return resources;
 	}
@@ -732,7 +613,7 @@ public List<ResourceRole> findResourceRolesByResource(String resourceId) {
 			qry.setString("roleId", roleId);
 			
 			qry.setCacheable(true);
-			qry.setCacheRegion("query.resource.findResourceForRole");
+			qry.setCacheRegion("query.resource.findResourcesForRole");
 			List<Resource> result = (List<Resource>) qry.list();
 			if (result == null || result.isEmpty()) {
 				log.debug("get successful, no instance found");
@@ -744,9 +625,52 @@ public List<ResourceRole> findResourceRolesByResource(String resourceId) {
 			log.error("persist failed", re);
 			throw re;
 		}
-
-
 	}
+
+    	public List<Resource> findResourcesForUserRole(String userId) {
+
+             String select = " select DISTINCT r.RESOURCE_ID, r.RESOURCE_TYPE_ID, " +
+                " r.DESCRIPTION, r.NAME, r.RESOURCE_PARENT, " +
+                " r.BRANCH_ID, r.CATEGORY_ID, r.DISPLAY_ORDER, " +
+                " r.NODE_LEVEL, r.SENSITIVE_APP, r.MANAGED_SYS_ID," +
+                " r.URL " +
+                " FROM  USER_ROLE ur, RESOURCE_ROLE rr, RES r " +
+                " WHERE ur.USER_ID = :userId and ur.SERVICE_ID = rr.SERVICE_ID AND ur.ROLE_ID = rr.ROLE_ID AND " +
+                "       rr.RESOURCE_ID = r.RESOURCE_ID";
+
+		Session session = sessionFactory.getCurrentSession();
+		try{
+
+
+            SQLQuery qry = session.createSQLQuery(select);
+            qry.addEntity(Resource.class);
+            qry.setString("userId", userId);
+
+			List<Resource> result = (List<Resource>) qry.list();
+			if (result == null || result.isEmpty()) {
+				log.debug("get successful, no instance found");
+				return null;
+			}
+			log.debug("get successful, resource instances found");
+
+
+           for (Resource r:result) {
+                Hibernate.initialize(r.getResourceType());
+                Hibernate.initialize(r.getResourceProps());
+                Hibernate.initialize(r.getResourceRoles());
+                Hibernate.initialize(r.getChildResources());
+                Hibernate.initialize(r.getPrivileges());
+                Hibernate.initialize(r.getResourceGroups());
+            }
+
+			return result;
+		} catch (HibernateException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+
 	
 	public List<Resource> findResourcesForRoles(String domainId, List<String> roleIdList) {
 		Session session = sessionFactory.getCurrentSession();
@@ -763,7 +687,7 @@ public List<ResourceRole> findResourceRolesByResource(String resourceId) {
 			qry.setParameterList("roleIdList", roleIdList);
 			
 			qry.setCacheable(true);
-			qry.setCacheRegion("query.resource.findResourceForRole");
+			qry.setCacheRegion("query.resource.findResourcesForRole");
 			List<Resource> result = (List<Resource>) qry.list();
 			if (result == null || result.isEmpty()) {
 				log.debug("get successful, no instance found");

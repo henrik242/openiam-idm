@@ -351,10 +351,13 @@ public class RoleDataWebServiceImpl implements RoleDataWebService {
 	 */
 	public Response removeRole(String serviceId, String roleId) {
 		Response resp = new Response(ResponseStatus.SUCCESS);
-		roleDataService.removeRole(serviceId, roleId);
-		//if (retval == 0) {
-		//	resp.setStatus(ResponseStatus.FAILURE);
-		//}
+
+		    int retval = roleDataService.removeRole(serviceId, roleId);
+            if (retval == 0) {
+                 resp.setStatus( ResponseStatus.FAILURE);
+                return resp;
+            }
+
 		return resp;
 	}
 

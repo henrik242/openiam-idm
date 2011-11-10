@@ -6,6 +6,8 @@ import org.hibernate.Hibernate;
 import org.openiam.exception.data.ObjectNotFoundException;
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.grp.service.UserGroupDAO;
+import org.openiam.idm.srvc.res.dto.ResourceRole;
+import org.openiam.idm.srvc.res.service.ResourceRoleDAO;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.role.dto.RoleAttribute;
 import org.openiam.idm.srvc.role.dto.RoleConstant;
@@ -33,6 +35,7 @@ public class RoleDataServiceImpl implements RoleDataService {
 	private UserRoleDAO userRoleDao;
 	private UserGroupDAO userGroupDao;
 	private RolePolicyDAO rolePolicyDao;
+    private ResourceRoleDAO resRoleDao;
 	
 
 	private static final Log log = LogFactory.getLog(RoleDataServiceImpl.class);
@@ -89,7 +92,7 @@ public class RoleDataServiceImpl implements RoleDataService {
 
 	}
 
-	public void removeRole(String domainId, String roleId) {
+	public int removeRole(String domainId, String roleId) {
 		if (roleId == null)
 			throw new IllegalArgumentException("roleId is null");
 		if (domainId == null)
@@ -97,9 +100,16 @@ public class RoleDataServiceImpl implements RoleDataService {
 
 		Role rl = new Role(new RoleId(domainId, roleId));
 
-		this.roleAttributeDAO.deleteRoleAttributes(domainId, roleId);
-		this.userRoleDao.removeAllUsersInRole(domainId, roleId);
-		this.roleDao.remove(rl);
+        try {
+            this.roleAttributeDAO.deleteRoleAttributes(domainId, roleId);
+            this.userRoleDao.removeAllUsersInRole(domainId, roleId);
+            this.resRoleDao.removeResourceRole(domainId,roleId);
+            this.roleDao.remove(rl);
+        }catch (Exception e) {
+            log.error(e.toString());
+            return 0;
+        }
+        return 1;
 	}
 
 	public List<Role> getRolesInDomain(String domainId) {
@@ -861,5 +871,11 @@ public class RoleDataServiceImpl implements RoleDataService {
 		this.rolePolicyDao = rolePolicyDao;
 	}
 
+    public ResourceRoleDAO getResRoleDao() {
+        return resRoleDao;
+    }
 
+    public void setResRoleDao(ResourceRoleDAO resRoleDao) {
+        this.resRoleDao = resRoleDao;
+    }
 }

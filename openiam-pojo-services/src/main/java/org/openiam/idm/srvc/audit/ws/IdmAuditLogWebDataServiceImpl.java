@@ -55,9 +55,13 @@ public class IdmAuditLogWebDataServiceImpl implements IdmAuditLogWebDataService 
 		return resp;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService#getCompleteLog()
-	 */
+    public void updateLog(IdmAuditLog log) {
+        auditDataService.updateLog(log);
+    }
+
+    /* (non-Javadoc)
+      * @see org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService#getCompleteLog()
+      */
 	public IdmAuditLogListResponse getCompleteLog() {
 		IdmAuditLogListResponse resp = new IdmAuditLogListResponse(ResponseStatus.SUCCESS);
 		List<IdmAuditLog> logList = auditDataService.getCompleteLog(); 

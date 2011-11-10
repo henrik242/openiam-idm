@@ -82,8 +82,7 @@ public class DefaultLoginModule extends AbstractLoginModule  {
 		String principal = cred.getPrincipal();
 		String domainId = cred.getDomainId();
 		String password = cred.getPassword();
-			
-		//TODO principal.length==0 can be changed to principal.isEmpty() once we move to Java 6
+
 		
 		if (user != null && user.getStatus() != null ) {
 			log.debug("-User Status=" + user.getStatus());

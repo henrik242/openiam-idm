@@ -154,6 +154,7 @@
 	<bean id="orgManager" class="org.openiam.idm.srvc.org.service.OrganizationDataServiceImpl" >
 		<property name="orgDao" ref="orgDAO" />
 		<property name="orgAttrDao" ref="orgAttrDAO" />
+        <property name="orgAffiliationDao" ref="orgAffiliationDAO" />
 	</bean>
 
 	<bean id="orgDAO" class="org.openiam.idm.srvc.org.service.OrganizationDAOImpl" >
@@ -163,7 +164,11 @@
 	<bean id="orgAttrDAO" class="org.openiam.idm.srvc.org.service.OrganizationAttributeDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory"></property>		
 	</bean>	
-	
+
+    <bean id="orgAffiliationDAO" class="org.openiam.idm.srvc.org.service.UserAffiliationDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
 	
 	<!-- Metadata Beans -->
 	
@@ -172,13 +177,12 @@
 		<property name="auditDataService" ref="auditDataService" />
 	</bean>
 
+
 	<bean id="auditUtil" class="org.openiam.idm.srvc.audit.service.AuditLogUtil" >
 		<property name="auditDataService" ref="auditDataService" />
 	</bean>
 
-	<bean id="auditHelper" class="org.openiam.idm.srvc.audit.service.AuditHelperImpl" >
-		<property name="auditDataService" ref="auditDataService" />
-	</bean>
+
 			
 	<bean id="auditDataService" class="org.openiam.idm.srvc.audit.service.IdmAuditLogDataServiceImpl" >
 		<property name="auditDao" ref="auditDAO" />
@@ -333,6 +337,7 @@
 		<property name="userRoleDao" ref="userRoleDAO" />
 		<property name="userGroupDao" ref="userGroupDAO" />
 		<property name="rolePolicyDao" ref="rolePolicyDAO" />
+        <property name="resRoleDao" ref="resourceRoleDAO" />
 	</bean>
 
 	<bean id="roleDAO" class="org.openiam.idm.srvc.role.service.RoleDAOImpl" >
@@ -589,6 +594,7 @@
 				<!-- Organization Maps -->
 				<value>org/openiam/idm/srvc/org/service/Organization.hbm.xml</value>
 				<value>org/openiam/idm/srvc/org/service/OrganizationAttribute.hbm.xml</value>
+                <value>org/openiam/idm/srvc/org/service/UserAffiliation.hbm.xml</value>
 				<!-- Metadata Maps -->
 				<value>org/openiam/idm/srvc/meta/service/MetadataElement.hbm.xml</value>
 				<value>org/openiam/idm/srvc/meta/service/MetadataType.hbm.xml</value>
@@ -635,7 +641,8 @@
                 <value>org/openiam/idm/srvc/res/service/ResourceGroup.hbm.xml</value>
 				<value>org/openiam/idm/srvc/lang/service/Language.hbm.xml</value>
 				<value>org/openiam/idm/srvc/loc/service/Location.hbm.xml</value>
-				
+                <value>org/openiam/idm/srvc/res/service/PrivilegeDef.hbm.xml</value>
+
 				<value>org/openiam/idm/srvc/pswd/service/IdentityQuestGroup.hbm.xml</value>
 				<value>org/openiam/idm/srvc/pswd/service/IdentityQuestion.hbm.xml</value>
 				<value>org/openiam/idm/srvc/pswd/service/UserIdentityAnswer.hbm.xml</value>
@@ -684,7 +691,6 @@
 				<prop key="hibernate.generate_statistics">true</prop>
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<prop key="hibernate.max_fetch_depth">2</prop>
    				<prop key="hibernate.validationQuery">${openiam.hibernate.validationQuery}</prop>
 			</props>
 		</property>
