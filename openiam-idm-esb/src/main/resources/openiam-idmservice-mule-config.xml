@@ -41,6 +41,8 @@
 			</service>
 		</model>
 
+
+
      	<model name="ProvisionServiceModel">
 			<service name="ProvisionService">
 				<inbound>
@@ -110,6 +112,34 @@
 				</component>
 			</service>
 		</model>
+
+    <model name="publishAuditEventModel">
+			<service name="publishAuditEventService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}PublishAuditEventService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="asyncPublishAuditWS" />
+				</component>
+			</service>
+	</model>
+
+    <model name="authorizationModel">
+                <service name="authorizationService">
+                    <inbound>
+                            <inbound-endpoint address="${webservice.path}AuthorizationWebService"
+                                              exchange-pattern="request-response">
+                            <cxf:jaxws-service />
+                        </inbound-endpoint>
+                    </inbound>
+                    <component>
+                        <spring-object bean="authzWS" />
+                    </component>
+                </service>
+        </model>
+
 				
 		<!-- Synchronization Objects  -->
 		<!-- Reconciliation Object  -->

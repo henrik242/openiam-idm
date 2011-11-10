@@ -42,6 +42,18 @@
 			</service>
 		</model>
 
+        <model name="asynchAuditServiceModel">
+			<service name="asynchAuditService">
+				<inbound>
+						<inbound-endpoint address="${webservice.path}AsynchAuditDataService" 		exchange-pattern="request-response">
+						<cxf:jaxws-service />
+					</inbound-endpoint>
+				</inbound>
+				<component>
+					<spring-object bean="asyncAuditWS" />
+				</component>
+			</service>
+		</model>
 
 
 		<model name="policyServiceModel">

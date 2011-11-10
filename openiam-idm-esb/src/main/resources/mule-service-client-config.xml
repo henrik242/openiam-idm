@@ -298,18 +298,6 @@
 	  		</outbound-endpoint>
 		</flow>
 
-    <!-- RECONCILIATION SYNCH CALL -->
-
-        <flow name="reconciliationClient">
-  			<vm:inbound-endpoint path="reconciliationMessage" exchange-pattern="one-way"  >
-  			</vm:inbound-endpoint>
-
-	  		<outbound-endpoint responseTimeout="72000000"
-	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]ReconciliationWebService" exchange-pattern="request-response" >
-	  		<cxf:jaxws-client serviceClass="org.openiam.idm.srvc.recon.ws.ReconciliationWebService" operation="startReconciliation"  >
-	  		 </cxf:jaxws-client>
-	  		</outbound-endpoint>
-		</flow>
 
     <!-- Provisioning Service CALL -->
 
@@ -358,6 +346,17 @@
 	  		</outbound-endpoint>
 		</flow>
 
+
+          <flow name="sendAuditEvent">
+  			<vm:inbound-endpoint path="logAuditEvent" exchange-pattern="one-way"  >
+  			</vm:inbound-endpoint>
+
+	  		<outbound-endpoint responseTimeout="72000000"
+	  			address="http://#[header:INBOUND:SERVICE_HOST]/#[header:INBOUND:SERVICE_CONTEXT]AuditService" exchange-pattern="request-response" >
+	  		<cxf:jaxws-client serviceClass="org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService" operation="addLog"  >
+	  		 </cxf:jaxws-client>
+	  		</outbound-endpoint>
+		</flow>
 
 
 	
