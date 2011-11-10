@@ -56,6 +56,7 @@
               <form:option value="CSV" label="CSV FILE"/>
               <form:option value="RDBMS" label="RDBMS"/>
               <form:option value="LDAP" label="LDAP"/>
+              <form:option value="WS" label="Web Service"/>
               <form:option value="CUSTOM" label="CUSTOM ADAPTER"/>
 
           </form:select>
@@ -170,15 +171,12 @@
 		  </tr> 		  		  		  		  
 
           <tr>
-              <td class="tddark">Match Object On <font color="red">*</font></td>
+              <td class="tddark">Match Object On</td>
 			  <td class="tdlightnormal">
 			  	<table>
+
 			  		<tr class="normaltext">
-			  			<td><b>IDM Repository Field</b></td>
-			  			<td><b>Synch SRC Field<b></td>
-			  		</tr>
-			  		<tr class="normaltext">
-			  			<td>
+			  			<td>IDM Repository Field:
 							 <form:select path="syncConfig.matchFieldName" multiple="false">
 				              <form:option value="-" label="-Please Select-"/>
 				              <form:option value="USERID" label="IDM UserId"/>
@@ -188,15 +186,24 @@
 				               <form:option value="ATTRIBUTE" label="CUSTOM ATTRIBUTE"/>
 				          </form:select>  
 			  			</td>
-			  			<td><form:input path="syncConfig.matchSrcFieldName" size="40" maxlength="40"  /> </td>
+			  			<td>IDM CUSTOM ATTRIBUTE NAME:<form:input path="syncConfig.matchSrcFieldName" size="40" maxlength="40"  /> </td>
 			  		</tr>
           <tr>
-              <td class="tddark">Attribute Name</td>
+              <td class="tddark">SOURCE Attribute Name</td>
 			  <td class="normaltext"><form:input path="syncConfig.customMatchAttr" size="40" maxlength="40"  />
 			  	</td>
 		  </tr>
+
+
 			  	</table>
 			  </td>
+		  </tr>
+          <tr>
+              <td class="tddark">CUSTOM Rule For Matching</td>
+			  <td class="normaltext"><form:input path="syncConfig.customMatchRule" size="40" maxlength="40"  />
+                  <br><i>Custom matching rules should only be used when matching multiple fields or a custom algorithm
+                  is required.</i>
+			  	</td>
 		  </tr>
          </TABLE>
 

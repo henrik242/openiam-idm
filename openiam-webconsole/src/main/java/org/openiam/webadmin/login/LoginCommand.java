@@ -28,6 +28,7 @@ public class LoginCommand implements Serializable {
 	  private String otp = null;
 	  private String resultCode;
 	  private Subject subject;
+          private String po;
 	  
 	  
 	public String getDomainId() {
@@ -75,11 +76,13 @@ public class LoginCommand implements Serializable {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-	  
-	
 
 
+    public String getPo() {
+        return po;
+    }
 
-
-
+    public void setPo(String po) {
+        this.po = po;
+    }
 }

@@ -16,6 +16,7 @@ import org.springframework.validation.Errors;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class NewHireValidator implements Validator {
@@ -96,11 +97,14 @@ public class NewHireValidator implements Validator {
 
 
         // supervisor is required if the form uses supervisor as the approver
-        ApproverAssociation ap = managedSysService.getApproverByRequestType(requestType, 1);
+        List<ApproverAssociation> apList = managedSysService.getApproverByRequestType(requestType, 1);
 
-        if (ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
-            if (newHireCmd.getSupervisorId() == null || newHireCmd.getSupervisorId().length() == 0) {
-                err.rejectValue("supervisorId", "required");
+        for ( ApproverAssociation ap : apList) {
+            if (ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
+                if (newHireCmd.getSupervisorId() == null || newHireCmd.getSupervisorId().length() == 0) {
+                    err.rejectValue("supervisorId", "required");
+                    break;
+                }
             }
         }
 		

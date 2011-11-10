@@ -162,6 +162,7 @@ public class AttributeMapController  extends CancellableFormController {
 		String domainId = (String)request.getSession().getAttribute("domainid");
 		String login = (String)request.getSession().getAttribute("login");
 
+         Resource res = resourceDataService.getResource(resId);
 
         //ManagedSys sys;
 
@@ -179,7 +180,8 @@ public class AttributeMapController  extends CancellableFormController {
                             auditHelper.addLog("MODIFY", domainId,	login,
                                 "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                                 null,   "SUCCESS", null,  "DELETE POLICY-MAP",
-                                 a.getAttributeName(), null, null);
+                                 a.getAttributeName(), null, null,
+                                 res.getName(), request.getRemoteHost());
                         }
                     }
                 }
@@ -204,7 +206,8 @@ public class AttributeMapController  extends CancellableFormController {
                             auditHelper.addLog("MODIFY", domainId,	login,
                                  "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                                  null,   "SUCCESS", null,  "ADD POLICY-MAP",
-                                 a.getAttributeName(), null, null);
+                                 a.getAttributeName(), null, null,
+                                 res.getName(), request.getRemoteHost());
 
                         }
                     } else {
@@ -215,7 +218,8 @@ public class AttributeMapController  extends CancellableFormController {
                         auditHelper.addLog("MODIFY", domainId,	login,
                              "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                              null,   "SUCCESS", null,  "MODIFY POLICY-MAP",
-                              a.getAttributeName(), null, null);
+                              a.getAttributeName(), null, null,
+                              res.getName(), request.getRemoteHost());
 
                     }
                 }

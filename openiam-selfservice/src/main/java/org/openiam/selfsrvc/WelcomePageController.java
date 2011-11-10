@@ -1,8 +1,10 @@
 package org.openiam.selfsrvc;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,9 @@ import org.openiam.idm.srvc.prov.request.dto.ProvisionRequest;
 import org.openiam.idm.srvc.prov.request.dto.SearchRequest;
 import org.openiam.idm.srvc.prov.request.ws.RequestWebService;
 import org.openiam.idm.srvc.user.dto.Supervisor;
+import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.selfsrvc.pswd.PasswordConfiguration;
+import org.openiam.selfsrvc.usradmin.DelegationFilterHelper;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.openiam.base.ws.ResponseStatus;
@@ -63,6 +67,7 @@ public class WelcomePageController extends AbstractController {
 	
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("userId");
+        List<String> roleIdList = new ArrayList<String>();
 		
 		UserResponse response = userMgr.getUserWithDependent(userId, true);
 		if (response.getStatus() == ResponseStatus.FAILURE) {
@@ -71,7 +76,19 @@ public class WelcomePageController extends AbstractController {
 		}
 		User usr = response.getUser();
 		GroupListResponse groupResponse = groupManager.getUserInGroups(userId);
-		RoleListResponse roleResponse =  roleDataService.getUserRoles(userId);
+
+        RoleListResponse roleResponse =  roleDataService.getUserRolesAsFlatList(userId);
+
+		if (roleResponse != null && roleResponse.getStatus() == ResponseStatus.SUCCESS) {
+            List<Role> roleList =  roleResponse.getRoleList();
+            for (Role r : roleList) {
+                roleIdList.add(r.getId().getRoleId());
+
+            }
+
+        }
+
+
         Login lg = loginManager.getPrimaryIdentity(userId).getPrincipal();
 
         String daysToExpStr = null;
@@ -101,7 +118,7 @@ public class WelcomePageController extends AbstractController {
         }
 
 
-        SearchRequest search = buildSearch( (String)req.getSession().getAttribute("userId"));
+        SearchRequest search = buildSearch( userId, roleIdList, usr);
         List<ProvisionRequest> reqList = provRequestService.search(search).getReqList();
 
 			
@@ -207,10 +224,32 @@ public class WelcomePageController extends AbstractController {
     public void setProvRequestService(RequestWebService provRequestService) {
         this.provRequestService = provRequestService;
     }
-    private SearchRequest buildSearch( String userId) {
+
+
+    private SearchRequest buildSearch( String userId, List<String> roleIdList, User usr) {
 		SearchRequest search = new SearchRequest();
 		search.setStatus("PENDING");
 		search.setApproverId(userId);
+
+        search.setRoleIdList(roleIdList);
+
+
+        if (usr.getDelAdmin() != null &&  usr.getDelAdmin().intValue() == 1) {
+            Map<String, UserAttribute> attrMap = usr.getUserAttributes();
+            List<String> deptFilterList = null;
+            List<String> orgFilterList = null;
+            List<String> divFilterList = null;
+
+
+            orgFilterList = DelegationFilterHelper.getOrgIdFilterFromString(attrMap);
+
+            System.out.println("Org Filterlist =" + orgFilterList);
+
+            if (orgFilterList != null && orgFilterList.size() > 0) {
+                search.setRequestForOrgList(orgFilterList);
+            }
+
+         }
 
 		return search;
 	}

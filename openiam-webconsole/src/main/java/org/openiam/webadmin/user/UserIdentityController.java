@@ -177,6 +177,12 @@ public class UserIdentityController extends CancellableFormController {
 			}
 		}
 		pUser.setPrincipalList(loginList);
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
 		
 		provRequestService.modifyUser(pUser);
 		

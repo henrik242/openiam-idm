@@ -122,7 +122,8 @@ public class GroupDetailController extends CancellableFormController {
 			auditHelper.addLog("DELETE", domainId,	login,
 					"WEBCONSOLE", userId, "0", "GROUP", group.getGrpId(), 
 					null,   "SUCCESS", null,  null, 
-					null, null, null);
+					null, null, null,
+                    group.getGrpName(), request.getRemoteHost());
 			
 			ModelAndView mav = new ModelAndView("/deleteconfirm");
 	        mav.addObject("msg", "Group has been successfully deleted.");
@@ -138,7 +139,8 @@ public class GroupDetailController extends CancellableFormController {
 			auditHelper.addLog("UPDATE", domainId,	login,
 					"WEBCONSOLE", userId, "0", "GROUP", group.getGrpId(), 
 					null,   "SUCCESS", null,  null, 
-					null, null, null);
+					null, null, null,
+                    group.getGrpName(), request.getRemoteHost());
 		
 			
 		}else {
@@ -154,7 +156,8 @@ public class GroupDetailController extends CancellableFormController {
 			auditHelper.addLog("CREATE", domainId,	login,
 					"WEBCONSOLE", userId, "0", "GROUP", grpId, 
 					null,   "SUCCESS", null,  null, 
-					null, null, null);
+					null, null, null,
+                    group.getGrpName(), request.getRemoteHost());
 			
 		}
 	

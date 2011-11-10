@@ -30,6 +30,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.res.dto.Resource;
 import org.openiam.idm.srvc.res.service.ResourceDataService;
+import org.openiam.webadmin.util.AuditHelper;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,6 +59,7 @@ public class PolicyDetailController extends CancellableFormController {
 	protected PolicyDataService policyDataService;
     protected ResourceDataService resourceDataService;
 	protected String redirectView;
+    protected AuditHelper auditHelper;
 
 
 	public PolicyDetailController() {
@@ -136,6 +138,10 @@ public class PolicyDetailController extends CancellableFormController {
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
 
+        String userId = (String)request.getSession().getAttribute("userId");
+		String domainId = (String)request.getSession().getAttribute("domainid");
+		String login = (String)request.getSession().getAttribute("login");
+
 	
 		PolicyDetailCommand policyCommand = (PolicyDetailCommand)command;
 
@@ -168,9 +174,24 @@ public class PolicyDetailController extends CancellableFormController {
 				// new
 				policy.setPolicyId(null);
 				policyDataService.addPolicy(policy);
+
+
+                auditHelper.addLog("CREATE", domainId,	login,
+                        "WEBCONSOLE", userId, "0", "POLICY", policy.getName(),
+                        null,   "SUCCESS", null,  null,
+                        null, null, null,
+                       policy.getName(), request.getRemoteHost());
+
 			}else {
 				// update
 				policyDataService.updatePolicy(policy);
+
+                 auditHelper.addLog("MODIFY", domainId,	login,
+                        "WEBCONSOLE", userId, "0", "POLICY", policy.getName(),
+                        null,   "SUCCESS", null,  null,
+                        null, null, null,
+                         policy.getName(), request.getRemoteHost());
+
 			}
 		}
 		
@@ -209,5 +230,13 @@ public class PolicyDetailController extends CancellableFormController {
 
     public void setResourceDataService(ResourceDataService resourceDataService) {
         this.resourceDataService = resourceDataService;
+    }
+
+    public AuditHelper getAuditHelper() {
+        return auditHelper;
+    }
+
+    public void setAuditHelper(AuditHelper auditHelper) {
+        this.auditHelper = auditHelper;
     }
 }

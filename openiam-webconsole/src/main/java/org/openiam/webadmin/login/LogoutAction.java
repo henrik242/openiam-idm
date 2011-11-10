@@ -7,7 +7,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.apache.struts.action.*;
+import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
 import org.openiam.idm.srvc.auth.service.AuthenticationService;
+import org.openiam.webadmin.util.AuditHelper;
 import org.springframework.web.struts.DispatchActionSupport;
 import org.apache.struts.action.ActionMessages;
 
@@ -18,6 +20,7 @@ import org.apache.struts.action.ActionMessages;
 public class LogoutAction extends DispatchActionSupport  {
 
 	protected AuthenticationService authenticate;
+    protected AuditHelper auditHelper;
 
 
   public ActionForward execute(ActionMapping mapping,
@@ -37,10 +40,21 @@ public class LogoutAction extends DispatchActionSupport  {
         userId = (String)session.getAttribute("userId");
       }
 
+     String login = (String)request.getSession().getAttribute("login");
+     String domain = (String) request.getSession().getAttribute("domainId");
+
+
       try {
     	  if (userId != null) {
     		  authenticate.globalLogout(userId);
     	  }
+
+         auditHelper.addLog("LOGOUT", domain,	login,
+					"WEBCONSOLE", userId, "0", "AUTHENTICATION",
+                    userId, null,
+                    "SUCCESS", null,  null,null,
+                 null,null, null, null,
+                 request.getRemoteHost(), login, domain);
 
         //session.removeAttribute("userId");
         //session.removeAttribute("token");
@@ -77,4 +91,12 @@ public AuthenticationService getAuthenticate() {
 public void setAuthenticate(AuthenticationService authenticate) {
 	this.authenticate = authenticate;
 }
+
+    public AuditHelper getAuditHelper() {
+        return auditHelper;
+    }
+
+    public void setAuditHelper(AuditHelper auditHelper) {
+        this.auditHelper = auditHelper;
+    }
 }

@@ -164,7 +164,8 @@ public class RoleResourceController extends SimpleFormController {
                     auditHelper.addLog("MODIFY", domainId,	login,
                                     "WEBCONSOLE", userId, "0", "ROLE", roleCommand.getRoleId(),
                                     null,   "SUCCESS", null,  "ADD RESOURCE",
-                                    res.getResourceId(), null, null);
+                                    res.getResourceId(), null, null,
+                                    roleCommand.getRoleId() + "-" + roleCommand.getDomainId(), request.getRemoteHost());
 
 
 				}else {
@@ -185,7 +186,8 @@ public class RoleResourceController extends SimpleFormController {
                                 auditHelper.addLog("MODIFY", domainId,	login,
                                     "WEBCONSOLE", userId, "0", "ROLE", roleCommand.getRoleId(),
                                     null,   "SUCCESS", null,  "REMOVE RESOURCE",
-                                    r.getId().getResourceId(), null, null);
+                                    r.getId().getResourceId(), null, null,
+                                    roleCommand.getRoleId() + "-" + roleCommand.getDomainId(), request.getRemoteHost());
 							    }
 						}
 					

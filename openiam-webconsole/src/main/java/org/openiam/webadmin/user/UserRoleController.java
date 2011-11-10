@@ -196,6 +196,13 @@ public class UserRoleController extends CancellableFormController {
 				}
 			}
 		}
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domain");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
+
 		pUser.setMemberOfRoles(provRoleList);
 		log.info("modifyUser on ProvisioningService to be called.");
 		provRequestService.modifyUser(pUser);

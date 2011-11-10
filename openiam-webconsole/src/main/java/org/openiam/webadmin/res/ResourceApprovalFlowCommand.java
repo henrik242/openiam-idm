@@ -28,6 +28,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import org.openiam.idm.srvc.role.dto.Role;
 
 /**
  * Command object for ManagedSystemConnection
@@ -47,6 +48,9 @@ public class ResourceApprovalFlowCommand implements Serializable {
     String resourceName;
     String resId;
     String managedSysId;
+
+    List<Role> roleList;
+    String formError;
 
     public ResourceApprovalFlowCommand() {
 
@@ -101,5 +105,19 @@ public class ResourceApprovalFlowCommand implements Serializable {
         this.approverAssoc = approverAssoc;
     }
 
+    public List<Role> getRoleList() {
+        return roleList;
+    }
 
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    public String getFormError() {
+        return formError;
+    }
+
+    public void setFormError(String formError) {
+        this.formError = formError;
+    }
 }

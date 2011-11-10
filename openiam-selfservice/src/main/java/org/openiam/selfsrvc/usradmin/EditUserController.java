@@ -96,7 +96,7 @@ public class EditUserController extends CancellableFormController {
 	
 	@Override
 	protected Map referenceData(HttpServletRequest request) throws Exception {
-		log.info("refernceData called.");
+		log.info("referenceData called.");
 		
 		String personId = request.getParameter("personId");
 		String menuGrp = request.getParameter("menugrp");
@@ -276,8 +276,6 @@ public class EditUserController extends CancellableFormController {
 		cellPhone = userMgr.getPhoneByName(personId, "CELL PHONE").getPhone();
 		faxPhone = userMgr.getPhoneByName(personId, "FAX").getPhone();
 		homePhone = userMgr.getPhoneByName(personId, "HOME PHONE").getPhone();
-		altCellPhone = userMgr.getPhoneByName(personId, "ALT CELL PHONE").getPhone();
-		personalPhone = userMgr.getPhoneByName(personId, "PERSONAL PHONE").getPhone();
 
 		
 		setAddressCommand(usr, addr, editUserCmd);
@@ -316,7 +314,7 @@ public class EditUserController extends CancellableFormController {
 			HttpServletResponse response, Object command, BindException errors) throws Exception {
 	
 		
-		log.info("EditUserController: onSubmit called");
+		System.out.println("EditUserController: onSubmit called");
 		
 		EditUserCommand cmd =(EditUserCommand)command;
 		
@@ -326,7 +324,9 @@ public class EditUserController extends CancellableFormController {
 
 		
 		User usr = cmd.getUser();
-		log.info("User=" + usr);
+
+
+        System.out.println("User=" + usr);
 		
 		ProvisionUser pUser = new ProvisionUser(usr);
 
@@ -349,6 +349,11 @@ public class EditUserController extends CancellableFormController {
             return new ModelAndView(new RedirectView(redirectView+"&mode=1", true));
         }
 
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domain");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
 
 
 		
@@ -371,7 +376,7 @@ public class EditUserController extends CancellableFormController {
 
 		getEmail(cmd, pUser);
 		getAddress(cmd, pUser);
-		getPhone(cmd, pUser);
+        getPhone(cmd, pUser);
 
 
         List<UserAttribute> attrList =  cmd.getAttributeList();
@@ -396,7 +401,11 @@ public class EditUserController extends CancellableFormController {
     		pUser.setSupervisor(sup);
         }
 
-       this.provRequestService.modifyUser(pUser);
+
+        System.out.println("EditUserController: calling modifyUser on Provisioning Servece");
+        System.out.println("User object:" + pUser);
+
+       provRequestService.modifyUser(pUser);
 		
     
         return new ModelAndView(new RedirectView(redirectView+"&mode=1", true));
@@ -571,46 +580,42 @@ public class EditUserController extends CancellableFormController {
 		Phone ph = buildPhone(profileCmd, usr, "DESK PHONE", profileCmd.getWorkAreaCode(), profileCmd.getWorkPhone());
 		if (profileCmd.getWorkPhoneId() != null && profileCmd.getWorkPhoneId().length() > 0 ) {
 			ph.setPhoneId(profileCmd.getWorkPhoneId());
+		} else {
+            ph.setPhoneId(null);
+        }
+        usr.getPhone().add(ph);
+        usr.setAreaCd(ph.getAreaCd());
+        usr.setPhoneNbr(ph.getPhoneNbr());
+        usr.setPhoneExt(ph.getPhoneExt());
 
-            log.info("Desk phone value= " + ph);
-
-            usr.getPhone().add(ph);
-		}
 
 
 		ph = buildPhone(profileCmd, usr, "CELL PHONE", profileCmd.getCellAreaCode(), profileCmd.getCellPhone());
 		if (profileCmd.getCellPhoneId() != null && profileCmd.getCellPhoneId().length() > 0 ) {
 			ph.setPhoneId(profileCmd.getCellPhoneId());
-
-            log.info("CELL PHONE=" +ph);
-
-            usr.getPhone().add(ph);
-		}
+		} else {
+            ph.setPhoneId(null);
+        }
+        usr.getPhone().add(ph);
 
 
 		ph = buildPhone(profileCmd, usr, "FAX", profileCmd.getFaxAreaCode(), profileCmd.getFaxPhone() );
 		if (profileCmd.getFaxPhoneId() != null && profileCmd.getFaxPhoneId().length() > 0 ) {
 			ph.setPhoneId(profileCmd.getFaxPhoneId());
-            usr.getPhone().add(ph);
-		}
+		} else {
+            ph.setPhoneId(null);
+        }
+        usr.getPhone().add(ph);
 
 		ph = buildPhone(profileCmd, usr, "HOME PHONE", profileCmd.getHomePhoneAreaCode(), profileCmd.getHomePhoneNbr() );
 		if (profileCmd.getHomePhoneIdr() != null && profileCmd.getHomePhoneIdr().length() > 0 ) {
 			ph.setPhoneId(profileCmd.getHomePhoneIdr());
+		} else {
+            ph.setPhoneId(null);
+        }
+        usr.getPhone().add(ph);
 
-            log.info("HOME PHONE = " + ph);
 
-            usr.getPhone().add(ph);
-		}
-
-		
-		ph = buildPhone(profileCmd, usr, "ALT CELL PHONE", profileCmd.getAltCellAreaCode(), profileCmd.getAltCellNbr() );
-		if (profileCmd.getAltCellNbrId() != null && profileCmd.getAltCellNbrId().length() > 0 ) {
-			ph.setPhoneId(profileCmd.getAltCellNbrId());
-            usr.getPhone().add(ph);
-		}
-
-			
 		
 	}
 	

@@ -22,8 +22,10 @@
 package org.openiam.webadmin.util;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
+import org.openiam.idm.srvc.audit.ws.AsynchIdmAuditLogWebService;
 import org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService;
 
 /**
@@ -35,7 +37,7 @@ import org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService;
 public class AuditHelper {
 	
 	IdmAuditLogWebDataService auditDataService;
-	
+	AsynchIdmAuditLogWebService asynchAuditDataService;
 	/**
 	 * Logs the event through the audit log service. Returns the logId.
 	 * @param log
@@ -89,12 +91,9 @@ public class AuditHelper {
 			String srcSystem, String userId, String targetSystem, String objectType,  
 			String objectId, String objectName,
 			String actionStatus, String linkedLogId, String attrName, String attrValue,
-			String requestId, String reason) {
+			String requestId, String reason,
+            String resourceName,String requestIP) {
 
-System.out.println("--------Action status=" + actionStatus);
-System.out.println("--------Action =" + action);
-System.out.println("--------objecttype =" + objectType);
-System.out.println("--------login =" + principal);
 
 		IdmAuditLog log = new IdmAuditLog();
 		log.setObjectId(objectId);
@@ -111,10 +110,84 @@ System.out.println("--------login =" + principal);
 		log.setCustomAttrvalue1(attrValue);
 		log.setRequestId(requestId);
 		log.setReason(reason);
+        log.setResourceName(resourceName);
+        log.setHost(requestIP);
 		
 		return logEvent(log);
 		
 	}
+
+    public IdmAuditLog addLog(String action,String requestorDomainId, String requestorPrincipal,
+			String srcSystem, String userId, String targetSystem, String objectType,
+			String objectId, String objectName,
+			String actionStatus, String linkedLogId, String attrName, String attrValue,
+			String requestId, String reason, String sessionId,
+            String reasonDetail,
+            String requestIP, String targetPrincipal, String targetUserDomain) {
+
+		IdmAuditLog log = new IdmAuditLog();
+		log.setObjectId(objectId);
+		log.setObjectTypeId(objectType);
+		log.setActionId(action);
+		log.setActionStatus(actionStatus);
+		log.setDomainId(requestorDomainId);
+		log.setUserId(userId);
+		log.setPrincipal(requestorPrincipal);
+		log.setLinkedLogId(linkedLogId);
+		log.setSrcSystemId(srcSystem);
+		log.setTargetSystemId(targetSystem);
+		log.setCustomAttrname1(attrName);
+		log.setCustomAttrvalue1(attrValue);
+		log.setRequestId(requestId);
+		log.setReason(reason);
+		log.setSessionId(sessionId);
+        log.setReasonDetail(reasonDetail);
+        log.setHost(requestIP);
+        log.setCustomAttrname3("TARGET_IDENTITY");
+        log.setCustomAttrvalue3(targetPrincipal);
+        log.setCustomAttrname4("TARGET_DOMAIN");
+        log.setCustomAttrvalue4(targetUserDomain);
+
+		logEvent(log);
+        return log;
+
+	}
+public void addLogAsync(String action,String domainId, String principal,
+			String srcSystem, String userId, String targetSystem, String objectType,
+			String objectId, String objectName,
+			String actionStatus, String linkedLogId, String attrName, String attrValue,
+			String requestId, String reason) {
+
+
+       System.out.println("addLogAsync started..");
+
+		IdmAuditLog log = new IdmAuditLog();
+		log.setObjectId(objectId);
+		log.setObjectTypeId(objectType);
+		log.setActionId(action);
+		log.setActionStatus(actionStatus);
+		log.setDomainId(domainId);
+		log.setUserId(userId);
+		log.setPrincipal(principal);
+		log.setLinkedLogId(linkedLogId);
+		log.setSrcSystemId(srcSystem);
+		log.setTargetSystemId(targetSystem);
+		log.setCustomAttrname1(attrName);
+		log.setCustomAttrvalue1(attrValue);
+
+        if (requestId == null || requestId.length() == 0) {
+            log.setRequestId(UUID.randomUUID().toString());
+        }else {
+
+		    log.setRequestId(requestId);
+        }
+		log.setReason(reason);
+
+        asynchAuditDataService.createLog(log);
+
+
+	}
+
 
 	public IdmAuditLogWebDataService getAuditDataService() {
 		return auditDataService;
@@ -124,5 +197,11 @@ System.out.println("--------login =" + principal);
 		this.auditDataService = auditDataService;
 	}
 
+    public AsynchIdmAuditLogWebService getAsynchAuditDataService() {
+        return asynchAuditDataService;
+    }
 
+    public void setAsynchAuditDataService(AsynchIdmAuditLogWebService asynchAuditDataService) {
+        this.asynchAuditDataService = asynchAuditDataService;
+    }
 }

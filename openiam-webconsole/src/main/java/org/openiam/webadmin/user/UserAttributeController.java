@@ -266,6 +266,12 @@ public class UserAttributeController extends CancellableFormController {
 		// check the user attributes
 		
 	 	Map<String, UserAttribute> attrMap = pUser.getUserAttributes();
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
 			 	
 		this.provRequestService.modifyUser(pUser);
 				

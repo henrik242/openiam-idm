@@ -46,10 +46,20 @@ public class LoginValidator implements Validator {
 		if (!required) {
 			return;
 		}
-		
+
+        String login = null;
+
+
+        if ( loginCmd.getPo() != null && loginCmd.getPo().length() > 0) {
+            login = loginCmd.getPo() + "-" + loginCmd.getPrincipal();
+        }else {
+            login = loginCmd.getPrincipal();
+        }
+
+
 		// authenticate the user
 			
-		AuthenticationResponse resp = authenticate.passwordAuth(securityDomain, loginCmd.getPrincipal(), loginCmd.getPassword());
+		AuthenticationResponse resp = authenticate.passwordAuth(securityDomain, login, loginCmd.getPassword());
 		
 		if (resp.getStatus() == ResponseStatus.SUCCESS ) {			
 			loginCmd.setSubject(resp.getSubject());	

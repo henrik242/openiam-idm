@@ -41,6 +41,8 @@ import org.openiam.idm.srvc.meta.ws.MetadataWebService;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.role.dto.RoleId;
 import org.openiam.idm.srvc.role.ws.RoleDataWebService;
+import org.openiam.base.ws.Response;
+import org.openiam.base.ws.ResponseStatus;
 
 
 public class RoleDetailController extends SimpleFormController {
@@ -89,9 +91,7 @@ public class RoleDetailController extends SimpleFormController {
 		
 		List<Menu> level3MenuList =  navigationDataService.menuGroupByUser(menuGroup, userId, "en").getMenuList();
 		request.setAttribute("menuL3", level3MenuList);	
-				
-		System.out.println(" View roleId = " + roleId);
-		System.out.println(" - domainId = " + domainId);
+
 		
 		if ( roleId != null) {
 			role = roleDataService.getRole(domainId, roleId).getRole();
@@ -159,15 +159,17 @@ public class RoleDetailController extends SimpleFormController {
 		String btn = request.getParameter("btn");
 
 		if (btn != null && btn.equalsIgnoreCase("Delete")) {
-			this.roleDataService.removeRole(role.getId().getServiceId(),
+			Response resp = roleDataService.removeRole(role.getId().getServiceId(),
 					role.getId().getRoleId());
+
 
 			auditHelper.addLog("DELETE", domainId,	login,
 					"WEBCONSOLE", userId, "0", "ROLE", role.getId().getRoleId(), 
 					null,   "SUCCESS", null,  null, 
-					null, null, null);
-			
-			return new ModelAndView(new RedirectView(redirectView, true));
+					null, null, null,
+                    role.getId().getServiceId() + "-" + role.getId().getRoleId(), request.getRemoteHost());
+
+            return new ModelAndView(new RedirectView(redirectView, true));
 
 
 		}
@@ -177,16 +179,18 @@ public class RoleDetailController extends SimpleFormController {
 			roleDataService.updateRole(role);
 
             if (roleCommand.getMode().equalsIgnoreCase("NEW")) {
-                 auditHelper.addLog("NEW", domainId,	login,
+                 auditHelper.addLog("CREATE", domainId,	login,
                         "WEBCONSOLE", userId, "0", "ROLE", role.getId().getRoleId(),
                         null,   "SUCCESS", null,  null,
-                        null, null, null);
+                        null, null, null,
+                         role.getId().getServiceId() + "-" + role.getId().getRoleId(), request.getRemoteHost());
             }else {
 
                 auditHelper.addLog("MODIFY", domainId,	login,
                         "WEBCONSOLE", userId, "0", "ROLE", role.getId().getRoleId(),
                         null,   "SUCCESS", null,  null,
-                        null, null, null);
+                        null, null, null,
+                        role.getId().getServiceId() + "-" + role.getId().getRoleId(), request.getRemoteHost());
                 }
 		}else {
 			// new
@@ -197,7 +201,8 @@ public class RoleDetailController extends SimpleFormController {
 			auditHelper.addLog("CREATE", domainId,	login,
 					"WEBCONSOLE", userId, "0", "ROLE", role.getId().getRoleId(), 
 					null,   "SUCCESS", null,  null, 
-					null, null, null);	
+					null, null, null,
+                    role.getId().getServiceId() + "-" + role.getId().getRoleId(), request.getRemoteHost());
 			
 		}
 

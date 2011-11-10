@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.openiam.provision.dto.ProvisionUser;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,19 +91,7 @@ public class ProfileController extends CancellableFormController {
 	}
 
 	
-	
-/*	@Override
-	protected Map referenceData(HttpServletRequest request) throws Exception {
-		log.info("refernceData called.");
-		
-		Map<Object, Object> dataMap = new HashMap<Object, Object>();
-		dataMap.put("groupList", groupManager.getAllGroups() );
-		
-		return dataMap;
-		
 
-	}
-*/	
 
 
 	@Override
@@ -194,25 +183,18 @@ public class ProfileController extends CancellableFormController {
 		
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		
-		User usr = profileCmd.getUser();
-		//User usr = userMgr.getUserWithDependent(userId, true).getUser();
-		
-		//System.out.println("User=" + usr);
-		
-		// - User
-		//usr = updateUser(usr,profileCmd);
-			
-		// add the phone numbers
-		getPhone(profileCmd, usr);
-		// add the email 
 
-		getEmail(profileCmd, usr);
-		// add the addresses
-		//getAddress(profileCmd, usr);
-	
-        userMgr.updateUserWithDependent(usr, true);
-        
+        User currentUser =  userMgr.getUserWithDependent(userId, true).getUser();
+
+		User usr = profileCmd.getUser();
+
+        currentUser.updateUser(usr);
+
+        getPhone(profileCmd, currentUser);
+		getEmail(profileCmd, currentUser);
+
+
+        ProvisionUser pUser = new ProvisionUser(currentUser);
 
         
         if (profileCmd.getSupervisorId() != null && profileCmd.getSupervisorId().length() > 0) {
@@ -222,16 +204,31 @@ public class ProfileController extends CancellableFormController {
         		Supervisor supervisor = supervisorList.get(0);
         		// update an existing supervisor record
 	            supervisor.setSupervisor(supervisorUser);
-	            userMgr.updateSupervisor(supervisor);
+
+                pUser.setSupervisor(supervisor);
+
+	           // userMgr.updateSupervisor(supervisor);
         	} else {
         		// new supervisor
         		Supervisor sup = new Supervisor();
         		sup.setSupervisor(supervisorUser);
         		sup.setEmployee(usr);
         		sup.setStatus("ACTIVE");
-        		userMgr.addSupervisor(sup);
+
+                pUser.setSupervisor(sup);
+        		//userMgr.addSupervisor(sup);
         	}
         }
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domain");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
+
+
+        provisionService.modifyUser(pUser);
+
 		
 		ModelAndView mav = new ModelAndView(getSuccessView());
 		mav.addObject("profileCmd",profileCmd);
@@ -242,18 +239,7 @@ public class ProfileController extends CancellableFormController {
 
 
 
-	
-	
-/*	private void setAddressCommand(User usr, Address adr, ProfileCommand profileCmd) {
-		if (adr != null) {
-			profileCmd.setBldgNbr(adr.getBldgNumber());
-			profileCmd.setAddress1(adr.getAddress1());
-			profileCmd.setCity(adr.getCity());
-			profileCmd.setState(adr.getState());
-			profileCmd.setPostalCode(adr.getPostalCd());
-		}
-	}
-*/
+
 	private void setPhoneCommand(User usr, Phone deskPhone, Phone cellPhone, Phone faxPhone, Phone homePhone, 
 			Phone altCellPhone, Phone personalPhone, ProfileCommand profile) {
 
@@ -336,18 +322,20 @@ public class ProfileController extends CancellableFormController {
 		Iterator<EmailAddress> emailIterator = emailAdrSet.iterator();
 		while (emailIterator.hasNext()) {
 			EmailAddress e = emailIterator.next();
-			if (e.getName().equalsIgnoreCase("EMAIL1")) {			
-				// update
-				e.setEmailAddress(profileCommand.getEmail1());
-			}
-			if (e.getName().equalsIgnoreCase("EMAIL2")) {			
-				// update
-				e.setEmailAddress(profileCommand.getEmail2());
-			}
-			if (e.getName().equalsIgnoreCase("EMAIL3")) {			
-				// update
-				e.setEmailAddress(profileCommand.getEmail3());
-			}
+            if (e != null) {
+                if (e.getName() != null && e.getName().equalsIgnoreCase("EMAIL1")) {
+                    // update
+                    e.setEmailAddress(profileCommand.getEmail1());
+                }
+                if (e.getName() != null && e.getName().equalsIgnoreCase("EMAIL2")) {
+                    // update
+                    e.setEmailAddress(profileCommand.getEmail2());
+                }
+                if (e.getName() != null && e.getName().equalsIgnoreCase("EMAIL3")) {
+                    // update
+                    e.setEmailAddress(profileCommand.getEmail3());
+                }
+            }
 		}
 		
 		if (!emailExists(emailAdrSet, "EMAIL1")) {
@@ -382,42 +370,7 @@ public class ProfileController extends CancellableFormController {
 		
 	}
 
-/*	private void getAddress(ProfileCommand profileCmd, User usr) {
-		Set<Address> adrSet =  usr.getAddresses();
-		boolean found = false;
-		
-		Iterator<Address> adrIt = adrSet.iterator();
-		while (adrIt.hasNext()) {
-			Address adr = adrIt.next();
-			if (adr.getName().equalsIgnoreCase("DEFAULT ADR")) {
-				found = true;
-				adr.setAddress1(profileCmd.getAddress1());
-				adr.setAddress2(profileCmd.getAddress2());
-				adr.setCity(profileCmd.getCity());
-				adr.setCountry(profileCmd.getCountry());
-				adr.setState(profileCmd.getState());
-				adr.setPostalCd(profileCmd.getPostalCode());
-				adr.setBldgNumber(profileCmd.getBldgNbr());
-			}
-		}
-		if (!found) {
-			Address addr = new Address();
-			addr.setAddress1(profileCmd.getAddress1());
-			addr.setAddress2(profileCmd.getAddress2());
-			addr.setCity(profileCmd.getCity());
-			addr.setCountry(profileCmd.getCountry());
-			addr.setState(profileCmd.getState());
-			addr.setPostalCd(profileCmd.getPostalCode());
-			addr.setBldgNumber(profileCmd.getBldgNbr());
-			addr.setParentId(usr.getUserId());
-			addr.setName("DEFAULT ADR");
-			addr.setParentType(ContactConstants.PARENT_TYPE_USER);
-			adrSet.add(addr);
-		}
-		
-	}
-	
-*/
+
 
 	private boolean phoneExists(Set<Phone> phSet, String name) {
 		Iterator<Phone> phoneIterator = phSet.iterator();
@@ -427,9 +380,11 @@ public class ProfileController extends CancellableFormController {
 		Phone p = null;
 		while (phoneIterator.hasNext()) {
 			p = phoneIterator.next();
-			if (p.getName().equalsIgnoreCase(name)) {
-				return true;
-			}
+            if (p.getName() != null) {
+                if (p.getName().equalsIgnoreCase(name)) {
+                    return true;
+                }
+            }
 		}
 		return false;		
 	}
@@ -442,9 +397,11 @@ public class ProfileController extends CancellableFormController {
 		EmailAddress em = null;
 		while (emailIterator.hasNext()) {
 			em = emailIterator.next();
-			if (em.getName().equalsIgnoreCase(name)) {
-				return true;
-			}
+            if (em.getName() != null) {
+                if (em.getName().equalsIgnoreCase(name)) {
+                    return true;
+                }
+            }
 		}
 		return false;		
 	}
@@ -458,36 +415,38 @@ public class ProfileController extends CancellableFormController {
 		Iterator<Phone> phoneIterator = phSet.iterator();
 		while (phoneIterator.hasNext()) {
 			Phone p = phoneIterator.next();
-			if (p.getName().equalsIgnoreCase("DESK PHONE")) {			
-				// update
-				p.setAreaCd(profileCmd.getWorkAreaCode());
-				p.setPhoneNbr(profileCmd.getWorkPhone());
-			}
-			if (p.getName().equalsIgnoreCase("CELL PHONE")) {
-					// update
-					p.setAreaCd(profileCmd.getCellAreaCode());
-					p.setPhoneNbr(profileCmd.getCellPhone());
-			}
-			if (p.getName().equalsIgnoreCase("FAX")) {
-					// update
-					p.setAreaCd(profileCmd.getFaxAreaCode());
-					p.setPhoneNbr(profileCmd.getFaxPhone());
-			}
-			if (p.getName().equalsIgnoreCase("HOME PHONE")) {
-					// update
-					p.setAreaCd(profileCmd.getHomePhoneAreaCode());
-					p.setPhoneNbr(profileCmd.getHomePhoneNbr());
-							}
-			if (p.getName().equalsIgnoreCase("ALT CELL PHONE")) {
-					// update
-					p.setAreaCd(profileCmd.getAltCellAreaCode());
-					p.setPhoneNbr(profileCmd.getAltCellNbr());
-			}			
-			if (p.getName().equalsIgnoreCase("PERSONAL PHONE")) {
-					// update
-					p.setAreaCd(profileCmd.getPersonalAreaCode());
-					p.setPhoneNbr(profileCmd.getPersonalNbr());			
-			}
+            if ( p.getName() != null) {
+                if (p.getName().equalsIgnoreCase("DESK PHONE")) {
+                    // update
+                    p.setAreaCd(profileCmd.getWorkAreaCode());
+                    p.setPhoneNbr(profileCmd.getWorkPhone());
+                }
+                if (p.getName().equalsIgnoreCase("CELL PHONE")) {
+                        // update
+                        p.setAreaCd(profileCmd.getCellAreaCode());
+                        p.setPhoneNbr(profileCmd.getCellPhone());
+                }
+                if (p.getName().equalsIgnoreCase("FAX")) {
+                        // update
+                        p.setAreaCd(profileCmd.getFaxAreaCode());
+                        p.setPhoneNbr(profileCmd.getFaxPhone());
+                }
+                if (p.getName().equalsIgnoreCase("HOME PHONE")) {
+                        // update
+                        p.setAreaCd(profileCmd.getHomePhoneAreaCode());
+                        p.setPhoneNbr(profileCmd.getHomePhoneNbr());
+                                }
+                if (p.getName().equalsIgnoreCase("ALT CELL PHONE")) {
+                        // update
+                        p.setAreaCd(profileCmd.getAltCellAreaCode());
+                        p.setPhoneNbr(profileCmd.getAltCellNbr());
+                }
+                if (p.getName().equalsIgnoreCase("PERSONAL PHONE")) {
+                        // update
+                        p.setAreaCd(profileCmd.getPersonalAreaCode());
+                        p.setPhoneNbr(profileCmd.getPersonalNbr());
+                }
+            }
 		}
 		// add obbject
 		if (!phoneExists(phSet, "DESK PHONE")) {
@@ -564,7 +523,11 @@ public class ProfileController extends CancellableFormController {
 	}
 	
 
-	
+
+    private void updateCurrentUser(User currentUser, User updatedUser) {
+        currentUser.updateUser(updatedUser);
+
+    }
 
 
 

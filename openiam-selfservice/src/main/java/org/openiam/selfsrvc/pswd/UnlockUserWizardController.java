@@ -83,7 +83,11 @@ public class UnlockUserWizardController extends AbstractWizardFormController {
 		log.info("-Sync password start");
 		PasswordSync passwordSync = new PasswordSync("RESET PASSWORD", managedSysId, password, 
 				cmd.getPrincipal(), null, secDomainId, "SELFSERVICE", false );
-		
+
+        passwordSync.setRequestClientIP(request.getRemoteHost());
+        passwordSync.setRequestorLogin(cmd.getPrincipal());
+        passwordSync.setRequestorDomain(secDomainId);
+
 		provisionService.setPassword(passwordSync);
 			
 		log.info("-Sync password complete");

@@ -106,9 +106,14 @@ function selSupervisor(userId, name)
 			<td>Department</td>
 			<td></td>
 		</tr>
-	<%	for (User user : userList) { 
+	<%  if( userList != null) {	
+		for (User user : userList) { 
 			String lastName = user.getLastName();
-			lastName = lastName.replace("'"," ");
+			if (lastName == null) {
+				lastName = " ";
+			}else {
+				lastName = lastName.replace("'"," ");
+			}
 	%>
 
 		<tr class="plaintext">
@@ -120,6 +125,14 @@ function selSupervisor(userId, name)
 			<a href="javascript:selSupervisor('<%=user.getUserId()%>','<%=user.getFirstName() %> <%=lastName %>' );window.close();">Select</a></td>
 		</tr>
 	<% 	}
+	}else {
+%>
+		<tr class="plaintext">
+
+			<td colspan="4">No records found</td>
+		</tr>
+<%
+	}
 %>
 	</table>
 <%

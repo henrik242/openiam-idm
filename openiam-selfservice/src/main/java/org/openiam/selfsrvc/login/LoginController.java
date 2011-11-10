@@ -1,6 +1,7 @@
 package org.openiam.selfsrvc.login;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.openiam.base.ExtendController;
+import org.openiam.base.ws.ResponseStatus;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
 import org.openiam.idm.srvc.auth.service.AuthenticationConstants;
@@ -29,14 +31,17 @@ import org.openiam.idm.srvc.pswd.service.ChallengeResponseService;
 import org.openiam.idm.srvc.pswd.ws.PasswordWebService;
 import org.openiam.idm.srvc.role.dto.Role;
 import org.openiam.idm.srvc.role.ws.RoleDataWebService;
+import org.openiam.idm.srvc.role.ws.RoleListResponse;
 import org.openiam.idm.srvc.secdomain.service.SecurityDomainDataService;
 import org.openiam.idm.srvc.user.dto.Supervisor;
 import org.openiam.idm.srvc.user.dto.User;
+import org.openiam.idm.srvc.user.dto.UserAttribute;
 import org.openiam.idm.srvc.user.ws.UserDataWebService;
 import org.openiam.script.ScriptIntegration;
 import org.openiam.selfsrvc.AppConfiguration;
 import org.openiam.selfsrvc.helper.ScriptEngineUtil;
 import org.openiam.selfsrvc.pswd.PasswordConfiguration;
+import org.openiam.selfsrvc.usradmin.DelegationFilterHelper;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -126,6 +131,9 @@ public class LoginController extends SimpleFormController {
 		log.debug("onSubmit called.");
 		
 		System.out.println("onSubmit called.");
+
+        List<String> roleIdList = new ArrayList<String>();
+        List<Role> roleList  = null;
 		
 		LoginCommand loginCmd = (LoginCommand)command;
 		String userId = loginCmd.getSubject().getUserId();
@@ -157,7 +165,17 @@ public class LoginController extends SimpleFormController {
 		User usr = userMgr.getUserWithDependent(userId, true).getUser();
 
 		List<Group> groupList = groupManager.getUserInGroups(userId).getGroupList();
-		List<Role> roleList =  roleDataService.getUserRoles(userId).getRoleList();
+        RoleListResponse roleResponse =  roleDataService.getUserRolesAsFlatList(userId);
+
+        if (roleResponse != null && roleResponse.getStatus() == ResponseStatus.SUCCESS) {
+            roleList =  roleResponse.getRoleList();
+            for (Role r : roleList) {
+                roleIdList.add(r.getId().getRoleId());
+
+            }
+
+        }
+
 		boolean answerStatus = challengeResponse.userAnserExists(userId);
         Login lg = loginManager.getPrimaryIdentity(userId).getPrincipal();
 
@@ -168,6 +186,7 @@ public class LoginController extends SimpleFormController {
 		String principal = loginCmd.getPrincipal();
 
         session.setAttribute("userObj",usr);
+        session.setAttribute("domain", lg.getId().getDomainId());
 
 
 	    Login principalLg = loginManager.getPrimaryIdentity(loginCmd.getSubject().getUserId()).getPrincipal();
@@ -226,7 +245,7 @@ public class LoginController extends SimpleFormController {
 			 return new ModelAndView(new RedirectView("/passwordChange.selfserve?hideRMenu=1&cd=pswdreset"+ queryString, true));
 		}
 
-        SearchRequest search = buildSearch( (String)request.getSession().getAttribute("userId"));
+         SearchRequest search = buildSearch( userId, roleIdList, usr);
         List<ProvisionRequest> reqList = provRequestService.search(search).getReqList();
 
       // supervisor
@@ -273,13 +292,33 @@ public class LoginController extends SimpleFormController {
 
 
 
-     private SearchRequest buildSearch( String userId) {
+  private SearchRequest buildSearch( String userId, List<String> roleIdList, User usr) {
 		SearchRequest search = new SearchRequest();
 		search.setStatus("PENDING");
 		search.setApproverId(userId);
 
+        search.setRoleIdList(roleIdList);
+
+
+        if (usr.getDelAdmin() != null &&  usr.getDelAdmin().intValue() == 1) {
+            Map<String, UserAttribute> attrMap = usr.getUserAttributes();
+            List<String> deptFilterList = null;
+            List<String> orgFilterList = null;
+            List<String> divFilterList = null;
+
+
+            orgFilterList = DelegationFilterHelper.getOrgIdFilterFromString(attrMap);
+
+            System.out.println("Org Filterlist =" + orgFilterList);
+
+            if (orgFilterList != null && orgFilterList.size() > 0) {
+                search.setRequestForOrgList(orgFilterList);
+            }
+
+         }
+
 		return search;
-	 }
+	}
 
 	public String getRootMenu() {
 		return rootMenu;

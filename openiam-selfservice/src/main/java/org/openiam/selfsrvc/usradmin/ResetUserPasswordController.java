@@ -124,6 +124,14 @@ public class ResetUserPasswordController extends SimpleFormController {
 		pswdSync.setPrincipal(cmd.getPrincipal());
 		pswdSync.setRequestorId((String)request.getSession().getAttribute("userId"));
 		pswdSync.setSecurityDomain(secDomainId);
+
+        String login = (String)request.getSession().getAttribute("login");
+        String domain = (String)request.getSession().getAttribute("domain");
+
+        pswdSync.setRequestClientIP(request.getRemoteHost());
+        pswdSync.setRequestorLogin(login);
+        pswdSync.setRequestorDomain(domain);
+
 		provRequestService.resetPassword(pswdSync);
 		
 		

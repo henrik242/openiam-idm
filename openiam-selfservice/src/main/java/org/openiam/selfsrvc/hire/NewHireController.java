@@ -264,13 +264,24 @@ public class NewHireController extends AbstractWizardFormController {
 
     private List<Role> getRoleList(NewHireCommand newHireCmd, User user) {
         List<Role> roleList = new ArrayList<Role>();
-        String roleId = newHireCmd.getRole();
-        RoleId id = new RoleId(configuration.getDefaultSecurityDomain(), roleId);
-        Role r = new Role();
-        r.setId(id);
-        roleList.add(r);
+		String cmdRole = newHireCmd.getRole();
+		/* parse the role */
+		String domainId = null;
+		String roleId = null;
 
-        return roleList;
+		StringTokenizer st = new StringTokenizer(cmdRole, "*");
+		if (st.hasMoreTokens()) {
+			domainId = st.nextToken();
+		}
+		if (st.hasMoreElements()) {
+			roleId = st.nextToken();
+		}
+		RoleId id = new RoleId(domainId , roleId);
+		Role r = new Role();
+		r.setId(id);
+		roleList.add(r);
+
+		return roleList;
     }
 
 
@@ -289,7 +300,7 @@ public class NewHireController extends AbstractWizardFormController {
         // get the list of groups that this user belongs to
         List<Group> groupList = groupManager.getAllGroups().getGroupList();
         // get the list of roles that this user belongs to
-        List<Role> roleList = roleDataService.getRolesInDomain(configuration.getDefaultSecurityDomain()).getRoleList();
+        List<Role> roleList = roleDataService.getAllRoles().getRoleList();
 
 
         // get the list of job codes
@@ -366,6 +377,7 @@ public class NewHireController extends AbstractWizardFormController {
 
 
         ProvisionRequest req = new ProvisionRequest();
+        req.setRequestId(null);
         req.setRequestorId(userId);
         req.setStatus("PENDING");
         req.setStatusDate(curDate);
@@ -373,6 +385,10 @@ public class NewHireController extends AbstractWizardFormController {
         req.setRequestType(newUserResource.getResourceId());
         req.setRequestReason(newUserResource.getDescription() + " FOR:" + usr.getFirstName() + " " + usr.getLastName());
         req.setRequestXML(asXML);
+
+        if (usr.getCompanyId() != null && usr.getCompanyId().length() > 0) {
+            req.setRequestForOrgId(usr.getCompanyId());
+        }
 
 
         //req.setManagedResourceId(managedResource.getManagedSysId());
@@ -385,27 +401,46 @@ public class NewHireController extends AbstractWizardFormController {
         reqUserSet.add(reqUser);
 
         // add the approver to the request object.
-        ApproverAssociation ap = managedSysService.getApproverByRequestType(requestType, 1);
+        List<ApproverAssociation> apList = managedSysService.getApproverByRequestType(requestType, 1);
 
-        if (ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
-            Supervisor supVisor = pUser.getSupervisor();
-            approverId = supVisor.getSupervisor().getUserId();
+        if (apList != null) {
 
-        }else {
-            approverId = ap.getApproverUserId();
+            for (ApproverAssociation ap : apList)  {
+                String approverType;
+                String roleDomain = null;
+
+                if (ap != null) {
+                    approverType = ap.getAssociationType();
+                    System.out.println("Approver =" + ap.getApproverRoleId());
+
+                    if ( ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
+                        Supervisor supVisor = pUser.getSupervisor();
+                        approverId = supVisor.getSupervisor().getUserId();
+
+
+                    } else if ( ap.getAssociationType().equalsIgnoreCase("ROLE")) {
+                        approverId = ap.getApproverRoleId();
+                        roleDomain = ap.getApproverRoleDomain();
+
+                    } else {
+                        approverId = ap.getApproverUserId();
+                    }
+
+
+                    RequestApprover reqApprover = new RequestApprover(approverId, ap.getApproverLevel(),
+                            ap.getAssociationType(), "PENDING");
+                    reqApprover.setApproverType(approverType);
+                    reqApprover.setRoleDomain(roleDomain);
+
+                    req.getRequestApprovers().add(reqApprover);
+                }
+
+            }
         }
-
-
-        RequestApprover reqApprover = new RequestApprover(approverId,
-                ap.getApproverLevel(),
-                ap.getAssociationType(), "PENDING");
-        Set<RequestApprover> approverSet = new HashSet<RequestApprover>();
-        approverSet.add(reqApprover);
-        req.setRequestApprovers(approverSet);
 
         provRequestService.addRequest(req);
 
-        notifyApprover(req, reqUser, userId, approverId);
+        notifyApprover(req, reqUser, userId);
 
         return req;
 
@@ -413,25 +448,30 @@ public class NewHireController extends AbstractWizardFormController {
     }
 
 
-    private void notifyApprover(ProvisionRequest pReq, RequestUser reqUser, String requestorId, String approverUserId) {
+    private void notifyApprover(ProvisionRequest pReq, RequestUser reqUser, String requestorId) {
 
         // requestor information
       //  User approver = userMgr.getUserWithDependent(approverUserId, false).getUser();
-        User requestor = userMgr.getUserWithDependent(requestorId, false).getUser();
+
+        Set<RequestApprover> approverList =  pReq.getRequestApprovers();
+        for ( RequestApprover ra : approverList) {
+
+            User requestor = userMgr.getUserWithDependent(requestorId, false).getUser();
 
 
-        NotificationRequest request = new NotificationRequest();
-        request.setUserId(approverUserId);
-        request.setNotificationType("NEW_PENDING_REQUEST");
+            NotificationRequest request = new NotificationRequest();
+            request.setUserId(ra.getApproverId());
+            request.setNotificationType("NEW_PENDING_REQUEST");
 
-        request.getParamList().add(new NotificationParam("REQUEST_ID", pReq.getRequestId()));
+            request.getParamList().add(new NotificationParam("REQUEST_ID", pReq.getRequestId()));
 
-        request.getParamList().add(new NotificationParam("REQUEST_REASON", pReq.getRequestReason()));
-        request.getParamList().add(new NotificationParam("REQUESTOR", requestor.getFirstName() + " " + requestor.getLastName()));
-        request.getParamList().add(new NotificationParam("TARGET_USER", reqUser.getFirstName() + " " + reqUser.getLastName()));
+            request.getParamList().add(new NotificationParam("REQUEST_REASON", pReq.getRequestReason()));
+            request.getParamList().add(new NotificationParam("REQUESTOR", requestor.getFirstName() + " " + requestor.getLastName()));
+            request.getParamList().add(new NotificationParam("TARGET_USER", reqUser.getFirstName() + " " + reqUser.getLastName()));
 
 
-        mailService.sendNotification(request);
+            mailService.sendNotification(request);
+        }
 
 
     }

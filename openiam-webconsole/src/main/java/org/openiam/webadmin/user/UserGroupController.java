@@ -165,6 +165,13 @@ public class UserGroupController extends CancellableFormController {
 				}
 			}
 		}
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
+
 		pUser.setMemberOfGroups(provGroupList);
 		log.info("modifyUser on ProvisioningService to be called.");
 		provRequestService.modifyUser(pUser);

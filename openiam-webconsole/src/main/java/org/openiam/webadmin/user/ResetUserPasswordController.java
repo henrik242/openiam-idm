@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -114,6 +115,8 @@ public class ResetUserPasswordController extends CancellableFormController {
 
         // using a map to ensure that we have a unique list of domains
         Map<String,String> domainMap = new HashMap<String,String>();
+
+        HttpSession session = request.getSession();
 		
 	
 		ResetUserPasswordCommand cmd =(ResetUserPasswordCommand)command;
@@ -147,8 +150,14 @@ public class ResetUserPasswordController extends CancellableFormController {
             pswdSync.setManagedSystemId(managedSysId);
             pswdSync.setPassword(password);
             pswdSync.setPrincipal(cmd.getPrincipal());
-            pswdSync.setRequestorId((String)request.getSession().getAttribute("userId"));
             pswdSync.setSecurityDomain(domain);
+
+           String login = (String)session.getAttribute("login");
+
+           pswdSync.setRequestClientIP(request.getRemoteHost());
+           pswdSync.setRequestorLogin(login);
+           pswdSync.setRequestorDomain(domain);
+
             provRequestService.resetPassword(pswdSync);
         }
 		

@@ -203,6 +203,12 @@ public class NewUserController extends AbstractWizardFormController {
             pUser.setEmailCredentialsToSupervisor(false);
         }
 
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
+
          try {
             ScriptIntegration se = null;
             se = ScriptFactory.createModule(scriptEngine);

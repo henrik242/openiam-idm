@@ -177,7 +177,8 @@ public class ResourceDetailController  extends CancellableFormController {
              auditHelper.addLog("DELETE", domainId,	login,
                         "WEBCONSOLE", userId, "0", "RESOURCE", res.getResourceId(),
                         null,   "SUCCESS", null,  null,
-                        null, null, null);
+                        null, null, null,
+                        res.getName(), request.getRemoteHost());
 
             return new ModelAndView(new RedirectView("resourcelist.cnt", true));
 
@@ -206,10 +207,11 @@ public class ResourceDetailController  extends CancellableFormController {
 
             res = resourceDataService.addResource(res);
 
-            auditHelper.addLog("NEW", domainId,	login,
+            auditHelper.addLog("CREATE", domainId,	login,
                         "WEBCONSOLE", userId, "0", "RESOURCE", res.getResourceId(),
                         null,   "SUCCESS", null,  null,
-                        null, null, null);
+                        null, null, null,
+                        res.getName(), request.getRemoteHost());
 
 
         } else {
@@ -221,7 +223,8 @@ public class ResourceDetailController  extends CancellableFormController {
             auditHelper.addLog("MODIFY", domainId,	login,
                         "WEBCONSOLE", userId, "0", "RESOURCE", res.getResourceId(),
                         null,   "SUCCESS", null,  null,
-                        null, null, null);
+                        null, null, null,
+                    res.getName(), request.getRemoteHost());
 
         }
         // create a link with the managed sys object

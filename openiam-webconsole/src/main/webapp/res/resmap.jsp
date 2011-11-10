@@ -57,12 +57,12 @@
 			  <td class="tableEntry"><form:hidden path="attrMapList[${attr.index}].attributeMapId" /> 
 			    	<form:hidden path="attrMapList[${attr.index}].resourceId" /> 
 			        <form:select path="attrMapList[${attr.index}].mapForObjectType">
+                                   <form:option value="USER" label="USER"/>
     				              <form:option value="EMAIL" label="EMAIL"/>
     				              <form:option value="GROUP" label="GROUP"/>
 			    				  <form:option value="-" label="-Please Select-"/>
     				              <form:option value="PRINCIPAL" label="PRINCIPAL"/>
                                   <form:option value="PASSWORD" label="PASSWORD"/>
-                                  <form:option value="USER" label="USER"/>
 			    	</form:select>
 			     </td>
 				<td class="tableEntry"><form:input path="attrMapList[${attr.index}].attributeName" maxlength="50" />  </td>
@@ -78,6 +78,7 @@
                                   <form:option value="int" label="Integer"/>
                                   <form:option value="long" label="Float"/>
                                   <form:option value="timestamp" label="Timestamp"/>
+                                  <form:option value="memberOf" label="Member Of"/>
        					  </form:select>
        			</td>
 				 <td class="tableEntry"> <form:select path="attrMapList[${attr.index}].status">

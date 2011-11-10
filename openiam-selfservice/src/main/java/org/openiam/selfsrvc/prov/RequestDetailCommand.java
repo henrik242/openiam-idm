@@ -26,6 +26,9 @@ public class RequestDetailCommand implements Serializable {
 	protected List<RequestApprover> requestApproverList;
 	protected List<Group> groupList;
 	protected List<Role> roleList;
+
+    protected  User userDetail;
+    protected  String orgName;
 	
 
 	private String submit;
@@ -86,4 +89,19 @@ public class RequestDetailCommand implements Serializable {
 		this.roleList = roleList;
 	}
 
+    public User getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(User userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
 }

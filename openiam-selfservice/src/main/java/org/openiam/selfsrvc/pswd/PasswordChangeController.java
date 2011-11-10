@@ -116,6 +116,14 @@ public class PasswordChangeController extends CancellableFormController {
         PasswordSync passwordSync = new PasswordSync("CHANGE PASSWORD", managedSysId, password,
 					principal, userId, secDomainId, "SELFSERVICE", false );
 
+        String login = (String)request.getSession().getAttribute("login");
+        String domain = (String)request.getSession().getAttribute("domain");
+
+        passwordSync.setRequestClientIP(request.getRemoteHost());
+        passwordSync.setRequestorLogin(login);
+        passwordSync.setRequestorDomain(domain);
+
+
 
         ScriptIntegration scriptEngine = ScriptEngineUtil.getScriptEngine();
 

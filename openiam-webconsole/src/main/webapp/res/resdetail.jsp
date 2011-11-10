@@ -153,16 +153,18 @@ function showResourceDialog(idfield, namefield) {
  </c:if>
 
 
-           <tr>
-              <td class="buttonRow" align="right"> 
-              <c:if test="${resourceDetailCmd.resource.resourceId != null}" >
-              	<input type="submit" name="btn" value="Delete" onclick="return confirm('Are you sure you want to delete this Resource');">
-              </c:if>
-              	<input type="submit" name="btn" value="Save"> <input type="submit" name="_cancel" value="Cancel" /> </td>
-          </tr>  		          
+		          
 </table>
 </form:form>
 
 	</td>
  </tr>
+            <tr>
+              <td class="buttonRow" align="right"> 
+              <c:if test="${resourceDetailCmd.resource.resourceId != null}" >
+              	<input type="submit" name="btn" value="Delete" onclick="return confirm('Are you sure you want to delete this Resource');">
+              </c:if>
+              	<input type="submit" name="btn" value="Save"> <input type="submit" name="_cancel" value="Cancel" /> 
+            </td>
+          </tr>  
 </table>

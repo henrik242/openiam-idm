@@ -223,6 +223,11 @@ public class DelegationFilterController extends CancellableFormController {
 
 		ProvisionUser pUser = new ProvisionUser(usr);
 
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
 		// check the user attributes
 
 	 //	Map<String, UserAttribute> attrMap = pUser.getUserAttributes();

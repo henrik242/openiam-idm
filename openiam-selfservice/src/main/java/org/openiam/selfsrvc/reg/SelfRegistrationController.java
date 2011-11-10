@@ -7,6 +7,10 @@ import org.apache.commons.logging.LogFactory;
 import org.openiam.idm.srvc.auth.ws.LoginDataWebService;
 import org.openiam.idm.srvc.cd.dto.ReferenceData;
 import org.openiam.idm.srvc.cd.service.ReferenceDataService;
+import org.openiam.idm.srvc.continfo.dto.Address;
+import org.openiam.idm.srvc.continfo.dto.ContactConstants;
+import org.openiam.idm.srvc.continfo.dto.EmailAddress;
+import org.openiam.idm.srvc.continfo.dto.Phone;
 import org.openiam.idm.srvc.grp.dto.Group;
 import org.openiam.idm.srvc.grp.ws.GroupDataWebService;
 import org.openiam.idm.srvc.loc.dto.Location;
@@ -37,6 +41,7 @@ import org.openiam.idm.srvc.user.dto.UserStatusEnum;
 import org.openiam.idm.srvc.user.ws.UserDataWebService;
 import org.openiam.provision.dto.ProvisionUser;
 import org.openiam.provision.service.ProvisionService;
+import org.openiam.selfsrvc.hire.NewHireCommand;
 import org.openiam.selfsrvc.pswd.PasswordConfiguration;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindException;
@@ -129,15 +134,37 @@ public class SelfRegistrationController extends CancellableFormController {
     }
 
     private List<Role> getRoleList(SelfRegistrationCommand newHireCmd, User user) {
-        List<Role> roleList = new ArrayList<Role>();
-        String roleId = newHireCmd.getRole();
-        RoleId id = new RoleId(configuration.getDefaultSecurityDomain(), roleId);
-        Role r = new Role();
-        r.setId(id);
-        roleList.add(r);
 
-        return roleList;
-    }
+           List<Role> roleList = new ArrayList<Role>();
+           String cmdRole = newHireCmd.getRole();
+
+
+           StringTokenizer rl = new StringTokenizer(cmdRole, ",");
+           while (rl.hasMoreTokens()) {
+
+               String roleElement = rl.nextToken();
+
+               /* parse the role */
+               String domainId = null;
+               String roleId = null;
+
+               StringTokenizer st = new StringTokenizer(roleElement, "*");
+               if (st.hasMoreTokens()) {
+                   domainId = st.nextToken();
+               }
+               if (st.hasMoreElements()) {
+                   roleId = st.nextToken();
+               }
+               RoleId id = new RoleId(domainId , roleId);
+               Role r = new Role();
+               r.setId(id);
+               roleList.add(r);
+           }
+
+           return roleList;
+
+       }
+
 
 
     @Override
@@ -157,6 +184,13 @@ public class SelfRegistrationController extends CancellableFormController {
         log.info("User=" + user);
 
         ProvisionUser pUser = new ProvisionUser(user);
+
+        setEmail(newHireCmd, pUser);
+        setAddress(newHireCmd, pUser);
+        setPhone(newHireCmd, pUser);
+
+
+
 
         if (newHireCmd.getGroup() != null && !newHireCmd.getGroup().isEmpty()) {
             pUser.setMemberOfGroups(getGroupList(newHireCmd, user));
@@ -206,12 +240,17 @@ public class SelfRegistrationController extends CancellableFormController {
 
 
         ProvisionRequest req = new ProvisionRequest();
-        req.setRequestorId(userId);
+        req.setRequestorId("ANONYMOUS");
         req.setStatus("PENDING");
         req.setStatusDate(curDate);
         req.setRequestDate(curDate);
         req.setRequestType(newUserResource.getResourceId());
         req.setRequestReason(newUserResource.getDescription() + " FOR:" + usr.getFirstName() + " " + usr.getLastName());
+
+        if (usr.getCompanyId() != null && usr.getCompanyId().length() > 0) {
+            req.setRequestForOrgId(usr.getCompanyId());
+        }
+
         req.setRequestXML(asXML);
 
 
@@ -225,30 +264,45 @@ public class SelfRegistrationController extends CancellableFormController {
         reqUserSet.add(reqUser);
 
         // add the approver to the request object.
-        ApproverAssociation ap = managedSysService.getApproverByRequestType(requestType, 1);
+        List<ApproverAssociation> apList = managedSysService.getApproverByRequestType(requestType, 1);
+        if (apList != null) {
 
-        log.info("Association object = " + ap);
-        log.info("RequestType ="+ requestType);
+            for (ApproverAssociation ap : apList)  {
+                String approverType;
+                String roleDomain = null;
 
-        if (ap != null && ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
-            Supervisor supVisor = pUser.getSupervisor();
-            approverId = supVisor.getSupervisor().getUserId();
+                if (ap != null) {
+                    approverType = ap.getAssociationType();
+                    System.out.println("Approver =" + ap.getApproverRoleId());
 
-        } else {
-            approverId = ap.getApproverUserId();
+                    if ( ap.getAssociationType().equalsIgnoreCase("SUPERVISOR")) {
+                        Supervisor supVisor = pUser.getSupervisor();
+                        approverId = supVisor.getSupervisor().getUserId();
+
+
+                    } else if ( ap.getAssociationType().equalsIgnoreCase("ROLE")) {
+                        approverId = ap.getApproverRoleId();
+                        roleDomain = ap.getApproverRoleDomain();
+
+                    } else {
+                        approverId = ap.getApproverUserId();
+                    }
+
+
+                    RequestApprover reqApprover = new RequestApprover(approverId, ap.getApproverLevel(),
+                            ap.getAssociationType(), "PENDING");
+                    reqApprover.setApproverType(approverType);
+                    reqApprover.setRoleDomain(roleDomain);
+
+                    req.getRequestApprovers().add(reqApprover);
+                }
+
+            }
         }
-
-
-        RequestApprover reqApprover = new RequestApprover(approverId,
-                ap.getApproverLevel(),
-                ap.getAssociationType(), "PENDING");
-        Set<RequestApprover> approverSet = new HashSet<RequestApprover>();
-        approverSet.add(reqApprover);
-        req.setRequestApprovers(approverSet);
 
         provRequestService.addRequest(req);
 
-        notifyApprover(req, reqUser, userId, approverId, usr);
+        notifyApprover(req, reqUser,  usr);
 
         return req;
 
@@ -256,22 +310,30 @@ public class SelfRegistrationController extends CancellableFormController {
     }
 
 
-    private void notifyApprover(ProvisionRequest pReq, RequestUser reqUser, String requestorId, String approverUserId, User usr) {
+    private void notifyApprover(ProvisionRequest pReq, RequestUser reqUser,  User usr) {
 
 
+        Set<RequestApprover> approverList =  pReq.getRequestApprovers();
+        for ( RequestApprover ra : approverList) {
 
-        NotificationRequest request = new NotificationRequest();
-        request.setUserId(approverUserId);
-        request.setNotificationType("NEW_PENDING_REQUEST");
+            if (! ra.getApproverType().equalsIgnoreCase("ROLE")) {
 
-        request.getParamList().add(new NotificationParam("REQUEST_ID", pReq.getRequestId()));
+                NotificationRequest request = new NotificationRequest();
+                request.setUserId( ra.getApproverId());
+                request.setNotificationType("NEW_PENDING_REQUEST");
 
-        request.getParamList().add(new NotificationParam("REQUEST_REASON", pReq.getRequestReason()));
-        request.getParamList().add(new NotificationParam("REQUESTOR", usr.getFirstName() + " " + usr.getLastName()));
-        request.getParamList().add(new NotificationParam("TARGET_USER", reqUser.getFirstName() + " " + reqUser.getLastName()));
+                request.getParamList().add(new NotificationParam("REQUEST_ID", pReq.getRequestId()));
+
+                request.getParamList().add(new NotificationParam("REQUEST_REASON", pReq.getRequestReason()));
+                request.getParamList().add(new NotificationParam("REQUESTOR", usr.getFirstName() + " " + usr.getLastName()));
+                request.getParamList().add(new NotificationParam("TARGET_USER", reqUser.getFirstName() + " " + reqUser.getLastName()));
 
 
-        mailService.sendNotification(request);
+                mailService.sendNotification(request);
+            }
+
+        }
+
 
 
     }
@@ -310,7 +372,7 @@ public class SelfRegistrationController extends CancellableFormController {
         // get the list of groups that this user belongs to
         List<Group> groupList = groupManager.getAllGroups().getGroupList();
         // get the list of roles that this user belongs to
-        List<Role> roleList = roleDataService.getRolesInDomain(configuration.getDefaultSecurityDomain()).getRoleList();
+        List<Role> roleList = roleDataService.getAllRoles().getRoleList();
 
 
         // get the list of job codes
@@ -373,6 +435,129 @@ public class SelfRegistrationController extends CancellableFormController {
 
     }
 
+
+
+    private void setEmail(SelfRegistrationCommand cmd, ProvisionUser pUser) {
+
+            String email = cmd.getEmail1();
+            String emailId = cmd.getEmail1Id();
+            if (email != null && email.length() > 0) {
+                EmailAddress em = buildEmail(emailId, email,"EMAIL1");
+                log.info("EmailId 1 = " + em.getEmailId());
+                pUser.getEmailAddress().add(em);
+                pUser.setEmail(email);
+            }
+            email = cmd.getEmail2();
+            emailId = cmd.getEmail2Id();
+            if (email != null && email.length() > 0) {
+                EmailAddress em = buildEmail(emailId, email, "EMAIL2");
+                log.info("EmailId 2 = " + em.getEmailId());
+                pUser.getEmailAddress().add(em);
+            }
+            email = cmd.getEmail3();
+            emailId = cmd.getEmail3Id();
+            if (email != null && email.length() > 0) {
+                EmailAddress em = buildEmail(emailId, email, "EMAIL3");
+                pUser.getEmailAddress().add(em);
+            }
+
+
+        }
+
+    private void setPhone(SelfRegistrationCommand cmd, ProvisionUser usr) {
+	//	Set<Phone> phSet = usr.getPhone();
+
+ 	// add obbject
+
+
+		Phone ph = buildPhone( usr, "DESK PHONE", cmd.getWorkAreaCode(), cmd.getWorkPhone());
+		if (cmd.getWorkPhoneId() != null && cmd.getWorkPhoneId().length() > 0 ) {
+			ph.setPhoneId(cmd.getWorkPhoneId());
+		}
+        usr.setAreaCd(ph.getAreaCd());
+        usr.setPhoneNbr(ph.getPhoneNbr());
+		usr.getPhone().add(ph);
+
+		ph = buildPhone( usr, "CELL PHONE", cmd.getCellAreaCode(), cmd.getCellPhone());
+		log.info("CELL PHONE: " + cmd.getCellPhoneId());
+		if (cmd.getCellPhoneId() != null && cmd.getCellPhoneId().length() > 0 ) {
+			ph.setPhoneId(cmd.getCellPhoneId());
+		}
+		usr.getPhone().add(ph);
+
+		ph = buildPhone( usr, "FAX", cmd.getFaxAreaCode(), cmd.getFaxPhone() );
+		if (cmd.getFaxPhoneId() != null && cmd.getFaxPhoneId().length() > 0 ) {
+			ph.setPhoneId(cmd.getFaxPhoneId());
+		}
+		usr.getPhone().add(ph);
+
+		ph = buildPhone( usr, "HOME PHONE", cmd.getHomePhoneAreaCode(), cmd.getHomePhoneNbr() );
+		if (cmd.getHomePhoneIdr() != null && cmd.getHomePhoneIdr().length() > 0 ) {
+			ph.setPhoneId(cmd.getHomePhoneIdr());
+		}
+		usr.getPhone().add(ph);
+
+		ph = buildPhone( usr, "ALT CELL PHONE", cmd.getAltCellAreaCode(), cmd.getAltCellNbr() );
+		if (cmd.getAltCellNbrId() != null && cmd.getAltCellNbrId().length() > 0 ) {
+			ph.setPhoneId(cmd.getAltCellNbrId());
+		}
+		usr.getPhone().add(ph);
+
+		ph = buildPhone( usr, "PERSONAL PHONE", cmd.getPersonalAreaCode(), cmd.getPersonalNbr() );
+		if (cmd.getPersonalNbrId() != null && cmd.getPersonalNbrId().length() > 0 ) {
+			ph.setPhoneId(cmd.getPersonalNbrId());
+		}
+		usr.getPhone().add(ph);
+
+
+	}
+
+    private void setAddress(SelfRegistrationCommand cmd, ProvisionUser pUser) {
+		log.info("setAddress called.");
+
+		Address adr = new Address();
+
+		adr.setAddress1(cmd.getUser().getAddress1());
+		adr.setAddress2(cmd.getUser().getAddress2());
+		adr.setBldgNumber(cmd.getUser().getBldgNum());
+		adr.setCity(cmd.getUser().getCity());
+		adr.setCountry(cmd.getUser().getCountry());
+		adr.setState(cmd.getUser().getState());
+		adr.setStreetDirection(cmd.getUser().getStreetDirection());
+		adr.setName("DEFAULT ADR");
+		adr.setParentId(pUser.getUser().getUserId());
+		adr.setParentType(ContactConstants.PARENT_TYPE_USER);
+		adr.setPostalCd(cmd.getUser().getPostalCd());
+		pUser.getAddresses().add(adr);
+
+
+
+	}
+
+    private EmailAddress buildEmail(String emailId, String email, String name) {
+        EmailAddress em = new EmailAddress();
+        em.setEmailAddress(email);
+        if (emailId != null && emailId.length() > 0) {
+            em.setEmailId(emailId);
+        }
+        em.setParentType(ContactConstants.PARENT_TYPE_USER);
+        em.setName(name);
+        return em;
+    }
+
+    private Phone buildPhone( ProvisionUser usr, String name,
+			String areaCode, String phone) {
+		Phone ph = new Phone();
+
+		ph.setAreaCd(areaCode);
+		ph.setPhoneNbr(phone);
+		ph.setDescription(name);
+		ph.setParentType(ContactConstants.PARENT_TYPE_USER);
+		ph.setName(name);
+		ph.setParentId(usr.getUserId());
+
+		return ph;
+	}
 
 
 

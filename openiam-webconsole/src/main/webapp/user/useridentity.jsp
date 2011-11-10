@@ -42,6 +42,10 @@
 								<td><form:checkbox path="principalList[${principal.index}].selected" />Delete</td>
 							</tr>
 							<tr>
+								<td><label for="username" class="attribute">Security Domain</label></td>
+								<td class="tdlight" colspan="3">${principalList.id.domainId} </td>
+							</tr>
+							<tr>
 								<td><label for="username" class="attribute">Managed System</label></td>
 								<td class="tdlight" colspan="3">${principalList.id.managedSysId} - ${principalList.managedSysName}  </td>
 							</tr>

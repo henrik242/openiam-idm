@@ -255,7 +255,12 @@ function showSupervisorDialog(idfield, namefield) {
 				          		</form:select>
 						</td>
 						 <td  ><label for="username" class="attribute">Delegated-Admin</label></td>
-				         <td class="userformInput" for="username" class="labelValue" ><form:checkbox path="user.delAdmin" value="0" /> 
+				         <td class="userformInput" for="username" class="labelValue" >
+                               <form:select path="user.delAdmin">
+								  <form:option value="0" label="NO"  />
+					              <form:option value="1" label="YES" />
+				          		</form:select>
+						</td>
 				
 						</td>
 						<td align="right" colspan="2"></td>

@@ -313,6 +313,7 @@
 		<property name="redirectView" value="rolelist.cnt?mode=1" />
         <property name="resourceDataService" ref="resourceServiceClient" />
          <property name="cancelView" value="security/policy.do?method=init" />
+         <property name="auditHelper" ref="auditHelper" />
 
      </bean> 
      
@@ -488,6 +489,7 @@
 		<property name="commandClass" value="org.openiam.webadmin.res.ResourceApprovalFlowCommand" />
 		<property name="formView" value="/res/resapprover" />
 		<property name="successView" value="/res/reslist" />
+         <property name="validator" ref="resApprovalFlowValidator" />
 	    <property name="resourceDataService" ref="resourceServiceClient" />
 	    <property name="navigationDataService" ref="navServiceClient" />	
 	    <property name="policyDataService" ref="policyServiceClient" />		
@@ -496,7 +498,10 @@
 	    <property name="userMgr" ref="userServiceClient" />
          <property name="cancelView" value="resourcelist.cnt" />
          <property name="auditHelper" ref="auditHelper" />
-     </bean>     
+         <property name="roleDataService" ref="roleServiceClient" />
+     </bean>
+
+     <bean id="resApprovalFlowValidator" class="org.openiam.webadmin.res.ResourceApprovalFlowValidator" />
 <!-- Sys Message controller -->     
 
      <bean id="sysMessageList" class="org.openiam.webadmin.admin.sysmsg.SysMsgListController">
@@ -583,6 +588,22 @@
 	     <property name="auditService" ref="auditServiceClient" />
      </bean>
 
+     <bean id="reconcilConfig" class="org.openiam.webadmin.res.ReconConfigurationController">
+ 
+        <property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="reconCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.res.ReconConfigurationCommand" />
+		<property name="formView" value="/res/reconconfig" />
+		<property name="successView" value="/res/reslist" />
+
+         <property name="navigationDataService" ref="navServiceClient" />
+         <property name="redirectView" value="reconcilConfig.cnt" />
+         <property name="reconcileService" ref="reconciliationServiceClient" />
+         <property name="cancelView" value="resourcelist.cnt" />
+         <property name="batchDataService" ref="batchServiceClient" />
+
+     </bean>
+
 
 <!-- User Admin controllers  -->
 
@@ -650,6 +671,7 @@
 
         <property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
         <property name="extendController" value="/ui/webconsole/EditUserController.groovy" />
+         <property name="auditHelper" ref="auditHelper" />
 		
      </bean>
     <bean id="editUserValidator" class="org.openiam.webadmin.user.EditUserValidator" />
@@ -700,6 +722,21 @@
 		<property name="formView" value="/user/userrole" />
 		<property name="successView" value="/user/confirm" />
 		<property name="roleDataService" ref="roleServiceClient" />
+		<property name="navigationDataService" ref="navServiceClient" />
+		<property name="redirectView" value="idman/userSearch.do?action=view" />
+		<property name="userMgr" ref="userServiceClient" />
+		<property name="provRequestService" ref="provisionServiceClient" />
+        <property name="cancelView" value="idman/userSearch.do?action=view" />
+     </bean>
+
+
+    <bean id="userOrg" class="org.openiam.webadmin.user.UserOrgController">
+     	<property name="sessionForm"><value>true</value></property>
+		<property name="commandName" value="userOrgCmd" />
+		<property name="commandClass" value="org.openiam.webadmin.user.UserOrgCommand" />
+		<property name="formView" value="/user/userorg" />
+		<property name="successView" value="/user/confirm" />
+        <property name="orgManager" ref="orgServiceClient" />
 		<property name="navigationDataService" ref="navServiceClient" />
 		<property name="redirectView" value="idman/userSearch.do?action=view" />
 		<property name="userMgr" ref="userServiceClient" />
@@ -826,6 +863,7 @@
                 <prop key="/userHistory.cnt">userHistory</prop>               
                 <prop key="/userGroup.cnt">userGroup</prop>
                 <prop key="/userAttr.cnt">userAttr</prop>
+                <prop key="/userOrg.cnt">userOrg</prop>
 
                 <prop key="/userChangeStatus.cnt">userChangeStatus</prop>
                 <prop key="/selectSupervisor.cnt">selectSupervisor</prop>
@@ -848,6 +886,7 @@
                 <prop key="/inactivityReport.cnt">inactivityReportController</prop>   
                 <prop key="/syncUser.cnt">syncConfigurationList</prop>
                 <prop key="/syncConfiguration.cnt">syncConfiguration</prop>  
+                <prop key="/reconcilConfig.cnt">reconcilConfig</prop> 
                 <prop key="/syncExecLog.cnt">syncLogList</prop>   
                 <prop key="/syncSessionLog.cnt">synchSessionEvents</prop>             
                 

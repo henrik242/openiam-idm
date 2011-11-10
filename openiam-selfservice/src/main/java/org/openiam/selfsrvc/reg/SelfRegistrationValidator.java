@@ -43,7 +43,19 @@ public class SelfRegistrationValidator implements Validator {
 			err.rejectValue("role", "required");
         }
 
-		
+        if (newHireCmd.getUser().getCompanyId() == null || newHireCmd.getUser().getCompanyId().length() == 0) {
+            err.rejectValue("user.companyId", "required");
+        }
+
+        if (newHireCmd.getEmail1() == null || newHireCmd.getEmail1().length() == 0) {
+            err.rejectValue("email1", "required");
+        }
+
+        if (newHireCmd.getWorkPhone() == null || newHireCmd.getWorkPhone().length() == 0) {
+            err.rejectValue("workPhone", "required");
+        }
+
+
 	}
 
     public ResourceDataService getResourceDataService() {

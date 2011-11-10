@@ -76,6 +76,11 @@ public class SessionFilter implements javax.servlet.Filter {
 				response.sendRedirect(request.getContextPath() + expirePage);
 				return;
 			}
+           /* if (session.getAttribute("permissions") == null) {
+                response.sendRedirect(request.getContextPath() + expirePage);
+				return;
+            }
+            */
 		}
 		chain.doFilter(servletRequest, servletResponse);
 

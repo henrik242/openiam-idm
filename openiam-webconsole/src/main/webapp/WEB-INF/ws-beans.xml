@@ -103,6 +103,17 @@
 	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}Asynch-SynchronizatonService"/>
 	</bean>
 	
+		
+	<!-- Reconciliation Service -->	
+
+    <bean id="reconciliationServiceClient" class="org.openiam.idm.srvc.recon.ws.ReconciliationWebService"
+      factory-bean="reconciliationServiceFactory" factory-method="create"/>
+
+
+	<bean id="reconciliationServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.recon.ws.ReconciliationWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}ReconciliationWebService"/>
+	</bean>
 
 
 	<!-- Audit Service -->
@@ -114,6 +125,16 @@
 	  <property name="serviceClass" value="org.openiam.idm.srvc.audit.ws.IdmAuditLogWebDataService"/>
 	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}AuditService"/>
 	</bean>
+
+    <bean id="asyncAuditServiceClient" class="org.openiam.idm.srvc.audit.ws.AsynchIdmAuditLogWebService"
+      factory-bean="aysncAuditServiceFactory" factory-method="create"/>
+
+
+	<bean id="aysncAuditServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+	  <property name="serviceClass" value="org.openiam.idm.srvc.audit.ws.AsynchIdmAuditLogWebService"/>
+	  <property name="address" value="${openiam.service_host}${openiam.idm.ws.path}AsynchAuditDataService"/>
+	</bean>
+
 
 	<!--  User Service -->
    <bean id="userServiceClient" class="org.openiam.idm.srvc.user.ws.UserDataWebService" 

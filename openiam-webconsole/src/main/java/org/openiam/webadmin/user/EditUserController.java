@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.openiam.base.ExtendController;
 import org.openiam.idm.srvc.msg.dto.NotificationRequest;
 import org.openiam.idm.srvc.msg.service.MailService;
+import org.openiam.webadmin.util.AuditHelper;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
@@ -83,6 +84,7 @@ public class EditUserController extends CancellableFormController {
 
     protected String scriptEngine;
     protected String extendController;
+    protected AuditHelper auditHelper;
 	
 	
 	private static final Log log = LogFactory.getLog(EditUserController.class);
@@ -176,6 +178,8 @@ public class EditUserController extends CancellableFormController {
 		
 		HttpSession session =  request.getSession();
 		String userId = (String)session.getAttribute("userId");
+		String domainId = (String)request.getSession().getAttribute("domainid");
+		String login = (String)request.getSession().getAttribute("login");
 		
 		// get the level 3 menu
 		
@@ -241,7 +245,11 @@ public class EditUserController extends CancellableFormController {
 		setAddressCommand(usr, addr, editUserCmd);
 		setEmailCommand(usr,email1, email2, email3, editUserCmd);
 		setPhoneCommand(usr,deskPhone, cellPhone, faxPhone, homePhone, altCellPhone, personalPhone, editUserCmd);
-		
+
+        // log that a person has viewed this record
+
+
+
 
 		return editUserCmd;
 		
@@ -261,6 +269,7 @@ public class EditUserController extends CancellableFormController {
 		
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
+
 
 
         // integratin with scripting to allow customization of the admin console
@@ -297,15 +306,17 @@ public class EditUserController extends CancellableFormController {
             }
 			return new ModelAndView(new RedirectView(redirectView+"&mode=1", true));			
 		}
-		
+
+        String login = (String)session.getAttribute("login");
+        String domain = (String)session.getAttribute("domainId");
+        pUser.setRequestClientIP(request.getRemoteHost());
+        pUser.setRequestorLogin(login);
+        pUser.setRequestorDomain(domain);
+
 		
 		if (btnName.equalsIgnoreCase("ACTIVE")) {
 			pUser.setStatus(UserStatusEnum.ACTIVE);
-            if (emailUserIdentity) {
-                // notify the user of their login and password
-                sendUserIdentityEmail(pUser);
-            }
-		}
+ 		}
 
 		if (btnName.equalsIgnoreCase("DELETE")) {
 			pUser.setStatus(UserStatusEnum.DELETED);
@@ -341,6 +352,7 @@ public class EditUserController extends CancellableFormController {
     		sup.setSupervisor(supervisorUser);
     		pUser.setSupervisor(sup);
         }
+
 
        if (extCmd.pre("MODIFY", controllerObj, null) == ExtendController.SUCCESS_CONTINUE) {
             asynchProvService.modifyUser(pUser);
@@ -739,5 +751,13 @@ public class EditUserController extends CancellableFormController {
 
     public void setAsynchProvService(AsynchUserProvisionService asynchProvService) {
         this.asynchProvService = asynchProvService;
+    }
+
+    public AuditHelper getAuditHelper() {
+        return auditHelper;
+    }
+
+    public void setAuditHelper(AuditHelper auditHelper) {
+        this.auditHelper = auditHelper;
     }
 }

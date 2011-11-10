@@ -28,6 +28,8 @@ import org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService;
 import org.openiam.idm.srvc.policy.service.PolicyDataService;
 import org.openiam.idm.srvc.res.dto.Resource;
 import org.openiam.idm.srvc.res.service.ResourceDataService;
+import org.openiam.idm.srvc.role.dto.Role;
+import org.openiam.idm.srvc.role.ws.RoleDataWebService;
 import org.openiam.idm.srvc.user.dto.User;
 import org.openiam.idm.srvc.user.ws.UserDataWebService;
 import org.openiam.webadmin.util.AuditHelper;
@@ -46,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
 /**
@@ -65,6 +68,7 @@ public class ResourceApprovalFlowController extends CancellableFormController {
     private ManagedSystemDataService managedSysService;
     private UserDataWebService userMgr;
     protected AuditHelper auditHelper;
+    protected RoleDataWebService roleDataService;
 
 
     public ResourceApprovalFlowController() {
@@ -125,24 +129,58 @@ public class ResourceApprovalFlowController extends CancellableFormController {
             for (ApproverAssociation assoc : assocList) {
                 if (assoc.getApproverUserId() != null && assoc.getApproverUserId().length() > 0) {
                     User usr = this.userMgr.getUserWithDependent(assoc.getApproverUserId(), false).getUser();
-                    assoc.setApproverName(usr.getFirstName() + " " + usr.getLastName());
+                    String name = null;
+                    if (usr  != null) {
+                        if (usr.getFirstName() != null) {
+                            name =  usr.getFirstName();
+                        }
+                        if (usr.getLastName() != null) {
+                            name = name + " " + usr.getLastName();
+                        }
+                        assoc.setApproverName(name);
+                    }
                 }
                 if (assoc.getNotifyUserOnApprove() != null && assoc.getNotifyUserOnApprove().length() > 0) {
                     User usr = this.userMgr.getUserWithDependent(assoc.getNotifyUserOnApprove(), false).getUser();
-                    assoc.setNotifyUserOnApproveName(usr.getFirstName() + " " + usr.getLastName());
+                    String name = null;
+                    if (usr != null) {
+                        if (usr.getFirstName() != null) {
+                            name =  usr.getFirstName();
+                        }
+                        if (usr.getLastName() != null) {
+                            name = name + " " + usr.getLastName();
+                        }
+                        assoc.setNotifyUserOnApproveName(name);
+                    }
                 }
                 if (assoc.getNotifyUserOnReject() != null && assoc.getNotifyUserOnReject().length() > 0) {
                     User usr = this.userMgr.getUserWithDependent(assoc.getNotifyUserOnReject(), false).getUser();
-                    assoc.setNotifyUserOnRejectName(usr.getFirstName() + " " + usr.getLastName());
+                    String name = null;
+                    if (usr != null) {
+                        if (usr.getFirstName() != null) {
+                            name =  usr.getFirstName();
+                        }
+                        if (usr.getLastName() != null) {
+                            name = name + " " + usr.getLastName();
+                        }
+                        assoc.setNotifyUserOnRejectName(name);
+                    }
+                }
+                if (assoc.getApproverRoleId() != null && assoc.getApproverRoleId().length() > 0) {
+                    assoc.setApproverRoleId( assoc.getApproverRoleDomain() + "*" + assoc.getApproverRoleId() );
                 }
             }
         }
+
+        List<Role> roleList = roleDataService.getAllRoles().getRoleList();
+
 
         List<Menu> level3MenuList = navigationDataService.menuGroupByUser(menuGrp, userId, "en").getMenuList();
         request.setAttribute("menuL3", level3MenuList);
 
         ResourceApprovalFlowCommand cmd = new ResourceApprovalFlowCommand();
 
+        cmd.setRoleList(roleList);
 
         cmd.setApproverAssoc(assocList);
         cmd.setResourceName(res.getName());
@@ -167,7 +205,7 @@ public class ResourceApprovalFlowController extends CancellableFormController {
 		String domainId = (String)request.getSession().getAttribute("domainid");
 		String login = (String)request.getSession().getAttribute("login");
 
-
+        Resource res = resourceDataService.getResource(resId);
 
         String btn = request.getParameter("btn");
         if (btn.equalsIgnoreCase("Delete")) {
@@ -183,7 +221,8 @@ public class ResourceApprovalFlowController extends CancellableFormController {
                             auditHelper.addLog("MODIFY", domainId,	login,
                                  "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                                  null,   "SUCCESS", null,  "DELETE APPROVER",
-                                 a.getApproverUserId(), null, null);
+                                 a.getApproverUserId(), null, null,
+                                 res.getName(), request.getRemoteHost());
 
                         }
                     }
@@ -198,7 +237,24 @@ public class ResourceApprovalFlowController extends CancellableFormController {
             if (assocList != null) {
 
                 for (ApproverAssociation a : assocList) {
+                        if (a.getApproverRoleId() != null && a.getApproverRoleId().length() > 0) {
+                            String roleStr = a.getApproverRoleId();
+                            StringTokenizer st = new StringTokenizer(roleStr, "*");
+                            if (st.hasMoreTokens()) {
+                                a.setApproverRoleDomain(st.nextToken());
+                            }
+                            if (st.hasMoreElements()) {
+                                a.setApproverRoleId(st.nextToken());
+                            }
+
+                        }else {
+                            a.setApproverRoleDomain(null);
+                            a.setApproverRoleId(null);
+                        }
+
                     if (a.getApproverAssocId() == null || a.getApproverAssocId().equalsIgnoreCase("NEW")) {
+
+
                         // new
                         if (a.getAssociationType() != null && a.getAssociationType().length() > 0) {
                             a.setApproverAssocId(null);
@@ -206,12 +262,14 @@ public class ResourceApprovalFlowController extends CancellableFormController {
                             if (a.getApproverLevel() == null) {
                                 a.setApproverLevel(1);
                             }
+
                             managedSysService.addApproverAssociation(a);
 
                              auditHelper.addLog("MODIFY", domainId,	login,
                                  "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                                  null,   "SUCCESS", null,  "ADD APPROVER",
-                                 a.getApproverUserId(), null, null);
+                                 a.getApproverUserId(), null, null,
+                                 res.getName(), request.getRemoteHost());
                         }
                     } else {
                         // update
@@ -225,7 +283,8 @@ public class ResourceApprovalFlowController extends CancellableFormController {
                              auditHelper.addLog("MODIFY", domainId,	login,
                                  "WEBCONSOLE", userId, "0", "RESOURCE", resId,
                                  null,   "SUCCESS", null,  "MODIFY APPROVER",
-                                 a.getApproverUserId(), null, null);
+                                 a.getApproverUserId(), null, null,
+                                 res.getName(), request.getRemoteHost());
                         }
                     }
                 }
@@ -297,5 +356,13 @@ public class ResourceApprovalFlowController extends CancellableFormController {
 
     public void setAuditHelper(AuditHelper auditHelper) {
         this.auditHelper = auditHelper;
+    }
+
+    public RoleDataWebService getRoleDataService() {
+        return roleDataService;
+    }
+
+    public void setRoleDataService(RoleDataWebService roleDataService) {
+        this.roleDataService = roleDataService;
     }
 }

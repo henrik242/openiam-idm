@@ -251,7 +251,7 @@ public class UserSearchAction extends DispatchActionSupport {
 			
 		}
 
-        if (usr.getDelAdmin() != null &&  usr.getDelAdmin().intValue() == 0) {
+        if (usr.getDelAdmin() != null &&  usr.getDelAdmin().intValue() == 1) {
             Map<String, UserAttribute> attrMap = usr.getUserAttributes();
             List<String> deptFilterList = null;
             List<String> orgFilterList = null;

@@ -15,7 +15,8 @@
     </bean> 
 
 	<bean name="/logout"  class="org.openiam.webadmin.login.LogoutAction">
-		<property name="authenticate" ref="authServiceClient" />	
+		<property name="authenticate" ref="authServiceClient" />
+        <property name="auditHelper" ref="auditHelper" />
     </bean> 
     
    

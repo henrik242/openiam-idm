@@ -25,6 +25,7 @@
 
 	<bean id="auditHelper" class="org.openiam.webadmin.util.AuditHelper" >
 		<property name="auditDataService" ref="auditServiceClient" />
+        <property name="asynchAuditDataService" ref="asyncAuditServiceClient" />
 	</bean>
 	
 	

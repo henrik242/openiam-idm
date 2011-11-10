@@ -59,7 +59,7 @@ public class RequestListController extends SimpleFormController {
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
-		// TODO Auto-generated method stub
+
 		System.out.println("onSubmit called.");
 		
 		RequestSearchCriteria reqSearch =(RequestSearchCriteria)command;

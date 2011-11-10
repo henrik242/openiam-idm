@@ -211,7 +211,16 @@ public class IdentityQuestionController extends CancellableFormController {
 
         // check if the policy has changed the number of challenge response questions
         List<UserIdentityAnswer> curAnswerList = challengeResponse.answersByUser(userId);
-        if (curAnswerList.size() != answerList.size())  {
+
+        if (curAnswerList == null) {
+                        // reset the new answerlist so that the services add these objects
+            for (UserIdentityAnswer ans : answerList) {
+                ans.setObjectState(BaseObject.NEW);
+                ans.setIdentityAnsId(null);
+
+            }
+
+        }else  if (curAnswerList.size() != answerList.size())  {
             log.info("New answerList size is different from one in the repository. Delete the current list");
             // delete the current list and create a new list
             for (UserIdentityAnswer ans : curAnswerList) {

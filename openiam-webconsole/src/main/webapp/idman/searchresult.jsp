@@ -43,7 +43,8 @@
     <th>Name</th>
     <th>E-mail</th>
 		<th>Phone</th>
-    <th>Status</th>
+    <th>User Status</th>
+    <th>Acct State</th>
     <th>Dept</th>
     <th></th>
   </tr>
@@ -71,7 +72,12 @@
           <%=JSPUtil.display(ud.getStatus())%>
       <% } %>&nbsp;
     </td>
-    
+     <td  class="tableEntry">
+      <% if (ud.getSecondaryStatus() != null) { %>
+          <%=JSPUtil.display(ud.getSecondaryStatus())%>
+      <% } %>&nbsp;
+    </td>
+
     <td  class="tableEntry">
       <% if (ud.getDeptCd() != null) { %>
          <%=JSPUtil.display(ud.getDeptCd())%>
