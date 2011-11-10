@@ -84,7 +84,10 @@ public class AdapterFactory  implements  ApplicationContextAware {
 					}
 					if (adapterType.equalsIgnoreCase("AD")) {
 						return (SourceAdapter)ac.getBean("activeDirAdapter");
-					}	
+					}
+                    if (adapterType.equalsIgnoreCase("WS")) {
+						return (SourceAdapter)ac.getBean("wsAdapter");
+					}
 					adpt = (SourceAdapter)cls.newInstance();
 				}
 				adpt.setApplicationContext(ac);

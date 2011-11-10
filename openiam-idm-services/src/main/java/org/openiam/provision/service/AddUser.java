@@ -158,16 +158,20 @@ public class AddUser {
 				}
 				groupManager.addUserToGroup(g.getGrpId(), newUserId);
                 // add to audit log
-                 logList.add( auditHelper.createLogObject("ADD GROUP", user.getSecurityDomain(), null,
+                 logList.add( auditHelper.createLogObject("ADD GROUP", user.getRequestorDomain(), user.getRequestorLogin(),
                     "IDM SERVICE", user.getCreatedBy(), "0", "USER", user.getUserId(),
                     null, "SUCCESS", null, "USER_STATUS",
                     user.getUser().getStatus().toString(),
-                    null, null, user.getSessionId(), null, g.getGrpName()) );
+                    null, null, user.getSessionId(), null, g.getGrpName(),
+                    user.getRequestClientIP(), null, null) );
 
 			}
 		}	
 		return ResponseCode.SUCCESS;
 	}
+
+
+
 	private ResponseCode addRoles(ProvisionUser user, String newUserId, List<IdmAuditLog> logList) {
 		List<Role> roleList = user.getMemberOfRoles();
 		log.debug("Role list = " + roleList);
@@ -192,11 +196,12 @@ public class AddUser {
 				roleDataService.assocUserToRole(ur);
 
 
-                logList.add( auditHelper.createLogObject("ADD ROLE", user.getSecurityDomain(), null,
+                logList.add( auditHelper.createLogObject("ADD ROLE", user.getRequestorDomain(), user.getRequestorLogin(),
                     "IDM SERVICE", user.getCreatedBy(), "0", "USER", user.getUserId(),
                     null, "SUCCESS", null, "USER_STATUS",
                     user.getUser().getStatus().toString(),
-                    null, null, user.getSessionId(), null, ur.getRoleId()) );
+                    "NA", null, user.getSessionId(), null, ur.getRoleId(),
+                        user.getRequestClientIP(), null, null) );
 
 
 			}
@@ -235,9 +240,9 @@ public class AddUser {
  			try {
 				for (  AttributeMap attr : policyAttrMap ) {
 					Policy policy = attr.getAttributePolicy();
-					String rule_script = policy.getRule();
-					if (rule_script != null) {
-						String output = (String)se.executeAsScript(bindingMap, rule_script);
+					String url = policy.getRuleSrcUrl();
+					if (url != null) {
+						String output = (String)se.execute(bindingMap, url);
 						String objectType = attr.getMapForObjectType();
 						if (objectType != null) {
 							if (objectType.equalsIgnoreCase("PRINCIPAL")) {
@@ -272,6 +277,68 @@ public class AddUser {
 
 		
 	}
+
+    /**
+     * If the user has selected roles that are in multiple domains, we need to make sure that they identities for
+     * each of these domains
+     * @param primaryIdentity
+     * @param roleList
+     */
+
+    public void validateIdentitiesExistforSecurityDomain(Login primaryIdentity, List<Role> roleList) {
+        List<Login> identityList = loginManager.getLoginByUser(primaryIdentity.getUserId());
+
+        for (Role r : roleList) {
+            String secDomain = r.getId().getServiceId();
+            if (!identityInDomain(secDomain,identityList)) {
+                addIdentity(secDomain, primaryIdentity);
+            }
+        }
+
+    }
+
+    private boolean identityInDomain(String secDomain, List<Login> identityList) {
+        for (Login l : identityList) {
+            if ( l.getId().getDomainId().equalsIgnoreCase(secDomain)) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+    private void addIdentity(String secDomain, Login primaryIdentity) {
+        if ( loginManager.getLoginByManagedSys(secDomain,primaryIdentity.getId().getLogin(), primaryIdentity.getId().getManagedSysId()) == null ){
+
+            LoginId id = new LoginId(secDomain,primaryIdentity.getId().getLogin(), primaryIdentity.getId().getManagedSysId());
+
+            Login newLg = new Login();
+
+            newLg.setId(id);
+            newLg.setAuthFailCount(0);
+            newLg.setFirstTimeLogin(primaryIdentity.getFirstTimeLogin());
+            newLg.setIsLocked(primaryIdentity.getIsLocked());
+            newLg.setLastAuthAttempt(primaryIdentity.getLastAuthAttempt());
+            newLg.setGracePeriod(primaryIdentity.getGracePeriod());
+            newLg.setManagedSysName(primaryIdentity.getManagedSysName());
+            newLg.setPassword(primaryIdentity.getPassword());
+            newLg.setPasswordChangeCount(primaryIdentity.getPasswordChangeCount());
+            newLg.setStatus(primaryIdentity.getStatus());
+            newLg.setIsLocked(primaryIdentity.getIsLocked());
+            newLg.setOrigPrincipalName(primaryIdentity.getOrigPrincipalName());
+            newLg.setUserId(primaryIdentity.getUserId());
+            newLg.setResetPassword(primaryIdentity.getResetPassword());
+
+
+            log.debug("Adding identity = " + newLg);
+
+            loginManager.addLogin(newLg);
+        }
+
+
+    }
+
 	                       
 	public RoleDataService getRoleDataService() {
 		return roleDataService;

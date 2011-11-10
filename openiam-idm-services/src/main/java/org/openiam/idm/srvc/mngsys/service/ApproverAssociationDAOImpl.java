@@ -95,14 +95,19 @@ public class ApproverAssociationDAOImpl implements ApproverAssociationDAO {
 	}
 	
 	// e.g NEW_HIRE
-	public ApproverAssociation findApproversByRequestType(String requestType, int level) {
-		Session session = sessionFactory.getCurrentSession();
-		Query qry = session.createQuery("from org.openiam.idm.srvc.mngsys.dto.ApproverAssociation ra " +
-				" where ra.approverLevel = :level and ra.requestType = :requestType " );
-		qry.setString("requestType", requestType);
-		qry.setInteger("level", level);
+	public List<ApproverAssociation> findApproversByRequestType(String requestType, int level) {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            Query qry = session.createQuery("from org.openiam.idm.srvc.mngsys.dto.ApproverAssociation ra " +
+                    " where ra.approverLevel = :level and ra.requestType = :requestType " );
+            qry.setString("requestType", requestType);
+            qry.setInteger("level", level);
 
-        return (ApproverAssociation) qry.uniqueResult();
+            return qry.list();
+        } catch (HibernateException re) {
+			log.error("get failed", re);
+			throw re;
+		}
 
 	}
 	

@@ -97,11 +97,17 @@
          <property name="baseDn"  type="string">
             <column name="BASE_DN" length="40" />
         </property>
-              
+
+        <property name="wsUrl"  type="string">
+            <column name="WS_URL" length="100" />
+        </property>
+        <property name="wsScript"  type="string">
+            <column name="WS_SCRIPT" length="100" />
+        </property>
+
+
     </class>
 </hibernate-mapping>
-
-
 
 
 

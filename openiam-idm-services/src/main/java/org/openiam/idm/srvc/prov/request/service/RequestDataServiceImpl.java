@@ -119,20 +119,6 @@ public class RequestDataServiceImpl implements RequestDataService {
 		this.requestDao = requestDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.openiam.idm.srvc.prov.request.service.RequestDataService#nextApproverForRequest(java.lang.String, java.lang.String)
-	 */
-	public List<User> nextApproverForRequest(String requestId,	String resourceName) {
-		// get the current approval level for the request
-		// get the resource approver for the level
-		// look at the approver type
-		// -- if its SUPERVISOR - LOOK UP THE SUPERVISOR ON THE REQUEST
-		// -- if its a group - look up the users in the
-		// -- otherwise its an individual user.
-		
-
-		return null;
-	}
 
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.prov.request.service.RequestDataService#approve()
@@ -145,31 +131,6 @@ public class RequestDataServiceImpl implements RequestDataService {
 	}
 
 
-	public ApproverAssociation getApproversByRequestType(String requestType, int level) {
-		return approverAssociationDao.findApproversByRequestType(requestType, level);
-	}
-	
-	private void sendNotification(String approverUserId, String reason, String name) {
-		
-		System.out.println("Approver id =" + approverUserId);
-		//String approverId = reqApprover.getApproverId();
-		User approverDetail = userManager.getUserWithDependent(approverUserId, false);
-		//User requestor = userManager.getUserWithDependent(requestorId, false);
-		
-		// TODO Move this into a template engine 
-		
-		String msg = "A request for " + reason + " by " + 
-			 " is pending approval \n" +
-			 "Please log into the self-service application to process this request.\n" +
-			 "http://localhost:8080/selfservice .\n";
-		
-		mailSender.send(this.defaultSender,
-				approverDetail.getEmail(), 
-				this.getSubjectPrefix() + " " + reason + " Request", 
-				msg);
-		
-		
-	}
 	
 	private Set<RequestApprover> getApprover(List<ApproverAssociation> approverList,	Supervisor supervisor) {
 		Set<RequestApprover> reqApproverList = new HashSet<RequestApprover>();

@@ -79,11 +79,19 @@ public class ModifyUser {
 	}
 	
 	public String updateUser(ProvisionUser user, User origUser) {
+
+       ;
 	
 		String requestId = UUIDGen.getUUID();
+
+        log.debug("ModifyUser: updateUser called." + requestId);
+
+
 		
 		User newUser = user.getUser();
 		updateUserObject(origUser, newUser);
+
+        log.debug("User object pending update:" + origUser);
 			
 		userMgr.updateUserWithDependent(origUser, true);
 		
@@ -143,7 +151,6 @@ public class ModifyUser {
 		// else add with operation 2
 		for (EmailAddress em : newEmailSet) {
 			if (em.getOperation() == AttributeOperationEnum.DELETE) {
-				log.debug("removing email :" + em.getEmailAddress() );
 				// get the email object from the original set of emails so that we can remove it
 				EmailAddress e = getEmailAddress(em.getEmailId(), origEmailSet);
 				if (e != null) {
@@ -154,7 +161,6 @@ public class ModifyUser {
 				// check if this address is in the current list
 				// if it is - see if it has changed
 				// if it is not - add it.
-				log.debug("evaluate email address");
 				EmailAddress origEmail =  getEmailAddress(em.getEmailId(), origEmailSet);
 				if (origEmail == null) {
 					em.setOperation(AttributeOperationEnum.ADD);
@@ -193,7 +199,6 @@ public class ModifyUser {
 			EmailAddress email = emailIt.next();
 			if (email.getEmailId() != null) {
 				if (email.getEmailId().equals(id) && (id != null && id.length() > 0)) {
-					log.debug("Match >> email.getEmailId = " + email.getEmailId() + " - " + id);
 					return email;
 				}
 			}
@@ -207,7 +212,6 @@ public class ModifyUser {
 			Phone phone = phoneIt.next();
 			if (phone.getPhoneId() != null) {
 				if (phone.getPhoneId().equals(id) && (id != null && id.length() > 0)) {
-					log.debug("Match >> phone.getPhoneId = " + phone.getPhoneId() + " - " + id);
 					return phone;
 				}
 			}
@@ -222,7 +226,6 @@ public class ModifyUser {
 			Address adr = addressIt.next();
 			if (adr.getAddressId() != null  ) {
 				if (adr.getAddressId().equals(id) && (id != null && id.length() > 0)) {
-					log.debug("Match >> adr.getAdrId = " + adr.getAddressId() + " - " + id);
 					return adr;
 				}
 			}
@@ -242,7 +245,6 @@ public class ModifyUser {
 
 	private Role getRole(RoleId roleId, List<Role> roleList) {
 		for (Role rl : roleList ) {
-			System.out.println("GetRole: " + roleId + "--" + rl.getId());
 			if (rl.getId().equals(roleId)) {
 				return rl;
 			}
@@ -301,7 +303,7 @@ public class ModifyUser {
 		// else add with operation 2
 		for (Phone ph : newPhoneSet) {
 			if (ph.getOperation() == AttributeOperationEnum.DELETE) {
-				log.debug("removing phone :" + ph.getPhoneId() );
+
 				// get the email object from the original set of emails so that we can remove it
 				Phone e = getPhone(ph.getPhoneId(), origPhoneSet);
 				if (e != null) {
@@ -373,7 +375,7 @@ public class ModifyUser {
 		// else add with operation 2
 		for (Address ph : newAddressSet) {
 			if (ph.getOperation() == AttributeOperationEnum.DELETE) {
-				log.debug("removing Address :" + ph.getAddressId() );
+
 				// get the email object from the original set of emails so that we can remove it
 				Address e = getAddress(ph.getAddressId(), origAddressSet);
 				if (e != null) {
@@ -674,7 +676,8 @@ public class ModifyUser {
 	}
 
 	
-	public void updateRoleAssociation(String userId, List<Role> origRoleList,  List<Role> newRoleList, List<IdmAuditLog> logList) {
+	public void updateRoleAssociation(String userId, List<Role> origRoleList,  List<Role> newRoleList, List<IdmAuditLog> logList,
+                                      ProvisionUser pUser, Login primaryIdentity) {
 
 		log.debug("updating role associations..");
 		log.debug("origRoleList =" + origRoleList);
@@ -716,11 +719,12 @@ public class ModifyUser {
 				}
 				roleDataService.assocUserToRole(ur);
 
-                logList.add( auditHelper.createLogObject("ADD ROLE", user.getSecurityDomain(), null,
+                logList.add( auditHelper.createLogObject("ADD ROLE", pUser.getRequestorDomain(),  pUser.getRequestorLogin(),
                         "IDM SERVICE", user.getCreatedBy(), "0", "USER", user.getUserId(),
                         null, "SUCCESS", null, "USER_STATUS",
                         user.getStatus().toString(),
-                        null, null, null, null, ur.getRoleId()));
+                        "NA", null, null, null, ur.getRoleId(),
+                        pUser.getRequestClientIP(), primaryIdentity.getId().getLogin(), primaryIdentity.getId().getDomainId()));
 
 				//roleDataService.addUserToRole(rl.getId().getServiceId(), rl.getId().getRoleId(), userId);
 			}
@@ -748,11 +752,12 @@ public class ModifyUser {
 				if (rl != null) {
 					roleDataService.removeUserFromRole(rl.getId().getServiceId(), rl.getId().getRoleId(), userId);
 
-                    logList.add( auditHelper.createLogObject("REMOVE ROLE", user.getSecurityDomain(), null,
+                    logList.add( auditHelper.createLogObject("REMOVE ROLE", pUser.getRequestorDomain(),  pUser.getRequestorLogin(),
                             "IDM SERVICE", user.getCreatedBy(), "0", "USER", user.getUserId(),
                             null, "SUCCESS", null, "USER_STATUS",
                             user.getStatus().toString(),
-                            null, null, null, null, rl.getId().getRoleId()));
+                            "NA", null, null, null, rl.getId().getRoleId(),
+                             pUser.getRequestClientIP(), primaryIdentity.getId().getLogin(), primaryIdentity.getId().getDomainId()));
 
 				}
 				log.debug("Adding role to deleteRoleList =" + rl);
@@ -783,11 +788,12 @@ public class ModifyUser {
 					}
 					roleDataService.assocUserToRole(ur);
 
-                    logList.add( auditHelper.createLogObject("ADD ROLE", user.getSecurityDomain(), null,
+                    logList.add( auditHelper.createLogObject("ADD ROLE", pUser.getRequestorDomain(),  pUser.getRequestorLogin(),
                         "IDM SERVICE", user.getCreatedBy(), "0", "USER", user.getUserId(),
                         null, "SUCCESS", null, "USER_STATUS",
                         user.getStatus().toString(),
-                        null, null, null, null, ur.getRoleId()));
+                        "NA", null, null, null, ur.getRoleId(),
+                             pUser.getRequestClientIP(),primaryIdentity.getId().getLogin(), primaryIdentity.getId().getDomainId()));
 					
 					//roleDataService.addUserToRole(r.getId().getServiceId(), r.getId().getRoleId(), userId);
 				}else {
@@ -809,16 +815,22 @@ public class ModifyUser {
 						//UserRole ur = new UserRole(userId, r.getId().getServiceId(), 
 						//		r.getId().getRoleId());
 						UserRole ur = getUserRole(r, currentUserRole);
-						if ( r.getStartDate() != null) {
-							ur.setStartDate(r.getStartDate());
-						}
-						if ( r.getEndDate() != null ) {
-							ur.setEndDate(r.getEndDate());
-						}
-						if ( r.getStatus() != null ) {
-							ur.setStatus(r.getStatus());
-						}
-						roleDataService.updateUserRoleAssoc(ur);
+                        if ( ur != null) {
+                            if ( r.getStartDate() != null) {
+                                ur.setStartDate(r.getStartDate());
+                            }
+                            if ( r.getEndDate() != null ) {
+                                ur.setEndDate(r.getEndDate());
+                            }
+                            if ( r.getStatus() != null ) {
+                                ur.setStatus(r.getStatus());
+                            }
+                            roleDataService.updateUserRoleAssoc(ur);
+                        }else {
+                            UserRole usrRl = new UserRole(user.getUserId(), r.getId().getServiceId(), r.getId().getRoleId());
+                            roleDataService.assocUserToRole(usrRl);
+
+                        }
 					}
 				}
 			}
@@ -835,6 +847,10 @@ public class ModifyUser {
 	}
 	private UserRole getUserRole(Role r, List<UserRole> currentUserRole) {
 		//boolean retval = true;
+
+        if (currentUserRole == null) {
+            return null;
+        }
 		
 		UserRole ur = null;
 		// get the user role object
@@ -850,6 +866,10 @@ public class ModifyUser {
 	
 	private boolean userRoleAttrEq(Role r, List<UserRole> currentUserRole) {
 		//boolean retval = true;
+
+        if (currentUserRole == null) {
+            return false;
+        }
 		
 		UserRole ur = null;
 		// get the user role object
@@ -911,8 +931,9 @@ public class ModifyUser {
 		if (extUser == null) {
 			return null;
 		}
-		log.debug("Updating operations on attributes being passed to connectors");
-		log.debug("Current attributeMap = " + currentValueMap);
+		log.debug("updateAttributeList: Updating operations on attributes being passed to connectors");
+		log.debug("updateAttributeList: Current attributeMap = " + currentValueMap);
+
 		
 		List<org.openiam.provision.type.ExtensibleAttribute> extAttrList = extUser.getAttributes();
 		if (extAttrList == null) {
@@ -921,35 +942,44 @@ public class ModifyUser {
 			
 			return null;
 		}
-		for (org.openiam.provision.type.ExtensibleAttribute attr  : extAttrList) {
-			String nm = attr.getName();
-			if (currentValueMap == null) {
-				attr.setOperation(1);
-			}else {
-				String curVal = currentValueMap.get(nm);
-				if (curVal == null) {
-                    // temp hack
-                    if (nm.equalsIgnoreCase("objectclass")) {
-                        attr.setOperation(2);
-                    }else {
-                        log.debug("- Op = 1 - AttrName = " +nm );
 
-                        attr.setOperation(1);
+        log.debug("updateAttributeList: New Attribute List = " + extAttrList);
+        if ( extAttrList != null && currentValueMap == null) {
+           for (org.openiam.provision.type.ExtensibleAttribute attr  : extAttrList) {
+                attr.setOperation(1);
+           }
+        }else {
+
+            for (org.openiam.provision.type.ExtensibleAttribute attr  : extAttrList) {
+                String nm = attr.getName();
+                if (currentValueMap == null) {
+                    attr.setOperation(1);
+                }else {
+                    String curVal = currentValueMap.get(nm);
+                    if (curVal == null) {
+                        // temp hack
+                        if (nm.equalsIgnoreCase("objectclass")) {
+                            attr.setOperation(2);
+                        }else {
+                            log.debug("- Op = 1 - AttrName = " +nm );
+
+                            attr.setOperation(1);
+                        }
+                    }else {
+                        if (curVal.equalsIgnoreCase(attr.getValue())) {
+                            log.debug("- Op = 0 - AttrName = " +nm );
+
+                            attr.setOperation(0);
+                        }else {
+
+                            log.debug("- Op = 2 - AttrName = " +nm );
+
+                            attr.setOperation(2);
+                        }
                     }
-				}else {
-					if (curVal.equalsIgnoreCase(attr.getValue())) {
-						log.debug("- Op = 0 - AttrName = " +nm );
-						
-						attr.setOperation(0);
-					}else {
-						
-						log.debug("- Op = 2 - AttrName = " +nm );
-						
-						attr.setOperation(2);
-					}
-				}
-			}
-		}
+                }
+            }
+        }
 		return extUser;
 		
 	}
@@ -1070,6 +1100,108 @@ public class ModifyUser {
 		}
 		return rList;
 	}
+
+      /**
+     * If the user has selected roles that are in multiple domains, we need to make sure that they identities for
+     * each of these domains
+     * @param primaryIdentity
+     * @param roleList
+     */
+
+    public void validateIdentitiesExistforSecurityDomain(Login primaryIdentity, List<Role> roleList) {
+
+        log.debug("validateIdentitiesExistforSecurityDomain");
+
+        List<Login> identityList = loginManager.getLoginByUser(primaryIdentity.getUserId());
+        String managedSysId = primaryIdentity.getId().getManagedSysId();
+
+        log.debug("Identitylist =" + identityList);
+
+        for (Role r : roleList) {
+            String secDomain = r.getId().getServiceId();
+            if (!identityInDomain(secDomain, managedSysId ,identityList)) {
+
+                log.debug("Adding identity to :" + secDomain);
+
+               addIdentity(secDomain, primaryIdentity);
+            }
+        }
+
+        // determine if we should remove an identity
+        for (Login l : identityList) {
+            if (l.getId().getManagedSysId().equalsIgnoreCase(managedSysId)) {
+                boolean found = false;
+                for ( Role r : roleList) {
+                    if (r.getId().getServiceId().equalsIgnoreCase(l.getId().getDomainId())) {
+                        found = true ;
+                    }
+
+                }
+                if (!found) {
+                    if ( l.getId().getManagedSysId().equalsIgnoreCase( "0" )) {
+                        // primary identity - do not delete. Just disable its status
+                        log.debug("Primary identity - chagne its status");
+                        l.setStatus("INACTIVE");
+                        loginManager.updateLogin(l);
+
+                    }else {
+
+                        log.debug("Removing identity for  :" + l.getId() );
+                        loginManager.removeLogin(l.getId().getDomainId(), l.getId().getLogin(), l.getId().getManagedSysId());
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private boolean identityInDomain(String secDomain, String managedSysId,  List<Login> identityList) {
+
+        log.debug("IdentityinDomain =" + secDomain + "-" + managedSysId);
+
+        for (Login l : identityList) {
+            if ( l.getId().getDomainId().equalsIgnoreCase(secDomain) &&
+                 l.getId().getManagedSysId().equalsIgnoreCase(managedSysId)) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+    private void addIdentity(String secDomain, Login primaryIdentity) {
+        if ( loginManager.getLoginByManagedSys(secDomain,primaryIdentity.getId().getLogin(), primaryIdentity.getId().getManagedSysId()) == null ){
+
+            LoginId id = new LoginId(secDomain,primaryIdentity.getId().getLogin(), primaryIdentity.getId().getManagedSysId());
+
+
+            Login newLg = new Login();
+
+            newLg.setId(id);
+            newLg.setAuthFailCount(0);
+            newLg.setFirstTimeLogin(primaryIdentity.getFirstTimeLogin());
+            newLg.setIsLocked(primaryIdentity.getIsLocked());
+            newLg.setLastAuthAttempt(primaryIdentity.getLastAuthAttempt());
+            newLg.setGracePeriod(primaryIdentity.getGracePeriod());
+            newLg.setManagedSysName(primaryIdentity.getManagedSysName());
+            newLg.setPassword(primaryIdentity.getPassword());
+            newLg.setPasswordChangeCount(primaryIdentity.getPasswordChangeCount());
+            newLg.setStatus(primaryIdentity.getStatus());
+            newLg.setIsLocked(primaryIdentity.getIsLocked());
+            newLg.setOrigPrincipalName(primaryIdentity.getOrigPrincipalName());
+            newLg.setUserId(primaryIdentity.getUserId());
+            newLg.setResetPassword(primaryIdentity.getResetPassword());
+
+
+            log.debug("Adding identity = " + newLg);
+
+            loginManager.addLogin(newLg);
+        }
+
+
+    }
 
 
 	public List<Role> getRoleList() {

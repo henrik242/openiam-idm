@@ -2,6 +2,7 @@ package org.openiam.idm.srvc.prov.request.service;
 
 // Generated Jan 9, 2009 5:33:58 PM by Hibernate Tools 3.2.2.GA
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
@@ -123,7 +124,7 @@ public class ProvisionRequestDAOImpl implements ProvisionRequestDAO {
 	
 	public List<ProvisionRequest> findRequestByApprover(String approverId, String status) {
 		Session session = sessionFactory.getCurrentSession();
-		Query qry = session.createQuery("select req from ProvisionRequest req, " +
+		Query qry = session.createQuery("select req from org.openiam.idm.srvc.prov.request.dto.ProvisionRequest req, " +
 				" org.openiam.idm.srvc.prov.request.dto.RequestApprover appr " +
 				" where req.requestId = appr.requestId and " +
 				"	    appr.approverId = :approverId and  " +
@@ -142,37 +143,57 @@ public class ProvisionRequestDAOImpl implements ProvisionRequestDAO {
 		Criteria crit = session.createCriteria(org.openiam.idm.srvc.prov.request.dto.ProvisionRequest.class);
 		crit.createAlias("requestApprovers", "requestApprovers");
 		crit.setMaxResults(maxResultSetSize);
-		
+
+        List<String> roleIdList = search.getRoleIdList();
+        if (roleIdList == null) {
+            roleIdList = new ArrayList<String>();
+        }
+
+
 		if (search.getEndDate() != null  ) {
-			log.info("search: endDate=" + search.getEndDate() );
+
 			crit.add(Restrictions.le("statusDate",search.getEndDate()));
 		}
 		if (search.getStartDate() != null  ) {
-			log.info("search: startDate=" + search.getStartDate() );
+
 			crit.add(Restrictions.ge("statusDate",search.getStartDate()));
 		}
 		if (search.getRequestId() != null && search.getRequestId().length() > 0  ) {
-			log.info("search: requestId=" + search.getRequestId() );
+
 			crit.add(Restrictions.eq("requestId",search.getRequestId()));
 		}
 		if (search.getRequestorId() != null && search.getRequestorId().length() > 0  ) {
-			log.info("search: requestorId=" + search.getRequestorId() );
+
 			crit.add(Restrictions.eq("requestorId",search.getRequestorId()));
 		}
 		if (search.getStatus() != null && search.getStatus().length() > 0  ) {
-			log.info("search: status=" + search.getStatus() );
+			log.debug("search: status=" + search.getStatus() );
 			crit.add(Restrictions.eq("status",search.getStatus()));
 		}
-		if (search.getApproverId() != null && search.getApproverId().length() > 0) {
-			log.info("search: approverId=" + search.getApproverId());
-			crit.add(Restrictions.eq("requestApprovers.approverId", search.getApproverId()));
+
+       if (search.getApproverId() != null && search.getApproverId().length() > 0) {
+
+           log.debug("search: approverId=" + search.getApproverId());
+
+           // in our database we have the role Id and the individual approvers in the same field
+           roleIdList.add(search.getApproverId());
 		}
-/*		if (search.getLevel() > 0) {
-			log.info("search: approval level=" + search.getLevel() );
-			crit.add(Restrictions.eq("requestApprovers.approverLevel", search.getLevel()));
-		}
-*/		
-		//crit.addOrder(Order.asc("requestDate"));
+
+        if (!roleIdList.isEmpty() ) {
+            crit.add(Restrictions.in("requestApprovers.approverId", roleIdList));
+        }
+
+        if (search.getRequestForOrgList() != null && !search.getRequestForOrgList().isEmpty()) {
+
+            log.debug("Filtering by OrgList=" + search.getRequestForOrgList());
+
+            crit.add(Restrictions.in("requestForOrgId", search.getRequestForOrgList()));
+        }
+
+
+
+
+		crit.addOrder(Order.desc("requestDate"));
 		
 		List<ProvisionRequest> results = (List<ProvisionRequest>)crit.list();
 		return results;		

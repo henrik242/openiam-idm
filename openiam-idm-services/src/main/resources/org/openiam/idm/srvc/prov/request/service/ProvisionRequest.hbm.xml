@@ -44,7 +44,11 @@
         <property name="managedResourceId" type="string">
             <column name="MANAGED_RESOURCE_ID" length="32" />
         </property> 
-                
+
+        <property name="requestForOrgId" type="string">
+            <column name="REQUEST_FOR_ORG_ID" length="32" />
+        </property>
+
         
         <set name="requestUsers" cascade="all-delete-orphan" lazy="false" inverse="false" >
             <key>

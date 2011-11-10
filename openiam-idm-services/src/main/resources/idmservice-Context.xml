@@ -88,6 +88,7 @@
 			<property name="resourceDataService" ref="resourceDataService" />
 			<property name="managedSysService" ref="managedSysService" />
             <property name="auditHelper" ref="auditHelper" />
+            <!--property name="orgManager" ref="orgManager" / -->
 	</bean>
 
 	<bean id="modifyUser" class="org.openiam.provision.service.ModifyUser"  scope="prototype">
@@ -96,6 +97,7 @@
 			<property name="roleDataService" ref="roleDataService" />
 			<property name="groupManager" ref="groupManager" />
 			<property name="auditHelper" ref="auditHelper" />
+            <!-- property name="orgManager" ref="orgManager" / -->
 	</bean>
 
 	<bean id="disableUser" class="org.openiam.provision.service.DisableUserDelegate"  scope="prototype">
@@ -117,6 +119,21 @@
 		<property name="connectorService" ref="connectorService" />	
 	</bean>
 
+    <bean id="asyncAuditWS" class="org.openiam.idm.srvc.audit.ws.AsynchIdmAuditLogWebServiceImpl" >
+    </bean>
+
+    <bean id="asyncPublishAuditWS" class="org.openiam.idm.srvc.audit.ws.PublishAuditEventWebServiceImpl" >
+      </bean>
+
+    <bean id="authzWS" class="org.openiam.idm.srvc.authz.ws.AuthorizationWebServiceImpl" >
+        <property name="resourceDataService" ref="resourceDataService" />
+        <property name="userManager" ref="userManager" />
+        <property name="loginManager" ref="loginManager" />
+    </bean>
+
+    <bean id="auditHelper" class="org.openiam.idm.srvc.audit.service.AuditHelperImpl" >
+		<property name="auditDataService" ref="auditDataService" />
+	</bean>
 
 <!-- ========================= BPM Related Service ========================= -->
 
@@ -233,6 +250,15 @@
 	</bean>	
 	<bean id="activeDirAdapter" class="org.openiam.idm.srvc.synch.srcadapter.ActiveDirectoryAdapter" >
 	</bean>
+    	<bean id="wsAdapter" class="org.openiam.idm.srvc.synch.srcadapter.WSAdapter" >
+		<property name="matchRuleFactory" ref="matchRuleFactory" />
+		<property name="systemAccount" value="3000" />
+		<property name="loginManager" ref="loginManager" />
+		<property name="roleDataService" ref="roleDataService" />
+		<property name="userMgr" ref="userManager" />
+		<property name="auditHelper" ref="auditHelper" />
+        <property name="scriptEngine" value="org.openiam.script.GroovyScriptEngineIntegration" />
+	</bean>
 	
 	
 	<bean id="defaultMatchRule" class="org.openiam.idm.srvc.synch.srcadapter.DefaultMatchObjectRule" >
@@ -241,39 +267,7 @@
 <!-- ========================= ACTIVITY LOG ========================= -->	
 
 	
-<!-- ========================= Reconciliation ========================= -->
 
-	<bean id="reconService" class="org.openiam.idm.srvc.recon.service.ReconciliationServiceImpl">
-		<property name="reconSituationDao" ref="reconSituationDAO" />	
-		<property name="reconConfigDao" ref="reconConfigDAO" />	
-		<property name="reconResultDao" ref="reconResultDAO" />	
-		<property name="reconResultDetailDao" ref="reconResultDetailDAO" />
-        <property name="loginManager" ref="loginManager" />
-        <property name="provisionService" ref="defaultProvision" />
-        <property name="resourceDataService" ref="resourceDataService" />
-	</bean>
-
-
-	<bean id="reconServiceWS" class="org.openiam.idm.srvc.recon.ws.ReconciliationWebServiceImpl">
-	    <property name="reconService" ref="reconService" />
-	</bean>
-
-     <bean id="asyncReconciliationServiceWS" class="org.openiam.idm.srvc.recon.ws.AsynchReconciliationServiceImpl">
-		<property name="reconService" ref="reconService" />
-	</bean>
-	
-	<bean id="reconSituationDAO" class="org.openiam.idm.srvc.recon.service.ReconciliationSituationDAOImpl" >
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	
-	<bean id="reconConfigDAO" class="org.openiam.idm.srvc.recon.service.ReconciliationConfigDAOImpl" >
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	
-	<bean id="reconResultDAO" class="org.openiam.idm.srvc.recon.service.ReconciliationResultDAOImpl" >
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	
-	<bean id="reconResultDetailDAO" class="org.openiam.idm.srvc.recon.service.ReconciliationResultDAOImpl" >
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	
 
 	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
 
@@ -318,10 +312,6 @@
     <aop:advisor advice-ref="txAdvice" pointcut-ref="synchServiceWSOperation"/>
   </aop:config>
  
-  <aop:config>
-    <aop:pointcut id="reconServiceWSOperation" expression="execution(* org.openiam.idm.srvc.recon.ws.ReconciliationWebServiceImpl.*(..))"/>
-    <aop:advisor advice-ref="txAdvice" pointcut-ref="reconServiceWSOperation"/>
-  </aop:config>
 
   <aop:config>
     <aop:pointcut id="provRequestOperation" expression="execution(* org.openiam.idm.srvc.prov.request.service.RequestDataService.*(..))"/>
@@ -337,7 +327,12 @@
     <aop:pointcut id="managedSysDataOperation" expression="execution(* org.openiam.idm.srvc.mngsys.service.ManagedSystemDataService.*(..))"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="managedSysDataOperation"/>
   </aop:config> 
-          
+
+   <aop:config>
+    <aop:pointcut id="authzOperation" expression="execution(* org.openiam.idm.srvc.authz.ws.AuthorizationWebService.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="authzOperation"/>
+  </aop:config>
+
 </beans>
 
 

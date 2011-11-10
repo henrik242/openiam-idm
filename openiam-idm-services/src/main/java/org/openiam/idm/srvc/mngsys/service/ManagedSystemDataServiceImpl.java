@@ -284,7 +284,7 @@ public class ManagedSystemDataServiceImpl implements ManagedSystemDataService {
 	}
 
 	
-	public ApproverAssociation getApproverByRequestType(String requestType, int level) {
+	public List<ApproverAssociation> getApproverByRequestType(String requestType, int level) {
 		if (requestType == null)
 			throw new IllegalArgumentException("requestType is null");
 		return this.approverAssociationDao.findApproversByRequestType(requestType, level);

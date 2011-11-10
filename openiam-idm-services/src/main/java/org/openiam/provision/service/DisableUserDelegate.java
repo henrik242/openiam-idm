@@ -13,6 +13,7 @@ import org.openiam.base.ws.ResponseCode;
 import org.openiam.base.ws.ResponseStatus;
 import org.openiam.exception.EncryptionException;
 import org.openiam.exception.ObjectNotFoundException;
+import org.openiam.idm.srvc.audit.dto.IdmAuditLog;
 import org.openiam.idm.srvc.audit.service.AuditHelper;
 import org.openiam.idm.srvc.auth.dto.Login;
 import org.openiam.idm.srvc.auth.login.LoginDataService;
@@ -50,7 +51,9 @@ public class DisableUserDelegate {
 	
 
 	protected static final Log log = LogFactory.getLog(DisableUserDelegate.class);
-	
+
+
+
 	public Response disableUser(String userId, boolean operation, String requestorId, MuleContext muleContext) {
 		log.debug("----disableUser called.------");
 		log.debug("operation code=" + operation);
@@ -66,6 +69,7 @@ public class DisableUserDelegate {
 			return response;
 		}
 		User usr = this.userMgr.getUserWithDependent(userId, false);
+
 		if (usr == null) {
             auditHelper.addLog(strOperation, sysConfiguration.getDefaultSecurityDomain(), null,
 				"IDM SERVICE", requestorId, "IDM", "USER",
@@ -86,12 +90,22 @@ public class DisableUserDelegate {
 			strOperation = "ENABLE";
 		}
 		userMgr.updateUserWithDependent(usr,false);
+
+        Login lRequestor = loginManager.getPrimaryIdentity(requestorId);
+        Login lTargetUser = loginManager.getPrimaryIdentity(userId);
+
+        if (lRequestor != null && lTargetUser != null) {
 			
-		auditHelper.addLog(strOperation, sysConfiguration.getDefaultSecurityDomain(), null,
-				"IDM SERVICE", requestorId, "IDM", "USER",
-				usr.getUserId(), null,  "SUCCESS", null,  null,
-				null, requestId, null, null, null);
-		
+            auditHelper.addLog(strOperation, lRequestor.getId().getDomainId(), lRequestor.getId().getLogin(),
+                    "IDM SERVICE", requestorId, "IDM", "USER",
+                    usr.getUserId(), null,  "SUCCESS", null,  null,
+                    null, requestId, null, null, null,
+                    null, lTargetUser.getId().getLogin(), lTargetUser.getId().getDomainId() );
+        }else {
+            log.debug("Unable to log disable operation. Of of the following is null:");
+            log.debug("Requestor identity=" + lRequestor);
+            log.debug("Target identity=" + lTargetUser);
+        }
 		// disable the user in the managed systems
 		
 
@@ -129,10 +143,11 @@ public class DisableUserDelegate {
 		                resumeReq.setRequestID(requestId);
 		                connectorAdapter.resumeRequest(mSys, resumeReq,muleContext);
 					}
-	        		auditHelper.addLog(strOperation, sysConfiguration.getDefaultSecurityDomain(), lg.getId().getLogin(),
+	        		auditHelper.addLog(strOperation + " IDENTITY", lRequestor.getId().getDomainId(), lRequestor.getId().getLogin(),
 	        				"IDM SERVICE", requestorId, "IDM", "USER",
 	        				null, null,  "SUCCESS", requestId,  null, 
-	        				null, requestId, null, null, null);
+	        				null, requestId, null, null, null,
+                            null, lg.getId().getLogin(), lg.getId().getDomainId());
 				}
 			}
 		}

@@ -42,8 +42,18 @@
             <column name="REJECT_NOTIFY_USER_TYPE" length="20" />
         </property>
 
+        <property name="approverRoleId" type="string">
+            <column name="APPROVER_ROLE_ID" length="32" />
+        </property>
+
+        <property name="approverRoleDomain" type="string">
+            <column name="APPROVER_ROLE_DOMAIN" length="20" />
+        </property>
+
+        <property name="applyDelegationFilter" type="java.lang.Integer">
+            <column name="APPLY_DELEGATION_FILTER"  />
+        </property>
+
     </class>
 </hibernate-mapping>
-
-
 

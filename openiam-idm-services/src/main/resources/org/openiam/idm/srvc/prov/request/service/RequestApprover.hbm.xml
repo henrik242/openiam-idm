@@ -35,6 +35,9 @@
             <column name="CMT" length="1000" />
         </property>
 
+        <property name="roleDomain" type="string">
+            <column name="ROLE_DOMAIN" length="20" />
+        </property>
 
 
         <property name="mngSysGroupId" type="string">
