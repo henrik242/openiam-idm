@@ -503,7 +503,7 @@ public class LoginDataServiceImpl implements LoginDataService {
 
 	public List<Login> getInactiveUsers(int startDays, int endDays) {
 		List<Login> loginList = loginDao.findInactiveUsers(startDays, endDays);
-		log.info("Inactive user list=" + loginList);
+
 		return loginList;
 	}
 	
@@ -531,9 +531,14 @@ public class LoginDataServiceImpl implements LoginDataService {
 		return loginList;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.openiam.idm.srvc.auth.login.LoginDataService#getPrimaryIdentity(java.lang.String)
-	 */
+    public List<Login> usersWithPasswordExpYesterday() {
+        List<Login> loginList = loginDao.findUserPswdExpYesterday();
+		return loginList;
+    }
+
+    /* (non-Javadoc)
+      * @see org.openiam.idm.srvc.auth.login.LoginDataService#getPrimaryIdentity(java.lang.String)
+      */
 	public Login getPrimaryIdentity(String userId) {
 		List<Login> loginList = getLoginByUser(userId);
 		if (loginList == null) {

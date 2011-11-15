@@ -157,6 +157,12 @@ public interface LoginDataService {
 	public List<Login> getInactiveUsers(int startDays, int endDays);
 	
 	public List<Login> getUserNearPswdExpiration(int expDays);
+
+    /**
+     * List of users whose passworss are expiring today
+     * @return
+     */
+    public List<Login> usersWithPasswordExpYesterday();
 	
 	/**
 	 * Changes the identity of a user

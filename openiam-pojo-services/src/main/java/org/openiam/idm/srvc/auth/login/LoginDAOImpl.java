@@ -103,13 +103,13 @@ public class LoginDAOImpl implements LoginDAO {
        }
 
 	/*public void updateIdentity(Login lg) {
-		log.info("updateLogin called.");
+		log.debug("updateLogin called.");
 		Session session = sessionFactory.getCurrentSession();
 		session.evict(lg);
-		log.info("- login=" + lg + " userId=" + lg.getUserId());
+		log.debug("- login=" + lg + " userId=" + lg.getUserId());
 		
 		Login l = findLoginByManagedSys(lg.getId().getDomainId(), lg.getId().getManagedSysId(), lg.getUserId());
-		log.info("Found object to delete=" + l.getId());
+		log.debug("Found object to delete=" + l.getId());
 		
 		//Login l = this.findById(lg.getId());
 		this.remove(l);
@@ -193,7 +193,7 @@ public class LoginDAOImpl implements LoginDAO {
     			" where l.id.domainId = :domain and " + 
     			"  l.id.managedSysId = :managedSys and " +
     			"  l.userId = :userId ");
-    	log.info("domain=" + domain + " managedSys=" + managedSys + " userId=" + userId);
+    	log.debug("domain=" + domain + " managedSys=" + managedSys + " userId=" + userId);
     	qry.setString("domain", domain);
     	qry.setString("managedSys", managedSys);
     	qry.setString("userId", userId);
@@ -270,7 +270,7 @@ public class LoginDAOImpl implements LoginDAO {
 	 */
 	public int bulkUnlock(String domainId,UserStatusEnum status, int autoUnlockTime) {
     	
-		log.info("bulkUnlock operation in LoginDAO called." );
+		log.debug("bulkUnlock operation in LoginDAO called." );
 		Session session = sessionFactory.getCurrentSession();
     	
 	
@@ -298,35 +298,35 @@ public class LoginDAOImpl implements LoginDAO {
 
     	Date policyTime = new Date(System.currentTimeMillis());
     	
-    	log.info("Auto unlock time:" + autoUnlockTime);
+    	log.debug("Auto unlock time:" + autoUnlockTime);
     	
     	Calendar c = Calendar.getInstance();
         c.setTime(policyTime);
         c.add(Calendar.MINUTE, (-1 * autoUnlockTime));
         policyTime.setTime( c.getTimeInMillis() );
         
-        log.info("Policy time=" + policyTime.toString());
+        log.debug("Policy time=" + policyTime.toString());
         
     	qry.setString("domain", domainId);
     	
-    	log.info("DomainId=" + domainId);
+    	log.debug("DomainId=" + domainId);
     	
     	int statusParam = 0;
     	if  (status.equals( UserStatusEnum.LOCKED)) {
     		statusParam = 1;
     		 //qry.setInteger("status", 1);
-    		 log.info("status=1" );
+    		 log.debug("status=1" );
     	 }else {
     		 statusParam = 2;
     		 //qry.setInteger("status", 2);
-    		 log.info("status=2" );
+    		 log.debug("status=2" );
     	 }
 
     	qry.setInteger("status", statusParam);
     	qry.setTimestamp("policyTime", policyTime);
     	int rowCount =  qry.executeUpdate();
     	
-    	log.info("Bulk unlock updated:" + rowCount);
+    	log.debug("Bulk unlock updated:" + rowCount);
     	
     	if (rowCount > 0) {
     		    		
@@ -348,9 +348,9 @@ public class LoginDAOImpl implements LoginDAO {
 	 * @see org.openiam.idm.srvc.auth.login.LoginDAO#findInactiveUsers(int, int)
 	 */
 	public List<Login> findInactiveUsers(int startDays, int endDays) {
-		log.info("findInactiveUsers called.");
-		log.info("Start days=" + startDays);
-		log.info("End days=" + endDays);
+		log.debug("findInactiveUsers called.");
+		log.debug("Start days=" + startDays);
+		log.debug("End days=" + endDays);
 		
 		boolean start = false;
     	Date startDate = new Date(System.currentTimeMillis());
@@ -360,27 +360,27 @@ public class LoginDAOImpl implements LoginDAO {
     	
     	
 		if (startDays != 0 ) {
-			sql.append(" l.lastLogin < :startDate " );
+			sql.append(" l.lastLogin <= :startDate " );
 			start = true;
 			
 	    	Calendar c = Calendar.getInstance();
 	        c.setTime(startDate);
 	        c.add(Calendar.DAY_OF_YEAR, (-1 * startDays));
 	        startDate.setTime( c.getTimeInMillis() );
-	        log.info("starDate = " + startDate.toString());
+	        log.debug("starDate = " + startDate.toString());
 			
 		}
 		if ( endDays != 0) {
 			if (start) {
 				sql.append( " and " );
 			}
-			sql.append(" l.lastLogin > :endDate ");
+			sql.append(" l.lastLogin >= :endDate ");
 	    	
 			Calendar c = Calendar.getInstance();
 	        c.setTime(endDate);
 	        c.add(Calendar.DAY_OF_YEAR, (-1 * endDays));
 	        endDate.setTime( c.getTimeInMillis() );
-	        log.info("endDate = " + endDate.toString());
+	        log.debug("endDate = " + endDate.toString());
 	        
 		}
 
@@ -406,27 +406,73 @@ public class LoginDAOImpl implements LoginDAO {
 	 * @see org.openiam.idm.srvc.auth.login.LoginDAO#findUserNearPswdExp(int)
 	 */
 	public List<Login> findUserNearPswdExp(int daysToExpiration) {
-		log.info("findUserNearPswdExp called.");
-		log.info("days to Expiration=" + daysToExpiration);
+		log.debug("findUserNearPswdExp: findUserNearPswdExp called.");
+		log.debug("days to password Expiration=" + daysToExpiration);
 		
-    	Date expDate = new Date(System.currentTimeMillis());
+    	java.sql.Date expDate = new java.sql.Date(System.currentTimeMillis());
+        java.sql.Date endDate = new java.sql.Date(expDate.getTime());
+
 		if (daysToExpiration != 0 ) {
 
 	    	Calendar c = Calendar.getInstance();
 	        c.setTime(expDate);
 	        c.add(Calendar.DAY_OF_YEAR, (daysToExpiration));
-	        expDate.setTime( c.getTimeInMillis() );
-	        log.info("expDate = " + expDate.toString());
+
+            expDate.setTime( c.getTimeInMillis() );
+
+            c.add(Calendar.DAY_OF_YEAR, 1);
+            endDate.setTime(c.getTimeInMillis());
+
+
+            log.debug("dates between : " + expDate.toString() + " " + endDate.toString());
 			
 		}
 				
 		String sql = new String(" from org.openiam.idm.srvc.auth.dto.Login l where " +
-				" l.pwdExp <= :expDate" );
+				" l.pwdExp BETWEEN :startDate and :endDate" );
     	
 
     	Session session = sessionFactory.getCurrentSession();
     	Query qry = session.createQuery(sql.toString());
-    	qry.setDate("expDate", expDate);
+    	qry.setDate("startDate", expDate);
+        qry.setDate("endDate", endDate);
+
+    	List<Login> results = (List<Login>)qry.list();
+    	if (results == null) {
+    		return (new ArrayList<Login>());
+    	}
+    	return results;
+
+	}
+
+    public List<Login> findUserPswdExpYesterday() {
+		log.debug("findUserPswdExpToday: findUserNearPswdExp called.");
+
+    	java.sql.Date expDate = new java.sql.Date(System.currentTimeMillis());
+        java.sql.Date endDate = new java.sql.Date(expDate.getTime());
+
+
+	    	Calendar c = Calendar.getInstance();
+            c.add(Calendar.DAY_OF_YEAR, 1);
+	        c.setTime(expDate);
+	        expDate.setTime( c.getTimeInMillis() );
+
+            c.add(Calendar.DAY_OF_YEAR, 1);
+            endDate.setTime(c.getTimeInMillis());
+
+
+            log.debug("dates between : " + expDate.toString() + " " + endDate.toString());
+
+
+
+		String sql = new String(" from org.openiam.idm.srvc.auth.dto.Login l where " +
+				" l.pwdExp BETWEEN :startDate and :endDate" );
+
+
+    	Session session = sessionFactory.getCurrentSession();
+    	Query qry = session.createQuery(sql.toString());
+    	qry.setDate("startDate", expDate);
+        qry.setDate("endDate", endDate);
 
     	List<Login> results = (List<Login>)qry.list();
     	if (results == null) {
@@ -437,11 +483,12 @@ public class LoginDAOImpl implements LoginDAO {
 	}
 
 
+
 	/* (non-Javadoc)
 	 * @see org.openiam.idm.srvc.auth.login.LoginDAO#bulkResetPasswordChangeCount()
 	 */
 	public int bulkResetPasswordChangeCount() {
-		log.info("bulkResetPasswordChangeCount operation in LoginDAO called." );
+		log.debug("bulkResetPasswordChangeCount operation in LoginDAO called." );
 		Session session = sessionFactory.getCurrentSession();
     	
 

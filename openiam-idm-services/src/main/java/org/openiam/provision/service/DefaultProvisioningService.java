@@ -2314,10 +2314,22 @@ public class DefaultProvisioningService implements MuleContextAware, ProvisionSe
 
         ResponseType resp = connectorAdapter.deleteRequest(mSys, reqType, muleContext);
 
-        auditHelper.addLog("DELETE IDENTITY", auditLog.getDomainId(),  auditLog.getPrincipal(),
+
+        String logid = null;
+        String status = null;
+
+        if (resp.getStatus() != null) {
+            status = resp.getStatus().toString();
+        }
+
+        if (auditLog != null) {
+            logid = auditLog.getLogId();
+        }
+
+        auditHelper.addLog("DELETE IDENTITY", user.getRequestorDomain(),  user.getRequestorLogin(),
                 "IDM SERVICE", user.getCreatedBy(), l.getId().getManagedSysId(),
                 "IDENTITY", user.getUserId(),
-                auditLog.getLogId(), resp.getStatus().toString(), auditLog.getLogId(),
+                logid, status, logid,
                 "IDENTITY_STATUS", "DELETED",
                 requestId, resp.getrrorCodeAsStr(), user.getSessionId(), resp.getErrorMsgAsStr(),
                 user.getRequestClientIP(), l.getId().getLogin(), l.getId().getDomainId());

@@ -42,6 +42,9 @@ public interface LoginDAO {
 	
 	List<Login> findUserNearPswdExp(int daysToExpiration);
 
+
+    List<Login> findUserPswdExpYesterday();
+
     /**
      * Returns a list of Login objects for the managed system specified by the sysId
      * @param managedSysId

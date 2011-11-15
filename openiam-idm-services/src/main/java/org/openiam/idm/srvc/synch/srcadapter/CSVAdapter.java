@@ -195,7 +195,7 @@ public class CSVAdapter implements SourceAdapter {
 							
 							int retval = transformScript.execute(rowObj, pUser);
 							
-							
+							pUser.setSessionId(synchStartLog.getSessionId());
 							// temp code
 
 							
